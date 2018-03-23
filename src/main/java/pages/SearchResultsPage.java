@@ -18,7 +18,7 @@ public class SearchResultsPage {
     }
 
     public void waitForSearchResults() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("top")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.className("call_doc_house_grid")));
     }
 
     public void openBookFromResultsBy(String bookTitle) {
