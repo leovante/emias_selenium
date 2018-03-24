@@ -14,19 +14,18 @@
 *
 * */
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.EMIASsite;
+import pages.EmiasSite;
+
+import java.util.concurrent.TimeUnit;
 
 public class EMIAStest {
     WebDriver webDriver;
-    EMIASsite website;
+    EmiasSite website;
     WebDriverWait wait;
 
     @Before
@@ -34,9 +33,9 @@ public class EMIAStest {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         webDriver = new ChromeDriver();
         wait = new WebDriverWait(webDriver, 30, 500);
-        website = new EMIASsite(webDriver);
+        website = new EmiasSite(webDriver);
 
-        webDriver.get("http://mis.softrust.ru/whc/");
+        webDriver.get("http://mis.softrust.ru/whc/Home");
 
         System.out.println("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
@@ -49,11 +48,10 @@ public class EMIAStest {
     }
 
     @Test
-    public void testSearchArtice(){
-        System.out.println("Step 4: Enter CallDoctor Page");
+    public void testCallDoctorPage(){
+        System.out.println("TEST 1: Enter CallDoctor Page");
         website.emiasPage().clickCallDoctorButton();
-
-        System.out.println("Step 5: Wait for search result");
+        website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
     }
 

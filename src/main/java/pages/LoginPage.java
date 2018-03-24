@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,19 +14,21 @@ public class LoginPage {
     @FindBy(id = "Login")
     WebElement loginInputField;
 
-    @FindBy(id = "Pass")
+    @FindBy(id = "Password")
     WebElement passInputField;
 
     @FindBy(id = "loginBtn")
     WebElement loginButton;
 
-    public void LoginPage(WebDriver driver){
+
+    public LoginPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 30);
         PageFactory.initElements(webDriver, this);
     }
 
     public void enterLoginText(String text) {
+        webDriver.findElement(By.xpath("//div[@class='main']"));
         loginInputField.clear();
         loginInputField.sendKeys(text);
     }
