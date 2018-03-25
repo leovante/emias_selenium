@@ -21,8 +21,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.EmiasSite;
 
-import java.util.concurrent.TimeUnit;
-
 public class EMIAStest {
     WebDriver webDriver;
     EmiasSite website;
@@ -47,10 +45,21 @@ public class EMIAStest {
         website.loginPage().clickLoginButton();
     }
 
+/*
     @Test
-    public void testCallDoctorPage(){
+    public void testCallDoctorPage() throws InterruptedException {
         System.out.println("TEST 1: Enter CallDoctor Page");
         website.emiasPage().clickCallDoctorButton();
+        website.callDoctorPage().clickCallDoctorSearchBtn();
+        website.callDoctorPage().waitForSearchResults();
+    }
+*/
+
+    @Test
+    public void testCallDoctorPageWithFilter() throws InterruptedException {
+        System.out.println("TEST 2: Enter CallDoctor Page");
+        website.emiasPage().clickCallDoctorButton();
+        website.callDoctorPage().filterCallDoctorSearchBtn();
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
     }
