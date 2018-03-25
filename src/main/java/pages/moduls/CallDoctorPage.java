@@ -40,23 +40,16 @@ public class CallDoctorPage {
         System.out.println("wait until filter is load");
         System.out.println("click 1");
         webDriver.findElement(By.xpath("//a[@id='callDoctorLpuList-button']/span")).click();
-
-        System.out.println("click 2 выбор Акушерское отделение");
-        //webDriver.findElement(By.id("ui-selectmenu-item-991")).click();
-        webDriver.findElement(By.xpath("xpath=(//a[contains( text(),'Акушерское отделение')])[2]&nbsp")).click();
-
+        System.out.println("click 2");
+        webDriver.findElement(By.linkText("Взрослое поликлиническое отделение №2")).click();
         System.out.println("click 3");
         webDriver.findElement(By.xpath("//a[@id='callDoctorUchastokList-button']/span")).click();
-
         System.out.println("click 4");
-        webDriver.findElement(By.id("ui-selectmenu-item-77")).click();
-
+        webDriver.findElement(By.linkText("поликл Взр-2 10 участок терапевт Взр-2")).click();
         System.out.println("click 5");
         webDriver.findElement(By.xpath("//a[@id='callDoctorTypeList-button']/span")).click();
-
         System.out.println("click 6");
-        webDriver.findElement(By.id("ui-selectmenu-item-138")).click();
-
+        webDriver.findElement(By.linkText("Первичный")).click();
         System.out.println("click callDoctorSearchBtn");
         callDoctorSearchBtn.click();
     }

@@ -34,7 +34,7 @@ public class EMIAStest {
         website = new EmiasSite(webDriver);
 
         webDriver.get("http://mis.softrust.ru/whc/Home");
-
+        System.out.println("привет");
         System.out.println("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
 
@@ -45,7 +45,6 @@ public class EMIAStest {
         website.loginPage().clickLoginButton();
     }
 
-/*
     @Test
     public void testCallDoctorPage() throws InterruptedException {
         System.out.println("TEST 1: Enter CallDoctor Page");
@@ -53,11 +52,10 @@ public class EMIAStest {
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
     }
-*/
 
     @Test
     public void testCallDoctorPageWithFilter() throws InterruptedException {
-        System.out.println("TEST 2: Enter CallDoctor Page");
+        System.out.println("TEST 2: Enter CallDoctor Page with filter");
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().filterCallDoctorSearchBtn();
         website.callDoctorPage().clickCallDoctorSearchBtn();
