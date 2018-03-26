@@ -34,11 +34,20 @@ public class ItBooksTests {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         webDriver = new ChromeDriver();
         wait = new WebDriverWait(webDriver, 30, 500);
-        website = new BooksSite(webDriver);
+        //website = new BooksSite(webDriver);
 
-        webDriver.get("http://it-ebooks.info/");
+        webDriver.get("http://emias.mosreg.ru/mis/test_emias");
 
-        System.out.println("Step 1: Switch to search by title");
+        System.out.println("Step 1: Login into fileld");
+        website.loginPage().enterLoginText("admin");
+
+        System.out.println("Step 2: Pass into field");
+        website.loginPage().enterPassText("11");
+
+        System.out.println("Step 3: Click Search Button");
+        website.loginPage().clickLoginButton();
+
+        /*System.out.println("Step 1: Switch to search by title");
         website.mainPage().switchSearchToTitle();
 
         System.out.println("Step 2: Enter search phrase");
@@ -48,16 +57,16 @@ public class ItBooksTests {
         website.mainPage().clickSearchButton();
 
         System.out.println("Step 4: Wait For search Results");
-        website.searchResultsPage().waitForSearchResults();
+        website.searchResultsPage().waitForSearchResults();*/
     }
 
-    @Test
+/*    @Test
     public void testSearshBookUrl() {
         System.out.println("Check url");
         Assert.assertTrue(webDriver.getCurrentUrl().contains("search/?q=automation&type=title"));
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testBooksSearch() {
         System.out.println("Check search results");
         Assert.assertTrue(
@@ -74,7 +83,7 @@ public class ItBooksTests {
 
         System.out.println("Step 6: Wait for page load");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1[itemprop='name']")));
-    }
+    }*/
 
     @After
     public void tearDown() {

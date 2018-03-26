@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 public class BooksSite {
     WebDriver webDriver;
 
-    public BooksSite(WebDriver driver) {
+    public LoginPage loginPage() {return new LoginPage(webDriver);}
+
+    /*public BooksSite(WebDriver driver) {
         webDriver = driver;
     }
 
@@ -17,8 +19,7 @@ public class BooksSite {
         return new SearchResultsPage(webDriver);
     }
 
-    public BookInfoPage bookinfoPage(){
-        return new BookInfoPage();
-    }
+    public BookInfoPage bookinfoPage(){return new BookInfoPage();}
+    */
 
 }
