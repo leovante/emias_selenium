@@ -20,9 +20,18 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.EMIASsite;
+import java.util.regex.Pattern;
+import java.util.concurrent.TimeUnit;
+import org.junit.*;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class EMIAStest {
     WebDriver webDriver;
@@ -32,11 +41,16 @@ public class EMIAStest {
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        //System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         webDriver = new ChromeDriver();
         wait = new WebDriverWait(webDriver, 30, 500);
         website = new EMIASsite(webDriver);
 
         webDriver.get("http://mis.softrust.ru/whc/");
+
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Login")));
+
 
         System.out.println("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
