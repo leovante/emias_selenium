@@ -14,44 +14,27 @@
 *
 * */
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.EMIASsite;
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
+import pages.EmiasSite;
 
 public class EMIAStest {
     WebDriver webDriver;
-    EMIASsite website;
+    EmiasSite website;
     WebDriverWait wait;
 
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        //System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         webDriver = new ChromeDriver();
         wait = new WebDriverWait(webDriver, 30, 500);
-        website = new EMIASsite(webDriver);
+        website = new EmiasSite(webDriver);
 
-        webDriver.get("http://mis.softrust.ru/whc/");
-
-
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Login")));
-
-
+        webDriver.get("http://mis.softrust.ru/whc/Home");
+        System.out.println("привет");
         System.out.println("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
 
@@ -63,11 +46,19 @@ public class EMIAStest {
     }
 
     @Test
-    public void testSearchArtice(){
-        System.out.println("Step 4: Enter CallDoctor Page");
+    public void testCallDoctorPage() throws InterruptedException {
+        System.out.println("TEST 1: Enter CallDoctor Page");
         website.emiasPage().clickCallDoctorButton();
+        website.callDoctorPage().clickCallDoctorSearchBtn();
+        website.callDoctorPage().waitForSearchResults();
+    }
 
-        System.out.println("Step 5: Wait for search result");
+    @Test
+    public void testCallDoctorPageWithFilter() throws InterruptedException {
+        System.out.println("TEST 2: Enter CallDoctor Page with filter");
+        website.emiasPage().clickCallDoctorButton();
+        website.callDoctorPage().filterCallDoctorSearchBtn();
+        website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
     }
 

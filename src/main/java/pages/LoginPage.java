@@ -11,10 +11,7 @@ public class LoginPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
 
-    /*@FindBy(id = "Login")
-    WebElement loginInputField;*/
-
-    @FindBy(css = "input[name='Login']")
+    @FindBy(id = "Login")
     WebElement loginInputField;
 
     @FindBy(id = "Password")
@@ -23,19 +20,17 @@ public class LoginPage {
     @FindBy(id = "loginBtn")
     WebElement loginButton;
 
-    public void LoginPage(WebDriver driver){
+
+    public LoginPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 30);
         PageFactory.initElements(webDriver, this);
     }
 
     public void enterLoginText(String text) {
-        System.out.println("driver=" + webDriver);
-        webDriver.findElement(By.id("Login")).getTagName();
-        webDriver.findElement(By.id("Login")).sendKeys(text);
-
-        /*loginInputField.clear();
-        loginInputField.sendKeys(text);*/
+        webDriver.findElement(By.xpath("//div[@class='main']"));
+        loginInputField.clear();
+        loginInputField.sendKeys(text);
     }
 
     public void enterPasswordText(String text) {
