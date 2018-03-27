@@ -34,7 +34,7 @@ public class EMIAStest {
         website = new EmiasSite(webDriver);
 
         webDriver.get("http://mis.softrust.ru/whc/Home");
-        System.out.println("привет");
+        //System.out.println("привет");
         System.out.println("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
 
@@ -62,6 +62,30 @@ public class EMIAStest {
         website.callDoctorPage().waitForSearchResults();
     }
 
+    @Test
+    public void  testVedenieRaspisaniya() throws InterruptedException {
+
+
+/*
+-открыть емиас http://emias.mosreg.ru/mis/test_emias
+-ввести логин и пароль
+-нажать ведение расписания
+-выбрать врача нажатием галочки (врач без расписания)
+-нажать кнопку создать расписание
+-нажать на поле дата
+-в календаре ничего не выбирать
+-начало интервала выбрать как следующий час от текущего времени.
+-окончание интервала на 15 мин после начала
+-изменить время приема
+-выбрать без разбивки на интервалы
+-выбрать живая очередь
+-выбрать из выпадающего списка тип приема - прием детей до одного года
+-нажать добавить в правой верхней части окна
+-нажать кнопку сохранить
+-во всплывающем окне нажать кнопку - да
+-найти ячейку по времени и проверить что она изменила цвет на фиолетовый.
+*/
+    }
     @After
     public void tearDown() {
         if (webDriver != null)
