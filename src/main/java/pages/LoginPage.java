@@ -23,7 +23,7 @@ public class LoginPage {
 
     public LoginPage(WebDriver driver){
         webDriver = driver;
-        wait = new WebDriverWait(webDriver, 30);
+        wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
     }
 
@@ -39,6 +39,7 @@ public class LoginPage {
     }
 
     public void clickLoginButton() {
+
         loginButton.click();
     }
 }

@@ -30,7 +30,7 @@ public class EMIAStest {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         webDriver = new ChromeDriver();
-        wait = new WebDriverWait(webDriver, 30, 500);
+        wait = new WebDriverWait(webDriver, 60, 500);
         website = new EmiasSite(webDriver);
 
         webDriver.get("http://mis.softrust.ru/whc/Home");
@@ -59,7 +59,7 @@ public class EMIAStest {
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().filterCallDoctorSearchBtn();
         website.callDoctorPage().clickCallDoctorSearchBtn();
-        website.callDoctorPage().waitForSearchResults();
+        website.callDoctorPage().verificationTableGridNull();
     }
 
     @After
