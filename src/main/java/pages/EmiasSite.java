@@ -1,8 +1,8 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import pages.moduls.CallDoctorPage;
-import pages.moduls.ScheduleDoctors;
+import pages.moduls.ModuleCallDoctor;
+import pages.moduls.ModuleVedenieRaspisaniya;
 
 public class EmiasSite {
     WebDriver webDriver;
@@ -17,11 +17,11 @@ public class EmiasSite {
         return new LoginPage(webDriver);
     }
 
-    public CallDoctorPage callDoctorPage() {
-        return new CallDoctorPage(webDriver);
+    public ModuleCallDoctor callDoctorPage() {
+        return new ModuleCallDoctor(webDriver);
     }
 
-    public ScheduleDoctors scheduleDoctors() {
-        return new ScheduleDoctors(webDriver);
+    public ModuleVedenieRaspisaniya scheduleDoctors() {
+        return new ModuleVedenieRaspisaniya(webDriver);
     }
 }

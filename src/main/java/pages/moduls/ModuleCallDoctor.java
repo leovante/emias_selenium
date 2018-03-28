@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
 
-public class CallDoctorPage {
+public class ModuleCallDoctor {
     private WebDriver webDriver;
     private WebDriverWait wait;
 
@@ -37,7 +37,7 @@ public class CallDoctorPage {
 //    @FindBy(css = "tr[role='row']")
 //    WebElement callDoctorPatientPotition;
 
-    public CallDoctorPage(WebDriver driver) {
+    public ModuleCallDoctor(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);

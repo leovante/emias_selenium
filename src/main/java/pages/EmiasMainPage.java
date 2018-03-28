@@ -49,15 +49,14 @@ public class EmiasMainPage {
 
     //БЛОК УПРАВЛЕНИЕ ПОТОКАМИ ПАЦИЕНТОВ
     public void clickScheduleDoctors(){
-
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         } else {
         }
-        System.out.println("click видение расписания");
-        WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_2']/div[2]/div[2]/a/span"));
-        JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
-        jse2.executeScript("arguments[0].scrollIntoView()", myelement);
+        System.out.println("click vedenie raspisaniya ");
+//        WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_2']/div[2]/div[2]/a/span"));
+//        JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
+//        jse2.executeScript("arguments[0].scrollIntoView()", myelement);
         videnieRaspisaniya.click();
     }
 }
