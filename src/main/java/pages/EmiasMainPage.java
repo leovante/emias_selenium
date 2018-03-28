@@ -32,6 +32,7 @@ public class EmiasMainPage {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         } else {
         }
+        //
 //        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
 //        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
 //        wait.until(ExpectedConditions.visibilityOf(callDoctorButton));
