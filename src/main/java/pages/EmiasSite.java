@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import pages.moduls.CallDoctorPage;
+import pages.moduls.ScheduleDoctors;
 
 public class EmiasSite {
     WebDriver webDriver;
@@ -18,5 +19,9 @@ public class EmiasSite {
 
     public CallDoctorPage callDoctorPage() {
         return new CallDoctorPage(webDriver);
+    }
+
+    public ScheduleDoctors scheduleDoctors() {
+        return new ScheduleDoctors(webDriver);
     }
 }

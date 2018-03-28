@@ -16,6 +16,9 @@ public class EmiasMainPage {
     @FindBy(xpath = "//div[@id='Portlet_6']/div[2]/div/a/span")
     WebElement callDoctorButton;
 
+    @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[2]/a/span")
+    WebElement videnieRaspisaniya;
+
     @FindBy(id = "loaderleftspacer")
     WebElement spiner;
 
@@ -32,100 +35,29 @@ public class EmiasMainPage {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         } else {
         }
-        //
 //        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
 //        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
 //        wait.until(ExpectedConditions.visibilityOf(callDoctorButton));
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span")));
 //        wait.until(ExpectedConditions.textToBePresentInElement(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span"), "Вызов врача на дом"));
-        //Thread.sleep(5000);
         System.out.println("click callDoctorButton");
-
         WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span"));
         JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
         jse2.executeScript("arguments[0].scrollIntoView()", myelement);
-
         callDoctorButton.click();
     }
 
     //БЛОК УПРАВЛЕНИЕ ПОТОКАМИ ПАЦИЕНТОВ
-    public void raspisaniePriema(){
+    public void clickScheduleDoctors(){
 
-    }
-
-    public void vedenieRaspisaniya(){
-
-    }
-
-    public void listiOzhidaniya(){
-
-    }
-
-    public void medicalCardsUprPotok(){
-
-    }
-
-    public void perenosZapisey(){
-
-    }
-
-    public void vipiskaNapravleniy(){
-
-    }
-
-    //БЛОК МЕДИЦИНСКИЕ КАРТЫ
-    public void medicalCardsMedCard(){
-
-    }
-
-    public void zhurnalZayavleniy(){
-
-    }
-
-    //БЛОК НОРМАТИВНО-СПРАВОЧНАЯ ИНФОРМАЦИЯ
-    public void normativnoSpravochnayaInfo(){
-
-    }
-
-    //БЛОК УЧЕТ ВРЕМЕННОЙ НЕТРУДОСПОСОБНОСТИ
-    public void uchetListkovNetrudospsobnosti(){
-
-    }
-
-    //БЛОК СВИДЕТЕЛЬСТВА О СМЕРТИ
-    public void uchetSpravokOsmerti(){
-
-    }
-
-    public void uchetUmershih(){
-
-    }
-
-    //БЛОК РЕЦЕПТЫ
-    public void federalniyRecept(){
-
-    }
-
-    public void regionalniyRecept(){
-
-    }
-
-    //БЛОК АНАЛИТИКА И СТАТИСТИКА
-    public void systemnieOtcheti(){
-
-    }
-
-    public void otchetiHtml(){
-
-    }
-
-    //БЛОК ЛАБОРАТОРНЫЕ ИССЛЕДОВАНИЯ
-    public void napravleniyaNaIssledovaniya(){
-
-    }
-
-    //БЛОК УЧЕТ БЕРЕМЕННЫХ
-    public void uchetBeremennih(){
-
+        if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        } else {
+        }
+        System.out.println("click видение расписания");
+        WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_2']/div[2]/div[2]/a/span"));
+        JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
+        jse2.executeScript("arguments[0].scrollIntoView()", myelement);
+        videnieRaspisaniya.click();
     }
 }
