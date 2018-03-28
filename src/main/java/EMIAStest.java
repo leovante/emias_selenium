@@ -47,7 +47,7 @@ public class EMIAStest {
 
     @Test
     public void testCallDoctorPage() throws InterruptedException {
-        System.out.println("TEST 1: Enter CallDoctor Page");
+        System.out.println("KEYS 1: Enter CallDoctor Page");
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
@@ -55,7 +55,7 @@ public class EMIAStest {
 
     @Test
     public void testCallDoctorPageWithFilter() throws InterruptedException {
-        System.out.println("TEST 2: Enter CallDoctor Page with filter");
+        System.out.println("KEYS 2: Enter CallDoctor Page with filter");
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().filterCallDoctorSearchBtn();
         website.callDoctorPage().clickCallDoctorSearchBtn();
