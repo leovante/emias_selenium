@@ -1,12 +1,16 @@
 package pages.moduls;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.NoSuchElementException;
 
 public class CallDoctorPage {
     private WebDriver webDriver;
@@ -15,41 +19,62 @@ public class CallDoctorPage {
     @FindBy(id = "searchByFilter")
     WebElement callDoctorSearchBtn;
 
-    @FindBy(id = "call_doc_house_grid")
+    @FindBy(xpath = "//table[@id='call_doc_house_grid']/tbody/tr[2]/td")
     WebElement tableGrid;
+
+    @FindBy(xpath = "//a[@id='callDoctorLpuList-button']/span")
+    WebElement menuBtn;
+
+    @FindBy(xpath = "//a[@id='callDoctorUchastokList-button']/span")
+    WebElement menuBtn1;
+
+    @FindBy(xpath = "//a[@id='callDoctorTypeList-button']/span")
+    WebElement menuBtn2;
+
+    @FindBy(id = "loaderleftspacer")
+    WebElement spiner;
 
 //    @FindBy(css = "tr[role='row']")
 //    WebElement callDoctorPatientPotition;
 
-    public CallDoctorPage(WebDriver driver){
+    public CallDoctorPage(WebDriver driver) {
         webDriver = driver;
-        wait = new WebDriverWait(webDriver, 30);
+        wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
-    }
-
-    public void clickCallDoctorSearchBtn() throws InterruptedException {
-        wait.until(ExpectedConditions.elementToBeClickable(callDoctorSearchBtn));
-        Thread.sleep(3000);
-        System.out.println("click callDoctorSearchBtn");
-        callDoctorSearchBtn.click();
     }
 
     public void filterCallDoctorSearchBtn() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(callDoctorSearchBtn));
-        Thread.sleep(3000);
-        System.out.println("wait until filter is load");
+        wait.until(ExpectedConditions.visibilityOfAllElements(menuBtn, menuBtn1, menuBtn2));
+
+        //Thread.sleep(3000);
         System.out.println("click 1");
+        wait.until((ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='callDoctorLpuList-button']/span"))));
         webDriver.findElement(By.xpath("//a[@id='callDoctorLpuList-button']/span")).click();
         System.out.println("click 2");
         webDriver.findElement(By.linkText("Взрослое поликлиническое отделение №2")).click();
+
         System.out.println("click 3");
         webDriver.findElement(By.xpath("//a[@id='callDoctorUchastokList-button']/span")).click();
         System.out.println("click 4");
+        wait.until((ExpectedConditions.elementToBeClickable(By.linkText("поликл Взр-2 10 участок терапевт Взр-2"))));
         webDriver.findElement(By.linkText("поликл Взр-2 10 участок терапевт Взр-2")).click();
+
         System.out.println("click 5");
         webDriver.findElement(By.xpath("//a[@id='callDoctorTypeList-button']/span")).click();
         System.out.println("click 6");
+        wait.until((ExpectedConditions.elementToBeClickable(By.linkText("Первичный"))));
         webDriver.findElement(By.linkText("Первичный")).click();
+
+        System.out.println("click callDoctorSearchBtn");
+        callDoctorSearchBtn.click();
+    }
+
+    public void clickCallDoctorSearchBtn() throws InterruptedException {
+        if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        } else {
+        }
         System.out.println("click callDoctorSearchBtn");
         callDoctorSearchBtn.click();
     }
@@ -59,4 +84,29 @@ public class CallDoctorPage {
         wait.until(ExpectedConditions.elementToBeClickable(tableGrid));
         System.out.println("the table appeared");
     }
+
+    public void verificationTableGridNull() {
+        System.out.println("Проверка что таблицы нет");
+//        WebElement tableGrid = webDriver.findElement(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td"));
+//        System.out.println(tableGrid);
+//        if(tableGrid != null)
+//            throw new NullPointerException("Ошибка, Таблица загрузилась!");
+//        boolean present;
+//        try {
+//            webDriver.findElement(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td"));
+//            present = true;
+//        } catch (NoSuchElementException e) {
+//            present = false;
+//        }
+        if (!webDriver.findElements(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td")).isEmpty()) {
+            throw new NullPointerException("Ошибка, Таблица загрузилась!");
+        } else {
+
+        }
+    }
 }
+/*
+короче "call_doc_house_grid" всегда отображается, поэтому для проверки загрузки таблицы нужен другой параметр
+соответственно tableGrid никогда не будет null
+убрать везде thread и сделать так что бы ждало пока загрузится страница
+ */
