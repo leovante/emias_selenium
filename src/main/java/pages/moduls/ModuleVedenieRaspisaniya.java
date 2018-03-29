@@ -1,7 +1,6 @@
 package pages.moduls;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Timer;
 import java.util.List;
 
 public class ModuleVedenieRaspisaniya {
@@ -45,7 +43,6 @@ public class ModuleVedenieRaspisaniya {
 //        List<WebElement> doctorList11 = webDriver.findElements(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"));
         wait.until(ExpectedConditions.elementToBeClickable(doctorRow));
         List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
-
 //        List<WebElement> doctorList9 = webDriver.findElements(By.xpath("//input[@role='checkbox'][@type='checkbox'][@class='cbox']"));
 //        List<WebElement> doctorList8 = webDriver.findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']"))
 //                .findElements(By.tagName("tr") ); //(css = "input[value='title']") //table[@id='call_doc_house_grid']/tbody/tr[2]/td
@@ -53,7 +50,6 @@ public class ModuleVedenieRaspisaniya {
 //        List<WebElement> doctorList = webDriver.findElements(By.xpath("//span[@style='font-weight: bold;']"));
 //        List<WebElement> doctorList3 = webDriver.findElements(By.xpath("//tr[@role='row']"));
 //        List<WebElement> doctorList4 = webDriver.findElements(By.tagName("tr"));
-
         for (WebElement oneDoctor : doctorList) {
 //            WebElement doctor = oneDoctor.findElement(By.className("cbox")); //id = jqg_schw_docprvdgrid1_1078
             oneDoctor.click();
@@ -70,8 +66,11 @@ public class ModuleVedenieRaspisaniya {
             Thread.sleep(1000);
             webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
             //webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();             //нажали закрыть календарь
+            Thread.sleep(1000);
             webDriver.findElement(By.xpath("//a[@id='ddlbusytype-button']/span[2]")).click();       //нажимаем на выпадающий список тип приема
+            Thread.sleep(1000);
             webDriver.findElement(By.linkText("Прием здорового ребенка")).click();                  //выбор подменю
+            Thread.sleep(1000);
             webDriver.findElement(By.id("schedule_add_button")).click();                            //нажали кнопу добавить
             Thread.sleep(3000);
             webDriver.findElement(By.xpath("//button[@id='btn_save_schedule']/span")).click();      //нажимаем кнопку сохранить
@@ -81,7 +80,6 @@ public class ModuleVedenieRaspisaniya {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span"))));
             //wait.until(ExpectedConditions.elementToBeClickable(oknoPodtverzhdeniya));
             Thread.sleep(3000);
-
 /*
             if (wait.until(ExpectedConditions
                     .elementToBeClickable(By.xpath("//div[24]/div[3]/div/button/span"))) != null) {
