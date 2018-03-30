@@ -17,11 +17,8 @@ public class ModuleVedenieRaspisaniya {
     private WebDriver webDriver;
     private WebDriverWait wait;
 
-    @FindBy(xpath="//tr[@role='row'][@tabindex='-1']")
+    @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
-
-    @FindBy(xpath="//div[24]/div[3]/div/button/span")
-    WebElement oknoPodtverzhdeniya;
 
     public ModuleVedenieRaspisaniya(WebDriver driver) {
         webDriver = driver;
@@ -61,23 +58,15 @@ public class ModuleVedenieRaspisaniya {
             webDriver.findElement(By.xpath("//button[@id='btn_save_schedule']/span")).click();      //нажимаем кнопку сохранить
             Thread.sleep(3000);
 
-            Keyboard keyboard=((HasInputDevices) webDriver).getKeyboard();
+            Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
             keyboard.pressKey(Keys.ENTER);
 
             Thread.sleep(1000);
             break;
-
-            //дальше нужно перейти на другого врача из списка и сделать всё тоже самое
-        /*     */
-            //после создания записи, нужно проверить что появилась ячейка на это время с этим цветом
         }
-//        WebElement a = webDriver.findElement(By.xpath("//table[@class='fc-agenda-days fc-border-separate']/div/[cellspacing='0']")
-//                .findElement(By.linkText("07:00 "));
-
         Thread.sleep(2000);
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))
                 .findElement(By.xpath("//div[@style='background-color:#66CCCC;border-color:#66CCCC;color:#FFFFFF']"));
-
         System.out.println("проверка содержимого а");
     }
 }

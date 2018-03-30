@@ -29,17 +29,10 @@ public class EmiasMainPage {
     }
 
     public void clickCallDoctorButton() throws InterruptedException {
-        //wait.until(ExpectedConditions.not(ExpectedConditions.presenceOfElementLocated(By.id("loaderleftspacer")))); не работает
-        //wait.until(ExpectedConditions.stalenessOf(spiner));
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         } else {
         }
-//        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
-//        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
-//        wait.until(ExpectedConditions.visibilityOf(callDoctorButton));
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span")));
-//        wait.until(ExpectedConditions.textToBePresentInElement(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span"), "Вызов врача на дом"));
         System.out.println("click callDoctorButton");
         WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span"));
         JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
@@ -54,9 +47,6 @@ public class EmiasMainPage {
         } else {
         }
         System.out.println("click vedenie raspisaniya ");
-//        WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_2']/div[2]/div[2]/a/span"));
-//        JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
-//        jse2.executeScript("arguments[0].scrollIntoView()", myelement);
         videnieRaspisaniya.click();
     }
 }

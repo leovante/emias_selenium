@@ -34,9 +34,6 @@ public class ModuleCallDoctor {
     @FindBy(id = "loaderleftspacer")
     WebElement spiner;
 
-//    @FindBy(css = "tr[role='row']")
-//    WebElement callDoctorPatientPotition;
-
     public ModuleCallDoctor(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -87,17 +84,6 @@ public class ModuleCallDoctor {
 
     public void verificationTableGridNull() {
         System.out.println("Проверка что таблицы нет");
-//        WebElement tableGrid = webDriver.findElement(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td"));
-//        System.out.println(tableGrid);
-//        if(tableGrid != null)
-//            throw new NullPointerException("Ошибка, Таблица загрузилась!");
-//        boolean present;
-//        try {
-//            webDriver.findElement(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td"));
-//            present = true;
-//        } catch (NoSuchElementException e) {
-//            present = false;
-//        }
         if (!webDriver.findElements(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         } else {
@@ -105,8 +91,3 @@ public class ModuleCallDoctor {
         }
     }
 }
-/*
-короче "call_doc_house_grid" всегда отображается, поэтому для проверки загрузки таблицы нужен другой параметр
-соответственно tableGrid никогда не будет null
-убрать везде thread и сделать так что бы ждало пока загрузится страница
- */
