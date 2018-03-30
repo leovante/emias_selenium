@@ -71,7 +71,6 @@ public class EMIAStest {
         System.out.println("KEYS 3: Enter in doctor's schedule and create task");
         website.emiasPage().clickScheduleDoctors();
         website.scheduleDoctors().sozdanieRaspisaniya();
-
     }
     @After
     public void tearDown() {

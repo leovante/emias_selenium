@@ -67,6 +67,7 @@ public class ModuleVedenieRaspisaniya {
         Thread.sleep(2000);
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))
                 .findElement(By.xpath("//div[@style='background-color:#66CCCC;border-color:#66CCCC;color:#FFFFFF']"));
-        System.out.println("проверка содержимого а");
+        System.out.println("проверка ячейки с этим цветом");
+        //ТУТ НУЖНО УДАЛИТЬ ЭТО РАСПИСАНИЕ
     }
 }
