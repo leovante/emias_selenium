@@ -34,27 +34,9 @@ public class ModuleVedenieRaspisaniya {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
         Thread.sleep(3000);
-        //получаем список врачей
-        //webDriver.findElement(By.linkText(bookTitle)).click();
-//        List<WebElement> doctorList1 = webDriver.findElement(By.xpath("//div[@id='gview_schw_docprvdgrid1']/div[3]/div/table"))
-//                .findElements(By.xpath("//tr[@role='row']") ); //(css = "input[value='title']") //table[@id='call_doc_house_grid']/tbody/tr[2]/td
-//        List<WebElement> doctorList5 = webDriver.findElement(By.xpath("//div[@id='gview_schw_docprvdgrid1']/div[3]/div/table"))
-//                .findElements(By.tagName("tr") ); //(css = "input[value='title']") //table[@id='call_doc_house_grid']/tbody/tr[2]/td
-//        List<WebElement> doctorList6 = webDriver.findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))
-//                .findElements(By.tagName("tr") ); //(css = "input[value='title']") //table[@id='call_doc_house_grid']/tbody/tr[2]/td
-//        List<WebElement> doctorList10 = webDriver.findElements(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody/tr"));
-//        List<WebElement> doctorList11 = webDriver.findElements(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"));
         wait.until(ExpectedConditions.elementToBeClickable(doctorRow));
         List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
-//        List<WebElement> doctorList9 = webDriver.findElements(By.xpath("//input[@role='checkbox'][@type='checkbox'][@class='cbox']"));
-//        List<WebElement> doctorList8 = webDriver.findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']"))
-//                .findElements(By.tagName("tr") ); //(css = "input[value='title']") //table[@id='call_doc_house_grid']/tbody/tr[2]/td
-//        List<WebElement> doctorList2 = webDriver.findElements(By.xpath("//div[@id='gview_schw_docprvdgrid1']/div[3]/div/table"));
-//        List<WebElement> doctorList = webDriver.findElements(By.xpath("//span[@style='font-weight: bold;']"));
-//        List<WebElement> doctorList3 = webDriver.findElements(By.xpath("//tr[@role='row']"));
-//        List<WebElement> doctorList4 = webDriver.findElements(By.tagName("tr"));
         for (WebElement oneDoctor : doctorList) {
-//            WebElement doctor = oneDoctor.findElement(By.className("cbox")); //id = jqg_schw_docprvdgrid1_1078
             oneDoctor.click();
             Thread.sleep(3000);//это тут временно
             //нажимаем на создать расписание
@@ -79,42 +61,23 @@ public class ModuleVedenieRaspisaniya {
             webDriver.findElement(By.xpath("//button[@id='btn_save_schedule']/span")).click();      //нажимаем кнопку сохранить
             Thread.sleep(3000);
 
-
-
-            //span[count(. | //*[contains(.,'Да')]) = count(//*[contains(.,'Да')])]
-            // [count(. // | //*[contains(@class,'ui-button-text')]) = count(//*[contains(@class,'ui-button-text')])]
-
-//            webDriver.findElement(By.tagName("span[count(. | //*[contains(.,'Да')])"));
-//            webDriver.findElement(By.linkText("count(//*[contains(.,'Да')])"));
-            //webDriver.findElement(By.xpath("//span[@class='ui-button-text]")).findElement(By.linkText("Да"));
-                    //"count(//*[contains(.,'Да')])"));
-
-            //List<WebElement> yesList = webDriver.findElements(By.linkText("Предупреждение"));
             Keyboard keyboard=((HasInputDevices) webDriver).getKeyboard();
             keyboard.pressKey(Keys.ENTER);
 
-            // [count(. // | //*[contains(@class,'ui-button-text')]) = count(//*[contains(@class,'ui-button-text')])]
+            Thread.sleep(1000);
+            break;
 
-            /*webDriver.switchTo().frame(webDriver.findElement(By.linkText("Да")));*/
-            //wait.until(ExpectedConditions.visibilityOf(oknoPodtverzhdeniya));
-            /*webDriver.findElement(By.linkText("Да")).click();*/
-            //wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span"))));
-            //wait.until(ExpectedConditions.elementToBeClickable(oknoPodtverzhdeniya));
-            Thread.sleep(3000);
-/*
-            if (wait.until(ExpectedConditions
-                    .elementToBeClickable(By.xpath("//div[24]/div[3]/div/button/span"))) != null) {
-                webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span")).click();
-                //нажимаем отмена
-                webDriver.findElement(By.xpath("//div/button[3]/span")).click();
-                break;
-            }
-*/
             //дальше нужно перейти на другого врача из списка и сделать всё тоже самое
         /*     */
             //после создания записи, нужно проверить что появилась ячейка на это время с этим цветом
         }
-        WebElement a = webDriver.findElement(By.linkText("07:00 "));
+//        WebElement a = webDriver.findElement(By.xpath("//table[@class='fc-agenda-days fc-border-separate']/div/[cellspacing='0']")
+//                .findElement(By.linkText("07:00 "));
+
+        Thread.sleep(2000);
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))
+                .findElement(By.xpath("//div[@style='background-color:#66CCCC;border-color:#66CCCC;color:#FFFFFF']"));
+
         System.out.println("проверка содержимого а");
     }
 }
