@@ -1,8 +1,11 @@
 package pages.moduls;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -75,9 +78,27 @@ public class ModuleVedenieRaspisaniya {
             Thread.sleep(3000);
             webDriver.findElement(By.xpath("//button[@id='btn_save_schedule']/span")).click();      //нажимаем кнопку сохранить
             Thread.sleep(3000);
-            wait.until(ExpectedConditions.visibilityOf(oknoPodtverzhdeniya));
-            webDriver.findElement(By.linkText("Да")).click();
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span"))));
+
+
+
+            //span[count(. | //*[contains(.,'Да')]) = count(//*[contains(.,'Да')])]
+            // [count(. // | //*[contains(@class,'ui-button-text')]) = count(//*[contains(@class,'ui-button-text')])]
+
+//            webDriver.findElement(By.tagName("span[count(. | //*[contains(.,'Да')])"));
+//            webDriver.findElement(By.linkText("count(//*[contains(.,'Да')])"));
+            //webDriver.findElement(By.xpath("//span[@class='ui-button-text]")).findElement(By.linkText("Да"));
+                    //"count(//*[contains(.,'Да')])"));
+
+            //List<WebElement> yesList = webDriver.findElements(By.linkText("Предупреждение"));
+            Keyboard keyboard=((HasInputDevices) webDriver).getKeyboard();
+            keyboard.pressKey(Keys.ENTER);
+
+            // [count(. // | //*[contains(@class,'ui-button-text')]) = count(//*[contains(@class,'ui-button-text')])]
+
+            /*webDriver.switchTo().frame(webDriver.findElement(By.linkText("Да")));*/
+            //wait.until(ExpectedConditions.visibilityOf(oknoPodtverzhdeniya));
+            /*webDriver.findElement(By.linkText("Да")).click();*/
+            //wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span"))));
             //wait.until(ExpectedConditions.elementToBeClickable(oknoPodtverzhdeniya));
             Thread.sleep(3000);
 /*
