@@ -1,4 +1,4 @@
-package pages;
+package test;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -31,7 +31,6 @@ public class EmiasMainPage {
     public void clickCallDoctorButton() throws InterruptedException {
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        } else {
         }
         System.out.println("click callDoctorButton");
         WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span"));
@@ -44,9 +43,8 @@ public class EmiasMainPage {
     public void clickScheduleDoctors(){
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        } else {
         }
-        System.out.println("click vedenie raspisaniya ");
+        System.out.println("click vedenie raspisaniya");
         videnieRaspisaniya.click();
     }
 }
