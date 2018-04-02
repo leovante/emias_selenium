@@ -129,5 +129,24 @@ public class ModuleTimeTable {
         //webDriver.findElement(By.xpath("//div[id='jqContextMenu']"));
         //.findElement(By.xpath("//li[id='sch_del_menu']")).click();
 */
+
+
+
+
+  /*      Воспользоваться классом Wait и ждать пока Selenium#isElementPresent не вернёт true для нужного option'а.
+        Этот способ уже лучше, но всё равно не должен применяться, в будущем напишу подробно почему. Лучше вместо
+        класса Wait использовать метод Selenium#waitForCondition, в котором и ждать появления требуемого элемента.
+  */
+
+
+/*  https://habrahabr.ru/post/111649/
+        Selenium.prototype.doWaitForJqueryAjaxRequests = function(timeout) {
+            return Selenium.decorateFunctionWithTimeout(function() {
+                return selenium.browserbot.getUserWindow().jQuery.active == 0;
+            }, timeout);
+        };
+
+        */
+
     }
 }
