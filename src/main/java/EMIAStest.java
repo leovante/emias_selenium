@@ -33,7 +33,7 @@ public class EMIAStest {
 
     @Before
     public void setUp() {
-        logger =  Logger.getLogger("emias_selenium");
+        logger = Logger.getLogger("emias_selenium");
         PropertyConfigurator.configure("src/main/resources/log4j.properties");
         logger.setLevel(Level.FATAL);
 /*
@@ -54,7 +54,6 @@ public class EMIAStest {
         website = new EmiasSite(webDriver);
         webDriver.manage().window().maximize();
         webDriver.get("http://mis.softrust.ru/whc/Home");
-        //System.out.println("привет");
         logger.info("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
 
@@ -89,7 +88,6 @@ public class EMIAStest {
     @Test
     public void  testVedenieRaspisaniya() throws InterruptedException {
         logger.info("KEYS 3: Enter in doctor's schedule and create task");
-
         website.emiasPage().clickScheduleDoctors();
         website.scheduleDoctors().sozdanieRaspisaniya();
 

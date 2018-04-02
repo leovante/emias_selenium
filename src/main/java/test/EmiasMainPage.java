@@ -45,6 +45,7 @@ public class EmiasMainPage {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
         System.out.println("click vedenie raspisaniya");
+        wait.until(ExpectedConditions.elementToBeClickable(videnieRaspisaniya));
         videnieRaspisaniya.click();
     }
 }
