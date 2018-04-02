@@ -66,7 +66,7 @@ public class EMIAStest {
         logger.fatal("Before: Done");
     }
 
-    @Test
+    @Test//
     public void testSearchCallDoctor() throws InterruptedException {
         logger.info("KEYS 1: Enter CallDoctor Page");
         website.emiasPage().clickCallDoctorButton();
