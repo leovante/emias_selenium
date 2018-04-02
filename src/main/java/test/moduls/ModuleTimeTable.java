@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class ModuleVedenieRaspisaniya {
+public class ModuleTimeTable {
     private WebDriver webDriver;
     private WebDriverWait wait;
     private Logger logger;
@@ -27,7 +27,7 @@ public class ModuleVedenieRaspisaniya {
     @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div/div")
     WebElement poleZayavok;
 
-    public ModuleVedenieRaspisaniya(WebDriver driver) {
+    public ModuleTimeTable(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
