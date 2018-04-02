@@ -1,8 +1,8 @@
-package pages;
+package test;
 
 import org.openqa.selenium.WebDriver;
-import pages.moduls.ModuleCallDoctor;
-import pages.moduls.ModuleVedenieRaspisaniya;
+import test.moduls.ModuleCallDoctor;
+import test.moduls.ModuleVedenieRaspisaniya;
 
 public class EmiasSite {
     WebDriver webDriver;
