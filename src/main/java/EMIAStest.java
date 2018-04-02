@@ -48,7 +48,6 @@ public class EMIAStest {
         System.out.println("Step 3: Press Login Button");
         website.loginPage().clickLoginButton();
     }
-
     @Test
     public void testCallDoctorPage() throws InterruptedException {
         System.out.println("KEYS 1: Enter CallDoctor Page");
@@ -56,7 +55,6 @@ public class EMIAStest {
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
     }
-
     @Test
     public void testCallDoctorPageWithFilter() throws InterruptedException {
         System.out.println("KEYS 2: Enter CallDoctor Page with filter");
@@ -65,7 +63,6 @@ public class EMIAStest {
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().verificationTableGridNull();
     }
-
     @Test
     public void  testVedenieRaspisaniya() throws InterruptedException {
         System.out.println("KEYS 3: Enter in doctor's schedule and create task");

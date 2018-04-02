@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +22,9 @@ public class ModuleVedenieRaspisaniya {
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
 
+    @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div/div")
+    WebElement poleZayavok;
+
     public ModuleVedenieRaspisaniya(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -35,6 +40,7 @@ public class ModuleVedenieRaspisaniya {
         List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
         for (WebElement oneDoctor : doctorList) {
             oneDoctor.click();
+/*
             Thread.sleep(3000);//это тут временно
             //нажимаем на создать расписание
             webDriver.findElement(By.xpath("//button[@id='btn_create']/span[2]")).click();
@@ -62,12 +68,21 @@ public class ModuleVedenieRaspisaniya {
             keyboard.pressKey(Keys.ENTER);
 
             Thread.sleep(1000);
+*/
             break;
         }
         Thread.sleep(2000);
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))
+        WebElement taskArea = webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#66CCCC;border-color:#66CCCC;color:#FFFFFF']"));
         System.out.println("проверка ячейки с этим цветом");
+
+        taskArea.click();
+        Actions action = new Actions(webDriver);
+        action.contextClick(taskArea).perform();
+        Thread.sleep(1000);
+        webDriver.findElement(By.xpath("//div[id='jqContextMenu']"));
+                //.findElement(By.xpath("//li[id='sch_del_menu']")).click();
+
         //ТУТ НУЖНО УДАЛИТЬ ЭТО РАСПИСАНИЕ
     }
 }
