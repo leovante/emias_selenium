@@ -2,6 +2,7 @@ package test;
 
 import org.openqa.selenium.WebDriver;
 import test.moduls.ModuleCallDoctor;
+import test.moduls.ModuleMedicalCard;
 import test.moduls.ModuleVedenieRaspisaniya;
 
 public class EmiasSite {
@@ -24,4 +25,10 @@ public class EmiasSite {
     public ModuleVedenieRaspisaniya scheduleDoctors() {
         return new ModuleVedenieRaspisaniya(webDriver);
     }
+
+    public ModuleMedicalCard moduleMedicalCard() {
+        return new ModuleMedicalCard(webDriver);
+    }
+
+
 }

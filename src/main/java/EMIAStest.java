@@ -65,34 +65,46 @@ public class EMIAStest {
 
         logger.fatal("Before: Done");
     }
+
     @Test
-    public void testCallDoctorPage() throws InterruptedException {
+    public void testSearchCallDoctor() throws InterruptedException {
         logger.info("KEYS 1: Enter CallDoctor Page");
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
-
         logger.info("KEYS 1: Done");
     }
     @Test
-    public void testCallDoctorPageWithFilter() throws InterruptedException {
+    public void testSearchCallDoctorWithFilter() throws InterruptedException {
         logger.info("KEYS 2: Enter CallDoctor Page with filter");
-
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().filterCallDoctorSearchBtn();
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().verificationTableGridNull();
-
         logger.info("KEYS 2: Done");
     }
     @Test
-    public void  testVedenieRaspisaniya() throws InterruptedException {
-        logger.info("KEYS 3: Enter in doctor's schedule and create task");
+    public void testCreateTimeTables() throws InterruptedException {
+        logger.info("KEYS 3: Enter in doctor's schedule");
         website.emiasPage().clickScheduleDoctors();
         website.scheduleDoctors().sozdanieRaspisaniya();
-
         logger.error("KEYS 3: Done");
     }
+    @Test
+    public void  testCreateNewCall() throws InterruptedException {
+        logger.info("KEYS 4: Enter in CallDoctor");
+        website.emiasPage().clickCallDoctorButton();
+        website.callDoctorPage().createNewCall();
+        logger.error("KEYS 4: Done");
+    }
+    @Test
+    public void  testCreateNewMkab() throws InterruptedException {
+        logger.info("KEYS 5: Enter in CallDoctor");
+        website.emiasPage().clickCallDoctorButton();
+        website.callDoctorPage().createNewCall();
+        logger.error("KEYS 5: Done");
+    }
+
     @After
     public void tearDown() {
         Logs logs = webDriver.manage().logs();
