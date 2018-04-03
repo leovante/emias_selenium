@@ -52,7 +52,7 @@ public class EMIAStest {
         webDriver = new ChromeDriver();
         wait = new WebDriverWait(webDriver, 60, 500);
         website = new EmiasSite(webDriver);
-        webDriver.manage().window().maximize();
+        //webDriver.manage().window().maximize();
         webDriver.get("http://mis.softrust.ru/whc/Home");
         logger.info("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
@@ -86,7 +86,7 @@ public class EMIAStest {
     @Test// 3
     public void testCreateTimeTables() throws InterruptedException {
         logger.info("KEYS 3: Enter doctor's timetable");
-        website.emiasPage().clickScheduleDoctors();
+        website.emiasPage().clickTimeTable();
         website.scheduleDoctors().sozdanieRaspisaniya();
         logger.error("KEYS 3: Done");
     }

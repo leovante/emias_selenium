@@ -17,10 +17,7 @@ public class MainPage {
     WebElement callDoctorButton;
 
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[2]/a/span")
-    WebElement videnieRaspisaniya;
-
-    @FindBy(id = "loaderleftspacer")
-    WebElement spiner;
+    WebElement timeTable;
 
     public MainPage(WebDriver driver){
         webDriver = driver;
@@ -33,19 +30,22 @@ public class MainPage {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
         System.out.println("click callDoctorButton");
+/*
         WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span"));
         JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
         jse2.executeScript("arguments[0].scrollIntoView()", myelement);
+*/
+        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
         callDoctorButton.click();
     }
 
     //БЛОК УПРАВЛЕНИЕ ПОТОКАМИ ПАЦИЕНТОВ
-    public void clickScheduleDoctors(){
+    public void clickTimeTable(){
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
         System.out.println("click vedenie raspisaniya");
-        wait.until(ExpectedConditions.elementToBeClickable(videnieRaspisaniya));
-        videnieRaspisaniya.click();
+        wait.until(ExpectedConditions.elementToBeClickable(timeTable));
+        timeTable.click();
     }
 }
