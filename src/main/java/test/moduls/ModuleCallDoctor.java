@@ -1,6 +1,7 @@
 package test.moduls;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
@@ -83,30 +84,11 @@ public class ModuleCallDoctor {
     public void createNewCall_ExistingMkab() throws InterruptedException {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='add_doc_house_btn']/span[2]")));
         webDriver.findElement(By.xpath("//button[@id='add_doc_house_btn']/span[2]")).click();//создать вызов
-//        webDriver.findElement(By.id("Person_Family")).clear();
-//        webDriver.findElement(By.id("Person_Family")).sendKeys("123");
-//        webDriver.findElement(By.id("Person_Name")).click();
-//        webDriver.findElement(By.id("Person_Name")).clear();
-//        webDriver.findElement(By.id("Person_Name")).sendKeys("123");
-//        webDriver.findElement(By.id("Person_Patronymic")).click();
-//        webDriver.findElement(By.id("Person_Patronymic")).clear();
-//        webDriver.findElement(By.id("Person_Patronymic")).sendKeys("123");
-//        webDriver.findElement(By.id("Person_Sex-button")).click();
-//        webDriver.findElement(By.id("ui-selectmenu-item-448")).click();
-//        webDriver.findElement(By.id("Person_BirthDate")).click();
-//        webDriver.findElement(By.id("Person_Polis_Series")).click();
-//        webDriver.findElement(By.id("Person_BirthDate")).click();
-//        webDriver.findElement(By.id("Person_Polis_Series")).click();
-//        webDriver.findElement(By.id("Person_Polis_Series")).clear();
-//        webDriver.findElement(By.id("Person_Polis_Series")).sendKeys("1111111111");
-//        webDriver.findElement(By.id("Person_Polis_Number")).click();
-//        webDriver.findElement(By.id("Person_Polis_Number")).clear();
-//        webDriver.findElement(By.id("Person_Polis_Number")).sendKeys("111111111111111");
+
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@id='openmkabbtn_dochouse']/span")));
-        webDriver.findElement(By.xpath("//button[@id='openmkabbtn_dochouse']/span")).click();
+        webDriver.findElement(By.xpath("//button[@id='openmkabbtn_dochouse']/span")).click();//открыть мкаб
         //Alert alert = webDriver.switchTo().alert();
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("sinpDocHouseDLG_Call_MKABSelector")));
-        webDriver.findElement(By.id("sinpDocHouseDLG_Call_MKABSelector")).clear();
         webDriver.findElement(By.id("sinpDocHouseDLG_Call_MKABSelector")).sendKeys("   ");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("btnfindDocHouseDLG_Call_MKABSelector")));
         webDriver.findElement(By.id("btnfindDocHouseDLG_Call_MKABSelector")).click();//поиск МКАБ
@@ -153,13 +135,21 @@ public class ModuleCallDoctor {
 
         //поле жалобы
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='s2id_Complaint']/ul")));
-        webDriver.findElement(By.xpath("//div[@id='s2id_Complaint']/ul")).click();
+        webDriver.findElement(By.xpath("//div[@id='s2id_Complaint']/ul")).click();//нажимаем нга поле
         Thread.sleep(1000);
         //webDriver.findElement(By.id("s2id_autogen2")).sendKeys("боль");//тут вылетает
 
         //тут нужно как-то сформировать список и прислать его
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("s2id_Complaint"));
-        webDriver.findElement(By.id("s2id_autogen2")).sendKeys("боль");//тут вылетает
+        //wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("s2id_Complaint"));
+        String selectAll = Keys.chord(Keys.CONTROL, "боль");
+        //webDriver.findElement(By.id("s2id_autogen1")).sendKeys(selectAll);
+        webDriver.findElement(By.id("s2id_autogen1")).sendKeys("боль");//тут вылетает
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[@class='select2-match'][text()='боль']")));
+        //Thread.sleep(2000);
+        new Actions(webDriver).sendKeys(Keys.ARROW_DOWN).perform();
+
+        //new Actions(driver).sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN).perform();
+        //webDriver.findElement(By.id("s2id_autogen2")).sendKeys("боль");//тут вылетает
         //webDriver.findElement(By.xpath("//div[@id='s2id_Complaint']/ul")).sendKeys("<li class=\"ui-state-focus ui-corner-all select2-choice-item select2-search-choice\">\t<span class=\"ui-icon ui-icon-close select2-icon\" tabindex=\"-1\"></span>   <div class=\"select2-choice-text\">привет</div></li>");
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         keyboard.pressKey(Keys.ENTER);
@@ -168,22 +158,38 @@ public class ModuleCallDoctor {
         webDriver.findElement(By.id("CallDoctorForm")).submit();
         webDriver.findElement(By.id("Mkb_Name")).click();//что это?
         webDriver.findElement(By.xpath("//img[@alt='Выбор']")).click();//выбор диагноза
-        webDriver.findElement(By.xpath("//tr[@id='26344']/td[2]")).click();
-        webDriver.findElement(By.xpath("//div[34]/div[3]/div/button/span")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tr[@id='26344']/td[2]")));
 
+        if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(
+                    By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+
+        webDriver.findElement(By.xpath("//tr[@id='26344']/td[2]")).click();//нажал на диагноз холера
+                    //webDriver.findElement(By.xpath("//div[34]/div[3]/div/button/span")).click();//падает
+        Thread.sleep(2000);
+        //падает
+        webDriver.findElement(By.xpath("//span[@class='ui-button-text'][text()='Выбрать']")).click(); //нажимаем на выбрать Диагноз
+
+        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//img[@alt='Выбор'])[3]")));
         webDriver.findElement(By.xpath("(//img[@alt='Выбор'])[3]")).click();//выбор подразделения МО
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//tr[@id='341']/td[2]/div")));
         webDriver.findElement(By.xpath("//tr[@id='341']/td[2]/div")).click();
         webDriver.findElement(By.xpath("//div[37]/div[3]/div/button/span")).click();
 
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//img[@alt='Выбор'])[4]")));
         webDriver.findElement(By.xpath("(//img[@alt='Выбор'])[4]")).click();//выбор врача
         webDriver.findElement(By.xpath("//tr[@id='2616451']/td[8]")).click();
         webDriver.findElement(By.xpath("//div[39]/div[3]/div/button[2]/span")).click();
 
         webDriver.findElement(By.id("CallDoctorType-button")).click();//вид вызова
-        webDriver.findElement(By.id("ui-selectmenu-item-884")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Первичный")));
+        webDriver.findElement(By.linkText("ui-Первичный-item-884")).click();
 
         webDriver.findElement(By.xpath("//a[@id='CallDoctorStatus-button']/span")).click();//состояние вызова
-        webDriver.findElement(By.id("ui-selectmenu-item-160")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Активный")));
+        webDriver.findElement(By.linkText("ui-Активный-item-160")).click();
 
         webDriver.findElement(By.id("Comment")).click();//поле примечание
         webDriver.findElement(By.id("btnIsFinalize")).click();//кнопка вызов выполнен
