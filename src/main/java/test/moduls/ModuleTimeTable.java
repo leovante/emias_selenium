@@ -39,7 +39,6 @@ public class ModuleTimeTable {
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
-        //logger.info("Ищем в поиске Аблову");
         //удалить существующее расписание
         wait.until(ExpectedConditions.elementToBeClickable(By.id("sinpschw_docprvdgrid1")));
         webDriver.findElement(By.id("sinpschw_docprvdgrid1")).sendKeys("test");
@@ -72,44 +71,48 @@ public class ModuleTimeTable {
             if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
                 wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
             }
-
             //нажимаем на создать расписание
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btn_create']/span[2]")));
             webDriver.findElement(By.xpath("//button[@id='btn_create']/span[2]")).click();
-            //Thread.sleep(3000);
+
             wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_nach")));
             webDriver.findElement(By.id("pickTime_nach")).sendKeys("0700");          //нажимаем на поле начала интервала
-            //Thread.sleep(1000);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
             webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
-            //webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();             //нажали закрыть календарь
-            Thread.sleep(700);
+            Thread.sleep(500);
             wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_okon")));
             webDriver.findElement(By.id("pickTime_okon")).sendKeys("0715");          //нажимаем на поле окончание интервала
-            //Thread.sleep(1000);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
-            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
-            //webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();             //нажали закрыть календарь
-            //Thread.sleep(1000);
+            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();      //нажали закрыть календарь
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='ddlbusytype-button']/span[2]")));
             webDriver.findElement(By.xpath("//a[@id='ddlbusytype-button']/span[2]")).click();       //нажимаем на выпадающий список тип приема
-            //Thread.sleep(1000);
-            wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Прием здорового ребенка")));
-            webDriver.findElement(By.linkText("Прием здорового ребенка")).click();                  //выбор подменю
-            //Thread.sleep(1000);
+            wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Прием по очереди")));
+            webDriver.findElement(By.linkText("Прием по очереди")).click();                  //выбор подменю
             wait.until(ExpectedConditions.elementToBeClickable(By.id("schedule_add_button")));
             webDriver.findElement(By.id("schedule_add_button")).click();                            //нажали кнопу добавить
-            //Thread.sleep(3000);
+
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_nach")));
+            webDriver.findElement(By.id("pickTime_nach")).sendKeys("0715");          //нажимаем на поле начала интервала
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
+            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
+            Thread.sleep(500);
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_okon")));
+            webDriver.findElement(By.id("pickTime_okon")).sendKeys("0730");          //нажимаем на поле окончание интервала
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
+            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();      //нажали закрыть календарь
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='ddlbusytype-button']/span[2]")));
+            webDriver.findElement(By.xpath("//a[@id='ddlbusytype-button']/span[2]")).click();       //нажимаем на выпадающий список тип приема
+            wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Прием на дому (вызов на дом)")));
+            webDriver.findElement(By.linkText("Прием на дому (вызов на дом)")).click();                  //выбор подменю
+            wait.until(ExpectedConditions.elementToBeClickable(By.id("schedule_add_button")));
+            webDriver.findElement(By.id("schedule_add_button")).click();                            //нажали кнопу добавить
+
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btn_save_schedule']/span")));
             webDriver.findElement(By.xpath("//button[@id='btn_save_schedule']/span")).click();      //нажимаем кнопку сохранить
-            //Thread.sleep(3000);
 
             keyboard.pressKey(Keys.ENTER);
-
-            //Thread.sleep(1000);
             break;
         }
-        //Thread.sleep(2000);
         if (!webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
         }
@@ -117,10 +120,11 @@ public class ModuleTimeTable {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
         }
 
-
-        WebElement taskArea = webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("//div[@style='background-color:#66CCCC;border-color:#66CCCC;color:#FFFFFF']"));
-        System.out.println("проверка ячейки с этим цветом");
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+                .findElement(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']"));
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+                .findElement(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']"));
+        System.out.println("проверка ячеек с этим цветом");
 
         /*taskArea.click();
         Actions action = new Actions(webDriver);
@@ -129,9 +133,6 @@ public class ModuleTimeTable {
         //webDriver.findElement(By.xpath("//div[id='jqContextMenu']"));
         //.findElement(By.xpath("//li[id='sch_del_menu']")).click();
 */
-
-
-
 
   /*      Воспользоваться классом Wait и ждать пока Selenium#isElementPresent не вернёт true для нужного option'а.
         Этот способ уже лучше, но всё равно не должен применяться, в будущем напишу подробно почему. Лучше вместо
@@ -147,6 +148,5 @@ public class ModuleTimeTable {
         };
 
         */
-
     }
 }

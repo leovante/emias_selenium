@@ -12,7 +12,7 @@ public class EmiasSite {
         webDriver = driver;
     }
 
-    public EmiasMainPage emiasPage() {return new EmiasMainPage(webDriver);}
+    public MainPage emiasPage() {return new MainPage(webDriver);}
 
     public LoginPage loginPage(){
         return new LoginPage(webDriver);

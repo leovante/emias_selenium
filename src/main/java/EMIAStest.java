@@ -66,44 +66,46 @@ public class EMIAStest {
         logger.fatal("Before: Done");
     }
 
-    @Test//
+    @Test// 1
     public void testSearchCallDoctor() throws InterruptedException {
-        logger.info("KEYS 1: Enter CallDoctor Page");
+        logger.info("KEYS 1: Search call calldoctor page");
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().waitForSearchResults();
         logger.info("KEYS 1: Done");
     }
-    @Test
+    @Test// 2
     public void testSearchCallDoctorWithFilter() throws InterruptedException {
-        logger.info("KEYS 2: Enter CallDoctor Page with filter");
+        logger.info("KEYS 2: Search call calldoctor page with filter");
         website.emiasPage().clickCallDoctorButton();
-        website.callDoctorPage().filterCallDoctorSearchBtn();
+        website.callDoctorPage().filterCallDoctor();
         website.callDoctorPage().clickCallDoctorSearchBtn();
         website.callDoctorPage().verificationTableGridNull();
         logger.info("KEYS 2: Done");
     }
-    @Test
+    @Test// 3
     public void testCreateTimeTables() throws InterruptedException {
-        logger.info("KEYS 3: Enter in doctor's schedule");
+        logger.info("KEYS 3: Enter doctor's timetable");
         website.emiasPage().clickScheduleDoctors();
         website.scheduleDoctors().sozdanieRaspisaniya();
         logger.error("KEYS 3: Done");
     }
-    @Test
-    public void  testCreateNewCall() throws InterruptedException {
-        logger.info("KEYS 4: Enter in CallDoctor");
+
+    @Test// 4
+    public void  testCreateNewCall_ExistingMkab() throws InterruptedException {
+        logger.info("KEYS 4: Enter CallDoctor");
         website.emiasPage().clickCallDoctorButton();
-        website.callDoctorPage().createNewCall();
+        website.callDoctorPage().createNewCall_ExistingMkab();
         logger.error("KEYS 4: Done");
     }
-    @Test
+/*    @Test// 5
     public void  testCreateNewMkab() throws InterruptedException {
         logger.info("KEYS 5: Enter in CallDoctor");
         website.emiasPage().clickCallDoctorButton();
         website.callDoctorPage().createNewCall();
         logger.error("KEYS 5: Done");
     }
+*/
 
     @After
     public void tearDown() {

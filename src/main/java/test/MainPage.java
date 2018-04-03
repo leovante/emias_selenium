@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class EmiasMainPage {
+public class MainPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
 
@@ -22,7 +22,7 @@ public class EmiasMainPage {
     @FindBy(id = "loaderleftspacer")
     WebElement spiner;
 
-    public EmiasMainPage(WebDriver driver){
+    public MainPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
