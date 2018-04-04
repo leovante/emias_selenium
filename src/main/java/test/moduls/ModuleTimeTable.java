@@ -44,7 +44,6 @@ public class ModuleTimeTable {
         webDriver.findElement(By.id("sinpschw_docprvdgrid1")).sendKeys("test");
         webDriver.findElement(By.id("btnfindschw_docprvdgrid1")).click();//нажать поиск
 
-        //Thread.sleep(3000);
         if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
         }
@@ -53,7 +52,6 @@ public class ModuleTimeTable {
         List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
         for (WebElement oneDoctor : doctorList) {
             oneDoctor.click();//нажимаем на доктора
-            //Thread.sleep(2000);//это тут временно
             if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
                 wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
             }
