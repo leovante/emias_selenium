@@ -95,7 +95,7 @@ public class EMIAStest {
     public void  testCreateNewCall_ExistingMkab() throws InterruptedException {
         logger.info("KEYS 4: Enter CallDoctor");
         website.emiasPage().clickCallDoctorButton();
-        website.callDoctorPage().createNewCall_ExistingMkab();
+        website.moduleCallDoctor_CreateCall().createNewCall_ExistingMkab();
         logger.error("KEYS 4: Done");
     }
 /*    @Test// 5

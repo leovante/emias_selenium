@@ -2,6 +2,7 @@ package test;
 
 import org.openqa.selenium.WebDriver;
 import test.moduls.ModuleCallDoctor;
+import test.moduls.ModuleCallDoctor_CreateCall;
 import test.moduls.ModuleMedicalCard;
 import test.moduls.ModuleTimeTable;
 
@@ -28,6 +29,10 @@ public class EmiasSite {
 
     public ModuleMedicalCard moduleMedicalCard() {
         return new ModuleMedicalCard(webDriver);
+    }
+
+    public ModuleCallDoctor_CreateCall moduleCallDoctor_CreateCall() {
+        return new ModuleCallDoctor_CreateCall(webDriver);
     }
 
 

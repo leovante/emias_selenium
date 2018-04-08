@@ -51,6 +51,7 @@ public class ModuleTimeTable {
         wait.until(ExpectedConditions.elementToBeClickable(doctorRow));
         List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
         for (WebElement oneDoctor : doctorList) {
+            System.out.println(oneDoctor);
             oneDoctor.click();//нажимаем на доктора
             if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
                 wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
