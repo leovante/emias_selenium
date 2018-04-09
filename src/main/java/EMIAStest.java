@@ -56,17 +56,54 @@ public class EMIAStest {
         webDriver.get("http://mis.softrust.ru/whc/Home");
         logger.info("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
-
         logger.info("Step 2: Enter password");
         website.loginPage().enterPasswordText("11");
-
         logger.info("Step 3: Press Login Button");
         website.loginPage().clickLoginButton();
-
         logger.fatal("Before: Done");
     }
+    @Test// KEYS 1.1
+    public void testCreateDoctorTimeTables() throws InterruptedException {
+        logger.info("KEYS 1.1: Enter doctor's timetable");
+        website.emiasPage().clickTimeTable();
+        website.scheduleDoctors().createSheadle();
+        website.scheduleDoctors().checkCreateSheadle();
+        logger.error("KEYS 1.1: Done");
+    }
+    @Test//KEYS 1.2
+    public void testCopyDoctorTimeTables() throws InterruptedException {
+        logger.info("KEYS 1.2: Enter doctor's timetable");
+        website.emiasPage().clickTimeTable();
+        website.scheduleDoctors().createSheadle();
 
-    @Test// 1
+
+
+        /*
+        "1. Выбрать врача на которого будет копироваться расписание
+2. Нажать ""Копировать расписание""
+3. На Шаге 1 нажать ""Далее""
+4. Заполнить требуемые поля в окне «Шаг 2. Детали копирования»
+   - Указать с какого периода копируется расписание
+   - Указать на какой период копируется расписание
+   - Указать выходные дни, отметив их флажком
+5.  Нажать кнопку «Далее»
+6. Проверить периоды копирования и нажать ""Готово""
+"
+         */
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    @Test//
     public void testSearchCallDoctor() throws InterruptedException {
         logger.info("KEYS 1: Search call calldoctor page");
         website.emiasPage().clickCallDoctorButton();
@@ -74,7 +111,7 @@ public class EMIAStest {
         website.callDoctorPage().waitForSearchResults();
         logger.info("KEYS 1: Done");
     }
-    @Test// 2
+    @Test//
     public void testSearchCallDoctorWithFilter() throws InterruptedException {
         logger.info("KEYS 2: Search call calldoctor page with filter");
         website.emiasPage().clickCallDoctorButton();
@@ -83,15 +120,7 @@ public class EMIAStest {
         website.callDoctorPage().verificationTableGridNull();
         logger.info("KEYS 2: Done");
     }
-    @Test// 3
-    public void testCreateTimeTables() throws InterruptedException {
-        logger.info("KEYS 3: Enter doctor's timetable");
-        website.emiasPage().clickTimeTable();
-        website.scheduleDoctors().sozdanieRaspisaniya();
-        logger.error("KEYS 3: Done");
-    }
-
-    @Test// 4
+    @Test//
     public void  testCreateNewCall_ExistingMkab() throws InterruptedException {
         logger.info("KEYS 4: Enter CallDoctor");
         website.emiasPage().clickCallDoctorButton();
