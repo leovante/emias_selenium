@@ -5,15 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ModuleTimeTable {
@@ -170,28 +168,39 @@ public class ModuleTimeTable {
         System.out.println("проверка ячеек с этим цветом");
     }
 
-    public void copySheadle() {
-
-    }
 
     public void doctorGrid() {
         //выполнить пустой поиск и получить список всех врачей
         wait.until(ExpectedConditions.elementToBeClickable(searchField));
         searchField.sendKeys(" ");
         searchFieldBtn.click();//нажать поиск
+
         waitBlockUI();
+
+        List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
+        Iterator<WebElement> i = doctorList.iterator();
+        while(i.hasNext()){
+            WebElement row = i.next();
+            System.out.println(row.getText());
+        }
+
         //вытащить имя первого врача и вставить его в строку поиска
 
         //проверить что в гриде только один врач, если нет - в строку поиска вставить второго врача
         //запомнить id врача
         //выполнить пустой поиск и выбрать врача test и второго по id
 
-        List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
         for (WebElement oneDoctor : doctorList) {
 
             oneDoctor.click();//нажимаем на доктора
         }
     }
+
+
+    public void copySheadle() {
+
+    }
+
 
 
     public boolean waitBlockUI() {
