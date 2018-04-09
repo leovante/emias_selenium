@@ -24,8 +24,47 @@ public class ModuleTimeTable {
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
 
-    @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div/div")
-    WebElement poleZayavok;
+   @FindBy(id = "sinpschw_docprvdgrid1")
+    WebElement searchField;
+
+    @FindBy(id = "btnfindschw_docprvdgrid1")
+    WebElement searchFieldBtn;
+
+    @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
+    WebElement deleteSheadule;
+
+    @FindBy(id = "btn_delete_schedule")
+    WebElement deleteSheaduleBtnWindow;
+
+    @FindBy(xpath = "//button[@id='btn_create']/span[2]")
+    WebElement createSheadule;
+
+    @FindBy(id = "pickTime_nach")
+    WebElement pickTime_nach;
+
+    @FindBy(xpath = "(//button[@type='button'])[2]")
+    WebElement pickTime_nachClose;
+
+    @FindBy(id = "pickTime_okon")
+    WebElement pickTime_okon;
+
+    @FindBy(xpath = "(//button[@type='button'])[2]")
+    WebElement pickTime_okonClose;
+
+    @FindBy(xpath = "//a[@id='ddlbusytype-button']/span[2]")
+    WebElement ddlbusytypeButton;
+
+    @FindBy(linkText = "Прием по очереди")
+    WebElement priemPoOcheredi;
+
+    @FindBy(linkText = "Прием на дому (вызов на дом)")
+    WebElement priemNaDomu;
+
+    @FindBy(id = "schedule_add_button")
+    WebElement schedule_add_button;
+
+    @FindBy(xpath = "//button[@id='btn_save_schedule']/span")
+    WebElement btn_save_schedule;
 
     public ModuleTimeTable(WebDriver driver) {
         webDriver = driver;
@@ -35,89 +74,85 @@ public class ModuleTimeTable {
 
     public void sozdanieRaspisaniya() throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
+        waitLoaderleftspacer();
 
-        if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        }
         //удалить существующее расписание
-        wait.until(ExpectedConditions.elementToBeClickable(By.id("sinpschw_docprvdgrid1")));
-        webDriver.findElement(By.id("sinpschw_docprvdgrid1")).sendKeys("test");
-        webDriver.findElement(By.id("btnfindschw_docprvdgrid1")).click();//нажать поиск
+        wait.until(ExpectedConditions.elementToBeClickable(searchField));
+        searchField.sendKeys("test");
+        searchFieldBtn.click();//нажать поиск
 
-        if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
+        waitBlockUI();
 
         wait.until(ExpectedConditions.elementToBeClickable(doctorRow));
         List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
         for (WebElement oneDoctor : doctorList) {
             System.out.println(oneDoctor);
             oneDoctor.click();//нажимаем на доктора
-            if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-                wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-            }
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btn_delete']/span[2]")));
-            webDriver.findElement(By.xpath("//button[@id='btn_delete']/span[2]")).click();//кнопка удалить расписание
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("btn_delete_schedule")));
-            webDriver.findElement(By.id("btn_delete_schedule")).click();
-            //webDriver.findElement(By.xpath("//button[@id='btn_delete_schedule']/span")).click();
+
+            waitBlockUI();
+
+            wait.until(ExpectedConditions.elementToBeClickable(deleteSheadule));
+            deleteSheadule.click();//кнопка удалить расписание
+            wait.until(ExpectedConditions.elementToBeClickable(deleteSheaduleBtnWindow));
+            deleteSheaduleBtnWindow.click();
+
             Thread.sleep(1000);
             keyboard.pressKey(Keys.ENTER);
 
-            if (!webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty()) {
-                wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-            }
-            if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-                wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-            }
+            waitWidgetOverlay();
+            waitBlockUI();
+
             //нажимаем на создать расписание
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btn_create']/span[2]")));
-            webDriver.findElement(By.xpath("//button[@id='btn_create']/span[2]")).click();
+            wait.until(ExpectedConditions.elementToBeClickable(createSheadule));
+            createSheadule.click();
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_nach")));
-            webDriver.findElement(By.id("pickTime_nach")).sendKeys("0700");          //нажимаем на поле начала интервала
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
-            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_nach));
+            pickTime_nach.sendKeys("0700");          //нажимаем на поле начала интервала
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_nachClose));
+            pickTime_nachClose.click();
+
             Thread.sleep(500);
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_okon")));
-            webDriver.findElement(By.id("pickTime_okon")).sendKeys("0715");          //нажимаем на поле окончание интервала
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
-            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();      //нажали закрыть календарь
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='ddlbusytype-button']/span[2]")));
-            webDriver.findElement(By.xpath("//a[@id='ddlbusytype-button']/span[2]")).click();       //нажимаем на выпадающий список тип приема
-            wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Прием по очереди")));
-            webDriver.findElement(By.linkText("Прием по очереди")).click();                  //выбор подменю
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("schedule_add_button")));
-            webDriver.findElement(By.id("schedule_add_button")).click();                            //нажали кнопу добавить
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_nach")));
-            webDriver.findElement(By.id("pickTime_nach")).sendKeys("0715");          //нажимаем на поле начала интервала
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
-            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_okon));
+            pickTime_okon.sendKeys("0715");          //нажимаем на поле окончание интервала
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_okonClose));
+            pickTime_okonClose.click();      //нажали закрыть календарь
+
+            wait.until(ExpectedConditions.elementToBeClickable(ddlbusytypeButton));
+            ddlbusytypeButton.click();       //нажимаем на выпадающий список тип приема
+
+            wait.until(ExpectedConditions.elementToBeClickable(priemPoOcheredi));
+            priemPoOcheredi.click();                  //выбор подменю
+            wait.until(ExpectedConditions.elementToBeClickable(schedule_add_button));
+            schedule_add_button.click();                            //нажали кнопу добавить
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_nach));
+            pickTime_nach.sendKeys("0715");          //нажимаем на поле начала интервала
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_nachClose));
+            pickTime_nachClose.click();
+
             Thread.sleep(500);
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("pickTime_okon")));
-            webDriver.findElement(By.id("pickTime_okon")).sendKeys("0730");          //нажимаем на поле окончание интервала
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[@type='button'])[2]")));
-            webDriver.findElement(By.xpath("(//button[@type='button'])[2]")).click();      //нажали закрыть календарь
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='ddlbusytype-button']/span[2]")));
-            webDriver.findElement(By.xpath("//a[@id='ddlbusytype-button']/span[2]")).click();       //нажимаем на выпадающий список тип приема
-            wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Прием на дому (вызов на дом)")));
-            webDriver.findElement(By.linkText("Прием на дому (вызов на дом)")).click();                  //выбор подменю
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("schedule_add_button")));
-            webDriver.findElement(By.id("schedule_add_button")).click();                            //нажали кнопу добавить
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btn_save_schedule']/span")));
-            webDriver.findElement(By.xpath("//button[@id='btn_save_schedule']/span")).click();      //нажимаем кнопку сохранить
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_okon));
+            pickTime_okon.sendKeys("0730");          //нажимаем на поле окончание интервала
+            wait.until(ExpectedConditions.elementToBeClickable(pickTime_okonClose));
+            pickTime_okonClose.click();      //нажали закрыть календарь
+
+            wait.until(ExpectedConditions.elementToBeClickable(ddlbusytypeButton));
+            ddlbusytypeButton.click();       //нажимаем на выпадающий список тип приема
+
+            wait.until(ExpectedConditions.elementToBeClickable(priemNaDomu));
+            priemNaDomu.click();                  //выбор подменю
+            wait.until(ExpectedConditions.elementToBeClickable(schedule_add_button));
+            schedule_add_button.click();                            //нажали кнопу добавить
+
+            wait.until(ExpectedConditions.elementToBeClickable(btn_save_schedule));
+            btn_save_schedule.click();      //нажимаем кнопку сохранить
 
             keyboard.pressKey(Keys.ENTER);
             break;
         }
-        if (!webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-        }
-        if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
+        waitWidgetOverlay();
+        waitBlockUI();
 
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']"));
@@ -147,5 +182,28 @@ public class ModuleTimeTable {
         };
 
         */
+    }
+    public boolean waitBlockUI() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        return BlockAssert;
+    }
+
+    public boolean waitWidgetOverlay() {
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        return WidgetAssert;
+    }
+
+    public boolean waitLoaderleftspacer() {
+        boolean loaderleftspacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderleftspacer) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return loaderleftspacer;
     }
 }

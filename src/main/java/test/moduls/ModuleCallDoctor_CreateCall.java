@@ -76,6 +76,18 @@ public class ModuleCallDoctor_CreateCall {
     @FindBy(xpath = "//button[@id='btnSave']/span")
     WebElement saveCall;
 
+    @FindBy(id = "ui-dialog-title-whcdialog")
+    WebElement dialogDoctorIsFull;
+
+    @FindBy(xpath = "(//img[@alt='Выбор'])[3]")
+    WebElement dialogSelect;
+
+    @FindBy(id = "sinpclrDocHouseDLG_Call_DoctorSelector")
+    WebElement clearFieldSearchDoctor;
+
+    @FindBy(xpath = "//button[@id='btnSave']/span")
+    WebElement saveDialogBtn;
+
     public ModuleCallDoctor_CreateCall(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -93,42 +105,37 @@ public class ModuleCallDoctor_CreateCall {
         searchField.sendKeys("   ");
         wait.until(ExpectedConditions.elementToBeClickable(searchMkab));
         searchMkab.click();//поиск МКАБ
-        if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(
-                    By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
+
+        waitBlockUI();
+
         wait.until(ExpectedConditions.elementToBeClickable(mkabPosition));
         mkabPosition.click(); //выбрать первое из списка
         wait.until(ExpectedConditions.elementToBeClickable(selectPkab));
         selectPkab.click(); //нажимаем на выбрать в окне МКАБ
-        if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(
-                    By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
+
+        waitBlockUI();
+
         wait.until(ExpectedConditions.elementToBeClickable(readonly));
         person_DomophonCode.sendKeys("123");
         wait.until(ExpectedConditions.elementToBeClickable(person_Entrance));
         person_Entrance.sendKeys("123");
         wait.until(ExpectedConditions.elementToBeClickable(person_Floor));
         person_Floor.sendKeys("123");
-
         //поле жалобы
         wait.until(ExpectedConditions.elementToBeClickable(pole_Zhalobi));
         pole_Zhalobi.click();//нажимаем на поле
         zhaloba.sendKeys("боль");
         wait.until(ExpectedConditions.elementToBeClickable(waitZhaloba));
         action.sendKeys(Keys.ENTER).perform();
-
         //выбор врача
         selectDoctor.click();
-        if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
+
+        waitBlockUI();
+
         wait.until(ExpectedConditions.elementToBeClickable(doctorNarickaya));
         doctorNarickaya.click();//выбрать врача
         action.sendKeys(Keys.TAB).perform();
         action.sendKeys(Keys.ENTER).perform();
-
         //заполняем поля дальше
         wait.until(ExpectedConditions.elementToBeClickable(viewCall));
         viewCall.click();//вид вызова
@@ -138,28 +145,22 @@ public class ModuleCallDoctor_CreateCall {
         statusCall.click();//состояние вызова
         wait.until(ExpectedConditions.elementToBeClickable(zavershenniy));
         zavershenniy.click();
-
         saveCall.click();//кнопка сохранить
 
         //всплывающее окно об ошибке
         List<WebElement> doctorList;
         int i = 0;
-        while (wait.until(ExpectedConditions.elementToBeClickable(
-                By.id("ui-dialog-title-whcdialog"))).isEnabled()) {
-            new Actions(webDriver).sendKeys(Keys.ENTER).perform();
-            if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-                wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-            }
+        while (wait.until(ExpectedConditions.elementToBeClickable(dialogDoctorIsFull)).isEnabled()) {
+            action.sendKeys(Keys.ENTER).perform();
+
+            waitBlockUI();
+
             //выбор врача
-            webDriver.findElement(By.xpath("(//img[@alt='Выбор'])[3]")).click();
-            if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-                wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-            }
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("sinpclrDocHouseDLG_Call_DoctorSelector")));
-            webDriver.findElement(By.id("sinpclrDocHouseDLG_Call_DoctorSelector")).click();//очистил поле от существующего
-            if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
-                wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-            }
+            dialogSelect.click();
+            wait.until(ExpectedConditions.elementToBeClickable(clearFieldSearchDoctor));
+            clearFieldSearchDoctor.click();//очистил поле от существующего
+
+            waitBlockUI();
 
 //            doctorList = webDriver.findElements(By.xpath(
 //                    "//tr[@role='row'][@tabindex='-1'][@class='ui-widget-content jqgrow ui-row-ltr ui-priority-secondary']/td[17]"));
@@ -175,16 +176,28 @@ public class ModuleCallDoctor_CreateCall {
             //System.out.println("второй врач" + doctorOne);
 
             //doctorOne.click();
-            new Actions(webDriver).sendKeys(Keys.TAB).perform();
-            new Actions(webDriver).sendKeys(Keys.ENTER).perform();
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='btnSave']/span")));
-            webDriver.findElement(By.xpath("//button[@id='btnSave']/span")).click();//кнопка сохранить
+            action.sendKeys(Keys.TAB).perform();
+            action.sendKeys(Keys.ENTER).perform();
+            wait.until(ExpectedConditions.elementToBeClickable(saveDialogBtn));
+            saveDialogBtn.click();//кнопка сохранить
         }
-        if (!webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-        }
-        if (!webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty()) {
+        waitWidgetOverlay();
+        waitBlockUI();
+    }
+
+    public boolean waitBlockUI() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
         }
+        return BlockAssert;
+    }
+
+    public boolean waitWidgetOverlay() {
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        return WidgetAssert;
     }
 }
