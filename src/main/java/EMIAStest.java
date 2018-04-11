@@ -75,6 +75,7 @@ public class EMIAStest {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
         website.scheduleDoctors().createSheadle();
+        website.scheduleDoctors().doctorGrid();
 
 
 

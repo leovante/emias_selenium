@@ -151,7 +151,7 @@ public class ModuleTimeTable {
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
 
-    public void setTypeOfReception(WebElement typeOfReception){
+    public void setTypeOfReception(WebElement typeOfReception) {
         waitWhileClickable(ddlbusytypeButton);
         ddlbusytypeButton.click();                  //нажимаем на выпадающий список тип приема
         waitWhileClickable(typeOfReception);
@@ -172,18 +172,36 @@ public class ModuleTimeTable {
     public void doctorGrid() {
         //выполнить пустой поиск и получить список всех врачей
         wait.until(ExpectedConditions.elementToBeClickable(searchField));
-        searchField.sendKeys(" ");
+        searchField.clear();
         searchFieldBtn.click();//нажать поиск
 
         waitBlockUI();
 
-        List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
-        Iterator<WebElement> i = doctorList.iterator();
+        List<WebElement> doctorList = webDriver
+                .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))
+                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));
+  /*      Iterator<WebElement> i = doctorList.iterator();
         while(i.hasNext()){
             WebElement row = i.next();
+            WebElement bookLink = i.findElement(By.tagName("a"));
             System.out.println(row.getText());
         }
+*/
 
+        for (WebElement book : doctorList) {
+            String bookLink = book.getText();
+            System.out.println(bookLink);
+        }
+
+         /*           //findElement(By.tagName("a"));
+            if (bookLink.getAttribute("title").contains(bookTitle)) {
+                bookLink.click();
+                break;
+            }}
+*/
+
+
+//(By.xpath(.//*div[@id='customSelect_3']/div/span[@class='selectLabel clear'].getText()))
         //вытащить имя первого врача и вставить его в строку поиска
 
         //проверить что в гриде только один врач, если нет - в строку поиска вставить второго врача
@@ -200,7 +218,6 @@ public class ModuleTimeTable {
     public void copySheadle() {
 
     }
-
 
 
     public boolean waitBlockUI() {
