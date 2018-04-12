@@ -172,14 +172,17 @@ public class ModuleTimeTable {
     public void doctorGrid() {
         //выполнить пустой поиск и получить список всех врачей
         wait.until(ExpectedConditions.elementToBeClickable(searchField));
-        searchField.sendKeys(" ");
+        searchField.clear();
         searchFieldBtn.click();//нажать поиск
 
         waitBlockUI();
 
-        List<WebElement> doctorList = webDriver.findElements(By.xpath("//tr[@role='row'][@tabindex='-1']"));
+        List<WebElement> doctorList = webDriver
+                .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))
+                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div"));
         Iterator<WebElement> i = doctorList.iterator();
         while(i.hasNext()){
+
             WebElement row = i.next();
             System.out.println(row.getText());
         }

@@ -62,7 +62,7 @@ public class EMIAStest {
         website.loginPage().clickLoginButton();
         logger.fatal("Before: Done");
     }
-    @Test// KEYS 1.1
+    @Test// KEYS 1.1 создание расписания
     public void testCreateDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.1: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
@@ -70,11 +70,12 @@ public class EMIAStest {
         website.scheduleDoctors().checkCreateSheadle();
         logger.error("KEYS 1.1: Done");
     }
-    @Test//KEYS 1.2
+    @Test//KEYS 1.2 копирование расписания на другого врача
     public void testCopyDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
         website.scheduleDoctors().createSheadle();
+        website.scheduleDoctors().doctorGrid();
 
 
 
