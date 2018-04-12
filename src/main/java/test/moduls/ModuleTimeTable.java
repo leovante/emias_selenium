@@ -196,7 +196,7 @@ public class ModuleTimeTable {
                 if (count > 1)
                     break;//не работает
             }
-            if (count == 1 && doctorStringName != doctorNameNull)
+            if (count == 1 && !doctorStringName.equals(doctorNameNull))
                 break;
 //            System.out.println(doctorStringName);
 //            searchField.sendKeys(doctorStringName);
