@@ -166,7 +166,6 @@ public class ModuleTimeTable {
         System.out.println("проверка ячеек с этим цветом");
     }
 
-
     public String doctorUnicalFromGrid(String doctorName) {
         waitBlockUI();
 
@@ -176,8 +175,6 @@ public class ModuleTimeTable {
         List<WebElement> doctorList = webDriver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))
                 .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));
-
-
 
         for (WebElement doctor : doctorList) {
             int count = 0;
@@ -191,24 +188,11 @@ public class ModuleTimeTable {
 
                 if (doctorStringName.equals(doctorStringName2))
                     count++;
-//                if (doctorStringName == doctorStringName2)
-//                    count++;
                 if (count > 1)
-                    break;//не работает
+                    break;
             }
             if (count == 1 && !doctorStringName.equals(doctorNameNull))
                 break;
-//            System.out.println(doctorStringName);
-//            searchField.sendKeys(doctorStringName);
-//            searchFieldBtn.click();//нажать поиск
-//            System.out.println();
-//        }
-            //выполнить пустой поиск и получить список всех врачей
-            //вытащить имя первого врача и вставить его в строку поиска
-            //здесь сделать поиск по всему списку и проверить что это имя единственное в списке, если больше одного, то присваивать другое имя
-            //проверить что в гриде только один врач, если нет - в строку поиска вставить второго врача
-            //запомнить id врача
-            //выполнить пустой поиск и выбрать врача test и второго по id
         }
         return doctorStringName;
     }
@@ -224,17 +208,9 @@ public class ModuleTimeTable {
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor +"')]")).click();
         waitBlockUI();
         webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor +"')]")).click();
-        Thread.sleep(100000);
+        waitBlockUI();
 
-
-//        webDriver.findElement((By) ExpectedConditions.elementToBeClickable(By.linkText(firstDoctor))).click();
-//        webDriver.findElement((By) ExpectedConditions.elementToBeClickable(By.linkText(secondDoctor))).click();
-
-        //берем первого врача из списка и проверяем что он один
-        //отправляю пустое значение после чего происходит поиск единственного врача,
-        // потом сравнивается с моим значением и если они не равны, то имя врача отправляется мне
-
-
+        //дальше нужно расписать как будет происходить копирование после нажатия кнопки - копировать расписание
     }
 
 
