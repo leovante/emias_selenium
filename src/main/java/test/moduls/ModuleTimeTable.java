@@ -11,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class ModuleTimeTable {
@@ -78,14 +77,13 @@ public class ModuleTimeTable {
         waitLoaderleftspacer();
         String a = "0700", b = "0715";
         String c = "0715", d = "0730";
-        //поиск врача test
-        waitWhileClickable(searchField);
-        searchField.sendKeys("test");
-        searchFieldBtn.click();//нажать поиск
+        String doctorNull = null;
+
+        //поиск уникального врача
         waitBlockUI();
         waitWhileClickable(doctorRow);
-        //ЗДЕСЬ ЗАМЕНЯЕМ ВЫБОР ВРАЧА TEST НА ВЫБОР ЕДИНСТВЕННОГО ВРАЧА ЧЕРЕЗ МЕТОД
-        firstDoctor.click();
+        String doctorToCreateTask = doctorUnicalFromGrid(doctorNull);
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorToCreateTask +"')]")).click();
 
         waitBlockUI();
 
@@ -169,53 +167,73 @@ public class ModuleTimeTable {
     }
 
 
-    public void doctorGrid() {
-        //выполнить пустой поиск и получить список всех врачей
-        wait.until(ExpectedConditions.elementToBeClickable(searchField));
-        searchField.clear();
-        searchFieldBtn.click();//нажать поиск
-
+    public String doctorUnicalFromGrid(String doctorName) {
         waitBlockUI();
+
+        String doctorNameNull = doctorName;
+        String doctorStringName = null;
 
         List<WebElement> doctorList = webDriver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))
                 .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));
-  /*      Iterator<WebElement> i = doctorList.iterator();
-        while(i.hasNext()){
-            WebElement row = i.next();
-            WebElement bookLink = i.findElement(By.tagName("a"));
-            System.out.println(row.getText());
-        }
-*/
 
-        for (WebElement book : doctorList) {
-            String bookLink = book.getText();
-            System.out.println(bookLink);
-        }
 
-         /*           //findElement(By.tagName("a"));
-            if (bookLink.getAttribute("title").contains(bookTitle)) {
-                bookLink.click();
+
+        for (WebElement doctor : doctorList) {
+            int count = 0;
+            doctorStringName = doctor.getText();
+            System.out.println("Первый список: " + doctorStringName + " " + count);
+
+            for (WebElement doctorCount : doctorList) {
+                String doctorStringName2 = doctorCount.getText();
+
+                System.out.println("Второй список: " + doctorStringName2 + " " + count);
+
+                if (doctorStringName.equals(doctorStringName2))
+                    count++;
+//                if (doctorStringName == doctorStringName2)
+//                    count++;
+                if (count > 1)
+                    break;//не работает
+            }
+            if (count == 1 && doctorStringName != doctorNameNull)
                 break;
-            }}
-*/
-
-
-//(By.xpath(.//*div[@id='customSelect_3']/div/span[@class='selectLabel clear'].getText()))
-        //вытащить имя первого врача и вставить его в строку поиска
-
-        //проверить что в гриде только один врач, если нет - в строку поиска вставить второго врача
-        //запомнить id врача
-        //выполнить пустой поиск и выбрать врача test и второго по id
-
-        for (WebElement oneDoctor : doctorList) {
-
-            oneDoctor.click();//нажимаем на доктора
+//            System.out.println(doctorStringName);
+//            searchField.sendKeys(doctorStringName);
+//            searchFieldBtn.click();//нажать поиск
+//            System.out.println();
+//        }
+            //выполнить пустой поиск и получить список всех врачей
+            //вытащить имя первого врача и вставить его в строку поиска
+            //здесь сделать поиск по всему списку и проверить что это имя единственное в списке, если больше одного, то присваивать другое имя
+            //проверить что в гриде только один врач, если нет - в строку поиска вставить второго врача
+            //запомнить id врача
+            //выполнить пустой поиск и выбрать врача test и второго по id
         }
+        return doctorStringName;
     }
 
+    public void copySheadle() throws InterruptedException {
+        searchFieldBtn.click();
+        waitBlockUI();
 
-    public void copySheadle() {
+        String doctorName = null;
+        String firstDoctor = doctorUnicalFromGrid(doctorName);
+        String secondDoctor = doctorUnicalFromGrid(firstDoctor);
+
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor +"')]")).click();
+        waitBlockUI();
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor +"')]")).click();
+        Thread.sleep(100000);
+
+
+//        webDriver.findElement((By) ExpectedConditions.elementToBeClickable(By.linkText(firstDoctor))).click();
+//        webDriver.findElement((By) ExpectedConditions.elementToBeClickable(By.linkText(secondDoctor))).click();
+
+        //берем первого врача из списка и проверяем что он один
+        //отправляю пустое значение после чего происходит поиск единственного врача,
+        // потом сравнивается с моим значением и если они не равны, то имя врача отправляется мне
+
 
     }
 
