@@ -188,10 +188,12 @@ public class ModuleTimeTable {
         }
 */
 
-        for (WebElement book : doctorList) {
-            String bookLink = book.getText();
+        for (WebElement doctor : doctorList) {
+            String bookLink = doctor.getText();
             System.out.println(bookLink);
         }
+
+
 
          /*           //findElement(By.tagName("a"));
             if (bookLink.getAttribute("title").contains(bookTitle)) {
