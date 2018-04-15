@@ -1,4 +1,4 @@
-package test.moduls;
+package test.scheduling;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -16,7 +16,6 @@ import java.util.List;
 public class ModuleTimeTable {
     private WebDriver webDriver;
     private WebDriverWait wait;
-    private Logger logger;
 
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
@@ -210,8 +209,7 @@ public class ModuleTimeTable {
         webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor +"')]")).click();
         waitBlockUI();
 
-        //дальше нужно расписать как будет происходить копирование после нажатия кнопки - копировать расписание
-
+        //копирование после нажатия кнопки - копировать расписание
         webDriver.findElement(By.xpath("//button[@id='btn_copy']/span[2]")).click();
         webDriver.findElement(By.xpath("(//tr[@id='1078']/td[2])[2]")).click();
         webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();

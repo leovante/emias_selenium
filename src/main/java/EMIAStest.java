@@ -13,6 +13,7 @@
 *
 *
 * */
+
 import org.apache.log4j.Level;
 import org.apache.log4j.PropertyConfigurator;
 import org.junit.After;
@@ -36,18 +37,16 @@ public class EMIAStest {
         logger = Logger.getLogger("emias_selenium");
         PropertyConfigurator.configure("src/main/resources/log4j.properties");
         logger.setLevel(Level.FATAL);
-/*
-        LoggingPreferences logs = new LoggingPreferences();
-        logs.enable(LogType.BROWSER, Level.ALL);
-        logs.enable(LogType.CLIENT, Level.ALL);
-        logs.enable(LogType.DRIVER, Level.ALL);
-        logs.enable(LogType.PERFORMANCE, Level.ALL);
-        logs.enable(LogType.PROFILER, Level.ALL);
-        logs.enable(LogType.SERVER, Level.ALL);
-
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
-        desiredCapabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
-*/
+//        LoggingPreferences logs = new LoggingPreferences();
+//        logs.enable(LogType.BROWSER, Level.ALL);
+//        logs.enable(LogType.CLIENT, Level.ALL);
+//        logs.enable(LogType.DRIVER, Level.ALL);
+//        logs.enable(LogType.PERFORMANCE, Level.ALL);
+//        logs.enable(LogType.PROFILER, Level.ALL);
+//        logs.enable(LogType.SERVER, Level.ALL);
+//
+//        DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
+//        desiredCapabilities.setCapability(CapabilityType.LOGGING_PREFS, logs);
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         webDriver = new ChromeDriver();
         wait = new WebDriverWait(webDriver, 60, 500);
@@ -62,6 +61,7 @@ public class EMIAStest {
         website.loginPage().clickLoginButton();
         logger.fatal("Before: Done");
     }
+
     @Test// KEYS 1.1
     public void testCreateDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.1: Enter doctor's timetable");
@@ -70,39 +70,47 @@ public class EMIAStest {
         website.scheduleDoctors().checkCreateSheadle();
         logger.error("KEYS 1.1: Done");
     }
+
     @Test//KEYS 1.2
     public void testCopyDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
         website.scheduleDoctors().createSheadle();
         website.scheduleDoctors().copySheadle();
-
-
-
-        /*
-        "1. Выбрать врача на которого будет копироваться расписание
-2. Нажать ""Копировать расписание""
-3. На Шаге 1 нажать ""Далее""
-4. Заполнить требуемые поля в окне «Шаг 2. Детали копирования»
-   - Указать с какого периода копируется расписание
-   - Указать на какой период копируется расписание
-   - Указать выходные дни, отметив их флажком
-5.  Нажать кнопку «Далее»
-6. Проверить периоды копирования и нажать ""Готово""
-"
-         */
-
+        website.scheduleDoctors().checkCreateSheadle();
     }
 
+/*KEYS 1.3 задать неприемные дни
+1. Выбрать врача
+2. Выбать причину
+3. Указать начало и окончание периода
+4. Нажать ""Сохранить""
+5. Подтвердить удаление расписания, если оно есть.
+*/
 
+/*KEYS 1.4 удаление расписания для врача
+1. Выбрать врача, чье расписание требуется удалить
+2. Нажать кнопку «Удалить расписание»
+3. Задать период в сетке расписания для удаления в окне «Удаление расписания»
+4. Задать начальную дату
+5. Задать конечную дату
+6. Нажать кнопку «Удалить»
+7. При наличии в удаляемом расписании записей на прием перенести их
+*/
 
-
-
-
-
-
-
-
+/*KEYS 1.5 Перенос записей
+1. Осуществляем поиск врача
+    - Выбрать критерий поиска врача, например, ФИО
+    - Ввести в поле поиска данные, по которым будет производиться поиск врача (для поиска ввести не менее трех символов)
+    - Нажать кнопку «Найти»
+2. Нажимаем ""Перенос записей""
+3. Указываем начала и конец интервала
+4. Выбираем врача
+5. Нажима ПКМ на запись которую будем переносить и выюираем ""Перенести запись""
+6. Указываем период расписания на которое будет переноситься запись
+7. Выбираем врача и ячейку на которую будем переносить запись
+8. Нажимаем ""Перенести""
+*/
 
     @Test//
     public void testSearchCallDoctor() throws InterruptedException {
@@ -112,6 +120,7 @@ public class EMIAStest {
         website.callDoctorPage().waitForSearchResults();
         logger.info("KEYS 1: Done");
     }
+
     @Test//
     public void testSearchCallDoctorWithFilter() throws InterruptedException {
         logger.info("KEYS 2: Search call calldoctor page with filter");
@@ -121,8 +130,9 @@ public class EMIAStest {
         website.callDoctorPage().verificationTableGridNull();
         logger.info("KEYS 2: Done");
     }
+
     @Test//
-    public void  testCreateNewCall_ExistingMkab() throws InterruptedException {
+    public void testCreateNewCall_ExistingMkab() throws InterruptedException {
         logger.info("KEYS 4: Enter CallDoctor");
         website.emiasPage().clickCallDoctorButton();
         website.moduleCallDoctor_CreateCall().createNewCall_ExistingMkab();

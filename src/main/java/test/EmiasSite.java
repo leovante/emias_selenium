@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import test.moduls.ModuleCallDoctor;
 import test.moduls.ModuleCallDoctor_CreateCall;
 import test.moduls.ModuleMedicalCard;
-import test.moduls.ModuleTimeTable;
+import test.scheduling.ModuleTimeTable;
 
 public class EmiasSite {
     WebDriver webDriver;
