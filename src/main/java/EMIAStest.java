@@ -75,10 +75,21 @@ public class EMIAStest {
     public void testCopyDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
-        //website.scheduleDoctors().createSheadle();
+        website.scheduleDoctors().createSheadle();
         website.scheduleDoctors().copySheadle();
         website.scheduleDoctors().checkCreateSheadle();
     }
+
+    @Test//KEYS 1.3
+    public void testSetDoNotReceiveDays() throws InterruptedException {
+        logger.info("KEYS 1.3: Enter doctor's timetable");
+        website.emiasPage().clickTimeTable();
+        //website.scheduleDoctors().createSheadle();
+        //website.scheduleDoctors().copySheadle();
+        //website.scheduleDoctors().checkCreateSheadle();
+    }
+
+
 
 /*KEYS 1.3 задать неприемные дни
 1. Выбрать врача

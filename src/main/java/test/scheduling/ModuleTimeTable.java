@@ -24,9 +24,6 @@ public class ModuleTimeTable {
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
 
-    @FindBy(id = "sinpschw_docprvdgrid1")
-    WebElement searchField;
-
     @FindBy(id = "btnfindschw_docprvdgrid1")
     WebElement searchFieldBtn;
 
@@ -66,16 +63,13 @@ public class ModuleTimeTable {
     @FindBy(xpath = "//button[@id='btn_save_schedule']/span")
     WebElement btn_save_schedule;
 
-    @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
-    WebElement firstDoctor;
-
     public ModuleTimeTable(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
     }
 
-    public void createSheadle() throws InterruptedException {
+    public void createSheadle(){
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         waitLoaderleftspacer();
         String a = "0700", b = "0715";
@@ -129,7 +123,47 @@ public class ModuleTimeTable {
         */
     }
 
-    public void deleteSheadule() throws InterruptedException {//удалить расписание выбранного врача
+    public void setSetDoNotReceiveDays(){
+
+
+            webDriver.findElement(By.xpath("//button[@id='btn_busy']/span[2]")).click();//задать неприемные дни
+            webDriver.findElement(By.xpath("//div[@id='radio_busy']/label[14]/span/span")).click();//выбрали форс-мажор
+            webDriver.findElement(By.xpath("//button[@id='btn_busy_save']/span")).click();//нажали сохранить
+            webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span")).click();//подтвердили удаление сущ. записей
+            webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div/div/div/span")).click();//это название заголовка
+
+
+    }
+
+    public void copySheadle(){
+        waitLoaderleftspacer();
+        waitWhileClickable(searchFieldBtn);
+
+        searchFieldBtn.click();
+        waitBlockUI();
+
+        String doctorName = null;
+        String firstDoctor = doctorUnicalFromGrid(doctorName);
+        String secondDoctor = doctorUnicalFromGrid(firstDoctor);
+
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
+        waitBlockUI();
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor + "')]")).click();
+        waitBlockUI();
+
+        //копировать расписание
+        webDriver.findElement(By.xpath("//button[@id='btn_copy']/span[2]")).click();
+        webDriver.findElement(By.xpath("(//tr[@id='1078']/td[2])[2]")).click();
+        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        webDriver.findElement(By.xpath("//div[25]/div[3]/div/button/span")).click();
+        webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
+        waitBlockUI();
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();//убрать галочку с первого врача
+        waitBlockUI();
+    }
+
+    public void deleteSheadule(){//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
 
         waitBlockUI();
@@ -146,7 +180,8 @@ public class ModuleTimeTable {
         waitBlockUI();
     }
 
-    public void setTimeCalendar(String a, String b) throws InterruptedException {
+
+    public void setTimeCalendar(String a, String b) {
         waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
         waitWhileClickable(pickTime_nachClose);
@@ -173,34 +208,6 @@ public class ModuleTimeTable {
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']"));
         System.out.println("проверка ячеек с этим цветом");
-    }
-
-    public void copySheadle() throws InterruptedException {
-        waitLoaderleftspacer();
-        waitWhileClickable(searchFieldBtn);
-
-        searchFieldBtn.click();
-        waitBlockUI();
-
-        String doctorName = null;
-        String firstDoctor = doctorUnicalFromGrid(doctorName);
-        String secondDoctor = doctorUnicalFromGrid(firstDoctor);
-
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-        waitBlockUI();
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor + "')]")).click();
-        waitBlockUI();
-
-        //копировать расписание
-        webDriver.findElement(By.xpath("//button[@id='btn_copy']/span[2]")).click();
-        webDriver.findElement(By.xpath("(//tr[@id='1078']/td[2])[2]")).click();
-        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        webDriver.findElement(By.xpath("//div[25]/div[3]/div/button/span")).click();
-        webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        waitBlockUI();
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();//убрать галочку с первого врача
-        waitBlockUI();
     }
 
     public String doctorUnicalFromGrid(String doctorName) {
@@ -233,17 +240,14 @@ public class ModuleTimeTable {
                 if (count > 1)
                     break;
             }
-//            System.out.println(dontUseNames + " содержит " + doctorStringName + "? - "
-//                    + !dontUseNames.contains(doctorStringName));
 
             if (count == 1 && !dontUseNames.contains(doctorStringName))
-            break;
-//            if (count == 1 && !doctorStringName.equals(doctorNameNull))
-//                break;
+                break;
         }
 
         return doctorStringName;
     }
+
 
     public boolean waitBlockUI() {
         boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
