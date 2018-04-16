@@ -1,5 +1,6 @@
 package test.scheduling;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static junit.framework.TestCase.assertFalse;
 
 public class ModuleTimeTable {
     private WebDriver webDriver;
@@ -237,6 +240,17 @@ public class ModuleTimeTable {
         System.out.println("Проверка наличия заголовка форс-мажора");
     }
 
+    public void checkDeletedSheadle() {
+        if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+                .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()){
+            throw new NullPointerException("Ошибка, Таблица загрузилась!");
+        }
+        if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+                .findElements(By.xpath("//div[@style='background-color:#FFF-{F99;border-color:#FFFF99;color:#979797']")).isEmpty()){
+            throw new NullPointerException("Ошибка, Таблица загрузилась!");
+        }
+    }
+
     public String doctorUnicalFromGrid(String doctorName) {
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych");
@@ -256,11 +270,11 @@ public class ModuleTimeTable {
         for (WebElement doctor : doctorList) {
             int count = 0;
             doctorStringName = doctor.getText();
-            System.out.println("Первый список: " + doctorStringName + " " + count);
+            //System.out.println("Первый список: " + doctorStringName + " " + count);
 
             for (WebElement doctorCount : doctorList) {
                 String doctorStringName2 = doctorCount.getText();
-                System.out.println("Второй список: " + doctorStringName2 + " " + count);
+                //System.out.println("Второй список: " + doctorStringName2 + " " + count);
 
                 if (doctorStringName.equals(doctorStringName2))
                     count++;

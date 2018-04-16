@@ -86,8 +86,20 @@ public class EMIAStest {
         website.emiasPage().clickTimeTable();
         website.scheduleDoctors().setDoNotReceiveDays();
         website.scheduleDoctors().checkDoNotReceiveDays();
-        //website.scheduleDoctors().checkCreateSheadle();
     }
+
+    @Test// KEYS 1.4
+    public void testDeleteDoctorTimeTables() throws InterruptedException {
+        logger.info("KEYS 1.4: Enter doctor's timetable");
+        website.emiasPage().clickTimeTable();
+        website.scheduleDoctors().createSheadle();
+        website.scheduleDoctors().checkCreateSheadle();
+        website.scheduleDoctors().deleteSheadule();
+        website.scheduleDoctors().checkDeletedSheadle();
+        logger.error("KEYS 1.4: Done");
+    }
+
+
 
 
 
