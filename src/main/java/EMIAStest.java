@@ -52,11 +52,11 @@ public class EMIAStest {
         wait = new WebDriverWait(webDriver, 60, 500);
         website = new EmiasSite(webDriver);
         //webDriver.manage().window().maximize();
-        webDriver.get("http://emias.mosreg.ru/demonstration/");
+        webDriver.get("http://mis.softrust.ru/whc/Home");
         logger.info("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
         logger.info("Step 2: Enter password");
-        website.loginPage().enterPasswordText("RChS2014");
+        website.loginPage().enterPasswordText("11");
         logger.info("Step 3: Press Login Button");
         website.loginPage().clickLoginButton();
         logger.fatal("Before: Done");
@@ -84,8 +84,8 @@ public class EMIAStest {
     public void testSetDoNotReceiveDays() throws InterruptedException {
         logger.info("KEYS 1.3: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
-        //website.scheduleDoctors().createSheadle();
-        //website.scheduleDoctors().copySheadle();
+        website.scheduleDoctors().setDoNotReceiveDays();
+        website.scheduleDoctors().checkDoNotReceiveDays();
         //website.scheduleDoctors().checkCreateSheadle();
     }
 

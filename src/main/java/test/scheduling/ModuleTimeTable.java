@@ -1,6 +1,5 @@
 package test.scheduling;
 
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -11,15 +10,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class ModuleTimeTable {
     private WebDriver webDriver;
     private WebDriverWait wait;
+    String doctorName = null;
+
 
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
@@ -66,8 +65,8 @@ public class ModuleTimeTable {
     @FindBy(xpath = "//button[@id='btn_busy']/span[2]")
     WebElement btn_notReciveDays;
 
-    @FindBy(xpath = "//div[@id='radio_busy']/label[14]/span/span")
-    WebElement row_forceMajor;
+    @FindBy(xpath = "//div[@id='radio_busy']/label[2]/span/span")
+    WebElement row_doctorOnBoln;
 
     @FindBy(xpath = "//button[@id='btn_busy_save']/span")
     WebElement saveBtn;
@@ -137,13 +136,24 @@ public class ModuleTimeTable {
     }
 
     public void setDoNotReceiveDays() {
+        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
+        waitLoaderleftspacer();
+        String firstDoctor = doctorUnicalFromGrid(doctorName);
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
+        waitBlockUI();
 
+        waitWhileClickable(btn_notReciveDays);
         btn_notReciveDays.click();//задать неприемные дни
-        row_forceMajor.click();//выбрали форс-мажор
-        saveBtn.click();//нажали сохранить
-        yesBtn.click();//подтвердили удаление сущ. записей
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div[class='fc-event-title' text()=Форс-мажор]")).click();//это название заголовка
 
+        waitWhileClickable(row_doctorOnBoln);
+        row_doctorOnBoln.click();//выбрали форс-мажор
+
+        waitWhileClickable(saveBtn);
+        saveBtn.click();//нажали сохранить
+
+        keyboard.pressKey(Keys.ENTER);
+//        waitWhileClickable(yesBtn);
+//        yesBtn.click();//подтвердили удаление сущ. записей
     }
 
     public void copySheadle() {
@@ -153,7 +163,6 @@ public class ModuleTimeTable {
         searchFieldBtn.click();
         waitBlockUI();
 
-        String doctorName = null;
         String firstDoctor = doctorUnicalFromGrid(doctorName);
         String secondDoctor = doctorUnicalFromGrid(firstDoctor);
 
@@ -221,9 +230,16 @@ public class ModuleTimeTable {
         System.out.println("проверка ячеек с этим цветом");
     }
 
+    public void checkDoNotReceiveDays() {
+        waitBlockUI();
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
+                .findElements(By.xpath("span[contains(text(),'Врач на больничном')]"));//это название заголовка
+        System.out.println("Проверка наличия заголовка форс-мажора");
+    }
+
     public String doctorUnicalFromGrid(String doctorName) {
         List<String> dontUseNames = new ArrayList<String>();
-        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "testov test testovich");
+        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych");
         dontUseNames.add(doctorName);
 
         System.out.println(dontUseNames);
