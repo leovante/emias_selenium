@@ -52,11 +52,11 @@ public class EMIAStest {
         wait = new WebDriverWait(webDriver, 60, 500);
         website = new EmiasSite(webDriver);
         //webDriver.manage().window().maximize();
-        webDriver.get("http://mis.softrust.ru/whc/Home");
+        webDriver.get("http://emias.mosreg.ru/demonstration/");
         logger.info("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
         logger.info("Step 2: Enter password");
-        website.loginPage().enterPasswordText("11");
+        website.loginPage().enterPasswordText("RChS2014");
         logger.info("Step 3: Press Login Button");
         website.loginPage().clickLoginButton();
         logger.fatal("Before: Done");
@@ -75,7 +75,7 @@ public class EMIAStest {
     public void testCopyDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
-        website.scheduleDoctors().createSheadle();
+        //website.scheduleDoctors().createSheadle();
         website.scheduleDoctors().copySheadle();
         website.scheduleDoctors().checkCreateSheadle();
     }

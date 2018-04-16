@@ -11,6 +11,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ModuleTimeTable {
@@ -82,20 +86,9 @@ public class ModuleTimeTable {
         waitBlockUI();
         waitWhileClickable(doctorRow);
         String doctorToCreateTask = doctorUnicalFromGrid(doctorNull);
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorToCreateTask +"')]")).click();
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorToCreateTask + "')]")).click();
 
-        waitBlockUI();
-
-        waitWhileClickable(deleteSheadule);
-        deleteSheadule.click();                     //кнопка удалить расписание
-        waitWhileClickable(deleteSheaduleBtnWindow);
-        deleteSheaduleBtnWindow.click();            //подтверждение удаления
-
-        Thread.sleep(1000);
-        keyboard.pressKey(Keys.ENTER);
-
-        waitWidgetOverlay();
-        waitBlockUI();
+        deleteSheadule();
 
         //нажимаем на создать расписание
         waitWhileClickable(createSheadule);
@@ -136,6 +129,23 @@ public class ModuleTimeTable {
         */
     }
 
+    public void deleteSheadule() throws InterruptedException {//удалить расписание выбранного врача
+        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
+
+        waitBlockUI();
+
+        waitWhileClickable(deleteSheadule);
+        deleteSheadule.click();                     //кнопка удалить расписание
+        waitWhileClickable(deleteSheaduleBtnWindow);
+        deleteSheaduleBtnWindow.click();            //подтверждение удаления
+
+        Thread.sleep(1000);
+        keyboard.pressKey(Keys.ENTER);
+
+        waitWidgetOverlay();
+        waitBlockUI();
+    }
+
     public void setTimeCalendar(String a, String b) throws InterruptedException {
         waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
@@ -165,15 +175,49 @@ public class ModuleTimeTable {
         System.out.println("проверка ячеек с этим цветом");
     }
 
+    public void copySheadle() throws InterruptedException {
+        waitLoaderleftspacer();
+        waitWhileClickable(searchFieldBtn);
+
+        searchFieldBtn.click();
+        waitBlockUI();
+
+        String doctorName = null;
+        String firstDoctor = doctorUnicalFromGrid(doctorName);
+        String secondDoctor = doctorUnicalFromGrid(firstDoctor);
+
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
+        waitBlockUI();
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor + "')]")).click();
+        waitBlockUI();
+
+        //копировать расписание
+        webDriver.findElement(By.xpath("//button[@id='btn_copy']/span[2]")).click();
+        webDriver.findElement(By.xpath("(//tr[@id='1078']/td[2])[2]")).click();
+        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        webDriver.findElement(By.xpath("//div[25]/div[3]/div/button/span")).click();
+        webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
+        waitBlockUI();
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();//убрать галочку с первого врача
+        waitBlockUI();
+    }
+
     public String doctorUnicalFromGrid(String doctorName) {
+        List<String> dontUseNames = new ArrayList<String>();
+        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "testov test testovich");
+        dontUseNames.add(doctorName);
+
+        System.out.println(dontUseNames);
+
         waitBlockUI();
 
         String doctorNameNull = doctorName;
         String doctorStringName = null;
 
         List<WebElement> doctorList = webDriver
-                .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))
-                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));
+                .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))//наашел таблицу
+                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
 
         for (WebElement doctor : doctorList) {
             int count = 0;
@@ -182,7 +226,6 @@ public class ModuleTimeTable {
 
             for (WebElement doctorCount : doctorList) {
                 String doctorStringName2 = doctorCount.getText();
-
                 System.out.println("Второй список: " + doctorStringName2 + " " + count);
 
                 if (doctorStringName.equals(doctorStringName2))
@@ -190,35 +233,16 @@ public class ModuleTimeTable {
                 if (count > 1)
                     break;
             }
-            if (count == 1 && !doctorStringName.equals(doctorNameNull))
-                break;
+//            System.out.println(dontUseNames + " содержит " + doctorStringName + "? - "
+//                    + !dontUseNames.contains(doctorStringName));
+
+            if (count == 1 && !dontUseNames.contains(doctorStringName))
+            break;
+//            if (count == 1 && !doctorStringName.equals(doctorNameNull))
+//                break;
         }
+
         return doctorStringName;
-    }
-
-    public void copySheadle() throws InterruptedException {
-        searchFieldBtn.click();
-        waitBlockUI();
-
-        String doctorName = null;
-        String firstDoctor = doctorUnicalFromGrid(doctorName);
-        String secondDoctor = doctorUnicalFromGrid(firstDoctor);
-
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor +"')]")).click();
-        waitBlockUI();
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor +"')]")).click();
-        waitBlockUI();
-
-        //копирование после нажатия кнопки - копировать расписание
-        webDriver.findElement(By.xpath("//button[@id='btn_copy']/span[2]")).click();
-        webDriver.findElement(By.xpath("(//tr[@id='1078']/td[2])[2]")).click();
-        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        webDriver.findElement(By.xpath("//div[25]/div[3]/div/button/span")).click();
-        webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        waitBlockUI();
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor +"')]")).click();
-        waitBlockUI();
     }
 
     public boolean waitBlockUI() {

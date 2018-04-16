@@ -1,7 +1,6 @@
 package test;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,7 +16,7 @@ public class MainPage {
     WebElement callDoctorButton;
 
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[2]/a/span")
-    WebElement timeTable;
+    WebElement timeTableBtn;
 
     public MainPage(WebDriver driver){
         webDriver = driver;
@@ -39,13 +38,13 @@ public class MainPage {
         callDoctorButton.click();
     }
 
-    //БЛОК УПРАВЛЕНИЕ ПОТОКАМИ ПАЦИЕНТОВ
+    //БЛОК - УПРАВЛЕНИЕ ПОТОКАМИ ПАЦИЕНТОВ
     public void clickTimeTable(){
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
         System.out.println("click vedenie raspisaniya");
-        wait.until(ExpectedConditions.elementToBeClickable(timeTable));
-        timeTable.click();
+        wait.until(ExpectedConditions.elementToBeClickable(timeTableBtn));
+        timeTableBtn.click();
     }
 }
