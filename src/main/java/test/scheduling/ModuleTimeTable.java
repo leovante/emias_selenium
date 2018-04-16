@@ -69,7 +69,7 @@ public class ModuleTimeTable {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void createSheadle(){
+    public void createSheadle() throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         waitLoaderleftspacer();
         String a = "0700", b = "0715";
@@ -125,13 +125,11 @@ public class ModuleTimeTable {
 
     public void setSetDoNotReceiveDays(){
 
-
             webDriver.findElement(By.xpath("//button[@id='btn_busy']/span[2]")).click();//задать неприемные дни
             webDriver.findElement(By.xpath("//div[@id='radio_busy']/label[14]/span/span")).click();//выбрали форс-мажор
             webDriver.findElement(By.xpath("//button[@id='btn_busy_save']/span")).click();//нажали сохранить
             webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span")).click();//подтвердили удаление сущ. записей
             webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div/div/div/span")).click();//это название заголовка
-
 
     }
 
@@ -163,7 +161,7 @@ public class ModuleTimeTable {
         waitBlockUI();
     }
 
-    public void deleteSheadule(){//удалить расписание выбранного врача
+    public void deleteSheadule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
 
         waitBlockUI();
@@ -181,7 +179,7 @@ public class ModuleTimeTable {
     }
 
 
-    public void setTimeCalendar(String a, String b) {
+    public void setTimeCalendar(String a, String b) throws InterruptedException {
         waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
         waitWhileClickable(pickTime_nachClose);
