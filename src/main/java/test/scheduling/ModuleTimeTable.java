@@ -63,6 +63,19 @@ public class ModuleTimeTable {
     @FindBy(xpath = "//button[@id='btn_save_schedule']/span")
     WebElement btn_save_schedule;
 
+    @FindBy(xpath = "//button[@id='btn_busy']/span[2]")
+    WebElement btn_notReciveDays;
+
+    @FindBy(xpath = "//div[@id='radio_busy']/label[14]/span/span")
+    WebElement row_forceMajor;
+
+    @FindBy(xpath = "//button[@id='btn_busy_save']/span")
+    WebElement saveBtn;
+
+    @FindBy(xpath = "//div[24]/div[3]/div/button/span")
+    WebElement yesBtn;
+
+
     public ModuleTimeTable(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -123,17 +136,17 @@ public class ModuleTimeTable {
         */
     }
 
-    public void setSetDoNotReceiveDays(){
+    public void setDoNotReceiveDays() {
 
-            webDriver.findElement(By.xpath("//button[@id='btn_busy']/span[2]")).click();//задать неприемные дни
-            webDriver.findElement(By.xpath("//div[@id='radio_busy']/label[14]/span/span")).click();//выбрали форс-мажор
-            webDriver.findElement(By.xpath("//button[@id='btn_busy_save']/span")).click();//нажали сохранить
-            webDriver.findElement(By.xpath("//div[24]/div[3]/div/button/span")).click();//подтвердили удаление сущ. записей
-            webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div/div/div/span")).click();//это название заголовка
+        btn_notReciveDays.click();//задать неприемные дни
+        row_forceMajor.click();//выбрали форс-мажор
+        saveBtn.click();//нажали сохранить
+        yesBtn.click();//подтвердили удаление сущ. записей
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div[class='fc-event-title' text()=Форс-мажор]")).click();//это название заголовка
 
     }
 
-    public void copySheadle(){
+    public void copySheadle() {
         waitLoaderleftspacer();
         waitWhileClickable(searchFieldBtn);
 
