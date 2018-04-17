@@ -116,8 +116,14 @@ public class EMIAStest {
         String doctorTwo = website.scheduleDoctors().selectDoctor(null);
         website.scheduleDoctors().createSheadle();
 
+        website.emiasPage().clickLogoHome();
 
+        website.moduleAdmissionSchedule().selectDoctor();
+        website.moduleAdmissionSchedule().createTask();
 
+        website.emiasPage().clickLogoHome();
+
+        website.moduleTransferTecords().clickDoctor();
         /*
         зайти в создание записей
         найти два уникальных врача и запомнить их имена
@@ -127,8 +133,10 @@ public class EMIAStest {
           выбрать второго врача
           создать новую запись - прием по очереди
         выйти на главную
+
         зайти в расписание приема, выбрать первого врача
         найти новую запись - прием по очереди и создать запись пациента
+
         выйти на главную
         зайти в перенос записей
         нажать на первого врача

@@ -77,13 +77,13 @@ public class ModuleCallDoctor {
     }
 
     public void waitForSearchResults() {
-        System.out.println("wait why table appeared");
+        //System.out.println("wait why table appeared");
         wait.until(ExpectedConditions.elementToBeClickable(tableGrid));
-        System.out.println("the table appeared");
+        //System.out.println("the table appeared");
     }
 
     public void verificationTableGridNull() {
-        System.out.println("Проверка что таблицы нет");
+        //System.out.println("Проверка что таблицы нет");
         if (!webDriver.findElements(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }

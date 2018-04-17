@@ -1,4 +1,4 @@
-package test.scheduling;
+package test.arm;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -85,7 +85,7 @@ public class ModuleTimeTable {
 
     public void createSheadle() throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        waitLoaderleftspacer();
+        waitLoaderLeftspacer();
         String a = "0700", b = "0715";
         String c = "0715", d = "0730";
         waitWhileClickable(createSheadule);
@@ -144,7 +144,7 @@ public class ModuleTimeTable {
 
     public void setDoNotReceiveDays() {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        waitLoaderleftspacer();
+        waitLoaderLeftspacer();
         String firstDoctor = newUnicalDoctor();
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
         waitBlockUI();
@@ -162,7 +162,7 @@ public class ModuleTimeTable {
     }
 
     public void copySheadle() {
-        waitLoaderleftspacer();
+        waitLoaderLeftspacer();
         waitWhileClickable(searchFieldBtn);
 
         searchFieldBtn.click();
@@ -308,7 +308,7 @@ public class ModuleTimeTable {
         return WidgetAssert;
     }
 
-    public boolean waitLoaderleftspacer() {
+    public boolean waitLoaderLeftspacer() {
         boolean loaderleftspacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
         if (loaderleftspacer) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));

@@ -20,7 +20,6 @@ public class LoginPage {
     @FindBy(id = "loginBtn")
     WebElement loginButton;
 
-
     public LoginPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -28,7 +27,6 @@ public class LoginPage {
     }
 
     public void enterLoginText(String text) {
-        webDriver.findElement(By.xpath("//div[@class='main']"));
         loginInputField.clear();
         loginInputField.sendKeys(text);
     }

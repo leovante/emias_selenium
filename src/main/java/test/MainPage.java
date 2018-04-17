@@ -18,6 +18,9 @@ public class MainPage {
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[2]/a/span")
     WebElement timeTableBtn;
 
+    @FindBy(xpath = "тут адрес кнопки")
+    WebElement homePageBtn;
+
     public MainPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -25,26 +28,32 @@ public class MainPage {
     }
 
     public void clickCallDoctorButton() throws InterruptedException {
-        if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        }
-        System.out.println("click callDoctorButton");
-/*
-        WebElement myelement = webDriver.findElement(By.xpath("//div[@id='Portlet_6']/div[2]/div/a/span"));
-        JavascriptExecutor jse2 = (JavascriptExecutor)webDriver;
-        jse2.executeScript("arguments[0].scrollIntoView()", myelement);
-*/
-        wait.until(ExpectedConditions.elementToBeClickable(callDoctorButton));
+        waitLoaderLeftspacer();
+        waitWhileClickable(callDoctorButton);
         callDoctorButton.click();
     }
 
-    //БЛОК - УПРАВЛЕНИЕ ПОТОКАМИ ПАЦИЕНТОВ
     public void clickTimeTable(){
-        if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
+        waitLoaderLeftspacer();
+        waitWhileClickable(timeTableBtn);
+        timeTableBtn.click();
+    }
+
+    public void clickLogoHome(){
+        waitLoaderLeftspacer();
+        waitWhileClickable(homePageBtn);
+        homePageBtn.click();
+    }
+
+    public boolean waitLoaderLeftspacer() {
+        boolean loaderleftspacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderleftspacer) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
-        System.out.println("click vedenie raspisaniya");
-        wait.until(ExpectedConditions.elementToBeClickable(timeTableBtn));
-        timeTableBtn.click();
+        return loaderleftspacer;
+    }
+
+    public void waitWhileClickable(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

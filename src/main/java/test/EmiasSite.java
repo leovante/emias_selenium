@@ -1,10 +1,12 @@
 package test;
 
 import org.openqa.selenium.WebDriver;
+import test.arm.ModuleAdmissionSchedule;
+import test.arm.ModuleTransferRecords;
 import test.moduls.ModuleCallDoctor;
 import test.moduls.ModuleCallDoctor_CreateCall;
 import test.moduls.ModuleMedicalCard;
-import test.scheduling.ModuleTimeTable;
+import test.arm.ModuleTimeTable;
 
 public class EmiasSite {
     WebDriver webDriver;
@@ -35,5 +37,11 @@ public class EmiasSite {
         return new ModuleCallDoctor_CreateCall(webDriver);
     }
 
+    public ModuleAdmissionSchedule moduleAdmissionSchedule() {
+        return new ModuleAdmissionSchedule(webDriver);
+    }
 
+    public ModuleTransferRecords moduleTransferTecords() {
+        return new ModuleTransferRecords(webDriver);
+    }
 }
