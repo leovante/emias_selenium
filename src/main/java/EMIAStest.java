@@ -102,15 +102,29 @@ public class EMIAStest {
     }
 
     @Test// KEYS 1.5
-    public void testSurviveTask(){
+    public void testSurviveTask() throws InterruptedException {
+        String doctorNull = null;
         logger.info("KEYS 1.5: Enter doctor's timetable");
+        website.emiasPage().clickTimeTable();
+
+        //тут нужно как-то избавиться от стрингов
+        String doctorOne = website.scheduleDoctors().selectDoctor(null);
+        website.scheduleDoctors().deleteSheadule();
+        website.scheduleDoctors().createSheadle();
+        website.scheduleDoctors().selectDoctor(doctorOne);//сняли выделение с врача
+
+        String doctorTwo = website.scheduleDoctors().selectDoctor(null);
+        website.scheduleDoctors().createSheadle();
+
+
+
         /*
         зайти в создание записей
         найти два уникальных врача и запомнить их имена
         у первого врача удалить всё расписание
           создать новую запись - прием по очереди
           убрать выделение с врача
-        выбрать второго врача
+          выбрать второго врача
           создать новую запись - прием по очереди
         выйти на главную
         зайти в расписание приема, выбрать первого врача

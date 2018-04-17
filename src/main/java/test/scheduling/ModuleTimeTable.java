@@ -1,6 +1,5 @@
 package test.scheduling;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -20,7 +19,7 @@ import static junit.framework.TestCase.assertFalse;
 public class ModuleTimeTable {
     private WebDriver webDriver;
     private WebDriverWait wait;
-    String doctorName = null;
+    final String doctorNull = null;
 
 
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
@@ -89,17 +88,6 @@ public class ModuleTimeTable {
         waitLoaderleftspacer();
         String a = "0700", b = "0715";
         String c = "0715", d = "0730";
-        String doctorNull = null;
-
-        //поиск уникального врача
-        waitBlockUI();
-        waitWhileClickable(doctorRow);
-        String doctorToCreateTask = doctorUnicalFromGrid(doctorNull);
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorToCreateTask + "')]")).click();
-
-        deleteSheadule();
-
-        //нажимаем на создать расписание
         waitWhileClickable(createSheadule);
         createSheadule.click();
 
@@ -115,33 +103,49 @@ public class ModuleTimeTable {
 
         waitWidgetOverlay();
         waitBlockUI();
-
-        /*taskArea.click();
-        Actions action = new Actions(webDriver);
-        action.contextClick(taskArea).perform();
-        //Thread.sleep(1000);
-        //webDriver.findElement(By.xpath("//div[id='jqContextMenu']"));
-        //.findElement(By.xpath("//li[id='sch_del_menu']")).click();
-*/
-  /*      Воспользоваться классом Wait и ждать пока Selenium#isElementPresent не вернёт true для нужного option'а.
-        Этот способ уже лучше, но всё равно не должен применяться, в будущем напишу подробно почему. Лучше вместо
-        класса Wait использовать метод Selenium#waitForCondition, в котором и ждать появления требуемого элемента.
-  */
-
-
-/*  https://habrahabr.ru/post/111649/
-        Selenium.prototype.doWaitForJqueryAjaxRequests = function(timeout) {
-            return Selenium.decorateFunctionWithTimeout(function() {
-                return selenium.browserbot.getUserWindow().jQuery.active == 0;
-            }, timeout);
-        };
-        */
+//        /*taskArea.click();
+//        Actions action = new Actions(webDriver);
+//        action.contextClick(taskArea).perform();
+//        //Thread.sleep(1000);
+//        //webDriver.findElement(By.xpath("//div[id='jqContextMenu']"));
+//        //.findElement(By.xpath("//li[id='sch_del_menu']")).click();
+//*/
+//  /*      Воспользоваться классом Wait и ждать пока Selenium#isElementPresent не вернёт true для нужного option'а.
+//        Этот способ уже лучше, но всё равно не должен применяться, в будущем напишу подробно почему. Лучше вместо
+//        класса Wait использовать метод Selenium#waitForCondition, в котором и ждать появления требуемого элемента.
+//  */
+//
+//
+///*  https://habrahabr.ru/post/111649/
+//        Selenium.prototype.doWaitForJqueryAjaxRequests = function(timeout) {
+//            return Selenium.decorateFunctionWithTimeout(function() {
+//                return selenium.browserbot.getUserWindow().jQuery.active == 0;
+//            }, timeout);
+//        };
+//        */
     }
+
+    public String selectDoctor(String doctorInlet) {
+        //поиск уникального врача
+        //нужно создать метод одного врача, что бы в этом методе его имя не менялось (упаковку)
+        if (doctorInlet.equals(null)) {
+            doctorInlet = newUnicalDoctor();
+            webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
+        } else {
+            String doctor = doctorInlet;
+            webDriver.findElement(By.xpath("//*[contains(text(),'" + doctor + "')]")).click();
+        }
+//        deleteSheadule();
+//
+        //нажимаем на создать расписание
+        return doctorInlet;
+    }
+
 
     public void setDoNotReceiveDays() {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         waitLoaderleftspacer();
-        String firstDoctor = doctorUnicalFromGrid(doctorName);
+        String firstDoctor = newUnicalDoctor();
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
         waitBlockUI();
 
@@ -155,8 +159,6 @@ public class ModuleTimeTable {
         saveBtn.click();//нажали сохранить
 
         keyboard.pressKey(Keys.ENTER);
-//        waitWhileClickable(yesBtn);
-//        yesBtn.click();//подтвердили удаление сущ. записей
     }
 
     public void copySheadle() {
@@ -166,8 +168,8 @@ public class ModuleTimeTable {
         searchFieldBtn.click();
         waitBlockUI();
 
-        String firstDoctor = doctorUnicalFromGrid(doctorName);
-        String secondDoctor = doctorUnicalFromGrid(firstDoctor);
+        String firstDoctor = newUnicalDoctor();
+        String secondDoctor = newUnicalDoctor();
 
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
         waitBlockUI();
@@ -188,7 +190,6 @@ public class ModuleTimeTable {
 
     public void deleteSheadule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-
         waitBlockUI();
 
         waitWhileClickable(deleteSheadule);
@@ -203,7 +204,7 @@ public class ModuleTimeTable {
         waitBlockUI();
     }
 
-
+    //========
     public void setTimeCalendar(String a, String b) throws InterruptedException {
         waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
@@ -242,25 +243,26 @@ public class ModuleTimeTable {
 
     public void checkDeletedSheadle() {
         if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()){
+                .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
         if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElements(By.xpath("//div[@style='background-color:#FFF-{F99;border-color:#FFFF99;color:#979797']")).isEmpty()){
+                .findElements(By.xpath("//div[@style='background-color:#FFF-{F99;border-color:#FFFF99;color:#979797']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
     }
 
-    public String doctorUnicalFromGrid(String doctorName) {
+    public String newUnicalDoctor() {
+        waitBlockUI();
+        waitWhileClickable(doctorRow);
         List<String> dontUseNames = new ArrayList<String>();
-        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych");
-        dontUseNames.add(doctorName);
+        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
 
         System.out.println(dontUseNames);
 
         waitBlockUI();
 
-        String doctorNameNull = doctorName;
+        //String doctorNameNull = doctorName;
         String doctorStringName = null;
 
         List<WebElement> doctorList = webDriver
@@ -285,11 +287,11 @@ public class ModuleTimeTable {
             if (count == 1 && !dontUseNames.contains(doctorStringName))
                 break;
         }
-
+        dontUseNames.add(doctorStringName);
         return doctorStringName;
     }
 
-
+    //========
     public boolean waitBlockUI() {
         boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
         if (BlockAssert) {
