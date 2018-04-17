@@ -53,13 +53,9 @@ public class EMIAStest {
         website = new EmiasSite(webDriver);
         //webDriver.manage().window().maximize();
         webDriver.get("http://mis.softrust.ru/whc/Home");
-        logger.info("Step 1: Enter login");
         website.loginPage().enterLoginText("admin");
-        logger.info("Step 2: Enter password");
         website.loginPage().enterPasswordText("11");
-        logger.info("Step 3: Press Login Button");
         website.loginPage().clickLoginButton();
-        logger.fatal("Before: Done");
     }
 
     @Test// KEYS 1.1

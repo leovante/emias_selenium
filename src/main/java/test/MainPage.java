@@ -13,7 +13,7 @@ public class MainPage {
     private WebDriverWait wait;
 
     @FindBy(xpath = "//div[@id='Portlet_6']/div[2]/div/a/span")
-    WebElement callDoctorButton;
+    WebElement callDoctorBtn;
 
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[2]/a/span")
     WebElement timeTableBtn;
@@ -29,8 +29,8 @@ public class MainPage {
 
     public void clickCallDoctorButton() throws InterruptedException {
         waitLoaderLeftspacer();
-        waitWhileClickable(callDoctorButton);
-        callDoctorButton.click();
+        waitWhileClickable(callDoctorBtn);
+        callDoctorBtn.click();
     }
 
     public void clickTimeTable(){
