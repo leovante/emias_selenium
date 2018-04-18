@@ -41,7 +41,7 @@ public class EmiasSite {
         return new ModuleAdmissionSchedule(webDriver);
     }
 
-    public ModuleTransferRecords moduleTransferTecords() {
+    public ModuleTransferRecords moduleTransferRecords() {
         return new ModuleTransferRecords(webDriver);
     }
 }

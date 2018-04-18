@@ -52,9 +52,9 @@ public class EMIAStest {
         wait = new WebDriverWait(webDriver, 60, 500);
         website = new EmiasSite(webDriver);
         //webDriver.manage().window().maximize();
-        webDriver.get("http://mis.softrust.ru/whc/Home");
+        webDriver.get("http://emias.mosreg.ru/mis/test_emias");
         website.loginPage().enterLoginText("admin");
-        website.loginPage().enterPasswordText("11");
+        website.loginPage().enterPasswordText("1");
         website.loginPage().clickLoginButton();
     }
 
@@ -62,6 +62,8 @@ public class EMIAStest {
     public void testCreateDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.1: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
+        String docName = website.scheduleDoctors().getUnicalDoctor(null);
+        website.scheduleDoctors().selectDoctor(docName);
         website.scheduleDoctors().createSheadle();
         website.scheduleDoctors().checkCreateSheadle();
         logger.error("KEYS 1.1: Done");
@@ -71,8 +73,14 @@ public class EMIAStest {
     public void testCopyDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
+
+        String docName = website.scheduleDoctors().getUnicalDoctor(null);
+        website.scheduleDoctors().selectDoctor(docName);
         website.scheduleDoctors().createSheadle();
+        String docNameTwo = website.scheduleDoctors().getUnicalDoctor(docName);
+        website.scheduleDoctors().selectDoctor(docNameTwo);
         website.scheduleDoctors().copySheadle();
+        website.scheduleDoctors().selectDoctor(docName);
         website.scheduleDoctors().checkCreateSheadle();
         logger.error("KEYS 1.2: Done");
     }
@@ -104,22 +112,23 @@ public class EMIAStest {
         website.emiasPage().clickTimeTable();
 
         //тут нужно как-то избавиться от стрингов
-        String doctorOne = website.scheduleDoctors().selectDoctor(null);
+        //String doctorOne = website.scheduleDoctors().selectDoctor(null);
         website.scheduleDoctors().deleteSheadule();
         website.scheduleDoctors().createSheadle();
-        website.scheduleDoctors().selectDoctor(doctorOne);//сняли выделение с врача
+        //website.scheduleDoctors().selectDoctor(doctorOne);//сняли выделение с врача
 
-        String doctorTwo = website.scheduleDoctors().selectDoctor(null);
+        //String doctorTwo = website.scheduleDoctors().selectDoctor(null);
         website.scheduleDoctors().createSheadle();
 
         website.emiasPage().clickLogoHome();
+        website.emiasPage().clickAdmissionSchedule();
 
-        website.moduleAdmissionSchedule().selectDoctor();
+        //website.moduleAdmissionSchedule().selectDoctor(doctorOne);
         website.moduleAdmissionSchedule().createTask();
+        website.moduleAdmissionSchedule().checkCreateTask();
 
         website.emiasPage().clickLogoHome();
-
-        website.moduleTransferTecords().clickDoctor();
+        website.moduleTransferRecords().clickDoctor();
         /*
         зайти в создание записей
         найти два уникальных врача и запомнить их имена
@@ -129,11 +138,10 @@ public class EMIAStest {
           выбрать второго врача
           создать новую запись - прием по очереди
         выйти на главную
-
         зайти в расписание приема, выбрать первого врача
         найти новую запись - прием по очереди и создать запись пациента
-
         выйти на главную
+
         зайти в перенос записей
         нажать на первого врача
         нажать на кнопку перенос записей
@@ -167,6 +175,7 @@ public class EMIAStest {
 8. Нажимаем ""Перенести""
 */
 
+/*
     @Test//
     public void testSearchCallDoctor() throws InterruptedException {
         logger.info("KEYS 1: Search call calldoctor page");
@@ -193,6 +202,7 @@ public class EMIAStest {
         website.moduleCallDoctor_CreateCall().createNewCall_ExistingMkab();
         logger.error("KEYS 4: Done");
     }
+*/
 /*    @Test// 5
     public void  testCreateNewMkab() throws InterruptedException {
         logger.info("KEYS 5: Enter in CallDoctor");
@@ -214,5 +224,10 @@ public class EMIAStest {
             webDriver.quit();
 
         logger.info("After: Done\n");
+    }
+
+    private class getUnicalDoctor {
+
+
     }
 }

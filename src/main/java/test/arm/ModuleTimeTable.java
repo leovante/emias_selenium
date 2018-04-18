@@ -76,6 +76,9 @@ public class ModuleTimeTable {
     @FindBy(xpath = "//div[24]/div[3]/div/button/span")
     WebElement yesBtn;
 
+    @FindBy(xpath = "//button[@id='btn_copy']/span[2]")
+    WebElement copySheadule;
+
 
     public ModuleTimeTable(WebDriver driver) {
         webDriver = driver;
@@ -89,6 +92,7 @@ public class ModuleTimeTable {
         String a = "0700", b = "0715";
         String c = "0715", d = "0730";
         waitWhileClickable(createSheadule);
+        waitBlockUI();
         createSheadule.click();
 
         setTimeCalendar(a, b);
@@ -125,27 +129,27 @@ public class ModuleTimeTable {
 //        */
     }
 
-    public String selectDoctor(String doctorInlet) {
-        //поиск уникального врача
-        //нужно создать метод одного врача, что бы в этом методе его имя не менялось (упаковку)
-        if (doctorInlet.equals(null)) {
-            doctorInlet = newUnicalDoctor();
-            webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
-        } else {
-            String doctor = doctorInlet;
-            webDriver.findElement(By.xpath("//*[contains(text(),'" + doctor + "')]")).click();
-        }
-//        deleteSheadule();
-//
-        //нажимаем на создать расписание
-        return doctorInlet;
+    public void selectDoctor(String doctorInlet) {
+        waitLoaderLeftspacer();
+        waitBlockUI();
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
+    }
+
+    public void searchFiled() {
+        waitWidgetOverlay();
+        waitBlockUI();
+
+        searchFieldBtn.click();
+
+        waitWidgetOverlay();
+        waitBlockUI();
     }
 
 
     public void setDoNotReceiveDays() {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         waitLoaderLeftspacer();
-        String firstDoctor = newUnicalDoctor();
+        String firstDoctor = getUnicalDoctor(null);
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
         waitBlockUI();
 
@@ -163,28 +167,36 @@ public class ModuleTimeTable {
 
     public void copySheadle() {
         waitLoaderLeftspacer();
-        waitWhileClickable(searchFieldBtn);
-
-        searchFieldBtn.click();
         waitBlockUI();
+//        String doctorOne = getUnicalDoctor(null);
+//        String doctorTwo = getUnicalDoctor(doctorOne);
 
-        String firstDoctor = newUnicalDoctor();
-        String secondDoctor = newUnicalDoctor();
+//        selectDoctor(doctorOne);
+//        selectDoctor(doctorTwo);
 
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-        waitBlockUI();
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor + "')]")).click();
-        waitBlockUI();
+
+//        String firstDoctor = newUnicalDoctor();
+//        String secondDoctor = newUnicalDoctor();
+
+//        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
+//        waitBlockUI();
+//        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor + "')]")).click();
+//        waitBlockUI();
 
         //копировать расписание
-        webDriver.findElement(By.xpath("//button[@id='btn_copy']/span[2]")).click();
-        webDriver.findElement(By.xpath("(//tr[@id='1078']/td[2])[2]")).click();
+        waitWhileClickable(copySheadule);
+        copySheadule.click();
+//нужно переключиться на открытое окно
+        webDriver.findElement(By.xpath("//div[@class='ui-jqgrid-bdiv']/div/table/tbody"))
+                .findElement(By.xpath("tr[@role='row']")).click();
         webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
         webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
         webDriver.findElement(By.xpath("//div[25]/div[3]/div/button/span")).click();
         webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        waitBlockUI();
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();//убрать галочку с первого врача
+//        waitBlockUI();
+
+
+//        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();//убрать галочку с первого врача
         waitBlockUI();
     }
 
@@ -252,18 +264,20 @@ public class ModuleTimeTable {
         }
     }
 
-    public String newUnicalDoctor() {
+    public String getUnicalDoctor(String docName) {
         waitBlockUI();
         waitWhileClickable(doctorRow);
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
+        dontUseNames.add(docName);
+
 
         System.out.println(dontUseNames);
 
         waitBlockUI();
 
         //String doctorNameNull = doctorName;
-        String doctorStringName = null;
+        String doctorStringName = docName;
 
         List<WebElement> doctorList = webDriver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))//наашел таблицу
@@ -287,7 +301,7 @@ public class ModuleTimeTable {
             if (count == 1 && !dontUseNames.contains(doctorStringName))
                 break;
         }
-        dontUseNames.add(doctorStringName);
+        dontUseNames.add(doctorStringName);//чот не срабатывает
         return doctorStringName;
     }
 

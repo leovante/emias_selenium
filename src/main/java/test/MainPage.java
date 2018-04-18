@@ -18,8 +18,11 @@ public class MainPage {
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[2]/a/span")
     WebElement timeTableBtn;
 
-    @FindBy(xpath = "тут адрес кнопки")
+    @FindBy(xpath = "//div[@id='top']/a[2]/span")
     WebElement homePageBtn;
+
+    @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div/a/span")
+    WebElement admissionScheduleBtn;
 
     public MainPage(WebDriver driver){
         webDriver = driver;
@@ -37,6 +40,12 @@ public class MainPage {
         waitLoaderLeftspacer();
         waitWhileClickable(timeTableBtn);
         timeTableBtn.click();
+    }
+
+    public void clickAdmissionSchedule(){
+        waitLoaderLeftspacer();
+        waitWhileClickable(admissionScheduleBtn);
+        admissionScheduleBtn.click();
     }
 
     public void clickLogoHome(){
