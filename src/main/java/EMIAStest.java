@@ -73,15 +73,15 @@ public class EMIAStest {
     public void testCopyDoctorTimeTables() throws InterruptedException {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
-
         String docName = website.scheduleDoctors().getUnicalDoctor(null);
         website.scheduleDoctors().selectDoctor(docName);
         website.scheduleDoctors().createSheadle();
         String docNameTwo = website.scheduleDoctors().getUnicalDoctor(docName);
         website.scheduleDoctors().selectDoctor(docNameTwo);
-        website.scheduleDoctors().copySheadle();
+        website.scheduleDoctors().copySheadle(docName);
         website.scheduleDoctors().selectDoctor(docName);
         website.scheduleDoctors().checkCreateSheadle();
+        website.scheduleDoctors().deleteSheadule();
         logger.error("KEYS 1.2: Done");
     }
 

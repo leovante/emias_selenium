@@ -1,9 +1,6 @@
 package test.arm;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -133,6 +130,8 @@ public class ModuleTimeTable {
         waitLoaderLeftspacer();
         waitBlockUI();
         webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
+        waitBlockUI();
+        waitWidgetOverlay();
     }
 
     public void searchFiled() {
@@ -165,7 +164,9 @@ public class ModuleTimeTable {
         keyboard.pressKey(Keys.ENTER);
     }
 
-    public void copySheadle() {
+    public void copySheadle(String docName) throws InterruptedException {
+        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
+
         waitLoaderLeftspacer();
         waitBlockUI();
 //        String doctorOne = getUnicalDoctor(null);
@@ -186,17 +187,18 @@ public class ModuleTimeTable {
         //копировать расписание
         waitWhileClickable(copySheadule);
         copySheadule.click();
-//нужно переключиться на открытое окно
-        webDriver.findElement(By.xpath("//div[@class='ui-jqgrid-bdiv']/div/table/tbody"))
-                .findElement(By.xpath("tr[@role='row']")).click();
+
+        webDriver.findElement(By.xpath("//table[@id='copy_selected_grid']/tbody/tr[2]/td[2]")).click();
         webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
         webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        webDriver.findElement(By.xpath("//div[25]/div[3]/div/button/span")).click();
+        List<WebElement> closeBtnList = webDriver.findElements(By.xpath("//span[contains(text(),'Закрыть')]"));
+        for (WebElement closeBtn : closeBtnList) {
+            try{
+                closeBtn.click();
+            }
+            catch (ElementNotVisibleException ex){}
+        }
         webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-//        waitBlockUI();
-
-
-//        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();//убрать галочку с первого врача
         waitBlockUI();
     }
 
@@ -243,7 +245,6 @@ public class ModuleTimeTable {
                 .findElement(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']"));
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']"));
-        System.out.println("проверка ячеек с этим цветом");
     }
 
     public void checkDoNotReceiveDays() {
