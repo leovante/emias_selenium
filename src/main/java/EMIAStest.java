@@ -53,35 +53,37 @@ public class EMIAStest {
         website = new EmiasSite(webDriver);
         //webDriver.manage().window().maximize();
         webDriver.get("http://emias.mosreg.ru/mis/test_emias");
-        website.loginPage().enterLoginText("admin");
-        website.loginPage().enterPasswordText("1");
+        website.loginPage().enterLoginText("seleniumAdmin");
+        website.loginPage().enterPasswordText("1212");
+        //seleniumDoctor 1
+        //seleniumAdmin 1212
         website.loginPage().clickLoginButton();
     }
 
     @Test// KEYS 1.1
-    public void testCreateDoctorTimeTables() throws InterruptedException {
+    public void testCreateShedule() throws InterruptedException {
         logger.info("KEYS 1.1: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
         String docName = website.scheduleDoctors().getUnicalDoctor(null);
         website.scheduleDoctors().selectDoctor(docName);
-        website.scheduleDoctors().createSheadle();
-        website.scheduleDoctors().checkCreateSheadle();
+        website.scheduleDoctors().createShedule();
+        website.scheduleDoctors().checkCreateShedule();
         logger.error("KEYS 1.1: Done");
     }
 
     @Test//KEYS 1.2
-    public void testCopyDoctorTimeTables() throws InterruptedException {
+    public void testCopyShedule() throws InterruptedException {
         logger.info("KEYS 1.2: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
         String docName = website.scheduleDoctors().getUnicalDoctor(null);
         website.scheduleDoctors().selectDoctor(docName);
-        website.scheduleDoctors().createSheadle();
+        website.scheduleDoctors().createShedule();
         String docNameTwo = website.scheduleDoctors().getUnicalDoctor(docName);
         website.scheduleDoctors().selectDoctor(docNameTwo);
-        website.scheduleDoctors().copySheadle(docName);
+        website.scheduleDoctors().copyShedule(docName);
         website.scheduleDoctors().selectDoctor(docName);
-        website.scheduleDoctors().checkCreateSheadle();
-        website.scheduleDoctors().deleteSheadule();
+        website.scheduleDoctors().checkCreateShedule();
+        website.scheduleDoctors().deleteShedule();
         logger.error("KEYS 1.2: Done");
     }
 
@@ -95,35 +97,60 @@ public class EMIAStest {
     }
 
     @Test// KEYS 1.4
-    public void testDeleteDoctorTimeTables() throws InterruptedException {
+    public void testDeleteShedule() throws InterruptedException {
         logger.info("KEYS 1.4: Enter doctor's timetable");
         website.emiasPage().clickTimeTable();
-        website.scheduleDoctors().createSheadle();
-        website.scheduleDoctors().checkCreateSheadle();
-        website.scheduleDoctors().deleteSheadule();
-        website.scheduleDoctors().checkDeletedSheadle();
+        String docName = website.scheduleDoctors().getUnicalDoctor(null);
+        website.scheduleDoctors().selectDoctor(docName);
+        website.scheduleDoctors().createShedule();
+        website.scheduleDoctors().checkCreateShedule();
+        website.scheduleDoctors().deleteShedule();
+        website.scheduleDoctors().checkDeletedShedle();
+        website.scheduleDoctors().deleteShedule();
         logger.error("KEYS 1.4: Done");
     }
 
     @Test// KEYS 1.5
-    public void testSurviveTask() throws InterruptedException {
+    public void testSurviveShedule() throws InterruptedException {
         String doctorNull = null;
         logger.info("KEYS 1.5: Enter doctor's timetable");
+
+        //нужно зайти в распсиание приема
+        //провертиь что у врача нет записей красного и бледно красного цвета
+        //если записи есть, то удаляем все, кроме последней
+        //выбираем второго врача
+        //проверяем наличие красных и бледных записей
+        //если записи есть, то отменяем все
+        //проверяем налицие зеленых записей
+        //если их нет, выходим на главную, заходим в создать расписание и создаем записи
+        //выходим на главную страницу
+        //нажимаем перенос записей
+        //выбираем первого врача
+        //находим красную или бледно красную запись
+        //нажимаем на нее
+        //нажимаем на перенос записей
+        //нажимаем перенести во всплывающем окне
+        //нажимаем на врача
+        //нажимаем правой кнопкой на запись
+        //нажимаем перенести во всплывающем окне
+        //выбираем второго врача
+        //нажимаем на ячейку в его расписании
+        //снимаем галочку с первого врача
+        //выбираем второго врача
+        //проверяем наличие записи
+
         website.emiasPage().clickTimeTable();
-
-        //тут нужно как-то избавиться от стрингов
-        //String doctorOne = website.scheduleDoctors().selectDoctor(null);
-        website.scheduleDoctors().deleteSheadule();
-        website.scheduleDoctors().createSheadle();
-        //website.scheduleDoctors().selectDoctor(doctorOne);//сняли выделение с врача
-
-        //String doctorTwo = website.scheduleDoctors().selectDoctor(null);
-        website.scheduleDoctors().createSheadle();
+        String docName = website.scheduleDoctors().getUnicalDoctor(null);
+        website.scheduleDoctors().selectDoctor(docName);
+        website.scheduleDoctors().createShedule();
+        website.scheduleDoctors().selectDoctor(docName);
+        String docNameTwo = website.scheduleDoctors().getUnicalDoctor(docName);
+        website.scheduleDoctors().selectDoctor(docNameTwo);
+        website.scheduleDoctors().deleteShedule();
 
         website.emiasPage().clickLogoHome();
-        website.emiasPage().clickAdmissionSchedule();
-
-        //website.moduleAdmissionSchedule().selectDoctor(doctorOne);
+        website.emiasPage().clickAdmissionSchedule();//расписание приема
+        website.scheduleDoctors().selectDoctor(docName);
         website.moduleAdmissionSchedule().createTask();
         website.moduleAdmissionSchedule().checkCreateTask();
 

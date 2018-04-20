@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import static junit.framework.TestCase.assertFalse;
 
@@ -26,13 +27,13 @@ public class ModuleTimeTable {
     WebElement searchFieldBtn;
 
     @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
-    WebElement deleteSheadule;
+    WebElement deleteShedule;
 
     @FindBy(id = "btn_delete_schedule")
-    WebElement deleteSheaduleBtnWindow;
+    WebElement deleteSheduleBtnWindow;
 
     @FindBy(xpath = "//button[@id='btn_create']/span[2]")
-    WebElement createSheadule;
+    WebElement createShedule;
 
     @FindBy(id = "pickTime_nach")
     WebElement pickTime_nach;
@@ -74,7 +75,7 @@ public class ModuleTimeTable {
     WebElement yesBtn;
 
     @FindBy(xpath = "//button[@id='btn_copy']/span[2]")
-    WebElement copySheadule;
+    WebElement copyShedule;
 
 
     public ModuleTimeTable(WebDriver driver) {
@@ -83,14 +84,14 @@ public class ModuleTimeTable {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void createSheadle() throws InterruptedException {
+    public void createShedule() throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         waitLoaderLeftspacer();
-        String a = "0700", b = "0715";
-        String c = "0715", d = "0730";
-        waitWhileClickable(createSheadule);
+        String a = "2230", b = "2245";
+        String c = "2245", d = "2300";
+        waitWhileClickable(createShedule);
         waitBlockUI();
-        createSheadule.click();
+        createShedule.click();
 
         setTimeCalendar(a, b);
         setTypeOfReception(priemPoOcheredi);
@@ -101,9 +102,6 @@ public class ModuleTimeTable {
         waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-
-        waitWidgetOverlay();
-        waitBlockUI();
 //        /*taskArea.click();
 //        Actions action = new Actions(webDriver);
 //        action.contextClick(taskArea).perform();
@@ -126,9 +124,12 @@ public class ModuleTimeTable {
 //        */
     }
 
-    public void selectDoctor(String doctorInlet) {
+    public void selectDoctor(String doctorInlet) throws InterruptedException {
         waitLoaderLeftspacer();
+        waitWidgetOverlay();
         waitBlockUI();
+        Thread.sleep(2000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")));
         webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
         waitBlockUI();
         waitWidgetOverlay();
@@ -164,7 +165,7 @@ public class ModuleTimeTable {
         keyboard.pressKey(Keys.ENTER);
     }
 
-    public void copySheadle(String docName) throws InterruptedException {
+    public void copyShedule(String docName) throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
 
         waitLoaderLeftspacer();
@@ -185,8 +186,8 @@ public class ModuleTimeTable {
 //        waitBlockUI();
 
         //копировать расписание
-        waitWhileClickable(copySheadule);
-        copySheadule.click();
+        waitWhileClickable(copyShedule);
+        copyShedule.click();
 
         webDriver.findElement(By.xpath("//table[@id='copy_selected_grid']/tbody/tr[2]/td[2]")).click();
         webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
@@ -202,14 +203,14 @@ public class ModuleTimeTable {
         waitBlockUI();
     }
 
-    public void deleteSheadule() throws InterruptedException {//удалить расписание выбранного врача
+    public void deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         waitBlockUI();
 
-        waitWhileClickable(deleteSheadule);
-        deleteSheadule.click();                     //кнопка удалить расписание
-        waitWhileClickable(deleteSheaduleBtnWindow);
-        deleteSheaduleBtnWindow.click();            //подтверждение удаления
+        waitWhileClickable(deleteShedule);
+        deleteShedule.click();                     //кнопка удалить расписание
+        waitWhileClickable(deleteSheduleBtnWindow);
+        deleteSheduleBtnWindow.click();            //подтверждение удаления
 
         Thread.sleep(1000);
         keyboard.pressKey(Keys.ENTER);
@@ -240,7 +241,7 @@ public class ModuleTimeTable {
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
-    public void checkCreateSheadle() {
+    public void checkCreateShedule() {
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']"));
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
@@ -254,13 +255,13 @@ public class ModuleTimeTable {
         System.out.println("Проверка наличия заголовка форс-мажора");
     }
 
-    public void checkDeletedSheadle() {
+    public void checkDeletedShedle() {
         if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
         if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElements(By.xpath("//div[@style='background-color:#FFF-{F99;border-color:#FFFF99;color:#979797']")).isEmpty()) {
+                .findElements(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
     }

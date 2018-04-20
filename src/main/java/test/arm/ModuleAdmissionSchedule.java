@@ -33,20 +33,17 @@ public class ModuleAdmissionSchedule {
 
     public void createTask() {
         Actions action = new Actions(webDriver);
-
+        waitLoaderLeftspacer();
+        waitWidgetOverlay();
+        waitBlockUI();
         WebElement task = webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']"));
-
         task.click();
-        WebElement elementOpen = webDriver
-                .findElement(By.cssSelector("class[aria-labelledby='ui-dialog-title-chooser_people']"));
+
         action.sendKeys(Keys.ENTER).perform();
-
-        //нажали на запись
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div/div[96]/div/div[3]")).click();
-        //нажали первичный
-        webDriver.findElement(By.xpath("//button[@id='{2}']/span")).click();
-
+        webDriver.findElement(By.xpath("//table[@id='mkabgrid1']/tbody/tr[2]/td[3]")).click();
+        webDriver.findElement(By.xpath("//button[@id='selectPatientButton']/span")).click();//выбрать
+        webDriver.findElement(By.xpath("//button[@id='{2}']/span")).click();//первичный
     }
 
     public void checkCreateTask(){

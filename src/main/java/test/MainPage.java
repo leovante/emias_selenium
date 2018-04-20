@@ -52,6 +52,9 @@ public class MainPage {
         waitLoaderLeftspacer();
         waitWhileClickable(homePageBtn);
         homePageBtn.click();
+        waitLoaderLeftspacer();
+        waitWidgetOverlay();
+
     }
 
     public boolean waitLoaderLeftspacer() {
@@ -61,6 +64,14 @@ public class MainPage {
         }
         return loaderleftspacer;
     }
+    public boolean waitWidgetOverlay() {
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        return WidgetAssert;
+    }
+
 
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
