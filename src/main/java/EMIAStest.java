@@ -52,9 +52,9 @@ public class EMIAStest {
         wait = new WebDriverWait(webDriver, 60, 500);
         website = new EmiasSite(webDriver);
         //webDriver.manage().window().maximize();
-        webDriver.get("http://emias.mosreg.ru/mis/test_emias");
-        website.loginPage().enterLoginText("seleniumAdmin");
-        website.loginPage().enterPasswordText("1212");
+        webDriver.get("http://mis.softrust.ru/whc/Home");
+        website.loginPage().enterLoginText("admin");
+        website.loginPage().enterPasswordText("11");
         //seleniumDoctor 1
         //seleniumAdmin 1212
         website.loginPage().clickLoginButton();
