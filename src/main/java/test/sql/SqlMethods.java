@@ -15,8 +15,11 @@ public class SqlMethods {
     String databaseName = "dev_mo_hlt_Kashira_20180109";
     String userName = "whc";
     String password = "sagfhjkzYES!";
+    //CLASSPATH =.;C:\Program Files\Microsoft JDBC Driver 6.4 for SQL Server\sqljdbc_6.4\enu\mssql-jdbc-6.4.0.jre9.jar
 
-    public void deleteShedule(String name) {
+    public void deleteShedule(String name) throws ClassNotFoundException {
+        //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
 
         String url = this.connectionUrl +
                 ";databaseName=" + this.databaseName +
@@ -26,10 +29,14 @@ public class SqlMethods {
             // Load SQL Server JDBC driver and establish connection.
             System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
+//                String sql =
+//                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join" +
+//                                " hlt_LPUDoctor ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
+//                                " where dtt.Date = '2018-04-27 00:00:00.000' AND ldoc.FAM_V = " + name;
                 String sql =
-                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join" +
-                                " hlt_LPUDoctor ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
-                                " where dtt.Date = '2018-04-27 00:00:00.000' AND ldoc.FAM_V = " + name;
+                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor"
+                + " ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
+                " where dtt.Date = '2018-04-27 00:00:00.000' AND ldoc.FAM_V = 'Аблова'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     System.out.println("Done.\n");

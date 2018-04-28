@@ -52,7 +52,7 @@ public class EMIAStest {
     }
 
     @Test// KEYS 0.0
-    public void testProject() throws InterruptedException {
+    public void testProject() throws InterruptedException, ClassNotFoundException {
         SqlMethods sqlMethod = new SqlMethods();
         String name = "Аблова";
         sqlMethod.deleteShedule(name);
