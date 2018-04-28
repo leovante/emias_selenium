@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class SqlMethods {
-
     String connectionUrl = "jdbc:sqlserver://192.168.7.196:49199";
     String databaseName = "dev_mo_hlt_Kashira_20180109";
     String userName = "whc";
@@ -19,7 +18,6 @@ public class SqlMethods {
 
     public void deleteShedule(String name) throws ClassNotFoundException {
         //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
 
         String url = this.connectionUrl +
                 ";databaseName=" + this.databaseName +
@@ -49,7 +47,6 @@ public class SqlMethods {
         }
     }
 }
-
 
 // Configure Hibernate logging to only log SEVERE errors
 //        @SuppressWarnings("unused")
