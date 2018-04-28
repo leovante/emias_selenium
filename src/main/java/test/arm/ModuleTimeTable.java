@@ -87,8 +87,8 @@ public class ModuleTimeTable {
     public void createShedule() throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         waitLoaderLeftspacer();
-        String a = "2230", b = "2245";
-        String c = "2245", d = "2300";
+        String a = "0700", b = "0715";
+        String c = "0715", d = "0730";
         waitWhileClickable(createShedule);
         waitBlockUI();
         createShedule.click();
@@ -241,11 +241,14 @@ public class ModuleTimeTable {
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
-    public void checkCreateShedule() {
+    public void checkCreateShedule() throws InterruptedException {
+        waitBlockUI();
+        waitWidgetOverlay();
+        Thread.sleep(2000);
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']"));
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']"));
+                .findElement(By.xpath("//*[contains(text(),'07:00 ')]"));
+//        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+//                .findElement(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']"));
     }
 
     public void checkDoNotReceiveDays() {

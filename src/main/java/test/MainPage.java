@@ -38,6 +38,7 @@ public class MainPage {
 
     public void clickTimeTable(){
         waitLoaderLeftspacer();
+        waitWidgetOverlay();
         waitWhileClickable(timeTableBtn);
         timeTableBtn.click();
     }
@@ -54,7 +55,6 @@ public class MainPage {
         homePageBtn.click();
         waitLoaderLeftspacer();
         waitWidgetOverlay();
-
     }
 
     public boolean waitLoaderLeftspacer() {
@@ -71,8 +71,6 @@ public class MainPage {
         }
         return WidgetAssert;
     }
-
-
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
