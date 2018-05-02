@@ -1,19 +1,19 @@
-//import org.apache.log4j.Logger;
-//import org.junit.After;
-//import org.junit.Before;
-//import org.junit.Test;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.chrome.ChromeDriver;
-//import org.openqa.selenium.chrome.ChromeOptions;
-//import org.openqa.selenium.logging.LogEntries;
-//import org.openqa.selenium.logging.LogEntry;
-//import org.openqa.selenium.logging.LogType;
-//import org.openqa.selenium.logging.Logs;
-//import org.openqa.selenium.support.ui.WebDriverWait;
-//import pages.Pages;
-//import pages.CleanDoctorTimeTableSQL;
+import org.apache.log4j.Logger;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.Logs;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.Pages;
+import pages.CleanDoctorTimeTableSQL;
 //
-//public class RegressCallDoctor {
+public class RegressCallDoctor {
 //    private WebDriver webDriver;
 //    Pages website;
 //    WebDriverWait wait;
@@ -175,7 +175,7 @@
 //        снять выделение с первого врача и нажать на второго
 //        найти перенесенную запись
 //         */
-//    }
+    }
 //
 /////*KEYS 1.5 Перенос записей
 ////2. Перешли на вкалдку ""Перенос записей"" :http://emias.mosreg.ru/mis/test_emias/ScheduleWriting/Transfer

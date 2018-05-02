@@ -26,6 +26,18 @@ public class RegressNewCallDoctor {
                 "}";
 
         ((JavascriptExecutor) driver).executeAsyncScript(script, new Object[0]);
+
+
+
+        Yes; protractor is nothing more than a syntax wrapper for Selenium with a few methods that hook into the JavaScript callbacks like angular.getTestability.
+        By copying the JavaScript code out of protractor, or ngWebDriver, etc. and into your project's executeScript or executeAsyncScript,
+        you can modify your Selenium framework to implement watiForAngular and other Protractor methods, eliminating the need for Protractor.
+
+        https://github.com/caarlos0-graveyard/jProtractor
+        https://github.com/paul-hammant/ngWebDriver
+
+
+
 */
     }
 
