@@ -10,9 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.WaitLoader;
 
-public class AdmissionSchedule extends WaitLoader {
+public class AdmissionSchedule {
     private WebDriver webDriver;
     private WebDriverWait wait;
     Actions action = new Actions(webDriver);
@@ -69,4 +68,25 @@ public class AdmissionSchedule extends WaitLoader {
                 .findElement(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
         //тут нужно сделать ассертТруе
     }
+    public boolean waitAll() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return BlockAssert;
+    }
+
+    public void waitWhileClickable(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+
 }

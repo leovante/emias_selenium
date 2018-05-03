@@ -25,7 +25,7 @@ public class Pages {
         return new SearchRow(webDriver);
     }
 
-    public ManageShedule scheduleDoctors() {
+    public ManageShedule manageShedule() {
         return new ManageShedule(webDriver);
     }
 

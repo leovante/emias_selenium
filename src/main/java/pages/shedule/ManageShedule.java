@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.WaitLoader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +13,7 @@ import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
 
-public class ManageShedule extends WaitLoader {
+public class ManageShedule {
     private WebDriver webDriver;
     private WebDriverWait wait;
     final String doctorNull = null;
@@ -296,4 +295,32 @@ public class ManageShedule extends WaitLoader {
         dontUseNames.add(doctorStringName);//чот не срабатывает
         return doctorStringName;
     }
+
+    public String getSecondName(String name){
+        if(name.contains(" ")){
+            name= name.substring(0, name.indexOf(" "));
+        }
+        return name;
+    }
+
+    public boolean waitAll() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return BlockAssert;
+    }
+
+    public void waitWhileClickable(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
 }

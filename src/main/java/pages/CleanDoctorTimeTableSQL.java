@@ -5,15 +5,15 @@ import java.sql.Statement;
 import java.sql.DriverManager;
 
 public class CleanDoctorTimeTableSQL {
-    String connectionUrl = "jdbc:sqlserver://192.168.7.196:49199";
-    String databaseName = "dev_mo_hlt_Kashira_20180109";
-    String userName = "whc";
-    String password = "sagfhjkzYES!";
+    String connectionUrl = "jdbc:sqlserver://12.8.1.62";
+    String databaseName = "test_emias";
+    String userName = "sa";
+    String password = "b635Oap5YE33k1S";
     //CLASSPATH =.;C:\Program Files\Microsoft JDBC Driver 6.4 for SQL Server\sqljdbc_6.4\enu\mssql-jdbc-6.4.0.jre9.jar
 
     public void deleteShedule(String name) throws ClassNotFoundException {
         //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
+        //name = "Аблова";
         String url = this.connectionUrl +
                 ";databaseName=" + this.databaseName +
                 ";user=" + this.userName +
@@ -29,7 +29,7 @@ public class CleanDoctorTimeTableSQL {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor"
                 + " ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
-                " where dtt.Date = '2018-04-27 00:00:00.000' AND ldoc.FAM_V = 'Аблова'";
+                " where dtt.Date = '2018-05-03 00:00:00.000' AND ldoc.FAM_V = " + "'" + name + "'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     System.out.println("Done.\n");

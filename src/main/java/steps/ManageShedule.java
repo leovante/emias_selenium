@@ -2,11 +2,12 @@ package steps;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CleanDoctorTimeTableSQL;
 import pages.Pages;
-import pages.WaitLoader;
 
 public class ManageShedule{
     private WebDriver webDriver;
@@ -16,15 +17,18 @@ public class ManageShedule{
 
     public ManageShedule(WebDriver driver){
         webDriver = driver;
+        website = new Pages(webDriver);
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
     }
 
     public void createShedule() throws InterruptedException, ClassNotFoundException {
-        String docName = website.scheduleDoctors().getUnicalDoctor(null);
-        sql.deleteShedule(docName); //Нужно найти таблицу где полностью ФИО или из стринга вытаскивать фамилию
-        website.scheduleDoctors().selectDoctor(docName);
-        website.scheduleDoctors().createShedule();
+        waitAll();
+        String docFullName = website.manageShedule().getUnicalDoctor(null);
+        String secondName = website.manageShedule().getSecondName(docFullName);
+        sql.deleteShedule(secondName);
+        website.manageShedule().selectDoctor(docFullName);
+        website.manageShedule().createShedule();
     }
 
     public void verifyCreatedShedule()  throws InterruptedException{
@@ -34,29 +38,50 @@ public class ManageShedule{
     }
 
     public void setNotReciveDays(){
-        website.scheduleDoctors().setNotReceiveDays();
+        website.manageShedule().setNotReceiveDays();
     }
 
     public void verifyNotReciveDays(){
-        website.scheduleDoctors().checkNotReceiveDays();
+        website.manageShedule().checkNotReceiveDays();
     }
 
     public void copyShedule() throws InterruptedException {
-        String docName = website.scheduleDoctors().getUnicalDoctor(null);
-        website.scheduleDoctors().selectDoctor(docName);
-        website.scheduleDoctors().createShedule();
-        String docNameTwo = website.scheduleDoctors().getUnicalDoctor(docName);
-        website.scheduleDoctors().selectDoctor(docNameTwo);
-        website.scheduleDoctors().copyShedule(docName);
-        website.scheduleDoctors().selectDoctor(docName);
+        String docName = website.manageShedule().getUnicalDoctor(null);
+        website.manageShedule().selectDoctor(docName);
+        website.manageShedule().createShedule();
+        String docNameTwo = website.manageShedule().getUnicalDoctor(docName);
+        website.manageShedule().selectDoctor(docNameTwo);
+        website.manageShedule().copyShedule(docName);
+        website.manageShedule().selectDoctor(docName);
         verifyCreatedShedule();
     }
 
     public void deleteShedule() throws InterruptedException {
-        website.scheduleDoctors().deleteShedule();
+        website.manageShedule().deleteShedule();
     }
 
     public void verifyDeletedShedule(){
-        website.scheduleDoctors().checkDeletedShedle();
+        website.manageShedule().checkDeletedShedle();
     }
+
+    public boolean waitAll() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return BlockAssert;
+    }
+
+    public void waitWhileClickable(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
 }
