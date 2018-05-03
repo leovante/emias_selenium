@@ -42,12 +42,14 @@ public class RegressShedule {
         step.login().loginEmias();
     }
 
+/*
     @Test// KEYS 0.0
     public void testProject() throws InterruptedException, ClassNotFoundException {
         CleanDoctorTimeTableSQL sqlMethod = new CleanDoctorTimeTableSQL();
         String name = "Аблова";
         sqlMethod.deleteShedule(name);
     }
+*/
 
     @Test// KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
@@ -56,13 +58,13 @@ public class RegressShedule {
         step.manageShedule().verifyCreatedShedule();
     }
 
-/*    @Test//KEYS 1.2
+    @Test//KEYS 1.2
     public void copyShedule() throws InterruptedException {
-        website.mainPage().clickManageShedule();
+        step.mainPage().clickManageShedule();
         step.manageShedule().copyShedule();
     }
 
-    @Test//KEYS 1.3
+/*    @Test//KEYS 1.3
     public void setNotReceiveDays() throws InterruptedException {
         website.mainPage().clickManageShedule();
         step.manageShedule().setNotReciveDays();
