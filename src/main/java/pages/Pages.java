@@ -29,19 +29,21 @@ public class Pages {
         return new ManageShedule(webDriver);
     }
 
-    public CreateMedicalCard moduleMedicalCard() {
+    public CreateMedicalCard medicalCard() {
         return new CreateMedicalCard(webDriver);
     }
 
-    public CreateCall moduleCallDoctor_CreateCall() {
+    public CreateCall callDoctor_CreateCall() {
         return new CreateCall(webDriver);
     }
 
-    public AdmissionSchedule moduleAdmissionSchedule() {
+    public AdmissionSchedule admissionSchedule() {
         return new AdmissionSchedule(webDriver);
     }
 
-    public TransferRecords moduleTransferRecords() {
+    public TransferRecords transferRecords() {
         return new TransferRecords(webDriver);
     }
+
+    public WaitAll waitAll(){return new WaitAll(webDriver);}
 }

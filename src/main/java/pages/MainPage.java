@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
+    WaitAll waitAll;
 
     @FindBy(xpath = "//div[@id='Portlet_6']/div[2]/div/a/span")
     WebElement callDoctorBtn;
@@ -28,46 +29,31 @@ public class MainPage {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
+        waitAll = new WaitAll(webDriver);
+
     }
 
     public void clickCallDoctorButton() throws InterruptedException {
-
         waitWhileClickable(callDoctorBtn);
         callDoctorBtn.click();
     }
 
     public void clickManageShedule(){
-        waitAll();
+        waitAll.waitBlock();
         waitWhileClickable(timeTableBtn);
         timeTableBtn.click();
     }
 
-    public void clickAdmissionSchedule(){
-        waitAll();
+    public void admissionSchedule(){
+        waitAll.waitBlock();
         waitWhileClickable(admissionScheduleBtn);
         admissionScheduleBtn.click();
     }
 
     public void clickLogoHome(){
-        waitAll();
+        waitAll.waitBlock();
         waitWhileClickable(homePageBtn);
         homePageBtn.click();
-    }
-
-    public boolean waitAll() {
-        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
-        if (BlockAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
-        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
-        if (WidgetAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-        }
-        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
-        if (loaderLeftSpacer) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        }
-        return BlockAssert;
     }
 
     public void waitWhileClickable(WebElement webElement) {

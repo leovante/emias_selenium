@@ -1,4 +1,4 @@
-package steps;
+package steps.shedule;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,22 +8,20 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CleanDoctorTimeTableSQL;
 import pages.Pages;
+import pages.WaitAll;
 
 public class ManageShedule{
     private WebDriver webDriver;
-    private WebDriverWait wait;
     Pages website;
     CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
 
     public ManageShedule(WebDriver driver){
         webDriver = driver;
         website = new Pages(webDriver);
-        wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
     }
 
     public void createShedule() throws InterruptedException, ClassNotFoundException {
-        waitAll();
         String docFullName = website.manageShedule().getUnicalDoctor(null);
         String secondName = website.manageShedule().getSecondName(docFullName);
         sql.deleteShedule(secondName);
@@ -36,6 +34,21 @@ public class ManageShedule{
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//*[contains(text(),'07:00 ')]"));
     }
+
+    public void createTwoShedule() throws ClassNotFoundException, InterruptedException {
+        String first_doctor_fullname = website.manageShedule().getUnicalDoctor(null);
+        String first_doctor_fam = website.manageShedule().getSecondName(first_doctor_fullname);
+        String second_doctor_fullname = website.manageShedule().getUnicalDoctor(first_doctor_fullname);
+        String second_doctor_fam = website.manageShedule().getSecondName(first_doctor_fullname);
+        //sql.deleteShedule(first_doctor_fam);
+        //sql.deleteShedule(second_doctor_fam);
+        website.manageShedule().selectDoctor(first_doctor_fullname);
+        website.manageShedule().createShedule();
+        website.manageShedule().selectDoctor(first_doctor_fullname);
+        website.manageShedule().selectDoctor(second_doctor_fullname);
+        website.manageShedule().createShedule();
+    }
+
 
     public void setNotReciveDays(){
         website.manageShedule().setNotReceiveDays();
@@ -63,25 +76,4 @@ public class ManageShedule{
     public void verifyDeletedShedule(){
         website.manageShedule().checkDeletedShedle();
     }
-
-    public boolean waitAll() {
-        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
-        if (BlockAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
-        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
-        if (WidgetAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-        }
-        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
-        if (loaderLeftSpacer) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        }
-        return BlockAssert;
-    }
-
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-    }
-
 }

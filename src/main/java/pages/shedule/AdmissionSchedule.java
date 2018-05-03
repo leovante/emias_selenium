@@ -1,6 +1,7 @@
 package pages.shedule;
 
 
+import org.antlr.stringtemplate.language.Expr;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -8,13 +9,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.Pages;
+import pages.WaitAll;
 
 public class AdmissionSchedule {
     private WebDriver webDriver;
     private WebDriverWait wait;
-    Actions action = new Actions(webDriver);
+    WaitAll waitAll;
 
     @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div/div")
     WebElement RecordsArea;
@@ -31,10 +35,10 @@ public class AdmissionSchedule {
     @FindBy(xpath = "//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']")
     WebElement recordElement;
 
-
     public AdmissionSchedule(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
+        waitAll = new WaitAll(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 
@@ -51,42 +55,28 @@ public class AdmissionSchedule {
     }
 */
 
-    public void createRecord() {
-        waitAll();
-        WebElement task = RecordsArea.findElement((By) recordElement);
+    public void createRecord() throws InterruptedException {
+        waitAll.waitBlock();
+        wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
+        waitAll.waitBlock();
+        WebElement task = RecordsArea.findElement(By.xpath("//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']"));
+        wait.until(ExpectedConditions.elementToBeClickable(task));
         task.click();
 
+        wait.until(ExpectedConditions.elementToBeClickable(hernya));
+        Actions action = new Actions(webDriver);
         action.sendKeys(Keys.ENTER).perform();
         hernya.click();
+        wait.until(ExpectedConditions.elementToBeClickable(selectPatientButton));
         selectPatientButton.click();//выбрать
+        wait.until(ExpectedConditions.elementToBeClickable(pervichniy));
         pervichniy.click();//первичный
     }
 
     public void verifyCreatedRecord() {
-        waitAll();
-        webDriver.findElement((By) RecordsArea)//поле с заявками
+        waitAll.waitBlock();
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
         //тут нужно сделать ассертТруе
     }
-    public boolean waitAll() {
-        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
-        if (BlockAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
-        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
-        if (WidgetAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-        }
-        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
-        if (loaderLeftSpacer) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        }
-        return BlockAssert;
-    }
-
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-    }
-
-
 }

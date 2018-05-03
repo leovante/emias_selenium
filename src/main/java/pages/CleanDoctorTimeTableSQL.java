@@ -12,6 +12,7 @@ public class CleanDoctorTimeTableSQL {
     //CLASSPATH =.;C:\Program Files\Microsoft JDBC Driver 6.4 for SQL Server\sqljdbc_6.4\enu\mssql-jdbc-6.4.0.jre9.jar
 
     public void deleteShedule(String name) throws ClassNotFoundException {
+        System.out.println("Чищу базу" + name);
         //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         //name = "Аблова";
         String url = this.connectionUrl +
