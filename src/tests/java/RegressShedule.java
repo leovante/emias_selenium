@@ -33,11 +33,11 @@ public class RegressShedule {
     public void setUp() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
-        options.setHeadless(false);
+        options.setHeadless(true);
         webDriver = new ChromeDriver(options);
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
-        step.loginPage().loginEmias2();
+        step.loginPage().loginEmias();
     }
 
     @Test//KEYS 1.1

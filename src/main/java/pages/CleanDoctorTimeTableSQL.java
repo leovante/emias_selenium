@@ -12,7 +12,7 @@ public class CleanDoctorTimeTableSQL {
     //CLASSPATH =.;C:\Program Files\Microsoft JDBC Driver 6.4 for SQL Server\sqljdbc_6.4\enu\mssql-jdbc-6.4.0.jre9.jar
 
     public void deleteShedule(String name) throws ClassNotFoundException {
-        System.out.println("Чищу базу" + name);
+        System.out.println("Чищу базу - " + name);
         //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         //name = "Аблова";
         String url = this.connectionUrl +
@@ -27,10 +27,19 @@ public class CleanDoctorTimeTableSQL {
 //                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join" +
 //                                " hlt_LPUDoctor ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
 //                                " where dtt.Date = '2018-04-27 00:00:00.000' AND ldoc.FAM_V = " + name;
+/*
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor"
                 + " ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
                 " where dtt.Date = '2018-05-03 00:00:00.000' AND ldoc.FAM_V = " + "'" + name + "'";
+*/
+
+                String sql =
+                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
+                                "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
+                                "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '1753-01-01', GETDATE()) / 7) * 7) - 7, '1753-01-01') " +
+                                "AND ldoc.FAM_V = '" + name + "'";
+
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     System.out.println("Done.\n");
