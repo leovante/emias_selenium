@@ -40,6 +40,9 @@ public class AdmissionSchedule {
     @FindBy(xpath = "//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']")
     WebElement recordElement;
 
+    @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
+    WebElement doctorRow;
+
     public AdmissionSchedule(WebDriver driver) {
         webDriver = driver;
         website = new Pages(webDriver);
@@ -65,7 +68,7 @@ public class AdmissionSchedule {
         waitAll.waitBlock();
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
         waitAll.waitBlock();
-        String first_doctor_fullname = website.manageShedule().getUnicalDoctor(null);
+        String first_doctor_fullname = website.admissionSchedule().getUnicalDoctor(null);
         website.manageShedule().selectDoctor(first_doctor_fullname);
         WebElement task = RecordsArea.findElement(By.xpath("//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']"));
         wait.until(ExpectedConditions.elementToBeClickable(task));
@@ -150,6 +153,4 @@ public class AdmissionSchedule {
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
-
-
 }
