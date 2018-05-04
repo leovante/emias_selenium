@@ -15,6 +15,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Pages;
 import pages.WaitAll;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class AdmissionSchedule {
     private WebDriver webDriver;
     Pages website;
@@ -84,4 +88,68 @@ public class AdmissionSchedule {
                 .findElement(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
         //тут нужно сделать ассертТруе
     }
+
+    public String getUnicalDoctor(String docName) {
+        waitAll();
+        waitWhileClickable(doctorRow);
+        List<String> dontUseNames = new ArrayList<String>();
+        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
+        dontUseNames.add(docName);
+
+        System.out.println(dontUseNames);
+
+        waitAll();
+
+        //String doctorNameNull = doctorName;
+        String doctorStringName = docName;
+
+        List<WebElement> doctorList = webDriver
+                .findElement(By.xpath("//table[@id='docprvdgrid1']/tbody"))//наашел таблицу
+                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
+
+        for (WebElement doctor : doctorList) {
+            int count = 0;
+            doctorStringName = doctor.getText();
+            //System.out.println("Первый список: " + doctorStringName + " " + count);
+
+            for (WebElement doctorCount : doctorList) {
+                String doctorStringName2 = doctorCount.getText();
+                //System.out.println("Второй список: " + doctorStringName2 + " " + count);
+
+                if (doctorStringName.equals(doctorStringName2))
+                    count++;
+                if (count > 1)
+                    break;
+            }
+
+            if (count == 1 && !dontUseNames.contains(doctorStringName))
+                break;
+        }
+        dontUseNames.add(doctorStringName);//чот не срабатывает
+        return doctorStringName;
+    }
+
+
+    public boolean waitAll() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return BlockAssert;
+    }
+
+
+    public void waitWhileClickable(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+
 }
