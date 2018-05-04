@@ -29,17 +29,6 @@ public class RegressShedule {
     Steps step;
     WebDriverWait wait;
 
-    @Before
-    public void setUp() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(true);
-        webDriver = new ChromeDriver(options);
-        wait = new WebDriverWait(webDriver, 60, 500);
-        step = new Steps(webDriver);
-        step.loginPage().loginEmias();
-    }
-
     @Test//KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         step.mainPage().clickManageShedule();
@@ -78,6 +67,17 @@ public class RegressShedule {
         step.admissionSchedule().createRecord();
         step.mainPage().clickLogoHome();
         step.transferRecords().trancRecord();
+    }
+
+    @Before
+    public void setUp() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
+        ChromeOptions options = new ChromeOptions();
+        options.setHeadless(false);
+        webDriver = new ChromeDriver(options);
+        wait = new WebDriverWait(webDriver, 60, 500);
+        step = new Steps(webDriver);
+        step.loginPage().loginEmias();
     }
 
     @After

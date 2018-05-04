@@ -39,9 +39,9 @@ public class ManageShedule{
         String first_doctor_fullname = website.manageShedule().getUnicalDoctor(null);
         String first_doctor_fam = website.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = website.manageShedule().getUnicalDoctor(first_doctor_fullname);
-        String second_doctor_fam = website.manageShedule().getSecondName(first_doctor_fullname);
-        //sql.deleteShedule(first_doctor_fam);
-        //sql.deleteShedule(second_doctor_fam);
+        String second_doctor_fam = website.manageShedule().getSecondName(second_doctor_fullname);
+        sql.deleteShedule(first_doctor_fam);
+        sql.deleteShedule(second_doctor_fam);
         website.manageShedule().selectDoctor(first_doctor_fullname);
         website.manageShedule().createShedule();
         website.manageShedule().selectDoctor(first_doctor_fullname);

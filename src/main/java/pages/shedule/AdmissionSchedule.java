@@ -17,10 +17,11 @@ import pages.WaitAll;
 
 public class AdmissionSchedule {
     private WebDriver webDriver;
+    Pages website;
     private WebDriverWait wait;
     WaitAll waitAll;
 
-    @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div/div")
+    @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div")
     WebElement RecordsArea;
 
     @FindBy(xpath = "//button[@id='selectPatientButton']/span")
@@ -37,6 +38,7 @@ public class AdmissionSchedule {
 
     public AdmissionSchedule(WebDriver driver) {
         webDriver = driver;
+        website = new Pages(webDriver);
         wait = new WebDriverWait(webDriver, 60);
         waitAll = new WaitAll(webDriver);
         PageFactory.initElements(webDriver, this);
@@ -59,6 +61,8 @@ public class AdmissionSchedule {
         waitAll.waitBlock();
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
         waitAll.waitBlock();
+        String first_doctor_fullname = website.manageShedule().getUnicalDoctor(null);
+        website.manageShedule().selectDoctor(first_doctor_fullname);
         WebElement task = RecordsArea.findElement(By.xpath("//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']"));
         wait.until(ExpectedConditions.elementToBeClickable(task));
         task.click();
@@ -72,6 +76,7 @@ public class AdmissionSchedule {
         wait.until(ExpectedConditions.elementToBeClickable(pervichniy));
         pervichniy.click();//первичный
     }
+
 
     public void verifyCreatedRecord() {
         waitAll.waitBlock();

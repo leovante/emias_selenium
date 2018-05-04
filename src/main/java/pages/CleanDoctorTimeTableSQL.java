@@ -9,12 +9,9 @@ public class CleanDoctorTimeTableSQL {
     String databaseName = "test_emias";
     String userName = "sa";
     String password = "b635Oap5YE33k1S";
-    //CLASSPATH =.;C:\Program Files\Microsoft JDBC Driver 6.4 for SQL Server\sqljdbc_6.4\enu\mssql-jdbc-6.4.0.jre9.jar
 
     public void deleteShedule(String name) throws ClassNotFoundException {
         System.out.println("Чищу базу - " + name);
-        //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        //name = "Аблова";
         String url = this.connectionUrl +
                 ";databaseName=" + this.databaseName +
                 ";user=" + this.userName +
@@ -23,21 +20,16 @@ public class CleanDoctorTimeTableSQL {
             // Load SQL Server JDBC driver and establish connection.
             System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-//                String sql =
-//                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join" +
-//                                " hlt_LPUDoctor ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
-//                                " where dtt.Date = '2018-04-27 00:00:00.000' AND ldoc.FAM_V = " + name;
 /*
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor"
                 + " ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
                 " where dtt.Date = '2018-05-03 00:00:00.000' AND ldoc.FAM_V = " + "'" + name + "'";
 */
-
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
                                 "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
-                                "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '1753-01-01', GETDATE()) / 7) * 7) - 7, '1753-01-01') " +
+                                "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '17530101', GETDATE()) / 7) * 7) - 7, '17530101') " +
                                 "AND ldoc.FAM_V = '" + name + "'";
 
                 try (Statement statement = connection.createStatement()) {
