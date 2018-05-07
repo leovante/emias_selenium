@@ -26,27 +26,13 @@ public class TransferRecords {
     public void trancRecord() throws InterruptedException, ClassNotFoundException {
         String first_doctor_fullname = website.transferRecords().getUnicalDoctor(null);
         String second_doctor_fullname = website.transferRecords().getUnicalDoctor(first_doctor_fullname);
-        website.manageShedule().selectDoctor(first_doctor_fullname);
-        //website.manageShedule().createShedule();
-        website.manageShedule().selectDoctor(second_doctor_fullname);
-        //website.manageShedule().createShedule();
+        website.transferRecords().selectDoctor(first_doctor_fullname);
+        website.transferRecords().trancRecord(second_doctor_fullname);
+        website.transferRecords().selectDoctor(first_doctor_fullname);
+        website.transferRecords().selectDoctor(second_doctor_fullname);
+    }
 
-
-//    нажать на первого врача
-//    нажать на кнопку перенос записей
-//    выбрать дату и нажать перенести
-//    нажать на врача
-//    надать правой кнопкой на запись и выбрать - перенести
-//    выбрать второго врача
-//    выбрать первую строку времени для запси
-//    нажать перенести
-//    подтвердить всплывающееьокно enter
-//    снять выделение с первого врача и нажать на второго
-//    найти перенесенную запись
-
-
-
-        website.transferRecords().clickDoctor();
-
+    public void verifyTransferShedule() throws InterruptedException {
+        website.transferRecords().verifyTransferShedule();
     }
 }

@@ -3,6 +3,7 @@ package pages.shedule;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,6 +21,18 @@ public class TransferRecords {
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
 
+    @FindBy(xpath = "//button[@id='btn_transfer']/span[2]")
+    WebElement btn_transfer;
+
+    @FindBy(xpath = "//button[@id='btn_transfer_schedule']/span")
+    WebElement btn_transfer_schedule;
+
+    @FindBy(xpath = "//table[@id='collision_grid']/tbody/tr[2]")
+    WebElement doctors_recive_record;
+
+    @FindBy(xpath = "//table[@id='collision_item_grid']/tbody/tr[2]")
+    WebElement doctors_record;
+
 
     public TransferRecords(WebDriver driver) {
         webDriver = driver;
@@ -27,28 +40,50 @@ public class TransferRecords {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void clickDoctor() {
+    public void trancRecord(String name) throws InterruptedException {
+        String secondDoctor = name;
+        waitAll();
+        waitWhileClickable(btn_transfer);
+        btn_transfer.click();//большая кнопка перенести
+        waitWhileClickable(btn_transfer_schedule);
+        btn_transfer_schedule.click();//всплывающее окно перенести
+        waitWhileClickable(doctors_recive_record);
+        doctors_recive_record.click();
+        waitWhileClickable(doctors_record);
+        doctors_record.click();
 
+        Actions action = new Actions(webDriver).contextClick(doctors_record);
+        action.build().perform();//нажал правой кнопкой на вызов пациента
+        webDriver.findElement(By.xpath("(//span[@class='ui-icon ui-icon-arrowthick-1-e'][contains(text(),'Перенести запись')]")).click();
+        waitAll();
+        selectDoctorFromTranWindow(secondDoctor);
 
-        webDriver.findElement(By.xpath("//div[@id='Portlet_2']/div[2]/div[5]/a/span")).click();
-        webDriver.findElement(By.xpath("//tr[@id='345']/td[3]/div/span[2]")).click();
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div/div[2]/div/div/div")).click();
-        webDriver.findElement(By.xpath("//button[@id='btn_transfer']/span[2]")).click();
-        webDriver.findElement(By.xpath("//button[@id='btn_transfer_schedule']/span")).click();
-        webDriver.findElement(By.xpath("(//tr[@id='345']/td[2])[2]")).click();
-        webDriver.findElement(By.xpath("//tr[@id='1521261']/td[6]")).click();
-        webDriver.findElement(By.xpath("//tr[@id='1521261']/td[6]")).click();
-        // ERROR: Caught exception [ERROR: Unsupported command [doubleClick | //tr[@id='1521261']/td[6] | ]]
-        webDriver.findElement(By.xpath("//tr[@id='1521261']/td[7]")).click();
-        webDriver.findElement(By.xpath("(//a[contains(text(),'Перенести запись')])[3]")).click();
-        webDriver.findElement(By.xpath("//tr[@id='345']/td[2]/div")).click();
-        webDriver.findElement(By.xpath("//tr[@id='4416']/td[2]/div/span[2]")).click();
-        webDriver.findElement(By.xpath("//tr[@id='2624849']/td[2]")).click();
+        webDriver.findElement(By.xpath("(//table[@id='resolve_collision_grid']/tbody"))
+                .findElement(By.xpath("tr[@role='row']"))
+                .findElement(By.xpath("td[@title='23:45']")).click();
         webDriver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();
-        webDriver.findElement(By.xpath("//div[25]/div[3]/div/button/span")).click();
-        webDriver.findElement(By.xpath("//tr[@id='345']/td[3]/div")).click();
-        webDriver.findElement(By.xpath("//tr[@id='4416']/td[3]/div/span[2]")).click();
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div/div[2]/div/div/div")).click();
+        waitAll();
+
+    }
+
+    public void selectDoctor(String doctorInlet) throws InterruptedException {
+        waitAll();
+        waitAll();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")));
+        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
+        waitAll();
+        waitAll();
+    }
+
+    public void selectDoctorFromTranWindow(String doctorInlet) throws InterruptedException {
+        waitAll();
+        waitAll();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@id='resolve_collision_docprvdgrid1']")));
+        waitAll();
+        webDriver.findElement(By.xpath("//table[@id='resolve_collision_docprvdgrid1']"))
+                .findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
+        waitAll();
+        waitAll();
     }
 
     public String getUnicalDoctor(String docName) {
@@ -111,11 +146,16 @@ public class TransferRecords {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
+    public void verifyTransferShedule() throws InterruptedException {
+        Thread.sleep(2000);
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+                .findElement(By.xpath("//*[contains(text(),'07:00 ')]"));
 
-
-    //нужно проверить что верстка таблицы с врачами аналогична в ДОМЕ как на страницы создания расписания.
-    //если это так, то можно использовать паттерн PageElements
-    //
+        /*
+        <div class="fc-event-head fc-event-skin" style="background-color:#3366CC;border-color:#3366CC;color:#FFFFFF"><div class="fc-event-time"
+        style="text-align: center;">23:45 <div class="fc-event-icons"></div></div></div>
+         */
+    }
 }
 
 

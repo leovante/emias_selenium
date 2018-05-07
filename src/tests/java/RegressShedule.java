@@ -67,7 +67,8 @@ public class RegressShedule {
         step.admissionSchedule().createRecord();
         step.mainPage().clickLogoHome();
         step.mainPage().transferRecords();
-        step.transferRecords().trancRecord();
+        step.transferRecords().trancRecord();//тут не допроверил корректное завершение переноса записи
+        step.transferRecords().verifyTransferShedule();//это не проверил ещё
     }
 
     @Before
@@ -78,7 +79,7 @@ public class RegressShedule {
         webDriver = new ChromeDriver(options);
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
-        step.loginPage().loginEmias();
+        step.loginPage().loginEmias2();
     }
 
     @After
