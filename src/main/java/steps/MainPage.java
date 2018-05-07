@@ -34,4 +34,8 @@ public class MainPage {
     public void admissionSchedule() {
         website.mainPage().admissionSchedule();
     }
+
+    public void transferRecords() {
+        website.mainPage().transferRecords();
+    }
 }

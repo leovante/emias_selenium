@@ -85,8 +85,8 @@ public class ManageShedule {
     public void createShedule() throws InterruptedException {
         waitAll();
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        String a = "0700", b = "0715";
-        String c = "0715", d = "0730";
+        String a = "2330", b = "2345";
+        String c = "2345", d = "2359";
         createShedule.click();
 
         setTimeCalendar(a, b);
@@ -118,13 +118,17 @@ public class ManageShedule {
 //            }, timeout);
 //        };
 //        */
+        waitAll();
+        waitAll();
     }
 
     public void selectDoctor(String doctorInlet) throws InterruptedException {
         waitAll();
-        Thread.sleep(2000);
+        waitAll();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")));
         webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
+        waitAll();
+        waitAll();
     }
 
 /*

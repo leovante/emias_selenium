@@ -1,7 +1,6 @@
 package pages.shedule;
 
 
-import org.antlr.stringtemplate.language.Expr;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Pages;
@@ -25,17 +23,29 @@ public class AdmissionSchedule {
     private WebDriverWait wait;
     WaitAll waitAll;
 
+    @FindBy(xpath = "//div[@id='s2id_Complaint']/ul")
+    WebElement pole_Zhalobi;
+
+    @FindBy(id = "s2id_autogen1")
+    WebElement zhaloba;
+
+    @FindBy(xpath = "//span[@class='select2-match'][text()='боль']")
+    WebElement waitZhaloba;
+
     @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div")
     WebElement RecordsArea;
 
     @FindBy(xpath = "//button[@id='selectPatientButton']/span")
-    WebElement selectPatientButton;
+    WebElement selectVibratBtn;
 
     @FindBy(xpath = "//button[@id='{2}']/span")
     WebElement pervichniy;
 
+    @FindBy(xpath = "//button[@id='btnSave']/span")
+    WebElement saveDialogBtn;
+
     @FindBy(xpath = "//table[@id='mkabgrid1']/tbody/tr[2]/td[3]")
-    WebElement hernya;
+    WebElement selectMkab;
 
     @FindBy(xpath = "//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']")
     WebElement recordElement;
@@ -65,25 +75,44 @@ public class AdmissionSchedule {
 */
 
     public void createRecord() throws InterruptedException {
+        Actions action = new Actions(webDriver);
         waitAll.waitBlock();
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
         waitAll.waitBlock();
         String first_doctor_fullname = website.admissionSchedule().getUnicalDoctor(null);
         website.manageShedule().selectDoctor(first_doctor_fullname);
-        WebElement task = RecordsArea.findElement(By.xpath("//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']"));
+        WebElement task = RecordsArea.findElement(By
+                .xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#646464']"));
         wait.until(ExpectedConditions.elementToBeClickable(task));
         task.click();
+        action.sendKeys(Keys.ENTER).perform();//нажали поиск мкаб
+        Thread.sleep(2000);
+        waitBlockOverlay();
+        wait.until(ExpectedConditions.elementToBeClickable(selectMkab));
+        selectMkab.click();
+        wait.until(ExpectedConditions.elementToBeClickable(selectVibratBtn));
+        selectVibratBtn.click();//выбрать
+        waitAll();
 
-        wait.until(ExpectedConditions.elementToBeClickable(hernya));
-        Actions action = new Actions(webDriver);
+        wait.until(ExpectedConditions.elementToBeClickable(By
+                .xpath("//div[@aria-labelledby='ui-dialog-title-ViewsSharedCallDoctorFormcshtml']")));
+        waitBlockOverlay();
+
+        wait.until(ExpectedConditions.elementToBeClickable(pole_Zhalobi));
+        pole_Zhalobi.click();//нажимаем на поле
+        zhaloba.sendKeys("боль");
+        wait.until(ExpectedConditions.elementToBeClickable(waitZhaloba));
         action.sendKeys(Keys.ENTER).perform();
-        hernya.click();
-        wait.until(ExpectedConditions.elementToBeClickable(selectPatientButton));
-        selectPatientButton.click();//выбрать
-        wait.until(ExpectedConditions.elementToBeClickable(pervichniy));
-        pervichniy.click();//первичный
-    }
 
+//        WebElement saveBtn = webDriver.findElement(By.xpath("//div[@aria-labelledby='ui-dialog-title-ViewsSharedCallDoctorFormcshtml']/div[3]"))
+//                .findElement(By.xpath(".span[contains(text(),'Сохранить')]"));
+        saveDialogBtn.click();
+
+        waitAll();
+        waitAll();
+//        wait.until(ExpectedConditions.elementToBeClickable(pervichniy));
+//        pervichniy.click();//первичный
+    }
 
     public void verifyCreatedRecord() {
         waitAll.waitBlock();
@@ -107,8 +136,8 @@ public class AdmissionSchedule {
         String doctorStringName = docName;
 
         List<WebElement> doctorList = webDriver
-                .findElement(By.xpath("//table[@id='docprvdgrid1']/tbody"))//наашел таблицу
-                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
+                .findElement(By.xpath("//table[@id='docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
+                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[2]/div/span[1]"));//нашел строки врачей
 
         for (WebElement doctor : doctorList) {
             int count = 0;
@@ -132,7 +161,6 @@ public class AdmissionSchedule {
         return doctorStringName;
     }
 
-
     public boolean waitAll() {
         boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
         if (BlockAssert) {
@@ -149,6 +177,34 @@ public class AdmissionSchedule {
         return BlockAssert;
     }
 
+    public boolean waitTwo() {
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return WidgetAssert;
+    }
+
+    public boolean waitWidgetOverlay() {
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        return WidgetAssert;
+    }
+
+    public boolean waitBlockOverlay() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        return BlockAssert;
+
+    }
 
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));

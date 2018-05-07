@@ -11,21 +11,14 @@ public class CleanDoctorTimeTableSQL {
     String password = "b635Oap5YE33k1S";
 
     public void deleteShedule(String name) throws ClassNotFoundException {
-        System.out.println("Чищу базу - " + name);
+        System.out.println("Clean base - " + name);
         String url = this.connectionUrl +
                 ";databaseName=" + this.databaseName +
                 ";user=" + this.userName +
                 ";password=" + this.password;
         try {
-            // Load SQL Server JDBC driver and establish connection.
             System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-/*
-                String sql =
-                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor"
-                + " ldoc on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID" +
-                " where dtt.Date = '2018-05-03 00:00:00.000' AND ldoc.FAM_V = " + "'" + name + "'";
-*/
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
                                 "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
@@ -34,9 +27,9 @@ public class CleanDoctorTimeTableSQL {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Done.\n");
+                    System.out.println("Done.");
                 }
-                System.out.println("Done.");
+                System.out.println("Clean is done.\n");
             }
         } catch (Exception e) {
             System.out.println();

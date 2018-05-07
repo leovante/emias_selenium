@@ -66,6 +66,7 @@ public class RegressShedule {
         step.mainPage().admissionSchedule();
         step.admissionSchedule().createRecord();
         step.mainPage().clickLogoHome();
+        step.mainPage().transferRecords();
         step.transferRecords().trancRecord();
     }
 

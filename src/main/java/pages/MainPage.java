@@ -25,6 +25,9 @@ public class MainPage {
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div/a/span")
     WebElement admissionScheduleBtn;
 
+    @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[5]/a/span")
+    WebElement transferRecords;
+
     public MainPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -48,6 +51,13 @@ public class MainPage {
         waitAll.waitBlock();
         waitWhileClickable(admissionScheduleBtn);
         admissionScheduleBtn.click();
+    }
+
+    public void transferRecords(){
+        waitAll.waitBlock();
+        waitWhileClickable(transferRecords);
+        transferRecords.click();
+        waitAll.waitBlock();
     }
 
     public void clickLogoHome(){
