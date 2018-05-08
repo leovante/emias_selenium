@@ -54,8 +54,7 @@ public class TransferRecords {
 
         Actions action = new Actions(webDriver).contextClick(doctors_record);
         action.build().perform();//нажал правой кнопкой на вызов пациента
-        webDriver.findElement(By.xpath("(//span[@class='ui-icon ui-icon-arrowthick-1-e'][contains(text(),'Перенести запись')]")).click();
-        waitAll();
+        webDriver.findElement(By.xpath("(//li[@id='SCH_CollisionResolve']/a/span)[2]")).click();
         selectDoctorFromTranWindow(secondDoctor);
 
         webDriver.findElement(By.xpath("(//table[@id='resolve_collision_grid']/tbody"))
@@ -63,7 +62,6 @@ public class TransferRecords {
                 .findElement(By.xpath("td[@title='23:45']")).click();
         webDriver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();
         waitAll();
-
     }
 
     public void selectDoctor(String doctorInlet) throws InterruptedException {
@@ -76,14 +74,32 @@ public class TransferRecords {
     }
 
     public void selectDoctorFromTranWindow(String doctorInlet) throws InterruptedException {
-        waitAll();
-        waitAll();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@id='resolve_collision_docprvdgrid1']")));
-        waitAll();
-        webDriver.findElement(By.xpath("//table[@id='resolve_collision_docprvdgrid1']"))
-                .findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
-        waitAll();
-        waitAll();
+        blockOverlay();
+        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//table[@id='resolve_collision_docprvdgrid1']")));
+        List<WebElement> doctors = webDriver.findElement(By
+                .xpath("//div[@id='gview_resolve_collision_docprvdgrid1']/div[3]/div/table/tbody"))
+                .findElements(By.xpath("tr/td[2]/div"));
+        //.findElement(By.xpath("tr[@role='row'][contains(text(),'" + doctorInlet + "')]")).click();
+        //.findElement(By.linkText(doctorInlet)).click();
+        //.findElement(By.xpath("*span[text()='" + doctorInlet + "']")).click();
+        for (WebElement doctor : doctors) {
+            //WebElement doctorLink = doctor.findElement(By.tagName("td"));
+
+            WebElement doctorLink = doctor.findElement(By.tagName("span"));
+            String doctorLinkText = doctorLink.getText();
+            WebElement doctorLink1 = doctor.findElement(By.xpath("//span"));
+            String doctorLinkTex1 = doctorLink1.getText();
+            WebElement doctorLink4 = doctor.findElement(By.xpath("span"));
+            String doctorLinkText4 = doctorLink4.getText();
+//            if (doctorLink.getAttribute("title").contains(doctorInlet)) {
+//                doctorLink.click();
+//                break;
+//            }
+            if (doctorLinkText.equals(doctorInlet)) {
+                doctor.click();
+                break;
+            }
+        }
     }
 
     public String getUnicalDoctor(String docName) {
@@ -138,6 +154,14 @@ public class TransferRecords {
         boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
         if (loaderLeftSpacer) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return BlockAssert;
+    }
+
+    public boolean blockOverlay() {
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
         }
         return BlockAssert;
     }

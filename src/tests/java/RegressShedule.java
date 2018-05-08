@@ -14,15 +14,16 @@
 *
 * */
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.logging.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.Steps;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 public class RegressShedule {
     private WebDriver webDriver;
@@ -72,25 +73,25 @@ public class RegressShedule {
     }
 
     @Before
-    public void setUp() throws InterruptedException {
+    public void setUp() throws InterruptedException, AWTException {
         System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         webDriver = new ChromeDriver(options);
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
-        step.loginPage().loginEmias2();
+        step.loginPage().loginEmias();
     }
 
     @After
     public void tearDown() {
-        Logs logs = webDriver.manage().logs();
-        LogEntries logEntries = logs.get(LogType.DRIVER);
-
-        for (LogEntry logEntry : logEntries) {
-            System.out.println(logEntry.getMessage());
-        }
-        if (webDriver != null)
-            webDriver.quit();
+//        Logs logs = webDriver.manage().logs();
+//        LogEntries logEntries = logs.get(LogType.DRIVER);
+//
+//        for (LogEntry logEntry : logEntries) {
+//            System.out.println(logEntry.getMessage());
+//        }
+//        if (webDriver != null)
+//            webDriver.quit();
     }
 }
