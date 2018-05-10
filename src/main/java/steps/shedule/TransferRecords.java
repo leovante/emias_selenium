@@ -30,12 +30,12 @@ public class TransferRecords {
     public void trancRecord() throws InterruptedException, ClassNotFoundException {
         webDriver.get(getUrl + "/ScheduleWriting/Transfer");
         waitAll.waitAll();
-        String first_doctor_fullname = website.transferRecords().getUnicalDoctor(null);
-        String second_doctor_fullname = website.transferRecords().getUnicalDoctor(first_doctor_fullname);
-        website.transferRecords().selectDoctor(first_doctor_fullname);
+        String first_doctor_fullname = website.doctorOperators().getUnicalDoctor(null);
+        String second_doctor_fullname = website.doctorOperators().getUnicalDoctor(first_doctor_fullname);
+        website.doctorOperators().selectDoctor(first_doctor_fullname);
         website.transferRecords().trancRecord(second_doctor_fullname);
-        website.transferRecords().selectDoctor(first_doctor_fullname);
-        website.transferRecords().selectDoctor(second_doctor_fullname);
+        website.doctorOperators().selectDoctor(first_doctor_fullname);
+        website.doctorOperators().selectDoctor(second_doctor_fullname);
     }
 
     public void verifyTransferShedule() throws InterruptedException {

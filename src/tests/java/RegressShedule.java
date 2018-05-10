@@ -62,8 +62,8 @@ public class RegressShedule {
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         step.manageShedule().createTwoShedule();
         step.admissionSchedule().createRecord();
-        step.transferRecords().trancRecord();//тут не допроверил корректное завершение переноса записи
-        step.transferRecords().verifyTransferShedule();//это не проверил ещё
+        step.transferRecords().trancRecord();
+        step.transferRecords().verifyTransferShedule();
     }
 
     @Before
@@ -79,7 +79,7 @@ public class RegressShedule {
 
     @After
     public void tearDown() {
-//        if (webDriver != null)
-//            webDriver.quit();
+        if (webDriver != null)
+            webDriver.quit();
     }
 }

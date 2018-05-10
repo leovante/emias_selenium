@@ -19,26 +19,26 @@ public class ManageShedule {
 
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         website.mainPage().manageSheduleBtn();
-        String docFullName = website.manageShedule().getUnicalDoctor(null);
+        String docFullName = website.doctorOperators().getUnicalDoctor(null);
         String secondName = website.manageShedule().getSecondName(docFullName);
         sql.deleteShedule(secondName);
-        website.manageShedule().selectDoctor(docFullName);
+        website.doctorOperators().selectDoctor(docFullName);
         website.manageShedule().createShedule();
     }
 
     public void createTwoShedule() throws ClassNotFoundException, InterruptedException {
         website.mainPage().manageSheduleBtn();
-        String first_doctor_fullname = website.manageShedule().getUnicalDoctor(null);
+        String first_doctor_fullname = website.doctorOperators().getUnicalDoctor(null);
         String first_doctor_fam = website.manageShedule().getSecondName(first_doctor_fullname);
-        String second_doctor_fullname = website.manageShedule().getUnicalDoctor(first_doctor_fullname);
+        String second_doctor_fullname = website.doctorOperators().getUnicalDoctor(first_doctor_fullname);
         String second_doctor_fam = website.manageShedule().getSecondName(second_doctor_fullname);
         sql.deleteShedule(first_doctor_fam);
         sql.deleteShedule(second_doctor_fam);
 
-        website.manageShedule().selectDoctor(first_doctor_fullname);
+        website.doctorOperators().selectDoctor(first_doctor_fullname);
         website.manageShedule().createShedule();
-        website.manageShedule().selectDoctor(first_doctor_fullname);
-        website.manageShedule().selectDoctor(second_doctor_fullname);
+        website.doctorOperators().selectDoctor(first_doctor_fullname);
+        website.doctorOperators().selectDoctor(second_doctor_fullname);
         website.manageShedule().createShedule();
     }
 
@@ -48,17 +48,17 @@ public class ManageShedule {
     }
 
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
-        String docName = website.manageShedule().getUnicalDoctor(null);
-        String docNameTwo = website.manageShedule().getUnicalDoctor(docName);
-        String second_doctor_fam = website.manageShedule().getSecondName(docNameTwo);
+        String firstDoctor = website.doctorOperators().getUnicalDoctor(null);
+        String secondDoctor = website.doctorOperators().getUnicalDoctor(firstDoctor);
+        String second_doctor_fam = website.manageShedule().getSecondName(secondDoctor);
         sql.deleteShedule(second_doctor_fam);
 
         website.mainPage().manageSheduleBtn();
-        website.manageShedule().selectDoctor(docName);
+        website.doctorOperators().selectDoctor(firstDoctor);
         website.manageShedule().createShedule();
-        website.manageShedule().selectDoctor(docNameTwo);
-        website.manageShedule().copyShedule(docName);
-        website.manageShedule().selectDoctor(docName);
+        website.doctorOperators().selectDoctor(secondDoctor);
+        website.manageShedule().copyShedule(firstDoctor);
+        website.doctorOperators().selectDoctor(firstDoctor);
     }
 
     public void deleteShedule() throws InterruptedException {
@@ -66,11 +66,11 @@ public class ManageShedule {
     }
 
     public void verifyDeletedShedule() {
-        website.manageShedule().checkDeletedShedle();
+        website.manageShedule().verifyDeletedShedle();
     }
 
     public void verifyNotReciveDays() {
-        website.manageShedule().checkNotReceiveDays();
+        website.manageShedule().verifyNotReceiveDays();
     }
 
     public void verifyCreatedShedule() throws InterruptedException {

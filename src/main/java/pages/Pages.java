@@ -1,12 +1,13 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
-import pages.shedule.AdmissionSchedule;
-import pages.shedule.TransferRecords;
+import pages.shedule.AdmissionSchedulePage;
+import pages.shedule.DoctorOperators;
+import pages.shedule.TransferRecordsPage;
 import pages.calldoctor.SearchRow;
 import pages.calldoctor.CreateCall;
 import pages.calldoctor.CreateMedicalCard;
-import pages.shedule.ManageShedule;
+import pages.shedule.ManageShedulePage;
 
 public class Pages {
     WebDriver webDriver;
@@ -25,8 +26,8 @@ public class Pages {
         return new SearchRow(webDriver);
     }
 
-    public ManageShedule manageShedule() {
-        return new ManageShedule(webDriver);
+    public ManageShedulePage manageShedule() {
+        return new ManageShedulePage(webDriver);
     }
 
     public CreateMedicalCard medicalCard() {
@@ -37,13 +38,17 @@ public class Pages {
         return new CreateCall(webDriver);
     }
 
-    public AdmissionSchedule admissionSchedule() {
-        return new AdmissionSchedule(webDriver);
+    public AdmissionSchedulePage admissionSchedule() {
+        return new AdmissionSchedulePage(webDriver);
     }
 
-    public TransferRecords transferRecords() {
-        return new TransferRecords(webDriver);
+    public TransferRecordsPage transferRecords() {
+        return new TransferRecordsPage(webDriver);
     }
 
-    public Wait waitAll(){return new Wait(webDriver);}
+    public DoctorOperators doctorOperators() {
+        return new DoctorOperators(webDriver);
+    }
+
+
 }
