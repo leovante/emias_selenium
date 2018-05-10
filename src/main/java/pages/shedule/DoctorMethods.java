@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DoctorOperators {
+public class DoctorMethods {
     private WebDriver webDriver;
     Pages website;
     private WebDriverWait wait;
@@ -22,7 +22,7 @@ public class DoctorOperators {
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
 
-    public DoctorOperators(WebDriver driver){
+    public DoctorMethods(WebDriver driver){
         webDriver = driver;
         website = new Pages(webDriver);
         wait = new WebDriverWait(webDriver, 60);

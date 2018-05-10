@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import pages.shedule.AdmissionSchedulePage;
-import pages.shedule.DoctorOperators;
+import pages.shedule.DoctorMethods;
 import pages.shedule.TransferRecordsPage;
 import pages.calldoctor.SearchRow;
 import pages.calldoctor.CreateCall;
@@ -46,8 +46,8 @@ public class Pages {
         return new TransferRecordsPage(webDriver);
     }
 
-    public DoctorOperators doctorOperators() {
-        return new DoctorOperators(webDriver);
+    public DoctorMethods doctorOperators() {
+        return new DoctorMethods(webDriver);
     }
 
 

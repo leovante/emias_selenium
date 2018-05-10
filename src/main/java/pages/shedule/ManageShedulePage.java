@@ -18,7 +18,7 @@ public class ManageShedulePage {
     final String doctorNull = null;
     Wait waitAll;
 
-    DoctorOperators doctorOperators;
+    DoctorMethods doctorMethods;
 
     @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
@@ -99,7 +99,7 @@ public class ManageShedulePage {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
 
 
-        String firstDoctor = doctorOperators.getUnicalDoctor(null);
+        String firstDoctor = doctorMethods.getUnicalDoctor(null);
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
         waitAll.waitAll();
 

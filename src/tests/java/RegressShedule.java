@@ -14,18 +14,19 @@
 *
 * */
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 import org.junit.*;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.Steps;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 
 public class RegressShedule {
     private WebDriver webDriver;
@@ -66,12 +67,28 @@ public class RegressShedule {
         step.transferRecords().verifyTransferShedule();
     }
 
+    private static void addJQuery (JavascriptExecutor js) {
+        String script = "";
+        boolean needInjection = (Boolean)(js.executeScript("return this.$ === undefined;"));
+        if(needInjection) {
+            URL u = Resources.getResource("jquery.js");
+            try {
+                script = Resources.toString(u, Charsets.UTF_8);
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+            js.executeScript(script);
+        }
+    }
+
     @Before
     public void setUp() throws InterruptedException, AWTException {
         System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         webDriver = new ChromeDriver(options);
+        webDriver.manage().window().maximize();
+        JavascriptExecutor js = (JavascriptExecutor)webDriver;
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
         step.loginPage().loginEmias();
