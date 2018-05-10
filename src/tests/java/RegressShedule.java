@@ -80,7 +80,7 @@ public class RegressShedule {
         webDriver = new ChromeDriver(options);
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
-        step.loginPage().loginEmias();
+        step.loginPage().loginEmias2();
     }
 
     @After
