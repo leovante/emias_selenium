@@ -24,10 +24,6 @@ public class Steps {
         return new TransferRecords(webDriver);
     }
 
-    public MainPage mainPage() {
-        return new MainPage(webDriver);
-    }
-
     public LoginPage loginPage() {
         return new LoginPage(webDriver);
     }

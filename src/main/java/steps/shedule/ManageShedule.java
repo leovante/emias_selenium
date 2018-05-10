@@ -2,13 +2,9 @@ package steps.shedule;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CleanDoctorTimeTableSQL;
 import pages.Pages;
-import pages.WaitAll;
 
 public class ManageShedule{
     private WebDriver webDriver;
@@ -22,6 +18,7 @@ public class ManageShedule{
     }
 
     public void createShedule() throws InterruptedException, ClassNotFoundException {
+        website.mainPage().manageSheduleBtn();
         String docFullName = website.manageShedule().getUnicalDoctor(null);
         String secondName = website.manageShedule().getSecondName(docFullName);
         sql.deleteShedule(secondName);
@@ -32,10 +29,11 @@ public class ManageShedule{
     public void verifyCreatedShedule()  throws InterruptedException{
         Thread.sleep(2000);
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("//*[contains(text(),'07:00 ')]"));
+                .findElement(By.xpath("//*[contains(text(),'23:45 ')]"));
     }
 
     public void createTwoShedule() throws ClassNotFoundException, InterruptedException {
+        website.mainPage().manageSheduleBtn();
         String first_doctor_fullname = website.manageShedule().getUnicalDoctor(null);
         String first_doctor_fam = website.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = website.manageShedule().getUnicalDoctor(first_doctor_fullname);
@@ -51,6 +49,7 @@ public class ManageShedule{
 
 
     public void setNotReciveDays(){
+        website.mainPage().manageSheduleBtn();
         website.manageShedule().setNotReceiveDays();
     }
 
@@ -59,6 +58,7 @@ public class ManageShedule{
     }
 
     public void copyShedule() throws InterruptedException {
+        website.mainPage().manageSheduleBtn();
         String docName = website.manageShedule().getUnicalDoctor(null);
         website.manageShedule().selectDoctor(docName);
         website.manageShedule().createShedule();
