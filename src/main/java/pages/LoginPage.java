@@ -18,6 +18,7 @@ public class LoginPage {
 
     @FindBy(id = "loginBtn")
     WebElement loginButton;
+    private String urlNum;
 
     public LoginPage(WebDriver driver){
         webDriver = driver;
@@ -38,4 +39,5 @@ public class LoginPage {
     public void clickLoginButton() {
         loginButton.click();
     }
+
 }

@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CleanDoctorTimeTableSQL;
+import pages.LoginPage;
 import pages.Pages;
 import pages.Wait;
 
@@ -14,6 +15,10 @@ public class TransferRecords {
     CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
     Wait waitAll;
 
+    private steps.LoginPage urlInt;
+    int getUrlNum = urlInt.getUrlNum();
+    String getUrl = urlInt.urlVarible(getUrlNum);
+
     public TransferRecords(WebDriver driver) {
         webDriver = driver;
         website = new Pages(webDriver);
@@ -23,7 +28,7 @@ public class TransferRecords {
     }
 
     public void trancRecord() throws InterruptedException, ClassNotFoundException {
-        webDriver.get("http://emias.mosreg.ru/mis/test_emias/ScheduleWriting/Transfer");
+        webDriver.get(getUrl + "/ScheduleWriting/Transfer");
         waitAll.waitAll();
         String first_doctor_fullname = website.transferRecords().getUnicalDoctor(null);
         String second_doctor_fullname = website.transferRecords().getUnicalDoctor(first_doctor_fullname);

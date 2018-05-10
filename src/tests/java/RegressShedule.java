@@ -15,11 +15,13 @@
 * */
 
 import org.junit.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.Steps;
 
@@ -30,15 +32,6 @@ public class RegressShedule {
     Steps step;
     WebDriverWait wait;
 
-    @Test//KEYS 0.0
-    public void test() throws InterruptedException, ClassNotFoundException {
-        Thread.sleep(3000);
-        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
-        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
-        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
-        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
-    }
-
     @Test//KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         step.manageShedule().createShedule();
@@ -46,8 +39,9 @@ public class RegressShedule {
     }
 
     @Test//KEYS 1.2
-    public void copyShedule() throws InterruptedException {
+    public void copyShedule() throws InterruptedException, ClassNotFoundException {
         step.manageShedule().copyShedule();
+        step.manageShedule().verifyCreatedShedule();
     }
 
    @Test//KEYS 1.3
@@ -80,17 +74,11 @@ public class RegressShedule {
         webDriver = new ChromeDriver(options);
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
-        step.loginPage().loginEmias2();
+        step.loginPage().loginEmias();
     }
 
     @After
     public void tearDown() {
-//        Logs logs = webDriver.manage().logs();
-//        LogEntries logEntries = logs.get(LogType.DRIVER);
-//
-//        for (LogEntry logEntry : logEntries) {
-//            System.out.println(logEntry.getMessage());
-//        }
 //        if (webDriver != null)
 //            webDriver.quit();
     }
