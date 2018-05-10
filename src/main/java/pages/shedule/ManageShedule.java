@@ -85,15 +85,15 @@ public class ManageShedule {
     public void createShedule() throws InterruptedException {
         waitAll();
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        String a = "2330", b = "2345";
-        String c = "2345", d = "2359";
+        String a = "2330", b = "2344";
+        String c = "2344", d = "2359";
         createShedule.click();
 
         setTimeCalendar(a, b);
-        setTypeOfReception(priemPoOcheredi);
+        setTypeOfReception(priemNaDomu);
 
         setTimeCalendar(c, d);
-        setTypeOfReception(priemNaDomu);
+        setTypeOfReception(priemPoOcheredi);
 
         waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить

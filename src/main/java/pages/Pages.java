@@ -45,5 +45,5 @@ public class Pages {
         return new TransferRecords(webDriver);
     }
 
-    public WaitAll waitAll(){return new WaitAll(webDriver);}
+    public Wait waitAll(){return new Wait(webDriver);}
 }

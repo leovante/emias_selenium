@@ -15,6 +15,8 @@ public class AdmissionSchedule {
     }
 
     public void createRecord() throws InterruptedException {
+        website.mainPage().logoHomeBtn();
+        website.mainPage().admissionScheduleBtn();
         website.admissionSchedule().createRecord();
         //website.admissionSchedule().verifyCreatedRecord();
         //сюда будет нужно вынести логику выбора врача из createRecord

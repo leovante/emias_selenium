@@ -11,17 +11,15 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Pages;
-import pages.WaitAll;
+import pages.Wait;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class AdmissionSchedule {
     private WebDriver webDriver;
     Pages website;
     private WebDriverWait wait;
-    WaitAll waitAll;
+    Wait waitAll;
 
     @FindBy(xpath = "//div[@id='s2id_Complaint']/ul")
     WebElement pole_Zhalobi;
@@ -53,38 +51,30 @@ public class AdmissionSchedule {
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
 
+    @FindBy(xpath = "//span[@class='ui-button-text'][contains(text(),'Предварительный')]")
+    WebElement predvarit;
+
     public AdmissionSchedule(WebDriver driver) {
         webDriver = driver;
         website = new Pages(webDriver);
         wait = new WebDriverWait(webDriver, 60);
-        waitAll = new WaitAll(webDriver);
+        waitAll = new Wait(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 
-//    выбрать первого врача
-//    найти новую запись - прием по очереди и создать запись пациента
-
-/*
-    public void selectDoctor(String doctorInlet) {
-        wait.until(ExpectedConditions
-                .elementToBeClickable(webDriver.findElement(By.xpath("/*/
-/*[contains(text(),'" + doctorInlet + "')]"))));
-        webDriver.findElement(By.xpath("/*/
-/*[contains(text(),'" + doctorInlet + "')]")).click();
-    }
-*/
-
     public void createRecord() throws InterruptedException {
         Actions action = new Actions(webDriver);
-        waitAll.waitBlock();
+        String mwh = webDriver.getWindowHandle();
+
+        waitAll.waitAll();
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
-        waitAll.waitBlock();
+        waitAll.waitAll();
         String first_doctor_fullname = website.admissionSchedule().getUnicalDoctor(null);
         website.manageShedule().selectDoctor(first_doctor_fullname);
-        WebElement task = RecordsArea.findElement(By
-                .xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#646464']"));
-        wait.until(ExpectedConditions.elementToBeClickable(task));
-        task.click();
+
+        wait.until(ExpectedConditions.elementToBeClickable(recordElement));
+        recordElement.click();
+
         action.sendKeys(Keys.ENTER).perform();//нажали поиск мкаб
         Thread.sleep(2000);
         waitBlockOverlay();
@@ -94,28 +84,42 @@ public class AdmissionSchedule {
         selectVibratBtn.click();//выбрать
         waitAll();
 
-        wait.until(ExpectedConditions.elementToBeClickable(By
-                .xpath("//div[@aria-labelledby='ui-dialog-title-ViewsSharedCallDoctorFormcshtml']")));
-        waitBlockOverlay();
-
-        wait.until(ExpectedConditions.elementToBeClickable(pole_Zhalobi));
-        pole_Zhalobi.click();//нажимаем на поле
-        zhaloba.sendKeys("боль");
-        wait.until(ExpectedConditions.elementToBeClickable(waitZhaloba));
-        action.sendKeys(Keys.ENTER).perform();
-
-//        WebElement saveBtn = webDriver.findElement(By.xpath("//div[@aria-labelledby='ui-dialog-title-ViewsSharedCallDoctorFormcshtml']/div[3]"))
-//                .findElement(By.xpath(".span[contains(text(),'Сохранить')]"));
-        saveDialogBtn.click();
-
+        wait.until(ExpectedConditions.elementToBeClickable(predvarit));
+        predvarit.click();
         waitAll();
-        waitAll();
-//        wait.until(ExpectedConditions.elementToBeClickable(pervichniy));
-//        pervichniy.click();//первичный
+
+        Set s = webDriver.getWindowHandles(); //this method will gives you the handles of all opened windows
+        Iterator ite = s.iterator();
+        while (ite.hasNext()) {
+            String popupHandle = ite.next().toString();
+            if (!popupHandle.contains(mwh)) {
+                webDriver.switchTo().window(popupHandle);
+        /*here you can perform operation in pop-up window**
+                After finished your operation in pop-up just select the main window again*/
+                webDriver.switchTo().window(mwh);
+            }
+        }
+
+        //ждать пока появится новая вкладка
+
+//
+//        wait.until(ExpectedConditions.elementToBeClickable(By
+//                .xpath("//div[@aria-labelledby='ui-dialog-title-ViewsSharedCallDoctorFormcshtml']")));
+//        waitBlockOverlay();
+//
+//        wait.until(ExpectedConditions.elementToBeClickable(pole_Zhalobi));
+//        pole_Zhalobi.click();//нажимаем на поле
+//        zhaloba.sendKeys("боль");
+//        wait.until(ExpectedConditions.elementToBeClickable(waitZhaloba));
+//        action.sendKeys(Keys.ENTER).perform();
+//
+//        saveDialogBtn.click();
+//        waitAll();
+//        waitAll();
     }
 
     public void verifyCreatedRecord() {
-        waitAll.waitBlock();
+        waitAll.waitAll();
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
         //тут нужно сделать ассертТруе

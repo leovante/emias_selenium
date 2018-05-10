@@ -1,13 +1,18 @@
 package pages.shedule;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.Wait;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +38,9 @@ public class TransferRecords {
     @FindBy(xpath = "//table[@id='collision_item_grid']/tbody/tr[2]")
     WebElement doctors_record;
 
+    @FindBy(xpath = "//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']")
+    WebElement recordElement;
+
 
     public TransferRecords(WebDriver driver) {
         webDriver = driver;
@@ -41,6 +49,7 @@ public class TransferRecords {
     }
 
     public void trancRecord(String name) throws InterruptedException {
+        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         String secondDoctor = name;
         waitAll();
         waitWhileClickable(btn_transfer);
@@ -57,10 +66,12 @@ public class TransferRecords {
         webDriver.findElement(By.xpath("(//li[@id='SCH_CollisionResolve']/a/span)[2]")).click();
         selectDoctorFromTranWindow(secondDoctor);
 
-        webDriver.findElement(By.xpath("(//table[@id='resolve_collision_grid']/tbody"))
-                .findElement(By.xpath("tr[@role='row']"))
-                .findElement(By.xpath("td[@title='23:45']")).click();
-        webDriver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();
+        blockOverlay();
+        webDriver.findElement(By.xpath("//table[@id='resolve_collision_grid']/tbody/tr[3]/td")).click();
+        webDriver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();//перенести
+        blockOverlay();
+
+        keyboard.pressKey(Keys.ENTER);
         waitAll();
     }
 
@@ -171,14 +182,8 @@ public class TransferRecords {
     }
 
     public void verifyTransferShedule() throws InterruptedException {
-        Thread.sleep(2000);
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("//*[contains(text(),'07:00 ')]"));
-
-        /*
-        <div class="fc-event-head fc-event-skin" style="background-color:#3366CC;border-color:#3366CC;color:#FFFFFF"><div class="fc-event-time"
-        style="text-align: center;">23:45 <div class="fc-event-icons"></div></div></div>
-         */
+        waitAll();
+        wait.until(ExpectedConditions.visibilityOfAllElements(recordElement));
     }
 }
 

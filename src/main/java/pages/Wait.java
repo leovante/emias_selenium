@@ -6,20 +6,20 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WaitAll {
+public class Wait {
     private WebDriver webDriver;
     private WebDriverWait wait;
 
 
 
-    public WaitAll(WebDriver driver){
+    public Wait(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
 
     }
 
-    public void waitBlock(){
+    public void waitAll(){
         boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
         if (BlockAssert) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));

@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
-    WaitAll waitAll;
+    Wait waitAll;
 
     @FindBy(xpath = "//div[@id='Portlet_6']/div[2]/div/a/span")
     WebElement callDoctorBtn;
@@ -26,13 +25,13 @@ public class MainPage {
     WebElement admissionScheduleBtn;
 
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[5]/a/span")
-    WebElement transferRecords;
+    WebElement transferRecordsBtn;
 
     public MainPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
-        waitAll = new WaitAll(webDriver);
+        waitAll = new Wait(webDriver);
 
     }
 
@@ -41,27 +40,27 @@ public class MainPage {
         callDoctorBtn.click();
     }
 
-    public void clickManageShedule(){
-        waitAll.waitBlock();
+    public void manageSheduleBtn(){
+        waitAll.waitAll();
         waitWhileClickable(timeTableBtn);
         timeTableBtn.click();
     }
 
-    public void admissionSchedule(){
-        waitAll.waitBlock();
+    public void admissionScheduleBtn(){
+        waitAll.waitAll();
         waitWhileClickable(admissionScheduleBtn);
         admissionScheduleBtn.click();
     }
 
-    public void transferRecords(){
-        waitAll.waitBlock();
-        waitWhileClickable(transferRecords);
-        transferRecords.click();
-        waitAll.waitBlock();
+    public void transferRecordsBtn(){
+        waitAll.waitAll();
+        waitWhileClickable(transferRecordsBtn);
+        transferRecordsBtn.click();
+        waitAll.waitAll();
     }
 
-    public void clickLogoHome(){
-        waitAll.waitBlock();
+    public void logoHomeBtn(){
+        waitAll.waitAll();
         waitWhileClickable(homePageBtn);
         homePageBtn.click();
     }

@@ -15,44 +15,49 @@
 * */
 
 import org.junit.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.*;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.Steps;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class RegressShedule {
     private WebDriver webDriver;
     Steps step;
     WebDriverWait wait;
 
+    @Test//KEYS 0.0
+    public void test() throws InterruptedException, ClassNotFoundException {
+        Thread.sleep(3000);
+        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+        webDriver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+    }
+
     @Test//KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
-        step.mainPage().clickManageShedule();
         step.manageShedule().createShedule();
         step.manageShedule().verifyCreatedShedule();
     }
 
     @Test//KEYS 1.2
     public void copyShedule() throws InterruptedException {
-        step.mainPage().clickManageShedule();
         step.manageShedule().copyShedule();
     }
 
    @Test//KEYS 1.3
     public void setNotReceiveDays() throws InterruptedException {
-        step.mainPage().clickManageShedule();
         step.manageShedule().setNotReciveDays();
         step.manageShedule().verifyNotReciveDays();
     }
 
     @Test//KEYS 1.4
     public void deleteShedule() throws InterruptedException, ClassNotFoundException {
-        step.mainPage().clickManageShedule();
         step.manageShedule().createShedule();
         step.manageShedule().verifyCreatedShedule();
         step.manageShedule().deleteShedule();
@@ -61,13 +66,8 @@ public class RegressShedule {
 
     @Test//KEYS 1.5
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
-        step.mainPage().clickManageShedule();
         step.manageShedule().createTwoShedule();
-        step.mainPage().clickLogoHome();
-        step.mainPage().admissionSchedule();
         step.admissionSchedule().createRecord();
-        step.mainPage().clickLogoHome();
-        step.mainPage().transferRecords();
         step.transferRecords().trancRecord();//тут не допроверил корректное завершение переноса записи
         step.transferRecords().verifyTransferShedule();//это не проверил ещё
     }
