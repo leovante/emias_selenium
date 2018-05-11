@@ -6,23 +6,19 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.Wait;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.TestCase.assertFalse;
 
-public class ManageShedule {
+public class ManageShedulePage {
     private WebDriver webDriver;
     private WebDriverWait wait;
     final String doctorNull = null;
+    Wait waitAll;
 
-    @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
-    WebElement doctorRow;
-
-    @FindBy(id = "btnfindschw_docprvdgrid1")
-    WebElement searchFieldBtn;
+    DoctorMethods doctorMethods;
 
     @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
@@ -69,21 +65,17 @@ public class ManageShedule {
     @FindBy(xpath = "//button[@id='btn_busy_save']/span")
     WebElement saveBtn;
 
-    @FindBy(xpath = "//div[24]/div[3]/div/button/span")
-    WebElement yesBtn;
-
     @FindBy(xpath = "//button[@id='btn_copy']/span[2]")
     WebElement copyShedule;
 
-
-    public ManageShedule(WebDriver driver) {
+    public ManageShedulePage(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
     }
 
     public void createShedule() throws InterruptedException {
-        waitAll();
+        waitAll.waitAll();
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         String a = "2330", b = "2344";
         String c = "2344", d = "2359";
@@ -98,53 +90,18 @@ public class ManageShedule {
         waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-//        /*taskArea.click();
-//        Actions action = new Actions(webDriver);
-//        action.contextClick(taskArea).perform();
-//        //Thread.sleep(1000);
-//        //webDriver.findElement(By.xpath("//div[id='jqContextMenu']"));
-//        //.findElement(By.xpath("//li[id='sch_del_menu']")).click();
-//*/
-//  /*      Воспользоваться классом Wait и ждать пока Selenium#isElementPresent не вернёт true для нужного option'а.
-//        Этот способ уже лучше, но всё равно не должен применяться, в будущем напишу подробно почему. Лучше вместо
-//        класса Wait использовать метод Selenium#waitForCondition, в котором и ждать появления требуемого элемента.
-//  */
-//
-//
-///*  https://habrahabr.ru/post/111649/
-//        Selenium.prototype.doWaitForJqueryAjaxRequests = function(timeout) {
-//            return Selenium.decorateFunctionWithTimeout(function() {
-//                return selenium.browserbot.getUserWindow().jQuery.active == 0;
-//            }, timeout);
-//        };
-//        */
-        waitAll();
-        waitAll();
+        waitAll.waitAll();
+        waitAll.waitAll();
     }
-
-    public void selectDoctor(String doctorInlet) throws InterruptedException {
-        waitAll();
-        waitAll();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")));
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
-        waitAll();
-        waitAll();
-    }
-
-/*
-    public void searchFiled() {
-        waitAll();
-        searchFieldBtn.click();
-    }
-*/
-
 
     public void setNotReceiveDays() {
-        waitAll();
+        waitAll.waitAll();
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        String firstDoctor = getUnicalDoctor(null);
+
+
+        String firstDoctor = doctorMethods.getUnicalDoctor(null);
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-        waitAll();
+        waitAll.waitAll();
 
         waitWhileClickable(btn_notReciveDays);
         btn_notReciveDays.click();//задать неприемные дни
@@ -159,25 +116,7 @@ public class ManageShedule {
     }
 
     public void copyShedule(String docName) throws InterruptedException {
-        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-
-        waitAll();
-//        String doctorOne = getUnicalDoctor(null);
-//        String doctorTwo = getUnicalDoctor(doctorOne);
-
-//        selectDoctor(doctorOne);
-//        selectDoctor(doctorTwo);
-
-
-//        String firstDoctor = newUnicalDoctor();
-//        String secondDoctor = newUnicalDoctor();
-
-//        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-//        waitBlockUI();
-//        webDriver.findElement(By.xpath("//*[contains(text(),'" + secondDoctor + "')]")).click();
-//        waitBlockUI();
-
-        //копировать расписание
+        waitAll.waitAll();
         waitWhileClickable(copyShedule);
         copyShedule.click();
 
@@ -192,12 +131,13 @@ public class ManageShedule {
             }
         }
         webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        waitAll();
+        waitAll.waitAll();
     }
 
     public void deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        waitAll();
+        waitAll.waitAll();
+
         waitWhileClickable(deleteShedule);
         deleteShedule.click();                     //кнопка удалить расписание
         waitWhileClickable(deleteSheduleBtnWindow);
@@ -205,7 +145,7 @@ public class ManageShedule {
 
         Thread.sleep(1000);
         keyboard.pressKey(Keys.ENTER);
-        waitAll();
+        waitAll.waitAll();
     }
 
     public void setTimeCalendar(String a, String b) throws InterruptedException {
@@ -229,27 +169,14 @@ public class ManageShedule {
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
-/*
-    public void checkCreateShedule() throws InterruptedException {
-        waitBlockUI();
-        waitWidgetOverlay();
-        Thread.sleep(2000);
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("/*/
-/*[contains(text(),'07:00 ')]"));
-//        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-//                .findElement(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']"));
-    }
-*/
-
-    public void checkNotReceiveDays() {
-        waitAll();
+    public void verifyNotReceiveDays() {
+        waitAll.waitAll();
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
                 .findElements(By.xpath("span[contains(text(),'Врач на больничном')]"));//это название заголовка
         System.out.println("Проверка наличия заголовка форс-мажора");
     }
 
-    public void checkDeletedShedle() {
+    public void verifyDeletedShedle() {
         if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
@@ -260,67 +187,11 @@ public class ManageShedule {
         }
     }
 
-    public String getUnicalDoctor(String docName) {
-        waitAll();
-        waitWhileClickable(doctorRow);
-        List<String> dontUseNames = new ArrayList<String>();
-        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
-        dontUseNames.add(docName);
-
-        System.out.println(dontUseNames);
-
-        waitAll();
-
-        //String doctorNameNull = doctorName;
-        String doctorStringName = docName;
-
-        List<WebElement> doctorList = webDriver
-                .findElement(By.xpath("//table[@id='schw_docprvdgrid1']/tbody"))//наашел таблицу
-                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
-
-        for (WebElement doctor : doctorList) {
-            int count = 0;
-            doctorStringName = doctor.getText();
-            //System.out.println("Первый список: " + doctorStringName + " " + count);
-
-            for (WebElement doctorCount : doctorList) {
-                String doctorStringName2 = doctorCount.getText();
-                //System.out.println("Второй список: " + doctorStringName2 + " " + count);
-
-                if (doctorStringName.equals(doctorStringName2))
-                    count++;
-                if (count > 1)
-                    break;
-            }
-
-            if (count == 1 && !dontUseNames.contains(doctorStringName))
-                break;
-        }
-        dontUseNames.add(doctorStringName);//чот не срабатывает
-        return doctorStringName;
-    }
-
     public String getSecondName(String name){
         if(name.contains(" ")){
             name= name.substring(0, name.indexOf(" "));
         }
         return name;
-    }
-
-    public boolean waitAll() {
-        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
-        if (BlockAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
-        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
-        if (WidgetAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-        }
-        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
-        if (loaderLeftSpacer) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        }
-        return BlockAssert;
     }
 
     public void waitWhileClickable(WebElement webElement) {
@@ -332,6 +203,4 @@ public class ManageShedule {
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//*[contains(text(),'23:44 ')]"));
     }
-
-
 }

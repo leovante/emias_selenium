@@ -14,20 +14,19 @@
 *
 * */
 
+import com.google.common.base.Charsets;
+import com.google.common.io.Resources;
 import org.junit.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogEntry;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.logging.Logs;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import steps.Steps;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.URL;
 
 public class RegressShedule {
     private WebDriver webDriver;
@@ -41,10 +40,9 @@ public class RegressShedule {
     }
 
     @Test//KEYS 1.2
-    public void copyShedule() throws InterruptedException {
+    public void copyShedule() throws InterruptedException, ClassNotFoundException {
         step.manageShedule().copyShedule();
         step.manageShedule().verifyCreatedShedule();
-
     }
 
    @Test//KEYS 1.3
@@ -65,8 +63,22 @@ public class RegressShedule {
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         step.manageShedule().createTwoShedule();
         step.admissionSchedule().createRecord();
-        step.transferRecords().trancRecord();//тут не допроверил корректное завершение переноса записи
-        step.transferRecords().verifyTransferShedule();//это не проверил ещё
+        step.transferRecords().trancRecord();
+        step.transferRecords().verifyTransferShedule();
+    }
+
+    private static void addJQuery (JavascriptExecutor js) {
+        String script = "";
+        boolean needInjection = (Boolean)(js.executeScript("return this.$ === undefined;"));
+        if(needInjection) {
+            URL u = Resources.getResource("jquery.js");
+            try {
+                script = Resources.toString(u, Charsets.UTF_8);
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
+            js.executeScript(script);
+        }
     }
 
     @Before
@@ -75,6 +87,8 @@ public class RegressShedule {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         webDriver = new ChromeDriver(options);
+        webDriver.manage().window().maximize();
+        JavascriptExecutor js = (JavascriptExecutor)webDriver;
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
         step.loginPage().loginEmias();
@@ -82,12 +96,6 @@ public class RegressShedule {
 
     @After
     public void tearDown() {
-        Logs logs = webDriver.manage().logs();
-        LogEntries logEntries = logs.get(LogType.DRIVER);
-
-        for (LogEntry logEntry : logEntries) {
-            System.out.println(logEntry.getMessage());
-        }
         if (webDriver != null)
             webDriver.quit();
     }

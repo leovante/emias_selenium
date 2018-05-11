@@ -35,7 +35,7 @@ public class MainPage {
 
     }
 
-    public void clickCallDoctorButton() throws InterruptedException {
+    public void callDoctorBtn() throws InterruptedException {
         waitWhileClickable(callDoctorBtn);
         callDoctorBtn.click();
     }

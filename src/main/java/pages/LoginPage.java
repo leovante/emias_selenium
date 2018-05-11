@@ -19,6 +19,7 @@ public class LoginPage {
     @FindBy(id = "loginBtn")
     WebElement loginButton;
 
+
     public LoginPage(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
@@ -38,4 +39,5 @@ public class LoginPage {
     public void clickLoginButton() {
         loginButton.click();
     }
+
 }
