@@ -6,12 +6,12 @@ import org.openqa.selenium.support.PageFactory;
 import pages.CleanDoctorTimeTableSQL;
 import pages.Pages;
 
-public class ManageShedule{
+public class ManageShedule {
     private WebDriver webDriver;
     Pages website;
     CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
 
-    public ManageShedule(WebDriver driver){
+    public ManageShedule(WebDriver driver) {
         webDriver = driver;
         website = new Pages(webDriver);
         PageFactory.initElements(webDriver, this);
@@ -26,10 +26,8 @@ public class ManageShedule{
         website.manageShedule().createShedule();
     }
 
-    public void verifyCreatedShedule()  throws InterruptedException{
-        Thread.sleep(2000);
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("//*[contains(text(),'23:45 ')]"));
+    public void verifyCreatedShedule() throws InterruptedException {
+        website.manageShedule().verifyCreatedShedule();
     }
 
     public void createTwoShedule() throws ClassNotFoundException, InterruptedException {
@@ -47,13 +45,12 @@ public class ManageShedule{
         website.manageShedule().createShedule();
     }
 
-
-    public void setNotReciveDays(){
+    public void setNotReciveDays() {
         website.mainPage().manageSheduleBtn();
         website.manageShedule().setNotReceiveDays();
     }
 
-    public void verifyNotReciveDays(){
+    public void verifyNotReciveDays() {
         website.manageShedule().checkNotReceiveDays();
     }
 
@@ -66,14 +63,13 @@ public class ManageShedule{
         website.manageShedule().selectDoctor(docNameTwo);
         website.manageShedule().copyShedule(docName);
         website.manageShedule().selectDoctor(docName);
-        verifyCreatedShedule();
     }
 
     public void deleteShedule() throws InterruptedException {
         website.manageShedule().deleteShedule();
     }
 
-    public void verifyDeletedShedule(){
+    public void verifyDeletedShedule() {
         website.manageShedule().checkDeletedShedle();
     }
 }

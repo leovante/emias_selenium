@@ -327,4 +327,11 @@ public class ManageShedule {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
+    public void verifyCreatedShedule()  throws InterruptedException{
+        Thread.sleep(2000);
+        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+                .findElement(By.xpath("//*[contains(text(),'23:44 ')]"));
+    }
+
+
 }

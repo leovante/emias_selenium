@@ -21,26 +21,11 @@ public class AdmissionSchedule {
     private WebDriverWait wait;
     Wait waitAll;
 
-    @FindBy(xpath = "//div[@id='s2id_Complaint']/ul")
-    WebElement pole_Zhalobi;
-
-    @FindBy(id = "s2id_autogen1")
-    WebElement zhaloba;
-
-    @FindBy(xpath = "//span[@class='select2-match'][text()='боль']")
-    WebElement waitZhaloba;
-
     @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div")
     WebElement RecordsArea;
 
     @FindBy(xpath = "//button[@id='selectPatientButton']/span")
     WebElement selectVibratBtn;
-
-    @FindBy(xpath = "//button[@id='{2}']/span")
-    WebElement pervichniy;
-
-    @FindBy(xpath = "//button[@id='btnSave']/span")
-    WebElement saveDialogBtn;
 
     @FindBy(xpath = "//table[@id='mkabgrid1']/tbody/tr[2]/td[3]")
     WebElement selectMkab;
@@ -122,7 +107,6 @@ public class AdmissionSchedule {
         waitAll.waitAll();
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
-        //тут нужно сделать ассертТруе
     }
 
     public String getUnicalDoctor(String docName) {
@@ -207,7 +191,6 @@ public class AdmissionSchedule {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
         }
         return BlockAssert;
-
     }
 
     public void waitWhileClickable(WebElement webElement) {
