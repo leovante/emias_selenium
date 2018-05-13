@@ -2,7 +2,7 @@ package steps;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages.CleanDoctorTimeTableSQL;
+import pages.utilities.CleanDoctorTimeTableSQL;
 import pages.Pages;
 
 public class ManageShedule {

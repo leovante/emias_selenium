@@ -1,4 +1,4 @@
-package pages;
+package pages.utilities;
 
 import java.sql.Connection;
 import java.sql.Statement;

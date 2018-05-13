@@ -32,9 +32,6 @@ public class Steps extends BasePage {
 
     public CallDoctor callDoctor() {
         CallDoctor callDoctor = PageFactory.initElements(driver, CallDoctor.class);
-
         return callDoctor;
     }
-
-
 }

@@ -3,7 +3,7 @@ package steps;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.CleanDoctorTimeTableSQL;
+import pages.utilities.CleanDoctorTimeTableSQL;
 import pages.Pages;
 
 public class TransferRecords {

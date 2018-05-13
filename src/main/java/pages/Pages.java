@@ -8,6 +8,7 @@ import pages.shedule.AdmissionSchedulePage;
 import pages.shedule.DoctorMethods;
 import pages.shedule.ManageShedulePage;
 import pages.shedule.TransferRecordsPage;
+import pages.utilities.Waiter;
 
 public class Pages extends BasePage {
 
@@ -15,9 +16,9 @@ public class Pages extends BasePage {
         super(driver);
     }
 
-    public MainPage mainPage() {
-        MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
-        return mainPage;
+    public HomePage mainPage() {
+        HomePage homePage = PageFactory.initElements(driver, HomePage.class);
+        return homePage;
     }
 
     public LoginPage loginPage() {
