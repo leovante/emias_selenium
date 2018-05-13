@@ -11,14 +11,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.Wait;
+import pages.Pages;
 
 import java.util.List;
 
 public class TransferRecordsPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
-    Wait waitAll;
+    Pages website;
 
     @FindBy(xpath = "//button[@id='btn_transfer']/span[2]")
     WebElement btn_transfer;
@@ -39,12 +39,13 @@ public class TransferRecordsPage {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
+        website = new Pages(webDriver);
     }
 
     public void trancRecord(String name) throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         String secondDoctor = name;
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
         waitWhileClickable(btn_transfer);
         btn_transfer.click();//большая кнопка перенести
         waitWhileClickable(btn_transfer_schedule);
@@ -59,17 +60,17 @@ public class TransferRecordsPage {
         webDriver.findElement(By.xpath("(//li[@id='SCH_CollisionResolve']/a/span)[2]")).click();
         selectDoctorFromTranWindow(secondDoctor);
 
-        waitAll.waitBlockOverlay();
+        website.waiter().waitBlockOverlay();
         webDriver.findElement(By.xpath("//table[@id='resolve_collision_grid']/tbody/tr[3]/td")).click();
         webDriver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();//перенести
-        waitAll.waitBlockOverlay();
+        website.waiter().waitBlockOverlay();
 
         keyboard.pressKey(Keys.ENTER);
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
     }
 
     public void selectDoctorFromTranWindow(String doctorInlet) throws InterruptedException {
-        waitAll.waitBlockOverlay();
+        website.waiter().waitBlockOverlay();
         List<WebElement> doctors = webDriver.findElement(By
                 .xpath("//div[@id='gview_resolve_collision_docprvdgrid1']/div[3]/div/table/tbody"))
                 .findElements(By.xpath("tr/td[2]/div"));
@@ -88,7 +89,7 @@ public class TransferRecordsPage {
     }
 
     public void verifyTransferShedule() throws InterruptedException {
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
         wait.until(ExpectedConditions.visibilityOfAllElements(recordElement));
     }
 }

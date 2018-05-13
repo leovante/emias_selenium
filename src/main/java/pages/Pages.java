@@ -1,54 +1,62 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import pages.calldoctor.CallDoctorPage;
+import pages.calldoctor.CreateMedicalCard;
 import pages.shedule.AdmissionSchedulePage;
 import pages.shedule.DoctorMethods;
-import pages.shedule.TransferRecordsPage;
-import pages.calldoctor.SearchRow;
-import pages.calldoctor.CreateCall;
-import pages.calldoctor.CreateMedicalCard;
 import pages.shedule.ManageShedulePage;
+import pages.shedule.TransferRecordsPage;
 
-public class Pages {
-    WebDriver webDriver;
+public class Pages extends BasePage {
 
     public Pages(WebDriver driver) {
-        webDriver = driver;
+        super(driver);
     }
 
-    public MainPage mainPage() {return new MainPage(webDriver);}
-
-    public LoginPage loginPage(){
-        return new LoginPage(webDriver);
+    public MainPage mainPage() {
+        MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
+        return mainPage;
     }
 
-    public SearchRow callDoctorPage() {
-        return new SearchRow(webDriver);
+    public LoginPage loginPage() {
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        return loginPage;
     }
 
     public ManageShedulePage manageShedule() {
-        return new ManageShedulePage(webDriver);
+        ManageShedulePage manageShedule = PageFactory.initElements(driver, ManageShedulePage.class);
+        return manageShedule;
     }
 
     public CreateMedicalCard medicalCard() {
-        return new CreateMedicalCard(webDriver);
-    }
-
-    public CreateCall callDoctor_CreateCall() {
-        return new CreateCall(webDriver);
+        CreateMedicalCard medicalCard = PageFactory.initElements(driver, CreateMedicalCard.class);
+        return medicalCard;
     }
 
     public AdmissionSchedulePage admissionSchedule() {
-        return new AdmissionSchedulePage(webDriver);
+        AdmissionSchedulePage admissionSchedule = PageFactory.initElements(driver, AdmissionSchedulePage.class);
+        return admissionSchedule;
     }
 
     public TransferRecordsPage transferRecords() {
-        return new TransferRecordsPage(webDriver);
+        TransferRecordsPage transferRecords = PageFactory.initElements(driver, TransferRecordsPage.class);
+        return transferRecords;
     }
 
     public DoctorMethods doctorOperators() {
-        return new DoctorMethods(webDriver);
+        DoctorMethods doctorOperators = PageFactory.initElements(driver, DoctorMethods.class);
+        return doctorOperators;
     }
 
+    public Waiter waiter() {
+        Waiter waiter = PageFactory.initElements(driver, Waiter.class);
+        return waiter;
+    }
 
+    public CallDoctorPage callDoctorPage() {
+        CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
+        return callDoctorPage;
+    }
 }

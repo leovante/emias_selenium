@@ -1,16 +1,9 @@
-package steps.shedule;
+package steps;
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.CleanDoctorTimeTableSQL;
 import pages.Pages;
-
-import java.io.IOException;
-import java.net.URL;
 
 public class ManageShedule {
     private WebDriver webDriver;
@@ -26,7 +19,7 @@ public class ManageShedule {
 
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         website.mainPage().manageSheduleBtn();
-        String docFullName = website.doctorOperators().getUnicalDoctor(null);
+        String docFullName = website.doctorOperators().getUnicalDoctor2(null);
         String secondName = website.manageShedule().getSecondName(docFullName);
         sql.deleteShedule(secondName);
         website.doctorOperators().selectDoctor(docFullName);
@@ -35,9 +28,9 @@ public class ManageShedule {
 
     public void createTwoShedule() throws ClassNotFoundException, InterruptedException {
         website.mainPage().manageSheduleBtn();
-        String first_doctor_fullname = website.doctorOperators().getUnicalDoctor(null);
+        String first_doctor_fullname = website.doctorOperators().getUnicalDoctor2(null);
         String first_doctor_fam = website.manageShedule().getSecondName(first_doctor_fullname);
-        String second_doctor_fullname = website.doctorOperators().getUnicalDoctor(first_doctor_fullname);
+        String second_doctor_fullname = website.doctorOperators().getUnicalDoctor2(first_doctor_fullname);
         String second_doctor_fam = website.manageShedule().getSecondName(second_doctor_fullname);
         sql.deleteShedule(first_doctor_fam);
         sql.deleteShedule(second_doctor_fam);
@@ -55,8 +48,8 @@ public class ManageShedule {
     }
 
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
-        String firstDoctor = website.doctorOperators().getUnicalDoctor(null);
-        String secondDoctor = website.doctorOperators().getUnicalDoctor(firstDoctor);
+        String firstDoctor = website.doctorOperators().getUnicalDoctor2(null);
+        String secondDoctor = website.doctorOperators().getUnicalDoctor2(firstDoctor);
         String second_doctor_fam = website.manageShedule().getSecondName(secondDoctor);
         sql.deleteShedule(second_doctor_fam);
 

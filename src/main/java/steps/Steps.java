@@ -1,30 +1,40 @@
 package steps;
 
-        import org.openqa.selenium.WebDriver;
-        import steps.shedule.AdmissionSchedule;
-        import steps.shedule.ManageShedule;
-        import steps.shedule.TransferRecords;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+import pages.BasePage;
 
-public class Steps {
-    WebDriver webDriver;
+public class Steps extends BasePage {
 
     public Steps(WebDriver driver) {
-        webDriver = driver;
+        super(driver);
     }
 
     public ManageShedule manageShedule() {
-        return new ManageShedule(webDriver);
+        ManageShedule manageShedule = PageFactory.initElements(driver, ManageShedule.class);
+        return manageShedule;
     }
 
     public AdmissionSchedule admissionSchedule() {
-        return new AdmissionSchedule(webDriver);
+        AdmissionSchedule admissionSchedule = PageFactory.initElements(driver, AdmissionSchedule.class);
+        return admissionSchedule;
     }
 
     public TransferRecords transferRecords() {
-        return new TransferRecords(webDriver);
+        TransferRecords transferRecords = PageFactory.initElements(driver, TransferRecords.class);
+        return transferRecords;
     }
 
     public LoginPage loginPage() {
-        return new LoginPage(webDriver);
+        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        return loginPage;
     }
+
+    public CallDoctor callDoctor() {
+        CallDoctor callDoctor = PageFactory.initElements(driver, CallDoctor.class);
+
+        return callDoctor;
+    }
+
+
 }

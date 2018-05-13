@@ -14,24 +14,9 @@
 *
 * */
 
-import com.google.common.base.Charsets;
-import com.google.common.io.Resources;
-import org.junit.*;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import steps.Steps;
+import org.junit.Test;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
-
-public class RegressShedule {
-    private WebDriver webDriver;
-    Steps step;
-    WebDriverWait wait;
+public class RegressShedule extends TestBase {
 
     @Test//KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
@@ -67,36 +52,33 @@ public class RegressShedule {
         step.transferRecords().verifyTransferShedule();
     }
 
-    private static void addJQuery (JavascriptExecutor js) {
-        String script = "";
-        boolean needInjection = (Boolean)(js.executeScript("return this.$ === undefined;"));
-        if(needInjection) {
-            URL u = Resources.getResource("jquery.js");
-            try {
-                script = Resources.toString(u, Charsets.UTF_8);
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-            js.executeScript(script);
-        }
-    }
+//    private static void addJQuery (JavascriptExecutor js) {
+//        String script = "";
+//        boolean needInjection = (Boolean)(js.executeScript("return this.$ === undefined;"));
+//        if(needInjection) {
+//            URL u = Resources.getResource("jquery.js");
+//            try {
+//                script = Resources.toString(u, Charsets.UTF_8);
+//            } catch(IOException e) {
+//                e.printStackTrace();
+//            }
+//            js.executeScript(script);
+//        }
+//    }
 
-    @Before
-    public void setUp() throws InterruptedException, AWTException {
-        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.setHeadless(false);
-        webDriver = new ChromeDriver(options);
-        webDriver.manage().window().maximize();
-        JavascriptExecutor js = (JavascriptExecutor)webDriver;
-        wait = new WebDriverWait(webDriver, 60, 500);
-        step = new Steps(webDriver);
-        step.loginPage().loginEmias();
-    }
-
-    @After
-    public void tearDown() {
-        if (webDriver != null)
-            webDriver.quit();
-    }
+//    @Before
+//    public void setUp() throws InterruptedException, AWTException {
+//        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
+//        ChromeOptions options = new ChromeOptions();
+//        options.setHeadless(false);
+//        webDriver = new ChromeDriver(options);
+//        step = new Steps(webDriver);
+//        step.loginPage().loginEmias();
+//    }
+//
+//    @After
+//    public void tearDown() {
+//        if (webDriver != null)
+//            webDriver.quit();
+//    }
 }

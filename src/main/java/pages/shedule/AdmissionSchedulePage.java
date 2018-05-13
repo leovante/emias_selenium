@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.Pages;
-import pages.Wait;
 
 import java.util.*;
 
@@ -18,7 +17,6 @@ public class AdmissionSchedulePage {
     private WebDriver webDriver;
     Pages website;
     private WebDriverWait wait;
-    Wait waitAll;
 
     @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div")
     WebElement RecordsArea;
@@ -45,10 +43,10 @@ public class AdmissionSchedulePage {
     public void createRecord() throws InterruptedException {
         Actions action = new Actions(webDriver);
         String mwh = webDriver.getWindowHandle();
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
 
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
         String first_doctor_fullname = website.doctorOperators().getUnicalDoctor(null);
         website.doctorOperators().selectDoctor(first_doctor_fullname);
 
@@ -57,16 +55,16 @@ public class AdmissionSchedulePage {
 
         action.sendKeys(Keys.ENTER).perform();//нажали поиск мкаб
         Thread.sleep(2000);
-        waitAll.waitBlockOverlay();
+        website.waiter().waitBlockOverlay();
         wait.until(ExpectedConditions.elementToBeClickable(selectMkab));
         selectMkab.click();
         wait.until(ExpectedConditions.elementToBeClickable(selectVibratBtn));
         selectVibratBtn.click();//выбрать
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
 
         wait.until(ExpectedConditions.elementToBeClickable(predvarit));
         predvarit.click();
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
 
         Set s = webDriver.getWindowHandles(); //this method will gives you the handles of all opened windows
         Iterator ite = s.iterator();

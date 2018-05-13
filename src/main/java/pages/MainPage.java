@@ -10,10 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
-    Wait waitAll;
-
-    @FindBy(xpath = "//div[@id='Portlet_6']/div[2]/div/a/span")
-    WebElement callDoctorBtn;
+    Pages website;
 
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[2]/a/span")
     WebElement timeTableBtn;
@@ -24,46 +21,66 @@ public class MainPage {
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div/a/span")
     WebElement admissionScheduleBtn;
 
+//    @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[5]/a/span")
+//    WebElement transferRecordsBtn;
+
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[5]/a/span")
     WebElement transferRecordsBtn;
 
+    @FindBy(xpath = "//div[@id='Portlet_6']/div[2]/div[2]/a/span")
+    WebElement callDoctorBtn;
+
+    @FindBy(xpath = "//div[@id='Portlet_6']/div[2]/div/a/span")
+    WebElement callDoctorBtn2;
+
     public MainPage(WebDriver driver){
         webDriver = driver;
+        website = new Pages(webDriver);
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);
-        waitAll = new Wait(webDriver);
 
-    }
-
-    public void callDoctorBtn() throws InterruptedException {
-        waitWhileClickable(callDoctorBtn);
-        callDoctorBtn.click();
     }
 
     public void manageSheduleBtn(){
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
         waitWhileClickable(timeTableBtn);
         timeTableBtn.click();
+        website.waiter().waitAllEmias();
     }
 
     public void admissionScheduleBtn(){
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
         waitWhileClickable(admissionScheduleBtn);
         admissionScheduleBtn.click();
+        website.waiter().waitAllEmias();
     }
 
     public void transferRecordsBtn(){
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
         waitWhileClickable(transferRecordsBtn);
         transferRecordsBtn.click();
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
     }
 
     public void logoHomeBtn(){
-        waitAll.waitAll();
+        website.waiter().waitAllEmias();
         waitWhileClickable(homePageBtn);
         homePageBtn.click();
+        website.waiter().waitAllEmias();
     }
+
+    public void callDoctorBtn(){
+        website.waiter().waitAllEmias();
+        waitWhileClickable(homePageBtn);
+        callDoctorBtn.click();
+        website.waiter().waitAllEmias();
+    }
+
+    public void callDoctorBtn2() throws InterruptedException {
+        waitWhileClickable(callDoctorBtn2);
+        callDoctorBtn2.click();
+    }
+
 
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
