@@ -14,7 +14,7 @@
 *
 * */
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTimeTableSQL;
 import pages.utilities.Waiter;
 
@@ -50,13 +50,12 @@ public class RegressShedule extends TestBase {
         page.manageShedule().verifyCreatedShedule();
     }
 
-   @Test//KEYS 1.3
+    @Test//KEYS 1.3
     public void setNotReceiveDays() throws InterruptedException {
-       page.mainPage().manageSheduleBtn();
-       page.manageShedule().setNotReceiveDays();
+        page.mainPage().manageSheduleBtn();
+        page.manageShedule().setNotReceiveDays();
 
-
-       page.manageShedule().verifyDeletedShedle();
+        page.manageShedule().verifyDeletedShedle();
     }
 
     @Test//KEYS 1.4
@@ -74,7 +73,6 @@ public class RegressShedule extends TestBase {
         page.doctorOperators().selectDoctor(first_doctor_fullname);
         page.doctorOperators().selectDoctor(second_doctor_fullname);
         page.manageShedule().createShedule();
-
 
         page.manageShedule().verifyCreatedShedule();
         page.manageShedule().deleteShedule();
@@ -101,10 +99,10 @@ public class RegressShedule extends TestBase {
         page.mainPage().admissionScheduleBtn();
         page.admissionSchedule().createRecord();
 
-            driver.get("http://emias.mosreg.ru/mis/test_emias/ScheduleWriting/Transfer");
+        driver.get("http://emias.mosreg.ru/mis/test_emias/ScheduleWriting/Transfer");
         Waiter.waitAllEmias();
-         first_doctor_fullname = page.doctorOperators().getUnicalDoctor2(null);
-         second_doctor_fullname = page.doctorOperators().getUnicalDoctor2(first_doctor_fullname);
+        first_doctor_fullname = page.doctorOperators().getUnicalDoctor2(null);
+        second_doctor_fullname = page.doctorOperators().getUnicalDoctor2(first_doctor_fullname);
         page.doctorOperators().selectDoctor(first_doctor_fullname);
         page.transferRecords().trancRecord(second_doctor_fullname);
         page.doctorOperators().selectDoctor(first_doctor_fullname);

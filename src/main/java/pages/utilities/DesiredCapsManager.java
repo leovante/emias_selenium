@@ -12,10 +12,10 @@ public class DesiredCapsManager {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         //Firefox Profile Settings
-        if (browser.equals("firefox")) {
-            setFirefoxCaps(capabilities);
-        } else if(browser.equals("chrome")) {
+        if (browser.equals("chrome")) {
             setChromeCaps(capabilities);
+        } else if(browser.equals("firefox")) {
+            setFirefoxCaps(capabilities);
         }
 
         //Set Platform
