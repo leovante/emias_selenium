@@ -9,7 +9,6 @@ import pages.Pages;
 import pages.utilities.DesiredCapsManager;
 import pages.utilities.DriverManager;
 import pages.utilities.JSWaiter;
-import steps.Steps;
 
 import java.net.MalformedURLException;
 
@@ -17,8 +16,7 @@ public class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     private DesiredCapsManager desiredCapsManager = new DesiredCapsManager();
-    Pages pages;
-    Steps step;
+    Pages page;
 
     //Do the test setup
     @BeforeClass
@@ -36,9 +34,7 @@ public class TestBase {
         //This is the default wait for Explicit Waits
         wait = new WebDriverWait(driver,15);
         //Create pages.pages object
-        pages = new Pages(driver);
-        //Create pages.pages object
-        step = new Steps(driver);
+        page = new Pages(driver);
     }
 
     @AfterClass
@@ -46,3 +42,21 @@ public class TestBase {
 //        driver.quit();
     }
 }
+
+//        switch (stendNum) {
+//                case 1:
+//                webDriver.get("http://emias.mosreg.ru/mis/test_emias");
+//                website.loginPage().enterLoginText("seleniumAdmin");
+//                website.loginPage().enterPasswordText("1212");
+//                break;
+//                case 2:
+//                webDriver.get("http://mis.softrust.ru/whc/Home");
+//                website.loginPage().enterLoginText("admin");
+//                website.loginPage().enterPasswordText("11");
+//                break;
+//                case 3:
+//                webDriver.get("http://emias.mosreg.ru/mis/test_emias");
+//                website.loginPage().enterLoginText("seleniumDoctor");
+//                website.loginPage().enterPasswordText("1");
+//                break;
+//                }

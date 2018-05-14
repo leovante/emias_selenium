@@ -4,10 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.calldoctor.CallDoctorPage;
 import pages.calldoctor.CreateMedicalCard;
-import pages.shedule.AdmissionSchedulePage;
+import pages.shedule.AdmissionSchedule;
 import pages.shedule.DoctorMethods;
-import pages.shedule.ManageShedulePage;
-import pages.shedule.TransferRecordsPage;
+import pages.shedule.ManageShedule;
+import pages.shedule.TransferRecords;
 import pages.utilities.Waiter;
 
 public class Pages extends BasePage {
@@ -26,8 +26,8 @@ public class Pages extends BasePage {
         return loginPage;
     }
 
-    public ManageShedulePage manageShedule() {
-        ManageShedulePage manageShedule = PageFactory.initElements(driver, ManageShedulePage.class);
+    public ManageShedule manageShedule() {
+        ManageShedule manageShedule = PageFactory.initElements(driver, ManageShedule.class);
         return manageShedule;
     }
 
@@ -36,13 +36,13 @@ public class Pages extends BasePage {
         return medicalCard;
     }
 
-    public AdmissionSchedulePage admissionSchedule() {
-        AdmissionSchedulePage admissionSchedule = PageFactory.initElements(driver, AdmissionSchedulePage.class);
+    public AdmissionSchedule admissionSchedule() {
+        AdmissionSchedule admissionSchedule = PageFactory.initElements(driver, AdmissionSchedule.class);
         return admissionSchedule;
     }
 
-    public TransferRecordsPage transferRecords() {
-        TransferRecordsPage transferRecords = PageFactory.initElements(driver, TransferRecordsPage.class);
+    public TransferRecords transferRecords() {
+        TransferRecords transferRecords = PageFactory.initElements(driver, TransferRecords.class);
         return transferRecords;
     }
 
@@ -59,5 +59,22 @@ public class Pages extends BasePage {
     public CallDoctorPage callDoctorPage() {
         CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
         return callDoctorPage;
-    }
 }
+}
+
+//    public steps.AdmissionSchedule admissionSchedule() {
+//        steps.AdmissionSchedule admissionSchedule = PageFactory.initElements(driver, steps.AdmissionSchedule.class);
+//        return admissionSchedule;
+//    }
+//
+//    public steps.TransferRecords transferRecords() {
+//        steps.TransferRecords transferRecords = PageFactory.initElements(driver, steps.TransferRecords.class);
+//        return transferRecords;
+//    }
+//
+//    public steps.LoginPage loginPage() {
+//        steps.LoginPage loginPage = PageFactory.initElements(driver, steps.LoginPage.class);
+//        return loginPage;
+//    }
+
+

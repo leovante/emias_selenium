@@ -5,29 +5,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.Pages;
+import pages.BasePage;
+import pages.utilities.Waiter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DoctorMethods {
-    private WebDriver webDriver;
-    Pages website;
-    private WebDriverWait wait;
+public class DoctorMethods extends BasePage {
 
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;
 
     public DoctorMethods(WebDriver driver) {
-        webDriver = driver;
-        website = new Pages(webDriver);
-        wait = new WebDriverWait(webDriver, 60);
+        super(driver);
     }
 
     public String getUnicalDoctor(String docName) {
-        website.waiter().waitAllEmias();
+        Waiter.waitAllEmias();
 
         waitWhileClickable(doctorRow);
         List<String> dontUseNames = new ArrayList<String>();
@@ -35,12 +30,12 @@ public class DoctorMethods {
         dontUseNames.add(docName);
 
         System.out.println(dontUseNames);
-        website.waiter().waitAllEmias();
+        Waiter.waitAllEmias();
 
 
         String doctorStringName = docName;
 
-        List<WebElement> doctorList = webDriver
+        List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
                 .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[2]/div/span[1]"));//нашел строки врачей
 
@@ -65,7 +60,7 @@ public class DoctorMethods {
     }
 
     public String getUnicalDoctor2(String docName) {
-        website.waiter().waitAllEmias();
+        Waiter.waitAllEmias();
 
         waitWhileClickable(doctorRow);
         List<String> dontUseNames = new ArrayList<String>();
@@ -73,12 +68,12 @@ public class DoctorMethods {
         dontUseNames.add(docName);
 
         System.out.println(dontUseNames);
-        website.waiter().waitAllEmias();
+        Waiter.waitAllEmias();
 
 
         String doctorStringName = docName;
 
-        List<WebElement> doctorList = webDriver
+        List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
                 .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[2]/div/span[1]"));//нашел строки врачей
 
@@ -103,12 +98,12 @@ public class DoctorMethods {
     }
 
     public void selectDoctor(String doctorInlet) throws InterruptedException {
-        website.waiter().waitAllEmias();
-        website.waiter().waitAllEmias();
+        Waiter.waitAllEmias();
+        Waiter.waitAllEmias();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")));
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
-        website.waiter().waitAllEmias();
-        website.waiter().waitAllEmias();
+        driver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
+        Waiter.waitAllEmias();
+        Waiter.waitAllEmias();
     }
 
 
