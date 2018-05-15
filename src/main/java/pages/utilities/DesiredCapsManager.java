@@ -48,3 +48,13 @@ public class DesiredCapsManager {
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
     }
 }
+
+//    @Before
+//    public void setUp() throws InterruptedException, AWTException {
+//        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
+//        ChromeOptions options = new ChromeOptions();
+//        options.setHeadless(false);
+//        webDriver = new ChromeDriver(options);
+//        step = new Steps(webDriver);
+//        step.loginPage().loginEmias();
+//    }
