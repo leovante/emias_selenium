@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" verbose="1">
+    <!--Suite Level Parameters-->
+    <parameter name="browser" value="chrome"/>
+    <parameter name="platform" value="WINDOWS"/>
+    <test name="RegressCallDoctorTests">
+        <!--Test Level Parameter-->
+        <!--<parameter name="browser" value="firefox" />-->
+        <classes>
+            <class name="java.RegressCallDoctor"/>
+        </classes>
+    </test> <!-- First Test -->
+</suite> <!-- Suite -->

@@ -3,12 +3,8 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
-    private WebDriver webDriver;
-    private WebDriverWait wait;
+public class LoginPage extends BasePage {
 
     @FindBy(id = "Login")
     WebElement loginInputField;
@@ -21,9 +17,11 @@ public class LoginPage {
 
 
     public LoginPage(WebDriver driver){
-        webDriver = driver;
-        wait = new WebDriverWait(webDriver, 60);
-        PageFactory.initElements(webDriver, this);
+        super(driver);
+    }
+
+    public void openLoginPage(){
+
     }
 
     public void enterLoginText(String text) {
@@ -39,4 +37,25 @@ public class LoginPage {
     public void clickLoginButton() {
         loginButton.click();
     }
+
+
 }
+
+
+//    @FindBy(how = How.XPATH, using = "//a[contains(.,'İŞVEREN')]")
+//    public WebElement recruiter;
+//
+//    @FindBy(how = How.XPATH, using = "//a[contains(.,'ÜYE GİRİŞİ')]")
+//    public WebElement loginButton;
+//
+//    public void closePopupIfExists () throws InterruptedException {handlePopup(By.cssSelector(".ui-dialog-titlebar-close"));}
+//
+//    public void openHomePage (){
+//        driver.navigate().to("http://www.kariyer.net/");
+//    }
+//
+//    public void printTitle() {
+//        System.out.println("Page title is: " + driver.getTitle());
+//    }
+//
+//    public void clickLogin () {click(loginButton);}

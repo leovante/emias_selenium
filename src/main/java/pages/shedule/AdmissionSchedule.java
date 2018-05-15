@@ -1,22 +1,20 @@
 package pages.shedule;
 
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.Pages;
-import pages.Waiter;
+import pages.BasePage;
+import pages.utilities.Waiter;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.Set;
 
-public class AdmissionSchedulePage {
-    private WebDriver webDriver;
-    Pages website;
-    private WebDriverWait wait;
+public class AdmissionSchedule extends BasePage {
+    DoctorMethods doctorMethods;
 
     @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div")
     WebElement RecordsArea;
@@ -33,48 +31,45 @@ public class AdmissionSchedulePage {
     @FindBy(xpath = "//span[@class='ui-button-text'][contains(text(),'Предварительный')]")
     WebElement predvarit;
 
-    public AdmissionSchedulePage(WebDriver driver) {
-        webDriver = driver;
-        website = new Pages(webDriver);
-        wait = new WebDriverWait(webDriver, 60);
-        PageFactory.initElements(webDriver, this);
+    public AdmissionSchedule(WebDriver driver) {
+        super(driver);
     }
 
     public void createRecord() throws InterruptedException {
-        Actions action = new Actions(webDriver);
-        String mwh = webDriver.getWindowHandle();
-        website.waitLoad().waitAll();
+        Actions action = new Actions(driver);
+        String mwh = driver.getWindowHandle();
+        Waiter.waitAllEmias();
 
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
-        website.waitLoad().waitAll();
-        String first_doctor_fullname = website.doctorOperators().getUnicalDoctor(null);
-        website.doctorOperators().selectDoctor(first_doctor_fullname);
+        Waiter.waitAllEmias();
+        String first_doctor_fullname = doctorMethods.getUnicalDoctor(null);
+        doctorMethods.selectDoctor(first_doctor_fullname);
 
         wait.until(ExpectedConditions.elementToBeClickable(recordElement));
         recordElement.click();
 
         action.sendKeys(Keys.ENTER).perform();//нажали поиск мкаб
         Thread.sleep(2000);
-        website.waitLoad().waitBlockOverlay();
+        Waiter.waitBlockOverlay();
         wait.until(ExpectedConditions.elementToBeClickable(selectMkab));
         selectMkab.click();
         wait.until(ExpectedConditions.elementToBeClickable(selectVibratBtn));
         selectVibratBtn.click();//выбрать
-        website.waitLoad().waitAll();
+        Waiter.waitAllEmias();
 
         wait.until(ExpectedConditions.elementToBeClickable(predvarit));
         predvarit.click();
-        website.waitLoad().waitAll();
+        Waiter.waitAllEmias();
 
-        Set s = webDriver.getWindowHandles(); //this method will gives you the handles of all opened windows
+        Set s = driver.getWindowHandles(); //this method will gives you the handles of all opened windows
         Iterator ite = s.iterator();
         while (ite.hasNext()) {
             String popupHandle = ite.next().toString();
             if (!popupHandle.contains(mwh)) {
-                webDriver.switchTo().window(popupHandle);
+                driver.switchTo().window(popupHandle);
         /*here you can perform operation in pop-up window**
                 After finished your operation in pop-up just select the main window again*/
-                webDriver.switchTo().window(mwh);
+                driver.switchTo().window(mwh);
             }
         }
     }

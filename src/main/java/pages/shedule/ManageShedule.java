@@ -1,24 +1,19 @@
 package pages.shedule;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.*;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.Pages;
-import pages.Waiter;
+import pages.BasePage;
+import pages.utilities.Waiter;
 
 import java.util.List;
 
-import static junit.framework.TestCase.assertFalse;
-
-public class ManageShedulePage {
-    private WebDriver webDriver;
-    private WebDriverWait wait;
+public class ManageShedule extends BasePage {
     final String doctorNull = null;
+
     DoctorMethods doctorMethods;
-    Pages website;
 
     @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
@@ -68,16 +63,14 @@ public class ManageShedulePage {
     @FindBy(xpath = "//button[@id='btn_copy']/span[2]")
     WebElement copyShedule;
 
-    public ManageShedulePage(WebDriver driver) {
-        webDriver = driver;
-        wait = new WebDriverWait(webDriver, 60);
-        website = new Pages(webDriver);
-        PageFactory.initElements(webDriver, this);
+    public ManageShedule(WebDriver driver) {
+        super(driver);
     }
 
     public void createShedule() throws InterruptedException {
-        website.waitLoad().waitAll();
-        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
+        Waiter.waitAllEmias();
+
+        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String a = "2330", b = "2344";
         String c = "2344", d = "2359";
         createShedule.click();
@@ -91,16 +84,18 @@ public class ManageShedulePage {
         waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-        website.waitLoad().waitAll();
-        website.waitLoad().waitAll();
+        Waiter.waitAllEmias();
+        Waiter.waitAllEmias();
     }
 
-    public void setNotReceiveDays(String firstDoctor) {
-        waitAll();
-        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
+    public void setNotReceiveDays() {
+        Waiter.waitAllEmias();
+        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
 
-        webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-        waitAll();
+
+        String firstDoctor = doctorMethods.getUnicalDoctor2(null);
+        driver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
+        Waiter.waitAllEmias();
 
         waitWhileClickable(btn_notReciveDays);
         btn_notReciveDays.click();//задать неприемные дни
@@ -114,32 +109,28 @@ public class ManageShedulePage {
         keyboard.pressKey(Keys.ENTER);
     }
 
-
     public void copyShedule(String docName) throws InterruptedException {
-        waitAll();
-
+        Waiter.waitAllEmias();
         waitWhileClickable(copyShedule);
         copyShedule.click();
 
-        webDriver.findElement(By.xpath("//table[@id='copy_selected_grid']/tbody/tr[2]/td[2]")).click();
-        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        webDriver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        List<WebElement> closeBtnList = webDriver.findElements(By.xpath("//span[contains(text(),'Закрыть')]"));
+        driver.findElement(By.xpath("//table[@id='copy_selected_grid']/tbody/tr[2]/td[2]")).click();
+        driver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        driver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        List<WebElement> closeBtnList = driver.findElements(By.xpath("//span[contains(text(),'Закрыть')]"));
         for (WebElement closeBtn : closeBtnList) {
             try {
                 closeBtn.click();
             } catch (ElementNotVisibleException ex) {
             }
         }
-        webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        waitAll();
-
+        driver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
+        Waiter.waitAllEmias();
     }
 
     public void deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
-        Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        waitAll();
-
+        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
+        Waiter.waitAllEmias();
 
         waitWhileClickable(deleteShedule);
         deleteShedule.click();                     //кнопка удалить расписание
@@ -148,8 +139,7 @@ public class ManageShedulePage {
 
         Thread.sleep(1000);
         keyboard.pressKey(Keys.ENTER);
-        waitAll();
-
+        Waiter.waitAllEmias();
     }
 
     public void setTimeCalendar(String a, String b) throws InterruptedException {
@@ -174,19 +164,18 @@ public class ManageShedulePage {
     }
 
     public void verifyNotReceiveDays() {
-        waitAll();
-
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
+        Waiter.waitAllEmias();
+        driver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
                 .findElements(By.xpath("span[contains(text(),'Врач на больничном')]"));//это название заголовка
         System.out.println("Проверка наличия заголовка форс-мажора");
     }
 
     public void verifyDeletedShedle() {
-        if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+        if (!driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
-        if (!webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+        if (!driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
@@ -205,23 +194,7 @@ public class ManageShedulePage {
 
     public void verifyCreatedShedule()  throws InterruptedException{
         Thread.sleep(2000);
-        webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+        driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//*[contains(text(),'23:44 ')]"));
-    }
-
-    public boolean waitAll(){
-        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
-        if (BlockAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
-        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
-        if (WidgetAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
-        }
-        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
-        if (loaderLeftSpacer) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
-        }
-        return BlockAssert;
     }
 }
