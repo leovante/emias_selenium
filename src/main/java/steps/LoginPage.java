@@ -9,7 +9,7 @@ public class LoginPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
     Pages website;
-    int urlNum = 2;
+    int urlNum = 1;
 
     public LoginPage(WebDriver driver) {
         webDriver = driver;
@@ -19,11 +19,11 @@ public class LoginPage {
     }
 
     public void loginEmias() throws InterruptedException {
-        urlVarible(urlNum);
+        selectUrl(urlNum);
         website.loginPage().clickLoginButton();
     }
 
-    public String urlVarible(int stendNum) {
+    public String selectUrl(int stendNum) {
         switch (stendNum) {
             case 1:
                 webDriver.get("http://emias.mosreg.ru/mis/test_emias");
@@ -44,8 +44,7 @@ public class LoginPage {
         return null;
     }
 
-    public int getUrlNum() {
-        int b = urlNum;
-        return b;
+    public int getCurrentUrlNum() {
+        return this.urlNum;
     }
 }

@@ -6,7 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.Wait;
+import pages.Pages;
+import pages.Waiter;
 
 import java.util.List;
 
@@ -16,9 +17,8 @@ public class ManageShedulePage {
     private WebDriver webDriver;
     private WebDriverWait wait;
     final String doctorNull = null;
-    Wait waitAll;
-
     DoctorMethods doctorMethods;
+    Pages website;
 
     @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
@@ -71,11 +71,12 @@ public class ManageShedulePage {
     public ManageShedulePage(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
+        website = new Pages(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 
     public void createShedule() throws InterruptedException {
-        waitAll.waitAll();
+        website.waitLoad().waitAll();
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
         String a = "2330", b = "2344";
         String c = "2344", d = "2359";
@@ -90,18 +91,16 @@ public class ManageShedulePage {
         waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-        waitAll.waitAll();
-        waitAll.waitAll();
+        website.waitLoad().waitAll();
+        website.waitLoad().waitAll();
     }
 
-    public void setNotReceiveDays() {
-        waitAll.waitAll();
+    public void setNotReceiveDays(String firstDoctor) {
+        waitAll();
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
 
-
-        String firstDoctor = doctorMethods.getUnicalDoctor(null);
         webDriver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-        waitAll.waitAll();
+        waitAll();
 
         waitWhileClickable(btn_notReciveDays);
         btn_notReciveDays.click();//задать неприемные дни
@@ -115,8 +114,10 @@ public class ManageShedulePage {
         keyboard.pressKey(Keys.ENTER);
     }
 
+
     public void copyShedule(String docName) throws InterruptedException {
-        waitAll.waitAll();
+        waitAll();
+
         waitWhileClickable(copyShedule);
         copyShedule.click();
 
@@ -131,12 +132,14 @@ public class ManageShedulePage {
             }
         }
         webDriver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        waitAll.waitAll();
+        waitAll();
+
     }
 
     public void deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) webDriver).getKeyboard();
-        waitAll.waitAll();
+        waitAll();
+
 
         waitWhileClickable(deleteShedule);
         deleteShedule.click();                     //кнопка удалить расписание
@@ -145,7 +148,8 @@ public class ManageShedulePage {
 
         Thread.sleep(1000);
         keyboard.pressKey(Keys.ENTER);
-        waitAll.waitAll();
+        waitAll();
+
     }
 
     public void setTimeCalendar(String a, String b) throws InterruptedException {
@@ -170,7 +174,8 @@ public class ManageShedulePage {
     }
 
     public void verifyNotReceiveDays() {
-        waitAll.waitAll();
+        waitAll();
+
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
                 .findElements(By.xpath("span[contains(text(),'Врач на больничном')]"));//это название заголовка
         System.out.println("Проверка наличия заголовка форс-мажора");
@@ -202,5 +207,21 @@ public class ManageShedulePage {
         Thread.sleep(2000);
         webDriver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//*[contains(text(),'23:44 ')]"));
+    }
+
+    public boolean waitAll(){
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
+        }
+        return BlockAssert;
     }
 }

@@ -4,9 +4,6 @@ import org.openqa.selenium.WebDriver;
 import pages.shedule.AdmissionSchedulePage;
 import pages.shedule.DoctorMethods;
 import pages.shedule.TransferRecordsPage;
-import pages.calldoctor.SearchRow;
-import pages.calldoctor.CreateCall;
-import pages.calldoctor.CreateMedicalCard;
 import pages.shedule.ManageShedulePage;
 
 public class Pages {
@@ -22,20 +19,8 @@ public class Pages {
         return new LoginPage(webDriver);
     }
 
-    public SearchRow callDoctorPage() {
-        return new SearchRow(webDriver);
-    }
-
     public ManageShedulePage manageShedule() {
         return new ManageShedulePage(webDriver);
-    }
-
-    public CreateMedicalCard medicalCard() {
-        return new CreateMedicalCard(webDriver);
-    }
-
-    public CreateCall callDoctor_CreateCall() {
-        return new CreateCall(webDriver);
     }
 
     public AdmissionSchedulePage admissionSchedule() {
@@ -50,5 +35,7 @@ public class Pages {
         return new DoctorMethods(webDriver);
     }
 
+    public Waiter waitLoad(){return new Waiter(webDriver);}
 
+    public DoctorMethods doctorMethods(){return new DoctorMethods(webDriver);}
 }

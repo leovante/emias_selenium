@@ -3,16 +3,19 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class WaitLoad {
+public class Waiter {
     private WebDriver webDriver;
     private WebDriverWait wait;
+    Pages website;
 
-    public WaitLoad(WebDriver driver){
+    public Waiter(WebDriver driver){
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
+        website = new Pages(webDriver);
         PageFactory.initElements(webDriver, this);
     }
 

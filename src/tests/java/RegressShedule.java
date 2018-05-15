@@ -33,6 +33,12 @@ public class RegressShedule {
     Steps step;
     WebDriverWait wait;
 
+    @Ignore
+    @Test//KEYS 1.1
+    public void test() throws InterruptedException, ClassNotFoundException {
+
+    }
+
     @Test//KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         step.manageShedule().createShedule();
@@ -66,7 +72,7 @@ public class RegressShedule {
         step.transferRecords().trancRecord();
         step.transferRecords().verifyTransferShedule();
     }
-
+//пока не знаю что с этим делать
     private static void addJQuery (JavascriptExecutor js) {
         String script = "";
         boolean needInjection = (Boolean)(js.executeScript("return this.$ === undefined;"));
@@ -87,7 +93,7 @@ public class RegressShedule {
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
         webDriver = new ChromeDriver(options);
-        webDriver.manage().window().maximize();
+//        webDriver.manage().window().maximize();
         JavascriptExecutor js = (JavascriptExecutor)webDriver;
         wait = new WebDriverWait(webDriver, 60, 500);
         step = new Steps(webDriver);
