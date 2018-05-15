@@ -36,8 +36,8 @@ public class DoctorMethods extends BasePage {
         String doctorStringName = docName;
 
         List<WebElement> doctorList = driver
-                .findElement(By.xpath("//table[@id='docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
-                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[2]/div/span[1]"));//нашел строки врачей
+                .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
+                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
 
         for (WebElement doctor : doctorList) {
             int count = 0;

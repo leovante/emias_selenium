@@ -20,8 +20,24 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void openLoginPage(){
-
+    public void login(){
+//        switch () {
+//                case 1:
+//                webDriver.get("http://emias.mosreg.ru/mis/test_emias");
+//                website.loginPage().enterLoginText("seleniumAdmin");
+//                website.loginPage().enterPasswordText("1212");
+//                break;
+//                case 2:
+//                webDriver.get("http://mis.softrust.ru/whc/Home");
+//                website.loginPage().enterLoginText("admin");
+//                website.loginPage().enterPasswordText("11");
+//                break;
+//                case 3:
+//                webDriver.get("http://emias.mosreg.ru/mis/test_emias");
+//                website.loginPage().enterLoginText("seleniumDoctor");
+//                website.loginPage().enterPasswordText("1");
+//                break;
+//                }
     }
 
     public void enterLoginText(String text) {

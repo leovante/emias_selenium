@@ -35,15 +35,13 @@ public class AdmissionSchedule extends BasePage {
         super(driver);
     }
 
-    public void createRecord() throws InterruptedException {
+    public void createRecord(String first_doctor_fullname) throws InterruptedException {
         Actions action = new Actions(driver);
         String mwh = driver.getWindowHandle();
         Waiter.waitAllEmias();
 
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
         Waiter.waitAllEmias();
-        String first_doctor_fullname = doctorMethods.getUnicalDoctor(null);
-        doctorMethods.selectDoctor(first_doctor_fullname);
 
         wait.until(ExpectedConditions.elementToBeClickable(recordElement));
         recordElement.click();

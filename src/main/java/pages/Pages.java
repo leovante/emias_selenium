@@ -16,7 +16,7 @@ public class Pages extends BasePage {
         super(driver);
     }
 
-    public HomePage mainPage() {
+    public HomePage homePage() {
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
         return homePage;
     }
@@ -46,14 +46,9 @@ public class Pages extends BasePage {
         return transferRecords;
     }
 
-    public DoctorMethods doctorOperators() {
-        DoctorMethods doctorOperators = PageFactory.initElements(driver, DoctorMethods.class);
-        return doctorOperators;
-    }
-
-    public Waiter waiter() {
-        Waiter waiter = PageFactory.initElements(driver, Waiter.class);
-        return waiter;
+    public DoctorMethods doctorMethods() {
+        DoctorMethods doctorMethods = PageFactory.initElements(driver, DoctorMethods.class);
+        return doctorMethods;
     }
 
     public CallDoctorPage callDoctorPage() {

@@ -5,10 +5,15 @@ import java.sql.Statement;
 import java.sql.DriverManager;
 
 public class CleanDoctorTimeTableSQL {
-    String connectionUrl = "jdbc:sqlserver://12.8.1.62";
-    String databaseName = "test_emias";
+    String connectionUrl = "jdbc:sqlserver://12.8.1.66";
+    String databaseName = "hlt_demonstration";
     String userName = "sa";
-    String password = "b635Oap5YE33k1S";
+    String password = "sagfhjkzYES!";
+
+//    String connectionUrl = "jdbc:sqlserver://12.8.1.62";
+//    String databaseName = "test_emias";
+//    String userName = "sa";
+//    String password = "b635Oap5YE33k1S";
 
     public void deleteShedule(String name) throws ClassNotFoundException {
         System.out.println("Clean base - " + name);

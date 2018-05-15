@@ -4,11 +4,19 @@
     <!--Suite Level Parameters-->
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
-    <test name="RegressCallDoctor">
+    <test name="Regress">
         <!--Test Level Parameter-->
         <!--<parameter name="browser" value="firefox" />-->
         <classes>
             <class name="RegressCallDoctor"/>
+        </classes>
+    </test> <!-- First Test -->
+
+    <test name="RegressShedule">
+        <!--Test Level Parameter-->
+        <!--<parameter name="browser" value="firefox" />-->
+        <classes>
+            <class name="RegressShedule"/>
         </classes>
     </test> <!-- First Test -->
 </suite> <!-- Suite -->

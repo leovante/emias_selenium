@@ -9,7 +9,7 @@ public class Waiter {
     static private WebDriver webDriver;
     static private WebDriverWait wait;
 
-    public Waiter(WebDriver driver) {
+    public static void setDriver(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
     }

@@ -1,5 +1,6 @@
 package pages.utilities;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class DriverManager {
 
     public DesiredCapabilities caps = null;
+    public ChromeOptions options = null;
     public String browser = null;
     public WebDriver driver = null;
 
@@ -19,9 +21,9 @@ public class DriverManager {
 
     public WebDriver createDriver() {
         if (browser.equals("firefox")) {
-            driver = new FirefoxDriver(caps);
+//            driver = new FirefoxDriver(options);
         } else if (browser.equals("chrome")) {
-            driver = new ChromeDriver(caps);
+            driver = new ChromeDriver(options);
         } else {
             Assert.assertTrue(false, "There is a problem on browser selection! Please check testng xml file!");
         }

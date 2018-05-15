@@ -11,7 +11,6 @@ import pages.utilities.Waiter;
 import java.util.List;
 
 public class ManageShedule extends BasePage {
-    final String doctorNull = null;
 
     DoctorMethods doctorMethods;
 
@@ -88,12 +87,10 @@ public class ManageShedule extends BasePage {
         Waiter.waitAllEmias();
     }
 
-    public void setNotReceiveDays() {
+    public void setNotReceiveDays(String firstDoctor) {
         Waiter.waitAllEmias();
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
 
-
-        String firstDoctor = doctorMethods.getUnicalDoctor2(null);
         driver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
         Waiter.waitAllEmias();
 
