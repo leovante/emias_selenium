@@ -45,6 +45,7 @@ public class TestBase {
         ChromeOptions options = new ChromeOptions();
 //        options.merge(capabilities);
         options.setHeadless(false);
+        options.addArguments("window-size=1200,1020");
 //        ChromeDriver driver = new ChromeDriver(service, options);
         driver = new ChromeDriver(service, options);
 //more capabilit https://sites.google.com/a/chromium.org/chromedriver/capabilities
