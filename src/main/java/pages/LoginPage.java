@@ -21,6 +21,11 @@ public class LoginPage extends BasePage {
     }
 
     public void login(){
+        driver.get("http://emias.mosreg.ru/demonstration");
+        enterLoginText("admin");
+        enterPasswordText("RChS2014");
+        clickLoginButton();
+
 //        switch () {
 //                case 1:
 //                webDriver.get("http://emias.mosreg.ru/mis/test_emias");
@@ -39,6 +44,7 @@ public class LoginPage extends BasePage {
 //                break;
 //                }
     }
+
 
     public void enterLoginText(String text) {
         loginInputField.clear();
