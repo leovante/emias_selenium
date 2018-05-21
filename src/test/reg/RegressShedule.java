@@ -102,11 +102,6 @@ public class RegressShedule extends TestBase {
 
     @Test//KEYS 1.5
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
-        driver.get("http://emias.mosreg.ru/demonstration");
-        page.loginPage().enterLoginText("admin");
-        page.loginPage().enterPasswordText("RChS2014");
-        page.loginPage().clickLoginButton();
-
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
@@ -127,12 +122,13 @@ public class RegressShedule extends TestBase {
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.admissionSchedule().createRecord(first_doctor_fullname);
 
-        driver.get("http://emias.mosreg.ru/demonstration/ScheduleWriting/Transfer");
-        Waiter.waitAllEmias();
+        page.homePage().logoHomeBtn();
+        page.homePage().transferRecordsBtn();
+
         first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         page.doctorMethods().selectDoctor(first_doctor_fullname);
-        page.transferRecords().trancRecord(second_doctor_fullname);
+        page.transferRecords().trancferRecord(second_doctor_fullname);
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.doctorMethods().selectDoctor(second_doctor_fullname);
 

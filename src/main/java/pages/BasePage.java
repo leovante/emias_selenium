@@ -49,5 +49,4 @@ public class BasePage {
             JSWaiter.sleep(200);
         }
     }
-
 }

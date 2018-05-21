@@ -1,17 +1,19 @@
 package pages.calldoctor;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import pages.BasePage;
-import pages.utilities.JSWaiter;
+        import org.openqa.selenium.*;
+        import org.openqa.selenium.interactions.Actions;
+        import org.openqa.selenium.support.FindBy;
+        import org.openqa.selenium.support.ui.ExpectedCondition;
+        import org.openqa.selenium.support.ui.ExpectedConditions;
+        import org.openqa.selenium.support.ui.WebDriverWait;
+        import org.testng.Assert;
+        import pages.BasePage;
+        import pages.utilities.JSWaiter;
 
-import java.util.ArrayList;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.List;
+
+        import static org.testng.AssertJUnit.assertTrue;
 
 
 public class CallDoctorPage extends BasePage {
@@ -73,9 +75,9 @@ public class CallDoctorPage extends BasePage {
 //        action.sendKeys("9511582714");
         action.sendKeys(Keys.ENTER);
 
-//        WebElement chkBox = driver.findElement(By.xpath("//mat-checkbox[@id='mat-checkbox-1']/label/div"));
-//        wait.until(ExpectedConditions.elementToBeClickable(chkBox));
-//        chkBox.click();
+        WebElement chkBox = driver.findElement(By.xpath("//mat-checkbox[@id='mat-checkbox-1']/label/div"));
+        wait.until(ExpectedConditions.elementToBeClickable(chkBox));
+        chkBox.click();
 
         WebElement hz = driver.findElement(By.xpath("//button[2]/span/mat-icon"));
         wait.until(ExpectedConditions.elementToBeClickable(hz));
@@ -131,16 +133,16 @@ public class CallDoctorPage extends BasePage {
 
         WebElement fam = driver.findElement(By.xpath("//input[@placeholder='Фамилия']"));
         wait.until(ExpectedConditions.elementToBeClickable(fam));
-        fam.sendKeys("Темников");
+        fam.sendKeys("Автотемников");
 
         WebElement name = driver.findElement(By.xpath("//input[@placeholder='Имя']"));
         wait.until(ExpectedConditions.elementToBeClickable(name));
-        name.sendKeys("Дмитрий");
+        name.sendKeys("Автодмитрий");
 
         WebElement otchestvo = driver.findElement(By.xpath("//input[@placeholder='Отчество']"));
         wait.until(ExpectedConditions.elementToBeClickable(otchestvo));
-        otchestvo.sendKeys("Олегович");
-        /*кто вызывает*/
+        otchestvo.sendKeys("Автоолегович");
+/*кто вызывает*/
         WebElement tipVisivaushego = driver.findElement(By.xpath("//input[@placeholder='Тип вызывающего']"));
         wait.until(ExpectedConditions.elementToBeClickable(tipVisivaushego));
         tipVisivaushego.click();
@@ -176,32 +178,10 @@ public class CallDoctorPage extends BasePage {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
-//        WebElement viberiteVracha = driver.findElement(By.xpath("//div[contains(text(), 'Подробно о вызове')]"));
-//        wait.until(ExpectedConditions.elementToBeClickable(viberiteVracha));
-
-
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
                         .xpath("//div[contains(., 'Подробно о вызове')]")));
 
-//        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By
-//                .xpath("//div[contains(text(), 'Подробно о вызове')]")));
-//        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By
-//                .xpath("//div[contains(text(), 'Подробно о вызове')]")));
-
-//        boolean a = false;
-//        do {
-//            Thread.sleep(1000);
-//
-//        } while (a == viberiteVracha.isDisplayed());
-/*
-        WebElement close = driver.findElement(By.xpath("//img[@src='assets/img/close.png']"));
-        wait.until(ExpectedConditions.elementToBeClickable(close));
-        close.click();
-
-        WebElement podrobnoOVizove = driver.findElement(By.xpath("//div[contains(text(),'Подробно о вызове')]"));
-        wait.until(ExpectedConditions.visibilityOfAllElements(podrobnoOVizove));
-*/
 
         WebElement adress = driver.findElement(By
                 .xpath("//span[contains(text(),'Московская обл., г. Коломна, ул. Первомайская, д.1, стр.3, корп.2, кв.4')]"));
@@ -210,14 +190,14 @@ public class CallDoctorPage extends BasePage {
         WebElement registr = driver.findElement(By.xpath("//span[contains(text(),'Регистратура')]"));
         wait.until(ExpectedConditions.elementToBeClickable(registr));
 
-        WebElement fio = driver.findElement(By.xpath("//span[contains(text(),'Темников')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(fio));
+        WebElement family = driver.findElement(By.xpath("//span[contains(text(),'Автотемников')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(family));
 
-        WebElement fio1 = driver.findElement(By.xpath("//span[contains(text(),'Дмитрий')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(fio1));
+        WebElement name = driver.findElement(By.xpath("//span[contains(text(),'Автодмитрий')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(name));
 
-        WebElement fio2 = driver.findElement(By.xpath("//span[contains(text(),'Олегович')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(fio2));
+        WebElement otchestvo = driver.findElement(By.xpath("//span[contains(text(),'Автоолегович')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(otchestvo));
 
         WebElement vozrastKat = driver.findElement(By.xpath("//span[contains(text(),'Взрослый')]"));
         wait.until(ExpectedConditions.elementToBeClickable(vozrastKat));
@@ -245,5 +225,65 @@ public class CallDoctorPage extends BasePage {
 
         WebElement izmenenie = driver.findElement(By.xpath("//span[contains(text(),'ИЗМЕНЕНИЕ')]"));
         wait.until(ExpectedConditions.elementToBeClickable(izmenenie));
+    }
+
+    public void cancelRecord() {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Подробно о вызове')]")));
+
+        WebElement cancelBtns = driver.findElement(By.xpath("//span[contains(text(),'Отменить вызов')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(cancelBtns));
+        cancelBtns.click();
+
+        WebElement cancelField = driver.findElement(By.xpath("//input[@placeholder='Причина отмены вызова']"));
+        wait.until(ExpectedConditions.elementToBeClickable(cancelField));
+        cancelField.sendKeys("отмена автотест");
+
+        WebElement cancelFieldBtn = driver.findElement(By.xpath("//a[@title='Отменить вызов']"));
+        wait.until(ExpectedConditions.elementToBeClickable(cancelFieldBtn));
+        cancelFieldBtn.click();
+    }
+
+    public void verifyCancelOnDashbord() {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//button")));
+
+        WebElement waitOperationFrame = driver.findElement(By.xpath("//span[contains(text(),'Ожидают обработки')]"));
+        assertTrue("Фрейм 'Ожидают обработки' - не найден", waitOperationFrame.isDisplayed() == false);
+
+/*
+        WebElement waitOperation = driver.findElement(By.xpath("//span[contains(text(),'Ожидают обработки')]"));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By
+                .xpath("//span[contains(text(),'Ожидают обработки')]")));
+        waitOperation.click();
+*/
+
+/*
+        WebElement close = driver.findElement(By.xpath("//img[@src='assets/img/close.png']"));
+        wait.until(ExpectedConditions.elementToBeClickable(close));
+        close.click();
+
+        WebElement podrobnoOVizove = driver.findElement(By.xpath("//div[contains(text(),'Подробно о вызове')]"));
+        wait.until(ExpectedConditions.visibilityOfAllElements(podrobnoOVizove));
+*/
+
+    }
+
+    public void verifyFullPageBtn() {
+        WebElement cancelBtns = driver.findElement(By.xpath("//span[contains(text(),'Изменить')]"));
+        cancelBtns.click();
+
+        WebElement editRecord = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Редактирование вызова')]")));
+
+        WebElement saveBtns = driver.findElement(By.xpath("//button[4]/span"));
+        saveBtns.click();
     }
 }

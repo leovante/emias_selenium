@@ -19,9 +19,6 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div/a/span")
     WebElement admissionScheduleBtn;
 
-//    @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[5]/a/span")
-//    WebElement transferRecordsBtn;
-
     @FindBy(xpath = "//div[@id='Portlet_2']/div[2]/div[5]/a/span")
     WebElement transferRecordsBtn;
 

@@ -35,7 +35,7 @@ public class TransferRecords extends BasePage {
         super(driver);
     }
 
-    public void trancRecord(String name) throws InterruptedException {
+    public void trancferRecord(String name) throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String secondDoctor = name;
         Waiter.waitAllEmias();
@@ -54,7 +54,12 @@ public class TransferRecords extends BasePage {
         selectDoctorFromTranWindow(secondDoctor);
 
         Waiter.waitBlockOverlay();
-        driver.findElement(By.xpath("//table[@id='resolve_collision_grid']/tbody/tr[3]/td")).click();
+        WebElement secondFrame = driver
+                .findElement(By.xpath("//table[@id='resolve_collision_grid']/tbody"))
+                .findElement(By.xpath(".//td[@title='23:44']"));
+        //вот здесь вместо tr[2] искать текущую дату
+        wait.until(ExpectedConditions.elementToBeClickable(secondFrame));
+        secondFrame.click();
         driver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();//перенести
         Waiter.waitBlockOverlay();
 
