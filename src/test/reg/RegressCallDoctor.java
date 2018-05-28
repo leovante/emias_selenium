@@ -12,6 +12,7 @@ public class RegressCallDoctor extends TestBase {
         page.homePage().manageSheduleBtn();
         String doctor_1 = page.doctorMethods().getUnicalDoctor(null);
         String doctor_1_fam = page.manageShedule().getSecondName(doctor_1);
+
         String doctor_2 = page.doctorMethods().getUnicalDoctor(doctor_1);
         String doctor_2_fam = page.manageShedule().getSecondName(doctor_2);
         String doctor_3 = page.doctorMethods().getUnicalDoctor(doctor_2);
@@ -49,9 +50,27 @@ public class RegressCallDoctor extends TestBase {
         page.callDoctorPage().closeRecordPage();
     }
 
+    @Test
+    public void testCallCC() throws Exception {
+    }
+
+    @Test
+    public void testCallPortal() throws Exception {
+    }
+
+    @Test
+    public void testSetDoctor() throws Exception {
+        //проверять имя врача на полной странице вызова и на дашборде через фильтр ФИО
+    }
+
+    @Test
+    public void testVerifyDashboard() throws Exception {
+        //нужно создавать вызов с уникальным именем и искать его через фильтр
+    }
+
     @Ignore
     @Test(dependsOnMethods = {"testCallRegistratura"})
-    public void testСancelRecord(){
+    public void testСancelRecord() {
         page.callDoctorPage().cancelRecord();
         page.callDoctorPage().verifyCancelOnDashbord();
     }
