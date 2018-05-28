@@ -1,39 +1,63 @@
-import org.codehaus.plexus.util.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-
-import java.io.File;
+import pages.utilities.CleanDoctorTimeTableSQL;
 
 public class RegressCallDoctor extends TestBase {
 
     @Ignore
-    @Test// KEYS 0.0
-    public void testProject() throws InterruptedException, ClassNotFoundException {
-        //кейс для быстрых проверочек
-    }
-
     @Test
-    public void testCreateRecord() throws Exception {
+    public void cleanBeforeWork() throws ClassNotFoundException {
+        CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
         page.loginPage().login();
-        page.homePage().callDoctorBtn();
-        page.callDoctorPage().switchToPage();
-        //driver.get("http://109.95.224.42:2165/test/call/call_doctor_ui/call-doctor;6628/board?ticket=rIjLfkzppVn535yZNj87yX%2bn%2flsaAQCvx%2f6oVgRslUhRxpjtjkE3e1xmu%2b8Oy5eSmWXcfaQ8A4Gz00wHkDVLg126daSKZsclYDKgmDUflgln66XRS1YyCvKTwov6E76m2wSPN4ptJ2Z7eSG9Bst2%2b5Vuf9Y2YzqosTC8TSyL%2fQO3JxsTQx%2bqj2IjwDOrVErC9uWF49Nhzrhud0t6pIU2UmFN1W5oi3ZSbkAzDm2wXAJtWumTCvZDVahRTQaxk8oJrXfyf3jSpJtCpMKxSY9WqRm1yDE2U4csJGEvp%2faas6WNWzF2&ReturnUrl=http%3a%2f%2fmis.softrust.ru%2fwhc%2fMain%2fDefault");
-        page.callDoctorPage().createCallOtRegistratura();
-        page.callDoctorPage().verifyCreateCall();
+        page.homePage().manageSheduleBtn();
+        String doctor_1 = page.doctorMethods().getUnicalDoctor(null);
+        String doctor_1_fam = page.manageShedule().getSecondName(doctor_1);
+        String doctor_2 = page.doctorMethods().getUnicalDoctor(doctor_1);
+        String doctor_2_fam = page.manageShedule().getSecondName(doctor_2);
+        String doctor_3 = page.doctorMethods().getUnicalDoctor(doctor_2);
+        String doctor_3_fam = page.manageShedule().getSecondName(doctor_3);
+        String doctor_4 = page.doctorMethods().getUnicalDoctor(doctor_3);
+        String doctor_4_fam = page.manageShedule().getSecondName(doctor_4);
+        String doctor_5 = page.doctorMethods().getUnicalDoctor(doctor_4);
+        String doctor_5_fam = page.manageShedule().getSecondName(doctor_5);
+        String doctor_6 = page.doctorMethods().getUnicalDoctor(doctor_5);
+        String doctor_6_fam = page.manageShedule().getSecondName(doctor_6);
+        String doctor_7 = page.doctorMethods().getUnicalDoctor(doctor_6);
+        String doctor_7_fam = page.manageShedule().getSecondName(doctor_7);
+        sql.deleteShedule(doctor_1_fam);
+        sql.deleteShedule(doctor_2_fam);
+        sql.deleteShedule(doctor_3_fam);
+        sql.deleteShedule(doctor_4_fam);
+        sql.deleteShedule(doctor_5_fam);
+        sql.deleteShedule(doctor_6_fam);
+        sql.deleteShedule(doctor_7_fam);
+
+        sql.finalizeCallDoctor(doctor_1_fam);
     }
 
-    @Test (dependsOnMethods = {"testCreateRecord"})
+    @Test(invocationCount = 20)
+    public void testCallRegistratura() throws Exception {
+        page.callDoctorPage().createCallRegistratura();
+        page.callDoctorPage().verifyCallRegistr();
+        page.callDoctorPage().closeRecordPage();
+    }
+
+    @Test(invocationCount = 20)
+    public void testCallSMP() throws Exception {
+        page.callDoctorPage().createCallSMP();
+        page.callDoctorPage().verifyCallSMP();
+        page.callDoctorPage().closeRecordPage();
+    }
+
+    @Ignore
+    @Test(dependsOnMethods = {"testCallRegistratura"})
     public void testСancelRecord(){
         page.callDoctorPage().cancelRecord();
         page.callDoctorPage().verifyCancelOnDashbord();
     }
 
-    @Test (dependsOnMethods = {"testCreateRecord"})
-    public void testVerifyFullPageBtn(){
-        page.callDoctorPage().verifyFullPageBtn();
-//        page.callDoctorPage().verifyCancelOnDashbord();
+    @Test(dependsOnMethods = {"testCallRegistratura"})
+    public void closeBtn() {
+        page.callDoctorPage().closeRecordPage();
     }
 }

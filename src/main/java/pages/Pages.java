@@ -3,12 +3,11 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.calldoctor.CallDoctorPage;
-import pages.calldoctor.CreateMedicalCard;
+import pages.other.CreateMedicalCard;
 import pages.shedule.AdmissionSchedule;
 import pages.shedule.DoctorMethods;
 import pages.shedule.ManageShedule;
 import pages.shedule.TransferRecords;
-import pages.utilities.Waiter;
 
 public class Pages extends BasePage {
 

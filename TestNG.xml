@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite thread-count="3" name="Suite" parallel="tests" >
-    <listeners>
-        <listener class-name="ScreenshotListener" />
-    </listeners>
-    <!--Suite Level Parameters-->
+<suite name="All Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
-    <test name="Regress">
-        <!--Test Level Parameter-->
-        <!--<parameter name="browser" value="firefox" />-->
+
+    <test name="RegressCallDoctor.java">
         <classes>
             <class name="RegressCallDoctor"/>
         </classes>
-    </test> <!-- First Test -->
+    </test>
 
-    <test name="RegressShedule">
-        <!--Test Level Parameter-->
-        <!--<parameter name="browser" value="firefox" />-->
+    <test name="RegressShedule.java">
         <classes>
             <class name="RegressShedule"/>
         </classes>
-    </test> <!-- First Test -->
-</suite> <!-- Suite  -->
+    </test>
+</suite>

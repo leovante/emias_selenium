@@ -16,7 +16,6 @@
 
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTimeTableSQL;
-import pages.utilities.Waiter;
 
 public class RegressShedule extends TestBase {
     CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();

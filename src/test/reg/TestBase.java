@@ -1,4 +1,3 @@
-
 import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,13 +11,14 @@ import org.testng.annotations.*;
 import pages.Pages;
 import pages.utilities.ChromeOptionsManager;
 import pages.utilities.JSWaiter;
+import pages.utilities.SwitchToPage;
 import pages.utilities.Waiter;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 
-public class TestBase {
+public abstract class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     //    private DesiredCapsManager desiredCapsManager = new DesiredCapsManager();
@@ -56,10 +56,15 @@ public class TestBase {
         //Create Driver with capabilities
 //        driver = new DriverManager(options).createDriver();
         JSWaiter.setDriver(driver);
+        SwitchToPage.setDriver(driver);
         Waiter.setDriver(driver);
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 20);
         page = new Pages(driver);
         listner = new ScreenshotListener(driver);
+
+        page.loginPage().login();
+        page.homePage().callDoctorBtn();
+        pages.utilities.SwitchToPage.switchToPage();
     }
 
     @AfterClass
@@ -76,6 +81,7 @@ public class TestBase {
 /*вот тут нужно что бы скрин был только если была ошибка*/
         takeSnapShot(driver, testResult);
     }
+
     public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);

@@ -1,4 +1,4 @@
-package pages.calldoctor;
+package pages.other;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
