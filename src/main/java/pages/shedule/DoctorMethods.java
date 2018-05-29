@@ -59,6 +59,34 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
+    public String getUnicalDoctor3(int doctorNum) {
+        Waiter.waitAllEmias();
+        waitWhileClickable(doctorRow);
+
+        List<String> badNames = new ArrayList<String>();
+        Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
+
+        List<WebElement> doctorList = driver
+                .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
+                .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
+
+        String doctorName = null;
+        for (WebElement doctor : doctorList) {
+            doctorName = doctor.getText();
+
+//                !badNames.contains(doctorName)
+
+
+            if (!badNames.contains(doctorName))
+                break;
+            if (doctorNum == 0)
+                break;
+            doctorNum = doctorNum - 1;
+        }
+
+        return doctorName;
+    }
+
     public String getUnicalDoctor2(String docName) {
         Waiter.waitAllEmias();
 

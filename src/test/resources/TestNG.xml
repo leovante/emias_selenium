@@ -4,15 +4,21 @@
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
 
-    <test name="RegressCallDoctor.java">
+    <test name="RegressGroup">
+        <groups>
+            <run>
+                <include name="CallDoctorBase"/>
+            </run>
+        </groups>
         <classes>
             <class name="RegressCallDoctor"/>
         </classes>
     </test>
 
-    <test name="RegressShedule.java">
-        <classes>
-            <class name="RegressShedule"/>
-        </classes>
-    </test>
+    <!--<test name="RegressShedule.java">-->
+    <!--<classes>-->
+    <!--<class name="RegressShedule"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 </suite>
+

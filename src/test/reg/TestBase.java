@@ -27,8 +27,8 @@ public abstract class TestBase {
     ScreenshotListener listner;
 
     @Parameters(value = {"browser", "platform"})
-    @BeforeClass
-    public void setupTest(@Optional String browser, @Optional String platform) throws MalformedURLException {
+    @BeforeSuite
+    public void beforeSuite(@Optional String browser, @Optional String platform) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
 
@@ -63,21 +63,31 @@ public abstract class TestBase {
         listner = new ScreenshotListener(driver);
 
         page.loginPage().login();
+    }
+
+    @AfterSuite
+    public void afterSuite() throws Exception {
+        driver.quit();
+    }
+
+    @BeforeGroups("CallDoctorBase")
+    public void beforeGroups() {
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
     }
 
-    @AfterClass
-    public void tearDown() throws Exception {
-        driver.quit();
+    @AfterGroups
+    public void afterGroups() {
+
     }
 
     @BeforeMethod
-    public void setup() {
+    public void beforeMethod() {
+
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDownMethod(ITestResult testResult) throws Exception {
+    public void afterMethod(ITestResult testResult) throws Exception {
 /*вот тут нужно что бы скрин был только если была ошибка*/
         takeSnapShot(driver, testResult);
     }
@@ -90,4 +100,3 @@ public abstract class TestBase {
         FileUtils.copyFile(SrcFile, DestFile);
     }
 }
-
