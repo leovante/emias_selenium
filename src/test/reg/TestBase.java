@@ -26,7 +26,7 @@ public class TestBase {
     Pages page;
     ScreenshotListener listner;
 
-    @Parameters(value = {"browser", "platform"})
+    @Parameters({"browser", "platform"})
     @BeforeClass
     public void setupTest(@Optional String browser, @Optional String platform) throws MalformedURLException {
         System.out.println("Browser: " + browser);
