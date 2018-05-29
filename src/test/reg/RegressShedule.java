@@ -16,14 +16,13 @@
 
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTimeTableSQL;
-import pages.utilities.Waiter;
 
+//@Ignore
 public class RegressShedule extends TestBase {
     CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
 
     @Test//KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
-        page.loginPage().login();
         page.homePage().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
@@ -31,12 +30,11 @@ public class RegressShedule extends TestBase {
         page.doctorMethods().selectDoctor(docFullName);
         page.manageShedule().createShedule();
 
-        page.manageShedule().verifyDeletedShedle();
+        page.manageShedule().verifyCreatedShedule();
     }
 
     @Test//KEYS 1.2
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
-        page.loginPage().login();
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
@@ -54,7 +52,6 @@ public class RegressShedule extends TestBase {
 
     @Test//KEYS 1.3
     public void setNotReceiveDays() throws InterruptedException {
-        page.loginPage().login();
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         page.manageShedule().setNotReceiveDays(firstDoctor);
@@ -64,7 +61,6 @@ public class RegressShedule extends TestBase {
 
     @Test//KEYS 1.4
     public void deleteShedule() throws InterruptedException, ClassNotFoundException {
-        page.loginPage().login();
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
@@ -86,7 +82,6 @@ public class RegressShedule extends TestBase {
 
     @Test//KEYS 1.5
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
-        page.loginPage().login();
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);

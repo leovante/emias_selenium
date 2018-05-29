@@ -1,8 +1,8 @@
 package pages.utilities;
 
 import java.sql.Connection;
-import java.sql.Statement;
 import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class CleanDoctorTimeTableSQL {
     String connectionUrl = "jdbc:sqlserver://12.8.1.66";
@@ -29,6 +29,31 @@ public class CleanDoctorTimeTableSQL {
                                 "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
                                 "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '17530101', GETDATE()) / 7) * 7) - 7, '17530101') " +
                                 "AND ldoc.FAM_V = '" + name + "'";
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Done.");
+                }
+                System.out.println("Clean is done.\n");
+            }
+        } catch (Exception e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+    }
+
+
+    public void finalizeCallDoctor(String name) throws ClassNotFoundException {
+        System.out.println("Clean base - " + name);
+        String url = this.connectionUrl +
+                ";databaseName=" + this.databaseName +
+                ";user=" + this.userName +
+                ";password=" + this.password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_calldoctor set rf_calldoctorstatusid = 3";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);

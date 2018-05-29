@@ -1,4 +1,3 @@
-
 import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -12,13 +11,14 @@ import org.testng.annotations.*;
 import pages.Pages;
 import pages.utilities.ChromeOptionsManager;
 import pages.utilities.JSWaiter;
+import pages.utilities.SwitchToPage;
 import pages.utilities.Waiter;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 
-public class TestBase {
+public abstract class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
     //    private DesiredCapsManager desiredCapsManager = new DesiredCapsManager();
@@ -26,9 +26,9 @@ public class TestBase {
     Pages page;
     ScreenshotListener listner;
 
-    @Parameters({"browser", "platform"})
-    @BeforeClass
-    public void setupTest(@Optional String browser, @Optional String platform) throws MalformedURLException {
+    @Parameters(value = {"browser", "platform"})
+    @BeforeSuite
+    public void beforeSuite(@Optional String browser, @Optional String platform) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
 
@@ -56,26 +56,42 @@ public class TestBase {
         //Create Driver with capabilities
 //        driver = new DriverManager(options).createDriver();
         JSWaiter.setDriver(driver);
+        SwitchToPage.setDriver(driver);
         Waiter.setDriver(driver);
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 20);
         page = new Pages(driver);
         listner = new ScreenshotListener(driver);
+
+        page.loginPage().login();
     }
 
-    @AfterClass
-    public void tearDown() throws Exception {
+    @AfterSuite
+    public void afterSuite() throws Exception {
         driver.quit();
     }
 
+    @BeforeGroups("CallDoctorBase")
+    public void beforeGroups() {
+        page.homePage().callDoctorBtn();
+        pages.utilities.SwitchToPage.switchToPage();
+    }
+
+    @AfterGroups
+    public void afterGroups() {
+
+    }
+
     @BeforeMethod
-    public void setup() {
+    public void beforeMethod() {
+
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDownMethod(ITestResult testResult) throws Exception {
+    public void afterMethod(ITestResult testResult) throws Exception {
 /*вот тут нужно что бы скрин был только если была ошибка*/
         takeSnapShot(driver, testResult);
     }
+
     public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
@@ -84,4 +100,3 @@ public class TestBase {
         FileUtils.copyFile(SrcFile, DestFile);
     }
 }
-
