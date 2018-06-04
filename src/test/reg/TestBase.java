@@ -76,9 +76,9 @@ public abstract class TestBase {
         pages.utilities.SwitchToPage.switchToPage();
     }
 
-    @AfterGroups
+    @AfterGroups("CallDoctorBase")
     public void afterGroups() {
-
+        page.dashboardPage().exitToMis();
     }
 
     @BeforeMethod

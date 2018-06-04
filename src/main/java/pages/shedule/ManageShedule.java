@@ -84,7 +84,7 @@ public class ManageShedule extends BasePage {
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
         Waiter.waitAllEmias();
-        Waiter.waitAllEmias();
+//        Waiter.waitAllEmias();
     }
 
     public void setNotReceiveDays(String firstDoctor) {

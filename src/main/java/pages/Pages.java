@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.calldoctor.CreateCallPage;
+import pages.calldoctor.DashboardPage;
 import pages.calldoctor.FullCardPage;
 import pages.calldoctor.SetDoctorPage;
 import pages.other.CreateMedicalCard;
@@ -52,7 +53,7 @@ public class Pages extends BasePage {
         return doctorMethods;
     }
 
-    public CreateCallPage callDoctorPage() {
+    public CreateCallPage createCallPage() {
         CreateCallPage createCallPage = PageFactory.initElements(driver, CreateCallPage.class);
         return createCallPage;
     }
@@ -65,7 +66,12 @@ public class Pages extends BasePage {
     public FullCardPage fullCardPage() {
         FullCardPage fullCardPage = PageFactory.initElements(driver, FullCardPage.class);
         return fullCardPage;
-}
+    }
+
+    public DashboardPage dashboardPage() {
+        DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
+        return dashboardPage;
+    }
 }
 
 //    public steps.AdmissionSchedule admissionSchedule() {

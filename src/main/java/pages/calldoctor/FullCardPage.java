@@ -16,6 +16,11 @@ public class FullCardPage extends BasePage {
     }
 
     public void appoindDoctor() throws InterruptedException {
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Карта вызова')]")));
+
+
         WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Назначить')]"));
         wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
         appoindBtns.click();

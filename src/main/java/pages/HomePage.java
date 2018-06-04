@@ -14,7 +14,7 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//div[@id='top']/a[2]/span")
     WebElement homePageBtn;
 
-    @FindBy(xpath = "//span[contains(text(),'Расписание приема')]")
+    @FindBy(xpath = "//span[contains(text(),'Расписание приёма')]")
     WebElement admissionScheduleBtn;
 
     @FindBy(xpath = "//span[contains(text(),'Перенос записей')]")

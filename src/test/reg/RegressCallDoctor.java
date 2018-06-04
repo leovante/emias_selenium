@@ -5,15 +5,15 @@ public class RegressCallDoctor extends TestBase {
     String doctorName;
     String doctorFam;
 
-    @Test(groups = "CallDoctorBase")
+    @Test(groups = "CallDoctorRegress")
     public void testCallRegistratura() throws Exception {
-        page.callDoctorPage().createCallRegistratura();
+        page.createCallPage().createCallRegistratura();
         page.fullCardPage().verifyCallRegistr();
     }
 
     @Test(groups = "CallDoctorBase")
     public void testCallMkab() throws Exception {
-        page.callDoctorPage().createCallMkab();
+        page.createCallPage().createCallMkab();
         page.fullCardPage().verifyCallMkab();
     }
 
@@ -27,28 +27,21 @@ public class RegressCallDoctor extends TestBase {
         page.fullCardPage().verifyAppoindPoctor(doctorFam);
     }
 
-    @Test(groups = "CallDoctorBase", dependsOnMethods = {"testCallMkab"})
+    @Test(groups = "CallDoctorBase", dependsOnMethods = {"testAppoindDoctor"})
     public void testCompleteService() throws Exception {
         page.fullCardPage().completeService();
         page.fullCardPage().verifyCompleteCall(doctorFam);
-
-
 /**
  * попросил ваню дать уникальный id на кнопку завершить обслуживание и кнопку отмены
- * */
-
-//        String doctorName = page.setDoctorPage().getDoctorName(1);
-//        page.setDoctorPage().appendDoctor(doctorName);
-//        String doctorFam = page.manageShedule().getSecondName(doctorName);
-//        page.callDoctorPage().verifyAppoindPoctor(doctorFam);
+ **/
     }
 
     @Ignore
     @Test(invocationCount = 20)
     public void testCallSMP() throws Exception {
-        page.callDoctorPage().createCallSMP();
+        page.createCallPage().createCallSMP();
         page.fullCardPage().verifyCallSMP();
-        page.callDoctorPage().closeRecordPage();
+        page.createCallPage().closeRecordPage();
     }
 
     @Ignore
@@ -76,13 +69,13 @@ public class RegressCallDoctor extends TestBase {
     @Ignore
     @Test(dependsOnMethods = {"testCallRegistratura"})
     public void testСancelRecord() {
-        page.callDoctorPage().cancelRecord();
-        page.callDoctorPage().verifyCancelOnDashbord();
+        page.createCallPage().cancelRecord();
+        page.createCallPage().verifyCancelOnDashbord();
     }
 
     @Ignore
     @Test(dependsOnMethods = {"testCallRegistratura"})
     public void closeBtn() {
-        page.callDoctorPage().closeRecordPage();
+        page.createCallPage().closeRecordPage();
     }
 }

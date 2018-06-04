@@ -31,6 +31,7 @@ public class RegressShedule extends TestBase {
         page.manageShedule().createShedule();
 
         page.manageShedule().verifyCreatedShedule();
+        page.homePage().logoHomeBtn();
     }
 
     @Test//KEYS 1.2
@@ -48,6 +49,7 @@ public class RegressShedule extends TestBase {
         page.doctorMethods().selectDoctor(firstDoctor);
 
         page.manageShedule().verifyCreatedShedule();
+        page.homePage().logoHomeBtn();
     }
 
     @Test//KEYS 1.3
@@ -57,6 +59,7 @@ public class RegressShedule extends TestBase {
         page.manageShedule().setNotReceiveDays(firstDoctor);
 
         page.manageShedule().verifyNotReceiveDays();
+        page.homePage().logoHomeBtn();
     }
 
     @Test//KEYS 1.4
@@ -78,6 +81,7 @@ public class RegressShedule extends TestBase {
         page.manageShedule().verifyCreatedShedule();
         page.manageShedule().deleteShedule();
         page.manageShedule().verifyDeletedShedle();
+        page.homePage().logoHomeBtn();
     }
 
     @Test//KEYS 1.5
@@ -113,5 +117,6 @@ public class RegressShedule extends TestBase {
         page.doctorMethods().selectDoctor(second_doctor_fullname);
 
         page.transferRecords().verifyTransferShedule();
+        page.homePage().logoHomeBtn();
     }
 }

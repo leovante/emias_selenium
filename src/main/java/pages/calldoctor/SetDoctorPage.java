@@ -28,6 +28,9 @@ public class SetDoctorPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'Назначить на сегодня')]")
     WebElement appenOnThisDay;
 
+    @FindBy(xpath = "//span[contains(.,'ЗАГРУЗКА СЕГОДНЯ')]")
+    WebElement loadCurrently;
+
     public String getDoctorName(int a) {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -35,6 +38,9 @@ public class SetDoctorPage extends BasePage {
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
                         .xpath("//div[contains(., 'ЗАГРУЗКА СЕГОДНЯ')]")));
+
+        click(loadCurrently);
+
 
         String doctorName = null;
         List<WebElement> doctorList = driver

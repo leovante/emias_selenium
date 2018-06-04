@@ -4,7 +4,7 @@
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
 
-    <test name="RegressGroup">
+    <test name="RegressCallDoctor.java">
         <groups>
             <run>
                 <include name="CallDoctorBase"/>
