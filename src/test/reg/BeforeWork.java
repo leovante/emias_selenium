@@ -68,7 +68,8 @@ public class BeforeWork extends TestBase {
         sql.deleteShedule(doctor_17_fam);
         sql.deleteShedule(doctor_18_fam);
 
-        sql.finalizeCallDoctor(doctor_1_fam);
+        sql.finalizeCallDoctor();
+
 /*создаем расписание для 20 врачей*/
         page.doctorMethods().selectDoctor(doctor_1);
         page.manageShedule().createShedule();

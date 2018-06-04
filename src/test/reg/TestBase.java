@@ -67,7 +67,7 @@ public abstract class TestBase {
 
     @AfterSuite
     public void afterSuite() throws Exception {
-        driver.quit();
+        //driver.quit();
     }
 
     @BeforeGroups("CallDoctorBase")

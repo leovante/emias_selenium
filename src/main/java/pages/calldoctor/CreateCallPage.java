@@ -11,7 +11,7 @@ import pages.utilities.JSWaiter;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-public class CallDoctorPage extends BasePage {
+public class CreateCallPage extends BasePage {
 
     @FindBy(xpath = "//addCallBtn[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
@@ -19,7 +19,7 @@ public class CallDoctorPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'СМП')]")
     WebElement SMP;
 
-    @FindBy(xpath = "//span/mat-icon")
+    @FindBy(xpath = "//button[@aria-label='Clear']/span/mat-icon")
     WebElement cancelAdress;
 
     @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
@@ -100,13 +100,35 @@ public class CallDoctorPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'Пациент')]")
     WebElement pacient;
 
+    @FindBy(xpath = "//span[contains(.,'Представитель')]")
+    WebElement predstav;
+
     @FindBy(xpath = "//span[contains(.,'Неотложный')]")
     WebElement neotlozhniy;
 
     @FindBy(xpath = "//button[3]/span/span")
     WebElement saveBtns;
 
-    public CallDoctorPage(WebDriver driver) {
+    @FindBy(id = "callFamily")
+    WebElement callFamily;
+
+    @FindBy(id = "callName")
+    WebElement callName;
+
+    @FindBy(id = "callPatronymic")
+    WebElement callPatronymic;
+
+    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(23, 150, 112);']")
+    WebElement thisDayLoadGreen;
+
+    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(252, 194, 54);']")
+    WebElement thisDayLoadYellow;
+
+    @FindBy(xpath = "//span[contains(.,'Назначить на сегодня')]")
+    WebElement appenOnThisDay;
+
+
+    public CreateCallPage(WebDriver driver) {
         super(driver);
     }
 
@@ -161,6 +183,7 @@ public class CallDoctorPage extends BasePage {
 /*кто пациент*/
         seriyaPol.sendKeys("111111");
         nomerPol.sendKeys("222222");
+        click(fam);
         fam.sendKeys("Автотемников");
         name.sendKeys("Автодмитрий");
         otchestvo.sendKeys("Автоолегович");
@@ -168,6 +191,73 @@ public class CallDoctorPage extends BasePage {
 /*кто вызывает*/
         tipVisivaushego.click();
         pacient.click();
+        saveBtns.click();
+    }
+
+    public void createCallMkab() throws InterruptedException {
+        Actions action = new Actions(driver);
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        click(addCallBtn);
+
+/*адрес*/
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
+        click(cancelAdress);
+        click(placeholder_adress);
+
+        placeholder_adress.sendKeys("Московская");
+        click(list_first_container);
+
+        placeholder_adress.sendKeys("Коломна");
+        click(list_first_container);
+
+        placeholder_adress.sendKeys("Первомайская");
+        click(list_first_container);
+
+/*обязательные поля*/
+        click(dom);
+        dom.sendKeys("1");
+
+//        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+//        jse1.executeScript("arguments[0].value='+79511582714';", telephoneNumber);
+//        click(telephoneNumber);
+//        action.sendKeys(Keys.ENTER);
+        click(chkBoxTelephone);
+        click(hz);
+        click(vozr);
+        hz2.click();
+
+/*необязательные поля*/
+        korpus.sendKeys("2");
+        stroenie.sendKeys("3");
+        kvartira.sendKeys("4");
+        pd.sendKeys("5");
+        dfon.sendKeys("6");
+        etazh.sendKeys("7");
+
+/*жалоба*/
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].value='автотест';", zhaloba);
+        zhaloba.sendKeys(Keys.SPACE);
+        action.sendKeys(Keys.ENTER).perform();
+
+/*кто пациент*/
+        seriyaPol.sendKeys("");
+        nomerPol.sendKeys("7854215965847521");
+//        click(fam);
+//        fam.sendKeys("Автотемников");
+//        name.sendKeys("Автодмитрий");
+//        otchestvo.sendKeys("Автоолегович");
+
+/*кто вызывает*/
+        tipVisivaushego.click();
+        predstav.click();
+//        click(callFamily);
+        callFamily.sendKeys("Автотемников");
+        callName.sendKeys("Автодмитрий");
+        callPatronymic.sendKeys("Автоолегович");
+
         saveBtns.click();
     }
 
@@ -235,89 +325,7 @@ public class CallDoctorPage extends BasePage {
         saveBtns.click();
     }
 
-    public void verifyCallRegistr() throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
 
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Подробно о вызове')]")));
-
-        Thread.sleep(700);
-        containsClickable("Дата");
-        containsClickable("Время");
-        containsClickable("Статус");
-        containsClickable("Вид вызова");
-        containsClickable("Источник");
-        containsClickable("АДРЕС");
-        containsClickable("ЖАЛОБЫ");
-        containsClickable("Возрастная категория");
-        containsClickable("КТО ПАЦИЕНТ");
-        containsClickable("КТО ВЫЗВАЛ");
-        containsClickable("КТО ОБСЛУЖИВАЕТ");
-        containsClickable("Телефон");
-        containsClickable("Врач");
-        containsClickable("ИСТОРИЯ ВЫЗОВА");
-        containsClickable("АВТОР");
-        containsClickable("ЧТО ИЗМЕНИЛОСЬ");
-        containsClickable("ИЗМЕНЕНИЕ");
-        containsClickable("Отменить вызов");
-        containsClickable("Изменить");
-        containsClickable("Передать в другое ЛПУ");
-
-        containsClickable("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
-        containsClickable("Регистратура");
-        containsClickable("Автотемников");
-        containsClickable("Автоолегович");
-        containsClickable("Взрослый");
-        containsClickable("111111");
-        containsClickable("222222");
-        containsClickable("Пациент");
-        containsClickable("Карта создана");
-        containsClickable("автотест");
-    }
-
-    public void verifyCallSMP() throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Подробно о вызове')]")));
-
-        Thread.sleep(700);
-        containsClickable("Дата");
-        containsClickable("Время");
-        containsClickable("Статус");
-        containsClickable("Вид вызова");
-        containsClickable("Источник");
-        containsClickable("АДРЕС");
-        containsClickable("ЖАЛОБЫ");
-        containsClickable("Возрастная категория");
-        containsClickable("КТО ПАЦИЕНТ");
-        containsClickable("КТО ВЫЗВАЛ");
-        containsClickable("КТО ОБСЛУЖИВАЕТ");
-        containsClickable("Телефон");
-        containsClickable("Врач");
-        containsClickable("ИСТОРИЯ ВЫЗОВА");
-        containsClickable("АВТОР");
-        containsClickable("ЧТО ИЗМЕНИЛОСЬ");
-        containsClickable("ИЗМЕНЕНИЕ");
-        containsClickable("Отменить вызов");
-        containsClickable("Изменить");
-        containsClickable("Передать в другое ЛПУ");
-
-        containsClickable("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
-        containsClickable("Регистратура");
-        containsClickable("Автотемников");
-        containsClickable("Автоолегович");
-        containsClickable("Взрослый");
-        containsClickable("111111");
-        containsClickable("222222");
-        containsClickable("Пациент");
-        containsClickable("Карта создана");
-        containsClickable("автотест");
-    }
 
     public void cancelRecord() {
         JSWaiter.waitJQueryAngular();

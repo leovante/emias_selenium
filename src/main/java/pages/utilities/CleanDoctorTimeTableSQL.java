@@ -43,8 +43,7 @@ public class CleanDoctorTimeTableSQL {
     }
 
 
-    public void finalizeCallDoctor(String name) throws ClassNotFoundException {
-        System.out.println("Clean base - " + name);
+    public void finalizeCallDoctor() throws ClassNotFoundException {
         String url = this.connectionUrl +
                 ";databaseName=" + this.databaseName +
                 ";user=" + this.userName +

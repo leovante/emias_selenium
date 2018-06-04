@@ -2,7 +2,9 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages.calldoctor.CallDoctorPage;
+import pages.calldoctor.CreateCallPage;
+import pages.calldoctor.FullCardPage;
+import pages.calldoctor.SetDoctorPage;
 import pages.other.CreateMedicalCard;
 import pages.shedule.AdmissionSchedule;
 import pages.shedule.DoctorMethods;
@@ -50,9 +52,19 @@ public class Pages extends BasePage {
         return doctorMethods;
     }
 
-    public CallDoctorPage callDoctorPage() {
-        CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
-        return callDoctorPage;
+    public CreateCallPage callDoctorPage() {
+        CreateCallPage createCallPage = PageFactory.initElements(driver, CreateCallPage.class);
+        return createCallPage;
+    }
+
+    public SetDoctorPage setDoctorPage() {
+        SetDoctorPage setDoctorPage = PageFactory.initElements(driver, SetDoctorPage.class);
+        return setDoctorPage;
+    }
+
+    public FullCardPage fullCardPage() {
+        FullCardPage fullCardPage = PageFactory.initElements(driver, FullCardPage.class);
+        return fullCardPage;
 }
 }
 
