@@ -70,6 +70,7 @@ public class DoctorMethods extends BasePage {
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
                 .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
 
+        int internalDocNum = doctorNum;
         String doctorName = null;
         for (WebElement doctor : doctorList) {
             doctorName = doctor.getText();
@@ -77,11 +78,14 @@ public class DoctorMethods extends BasePage {
 //                !badNames.contains(doctorName)
 
 
-            if (!badNames.contains(doctorName))
-                break;
-            if (doctorNum == 0)
-                break;
-            doctorNum = doctorNum - 1;
+            if (badNames.contains(doctorName)) {
+            } else {
+                if (internalDocNum == 1)
+                    break;
+                else {
+                    internalDocNum = internalDocNum - 1;
+                }
+            }
         }
 
         return doctorName;

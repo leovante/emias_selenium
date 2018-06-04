@@ -18,36 +18,51 @@ public class BeforeWork extends TestBase {
         String doctor_3 = page.doctorMethods().getUnicalDoctor3(3);
         String doctor_3_fam = page.manageShedule().getSecondName(doctor_3);
 
-        String doctor_4 = page.doctorMethods().getUnicalDoctor(doctor_3);
+        String doctor_4 = page.doctorMethods().getUnicalDoctor3(4);
         String doctor_4_fam = page.manageShedule().getSecondName(doctor_4);
-        String doctor_5 = page.doctorMethods().getUnicalDoctor(doctor_4);
+
+        String doctor_5 = page.doctorMethods().getUnicalDoctor3(5);
         String doctor_5_fam = page.manageShedule().getSecondName(doctor_5);
-        String doctor_6 = page.doctorMethods().getUnicalDoctor(doctor_5);
+
+        String doctor_6 = page.doctorMethods().getUnicalDoctor3(6);
         String doctor_6_fam = page.manageShedule().getSecondName(doctor_6);
-        String doctor_7 = page.doctorMethods().getUnicalDoctor(doctor_6);
+
+        String doctor_7 = page.doctorMethods().getUnicalDoctor3(7);
         String doctor_7_fam = page.manageShedule().getSecondName(doctor_7);
-        String doctor_8 = page.doctorMethods().getUnicalDoctor(doctor_7);
+
+        String doctor_8 = page.doctorMethods().getUnicalDoctor3(8);
         String doctor_8_fam = page.manageShedule().getSecondName(doctor_8);
-        String doctor_9 = page.doctorMethods().getUnicalDoctor(doctor_8);
+
+        String doctor_9 = page.doctorMethods().getUnicalDoctor3(9);
         String doctor_9_fam = page.manageShedule().getSecondName(doctor_9);
-        String doctor_10 = page.doctorMethods().getUnicalDoctor(doctor_9);
+
+        String doctor_10 = page.doctorMethods().getUnicalDoctor3(10);
         String doctor_10_fam = page.manageShedule().getSecondName(doctor_10);
-        String doctor_11 = page.doctorMethods().getUnicalDoctor(doctor_10);
+
+        String doctor_11 = page.doctorMethods().getUnicalDoctor3(11);
         String doctor_11_fam = page.manageShedule().getSecondName(doctor_11);
-        String doctor_12 = page.doctorMethods().getUnicalDoctor(doctor_11);
+
+        String doctor_12 = page.doctorMethods().getUnicalDoctor3(12);
         String doctor_12_fam = page.manageShedule().getSecondName(doctor_12);
-        String doctor_13 = page.doctorMethods().getUnicalDoctor(doctor_12);
+
+        String doctor_13 = page.doctorMethods().getUnicalDoctor3(13);
         String doctor_13_fam = page.manageShedule().getSecondName(doctor_13);
-        String doctor_14 = page.doctorMethods().getUnicalDoctor(doctor_13);
+
+        String doctor_14 = page.doctorMethods().getUnicalDoctor3(14);
         String doctor_14_fam = page.manageShedule().getSecondName(doctor_14);
-        String doctor_15 = page.doctorMethods().getUnicalDoctor(doctor_14);
+
+        String doctor_15 = page.doctorMethods().getUnicalDoctor3(15);
         String doctor_15_fam = page.manageShedule().getSecondName(doctor_15);
-        String doctor_16 = page.doctorMethods().getUnicalDoctor(doctor_15);
+
+        String doctor_16 = page.doctorMethods().getUnicalDoctor3(16);
         String doctor_16_fam = page.manageShedule().getSecondName(doctor_16);
-        String doctor_17 = page.doctorMethods().getUnicalDoctor(doctor_16);
+
+        String doctor_17 = page.doctorMethods().getUnicalDoctor3(17);
         String doctor_17_fam = page.manageShedule().getSecondName(doctor_17);
-        String doctor_18 = page.doctorMethods().getUnicalDoctor(doctor_17);
+
+        String doctor_18 = page.doctorMethods().getUnicalDoctor3(18);
         String doctor_18_fam = page.manageShedule().getSecondName(doctor_18);
+
 /*удаляем из базы расписание 20 врачей*/
         sql.deleteShedule(doctor_1_fam);
         sql.deleteShedule(doctor_2_fam);
