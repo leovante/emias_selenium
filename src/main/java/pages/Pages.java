@@ -7,10 +7,7 @@ import pages.calldoctor.DashboardPage;
 import pages.calldoctor.FullCardPage;
 import pages.calldoctor.SetDoctorPage;
 import pages.other.CreateMedicalCard;
-import pages.shedule.AdmissionSchedule;
-import pages.shedule.DoctorMethods;
-import pages.shedule.ManageShedule;
-import pages.shedule.TransferRecords;
+import pages.shedule.*;
 
 public class Pages extends BasePage {
 
@@ -71,6 +68,11 @@ public class Pages extends BasePage {
     public DashboardPage dashboardPage() {
         DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
         return dashboardPage;
+    }
+
+    public BeforeWork beforeWork() {
+        BeforeWork beforeWork = PageFactory.initElements(driver, BeforeWork.class);
+        return beforeWork;
     }
 }
 

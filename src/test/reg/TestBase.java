@@ -43,7 +43,7 @@ public abstract class TestBase {
         ChromeOptions options = new ChromeOptions();
 //        options.merge(capabilities);
         options.setHeadless(false);
-        options.addArguments("window-size=1200,1020");
+        options.addArguments("window-size=1300,1020");
 //        ChromeDriver driver = new ChromeDriver(service, options);
         driver = new ChromeDriver(service, options);
 //more capabilit https://sites.google.com/a/chromium.org/chromedriver/capabilities
@@ -70,6 +70,18 @@ public abstract class TestBase {
         //driver.quit();
     }
 
+
+    @BeforeGroups("CallDoctorRegress")
+    public void beforeGroupsRegress() {
+        page.homePage().callDoctorBtn();
+        pages.utilities.SwitchToPage.switchToPage();
+    }
+
+    @AfterGroups("CallDoctorRegress")
+    public void afterGroupsRegress() {
+        page.dashboardPage().exitToMis();
+    }
+
     @BeforeGroups("CallDoctorBase")
     public void beforeGroups() {
         page.homePage().callDoctorBtn();
@@ -80,6 +92,7 @@ public abstract class TestBase {
     public void afterGroups() {
         page.dashboardPage().exitToMis();
     }
+
 
     @BeforeMethod
     public void beforeMethod() {

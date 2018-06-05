@@ -1,8 +1,11 @@
 package pages.calldoctor;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
@@ -11,6 +14,13 @@ import pages.utilities.JSWaiter;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class FullCardPage extends BasePage {
+
+    @FindBy(id = "doneCall")
+    WebElement doneCall;
+
+    @FindBy(xpath = "//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']")
+    WebElement mat_calendar_header;
+
     public FullCardPage(WebDriver driver) {
         super(driver);
     }
@@ -27,9 +37,14 @@ public class FullCardPage extends BasePage {
     }
 
     public void completeService() throws InterruptedException {
+        Actions action = new Actions(driver);
         WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Завершить обслуживание')]"));
         wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
         appoindBtns.click();
+
+        click(mat_calendar_header);
+        action.sendKeys(Keys.ENTER).perform();
+        click(doneCall);
     }
 
 
@@ -249,8 +264,8 @@ public class FullCardPage extends BasePage {
         containsClickable("АВТОР");
         containsClickable("ЧТО ИЗМЕНИЛОСЬ");
         containsClickable("ИЗМЕНЕНИЕ");
-        containsClickable("Отменить вызов");
-        containsClickable("Изменить");
+//        containsClickable("Отменить вызов");
+///        containsClickable("Изменить");
         containsClickable("Передать в другое ЛПУ");
 
         containsClickable("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");

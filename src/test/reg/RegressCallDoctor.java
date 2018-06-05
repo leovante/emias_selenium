@@ -5,6 +5,7 @@ public class RegressCallDoctor extends TestBase {
     String doctorName;
     String doctorFam;
 
+    @Ignore
     @Test(groups = "CallDoctorRegress")
     public void testCallRegistratura() throws Exception {
         page.createCallPage().createCallRegistratura();
@@ -31,9 +32,6 @@ public class RegressCallDoctor extends TestBase {
     public void testCompleteService() throws Exception {
         page.fullCardPage().completeService();
         page.fullCardPage().verifyCompleteCall(doctorFam);
-/**
- * попросил ваню дать уникальный id на кнопку завершить обслуживание и кнопку отмены
- **/
     }
 
     @Ignore

@@ -64,7 +64,7 @@ public class DoctorMethods extends BasePage {
         waitWhileClickable(doctorRow);
 
         List<String> badNames = new ArrayList<String>();
-        Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
+        Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null", "Моков Павел Александрович");
 
         List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
