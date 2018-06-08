@@ -59,4 +59,17 @@ abstract public class BasePage {
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
         assertTrue(element.isDisplayed());
     }
+
+    public void sendKeys(WebElement element, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        click(element);
+        element.sendKeys(text);
+    }
+
+    public void sendNomerPol(WebElement element, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        click(element);
+        element.sendKeys(text);
+        assertTrue(element.isEnabled());
+    }
 }

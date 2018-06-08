@@ -127,12 +127,18 @@ public class CreateCallPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'Назначить на сегодня')]")
     WebElement appenOnThisDay;
 
+    @FindBy(xpath = "//div[contains(.,'Найдена МКАБ пациента Афанасьева')]")
+    WebElement naidena_mkab;
+
+    @FindBy(xpath = "//*[contains(.,'МКАБ не найдена')]")
+    WebElement mkabError;
+
 
     public CreateCallPage(WebDriver driver) {
         super(driver);
     }
 
-    public void createCallRegistratura() throws InterruptedException {
+    public void createCallRegistr() throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -154,25 +160,24 @@ public class CreateCallPage extends BasePage {
         click(list_first_container);
 
 /*обязательные поля*/
-        click(dom);
-        dom.sendKeys("1");
-
-//        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-//        jse1.executeScript("arguments[0].value='+79511582714';", telephoneNumber);
-//        click(telephoneNumber);
-//        action.sendKeys(Keys.ENTER);
+        sendKeys(dom, "101");
         click(chkBoxTelephone);
+
+        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
+        telephoneNumber.click();
+
         click(hz);
         click(vozr);
         hz2.click();
 
 /*необязательные поля*/
-        korpus.sendKeys("2");
-        stroenie.sendKeys("3");
-        kvartira.sendKeys("4");
-        pd.sendKeys("5");
-        dfon.sendKeys("6");
-        etazh.sendKeys("7");
+        sendKeys(korpus, "202");
+        sendKeys(stroenie, "303");
+        sendKeys(kvartira, "404");
+        sendKeys(pd, "505");
+        sendKeys(dfon, "606");
+        sendKeys(etazh, "707");
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -181,12 +186,12 @@ public class CreateCallPage extends BasePage {
         action.sendKeys(Keys.ENTER).perform();
 
 /*кто пациент*/
-        seriyaPol.sendKeys("111111");
-        nomerPol.sendKeys("222222");
+        sendKeys(seriyaPol, "12345678");
+        sendKeys(nomerPol, "87654321");
         click(fam);
-        fam.sendKeys("Автотемников");
-        name.sendKeys("Автодмитрий");
-        otchestvo.sendKeys("Автоолегович");
+        sendKeys(fam, "Автотемников");
+        sendKeys(name, "Автодмитрий");
+        sendKeys(otchestvo, "Автоолегович");
 
 /*кто вызывает*/
         tipVisivaushego.click();
@@ -194,7 +199,7 @@ public class CreateCallPage extends BasePage {
         saveBtns.click();
     }
 
-    public void createCallMkab() throws InterruptedException {
+    public void createCallRegistrMkab() throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -216,25 +221,20 @@ public class CreateCallPage extends BasePage {
         click(list_first_container);
 
 /*обязательные поля*/
-        click(dom);
-        dom.sendKeys("1");
-
-//        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-//        jse1.executeScript("arguments[0].value='+79511582714';", telephoneNumber);
-//        click(telephoneNumber);
-//        action.sendKeys(Keys.ENTER);
+        sendKeys(dom, "101");
         click(chkBoxTelephone);
-        click(hz);
-        click(vozr);
-        hz2.click();
+
+        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
+        telephoneNumber.click();
 
 /*необязательные поля*/
-        korpus.sendKeys("2");
-        stroenie.sendKeys("3");
-        kvartira.sendKeys("4");
-        pd.sendKeys("5");
-        dfon.sendKeys("6");
-        etazh.sendKeys("7");
+        sendKeys(korpus, "202");
+        sendKeys(stroenie, "303");
+        sendKeys(kvartira, "404");
+        sendKeys(pd, "505");
+        sendKeys(dfon, "606");
+        sendKeys(etazh, "707");
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -243,20 +243,14 @@ public class CreateCallPage extends BasePage {
         action.sendKeys(Keys.ENTER).perform();
 
 /*кто пациент*/
-        seriyaPol.sendKeys("");
-        nomerPol.sendKeys("7854215965847521");
-//        click(fam);
-//        fam.sendKeys("Автотемников");
-//        name.sendKeys("Автодмитрий");
-//        otchestvo.sendKeys("Автоолегович");
+        sendNomerPol(nomerPol, "7854215965847521");
 
 /*кто вызывает*/
         tipVisivaushego.click();
         predstav.click();
-//        click(callFamily);
-        callFamily.sendKeys("Автотемников");
-        callName.sendKeys("Автодмитрий");
-        callPatronymic.sendKeys("Автоолегович");
+        sendKeys(callFamily, "Автотемников");
+        sendKeys(callName, "Автодмитрий");
+        sendKeys(callPatronymic, "Автоолегович");
 
         saveBtns.click();
     }
@@ -285,11 +279,76 @@ public class CreateCallPage extends BasePage {
         click(list_first_container);
 
 /*обязательные поля*/
+        sendKeys(dom, "1");
+
+        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
+        click(telephoneNumber);
+//        action.sendKeys(Keys.ENTER);
+//        click(chkBoxTelephone);
+        click(hz);
+        click(vozr);
+        hz2.click();
+
+/*необязательные поля*/
+        sendKeys(korpus, "202");
+        sendKeys(stroenie, "303");
+        sendKeys(kvartira, "404");
+        sendKeys(pd, "505");
+        sendKeys(dfon, "606");
+        sendKeys(etazh, "707");
+
+        click(vidVisova);
+        click(neotlozhniy);
+
+/*жалоба*/
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].value='автотест';", zhaloba);
+        zhaloba.sendKeys(Keys.SPACE);
+        action.sendKeys(Keys.ENTER).perform();
+
+/*кто пациент*/
+        sendKeys(seriyaPol, "12345678");
+        sendKeys(nomerPol, "87654321");
+        sendKeys(fam, "Автотемников");
+        sendKeys(name, "Автодмитрий");
+        sendKeys(otchestvo, "Автоолегович");
+
+/*кто вызывает*/
+        tipVisivaushego.click();
+        pacient.click();
+        saveBtns.click();
+    }
+
+    public void createCallSMPMkab() throws InterruptedException {
+        Actions action = new Actions(driver);
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        click(addCallBtn);
+
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
+        SMP.click();//вот здесь начинаются проблемы
+
+        /*адрес*/
+        click(cancelAdress);
+        click(placeholder_adress);
+
+        placeholder_adress.sendKeys("Московская");
+        click(list_first_container);
+
+        placeholder_adress.sendKeys("Коломна");
+        click(list_first_container);
+
+        placeholder_adress.sendKeys("Первомайская");
+        click(list_first_container);
+
+/*обязательные поля*/
         click(dom);
         dom.sendKeys("1");
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='+79511582714';", telephoneNumber);
+        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
         click(telephoneNumber);
 //        action.sendKeys(Keys.ENTER);
 //        click(chkBoxTelephone);
@@ -324,7 +383,6 @@ public class CreateCallPage extends BasePage {
         pacient.click();
         saveBtns.click();
     }
-
 
 
     public void cancelRecord() {
@@ -372,11 +430,5 @@ public class CreateCallPage extends BasePage {
         WebElement podrobnoOVizove = driver.findElement(By.xpath("//div[contains(text(),'Подробно о вызове')]"));
         wait.until(ExpectedConditions.visibilityOfAllElements(podrobnoOVizove));
 */
-    }
-
-    public void closeRecordPage() {
-        WebElement close = driver.findElement(By.xpath("//img[@src='assets/img/close.png']"));
-        wait.until(ExpectedConditions.elementToBeClickable(close));
-        close.click();
     }
 }

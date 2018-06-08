@@ -2,10 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages.calldoctor.CreateCallPage;
-import pages.calldoctor.DashboardPage;
-import pages.calldoctor.FullCardPage;
-import pages.calldoctor.SetDoctorPage;
+import pages.calldoctor.*;
 import pages.other.CreateMedicalCard;
 import pages.shedule.*;
 
@@ -73,6 +70,11 @@ public class Pages extends BasePage {
     public BeforeWork beforeWork() {
         BeforeWork beforeWork = PageFactory.initElements(driver, BeforeWork.class);
         return beforeWork;
+    }
+
+    public EditCardPage editCardPage() {
+        EditCardPage editCardPage = PageFactory.initElements(driver, EditCardPage.class);
+        return editCardPage;
     }
 }
 

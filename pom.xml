@@ -8,7 +8,7 @@
     <artifactId>1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>RegressCallDoctor</name>
+    <name>RCD01_1_1</name>
 
     <build>
         <plugins>

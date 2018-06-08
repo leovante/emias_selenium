@@ -8,7 +8,7 @@ public class BeforeWork extends TestBase {
         CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
         page.homePage().manageSheduleBtn();
 
-        createShedule(18);
+        createShedule(15);
     }
 
     public void createShedule(int i) throws ClassNotFoundException, InterruptedException {
