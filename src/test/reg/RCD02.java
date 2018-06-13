@@ -1,11 +1,17 @@
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pages.utilities.StringGenerator;
 
 public class RCD02 extends TestBase {
+    String nameGen;
+
     @BeforeMethod
     public void beforeMethod() {
-        //тут напиши всякие ожидалки загрузки страницы
+        StringGenerator nameGen = new StringGenerator();
+        String name = String.valueOf(nameGen.generator());
+        this.nameGen = name;
     }
 
     @AfterMethod
@@ -14,16 +20,19 @@ public class RCD02 extends TestBase {
         takeSnapShot(driver, testResult);
     }
 
-/*
     @Test(groups = "regress")
-    public void testEditCallRegistrNew() throws Exception {
-        //есть косяк, когда нажимаем изменить вызов
-        //подгружаемые данные в поля не отображаются в верстке
-        page.editCardPage().editCallBtn();
-        page.editCardPage().verifyCallMkabNew();
-        page.editCardPage().saveCallBtn();
+    public void testCallRegistr() throws Exception {
+        page.createCallPage().createCallRegistrProfile1(nameGen);
+        page.fullCardPage().verifyCallRegistrProfile1New(nameGen);
     }
 
+    @Test(groups = "regress", dependsOnMethods = {"testCallRegistr"})
+    public void testEditCallRegistrNew() throws Exception {
+        page.editCardPage().editCallBtn();
+        page.editCardPage().editCallRegistrProfile2(nameGen);
+        page.fullCardPage().verifyCallRegistrProfile2New(nameGen);
+    }
+/*
     @Test(groups = "regress")
     public void testEditCallRegistrActivity() throws Exception {
         //есть косяк, когда нажимаем изменить вызов
@@ -88,5 +97,4 @@ public class RCD02 extends TestBase {
         page.editCardPage().saveCallBtn();
     }
 */
-
 }

@@ -16,7 +16,7 @@ public class CreateCallPage extends BasePage {
     @FindBy(xpath = "//addCallBtn[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
 
-    @FindBy(xpath = "//span[contains(.,'СМП')]")
+    @FindBy(xpath = "//div[contains(text(),'СМП')]")
     WebElement SMP;
 
     @FindBy(xpath = "//button[@aria-label='Clear']/span/mat-icon")
@@ -94,7 +94,7 @@ public class CreateCallPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Тип вызывающего']")
     WebElement tipVisivaushego;
 
-    @FindBy(xpath = "//input[@placeholder='Вид вызова']")
+    @FindBy(xpath = "//div[contains(.,'Вид вызова')]")
     WebElement vidVisova;
 
     @FindBy(xpath = "//span[contains(.,'Пациент')]")
@@ -103,7 +103,7 @@ public class CreateCallPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'Представитель')]")
     WebElement predstav;
 
-    @FindBy(xpath = "//span[contains(.,'Неотложный')]")
+    @FindBy(xpath = "//*[contains(.,'Неотложный')]")
     WebElement neotlozhniy;
 
     @FindBy(xpath = "//button[3]/span/span")
@@ -138,7 +138,7 @@ public class CreateCallPage extends BasePage {
         super(driver);
     }
 
-    public void createCallRegistr() throws InterruptedException {
+    public void createCallRegistrProfile1(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -190,7 +190,7 @@ public class CreateCallPage extends BasePage {
         sendKeys(nomerPol, "87654321");
         click(fam);
         sendKeys(fam, "Автотемников");
-        sendKeys(name, "Автодмитрий");
+        sendKeys(name, nameGen);
         sendKeys(otchestvo, "Автоолегович");
 
 /*кто вызывает*/
@@ -199,7 +199,7 @@ public class CreateCallPage extends BasePage {
         saveBtns.click();
     }
 
-    public void createCallRegistrMkab() throws InterruptedException {
+    public void createCallRegistrMkabProfile1() throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -263,7 +263,6 @@ public class CreateCallPage extends BasePage {
         click(addCallBtn);
 
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
-        SMP.click();//вот здесь начинаются проблемы
 
         /*адрес*/
         click(cancelAdress);
@@ -279,13 +278,12 @@ public class CreateCallPage extends BasePage {
         click(list_first_container);
 
 /*обязательные поля*/
-        sendKeys(dom, "1");
+        sendKeys(dom, "101");
+        click(chkBoxTelephone);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
         jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
-        click(telephoneNumber);
-//        action.sendKeys(Keys.ENTER);
-//        click(chkBoxTelephone);
+        telephoneNumber.click();
         click(hz);
         click(vozr);
         hz2.click();
@@ -299,7 +297,7 @@ public class CreateCallPage extends BasePage {
         sendKeys(etazh, "707");
 
         click(vidVisova);
-        click(neotlozhniy);
+        clickJS(neotlozhniy);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -310,13 +308,17 @@ public class CreateCallPage extends BasePage {
 /*кто пациент*/
         sendKeys(seriyaPol, "12345678");
         sendKeys(nomerPol, "87654321");
+        click(fam);
         sendKeys(fam, "Автотемников");
         sendKeys(name, "Автодмитрий");
         sendKeys(otchestvo, "Автоолегович");
 
 /*кто вызывает*/
+        click(SMP);//не хочет выбирать СМП. Выбирает повторный
+
         tipVisivaushego.click();
         pacient.click();
+
         saveBtns.click();
     }
 

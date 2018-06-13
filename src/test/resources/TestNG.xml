@@ -11,7 +11,10 @@
             </run>
         </groups>
         <classes>
+            <class name="BeforeWork"/>
             <class name="RCD01"/>
+            <class name="RCD02"/>
+            <class name="RCD03"/>
         </classes>
     </test>
 

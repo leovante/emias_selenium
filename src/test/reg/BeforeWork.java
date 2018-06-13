@@ -2,17 +2,15 @@ import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTimeTableSQL;
 
 public class BeforeWork extends TestBase {
+    CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
 
     @Test
     public void cleanBeforeWork() throws ClassNotFoundException, InterruptedException {
-        CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
         page.homePage().manageSheduleBtn();
-
         createShedule(15);
     }
 
     public void createShedule(int i) throws ClassNotFoundException, InterruptedException {
-        CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
         int n = 1;
 
         while (n <= i) {

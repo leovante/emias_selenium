@@ -73,7 +73,7 @@ public class EditCardPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Этаж']")
     WebElement etazh;
 
-    @FindBy(xpath = "//input[@aria-label='Введите текст жалобы']")
+    @FindBy(xpath = "//input[@aria-label='Добавить жалобу']")
     WebElement zhaloba;
 
     @FindBy(xpath = "//input[@placeholder='Серия']")
@@ -106,7 +106,7 @@ public class EditCardPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'Неотложный')]")
     WebElement neotlozhniy;
 
-    @FindBy(xpath = "//button[3]/span/span")
+    @FindBy(xpath = "//span[contains(text(),'Сохранить')]")
     WebElement saveBtns;
 
     @FindBy(id = "callFamily")
@@ -133,6 +133,67 @@ public class EditCardPage extends BasePage {
     public EditCardPage(WebDriver driver) {
         super(driver);
     }
+
+    public void editCallRegistrProfile2(String nameGen) throws InterruptedException {
+        Actions action = new Actions(driver);
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+
+/*адрес*/
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
+        click(cancelAdress);
+        click(placeholder_adress);
+
+        placeholder_adress.sendKeys("Московская");
+        click(list_first_container);
+
+        placeholder_adress.sendKeys("Коломна");
+        click(list_first_container);
+
+        placeholder_adress.sendKeys("Эдельвейс");
+        click(list_first_container);
+
+/*обязательные поля*/
+        sendKeys(dom, "121");
+        //click(chkBoxTelephone);
+
+        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
+        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
+        telephoneNumber.click();
+
+        click(hz);
+        click(vozr);
+        hz2.click();
+
+/*необязательные поля*/
+        sendKeys(korpus, "222");
+        sendKeys(stroenie, "323");
+        sendKeys(kvartira, "424");
+        sendKeys(pd, "525");
+        sendKeys(dfon, "626");
+        sendKeys(etazh, "727");
+
+/*жалоба*/
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].value='автотест2';", zhaloba);
+        zhaloba.sendKeys(Keys.SPACE);
+        action.sendKeys(Keys.ENTER).perform();
+
+/*кто пациент*/
+        sendKeys(seriyaPol, "159753");
+        sendKeys(nomerPol, "852456");
+        click(fam);
+        sendKeys(fam, "АвтотемниковДва");
+        sendKeys(name, nameGen);
+        sendKeys(otchestvo, "АвтоолеговичДва");
+
+/*кто вызывает*/
+        tipVisivaushego.click();
+        pacient.click();
+        click(saveBtns);
+    }
+
 
     public void editCallToMkab2() throws InterruptedException {
         Actions action = new Actions(driver);
@@ -206,7 +267,6 @@ public class EditCardPage extends BasePage {
         callPatronymic.sendKeys("Автоолеговичизменил");
 
         assertTrue(naidena_mkab.isEnabled());
-        saveBtns.click();
     }
 
     public void verifyCallMkabNew() throws InterruptedException {
@@ -218,46 +278,46 @@ public class EditCardPage extends BasePage {
                         .xpath("//div[contains(., 'Редактирование вызова')]")));
 
         Thread.sleep(700);
-        containsClickable("Дата");
-        containsClickable("Время");
-        containsClickable("Статус");
-        containsClickable("Вид вызова");
-        containsClickable("Источник");
-        containsClickable("АДРЕС");
-        containsClickable("ЖАЛОБЫ");
-        containsClickable("Возрастная категория");
-        containsClickable("КТО ПАЦИЕНТ");
-        containsClickable("КТО ВЫЗВАЛ");
-        containsClickable("КТО ОБСЛУЖИВАЕТ");
-        containsClickable("Телефон");
-        containsClickable("Врач");
-        containsClickable("ИСТОРИЯ ВЫЗОВА");
-        containsClickable("АВТОР");
-        containsClickable("ЧТО ИЗМЕНИЛОСЬ");
-        containsClickable("ИЗМЕНЕНИЕ");
-        containsClickable("Отменить вызов");
-        containsClickable("Изменить");
-        containsClickable("Передать в другое ЛПУ");
+        containsIsDisplayed("Дата");
+        containsIsDisplayed("Время");
+        containsIsDisplayed("Статус");
+        containsIsDisplayed("Вид вызова");
+        containsIsDisplayed("Источник");
+        containsIsDisplayed("АДРЕС");
+        containsIsDisplayed("ЖАЛОБЫ");
+        containsIsDisplayed("Возрастная категория");
+        containsIsDisplayed("КТО ПАЦИЕНТ");
+        containsIsDisplayed("КТО ВЫЗВАЛ");
+        containsIsDisplayed("КТО ОБСЛУЖИВАЕТ");
+        containsIsDisplayed("Телефон");
+        containsIsDisplayed("Врач");
+        containsIsDisplayed("ИСТОРИЯ ВЫЗОВА");
+        containsIsDisplayed("АВТОР");
+        containsIsDisplayed("ЧТО ИЗМЕНИЛОСЬ");
+        containsIsDisplayed("ИЗМЕНЕНИЕ");
+        containsIsDisplayed("Отменить вызов");
+        containsIsDisplayed("Изменить");
+        containsIsDisplayed("Передать в другое ЛПУ");
 
-        containsClickable("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
-        containsClickable("Новый");
-        containsClickable("Первичный");
-        containsClickable("Регистратура");
-        containsClickable("Афанасьева");
-        containsClickable("Софья");
-        containsClickable("Петровна");
-        containsClickable("");
-        containsClickable("7854215965847521");
-        containsClickable("Представитель");
-        containsClickable("Карта создана");
-        containsClickable("автотест");
-        containsClickable("19.02.2016");
-        containsClickable("2 года");
-        containsClickable("Ребенок");
-        containsClickable("Автотемников");
-        containsClickable("Автодмитрий");
-        containsClickable("Автоолегович");
-        containsClickable("Не назначен");
+        containsIsDisplayed("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
+        containsIsDisplayed("Новый");
+        containsIsDisplayed("Первичный");
+        containsIsDisplayed("Регистратура");
+        containsIsDisplayed("Афанасьева");
+        containsIsDisplayed("Софья");
+        containsIsDisplayed("Петровна");
+        containsIsDisplayed("");
+        containsIsDisplayed("7854215965847521");
+        containsIsDisplayed("Представитель");
+        containsIsDisplayed("Карта создана");
+        containsIsDisplayed("автотест");
+        containsIsDisplayed("19.02.2016");
+        containsIsDisplayed("2 года");
+        containsIsDisplayed("Ребенок");
+        containsIsDisplayed("Автотемников");
+        containsIsDisplayed("Автодмитрий");
+        containsIsDisplayed("Автоолегович");
+        containsIsDisplayed("Не назначен");
 
     }
 
@@ -277,9 +337,4 @@ public class EditCardPage extends BasePage {
 
     }
 
-    public void saveCallBtn() {
-        assertTrue(naidena_mkab.isEnabled());
-        saveBtns.click();
-
-    }
 }

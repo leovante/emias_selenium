@@ -1,6 +1,7 @@
 package pages.shedule;
 
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,8 @@ import pages.utilities.Waiter;
 
 import java.util.Iterator;
 import java.util.Set;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 public class AdmissionSchedule extends BasePage {
     DoctorMethods doctorMethods;
@@ -74,5 +77,14 @@ public class AdmissionSchedule extends BasePage {
 
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    public void verifyFindCallName(String nameGen) {
+        Waiter.waitAllEmias();
+        wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
+        Waiter.waitAllEmias();
+        wait.until(ExpectedConditions.elementToBeClickable(recordElement));
+        WebElement containName = driver.findElement(By.xpath("//*[contains(.,'" + nameGen + "')]"));
+        assertTrue(containName.isEnabled());
     }
 }

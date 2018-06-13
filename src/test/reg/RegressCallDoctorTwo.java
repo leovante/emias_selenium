@@ -8,8 +8,8 @@ public class RegressCallDoctorTwo extends TestBase {
 
     @Test(groups = "CallDoctorRegress", invocationCount = 100)
     public void testCallRegistratura() throws Exception {
-        page.createCallPage().createCallRegistr();
-        page.fullCardPage().verifyCallRegistrNew();
+//        page.createCallPage().createCallRegistrProfile1(nameGen);
+//        page.fullCardPage().verifyCallRegistrProfile1New(nameGen);
         page.fullCardPage().closeCallPageBtn();
     }
 

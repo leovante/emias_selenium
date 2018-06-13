@@ -44,6 +44,22 @@ abstract public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
+    public void click(String nameGenerated) {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + nameGenerated + "')]"));
+
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    public void clickJS(WebElement element) {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+//        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
     //Close popup if exists
     public void handlePopup(By by) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
@@ -54,7 +70,7 @@ abstract public class BasePage {
         }
     }
 
-    public void containsClickable(String name) throws InterruptedException {
+    public void containsIsDisplayed(String name) throws InterruptedException {
         WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
         assertTrue(element.isDisplayed());
@@ -63,6 +79,7 @@ abstract public class BasePage {
     public void sendKeys(WebElement element, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         click(element);
+        element.clear();
         element.sendKeys(text);
     }
 
@@ -71,5 +88,9 @@ abstract public class BasePage {
         click(element);
         element.sendKeys(text);
         assertTrue(element.isEnabled());
+    }
+
+    public void wait(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

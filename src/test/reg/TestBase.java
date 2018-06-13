@@ -65,7 +65,7 @@ public abstract class TestBase {
         page.loginPage().login();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void afterSuite() throws Exception {
         driver.quit();
     }

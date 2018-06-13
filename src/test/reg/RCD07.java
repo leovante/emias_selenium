@@ -17,19 +17,10 @@ public class RCD07 extends TestBase {
 /*
     @Test(groups = "regress")
     public void testCallMkab() throws Exception {
-        page.createCallPage().createCallRegistrMkab();
-        page.fullCardPage().verifyCallRegistrMkabNew();
+        page.createCallPage().createCallRegistrMkabProfile1();
+        page.fullCardPage().verifyCallRegistrMkabPfile1New();
     }
 
-    @Test(groups = "regress", dependsOnMethods = {"testEditCall"})
-    public void testSetDoctor() throws Exception {
-        page.fullCardPage().appoindDoctorBtn();
-        this.doctorName = page.setDoctorPage().getDoctorName(1);
-        page.setDoctorPage().appendDoctor(doctorName);
-
-        this.doctorFam = page.manageShedule().getSecondName(doctorName);
-        page.fullCardPage().verifyAppoindPoctor(doctorFam);
-    }
 
     @Test(groups = "regress", dependsOnMethods = {"testEditCallActivity"})
     public void testCompleteService() throws Exception {
