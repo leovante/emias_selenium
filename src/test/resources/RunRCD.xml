@@ -3,10 +3,17 @@
 <suite name="regressions Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
-
-    <test name="Mis">
+    <test name="CallDoctor">
+        <groups>
+            <run>
+                <include name="regress"/>
+            </run>
+        </groups>
         <classes>
-            <class name="RMIS"/>
+            <class name="BeforeWork"/>
+            <class name="RCD01"/>
+            <class name="RCD02"/>
+            <class name="RCD03"/>
         </classes>
     </test>
 </suite>

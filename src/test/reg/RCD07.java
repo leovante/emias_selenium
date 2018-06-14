@@ -18,7 +18,7 @@ public class RCD07 extends TestBase {
     @Test(groups = "regress")
     public void testCallMkab() throws Exception {
         page.createCallPage().createCallRegistrMkabProfile1();
-        page.fullCardPage().verifyCallRegistrMkabPfile1New();
+        page.fullCardPage().verifyCallRegistrMkabProfile1New();
     }
 
 

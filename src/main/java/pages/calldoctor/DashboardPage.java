@@ -1,16 +1,14 @@
 package pages.calldoctor;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
-import pages.utilities.JSWaiter;
 
-public class DashboardPage extends BasePage {
+public class DashboardPage extends BasePage implements Profile1 {
 
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
     WebElement exitToMis;
@@ -34,32 +32,33 @@ public class DashboardPage extends BasePage {
         super(driver);
     }
 
+    @Step
     public void exitToMis() {
         click(exitToMis);
         click(exitBtn);
     }
 
+    @Step
     public void searchFilterFio(String doctorName) {
         clickJS(fioFilter);
         fioFilter.sendKeys(doctorName);
-
-        WebElement oneCount = newCallAllCount.findElement(By.xpath("//div[contains(text(),'1')]"));
-        clickJS(oneCount);
-
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-
     }
 
+    @Step
     public void verifyNewCallProgressFrame(String nameGen) throws InterruptedException {
-        click(newCallProgressFrame);
-        containsIsDisplayed(nameGen);
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//div[@id='newCallAllCount']/div[contains(text(),'1')]")));
 
-        //раскрыть только новые
-        //activeCallOverdueFrame
+        click(newCallProgressFrame);
+        click(adressPro1_3);
+
+        containsIsDisplayed(famPro1);
+        containsIsDisplayed(otchestvoPro1);
+        containsIsDisplayed(nameGen);
+        //потом ещё добавить проверку номера телефона
     }
 
+    @Step
     public void clickDoctorName(String doctorFam) {
         click(doctorFam);
         //раскрыть только новые

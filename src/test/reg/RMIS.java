@@ -14,33 +14,47 @@
 *
 * */
 
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-import pages.utilities.CleanDoctorTimeTableSQL;
+import pages.utilities.CleanDoctorTT;
 
-//@Ignore
-public class RegressShedule extends TestBase {
-    CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
+public class RMIS extends TestBase {
+
+    @BeforeMethod
+    public void beforeMethod() {
+    }
+
+    @AfterMethod
+    public void afterMethod(ITestResult testResult) throws Exception {
+        page.homePage().logoHomeBtn();
+        //вот тут нужно что бы скрин был только если была ошибка
+        takeSnapShot(driver, testResult);
+    }
+
 
     @Test//KEYS 1.1
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         page.homePage().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
-        sql.deleteShedule(secondName);
+        CleanDoctorTT.deleteShedule(secondName);
         page.doctorMethods().selectDoctor(docFullName);
         page.manageShedule().createShedule();
 
         page.manageShedule().verifyCreatedShedule();
-        page.homePage().logoHomeBtn();
     }
 
     @Test//KEYS 1.2
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
+
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
         String second_doctor_fam = page.manageShedule().getSecondName(secondDoctor);
-        sql.deleteShedule(second_doctor_fam);
+        CleanDoctorTT.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(firstDoctor);
         page.manageShedule().createShedule();
@@ -49,7 +63,6 @@ public class RegressShedule extends TestBase {
         page.doctorMethods().selectDoctor(firstDoctor);
 
         page.manageShedule().verifyCreatedShedule();
-        page.homePage().logoHomeBtn();
     }
 
     @Test//KEYS 1.3
@@ -59,7 +72,6 @@ public class RegressShedule extends TestBase {
         page.manageShedule().setNotReceiveDays(firstDoctor);
 
         page.manageShedule().verifyNotReceiveDays();
-        page.homePage().logoHomeBtn();
     }
 
     @Test//KEYS 1.4
@@ -69,8 +81,8 @@ public class RegressShedule extends TestBase {
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         String second_doctor_fam = page.manageShedule().getSecondName(second_doctor_fullname);
-        sql.deleteShedule(first_doctor_fam);
-        sql.deleteShedule(second_doctor_fam);
+        CleanDoctorTT.deleteShedule(first_doctor_fam);
+        CleanDoctorTT.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();
@@ -81,9 +93,9 @@ public class RegressShedule extends TestBase {
         page.manageShedule().verifyCreatedShedule();
         page.manageShedule().deleteShedule();
         page.manageShedule().verifyDeletedShedle();
-        page.homePage().logoHomeBtn();
     }
 
+    @Ignore
     @Test//KEYS 1.5
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         page.homePage().manageSheduleBtn();
@@ -91,8 +103,8 @@ public class RegressShedule extends TestBase {
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         String second_doctor_fam = page.manageShedule().getSecondName(second_doctor_fullname);
-        sql.deleteShedule(first_doctor_fam);
-        sql.deleteShedule(second_doctor_fam);
+        CleanDoctorTT.deleteShedule(first_doctor_fam);
+        CleanDoctorTT.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();
@@ -117,6 +129,5 @@ public class RegressShedule extends TestBase {
         page.doctorMethods().selectDoctor(second_doctor_fullname);
 
         page.transferRecords().verifyTransferShedule();
-        page.homePage().logoHomeBtn();
     }
 }

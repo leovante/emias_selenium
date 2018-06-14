@@ -9,10 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.utilities.JSWaiter;
+import pages.utilities.Waiter;
 
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.Assert.assertTrue;
+
 
 abstract public class BasePage {
     protected WebDriver driver;
@@ -41,16 +43,22 @@ abstract public class BasePage {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        Waiter.waitAllEmias();
     }
 
-    public void click(String nameGenerated) {
+    public void click(String name) {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + nameGenerated + "')]"));
 
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
+        element.click();
     }
 
     public void clickJS(WebElement element) {
@@ -75,6 +83,7 @@ abstract public class BasePage {
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
         assertTrue(element.isDisplayed());
     }
+
 
     public void sendKeys(WebElement element, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(element));

@@ -11,7 +11,7 @@ import pages.utilities.JSWaiter;
 
 import static org.testng.AssertJUnit.assertTrue;
 
-public class CreateCallPage extends BasePage {
+public class CreateCallPage extends BasePage implements Profile1, Profile2 {
 
     @FindBy(xpath = "//addCallBtn[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
@@ -146,25 +146,25 @@ public class CreateCallPage extends BasePage {
         click(addCallBtn);
 
 /*адрес*/
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
         click(cancelAdress);
         click(placeholder_adress);
 
-        placeholder_adress.sendKeys("Московская");
+        placeholder_adress.sendKeys(adressPro1_1);
         click(list_first_container);
 
-        placeholder_adress.sendKeys("Коломна");
+        placeholder_adress.sendKeys(adressPro1_2);
         click(list_first_container);
 
-        placeholder_adress.sendKeys("Первомайская");
+        placeholder_adress.sendKeys(adressPro1_3);
         click(list_first_container);
 
 /*обязательные поля*/
-        sendKeys(dom, "101");
+        sendKeys(dom, domPro1);
         click(chkBoxTelephone);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
+        jse1.executeScript("arguments[0].value='" + telephonePro1 + "';", telephoneNumber);
         telephoneNumber.click();
 
         click(hz);
@@ -172,26 +172,26 @@ public class CreateCallPage extends BasePage {
         hz2.click();
 
 /*необязательные поля*/
-        sendKeys(korpus, "202");
-        sendKeys(stroenie, "303");
-        sendKeys(kvartira, "404");
-        sendKeys(pd, "505");
-        sendKeys(dfon, "606");
-        sendKeys(etazh, "707");
+        sendKeys(korpus, korpusPro1);
+        sendKeys(stroenie, stroeniePro1);
+        sendKeys(kvartira, kvartiraPro1);
+        sendKeys(pd, pdPro1);
+        sendKeys(dfon, dfonPro1);
+        sendKeys(etazh, etazhPro1);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='автотест';", zhaloba);
+        jse.executeScript("arguments[0].value='" + zhalobaPro1 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
 /*кто пациент*/
-        sendKeys(seriyaPol, "12345678");
-        sendKeys(nomerPol, "87654321");
+        sendKeys(seriyaPol, seriyaPolPro1);
+        sendKeys(nomerPol, nomerPolPro1);
         click(fam);
-        sendKeys(fam, "Автотемников");
+        sendKeys(fam, famPro1);
         sendKeys(name, nameGen);
-        sendKeys(otchestvo, "Автоолегович");
+        sendKeys(otchestvo, otchestvoPro1);
 
 /*кто вызывает*/
         tipVisivaushego.click();
@@ -199,7 +199,7 @@ public class CreateCallPage extends BasePage {
         saveBtns.click();
     }
 
-    public void createCallRegistrMkabProfile1() throws InterruptedException {
+    public void createCallRegistrMkabProfile1(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -207,50 +207,50 @@ public class CreateCallPage extends BasePage {
         click(addCallBtn);
 
 /*адрес*/
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
         click(cancelAdress);
         click(placeholder_adress);
 
-        placeholder_adress.sendKeys("Московская");
+        placeholder_adress.sendKeys(adressPro2_1);
         click(list_first_container);
 
-        placeholder_adress.sendKeys("Коломна");
+        placeholder_adress.sendKeys(adressPro2_2);
         click(list_first_container);
 
-        placeholder_adress.sendKeys("Первомайская");
+        placeholder_adress.sendKeys(adressPro2_3);
         click(list_first_container);
 
 /*обязательные поля*/
-        sendKeys(dom, "101");
+        sendKeys(dom, domPro2);
         click(chkBoxTelephone);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
+        jse1.executeScript("arguments[0].value='" + telephonePro1 + "';", telephoneNumber);
         telephoneNumber.click();
 
 /*необязательные поля*/
-        sendKeys(korpus, "202");
-        sendKeys(stroenie, "303");
-        sendKeys(kvartira, "404");
-        sendKeys(pd, "505");
-        sendKeys(dfon, "606");
-        sendKeys(etazh, "707");
+        sendKeys(korpus, korpusPro2);
+        sendKeys(stroenie, stroeniePro2);
+        sendKeys(kvartira, kvartiraPro2);
+        sendKeys(pd, pdPro2);
+        sendKeys(dfon, dfonPro2);
+        sendKeys(etazh, etazhPro2);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='автотест';", zhaloba);
+        jse.executeScript("arguments[0].value='" + zhalobaPro1 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
 /*кто пациент*/
-        sendNomerPol(nomerPol, "7854215965847521");
+        sendNomerPol(nomerPol, nomerPolPro2);
 
 /*кто вызывает*/
         tipVisivaushego.click();
         predstav.click();
-        sendKeys(callFamily, "Автотемников");
-        sendKeys(callName, "Автодмитрий");
-        sendKeys(callPatronymic, "Автоолегович");
+        sendKeys(callFamily, famPro1);
+        sendKeys(callName, nameGen);
+        sendKeys(callPatronymic, otchestvoVizivPro2);
 
         saveBtns.click();
     }

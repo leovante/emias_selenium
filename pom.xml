@@ -8,7 +8,7 @@
     <artifactId>1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>RCD01_1_1</name>
+
 
     <build>
         <plugins>
@@ -35,6 +35,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>LATEST</version>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -63,7 +68,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>LATEST</version>
+            <version>6.14.3</version>
             <scope>test</scope>
         </dependency>
         <dependency>

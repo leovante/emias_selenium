@@ -2,6 +2,8 @@ package pages.utilities;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,19 +11,31 @@ public class Waiter {
     static private WebDriver webDriver;
     static private WebDriverWait wait;
 
+    @FindBy(xpath = "//div[@class='blockUI blockOverlay']")
+    static
+    WebElement BlockAssert;
+
+    @FindBy(xpath = "//div[@class='ui-widget-overlay']")
+    static
+    WebElement WidgetAssert;
+
+    @FindBy(id = "loaderleftspacer")
+    static
+    WebElement loaderLeftSpacer;
+
     public static void setDriver(WebDriver driver) {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
     }
 
     public static void waitAllEmias () {
-        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
-        if (BlockAssert) {
-            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
-        }
         boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
         if (WidgetAssert) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean BlockAssert = !webDriver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
         }
         boolean loaderLeftSpacer = !webDriver.findElements(By.id("loaderleftspacer")).isEmpty();
         if (loaderLeftSpacer) {

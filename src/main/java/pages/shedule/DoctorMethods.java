@@ -1,5 +1,6 @@
 package pages.shedule;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class DoctorMethods extends BasePage {
         super(driver);
     }
 
+    @Step
     public String getUnicalDoctor(String docName) {
         Waiter.waitAllEmias();
 
@@ -59,6 +61,7 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
+    @Step
     public String getUnicalDoctor3(int doctorNum) {
         Waiter.waitAllEmias();
         waitWhileClickable(doctorRow);
@@ -91,6 +94,7 @@ public class DoctorMethods extends BasePage {
         return doctorName;
     }
 
+    @Step
     public String getUnicalDoctor2(String docName) {
         Waiter.waitAllEmias();
 
@@ -129,6 +133,7 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
+    @Step
     public void selectDoctor(String doctorInlet) throws InterruptedException {
         Waiter.waitAllEmias();
         Waiter.waitAllEmias();
@@ -137,7 +142,6 @@ public class DoctorMethods extends BasePage {
         Waiter.waitAllEmias();
         Waiter.waitAllEmias();
     }
-
 
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));

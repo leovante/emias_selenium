@@ -1,8 +1,8 @@
 import org.testng.annotations.Test;
-import pages.utilities.CleanDoctorTimeTableSQL;
+import pages.utilities.CleanDoctorTT;
 
 public class BeforeWork extends TestBase {
-    CleanDoctorTimeTableSQL sql = new CleanDoctorTimeTableSQL();
+    CleanDoctorTT sql = new CleanDoctorTT();
 
     @Test
     public void cleanBeforeWork() throws ClassNotFoundException, InterruptedException {
@@ -17,7 +17,7 @@ public class BeforeWork extends TestBase {
             System.out.println("Обрабатываю врача №: " + n);
             String doctor_num = page.doctorMethods().getUnicalDoctor3(n);
             String doctor_num_fam = page.manageShedule().getSecondName(doctor_num);
-            sql.deleteShedule(doctor_num_fam);
+            CleanDoctorTT.deleteShedule(doctor_num_fam);
 
             page.doctorMethods().selectDoctor(doctor_num);
             page.beforeWork().createShedule();

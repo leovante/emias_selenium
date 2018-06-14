@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ import pages.utilities.JSWaiter;
 
 import static org.testng.Assert.assertTrue;
 
-public class FullCardPage extends BasePage {
+public class FullCardPage extends BasePage implements Profile1 {
 
     @FindBy(id = "doneCall")
     WebElement doneCall;
@@ -28,7 +29,6 @@ public class FullCardPage extends BasePage {
         super(driver);
     }
 
-    //два источника, 2 варианта обработки, 3 профиля карт
     public void verifyCallRegistrProfile1New(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -47,7 +47,6 @@ public class FullCardPage extends BasePage {
         containsIsDisplayed("П-д");
         containsIsDisplayed("Домофон");
         containsIsDisplayed("Этаж");
-
         containsIsDisplayed("ЖАЛОБЫ");
 
         containsIsDisplayed("КТО ПАЦИЕНТ");
@@ -67,23 +66,24 @@ public class FullCardPage extends BasePage {
         containsIsDisplayed("Изменить");
         containsIsDisplayed("Передать в другое ЛПУ");
 
-        containsIsDisplayed("Московская обл., г. Коломна, ул. Первомайская, д.101, корп.202, стр.303, кв.404");
-        containsIsDisplayed("505");
-        containsIsDisplayed("606");
-        containsIsDisplayed("707");
         containsIsDisplayed("Новый");
         containsIsDisplayed("Первичный");
         containsIsDisplayed("Регистратура");
-        containsIsDisplayed(nameGen);
-        containsIsDisplayed("Автотемников");
-        containsIsDisplayed("Автоолегович");
         containsIsDisplayed("Взрослый");
-        containsIsDisplayed("12345678");
-        containsIsDisplayed("87654321");
         containsIsDisplayed("Пациент");
         containsIsDisplayed("Карта создана");
-        containsIsDisplayed("автотест");
         containsIsDisplayed("Не назначен");
+
+        containsIsDisplayed(adressPro1);
+        containsIsDisplayed(pdPro1);
+        containsIsDisplayed(dfonPro1);
+        containsIsDisplayed(etazhPro1);
+        containsIsDisplayed(nameGen);
+        containsIsDisplayed(famPro1);
+        containsIsDisplayed(otchestvoPro1);
+        containsIsDisplayed(seriyaPolPro1);
+        containsIsDisplayed(nomerPolPro1);
+        containsIsDisplayed(zhalobaPro1);
     }
 
     public void verifyCallRegistrProfile2New(String nameGen) throws InterruptedException {
@@ -96,7 +96,6 @@ public class FullCardPage extends BasePage {
 
         Thread.sleep(700);
 
-//        chtoIzmenilos.click();
         containsIsDisplayed("Дата");
         containsIsDisplayed("Время");
         containsIsDisplayed("Статус");
@@ -127,7 +126,6 @@ public class FullCardPage extends BasePage {
         containsIsDisplayed("Передать в другое ЛПУ");
 
         containsIsDisplayed("Московская обл., г. Коломна, гск. Эдельвейс, д.121, корп.222, стр.323, кв.424");
-//        containsIsDisplayed("Московская обл., г. Коломна, ул. Первомайская, д.101, стр.303, корп.202, кв.404");
         containsIsDisplayed("525");
         containsIsDisplayed("626");
         containsIsDisplayed("727");
@@ -283,8 +281,8 @@ public class FullCardPage extends BasePage {
         containsIsDisplayed("Не назначен");
     }
 
-
-    public void verifyCallRegistrMkabPfile1New() throws InterruptedException {
+    @Step
+    public void verifyCallRegistrMkabProfile1New(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -1163,4 +1161,6 @@ public class FullCardPage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(close));
         close.click();
     }
+
+
 }

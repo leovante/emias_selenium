@@ -25,13 +25,13 @@ public class AdmissionSchedule extends BasePage {
     @FindBy(xpath = "//button[@id='selectPatientButton']/span")
     WebElement selectVibratBtn;
 
-    @FindBy(xpath = "//table[@id='mkabgrid1']/tbody/tr[2]/td[3]")
+    @FindBy(xpath = "//table[@id='mkabScheduleGrid']/tbody/tr[2]/td[3]")
     WebElement selectMkab;
 
     @FindBy(xpath = "//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']")
     WebElement recordElement;
 
-    @FindBy(xpath = "//span[@class='ui-button-text'][contains(text(),'Предварительный')]")
+    @FindBy(xpath = "//span[contains(.,'Предварительный')]")
     WebElement predvarit;
 
     public AdmissionSchedule(WebDriver driver) {
@@ -52,15 +52,9 @@ public class AdmissionSchedule extends BasePage {
         action.sendKeys(Keys.ENTER).perform();//нажали поиск мкаб
         Thread.sleep(2000);
         Waiter.waitBlockOverlay();
-        wait.until(ExpectedConditions.elementToBeClickable(selectMkab));
-        selectMkab.click();
-        wait.until(ExpectedConditions.elementToBeClickable(selectVibratBtn));
-        selectVibratBtn.click();//выбрать
-        Waiter.waitAllEmias();
-
-        wait.until(ExpectedConditions.elementToBeClickable(predvarit));
-        predvarit.click();
-        Waiter.waitAllEmias();
+        click(selectMkab);
+        click(selectVibratBtn);//выбрать
+        click(predvarit);
 
         Set s = driver.getWindowHandles(); //this method will gives you the handles of all opened windows
         Iterator ite = s.iterator();
