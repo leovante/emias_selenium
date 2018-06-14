@@ -1,5 +1,6 @@
 package pages.shedule;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class DoctorMethods extends BasePage {
         super(driver);
     }
 
+    @Step
     public String getUnicalDoctor(String docName) {
         Waiter.waitAllEmias();
 
@@ -59,17 +61,19 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
+    @Step
     public String getUnicalDoctor3(int doctorNum) {
         Waiter.waitAllEmias();
         waitWhileClickable(doctorRow);
 
         List<String> badNames = new ArrayList<String>();
-        Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
+        Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null", "Моков Павел Александрович");
 
         List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
                 .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
 
+        int internalDocNum = doctorNum;
         String doctorName = null;
         for (WebElement doctor : doctorList) {
             doctorName = doctor.getText();
@@ -77,16 +81,20 @@ public class DoctorMethods extends BasePage {
 //                !badNames.contains(doctorName)
 
 
-            if (!badNames.contains(doctorName))
-                break;
-            if (doctorNum == 0)
-                break;
-            doctorNum = doctorNum - 1;
+            if (badNames.contains(doctorName)) {
+            } else {
+                if (internalDocNum == 1)
+                    break;
+                else {
+                    internalDocNum = internalDocNum - 1;
+                }
+            }
         }
 
         return doctorName;
     }
 
+    @Step
     public String getUnicalDoctor2(String docName) {
         Waiter.waitAllEmias();
 
@@ -125,6 +133,7 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
+    @Step
     public void selectDoctor(String doctorInlet) throws InterruptedException {
         Waiter.waitAllEmias();
         Waiter.waitAllEmias();
@@ -133,7 +142,6 @@ public class DoctorMethods extends BasePage {
         Waiter.waitAllEmias();
         Waiter.waitAllEmias();
     }
-
 
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));

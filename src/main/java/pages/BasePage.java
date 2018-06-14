@@ -9,10 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.utilities.JSWaiter;
+import pages.utilities.Waiter;
 
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.Assert.assertTrue;
+
 
 abstract public class BasePage {
     protected WebDriver driver;
@@ -41,7 +43,29 @@ abstract public class BasePage {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+        Waiter.waitAllEmias();
+    }
+
+    public void click(String name) {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
+        wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
+        element.click();
+    }
+
+    public void clickJS(WebElement element) {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+//        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     //Close popup if exists
@@ -54,9 +78,28 @@ abstract public class BasePage {
         }
     }
 
-    public void containsClickable(String name) throws InterruptedException {
+    public void containsIsDisplayed(String name) throws InterruptedException {
         WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));
         wait.until(ExpectedConditions.visibilityOfAllElements(element));
         assertTrue(element.isDisplayed());
+    }
+
+
+    public void sendKeys(WebElement element, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        click(element);
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    public void sendNomerPol(WebElement element, String text) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        click(element);
+        element.sendKeys(text);
+        assertTrue(element.isEnabled());
+    }
+
+    public void wait(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

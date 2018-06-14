@@ -27,7 +27,7 @@ public abstract class TestBase {
     ScreenshotListener listner;
 
     @Parameters(value = {"browser", "platform"})
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String browser, @Optional String platform) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
@@ -43,7 +43,7 @@ public abstract class TestBase {
         ChromeOptions options = new ChromeOptions();
 //        options.merge(capabilities);
         options.setHeadless(false);
-        options.addArguments("window-size=1200,1020");
+        options.addArguments("window-size=1300,1020");
 //        ChromeDriver driver = new ChromeDriver(service, options);
         driver = new ChromeDriver(service, options);
 //more capabilit https://sites.google.com/a/chromium.org/chromedriver/capabilities
@@ -65,32 +65,34 @@ public abstract class TestBase {
         page.loginPage().login();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void afterSuite() throws Exception {
         driver.quit();
     }
 
-    @BeforeGroups("CallDoctorBase")
+
+    @BeforeGroups("CallDoctorRegress")
+    public void beforeGroupsRegress() {
+        page.homePage().callDoctorBtn();
+        pages.utilities.SwitchToPage.switchToPage();
+    }
+
+    @AfterGroups("CallDoctorRegress")
+    public void afterGroupsRegress() {
+        page.dashboardPage().exitToMis();
+    }
+
+    @BeforeGroups("regress")
     public void beforeGroups() {
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
     }
 
-    @AfterGroups
+    @AfterGroups("regress")
     public void afterGroups() {
-
+        page.dashboardPage().exitToMis();
     }
 
-    @BeforeMethod
-    public void beforeMethod() {
-
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void afterMethod(ITestResult testResult) throws Exception {
-/*вот тут нужно что бы скрин был только если была ошибка*/
-        takeSnapShot(driver, testResult);
-    }
 
     public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);

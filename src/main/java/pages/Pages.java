@@ -2,12 +2,9 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import pages.calldoctor.CallDoctorPage;
+import pages.calldoctor.*;
 import pages.other.CreateMedicalCard;
-import pages.shedule.AdmissionSchedule;
-import pages.shedule.DoctorMethods;
-import pages.shedule.ManageShedule;
-import pages.shedule.TransferRecords;
+import pages.shedule.*;
 
 public class Pages extends BasePage {
 
@@ -50,10 +47,35 @@ public class Pages extends BasePage {
         return doctorMethods;
     }
 
-    public CallDoctorPage callDoctorPage() {
-        CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
-        return callDoctorPage;
-}
+    public CreateCallPage createCallPage() {
+        CreateCallPage createCallPage = PageFactory.initElements(driver, CreateCallPage.class);
+        return createCallPage;
+    }
+
+    public SetDoctorPage setDoctorPage() {
+        SetDoctorPage setDoctorPage = PageFactory.initElements(driver, SetDoctorPage.class);
+        return setDoctorPage;
+    }
+
+    public FullCardPage fullCardPage() {
+        FullCardPage fullCardPage = PageFactory.initElements(driver, FullCardPage.class);
+        return fullCardPage;
+    }
+
+    public DashboardPage dashboardPage() {
+        DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
+        return dashboardPage;
+    }
+
+    public BeforeWork beforeWork() {
+        BeforeWork beforeWork = PageFactory.initElements(driver, BeforeWork.class);
+        return beforeWork;
+    }
+
+    public EditCardPage editCardPage() {
+        EditCardPage editCardPage = PageFactory.initElements(driver, EditCardPage.class);
+        return editCardPage;
+    }
 }
 
 //    public steps.AdmissionSchedule admissionSchedule() {
