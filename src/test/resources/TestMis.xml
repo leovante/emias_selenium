@@ -6,7 +6,7 @@
 
     <test name="Mis">
         <classes>
-            <class name="calldoctor.RMIS"/>
+            <class name="mis.RMIS"/>
         </classes>
     </test>
 </suite>

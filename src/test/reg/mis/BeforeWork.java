@@ -1,4 +1,4 @@
-package calldoctor;
+package mis;
 
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;

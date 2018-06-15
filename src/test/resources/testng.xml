@@ -6,15 +6,15 @@
     <test name="CallDoctor">
         <groups>
             <run>
-                <include name="calldoctor"/>
+                <include name="mis"/>
             </run>
         </groups>
         <classes>
             <!--<class naregress.BeforeWorkWork"/>-->
             <!--нужно жестко зафиксировать первым тестом запуск beforeWork, а потом тесты из package-->
-            <class name="calldoctor.regress.RCD01"/>
-            <class name="calldoctor.regress.RCD02"/>
-            <class name="calldoctor.regress.RCD03"/>
+            <class name="mis.regress.RCD01"/>
+            <class name="mis.regress.RCD02"/>
+            <class name="mis.regress.RCD03"/>
         </classes>
     </test>
 </suite>

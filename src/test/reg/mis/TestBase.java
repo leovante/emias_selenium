@@ -1,4 +1,4 @@
-package calldoctor;
+package mis;
 
 import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -84,13 +84,13 @@ public abstract class TestBase {
         page.dashboardPage().exitToMis();
     }
 
-    @BeforeGroups("calldoctor")
+    @BeforeGroups("mis")
     public void beforeGroups() {
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
     }
 
-    @AfterGroups("calldoctor")
+    @AfterGroups("mis")
     public void afterGroups() {
         page.dashboardPage().exitToMis();
     }
