@@ -11,6 +11,7 @@
         </groups>
         <classes>
             <!--<class naregress.BeforeWorkWork"/>-->
+            <!--нужно жестко зафиксировать первым тестом запуск beforeWork, а потом тесты из package-->
             <class name="calldoctor.regress.RCD01"/>
             <class name="calldoctor.regress.RCD02"/>
             <class name="calldoctor.regress.RCD03"/>

@@ -1,6 +1,5 @@
-package calldoctor.regress;
+package calldoctor;
 
-import calldoctor.TestBase;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 
