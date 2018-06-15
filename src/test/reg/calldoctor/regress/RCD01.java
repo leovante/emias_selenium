@@ -1,3 +1,6 @@
+package calldoctor.regress;
+
+import calldoctor.TestBase;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -8,50 +11,37 @@ import pages.utilities.StringGenerator;
 public class RCD01 extends TestBase {
     String nameGen;
 
-    @BeforeMethod
+    @BeforeMethod(groups = "calldoctor")
     public void beforeMethod() {
         StringGenerator nameGen = new StringGenerator();
         String name = nameGen.generator();
         this.nameGen = name;
     }
 
-    @AfterMethod
+    @AfterMethod(groups = "calldoctor")
     public void afterMethod(ITestResult testResult) throws Exception {
         //вот тут нужно что бы скрин был только если была ошибка
         takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "regress")
+    @Test(groups = "calldoctor")//тут создаем вызов Регистратура без мкаб
     public void testCallRegistr() throws Exception {
-        page.createCallPage().createCallRegistrProfile1(nameGen);
-        page.fullCardPage().verifyCallRegistrProfile1New(nameGen);
-        page.fullCardPage().closeCallPageBtn();
+        page.createCallPage().createCallProfile1(nameGen);
+        page.fullCardPage().verifyCallProfile1(nameGen);
+        page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyNewCallProgressFrame(nameGen);
     }
 
-    @Test(groups = "regress")
+    @Ignore
+    @Test(groups = "calldoctor")//тут создаем вызов СМП с мкаб
     public void testCallRegistrMkab() throws Exception {
-        page.createCallPage().createCallRegistrMkabProfile1(nameGen);
-        page.fullCardPage().verifyCallRegistrMkabProfile1New(nameGen);
-        page.fullCardPage().closeCallPageBtn();
+        page.createCallPage().createCallProfile2(nameGen);
+        page.fullCardPage().verifyCallProfile2(nameGen);
+        page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyNewCallProgressFrame(nameGen);
-    }
-
-    @Ignore
-    @Test(groups = "regress")
-    public void testCallSMP() throws Exception {
-        page.createCallPage().createCallSMP();
-        page.fullCardPage().verifyCallSMPNew();
-    }
-
-    @Ignore
-    @Test(groups = "regress")
-    public void testCallSMPMkab() throws Exception {
-        page.createCallPage().createCallSMPMkab();
-        page.fullCardPage().verifyCallSMPMkabNew();
     }
 }

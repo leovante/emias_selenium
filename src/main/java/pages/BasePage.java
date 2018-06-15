@@ -13,12 +13,13 @@ import pages.utilities.Waiter;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 
 abstract public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
+
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

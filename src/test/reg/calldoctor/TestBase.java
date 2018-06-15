@@ -1,3 +1,5 @@
+package calldoctor;
+
 import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,7 +25,7 @@ public abstract class TestBase {
     protected WebDriverWait wait;
     //    private DesiredCapsManager desiredCapsManager = new DesiredCapsManager();
     private ChromeOptionsManager chromeOptionsManager = new ChromeOptionsManager();
-    Pages page;
+    public Pages page;
     ScreenshotListener listner;
 
     @Parameters(value = {"browser", "platform"})
@@ -82,13 +84,13 @@ public abstract class TestBase {
         page.dashboardPage().exitToMis();
     }
 
-    @BeforeGroups("regress")
+    @BeforeGroups("calldoctor")
     public void beforeGroups() {
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
     }
 
-    @AfterGroups("regress")
+    @AfterGroups("calldoctor")
     public void afterGroups() {
         page.dashboardPage().exitToMis();
     }

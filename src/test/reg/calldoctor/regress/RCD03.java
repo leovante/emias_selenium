@@ -1,3 +1,6 @@
+package calldoctor.regress;
+
+import calldoctor.TestBase;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -22,41 +25,23 @@ public class RCD03 extends TestBase {
         takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "regress")
+    @Test(groups = "calldoctor")
     public void testCallRegistr() throws Exception {
-        page.createCallPage().createCallRegistrProfile1(nameGen);
-        page.fullCardPage().verifyCallRegistrProfile1New(nameGen);
-    }
+        page.createCallPage().createCallProfile1(nameGen);
+        page.fullCardPage().verifyCallProfile1(nameGen);
 
-    @Test(groups = "regress", dependsOnMethods = {"testCallRegistr"})
-    public void testEditCallRegistrNew() throws Exception {
         page.editCardPage().editCallBtn();
-        page.editCardPage().editCallRegistrProfile2(nameGen);
-        page.fullCardPage().verifyCallRegistrProfile2New(nameGen);
-    }
+        page.editCardPage().editCallProfile2(nameGen);
+        page.fullCardPage().verifyCallProfile2(nameGen);
 
-    @Test(groups = "regress", dependsOnMethods = {"testEditCallRegistrNew"})
-    public void testSetDoctor() throws Exception {
         page.fullCardPage().appoindDoctorBtn();
         this.doctorName = page.setDoctorPage().getDoctorName(1);
         page.setDoctorPage().appendDoctor(doctorName);
-
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
         page.fullCardPage().verifyCallRegistr2Activity(doctorFam);
-        page.fullCardPage().closeCallPageBtn();
-    }
+        page.fullCardPage().closeCardBtn();
 
-    @Test(groups = "regress", dependsOnMethods = {"testSetDoctor"})
-    public void testDoctorOnPage() {
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().clickDoctorName(doctorFam);
-
-    }
-
-    @Test(groups = "regress", dependsOnMethods = {"testDoctorOnPage"})
-    public void testSearchCallOnDoctorSheadule() throws InterruptedException {
-        driver.get("http://emias.mosreg.ru/demonstration/Schedule");
-        page.doctorMethods().selectDoctor(doctorName);
-        page.admissionSchedule().verifyFindCallName(nameGen);
+        page.dashboardPage().verifyNewCallProgressFrame(nameGen);
     }
 }

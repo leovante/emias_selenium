@@ -1,4 +1,4 @@
-/*eto pattern proektirovania facad
+package calldoctor;/*eto pattern proektirovania facad
 *echo patterni
 * singleton - bil tolko odin instance odnogo klassa po vsey sisteme
 * bilder - sobrat config testa. Sobrat' nogo url s raznimi parametrami u kazhdogo

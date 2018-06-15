@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regressions Test Suite">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="platform" value="WINDOWS"/>
+    <test name="CallDoctor">
+        <groups>
+            <run>
+                <include name="calldoctor"/>
+            </run>
+        </groups>
+        <classes>
+            <!--<class naregress.BeforeWorkWork"/>-->
+            <class name="calldoctor.regress.RCD01"/>
+            <class name="calldoctor.regress.RCD02"/>
+            <class name="calldoctor.regress.RCD03"/>
+        </classes>
+    </test>
+</suite>

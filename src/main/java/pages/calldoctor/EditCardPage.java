@@ -134,7 +134,7 @@ public class EditCardPage extends BasePage {
         super(driver);
     }
 
-    public void editCallRegistrProfile2(String nameGen) throws InterruptedException {
+    public void editCallProfile2(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -331,10 +331,8 @@ public class EditCardPage extends BasePage {
                         .xpath("//div[contains(., 'Карта вызова')]")));
 
 
-        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Изменить')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
-        appoindBtns.click();
-
+        WebElement editBtn = driver.findElement(By.xpath("//button[@id='change')]"));
+        wait.until(ExpectedConditions.elementToBeClickable(editBtn));
+        editBtn.click();
     }
-
 }

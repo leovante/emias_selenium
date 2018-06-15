@@ -29,7 +29,7 @@ public class FullCardPage extends BasePage implements Profile1 {
         super(driver);
     }
 
-    public void verifyCallRegistrProfile1New(String nameGen) throws InterruptedException {
+    public void verifyCallProfile1(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -84,64 +84,6 @@ public class FullCardPage extends BasePage implements Profile1 {
         containsIsDisplayed(seriyaPolPro1);
         containsIsDisplayed(nomerPolPro1);
         containsIsDisplayed(zhalobaPro1);
-    }
-
-    public void verifyCallRegistrProfile2New(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-        Thread.sleep(700);
-
-        containsIsDisplayed("Дата");
-        containsIsDisplayed("Время");
-        containsIsDisplayed("Статус");
-        containsIsDisplayed("Вид вызова");
-        containsIsDisplayed("Источник");
-        containsIsDisplayed("АДРЕС");
-        containsIsDisplayed("П-д");
-        containsIsDisplayed("Домофон");
-        containsIsDisplayed("Этаж");
-
-        containsIsDisplayed("ЖАЛОБЫ");
-
-        containsIsDisplayed("КТО ПАЦИЕНТ");
-        containsIsDisplayed("КТО ВЫЗВАЛ");
-        containsIsDisplayed("КТО ОБСЛУЖИВАЕТ");
-        containsIsDisplayed("Возрастная категория");
-        containsIsDisplayed("Возраст");
-        containsIsDisplayed("Пол");
-        containsIsDisplayed("Полис");
-        containsIsDisplayed("Телефон");
-        containsIsDisplayed("Врач");
-        containsIsDisplayed("ИСТОРИЯ ВЫЗОВА");
-        containsIsDisplayed("АВТОР");
-        containsIsDisplayed("ЧТО ИЗМЕНИЛОСЬ");
-        containsIsDisplayed("ИЗМЕНЕНИЕ");
-        containsIsDisplayed("Отменить вызов");
-        containsIsDisplayed("Изменить");
-        containsIsDisplayed("Передать в другое ЛПУ");
-
-        containsIsDisplayed("Московская обл., г. Коломна, гск. Эдельвейс, д.121, корп.222, стр.323, кв.424");
-        containsIsDisplayed("525");
-        containsIsDisplayed("626");
-        containsIsDisplayed("727");
-        containsIsDisplayed("Новый");
-        containsIsDisplayed("Первичный");
-        containsIsDisplayed("Регистратура");
-        containsIsDisplayed(nameGen);
-        containsIsDisplayed("АвтотемниковДва");
-        containsIsDisplayed("АвтоолеговичДва");
-        containsIsDisplayed("Взрослый");
-        containsIsDisplayed("159753");
-        containsIsDisplayed("852456");
-        containsIsDisplayed("Пациент");
-        containsIsDisplayed("автотест");
-        containsIsDisplayed("автотест2");
-        containsIsDisplayed("Не назначен");
     }
 
     public void verifyCallRegistr2Activity(String doctorFam) throws InterruptedException {
@@ -282,7 +224,7 @@ public class FullCardPage extends BasePage implements Profile1 {
     }
 
     @Step
-    public void verifyCallRegistrMkabProfile1New(String nameGen) throws InterruptedException {
+    public void verifyCallProfile2(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -1156,7 +1098,7 @@ public class FullCardPage extends BasePage implements Profile1 {
         click(doneCall);
     }
 
-    public void closeCallPageBtn() {
+    public void closeCardBtn() {
         WebElement close = driver.findElement(By.xpath("//img[@src='assets/img/close.png']"));
         wait.until(ExpectedConditions.elementToBeClickable(close));
         close.click();
