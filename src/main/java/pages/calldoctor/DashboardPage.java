@@ -39,9 +39,10 @@ public class DashboardPage extends BasePage implements Profile1 {
     }
 
     @Step
-    public void searchFilterFio(String doctorName) {
+    public void searchFilterFio(String doctorName) throws InterruptedException {
         clickJS(fioFilter);
-        fioFilter.sendKeys(doctorName);
+        sendKeys(fioFilter, doctorName);
+        Thread.sleep(4000);
     }
 
     @Step

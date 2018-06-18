@@ -137,6 +137,9 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
     @FindBy(xpath = "//div[contains(text(),'Новый вызов')]")
     WebElement noviyVizov;
 
+    @FindBy(xpath = "//input[@placeholder='Дата рождения']")
+    WebElement birthDay;
+
 
     public CreateCallPage(WebDriver driver) {
         super(driver);
@@ -151,7 +154,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
 
 /*адрес*/
         waitVisibility(noviyVizov);
-        click(cancelAdress);
+        placeholder_adress.clear();
         click(placeholder_adress);
 
         placeholder_adress.sendKeys(adressPro1_1);
@@ -196,6 +199,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         sendKeys(fam, famPro1);
         sendKeys(name, nameGen);
         sendKeys(otchestvo, otchestvoPro1);
+        sendKeys(birthDay, birthDayPro1);
 
 /*кто вызывает*/
         tipVisivaushego.click();

@@ -24,7 +24,7 @@ public class RCD01 extends TestBase {
         takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis")//тут создаем вызов Регистратура без мкаб
+    @Test(groups = "mis", invocationCount = 10)//тут создаем вызов Регистратура без мкаб
     public void testCallRegistr() throws Exception {
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().verifyCallProfile1(nameGen);

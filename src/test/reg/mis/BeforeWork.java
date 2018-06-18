@@ -9,11 +9,12 @@ public class BeforeWork extends TestBase {
     @Test
     public void cleanBeforeWork() throws ClassNotFoundException, InterruptedException {
         page.homePage().manageSheduleBtn();
-        createShedule(15);
+        createShedule(10);
     }
 
     public void createShedule(int i) throws ClassNotFoundException, InterruptedException {
         int n = 1;
+        sql.finalizeCallDoctor();
 
         while (n <= i) {
             System.out.println("Обрабатываю врача №: " + n);
@@ -28,6 +29,5 @@ public class BeforeWork extends TestBase {
 
             n++;
         }
-        sql.finalizeCallDoctor();
     }
 }

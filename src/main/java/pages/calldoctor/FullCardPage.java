@@ -73,6 +73,7 @@ public class FullCardPage extends BasePage implements Profile1 {
         containsIsDisplayed("Пациент");
         containsIsDisplayed("Карта создана");
         containsIsDisplayed("Не назначен");
+        containsIsDisplayed("Стенд ЕМИАС МО");
 
         containsIsDisplayed(adressPro1);
         containsIsDisplayed(pdPro1);
@@ -84,6 +85,71 @@ public class FullCardPage extends BasePage implements Profile1 {
         containsIsDisplayed(seriyaPolPro1);
         containsIsDisplayed(nomerPolPro1);
         containsIsDisplayed(zhalobaPro1);
+        containsIsDisplayed(birthDayPro1);
+        containsIsDisplayed(goda24Pro1);
+        containsIsDisplayed(vozrastKatPro1);
+    }
+
+    public void verifyCallProfile1Activity(String doctorFam, String nameGen) throws InterruptedException {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Карта вызова')]")));
+
+        Thread.sleep(700);
+        containsIsDisplayed("Дата");
+        containsIsDisplayed("Время");
+        containsIsDisplayed("Статус");
+        containsIsDisplayed("Вид вызова");
+        containsIsDisplayed("Источник");
+        containsIsDisplayed("АДРЕС");
+        containsIsDisplayed("П-д");
+        containsIsDisplayed("Домофон");
+        containsIsDisplayed("Этаж");
+        containsIsDisplayed("ЖАЛОБЫ");
+
+        containsIsDisplayed("КТО ПАЦИЕНТ");
+        containsIsDisplayed("КТО ВЫЗВАЛ");
+        containsIsDisplayed("КТО ОБСЛУЖИВАЕТ");
+        containsIsDisplayed("Возрастная категория");
+        containsIsDisplayed("Возраст");
+        containsIsDisplayed("Пол");
+        containsIsDisplayed("Полис");
+        containsIsDisplayed("Телефон");
+        containsIsDisplayed("Врач");
+        containsIsDisplayed("ИСТОРИЯ ВЫЗОВА");
+        containsIsDisplayed("АВТОР");
+        containsIsDisplayed("ЧТО ИЗМЕНИЛОСЬ");
+        containsIsDisplayed("ИЗМЕНЕНИЕ");
+        containsIsDisplayed("Отменить вызов");
+        containsIsDisplayed("Изменить");
+        containsIsDisplayed("Передать в другое ЛПУ");
+
+        containsIsDisplayed("Активный");
+        containsIsDisplayed("Первичный");
+        containsIsDisplayed("Регистратура");
+        containsIsDisplayed("Взрослый");
+        containsIsDisplayed("Пациент");
+        containsIsDisplayed("Карта создана");
+
+        containsIsDisplayed(adressPro1);
+        containsIsDisplayed(pdPro1);
+        containsIsDisplayed(dfonPro1);
+        containsIsDisplayed(etazhPro1);
+        containsIsDisplayed(nameGen);
+        containsIsDisplayed(doctorFam);
+        containsIsDisplayed(famPro1);
+        containsIsDisplayed(otchestvoPro1);
+        containsIsDisplayed(seriyaPolPro1);
+        containsIsDisplayed(nomerPolPro1);
+        containsIsDisplayed(zhalobaPro1);
+        containsIsDisplayed(birthDayPro1);
+        containsIsDisplayed(goda24Pro1);
+        containsIsDisplayed(vozrastKatPro1);
+
+        assertTrue(driver.findElement(By.xpath("//span[contains(text(),'" + nameGen + "')]")).isDisplayed());
     }
 
     public void verifyCallRegistr2Activity(String doctorFam) throws InterruptedException {

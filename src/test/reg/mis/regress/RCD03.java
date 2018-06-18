@@ -30,15 +30,11 @@ public class RCD03 extends TestBase {
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().verifyCallProfile1(nameGen);
 
-        page.editCardPage().editCallBtn();
-        page.editCardPage().editCallProfile2(nameGen);
-        page.fullCardPage().verifyCallProfile2(nameGen);
-
         page.fullCardPage().appoindDoctorBtn();
         this.doctorName = page.setDoctorPage().getDoctorName(1);
         page.setDoctorPage().appendDoctor(doctorName);
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
-        page.fullCardPage().verifyCallRegistr2Activity(doctorFam);
+        page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
