@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
-public class RCD03 extends TestBase {
+public class RCD07 extends TestBase {
     String doctorName;
     String doctorFam;
     String nameGen;
@@ -35,9 +35,12 @@ public class RCD03 extends TestBase {
         page.setDoctorPage().appendDoctor(doctorName);
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
         page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
+
+        page.fullCardPage().completeServiceBtn();
+        page.fullCardPage().verifyDoneDocGroup(doctorFam, nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen);
+        page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen);
     }
 }

@@ -54,6 +54,28 @@ public class SetDoctorPage extends BasePage {
         return doctorName;
     }
 
+    public String getDoctorName(String badDoctorName) {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'ЗАГРУЗКА СЕГОДНЯ')]")));
+
+        click(loadCurrently);
+
+        String doctorName = null;
+        List<WebElement> doctorList = driver
+                .findElement(By.xpath("//datatable-scroller"))//нашел таблицу
+                .findElements(By.xpath("datatable-row-wrapper/datatable-body-row/div[2]/datatable-body-cell/div/div"));//ячейки, содержащие имена врачей
+        for (WebElement doctor : doctorList) {
+            doctorName = doctor.getText();
+            if (doctorName != null && doctorName != badDoctorName)
+                break;
+        }
+        return doctorName;
+    }
+
     public void appendDoctor(String doctorName) throws InterruptedException {
         Thread.sleep(1000);
         click(driver.findElement(By.xpath("//div[contains(text(),'" + doctorName + "')]")));

@@ -25,6 +25,12 @@ public class DashboardPage extends BasePage implements Profile1 {
     @FindBy(id = "newCallProgressFrame")
     WebElement newCallProgressFrame;
 
+    @FindBy(id = "activeCallProgressFrame")
+    WebElement activeCallProgressFrame;
+
+    @FindBy(id = "doneCallProgressFrame")
+    WebElement doneCallProgressFrame;
+
     @FindBy(id = "newCallAllCount")
     WebElement newCallAllCount;
 
@@ -60,9 +66,32 @@ public class DashboardPage extends BasePage implements Profile1 {
     }
 
     @Step
-    public void clickDoctorName(String doctorFam) {
-        click(doctorFam);
-        //раскрыть только новые
-        //activeCallOverdueFrame
+    public void verifyActiveDocGroup(String doctorFam, String nameGen) throws InterruptedException {
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//div[@id='activeCallAllCount'][contains(text(),'1')]")));
+
+        click(driver.findElement(By.xpath("//span[contains(text(),'" + doctorFam + "')]")));
+        click(activeCallProgressFrame);
+        click(adressPro1_3);
+
+        containsIsDisplayed(famPro1);
+        containsIsDisplayed(otchestvoPro1);
+        containsIsDisplayed(nameGen);
+        //потом ещё добавить проверку номера телефона
+    }
+
+    @Step
+    public void verifyDoneDocGroup(String doctorFam, String nameGen) throws InterruptedException {
+        wait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//div[@id='doneCallOverdueCount'][contains(text(),'1')]")));
+
+        click(driver.findElement(By.xpath("//span[contains(text(),'" + doctorFam + "')]")));
+        click(doneCallProgressFrame);
+        click(adressPro1_3);
+
+        containsIsDisplayed(famPro1);
+        containsIsDisplayed(otchestvoPro1);
+        containsIsDisplayed(nameGen);
+        //потом ещё добавить проверку номера телефона
     }
 }
