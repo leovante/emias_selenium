@@ -21,11 +21,12 @@ import java.net.MalformedURLException;
 import java.util.Arrays;
 
 public abstract class TestBase {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    public static WebDriver driver;
+    public static WebDriverWait wait;
+    public static Pages page;
+
     //    private DesiredCapsManager desiredCapsManager = new DesiredCapsManager();
     private ChromeOptionsManager chromeOptionsManager = new ChromeOptionsManager();
-    public Pages page;
     ScreenshotListener listner;
 
     @Parameters(value = {"browser", "platform"})
@@ -72,29 +73,11 @@ public abstract class TestBase {
         driver.quit();
     }
 
-
-    @BeforeGroups("CallDoctorRegress")
-    public void beforeGroupsRegress() {
-        page.homePage().callDoctorBtn();
-        pages.utilities.SwitchToPage.switchToPage();
-    }
-
-    @AfterGroups("CallDoctorRegress")
-    public void afterGroupsRegress() {
-        page.dashboardPage().exitToMis();
-    }
-
-    @BeforeGroups("mis")
+    @BeforeGroups(groups = "mis", alwaysRun = true)
     public void beforeGroups() {
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
     }
-
-    @AfterGroups("mis")
-    public void afterGroups() {
-        page.dashboardPage().exitToMis();
-    }
-
 
     public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);

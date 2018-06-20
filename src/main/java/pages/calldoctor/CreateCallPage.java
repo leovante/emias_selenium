@@ -151,9 +151,9 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         click(addCallBtn);
+        waitVisibility(noviyVizov);
 
 /*адрес*/
-        waitVisibility(noviyVizov);
         placeholder_adress.clear();
         click(placeholder_adress);
 

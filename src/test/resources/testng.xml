@@ -3,18 +3,9 @@
 <suite name="Regressions Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
-    <test name="CallDoctor">
-        <groups>
-            <run>
-                <include name="mis"/>
-            </run>
-        </groups>
-        <classes>
-            <!--<class naregress.BeforeWorkWork"/>-->
-            <!--нужно жестко зафиксировать первым тестом запуск beforeWork, а потом тесты из package-->
-            <class name="mis.regress.RCD01"/>
-            <class name="mis.regress.RCD02"/>
-            <class name="mis.regress.RCD03"/>
-        </classes>
+    <test name="createCall">
+        <packages>
+            <package name="mis.regress"/>
+        </packages>
     </test>
 </suite>

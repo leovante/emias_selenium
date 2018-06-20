@@ -1,9 +1,8 @@
 package mis.regress;
 
 import mis.TestBase;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
@@ -11,20 +10,21 @@ import pages.utilities.StringGenerator;
 public class RCD01 extends TestBase {
     String nameGen;
 
-    @BeforeMethod(groups = "mis")
-    public void beforeMethod() {
+    @BeforeTest(groups = "mis")
+    public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
-        String name = nameGen.generator();
+        String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterMethod(groups = "mis")
-    public void afterMethod(ITestResult testResult) throws Exception {
+    @AfterTest(groups = "mis")
+    public void afterTest() throws Exception {
+        page.dashboardPage().clickLogoType();
         //вот тут нужно что бы скрин был только если была ошибка
-        takeSnapShot(driver, testResult);
+//        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", invocationCount = 10)//тут создаем вызов Регистратура без мкаб
+    @Test(groups = "mis", invocationCount = 1)//тут создаем вызов Регистратура без мкаб
     public void testCallRegistr() throws Exception {
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().verifyCallProfile1(nameGen);
@@ -32,6 +32,7 @@ public class RCD01 extends TestBase {
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyNewCallProgressFrame(nameGen);
+        page.dashboardPage().clearFilterFio();
     }
 
     @Ignore
@@ -43,5 +44,11 @@ public class RCD01 extends TestBase {
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyNewCallProgressFrame(nameGen);
+    }
+
+    @Ignore
+    @Test(groups = "mis")//тут создаем вызов Регистратура без мкаб
+    public void testCallApiSMP() {
+
     }
 }

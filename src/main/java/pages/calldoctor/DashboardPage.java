@@ -16,6 +16,9 @@ public class DashboardPage extends BasePage implements Profile1 {
     @FindBy(xpath = "//*[contains(text(),'Выход')]")
     WebElement exitBtn;
 
+    @FindBy(xpath = "//img[@src='assets/img/call-doctor-logo.svg']")
+    WebElement logoType;
+
     @FindBy(xpath = "//*[@placeholder='ФИО']")
     WebElement fioFilter;
 
@@ -34,6 +37,9 @@ public class DashboardPage extends BasePage implements Profile1 {
     @FindBy(id = "newCallAllCount")
     WebElement newCallAllCount;
 
+    @FindBy(id = "cardSpace")
+    WebElement cardSpace;
+
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
@@ -45,10 +51,21 @@ public class DashboardPage extends BasePage implements Profile1 {
     }
 
     @Step
+    public void clickLogoType() {
+        click(logoType);
+        wait(cardSpace);
+    }
+
+    @Step
     public void searchFilterFio(String doctorName) throws InterruptedException {
         clickJS(fioFilter);
         sendKeys(fioFilter, doctorName);
         Thread.sleep(4000);
+    }
+
+    @Step
+    public void clearFilterFio() {
+        fioFilter.clear();
     }
 
     @Step
@@ -59,9 +76,9 @@ public class DashboardPage extends BasePage implements Profile1 {
         click(newCallProgressFrame);
         click(adressPro1_3);
 
-        containsIsDisplayed(famPro1);
-        containsIsDisplayed(otchestvoPro1);
-        containsIsDisplayed(nameGen);
+        isDisplayedOnCardPage(famPro1);
+        isDisplayedOnCardPage(otchestvoPro1);
+        isDisplayedOnCardPage(nameGen);
         //потом ещё добавить проверку номера телефона
     }
 
@@ -74,24 +91,26 @@ public class DashboardPage extends BasePage implements Profile1 {
         click(activeCallProgressFrame);
         click(adressPro1_3);
 
-        containsIsDisplayed(famPro1);
-        containsIsDisplayed(otchestvoPro1);
-        containsIsDisplayed(nameGen);
+        isDisplayedOnCardPage(famPro1);
+        isDisplayedOnCardPage(otchestvoPro1);
+        isDisplayedOnCardPage(nameGen);
         //потом ещё добавить проверку номера телефона
     }
 
     @Step
     public void verifyDoneDocGroup(String doctorFam, String nameGen) throws InterruptedException {
         wait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//div[@id='doneCallOverdueCount'][contains(text(),'1')]")));
+                .presenceOfElementLocated(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]")));
 
         click(driver.findElement(By.xpath("//span[contains(text(),'" + doctorFam + "')]")));
         click(doneCallProgressFrame);
         click(adressPro1_3);
 
-        containsIsDisplayed(famPro1);
-        containsIsDisplayed(otchestvoPro1);
-        containsIsDisplayed(nameGen);
+        isDisplayedOnCardPage(famPro1);
+        isDisplayedOnCardPage(otchestvoPro1);
+        isDisplayedOnCardPage(nameGen);
         //потом ещё добавить проверку номера телефона
     }
+
+
 }

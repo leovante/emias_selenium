@@ -1,26 +1,27 @@
 package mis.regress;
 
 import mis.TestBase;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
 public class RCD02 extends TestBase {
     String nameGen;
 
-    @BeforeMethod(groups = "mis")
-    public void beforeMethod() {
+
+    @BeforeTest(groups = "mis")
+    public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterMethod(groups = "mis")
-    public void afterMethod(ITestResult testResult) throws Exception {
+    @AfterTest(groups = "mis")
+    public void afterTest() throws Exception {
+        page.dashboardPage().clickLogoType();
         //вот тут нужно что бы скрин был только если была ошибка
-        takeSnapShot(driver, testResult);
+//        takeSnapShot(driver, testResult);
     }
 
     @Test(groups = "mis")
