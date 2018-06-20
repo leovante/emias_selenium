@@ -1,32 +1,51 @@
 package pages.utilities;
 
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.GeckoDriverService;
+
+import java.io.File;
 
 public class DriverManager {
+    public ChromeOptions chromeOptions;
+    public FirefoxOptions firefoxOptions;
+    public ChromeDriverService chromeDriverService;
+    public GeckoDriverService geckoDriverService;
+    public String browser;
+    public WebDriver driver;
 
-    public DesiredCapabilities caps = null;
-    public ChromeOptions options = null;
-    public String browser = null;
-    public WebDriver driver = null;
 
-    public DriverManager(DesiredCapabilities capabilities, String browser) {
-        this.caps = capabilities;
+    public DriverManager(String browser) {
         this.browser = browser;
     }
 
     public WebDriver createDriver() {
         if (browser.equals("firefox")) {
-//            driver = new FirefoxDriver(options);
-        } else if (browser.equals("chrome")) {
-            driver = new ChromeDriver(options);
+            this.geckoDriverService = new GeckoDriverService.Builder()
+                    .usingDriverExecutable(new File("src/resources/geckodriver.exe"))
+                    .usingAnyFreePort()
+                    .build();
+            this.firefoxOptions = new FirefoxOptions();
+            this.firefoxOptions.setHeadless(false);
+            this.firefoxOptions.addArguments("window-size=1300,1020");
+            driver = new FirefoxDriver(geckoDriverService, firefoxOptions);
         } else {
-            Assert.assertTrue(false, "There is a problem on browser selection! Please check testng xml file!");
+            this.chromeDriverService = new ChromeDriverService.Builder()
+                    .usingDriverExecutable(new File("src/resources/chromedriver.exe"))
+                    .usingAnyFreePort()
+                    .build();
+            this.chromeOptions = new ChromeOptions();
+            this.chromeOptions.setHeadless(false);
+            this.chromeOptions.addArguments("window-size=1300,1020");
+            driver = new ChromeDriver(chromeDriverService, chromeOptions);
         }
+//        else {
+//            Assert.assertTrue(false, "There is a problem on browser selection! Please check testng xml file!");
+//        }
         return driver;
     }
 }
@@ -34,9 +53,9 @@ public class DriverManager {
 //    @Before
 //    public void setUp() throws InterruptedException, AWTException {
 //        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-//        ChromeOptions options = new ChromeOptions();
-//        options.setHeadless(false);
-//        webDriver = new ChromeDriver(options);
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.setHeadless(false);
+//        webDriver = new ChromeDriver(chromeOptions);
 //        step = new Steps(webDriver);
 //        step.loginPage().loginEmias();
 //    }

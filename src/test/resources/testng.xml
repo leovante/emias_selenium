@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regressions Test Suite">
+<suite name="regression suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
-    <test name="createCall">
+    <test name="regress calldoctor chrome">
         <packages>
             <package name="mis.regress"/>
         </packages>

@@ -4,14 +4,11 @@ import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.Pages;
-import pages.utilities.ChromeOptionsManager;
+import pages.utilities.DriverManager;
 import pages.utilities.JSWaiter;
 import pages.utilities.SwitchToPage;
 import pages.utilities.Waiter;
@@ -25,45 +22,45 @@ public abstract class TestBase {
     public static WebDriverWait wait;
     public static Pages page;
 
-    //    private DesiredCapsManager desiredCapsManager = new DesiredCapsManager();
-    private ChromeOptionsManager chromeOptionsManager = new ChromeOptionsManager();
-    ScreenshotListener listner;
+//    ScreenshotListener listner;
 
     @Parameters(value = {"browser", "platform"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String browser, @Optional String platform) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-
-        //КОРОЧЕ изучить как работает менеджер
-
-//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-
-        ChromeDriverService service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("src/resources/chromedriver.exe"))
-                .usingAnyFreePort()
-                .build();
-        ChromeOptions options = new ChromeOptions();
-//        options.merge(capabilities);
-        options.setHeadless(false);
-        options.addArguments("window-size=1300,1020");
-//        ChromeDriver driver = new ChromeDriver(service, options);
-        driver = new ChromeDriver(service, options);
-//more capabilit https://sites.google.com/a/chromium.org/chromedriver/capabilities
-
-//        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-
-        //Get DesiredCapabilities
+//        ChromeDriverService service = new ChromeDriverService.Builder()
+//                .usingDriverExecutable(new File("src/resources/chromedriver.exe"))
+//                .usingAnyFreePort()
+//                .build();
 //        ChromeOptions options = new ChromeOptions();
-//        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        //Create Driver with capabilities
-//        driver = new DriverManager(options).createDriver();
+//        options.setHeadless(false);
+//        options.addArguments("window-size=1300,1020");
+        //driver = new ChromeDriver(service, options);
+
+        driver = new DriverManager(browser).createDriver();
+
+        //        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        //        chromeOptions.merge(capabilities);
+        //        ChromeDriver driver = new ChromeDriver(service, chromeOptions);
+
+        //        more capabilit https://sites.google.com/a/chromium.org/chromedriver/capabilities
+
+        //        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
+
+        //        Get DesiredCapabilities
+        //        ChromeOptions chromeOptions = new ChromeOptions();
+        //        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+        //        Create Driver with capabilities
+        //        driver = new DriverManager(chromeOptions).createDriver();
+
+
         JSWaiter.setDriver(driver);
         SwitchToPage.setDriver(driver);
         Waiter.setDriver(driver);
         wait = new WebDriverWait(driver, 20);
         page = new Pages(driver);
-        listner = new ScreenshotListener(driver);
+//        listner = new ScreenshotListener(driver);
 
         page.loginPage().login();
     }
