@@ -1,3 +1,5 @@
+package calldoctor;
+
 import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -23,7 +25,7 @@ public abstract class TestBase {
     protected WebDriverWait wait;
     //    private DesiredCapsManager desiredCapsManager = new DesiredCapsManager();
     private ChromeOptionsManager chromeOptionsManager = new ChromeOptionsManager();
-    Pages page;
+    protected Pages page;
     ScreenshotListener listner;
 
     @Parameters(value = {"browser", "platform"})

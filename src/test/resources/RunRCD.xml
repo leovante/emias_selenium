@@ -10,10 +10,10 @@
             </run>
         </groups>
         <classes>
-            <class name="BeforeWork"/>
-            <class name="RCD01"/>
-            <class name="RCD02"/>
-            <class name="RCD03"/>
+            <class name="calldoctor.regress.BeforeWork"/>
+            <class name="calldoctor.regress.RCD01"/>
+            <class name="calldoctor.regress.RCD02"/>
+            <class name="calldoctor.regress.RCD03"/>
         </classes>
     </test>
 </suite>
