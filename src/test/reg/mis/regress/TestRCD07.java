@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
-public class RCD07 extends TestBase {
+public class TestRCD07 extends TestBase {
     String doctorName;
     String doctorFam;
     String nameGen;

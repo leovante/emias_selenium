@@ -18,7 +18,6 @@ public class DriverManager {
     public String browser;
     public WebDriver driver;
 
-
     public DriverManager(String browser) {
         this.browser = browser;
     }

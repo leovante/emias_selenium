@@ -3,7 +3,7 @@ package mis;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 
-public class BeforeWork extends TestBase {
+public class TestBeforeWork extends TestBase {
     CleanDoctorTT sql = new CleanDoctorTT();
 
     @Test

@@ -93,7 +93,7 @@ abstract public class BasePage {
 
     public void sendKeys(WebElement element, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        click(element);
+//        click(element);
         element.clear();
         element.sendKeys(text);
     }

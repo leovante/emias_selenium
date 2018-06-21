@@ -149,6 +149,7 @@ public class EditCardPage extends BasePage {
 /*адрес*/
         click(cancelAdress);
         click(placeholder_adress);
+        placeholder_adress.clear();
 
         placeholder_adress.sendKeys("Московская");
         click(list_first_container);

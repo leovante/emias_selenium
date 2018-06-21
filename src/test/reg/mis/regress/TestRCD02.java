@@ -3,12 +3,12 @@ package mis.regress;
 import mis.TestBase;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
-public class RCD01 extends TestBase {
+public class TestRCD02 extends TestBase {
     String nameGen;
+
 
     @BeforeTest(groups = "mis")
     public void beforeTest() {
@@ -24,31 +24,16 @@ public class RCD01 extends TestBase {
 //        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", invocationCount = 1)//тут создаем вызов Регистратура без мкаб
-    public void testCallRegistr() throws Exception {
+    @Test(groups = "mis")
+    public void testEditProfile1() throws Exception {
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().verifyCallProfile1(nameGen);
-        page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen);
-        page.dashboardPage().clearFilterFio();
-    }
-
-    @Ignore
-    @Test(groups = "mis")//тут создаем вызов СМП с мкаб
-    public void testCallRegistrMkab() throws Exception {
-        page.createCallPage().createCallProfile2(nameGen);
+        page.editCardPage().editCallBtn();
+        page.editCardPage().editCallProfile2(nameGen);
         page.fullCardPage().verifyCallProfile2(nameGen);
-        page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyNewCallProgressFrame(nameGen);
-    }
-
-    @Ignore
-    @Test(groups = "mis")//тут создаем вызов Регистратура без мкаб
-    public void testCallApiSMP() {
-
     }
 }

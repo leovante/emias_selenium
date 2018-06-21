@@ -29,32 +29,7 @@ public abstract class TestBase {
     public void beforeSuite(@Optional String browser, @Optional String platform) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-//        ChromeDriverService service = new ChromeDriverService.Builder()
-//                .usingDriverExecutable(new File("src/resources/chromedriver.exe"))
-//                .usingAnyFreePort()
-//                .build();
-//        ChromeOptions options = new ChromeOptions();
-//        options.setHeadless(false);
-//        options.addArguments("window-size=1300,1020");
-        //driver = new ChromeDriver(service, options);
-
         driver = new DriverManager(browser).createDriver();
-
-        //        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        //        chromeOptions.merge(capabilities);
-        //        ChromeDriver driver = new ChromeDriver(service, chromeOptions);
-
-        //        more capabilit https://sites.google.com/a/chromium.org/chromedriver/capabilities
-
-        //        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-
-        //        Get DesiredCapabilities
-        //        ChromeOptions chromeOptions = new ChromeOptions();
-        //        DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-        //        Create Driver with capabilities
-        //        driver = new DriverManager(chromeOptions).createDriver();
-
-
         JSWaiter.setDriver(driver);
         SwitchToPage.setDriver(driver);
         Waiter.setDriver(driver);
@@ -74,6 +49,10 @@ public abstract class TestBase {
     public void beforeGroups() {
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
+    }
+
+    @BeforeGroups(groups = "shedule", alwaysRun = true)
+    public void beforeGroupsShedule() {
     }
 
     public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
