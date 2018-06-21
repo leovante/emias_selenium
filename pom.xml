@@ -8,7 +8,7 @@
     <artifactId>regress_tests</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <description>Test</description>
+    <!--<description>Test</description>-->
 
     <properties>
         <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
@@ -88,6 +88,7 @@
     </dependencies>
 
     <build>
+        <testOutputDirectory>${basedir}/target/test-classes</testOutputDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -105,8 +106,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <!--<testSourceDirectory>${basedir}/src/test/resources/</testSourceDirectory>-->
-                    <!--<testClassesDirectory>${project.build.directory}/src/test/reg/</testClassesDirectory>-->
+                    <skipTests>true</skipTests>
+                    <testSourceDirectory>${basedir}/src/test/java/</testSourceDirectory>
+                    <testClassesDirectory>${project.build.directory}/src/target/test-classes/</testClassesDirectory>
 
                     <!--<argLine>-->
                     <!-- -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
