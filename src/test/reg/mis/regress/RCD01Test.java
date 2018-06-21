@@ -7,7 +7,7 @@ import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
-public class TestRCD01 extends TestBase {
+public class RCD01Test extends TestBase {
     String nameGen;
 
     @BeforeTest(groups = "mis")

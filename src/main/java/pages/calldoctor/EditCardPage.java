@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import pages.utilities.JSWaiter;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertTrue;
 import static pages.utilities.Waiter.waitVisibility;
 
 public class EditCardPage extends BasePage {

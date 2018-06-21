@@ -14,6 +14,7 @@
         <!--<maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>-->
         <aspectj.version>1.8.10</aspectj.version>
         <allure-testng.version>2.6.0</allure-testng.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
@@ -28,11 +29,11 @@
         <!--<artifactId>aspectjweaver</artifactId>-->
         <!--<version>1.8.10</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-testng-adaptor</artifactId>
-            <version>LATEST</version>
-        </dependency>
+        <!--<dependency>-->
+        <!--<groupId>ru.yandex.qatools.allure</groupId>-->
+        <!--<artifactId>allure-testng-adaptor</artifactId>-->
+        <!--<version>LATEST</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -74,15 +75,14 @@
             <version>3.12.0</version>
         </dependency>
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.14.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
             <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.14.3</version>
         </dependency>
     </dependencies>
 
@@ -106,7 +106,7 @@
                 <configuration>
                     <!--<testSourceDirectory>${basedir}/src/test/resources/</testSourceDirectory>-->
                     <!--<testClassesDirectory>${project.build.directory}/src/test/reg/</testClassesDirectory>-->
-                    <testFailureIgnore>true</testFailureIgnore>
+
                     <!--<argLine>-->
                     <!-- -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"-->
                     <!--</argLine>-->
@@ -118,6 +118,7 @@
                     <!--</systemProperties>-->
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <file>testng.xml</file>
                     </suiteXmlFiles>
                 </configuration>
                 <!--<dependencies>-->
@@ -163,15 +164,15 @@
         </plugins>
 
 
-        <resources>
-            <resource>
-                <directory>src/test/resources</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>**/*.properties</include>
-                </includes>
-            </resource>
-        </resources>
+        <!--<resources>-->
+        <!--<resource>-->
+        <!--<directory>src/test/resources</directory>-->
+        <!--<filtering>false</filtering>-->
+        <!--<includes>-->
+        <!--<include>**/*.properties</include>-->
+        <!--</includes>-->
+        <!--</resource>-->
+        <!--</resources>-->
 
     </build>
 </project>

@@ -82,7 +82,7 @@ public class TestRMIS extends TestBase {
         page.manageShedule().verifyDeletedShedle();
     }
 
-    @Test(groups = "shedule", description = "Перенести запись")
+    @Test(groups = "shedule", description = "Перенести запись", retryAnalyzer = RetryAnalyzer.class)
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
