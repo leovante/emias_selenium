@@ -22,7 +22,9 @@ interface Profile1 {
     String famPro1 = "Автотемников";
     String otchestvoPro1 = "Автоолегович";
     String genderPro1 = "М";
-    String birthDayPro1 = "М";//........
+    String birthDayPro1 = "18.07.1993";
+    String goda24Pro1 = "24 года";
+    String vozrastKatPro1 = "Взрослый";
 
     String zhalobaPro1 = "автотест";
 }

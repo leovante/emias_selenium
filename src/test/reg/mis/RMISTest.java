@@ -1,27 +1,13 @@
-package calldoctor;/*eto pattern proektirovania facad
-*echo patterni
-* singleton - bil tolko odin instance odnogo klassa po vsey sisteme
-* bilder - sobrat config testa. Sobrat' nogo url s raznimi parametrami u kazhdogo
-* bridge
-* proxy
-* factory method -
-* factory class
-*patternov mnogo i oni delyatca po tipam
-* page object
-*
-*
-*
-*
-* */
+package mis;
 
+import io.qameta.allure.Description;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 
-public class RMIS extends TestBase {
+public class RMISTest extends BaseTest {
 
     @BeforeMethod
     public void beforeMethod() {
@@ -35,7 +21,7 @@ public class RMIS extends TestBase {
     }
 
 
-    @Test//KEYS 1.1
+    @Test(groups = "shedule", description = "Создать расписание")
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         page.homePage().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
@@ -47,7 +33,7 @@ public class RMIS extends TestBase {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test//KEYS 1.2
+    @Test(groups = "shedule", description = "Копировать расписание")
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
 
         page.homePage().manageSheduleBtn();
@@ -65,7 +51,7 @@ public class RMIS extends TestBase {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test//KEYS 1.3
+    @Test(groups = "shedule", description = "Указать неприемные дни")
     public void setNotReceiveDays() throws InterruptedException {
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
@@ -74,7 +60,8 @@ public class RMIS extends TestBase {
         page.manageShedule().verifyNotReceiveDays();
     }
 
-    @Test//KEYS 1.4
+    @Test(groups = "shedule")
+    @Description("Удалить расписание")
     public void deleteShedule() throws InterruptedException, ClassNotFoundException {
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
@@ -95,8 +82,7 @@ public class RMIS extends TestBase {
         page.manageShedule().verifyDeletedShedle();
     }
 
-    @Ignore
-    @Test//KEYS 1.5
+    @Test(groups = "shedule", description = "Перенести запись", retryAnalyzer = RetryAnalyzer.class)
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);

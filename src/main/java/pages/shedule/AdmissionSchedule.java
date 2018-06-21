@@ -14,7 +14,7 @@ import pages.utilities.Waiter;
 import java.util.Iterator;
 import java.util.Set;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 public class AdmissionSchedule extends BasePage {
     DoctorMethods doctorMethods;

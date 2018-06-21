@@ -9,7 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import pages.utilities.JSWaiter;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertTrue;
+import static pages.utilities.Waiter.waitVisibility;
 
 public class CreateCallPage extends BasePage implements Profile1, Profile2 {
 
@@ -133,21 +134,27 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
     @FindBy(xpath = "//*[contains(.,'МКАБ не найдена')]")
     WebElement mkabError;
 
+    @FindBy(xpath = "//div[contains(text(),'Новый вызов')]")
+    WebElement noviyVizov;
+
+    @FindBy(xpath = "//input[@placeholder='Дата рождения']")
+    WebElement birthDay;
+
 
     public CreateCallPage(WebDriver driver) {
         super(driver);
     }
 
-    public void createCallRegistrProfile1(String nameGen) throws InterruptedException {
+    public void createCallProfile1(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         click(addCallBtn);
+        waitVisibility(noviyVizov);
 
 /*адрес*/
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
-        click(cancelAdress);
+        placeholder_adress.clear();
         click(placeholder_adress);
 
         placeholder_adress.sendKeys(adressPro1_1);
@@ -192,6 +199,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         sendKeys(fam, famPro1);
         sendKeys(name, nameGen);
         sendKeys(otchestvo, otchestvoPro1);
+        sendKeys(birthDay, birthDayPro1);
 
 /*кто вызывает*/
         tipVisivaushego.click();
@@ -199,7 +207,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         saveBtns.click();
     }
 
-    public void createCallRegistrMkabProfile1(String nameGen) throws InterruptedException {
+    public void createCallProfile2(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -415,7 +423,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//addCallBtn")));
 
         WebElement waitOperationFrame = driver.findElement(By.xpath("//span[contains(text(),'Ожидают обработки')]"));
-        assertTrue("Фрейм 'Ожидают обработки' - не найден", waitOperationFrame.isDisplayed() == false);
+        assertTrue(waitOperationFrame.isDisplayed() == false, "Фрейм 'Ожидают обработки' - не найден");
 
 /*
         WebElement waitOperation = driver.findElement(By.xpath("//span[contains(text(),'Ожидают обработки')]"));

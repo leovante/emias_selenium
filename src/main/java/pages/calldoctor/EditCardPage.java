@@ -9,7 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import pages.utilities.JSWaiter;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertTrue;
+import static pages.utilities.Waiter.waitVisibility;
 
 public class EditCardPage extends BasePage {
 
@@ -130,20 +131,25 @@ public class EditCardPage extends BasePage {
     @FindBy(xpath = "//div[contains(.,'Найдена МКАБ пациента Петров')]")
     WebElement naidena_mkab;
 
+    @FindBy(xpath = "//div[contains(text(),'Редактирование вызова')]")
+    WebElement redactirovanieVizova;
+
+
     public EditCardPage(WebDriver driver) {
         super(driver);
     }
 
-    public void editCallRegistrProfile2(String nameGen) throws InterruptedException {
+    public void editCallProfile2(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        waitVisibility(redactirovanieVizova);
 
 /*адрес*/
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
         click(cancelAdress);
         click(placeholder_adress);
+        placeholder_adress.clear();
 
         placeholder_adress.sendKeys("Московская");
         click(list_first_container);
@@ -278,46 +284,46 @@ public class EditCardPage extends BasePage {
                         .xpath("//div[contains(., 'Редактирование вызова')]")));
 
         Thread.sleep(700);
-        containsIsDisplayed("Дата");
-        containsIsDisplayed("Время");
-        containsIsDisplayed("Статус");
-        containsIsDisplayed("Вид вызова");
-        containsIsDisplayed("Источник");
-        containsIsDisplayed("АДРЕС");
-        containsIsDisplayed("ЖАЛОБЫ");
-        containsIsDisplayed("Возрастная категория");
-        containsIsDisplayed("КТО ПАЦИЕНТ");
-        containsIsDisplayed("КТО ВЫЗВАЛ");
-        containsIsDisplayed("КТО ОБСЛУЖИВАЕТ");
-        containsIsDisplayed("Телефон");
-        containsIsDisplayed("Врач");
-        containsIsDisplayed("ИСТОРИЯ ВЫЗОВА");
-        containsIsDisplayed("АВТОР");
-        containsIsDisplayed("ЧТО ИЗМЕНИЛОСЬ");
-        containsIsDisplayed("ИЗМЕНЕНИЕ");
-        containsIsDisplayed("Отменить вызов");
-        containsIsDisplayed("Изменить");
-        containsIsDisplayed("Передать в другое ЛПУ");
+        isDisplayedOnCardPage("Дата");
+        isDisplayedOnCardPage("Время");
+        isDisplayedOnCardPage("Статус");
+        isDisplayedOnCardPage("Вид вызова");
+        isDisplayedOnCardPage("Источник");
+        isDisplayedOnCardPage("АДРЕС");
+        isDisplayedOnCardPage("ЖАЛОБЫ");
+        isDisplayedOnCardPage("Возрастная категория");
+        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
+        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
+        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
+        isDisplayedOnCardPage("Телефон");
+        isDisplayedOnCardPage("Врач");
+        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
+        isDisplayedOnCardPage("АВТОР");
+        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
+        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
+        isDisplayedOnCardPage("Отменить вызов");
+        isDisplayedOnCardPage("Изменить");
+        isDisplayedOnCardPage("Передать в другое ЛПУ");
 
-        containsIsDisplayed("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
-        containsIsDisplayed("Новый");
-        containsIsDisplayed("Первичный");
-        containsIsDisplayed("Регистратура");
-        containsIsDisplayed("Афанасьева");
-        containsIsDisplayed("Софья");
-        containsIsDisplayed("Петровна");
-        containsIsDisplayed("");
-        containsIsDisplayed("7854215965847521");
-        containsIsDisplayed("Представитель");
-        containsIsDisplayed("Карта создана");
-        containsIsDisplayed("автотест");
-        containsIsDisplayed("19.02.2016");
-        containsIsDisplayed("2 года");
-        containsIsDisplayed("Ребенок");
-        containsIsDisplayed("Автотемников");
-        containsIsDisplayed("Автодмитрий");
-        containsIsDisplayed("Автоолегович");
-        containsIsDisplayed("Не назначен");
+        isDisplayedOnCardPage("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
+        isDisplayedOnCardPage("Новый");
+        isDisplayedOnCardPage("Первичный");
+        isDisplayedOnCardPage("Регистратура");
+        isDisplayedOnCardPage("Афанасьева");
+        isDisplayedOnCardPage("Софья");
+        isDisplayedOnCardPage("Петровна");
+        isDisplayedOnCardPage("");
+        isDisplayedOnCardPage("7854215965847521");
+        isDisplayedOnCardPage("Представитель");
+        isDisplayedOnCardPage("Карта создана");
+        isDisplayedOnCardPage("автотест");
+        isDisplayedOnCardPage("19.02.2016");
+        isDisplayedOnCardPage("2 года");
+        isDisplayedOnCardPage("Ребенок");
+        isDisplayedOnCardPage("Автотемников");
+        isDisplayedOnCardPage("Автодмитрий");
+        isDisplayedOnCardPage("Автоолегович");
+        isDisplayedOnCardPage("Не назначен");
 
     }
 
@@ -331,10 +337,8 @@ public class EditCardPage extends BasePage {
                         .xpath("//div[contains(., 'Карта вызова')]")));
 
 
-        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Изменить')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
-        appoindBtns.click();
-
+        WebElement editBtn = driver.findElement(By.xpath("//button[@id='change']"));
+        wait.until(ExpectedConditions.elementToBeClickable(editBtn));
+        editBtn.click();
     }
-
 }

@@ -13,12 +13,13 @@ import pages.utilities.Waiter;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
 
 
 abstract public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
+
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -78,19 +79,25 @@ abstract public class BasePage {
         }
     }
 
-    public void containsIsDisplayed(String name) throws InterruptedException {
-        WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));
-        wait.until(ExpectedConditions.visibilityOfAllElements(element));
+    public void isDisplayedOnCardPage(String name) throws InterruptedException {
+        WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));//не убирай спан
+        wait.until(ExpectedConditions.visibilityOf(element));
         assertTrue(element.isDisplayed());
     }
 
+    public void isPresenceOnCardPage(String name) throws InterruptedException {
+        WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));//не убирай спан
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'" + name + "')]")));
+        assertTrue(element.isDisplayed());
+    }
 
     public void sendKeys(WebElement element, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        click(element);
+//        click(element);
         element.clear();
         element.sendKeys(text);
     }
+
 
     public void sendNomerPol(WebElement element, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(element));

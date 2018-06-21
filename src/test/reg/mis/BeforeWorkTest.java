@@ -1,20 +1,20 @@
-package calldoctor.regress;
+package mis;
 
-import calldoctor.TestBase;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 
-public class BeforeWork extends TestBase {
+public class BeforeWorkTest extends BaseTest {
     CleanDoctorTT sql = new CleanDoctorTT();
 
     @Test
     public void cleanBeforeWork() throws ClassNotFoundException, InterruptedException {
         page.homePage().manageSheduleBtn();
-        createShedule(15);
+        createShedule(10);
     }
 
     public void createShedule(int i) throws ClassNotFoundException, InterruptedException {
         int n = 1;
+        sql.finalizeCallDoctor();
 
         while (n <= i) {
             System.out.println("Обрабатываю врача №: " + n);
@@ -29,6 +29,5 @@ public class BeforeWork extends TestBase {
 
             n++;
         }
-        sql.finalizeCallDoctor();
     }
 }
