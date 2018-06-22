@@ -25,7 +25,7 @@ public class DriverManager {
     public WebDriver createDriver() {
         if (browser.equals("firefox")) {
             this.geckoDriverService = new GeckoDriverService.Builder()
-                    .usingDriverExecutable(new File("src/resources/geckodriver.exe"))
+                    .usingDriverExecutable(new File("src/main/resources/geckodriver.exe"))
                     .usingAnyFreePort()
                     .build();
             this.firefoxOptions = new FirefoxOptions();
@@ -34,7 +34,7 @@ public class DriverManager {
             driver = new FirefoxDriver(geckoDriverService, firefoxOptions);
         } else {
             this.chromeDriverService = new ChromeDriverService.Builder()
-                    .usingDriverExecutable(new File("src/resources/chromedriver.exe"))
+                    .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
                     .usingAnyFreePort()
                     .build();
             this.chromeOptions = new ChromeOptions();
@@ -42,19 +42,6 @@ public class DriverManager {
             this.chromeOptions.addArguments("window-size=1300,1020");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
         }
-//        else {
-//            Assert.assertTrue(false, "There is a problem on browser selection! Please check testng xml file!");
-//        }
         return driver;
     }
 }
-
-//    @Before
-//    public void setUp() throws InterruptedException, AWTException {
-//        System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-//        ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.setHeadless(false);
-//        webDriver = new ChromeDriver(chromeOptions);
-//        step = new Steps(webDriver);
-//        step.loginPage().loginEmias();
-//    }

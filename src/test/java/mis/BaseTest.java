@@ -55,6 +55,10 @@ public abstract class BaseTest {
     public void beforeGroupsShedule() {
     }
 
+    @AfterGroups(groups = "shedule", alwaysRun = true)
+    public void afterGroupsShedule() {
+    }
+
     @BeforeGroups(groups = "CC", alwaysRun = true)
     public void beforeGroupsCC() {
     }

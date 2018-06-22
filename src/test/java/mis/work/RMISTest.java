@@ -4,19 +4,19 @@ import io.qameta.allure.Description;
 import mis.BaseTest;
 import mis.RetryAnalyzer;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 
 public class RMISTest extends BaseTest {
 
-    @BeforeMethod
-    public void beforeMethod() {
+    @BeforeTest
+    public void beforeTest() {
     }
 
-    @AfterMethod
-    public void afterMethod(ITestResult testResult) throws Exception {
+    @AfterTest
+    public void afterTest(ITestResult testResult) throws Exception {
         page.homePage().logoHomeBtn();
         //вот тут нужно что бы скрин был только если была ошибка
         takeSnapShot(driver, testResult);

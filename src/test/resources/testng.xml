@@ -10,7 +10,7 @@
             </run>
         </groups>
         <classes>
-            <class name="mis.work.BeforeWorkTest"/>
+            <class name="mis.work.RMISTest"/>
         </classes>
     </test>
 </suite>
