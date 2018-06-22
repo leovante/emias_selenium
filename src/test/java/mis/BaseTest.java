@@ -55,6 +55,10 @@ public abstract class BaseTest {
     public void beforeGroupsShedule() {
     }
 
+    @BeforeGroups(groups = "CC", alwaysRun = true)
+    public void beforeGroupsCC() {
+    }
+
     public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);

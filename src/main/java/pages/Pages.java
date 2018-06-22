@@ -2,6 +2,9 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import pages.callcenter.CallDoctorPage;
+import pages.callcenter.FindPatientPage;
+import pages.callcenter.LoginPageCC;
 import pages.calldoctor.*;
 import pages.other.CreateMedicalCard;
 import pages.shedule.*;
@@ -76,6 +79,52 @@ public class Pages extends BasePage {
         EditCardPage editCardPage = PageFactory.initElements(driver, EditCardPage.class);
         return editCardPage;
     }
+
+
+    /**
+     * CALL CENTER
+     *
+     * @return
+     */
+    public LoginPageCC loginPageCC() {
+        LoginPageCC loginPageCC = PageFactory.initElements(driver, LoginPageCC.class);
+        return loginPageCC;
+    }
+
+    public FindPatientPage findPatientPage() {
+        FindPatientPage findPatientPage = PageFactory.initElements(driver, FindPatientPage.class);
+        return findPatientPage;
+    }
+
+//    public RecordDoctorPage recordDoctorPage() {
+//        RecordDoctorPage recordDoctorPage = PageFactory.initElements(driver, RecordDoctorPage.class);
+//        return recordDoctorPage;
+//    }
+
+//    public WaitingListPage waitingListPage() {
+//        WaitingListPage waitingListPage = PageFactory.initElements(driver, WaitingListPage.class);
+//        return waitingListPage;
+//    }
+
+//    public ApoinmentsPage apoinmentsPage() {
+//        ApoinmentsPage apoinmentsPage = PageFactory.initElements(driver, ApoinmentsPage.class);
+//        return apoinmentsPage;
+//    }
+
+//    public PatientRecordsPage patientRecordsPage() {
+//        PatientRecordsPage patientRecordsPage = PageFactory.initElements(driver, PatientRecordsPage.class);
+//        return patientRecordsPage;
+//    }
+
+    public CallDoctorPage callDoctorPage() {
+        CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
+        return callDoctorPage;
+    }
+
+//    public CallCentreTests callCentreTests() {
+//        CallCentreTests callCentreTests = PageFactory.initElements(driver, CallCentreTests.class);
+//        return callCentreTests;
+//    }
 }
 
 //    public steps.AdmissionSchedule admissionSchedule() {

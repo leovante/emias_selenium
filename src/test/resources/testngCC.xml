@@ -8,10 +8,14 @@
             <run>
                 <include name="shedule"/>
                 <include name="mis"/>
+                <include name="CC"/>
             </run>
         </groups>
+        <!--<packages>-->
+        <!--<package name="mis.regress"/>-->
+        <!--</packages>-->
         <packages>
-            <package name="mis.regress"/>
+            <package name="mis.callcenter"/>
         </packages>
         <!--<classes>-->
         <!--<class name="mis.BeforeWorkTest"/>-->

@@ -106,7 +106,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <!--<skipTests>true</skipTests>-->
                     <testSourceDirectory>${basedir}/src/test/java/</testSourceDirectory>
                     <testClassesDirectory>${project.build.directory}/src/target/test-classes/</testClassesDirectory>
 
@@ -161,6 +161,21 @@
                     <reportVersion>2.6.0</reportVersion>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>src.test.java.mis.Main</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+
         </plugins>
 
 
