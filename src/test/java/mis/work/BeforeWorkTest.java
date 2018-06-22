@@ -1,5 +1,6 @@
-package mis;
+package mis.work;
 
+import mis.BaseTest;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 

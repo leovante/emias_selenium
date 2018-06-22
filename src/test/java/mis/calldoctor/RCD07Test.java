@@ -1,31 +1,31 @@
-package mis.regress;
+package mis.calldoctor;
 
 import mis.BaseTest;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
-public class RCD03Test extends BaseTest {
+public class RCD07Test extends BaseTest {
     String doctorName;
     String doctorFam;
     String nameGen;
 
-    @BeforeTest(groups = "mis")
-    public void beforeTest() {
+    @BeforeMethod
+    public void beforeMethod() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "mis")
-    public void afterTest(ITestResult testResult) throws Exception {
+    @AfterMethod
+    public void afterMethod(ITestResult testResult) throws Exception {
         //вот тут нужно что бы скрин был только если была ошибка
         takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", description = "Назначить врача", invocationCount = 12)
+    @Test(groups = "mis")
     public void testCallRegistr() throws Exception {
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().verifyCallProfile1(nameGen);
@@ -35,9 +35,12 @@ public class RCD03Test extends BaseTest {
         page.setDoctorPage().appendDoctor(doctorName);
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
         page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
+
+        page.fullCardPage().completeServiceBtn();
+        page.fullCardPage().verifyDoneDocGroup(doctorFam, nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen);
+        page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen);
     }
 }

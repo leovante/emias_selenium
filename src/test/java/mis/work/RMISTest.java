@@ -1,6 +1,8 @@
-package mis;
+package mis.work;
 
 import io.qameta.allure.Description;
+import mis.BaseTest;
+import mis.RetryAnalyzer;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;

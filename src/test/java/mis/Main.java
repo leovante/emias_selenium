@@ -11,7 +11,7 @@ public class Main {
         TestListenerAdapter tla = new TestListenerAdapter();
         TestNG testng = new TestNG();
         List<String> suites = Lists.newArrayList();
-        suites.add("src/test/resources/testngCC.xml");//path to xml..
+        suites.add("src/test/resources/testng.xml");//path to xml..
 //        suites.add("c:/tests/testng2.xml");
         testng.setTestSuites(suites);
         testng.run();

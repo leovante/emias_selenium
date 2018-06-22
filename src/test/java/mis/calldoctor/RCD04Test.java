@@ -1,4 +1,4 @@
-package mis.regress;
+package mis.calldoctor;
 
 import mis.BaseTest;
 import org.testng.ITestResult;
@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
-public class RCD07Test extends BaseTest {
+public class RCD04Test extends BaseTest {
     String doctorName;
     String doctorFam;
     String nameGen;
@@ -36,11 +36,14 @@ public class RCD07Test extends BaseTest {
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
         page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
 
-        page.fullCardPage().completeServiceBtn();
-        page.fullCardPage().verifyDoneDocGroup(doctorFam, nameGen);
+        page.fullCardPage().sendAnotherDoctorBtn();
+        this.doctorName = page.setDoctorPage().getDoctorName(doctorName);
+        page.setDoctorPage().appendDoctor(doctorName);
+        this.doctorFam = page.manageShedule().getSecondName(doctorName);
+        page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen);
+        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen);
     }
 }
