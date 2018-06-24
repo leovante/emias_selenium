@@ -1,6 +1,6 @@
 package mis;
 
-import org.codehaus.plexus.util.FileUtils;
+//import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -63,11 +63,11 @@ public abstract class BaseTest {
     public void beforeGroupsCC() {
     }
 
-    public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
-        TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
-        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        File DestFile = new File("errorScreenshots\\" + testResult.getTestClass() + "-"
-                + Arrays.toString(testResult.getParameters()) + ".png");
-        FileUtils.copyFile(SrcFile, DestFile);
-    }
+//    public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
+//        TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
+//        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
+//        File DestFile = new File("errorScreenshots\\" + testResult.getTestClass() + "-"
+//                + Arrays.toString(testResult.getParameters()) + ".png");
+//        FileUtils.copyFile(SrcFile, DestFile);
+//    }
 }

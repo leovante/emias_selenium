@@ -3,7 +3,6 @@ package mis.calldoctor;
 import mis.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
@@ -35,8 +34,7 @@ public class RCD01Test extends BaseTest {
         page.dashboardPage().clearFilterFio();
     }
 
-    @Ignore
-    @Test(groups = "mis")//тут создаем вызов СМП с мкаб
+    @Test(groups = "mis", enabled = false)//тут создаем вызов СМП с мкаб
     public void testCallRegistrMkab() throws Exception {
         page.createCallPage().createCallProfile2(nameGen);
         page.fullCardPage().verifyCallProfile2(nameGen);
@@ -46,8 +44,7 @@ public class RCD01Test extends BaseTest {
         page.dashboardPage().verifyNewCallProgressFrame(nameGen);
     }
 
-    @Ignore
-    @Test(groups = "mis")//тут создаем вызов Регистратура без мкаб
+    @Test(groups = "mis", enabled = false)//тут создаем вызов Регистратура без мкаб
     public void testCallApiSMP() {
 
     }

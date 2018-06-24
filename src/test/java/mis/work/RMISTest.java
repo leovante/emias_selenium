@@ -19,7 +19,7 @@ public class RMISTest extends BaseTest {
     public void afterTest(ITestResult testResult) throws Exception {
         page.homePage().logoHomeBtn();
         //вот тут нужно что бы скрин был только если была ошибка
-        takeSnapShot(driver, testResult);
+//        takeSnapShot(driver, testResult);
     }
 
 

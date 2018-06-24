@@ -22,7 +22,7 @@ public class RCD07Test extends BaseTest {
     @AfterMethod
     public void afterMethod(ITestResult testResult) throws Exception {
         //вот тут нужно что бы скрин был только если была ошибка
-        takeSnapShot(driver, testResult);
+//        takeSnapShot(driver, testResult);
     }
 
     @Test(groups = "mis")

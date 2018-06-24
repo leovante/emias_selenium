@@ -14,3 +14,5 @@
         </classes>
     </test>
 </suite>
+<!--mvn clean test-->
+<!--allure serve target/allure-results-->

@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="emias_selenium" />
+        <module name="regress_tests" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="emias_selenium" target="1.8" />
+      <module name="regress_tests" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

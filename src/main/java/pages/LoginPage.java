@@ -20,7 +20,8 @@ public class LoginPage extends BasePage {
     }
 
     public void login(){
-        driver.get("http://emias.mosreg.ru/demonstration");
+        driver.get("http://mis.softrust.ru/mis");
+//        driver.get("http://emias.mosreg.ru/demonstration");
         enterLoginText("temnikov");
         enterPasswordText("1212");
         clickLoginButton();
