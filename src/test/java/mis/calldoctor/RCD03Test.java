@@ -1,7 +1,6 @@
 package mis.calldoctor;
 
 import mis.BaseTest;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -20,15 +19,17 @@ public class RCD03Test extends BaseTest {
     }
 
     @AfterTest(groups = "mis")
-    public void afterTest(ITestResult testResult) throws Exception {
+    public void afterTest() throws Exception {
         //вот тут нужно что бы скрин был только если была ошибка
 //        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", description = "Назначить врача", invocationCount = 12)
+    @Test(groups = "mis", description = "назначить врача на сегодня, выполнив 1.1", invocationCount = 1)
     public void testCallRegistr() throws Exception {
+        driver.get(curUrlCalldoctor);
+
         page.createCallPage().createCallProfile1(nameGen);
-        page.fullCardPage().verifyCallProfile1(nameGen);
+//        page.fullCardPage().verifyCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
         this.doctorName = page.setDoctorPage().getDoctorName(1);

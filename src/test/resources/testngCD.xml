@@ -9,8 +9,11 @@
                 <include name="mis"/>
             </run>
         </groups>
-        <packages>
-            <package name="mis.calldoctor"/>
-        </packages>
+        <!--<packages>-->
+        <!--<package name="mis.calldoctor"/>-->
+        <!--</packages>-->
+        <classes>
+            <class name="mis.calldoctor.RCD07Test"/>
+        </classes>
     </test>
 </suite>

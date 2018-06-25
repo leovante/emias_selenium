@@ -2,7 +2,7 @@ package mis.work;
 
 import io.qameta.allure.Description;
 import mis.BaseTest;
-import mis.RetryAnalyzer;
+import mis.retry.RetryAnalyzer;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -11,11 +11,11 @@ import pages.utilities.CleanDoctorTT;
 
 public class RMISTest extends BaseTest {
 
-    @BeforeTest
+    @BeforeTest(groups = "shedule")
     public void beforeTest() {
     }
 
-    @AfterTest
+    @AfterTest(groups = "shedule")
     public void afterTest(ITestResult testResult) throws Exception {
         page.homePage().logoHomeBtn();
         //вот тут нужно что бы скрин был только если была ошибка

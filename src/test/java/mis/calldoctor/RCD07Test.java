@@ -1,9 +1,8 @@
 package mis.calldoctor;
 
 import mis.BaseTest;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
@@ -12,23 +11,25 @@ public class RCD07Test extends BaseTest {
     String doctorFam;
     String nameGen;
 
-    @BeforeMethod
-    public void beforeMethod() {
+    @BeforeTest(groups = "mis")
+    public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterMethod
-    public void afterMethod(ITestResult testResult) throws Exception {
+    @AfterTest(groups = "mis")
+    public void afterTest() throws Exception {
         //вот тут нужно что бы скрин был только если была ошибка
 //        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis")
+    @Test(groups = "mis", description = "обслужить на дашборде")
     public void testCallRegistr() throws Exception {
+        driver.get(curUrlCalldoctor);
+
         page.createCallPage().createCallProfile1(nameGen);
-        page.fullCardPage().verifyCallProfile1(nameGen);
+//        page.fullCardPage().verifyCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
         this.doctorName = page.setDoctorPage().getDoctorName(1);

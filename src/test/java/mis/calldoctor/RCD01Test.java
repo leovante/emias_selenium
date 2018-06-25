@@ -19,12 +19,17 @@ public class RCD01Test extends BaseTest {
     @AfterTest(groups = "mis")
     public void afterTest() throws Exception {
         page.dashboardPage().clickLogoType();
+
+
         //вот тут нужно что бы скрин был только если была ошибка
 //        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", invocationCount = 1)//тут создаем вызов Регистратура без мкаб
+    @Test(groups = "mis", description = "создать вызов через Диспетчер с иточником Регистратура", invocationCount = 1)
+//тут создаем вызов Регистратура без мкаб
     public void testCallRegistr() throws Exception {
+        driver.get(curUrlCalldoctor);
+
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().verifyCallProfile1(nameGen);
         page.fullCardPage().closeCardBtn();
@@ -34,8 +39,11 @@ public class RCD01Test extends BaseTest {
         page.dashboardPage().clearFilterFio();
     }
 
-    @Test(groups = "mis", enabled = false)//тут создаем вызов СМП с мкаб
+    @Test(groups = "mis", description = "создать вызов через Диспетчер с источником СМП и привязкой МКАБ", enabled = false)
+//тут создаем вызов СМП с мкаб
     public void testCallRegistrMkab() throws Exception {
+        driver.get(curUrlCalldoctor);
+
         page.createCallPage().createCallProfile2(nameGen);
         page.fullCardPage().verifyCallProfile2(nameGen);
         page.fullCardPage().closeCardBtn();

@@ -4,7 +4,7 @@ interface Profile1 {
     String adressPro1_1 = "Московская";
     String adressPro1_2 = "Коломна";
     String adressPro1_3 = "Первомайская";
-    String adressPro1 = "Московская обл., г. Коломна, ул. Первомайская, д.101а, корп.202, стр.303, кв.404";
+    String adressPro1 = "Московская обл., г. Коломна, ул. Первомайская, д.101а, стр.303, корп.202, кв.404";
 
 
     String domPro1 = "101а";

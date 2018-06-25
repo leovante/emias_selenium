@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -145,6 +146,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         super(driver);
     }
 
+    @Step
     public void createCallProfile1(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -207,6 +209,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         saveBtns.click();
     }
 
+    @Step
     public void createCallProfile2(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -263,6 +266,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         saveBtns.click();
     }
 
+    @Step
     public void createCallSMP() throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -330,6 +334,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         saveBtns.click();
     }
 
+    @Step
     public void createCallSMPMkab() throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -394,7 +399,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         saveBtns.click();
     }
 
-
+    @Step
     public void cancelRecord() {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -416,6 +421,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         cancelFieldBtn.click();
     }
 
+    @Step
     public void verifyCancelOnDashbord() {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->

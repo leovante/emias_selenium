@@ -24,8 +24,11 @@ public class RCD02Test extends BaseTest {
 //        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis")
+    @Test(groups = "mis", description = "изменить карту вызова, созданную по п.1.1", enabled = false)
+//нужен ID на поле учистки адреса
     public void testEditProfile1() throws Exception {
+        driver.get(curUrlCalldoctor);
+
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().verifyCallProfile1(nameGen);
 

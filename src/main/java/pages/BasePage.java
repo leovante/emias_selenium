@@ -80,8 +80,8 @@ abstract public class BasePage {
     }
 
     public void isDisplayedOnCardPage(String name) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'" + name + "')]")));
         WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));//не убирай спан
-        wait.until(ExpectedConditions.visibilityOf(element));
         assertTrue(element.isDisplayed());
     }
 

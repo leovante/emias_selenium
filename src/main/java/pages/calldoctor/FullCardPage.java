@@ -74,7 +74,7 @@ public class FullCardPage extends BasePage implements Profile1 {
         isDisplayedOnCardPage("Пациент");
         isDisplayedOnCardPage("Карта создана");
         isDisplayedOnCardPage("Не назначен");
-        isDisplayedOnCardPage("Стенд ЕМИАС МО");
+//        isDisplayedOnCardPage("Стенд ЕМИАС МО");
 
         isDisplayedOnCardPage(adressPro1);
         isDisplayedOnCardPage(pdPro1);
@@ -196,6 +196,7 @@ public class FullCardPage extends BasePage implements Profile1 {
         isDisplayedOnCardPage("Врач");
         isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
 
+
         isDisplayedOnCardPage("Обслуженный");
         isDisplayedOnCardPage("Первичный");
         isDisplayedOnCardPage("Регистратура");
@@ -209,7 +210,7 @@ public class FullCardPage extends BasePage implements Profile1 {
         isDisplayedOnCardPage("Активный");
         isDisplayedOnCardPage("Назначенный врач");
         isDisplayedOnCardPage("Дата перевода в статус активный");
-        isDisplayedOnCardPage("Дата перевода в статус обслуженный");
+        isDisplayedOnCardPage("Дата и время завершения обслуживания вызова");
 
         //параметры профиля
         isDisplayedOnCardPage(adressPro1);
@@ -1068,10 +1069,12 @@ public class FullCardPage extends BasePage implements Profile1 {
 
     }
 
+    @Step
     public void sendAnotherDoctorBtn() {
         click(appoindBtn);
     }
 
+    @Step
     public void appoindDoctorBtn() throws InterruptedException {
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
@@ -1083,7 +1086,14 @@ public class FullCardPage extends BasePage implements Profile1 {
         appoindBtns.click();
     }
 
+    @Step
     public void completeServiceBtn() throws InterruptedException {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Карта вызова')]")));
+
         Actions action = new Actions(driver);
         WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Завершить обслуживание')]"));
         wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
@@ -1094,8 +1104,9 @@ public class FullCardPage extends BasePage implements Profile1 {
         click(doneCall);
     }
 
+    @Step
     public void closeCardBtn() {
-        WebElement close = driver.findElement(By.xpath("//img[@src='assets/img/close.png']"));
+        WebElement close = driver.findElement(By.xpath("//mat-icon[contains(text(),'close')]"));
         wait.until(ExpectedConditions.elementToBeClickable(close));
         close.click();
     }
