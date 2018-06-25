@@ -27,7 +27,7 @@ public class HomePage extends BasePage{
         super(driver);
     }
 
-    @Step("Заходим в управление расписанием")
+    @Step("Заходим в ведение расписания")
     public void manageSheduleBtn(){
         Waiter.waitAllEmias();
         waitWhileClickable(timeTableBtn);
@@ -35,7 +35,7 @@ public class HomePage extends BasePage{
         Waiter.waitAllEmias();
     }
 
-    @Step
+    @Step("Заходим в расписание приема")
     public void admissionScheduleBtn(){
         Waiter.waitAllEmias();
         waitWhileClickable(admissionScheduleBtn);
@@ -43,7 +43,7 @@ public class HomePage extends BasePage{
         Waiter.waitAllEmias();
     }
 
-    @Step
+    @Step("Заходим в перенос записей")
     public void transferRecordsBtn(){
         Waiter.waitAllEmias();
         waitWhileClickable(transferRecordsBtn);
@@ -51,7 +51,7 @@ public class HomePage extends BasePage{
         Waiter.waitAllEmias();
     }
 
-    @Step
+    @Step("Нажимаю на логотип")
     public void logoHomeBtn(){
         Waiter.waitAllEmias();
         waitWhileClickable(homePageBtn);

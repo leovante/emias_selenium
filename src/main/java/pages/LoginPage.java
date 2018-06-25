@@ -19,11 +19,11 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    public void login(){
+    public void login(String site, String login, String pass){
 //        driver.get("http://mis.softrust.ru/mis");
-        driver.get("http://emias.mosreg.ru/demonstration");
-        enterLoginText("temnikov");
-        enterPasswordText("1212");
+        driver.get(site);
+        enterLoginText(login);
+        enterPasswordText(pass);
         clickLoginButton();
     }
 

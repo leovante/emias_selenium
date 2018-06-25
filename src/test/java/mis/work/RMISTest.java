@@ -1,9 +1,7 @@
 package mis.work;
 
-import io.qameta.allure.Description;
 import mis.BaseTest;
 import mis.retry.RetryAnalyzer;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -13,18 +11,20 @@ public class RMISTest extends BaseTest {
 
     @BeforeTest(groups = "shedule")
     public void beforeTest() {
+        System.out.println();
     }
 
     @AfterTest(groups = "shedule")
-    public void afterTest(ITestResult testResult) throws Exception {
+    public void afterTest() throws Exception {
         page.homePage().logoHomeBtn();
         //вот тут нужно что бы скрин был только если была ошибка
 //        takeSnapShot(driver, testResult);
     }
 
 
-    @Test(groups = "shedule", description = "Создать расписание")
+    @Test(groups = "shedule", description = "Создать расписание", retryAnalyzer = RetryAnalyzer.class)
     public void createShedule() throws InterruptedException, ClassNotFoundException {
+        driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
@@ -35,9 +35,9 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test(groups = "shedule", description = "Копировать расписание")
+    @Test(groups = "shedule", description = "Копировать расписание", retryAnalyzer = RetryAnalyzer.class)
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
-
+        driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
@@ -53,8 +53,9 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test(groups = "shedule", description = "Указать неприемные дни")
+    @Test(groups = "shedule", description = "Указать неприемные дни", retryAnalyzer = RetryAnalyzer.class)
     public void setNotReceiveDays() throws InterruptedException {
+        driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         page.manageShedule().setNotReceiveDays(firstDoctor);
@@ -62,9 +63,9 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyNotReceiveDays();
     }
 
-    @Test(groups = "shedule")
-    @Description("Удалить расписание")
+    @Test(groups = "shedule", description = "Удалить расписание", retryAnalyzer = RetryAnalyzer.class)
     public void deleteShedule() throws InterruptedException, ClassNotFoundException {
+        driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
@@ -86,6 +87,7 @@ public class RMISTest extends BaseTest {
 
     @Test(groups = "shedule", description = "Перенести запись", retryAnalyzer = RetryAnalyzer.class)
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
+        driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);

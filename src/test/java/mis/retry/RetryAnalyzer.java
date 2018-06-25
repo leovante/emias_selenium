@@ -3,8 +3,8 @@ package mis.retry;
 import org.testng.ITestResult;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
-    int counter = 0;
-    int retryLimit = 3;
+    private int counter = 0;
+    private static final int retryLimit = 3;
 
     @Override
     public boolean retry(ITestResult result) {

@@ -21,9 +21,9 @@ public abstract class BaseTest {
 
 //    ScreenshotListener listner;
 
-    @Parameters(value = {"browser", "platform"})
+    @Parameters(value = {"browser", "platform", "site", "login", "pass"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String browser, @Optional String platform) throws MalformedURLException {
+    public void beforeSuite(@Optional String browser, @Optional String platform, @Optional String site, @Optional String login, @Optional String pass) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
         driver = new DriverManager(browser).createDriver();
@@ -34,7 +34,7 @@ public abstract class BaseTest {
         page = new Pages(driver);
 //        listner = new ScreenshotListener(driver);
 
-        page.loginPage().login();
+        page.loginPage().login(site, login, pass);
     }
 
     @AfterSuite(alwaysRun = true)
@@ -53,10 +53,14 @@ public abstract class BaseTest {
 
     @BeforeGroups(groups = "shedule", alwaysRun = true)
     public void beforeGroupsShedule() {
+        driver.get("http://mis.softrust.ru/mis/Main/Default");//здесь нужно сделать нормальный переход на дашборд миса
+        String url = driver.getCurrentUrl();
+        curUrlCalldoctor = url;
     }
 
     @AfterGroups(groups = "shedule", alwaysRun = true)
     public void afterGroupsShedule() {
+        System.out.println();
     }
 
     @BeforeGroups(groups = "CC", alwaysRun = true)

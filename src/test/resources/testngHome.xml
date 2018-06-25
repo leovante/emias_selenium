@@ -3,20 +3,20 @@
 <suite name="All Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
-    <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
-    <parameter name="login" value="temnikov"/>
-    <parameter name="pass" value="1212"/>
+    <parameter name="site" value="http://mis.softrust.ru/mis"/>
+    <parameter name="login" value="admin"/>
+    <parameter name="pass" value="11"/>
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
         <groups>
             <run>
-                <include name="mis"/>
+                <include name="shedule"/>
             </run>
         </groups>
-        <!--<packages>-->
-        <!--<package name="mis.calldoctor"/>-->
-        <!--</packages>-->
         <classes>
-            <class name="mis.calldoctor.RCD07Test"/>
+            <!--<class name="mis.work.BeforeWorkTest"/>-->
+            <class name="mis.work.RMISTest"/>
         </classes>
     </test>
 </suite>
+<!--mvn clean test-->
+<!--allure serve target/allure-results-->
