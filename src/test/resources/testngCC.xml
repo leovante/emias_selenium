@@ -15,7 +15,7 @@
         <!--<package name="mis.regress"/>-->
         <!--</packages>-->
         <packages>
-            <package name="mis.callcenter"/>
+            <package name="emias.callcenter"/>
         </packages>
         <!--<classes>-->
         <!--<class namis.work.BeforeWorkTestTest"/>-->

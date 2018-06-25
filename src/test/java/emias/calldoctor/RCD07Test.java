@@ -1,12 +1,12 @@
-package mis.calldoctor;
+package emias.calldoctor;
 
-import mis.BaseTest;
+import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
-public class RCD04Test extends BaseTest {
+public class RCD07Test extends BaseTest {
     String doctorName;
     String doctorFam;
     String nameGen;
@@ -24,7 +24,7 @@ public class RCD04Test extends BaseTest {
 //        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", description = "передать вызов на странице карты вызова")
+    @Test(groups = "mis", description = "обслужить на дашборде")
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -35,16 +35,13 @@ public class RCD04Test extends BaseTest {
         this.doctorName = page.setDoctorPage().getDoctorName(1);
         page.setDoctorPage().appendDoctor(doctorName);
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
-//        page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
-
-        page.fullCardPage().sendAnotherDoctorBtn();
-        this.doctorName = page.setDoctorPage().getDoctorName(doctorName);
-        page.setDoctorPage().appendDoctor(doctorName);
-        this.doctorFam = page.manageShedule().getSecondName(doctorName);
         page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
+
+        page.fullCardPage().completeServiceBtn();
+        page.fullCardPage().verifyDoneDocGroup(doctorFam, nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen);
+        page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen);
     }
 }

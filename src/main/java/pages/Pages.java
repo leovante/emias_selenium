@@ -6,8 +6,8 @@ import pages.callcenter.CallDoctorPage;
 import pages.callcenter.FindPatientPage;
 import pages.callcenter.LoginPageCC;
 import pages.calldoctor.*;
-import pages.other.CreateMedicalCard;
-import pages.shedule.*;
+import pages.mis.CreateMedicalCard;
+import pages.mis.*;
 
 public class Pages extends BasePage {
 

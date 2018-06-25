@@ -1,4 +1,4 @@
-package mis;
+package emias;
 
 import org.testng.TestListenerAdapter;
 import org.testng.TestNG;

@@ -1,6 +1,6 @@
-package mis.callcenter;
+package emias.callcenter;
 
-import mis.BaseTest;
+import emias.BaseTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

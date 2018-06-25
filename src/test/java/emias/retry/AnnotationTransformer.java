@@ -1,4 +1,4 @@
-package mis.retry;
+package emias.retry;
 
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;

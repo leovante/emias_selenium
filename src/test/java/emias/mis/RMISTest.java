@@ -1,7 +1,7 @@
-package mis.work;
+package emias.mis;
 
-import mis.BaseTest;
-import mis.retry.RetryAnalyzer;
+import emias.BaseTest;
+import emias.retry.RetryAnalyzer;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

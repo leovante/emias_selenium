@@ -3,7 +3,7 @@
 <suite name="All Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
-    <parameter name="site" value="http://mis.softrust.ru/mis"/>
+    <parameter name="site" value="http://emias.softrust.ru/mis"/>
     <parameter name="login" value="admin"/>
     <parameter name="pass" value="11"/>
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
@@ -14,7 +14,7 @@
         </groups>
         <classes>
             <!--<class name="mis.work.BeforeWorkTest"/>-->
-            <class name="mis.work.RMISTest"/>
+            <class name="emias.mis.RMISTest"/>
         </classes>
     </test>
 </suite>

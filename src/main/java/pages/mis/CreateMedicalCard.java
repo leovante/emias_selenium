@@ -1,4 +1,4 @@
-package pages.other;
+package pages.mis;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

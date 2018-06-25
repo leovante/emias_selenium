@@ -1,6 +1,6 @@
-package mis.calldoctor;
+package emias.calldoctor;
 
-import mis.BaseTest;
+import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

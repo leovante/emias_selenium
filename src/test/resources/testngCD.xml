@@ -16,7 +16,7 @@
         <!--<package name="mis.calldoctor"/>-->
         <!--</packages>-->
         <classes>
-            <class name="mis.calldoctor.RCD07Test"/>
+            <class name="emias.calldoctor.RCD07Test"/>
         </classes>
     </test>
 </suite>

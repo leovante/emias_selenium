@@ -113,8 +113,8 @@
                     <!--</property>-->
                     <!--</systemProperties>-->
                     <includes>
-                        <include>mis.BaseTest.java</include>
-                        <include>mis.work.RMISTest.java</include>
+                        <include>emias.BaseTest.java</include>
+                        <include>emias.mis.RMISTest.java</include>
                         <include>%regex[.*(RMIS|Base).*Test.*]</include>
                         <include>%regex[pkg.*Test.*.java]</include>
                         <include>**/*Test.java</include>
@@ -173,7 +173,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>src.test.java.mis.Main</mainClass>
+                            <mainClass>src.test.java.emias.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

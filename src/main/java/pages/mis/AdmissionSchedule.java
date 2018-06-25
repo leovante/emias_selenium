@@ -1,4 +1,4 @@
-package pages.shedule;
+package pages.mis;
 
 
 import org.openqa.selenium.By;

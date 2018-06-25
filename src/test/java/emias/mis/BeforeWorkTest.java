@@ -1,6 +1,6 @@
-package mis.work;
+package emias.mis;
 
-import mis.BaseTest;
+import emias.BaseTest;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 

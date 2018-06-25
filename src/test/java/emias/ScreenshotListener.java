@@ -1,17 +1,8 @@
-package mis;
+package emias;
 
 //import org.codehaus.plexus.util.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
-import org.testng.Reporter;
 import org.testng.TestListenerAdapter;
-
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class ScreenshotListener extends TestListenerAdapter {
     WebDriver driver;
