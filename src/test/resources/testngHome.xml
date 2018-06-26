@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="Home RMIS Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
     <parameter name="site" value="http://emias.softrust.ru/mis"/>

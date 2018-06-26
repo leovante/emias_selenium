@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import pages.utilities.JSWaiter;
 
-public class FullCardPage extends BasePage implements Profile1 {
+public class FullCardPage extends BasePage implements Profile2, Profile1 {
 
     @FindBy(id = "doneCall")
     WebElement doneCall;
@@ -230,7 +230,7 @@ public class FullCardPage extends BasePage implements Profile1 {
     }
 
     @Step
-    public void verifyCallProfile2(String nameGen) throws InterruptedException {
+    public String verifyCallProfile2(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -245,43 +245,62 @@ public class FullCardPage extends BasePage implements Profile1 {
         isDisplayedOnCardPage("Вид вызова");
         isDisplayedOnCardPage("Источник");
         isDisplayedOnCardPage("АДРЕС");
+        isDisplayedOnCardPage("П-д");
+        isDisplayedOnCardPage("Домофон");
+        isDisplayedOnCardPage("Этаж");
         isDisplayedOnCardPage("ЖАЛОБЫ");
-        isDisplayedOnCardPage("Возрастная категория");
+
         isDisplayedOnCardPage("КТО ПАЦИЕНТ");
         isDisplayedOnCardPage("КТО ВЫЗВАЛ");
         isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
+        isDisplayedOnCardPage("Возрастная категория");
+        isDisplayedOnCardPage("Возраст");
+        isDisplayedOnCardPage("Пол");
+        isDisplayedOnCardPage("Полис");
         isDisplayedOnCardPage("Телефон");
+        isDisplayedOnCardPage("Тип вызывающего");
         isDisplayedOnCardPage("Врач");
         isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
         isDisplayedOnCardPage("Отменить вызов");
         isDisplayedOnCardPage("Изменить");
         isDisplayedOnCardPage("Передать в другое ЛПУ");
 
-        isDisplayedOnCardPage("Московская обл., г. Коломна, ул. Первомайская, д.101, корп.202, стр.303, кв.404");
-        isDisplayedOnCardPage("505");
-        isDisplayedOnCardPage("606");
-        isDisplayedOnCardPage("707");
         isDisplayedOnCardPage("Новый");
         isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Афанасьева");
-        isDisplayedOnCardPage("Софья");
-        isDisplayedOnCardPage("Петровна");
-        isDisplayedOnCardPage("Ж");
-        isDisplayedOnCardPage("7854215965847521");
-        isDisplayedOnCardPage("Представитель");
+        isDisplayedOnCardPage("СМП");
+
+        //в истории вызова
+        isDisplayedOnCardPage("АВТОР");
+        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
+        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
+        isDisplayedOnCardPage("Новый");
         isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("автотест");
-        isDisplayedOnCardPage("19.02.2016");
-        isDisplayedOnCardPage("2 года");
-        isDisplayedOnCardPage("Ребенок");
-        isDisplayedOnCardPage("Автотемников");
-        isDisplayedOnCardPage("Автодмитрий");
-        isDisplayedOnCardPage("Автоолегович");
-        isDisplayedOnCardPage("Не назначен");
+
+        //параметры профиля
+        isDisplayedOnCardPage(adressPro2);
+        isDisplayedOnCardPage(pdPro2);
+        isDisplayedOnCardPage(dfonPro2);
+        isDisplayedOnCardPage(etazhPro2);
+        isDisplayedOnCardPage(nameGen);
+        isDisplayedOnCardPage(famPro2);
+        isDisplayedOnCardPage(namePro2);
+
+        isDisplayedOnCardPage(otchestvoPro2);
+        isDisplayedOnCardPage(nomerPolPro2);
+        isDisplayedOnCardPage(zhalobaPro2);
+        isDisplayedOnCardPage(birthDayPro2);
+        isDisplayedOnCardPage(goda24Pro2);
+        isDisplayedOnCardPage(vozrastKatPro2);
+
+        isDisplayedOnCardPage(telephonePro2);
+        isDisplayedOnCardPage(genderPro2);
+
+        isDisplayedOnCardPage(nameCallPro2);
+        isDisplayedOnCardPage(famCallPro2);
+        isDisplayedOnCardPage(otCallPro2);
+
+        isDisplayedOnCardPage(stationSMPPro2);
+        return famPro2;
     }
 
     public void verifyCallRegistrMkab2New() throws InterruptedException {

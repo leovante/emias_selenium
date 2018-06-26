@@ -1,6 +1,6 @@
 package pages.calldoctor;
 
-interface Profile1 {
+public interface Profile1 {
     String adressPro1_1 = "Московская";
     String adressPro1_2 = "Коломна";
     String adressPro1_3 = "Первомайская";
@@ -26,5 +26,5 @@ interface Profile1 {
     String goda24Pro1 = "24 года";
     String vozrastKatPro1 = "Взрослый";
 
-    String zhalobaPro1 = "автотест";
+    String zhalobaPro1 = "автотест создание вызова без МКАБ через ВД";
 }

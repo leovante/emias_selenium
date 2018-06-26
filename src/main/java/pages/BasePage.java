@@ -66,7 +66,14 @@ abstract public class BasePage {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-//        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        element.click();
+    }
+
+    public void clickJSext(WebElement element) {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        wait.until(ExpectedConditions.visibilityOf(element)).click();
     }
 
     //Close popup if exists
@@ -107,6 +114,9 @@ abstract public class BasePage {
     }
 
     public void wait(WebElement webElement) {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

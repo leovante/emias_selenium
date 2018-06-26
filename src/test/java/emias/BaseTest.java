@@ -26,6 +26,7 @@ public abstract class BaseTest {
     public void beforeSuite(@Optional String browser, @Optional String platform, @Optional String site, @Optional String login, @Optional String pass) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
+        System.out.println("Site: " + site);
         driver = new DriverManager(browser).createDriver();
         JSWaiter.setDriver(driver);
         SwitchToPage.setDriver(driver);
@@ -53,7 +54,7 @@ public abstract class BaseTest {
 
     @BeforeGroups(groups = "shedule", alwaysRun = true)
     public void beforeGroupsShedule() {
-        driver.get("http://mis.softrust.ru/mis/Main/Default");//здесь нужно сделать нормальный переход на дашборд миса
+//        driver.get("http://mis.softrust.ru/mis/Main/Default");//здесь нужно сделать нормальный переход на дашборд миса
         String url = driver.getCurrentUrl();
         curUrlCalldoctor = url;
     }

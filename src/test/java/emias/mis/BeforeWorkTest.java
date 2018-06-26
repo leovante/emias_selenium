@@ -10,7 +10,7 @@ public class BeforeWorkTest extends BaseTest {
     @Test(groups = "shedule", description = "Создание расисания у врачей и закрытие старых вызовов")
     public void cleanBeforeWork() throws ClassNotFoundException, InterruptedException {
         page.homePage().manageSheduleBtn();
-        createShedule(1);
+        createShedule(20);
         page.homePage().logoHomeBtn();
     }
 
@@ -20,8 +20,8 @@ public class BeforeWorkTest extends BaseTest {
 
         while (n <= i) {
             System.out.println("Обрабатываю врача №: " + n);
-//            String doctor_num = page.doctorMethods().getUnicalDoctor3(n);
-            String doctor_num = "Темников Дмитрий Олегович";
+            String doctor_num = page.doctorMethods().getUnicalDoctor3(n);
+//            String doctor_num = "Темников Дмитрий Олегович";
             String doctor_num_fam = page.manageShedule().getSecondName(doctor_num);
             CleanDoctorTT.deleteShedule(doctor_num_fam);
 

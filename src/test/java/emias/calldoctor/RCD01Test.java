@@ -4,9 +4,11 @@ import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.calldoctor.Profile1;
+import pages.calldoctor.Profile2;
 import pages.utilities.StringGenerator;
 
-public class RCD01Test extends BaseTest {
+public class RCD01Test extends BaseTest implements Profile1, Profile2 {
     String nameGen;
 
     @BeforeTest(groups = "mis")
@@ -19,14 +21,9 @@ public class RCD01Test extends BaseTest {
     @AfterTest(groups = "mis")
     public void afterTest() throws Exception {
         page.dashboardPage().clickLogoType();
-
-
-        //вот тут нужно что бы скрин был только если была ошибка
-//        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", description = "создать вызов через Диспетчер с иточником Регистратура", invocationCount = 1)
-//тут создаем вызов Регистратура без мкаб
+    @Test(groups = "mis", description = "созать вызов с иточником Регистратура")
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -35,25 +32,22 @@ public class RCD01Test extends BaseTest {
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen);
-        page.dashboardPage().clearFilterFio();
+        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
     }
 
-    @Test(groups = "mis", description = "создать вызов через Диспетчер с источником СМП и привязкой МКАБ", enabled = false)
-//тут создаем вызов СМП с мкаб
+    @Test(groups = "mis", description = "создать вызов с источником СМП и привязкой МКАБ")
     public void testCallRegistrMkab() throws Exception {
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile2(nameGen);
-        page.fullCardPage().verifyCallProfile2(nameGen);
+        this.nameGen = page.fullCardPage().verifyCallProfile2(nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen);
+        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
     }
 
-    @Test(groups = "mis", enabled = false)//тут создаем вызов Регистратура без мкаб
+    @Test(groups = "mis", enabled = false)
     public void testCallApiSMP() {
-
     }
 }

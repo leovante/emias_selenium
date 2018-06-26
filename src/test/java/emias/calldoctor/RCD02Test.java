@@ -4,9 +4,11 @@ import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.calldoctor.Profile1;
+import pages.calldoctor.Profile2;
 import pages.utilities.StringGenerator;
 
-public class RCD02Test extends BaseTest {
+public class RCD02Test extends BaseTest implements Profile1, Profile2 {
     String nameGen;
 
 
@@ -20,12 +22,9 @@ public class RCD02Test extends BaseTest {
     @AfterTest(groups = "mis")
     public void afterTest() throws Exception {
         page.dashboardPage().clickLogoType();
-        //вот тут нужно что бы скрин был только если была ошибка
-//        takeSnapShot(driver, testResult);
     }
 
     @Test(groups = "mis", description = "изменить карту вызова, созданную по п.1.1", enabled = false)
-//нужен ID на поле учистки адреса
     public void testEditProfile1() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -37,6 +36,6 @@ public class RCD02Test extends BaseTest {
         page.fullCardPage().verifyCallProfile2(nameGen);
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen);
+        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro1_2, telephonePro1);
     }
 }

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
-public class DashboardPage extends BasePage implements Profile1 {
+public class DashboardPage extends BasePage {
 
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
     WebElement exitToMis;
@@ -22,9 +22,6 @@ public class DashboardPage extends BasePage implements Profile1 {
     @FindBy(xpath = "//*[@placeholder='ФИО']")
     WebElement fioFilter;
 
-    @FindBy(id = "newCallOverdueFrame")
-    WebElement newCallOverdueFrame;
-
     @FindBy(id = "newCallProgressFrame")
     WebElement newCallProgressFrame;
 
@@ -33,9 +30,6 @@ public class DashboardPage extends BasePage implements Profile1 {
 
     @FindBy(id = "doneCallProgressFrame")
     WebElement doneCallProgressFrame;
-
-    @FindBy(id = "newCallAllCount")
-    WebElement newCallAllCount;
 
     @FindBy(id = "cardSpace")
     WebElement cardSpace;
@@ -57,60 +51,45 @@ public class DashboardPage extends BasePage implements Profile1 {
     }
 
     @Step
-    public void searchFilterFio(String doctorName) throws InterruptedException {
+    public void searchFilterFio(String fioName) throws InterruptedException {
         clickJS(fioFilter);
-        sendKeys(fioFilter, doctorName);
+        sendKeys(fioFilter, fioName);
         Thread.sleep(4000);
     }
 
     @Step
-    public void clearFilterFio() {
-        fioFilter.clear();
-    }
-
-    @Step
-    public void verifyNewCallProgressFrame(String nameGen) throws InterruptedException {
-        wait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//div[@id='newCallAllCount']/div[contains(text(),'1')]")));
-
+    public void verifyNewCallProgressFrame(String name, String adress, String telephone) throws InterruptedException {
+        clickJSext(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);
-        click(adressPro1_3);
 
-        isDisplayedOnCardPage(famPro1);
-        isDisplayedOnCardPage(otchestvoPro1);
-        isDisplayedOnCardPage(nameGen);
-        //потом ещё добавить проверку номера телефона
+        click(adress);
+        isDisplayedOnCardPage(name);
+        isDisplayedOnCardPage(telephone);
     }
 
     @Step
-    public void verifyActiveDocGroup(String doctorFam, String nameGen) throws InterruptedException {
+    public void verifyActiveDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {
         wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//div[@id='activeCallAllCount'][contains(text(),'1')]")));
 
         click(driver.findElement(By.xpath("//span[contains(text(),'" + doctorFam + "')]")));
         click(activeCallProgressFrame);
-        click(adressPro1_3);
+        click(adress);
 
-        isDisplayedOnCardPage(famPro1);
-        isDisplayedOnCardPage(otchestvoPro1);
         isDisplayedOnCardPage(nameGen);
-        //потом ещё добавить проверку номера телефона
+        isDisplayedOnCardPage(telephone);
     }
 
     @Step
-    public void verifyDoneDocGroup(String doctorFam, String nameGen) throws InterruptedException {
+    public void verifyDoneDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {
         wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]")));
 
         click(driver.findElement(By.xpath("//span[contains(text(),'" + doctorFam + "')]")));
         click(doneCallProgressFrame);
-        click(adressPro1_3);
+        click(adress);
 
-        isDisplayedOnCardPage(famPro1);
-        isDisplayedOnCardPage(otchestvoPro1);
         isDisplayedOnCardPage(nameGen);
-        //потом ещё добавить проверку номера телефона
+        isDisplayedOnCardPage(telephone);
     }
-
-
 }

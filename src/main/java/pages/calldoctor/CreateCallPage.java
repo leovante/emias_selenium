@@ -14,15 +14,11 @@ import static org.testng.Assert.assertTrue;
 import static pages.utilities.Waiter.waitVisibility;
 
 public class CreateCallPage extends BasePage implements Profile1, Profile2 {
-
-    @FindBy(xpath = "//addCallBtn[@id='btn_delete']/span[2]")
-    WebElement deleteShedule;
-
     @FindBy(xpath = "//div[contains(text(),'СМП')]")
     WebElement SMP;
 
-    @FindBy(xpath = "//button[@aria-label='Clear']/span/mat-icon")
-    WebElement cancelAdress;
+    @FindBy(xpath = "//span/button/span/mat-icon")
+    WebElement clearAdress;
 
     @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
     WebElement list_first_container;
@@ -30,17 +26,11 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
     @FindBy(xpath = "//input[@placeholder='Адрес']")
     WebElement placeholder_adress;
 
-    @FindBy(xpath = "//div[@class='autocomplete-list-container'")
-    WebElement containerKladr;
-
     @FindBy(xpath = "//input[@placeholder='Дом']")
     WebElement dom;
 
     @FindBy(xpath = "//*[@mattooltip='Добавить вызов']")
     WebElement addCallBtn;
-
-    @FindBy(xpath = "//span/mat-icon")
-    WebElement mat_icon;
 
     @FindBy(id = "phone")
     WebElement telephoneNumber;
@@ -96,14 +86,14 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
     @FindBy(xpath = "//input[@placeholder='Тип вызывающего']")
     WebElement tipVisivaushego;
 
+    @FindBy(xpath = "//input[@placeholder='Станция СМП']")
+    WebElement stationSMP;
+
     @FindBy(xpath = "//div[contains(.,'Вид вызова')]")
     WebElement vidVisova;
 
     @FindBy(xpath = "//span[contains(.,'Пациент')]")
     WebElement pacient;
-
-    @FindBy(xpath = "//span[contains(.,'Представитель')]")
-    WebElement predstav;
 
     @FindBy(xpath = "//*[contains(.,'Неотложный')]")
     WebElement neotlozhniy;
@@ -120,26 +110,20 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
     @FindBy(id = "callPatronymic")
     WebElement callPatronymic;
 
-    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(23, 150, 112);']")
-    WebElement thisDayLoadGreen;
-
-    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(252, 194, 54);']")
-    WebElement thisDayLoadYellow;
-
-    @FindBy(xpath = "//span[contains(.,'Назначить на сегодня')]")
-    WebElement appenOnThisDay;
-
-    @FindBy(xpath = "//div[contains(.,'Найдена МКАБ пациента Афанасьева')]")
-    WebElement naidena_mkab;
-
-    @FindBy(xpath = "//*[contains(.,'МКАБ не найдена')]")
-    WebElement mkabError;
-
     @FindBy(xpath = "//div[contains(text(),'Новый вызов')]")
     WebElement noviyVizov;
 
     @FindBy(xpath = "//input[@placeholder='Дата рождения']")
     WebElement birthDay;
+
+    @FindBy(id = "findPatientInput")
+    WebElement findPatientInput;
+
+    @FindBy(xpath = "//div/mat-option/span[contains(text(),'" + famPro2 + "')]")
+    WebElement famPro2Xpath;
+
+    @FindBy(id = "source0")
+    WebElement source0;
 
 
     public CreateCallPage(WebDriver driver) {
@@ -217,51 +201,37 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         click(addCallBtn);
 
-/*адрес*/
+/*кто пациент*/
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
-        click(cancelAdress);
-        click(placeholder_adress);
-
-        placeholder_adress.sendKeys(adressPro2_1);
-        click(list_first_container);
-
-        placeholder_adress.sendKeys(adressPro2_2);
-        click(list_first_container);
-
-        placeholder_adress.sendKeys(adressPro2_3);
-        click(list_first_container);
+        sendKeys(findPatientInput, nomerPolPro2);
+        clickJSext(famPro2Xpath);
 
 /*обязательные поля*/
+        click(source0);
         sendKeys(dom, domPro2);
-        click(chkBoxTelephone);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
         jse1.executeScript("arguments[0].value='" + telephonePro1 + "';", telephoneNumber);
         telephoneNumber.click();
+        action.sendKeys(Keys.SPACE).perform();
 
 /*необязательные поля*/
-        sendKeys(korpus, korpusPro2);
-        sendKeys(stroenie, stroeniePro2);
-        sendKeys(kvartira, kvartiraPro2);
         sendKeys(pd, pdPro2);
         sendKeys(dfon, dfonPro2);
         sendKeys(etazh, etazhPro2);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + zhalobaPro1 + "';", zhaloba);
+        jse.executeScript("arguments[0].value='" + zhalobaPro2 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
-/*кто пациент*/
-        sendNomerPol(nomerPol, nomerPolPro2);
 
 /*кто вызывает*/
-        tipVisivaushego.click();
-        predstav.click();
-        sendKeys(callFamily, famPro1);
+        sendKeys(callFamily, famCallPro2);
         sendKeys(callName, nameGen);
-        sendKeys(callPatronymic, otchestvoVizivPro2);
+        sendKeys(callPatronymic, otCallPro2);
+        sendKeys(stationSMP, stationSMPPro2);
 
         saveBtns.click();
     }
@@ -277,7 +247,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
 
         /*адрес*/
-        click(cancelAdress);
+        click(clearAdress);
         click(placeholder_adress);
 
         placeholder_adress.sendKeys("Московская");
@@ -346,7 +316,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
         SMP.click();//вот здесь начинаются проблемы
 
         /*адрес*/
-        click(cancelAdress);
+        click(clearAdress);
         click(placeholder_adress);
 
         placeholder_adress.sendKeys("Московская");

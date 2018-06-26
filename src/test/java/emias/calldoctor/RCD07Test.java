@@ -4,9 +4,11 @@ import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.calldoctor.Profile1;
+import pages.calldoctor.Profile2;
 import pages.utilities.StringGenerator;
 
-public class RCD07Test extends BaseTest {
+public class RCD07Test extends BaseTest implements Profile1, Profile2 {
     String doctorName;
     String doctorFam;
     String nameGen;
@@ -20,16 +22,13 @@ public class RCD07Test extends BaseTest {
 
     @AfterTest(groups = "mis")
     public void afterTest() throws Exception {
-        //вот тут нужно что бы скрин был только если была ошибка
-//        takeSnapShot(driver, testResult);
     }
 
-    @Test(groups = "mis", description = "обслужить на дашборде")
+    @Test(groups = "mis", description = "завершить обслуживание вызова")
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
-//        page.fullCardPage().verifyCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
         this.doctorName = page.setDoctorPage().getDoctorName(1);
@@ -42,6 +41,6 @@ public class RCD07Test extends BaseTest {
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen);
+        page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
     }
 }

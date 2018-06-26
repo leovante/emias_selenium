@@ -4,9 +4,11 @@ import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.calldoctor.Profile1;
+import pages.calldoctor.Profile2;
 import pages.utilities.StringGenerator;
 
-public class RCD04Test extends BaseTest {
+public class RCD04Test extends BaseTest implements Profile1, Profile2 {
     String doctorName;
     String doctorFam;
     String nameGen;
@@ -20,8 +22,6 @@ public class RCD04Test extends BaseTest {
 
     @AfterTest(groups = "mis")
     public void afterTest() throws Exception {
-        //вот тут нужно что бы скрин был только если была ошибка
-//        takeSnapShot(driver, testResult);
     }
 
     @Test(groups = "mis", description = "передать вызов на странице карты вызова")
@@ -29,13 +29,11 @@ public class RCD04Test extends BaseTest {
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
-//        page.fullCardPage().verifyCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
         this.doctorName = page.setDoctorPage().getDoctorName(1);
         page.setDoctorPage().appendDoctor(doctorName);
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
-//        page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
 
         page.fullCardPage().sendAnotherDoctorBtn();
         this.doctorName = page.setDoctorPage().getDoctorName(doctorName);
@@ -45,6 +43,6 @@ public class RCD04Test extends BaseTest {
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen);
+        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
     }
 }

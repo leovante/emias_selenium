@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
+<suite name="CallCenter Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
