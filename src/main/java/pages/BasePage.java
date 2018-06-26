@@ -101,25 +101,10 @@ abstract public class BasePage {
         assertTrue(element.isDisplayed());
     }
 
-    public void isPresenceOnCardPage(String name) throws InterruptedException {
-        WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));//не убирай спан
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'" + name + "')]")));
-        assertTrue(element.isDisplayed());
-    }
-
     public void sendKeys(WebElement element, String text) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-//        click(element);
         element.clear();
         element.sendKeys(text);
-    }
-
-
-    public void sendNomerPol(WebElement element, String text) {
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        click(element);
-        element.sendKeys(text);
-        assertTrue(element.isEnabled());
     }
 
     public void wait(WebElement webElement) {

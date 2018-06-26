@@ -128,12 +128,14 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     @FindBy(id = "source0")
     WebElement source0;
 
+    @FindBy(xpath = "//button/span[contains(text(),'Да')]")
+    WebElement allarmaYes;
 
     public CreateCallPage(WebDriver driver) {
         super(driver);
     }
 
-    @Step
+    @Step("создаю пустой вызов")
     public void createCallProfile0() throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -142,21 +144,8 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         click(addCallBtn);
         waitVisibility(noviyVizov);
 
-/*адрес*/
-        placeholder_adress.clear();
-        click(placeholder_adress);
-
-        placeholder_adress.sendKeys(adressPro0_1);
-        click(list_first_container);
-
-        placeholder_adress.sendKeys(adressPro0_2);
-        click(list_first_container);
-
-        placeholder_adress.sendKeys(adressPro0_3);
-        click(list_first_container);
-
 /*обязательные поля*/
-        sendKeys(dom, domPro1);
+        sendKeys(dom, domPro0);
         click(chkBoxTelephone);
 
         click(hz);
@@ -170,9 +159,11 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         action.sendKeys(Keys.ENTER).perform();
 
         saveBtns.click();
+
+        click(allarmaYes);
     }
 
-    @Step
+    @Step("создаю вызов без МКАБ + Регистратура")
     public void createCallProfile1(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -235,7 +226,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         saveBtns.click();
     }
 
-    @Step
+    @Step("создаю вызов с МКАБ + СМП")
     public void createCallProfile2(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -411,27 +402,6 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         saveBtns.click();
     }
 
-    @Step
-    public void cancelRecord() {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Подробно о вызове')]")));
-
-        WebElement cancelBtns = driver.findElement(By.xpath("//span[contains(text(),'Отменить вызов')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(cancelBtns));
-        cancelBtns.click();
-
-        WebElement cancelField = driver.findElement(By.xpath("//input[@placeholder='Причина отмены вызова']"));
-        wait.until(ExpectedConditions.elementToBeClickable(cancelField));
-        cancelField.sendKeys("отмена автотест");
-
-        WebElement cancelFieldBtn = driver.findElement(By.xpath("//a[@title='Отменить вызов']"));
-        wait.until(ExpectedConditions.elementToBeClickable(cancelFieldBtn));
-        cancelFieldBtn.click();
-    }
 
     @Step
     public void verifyCancelOnDashbord() {

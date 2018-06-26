@@ -52,6 +52,11 @@ public abstract class BaseTest {
         curUrlCalldoctor = url;
     }
 
+    @BeforeGroups(groups = "CD", alwaysRun = true)
+    public void afterGroupsCD() {
+        page.dashboardPage().exitToMis();
+    }
+
     @BeforeGroups(groups = "mis", alwaysRun = true)
     public void beforeGroupsMIS() {
         String url = driver.getCurrentUrl();

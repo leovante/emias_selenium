@@ -29,6 +29,18 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     @FindBy(xpath = "//span[contains(text(),'Передать другому врачу')]")
     WebElement appoindBtn;
 
+    @FindBy(id = "cancel")
+    WebElement cancelBtn;
+
+    @FindBy(id = "cancelCall")
+    WebElement cancelCall;
+
+    @FindBy(xpath = "//div[contains(text(),'Карта вызова')]")
+    WebElement callCard;
+
+    @FindBy(xpath = "//input[@placeholder='Причина отмены вызова")
+    WebElement cancelField;
+
     public FullCardPage(WebDriver driver) {
         super(driver);
     }
@@ -341,40 +353,14 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     }
 
 
-    public void cancelBtn() {
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-
-        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Отменить вызов')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
-        appoindBtns.click();
-
-    }
-
-    public void editBtn() {
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-
-        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Изменить')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
-        appoindBtns.click();
-
-    }
-
-    public void sendAnotherLPUBtn() {
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-
-        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Передать в другое ЛПУ')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
-        appoindBtns.click();
-
+    @Step
+    public void cancelRecord() throws InterruptedException {
+        isDisplayed("Карта вызова");
+        click(cancelBtn);
+        wait(cancelField);
+        cancelField.click();
+        cancelField.sendKeys("отмена автотеста");
+        click(cancelCall);
     }
 
     @Step

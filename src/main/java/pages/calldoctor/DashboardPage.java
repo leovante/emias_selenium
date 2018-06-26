@@ -2,14 +2,16 @@ package pages.calldoctor;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
 
 public class DashboardPage extends BasePage {
-
+    Actions action = new Actions(driver);
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
     WebElement exitToMis;
 
@@ -21,6 +23,9 @@ public class DashboardPage extends BasePage {
 
     @FindBy(xpath = "//*[@placeholder='ФИО']")
     WebElement fioFilter;
+
+    @FindBy(xpath = "//*[@placeholder='Врач']")
+    WebElement docFilter;
 
     @FindBy(id = "newCallProgressFrame")
     WebElement newCallProgressFrame;
@@ -54,6 +59,15 @@ public class DashboardPage extends BasePage {
     public void searchFilterFio(String fioName) throws InterruptedException {
         clickJS(fioFilter);
         sendKeys(fioFilter, fioName);
+        Thread.sleep(4000);
+    }
+
+    @Step
+    public void searchFilterDoctor(String fioName) throws InterruptedException {
+        clickJS(docFilter);
+        sendKeys(docFilter, fioName);
+        action.sendKeys(Keys.ARROW_DOWN).perform();
+        action.sendKeys(Keys.ENTER).perform();
         Thread.sleep(4000);
     }
 
