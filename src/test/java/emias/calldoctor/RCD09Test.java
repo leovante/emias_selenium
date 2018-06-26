@@ -48,7 +48,7 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
         this.doctorFam = page.manageShedule().getSecondName(doctorName);
         page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterDoctor(nameGen);
+        page.dashboardPage().searchFilterDoctor(doctorFam);
         page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
     }
 
