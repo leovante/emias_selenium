@@ -4,26 +4,26 @@ import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.calldoctor.Profile1;
-import pages.calldoctor.Profile2;
+import pages.calldoctor.Profiles_interfaces.Profile1;
+import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.utilities.StringGenerator;
 
 public class RCD01Test extends BaseTest implements Profile1, Profile2 {
     String nameGen;
 
-    @BeforeTest(groups = "mis")
+    @BeforeTest(groups = "CD")
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "mis")
+    @AfterTest(groups = "CD")
     public void afterTest() throws Exception {
         page.dashboardPage().clickLogoType();
     }
 
-    @Test(groups = "mis", description = "созать вызов с иточником Регистратура")
+    @Test(groups = "CD", description = "вызов с иточником Регистратура")
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -35,7 +35,7 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
     }
 
-    @Test(groups = "mis", description = "создать вызов с источником СМП и привязкой МКАБ")
+    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     public void testCallRegistrMkab() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -47,7 +47,12 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
     }
 
-    @Test(groups = "mis", enabled = false)
-    public void testCallApiSMP() {
+    @Test(groups = "test", description = "пустой вызов")
+    public void testCallProfile0() throws InterruptedException {
+        driver.get(curUrlCalldoctor);
+
+        page.createCallPage().createCallProfile0();
+        page.fullCardPage().verifyCallProfile0();
+        page.fullCardPage().closeCardBtn();
     }
 }

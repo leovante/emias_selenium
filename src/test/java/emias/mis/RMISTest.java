@@ -9,12 +9,12 @@ import pages.utilities.CleanDoctorTT;
 
 public class RMISTest extends BaseTest {
 
-    @BeforeTest(groups = "shedule")
+    @BeforeTest(groups = "mis")
     public void beforeTest() {
         System.out.println();
     }
 
-    @AfterTest(groups = "shedule")
+    @AfterTest(groups = "mis")
     public void afterTest() throws Exception {
         page.homePage().logoHomeBtn();
         //вот тут нужно что бы скрин был только если была ошибка
@@ -22,7 +22,7 @@ public class RMISTest extends BaseTest {
     }
 
 
-    @Test(groups = "shedule", description = "Создать расписание", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Создать расписание", retryAnalyzer = RetryAnalyzer.class)
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -35,7 +35,7 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test(groups = "shedule", description = "Копировать расписание", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Копировать расписание", retryAnalyzer = RetryAnalyzer.class)
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -53,7 +53,7 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test(groups = "shedule", description = "Указать неприемные дни", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Указать неприемные дни", retryAnalyzer = RetryAnalyzer.class)
     public void setNotReceiveDays() throws InterruptedException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -63,7 +63,7 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyNotReceiveDays();
     }
 
-    @Test(groups = "shedule", description = "Удалить расписание", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Удалить расписание", retryAnalyzer = RetryAnalyzer.class)
     public void deleteShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -85,7 +85,7 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyDeletedShedle();
     }
 
-    @Test(groups = "shedule", description = "Перенести запись", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Перенести запись", retryAnalyzer = RetryAnalyzer.class)
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();

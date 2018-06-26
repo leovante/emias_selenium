@@ -1,4 +1,4 @@
-package pages.calldoctor;
+package pages.calldoctor.Profiles_interfaces;
 
 public interface Profile1 {
     String adressPro1_1 = "Московская";

@@ -92,6 +92,15 @@ abstract public class BasePage {
         assertTrue(element.isDisplayed());
     }
 
+    public void isDisplayed(String name) throws InterruptedException {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));//не убирай спан
+        assertTrue(element.isDisplayed());
+    }
+
     public void isPresenceOnCardPage(String name) throws InterruptedException {
         WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));//не убирай спан
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[contains(text(),'" + name + "')]")));

@@ -43,8 +43,8 @@ public abstract class BaseTest {
         driver.quit();
     }
 
-    @BeforeGroups(groups = "mis", alwaysRun = true)
-    public void beforeGroups() {
+    @BeforeGroups(groups = "CD", alwaysRun = true)
+    public void beforeGroupsCD() {
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
 //        driver.get("http://192.168.7.19:6001/test/call/call_doctor_ui/call-doctor/board?ticket=t7zsrR0YvQRlp3lJYS0jKJNV0iik4wUMdzEgXNDtpEyZuZQrHX77ZqJ2O11UnOgX1DHriJXe6vZ%2BkgsHMnU1xMnAGoTQa0nyWMnJ6lShS7L6cGJpGGyR0M3Jlhgz1wTVz1QjW1woODUjtUE6X3KSOqtvsn3%2Fa2Lx5TDEhQG2psDKSZMl7i1%2FUVhRyDuf23%2BsEZuRtfv7ZTo%2BZ774dRCiDAC7z5deDUcuutxGMFWR%2FhwPEUS44kPBJjoJVBVZfFs58LK3FPTZL0js%2B0rNRAI%2BFt4dLcLYfI2YdpzaXFaDGrtnDRId&ReturnUrl=http:%2F%2F192.168.7.139%2Fwhc%2FMain%2FDefault");
@@ -52,15 +52,14 @@ public abstract class BaseTest {
         curUrlCalldoctor = url;
     }
 
-    @BeforeGroups(groups = "shedule", alwaysRun = true)
-    public void beforeGroupsShedule() {
-//        driver.get("http://mis.softrust.ru/mis/Main/Default");//здесь нужно сделать нормальный переход на дашборд миса
+    @BeforeGroups(groups = "mis", alwaysRun = true)
+    public void beforeGroupsMIS() {
         String url = driver.getCurrentUrl();
         curUrlCalldoctor = url;
     }
 
-    @AfterGroups(groups = "shedule", alwaysRun = true)
-    public void afterGroupsShedule() {
+    @AfterGroups(groups = "mis", alwaysRun = true)
+    public void afterGroupsMIS() {
         System.out.println();
     }
 
@@ -68,11 +67,12 @@ public abstract class BaseTest {
     public void beforeGroupsCC() {
     }
 
-//    public static void takeSnapShot(WebDriver webdriver, ITestResult testResult) throws Exception {
-//        TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
-//        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-//        File DestFile = new File("errorScreenshots\\" + testResult.getTestClass() + "-"
-//                + Arrays.toString(testResult.getParameters()) + ".png");
-//        FileUtils.copyFile(SrcFile, DestFile);
-//    }
+    @BeforeGroups(groups = "test", alwaysRun = true)
+    public void beforeGroupsCDTest() {
+        page.homePage().callDoctorBtn();
+        pages.utilities.SwitchToPage.switchToPage();
+//        driver.get("http://192.168.7.19:6001/test/call/call_doctor_ui/call-doctor/board?ticket=t7zsrR0YvQRlp3lJYS0jKJNV0iik4wUMdzEgXNDtpEyZuZQrHX77ZqJ2O11UnOgX1DHriJXe6vZ%2BkgsHMnU1xMnAGoTQa0nyWMnJ6lShS7L6cGJpGGyR0M3Jlhgz1wTVz1QjW1woODUjtUE6X3KSOqtvsn3%2Fa2Lx5TDEhQG2psDKSZMl7i1%2FUVhRyDuf23%2BsEZuRtfv7ZTo%2BZ774dRCiDAC7z5deDUcuutxGMFWR%2FhwPEUS44kPBJjoJVBVZfFs58LK3FPTZL0js%2B0rNRAI%2BFt4dLcLYfI2YdpzaXFaDGrtnDRId&ReturnUrl=http:%2F%2F192.168.7.139%2Fwhc%2FMain%2FDefault");
+        String url = driver.getCurrentUrl();
+        curUrlCalldoctor = url;
+    }
 }

@@ -4,8 +4,8 @@ import emias.BaseTest;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.calldoctor.Profile1;
-import pages.calldoctor.Profile2;
+import pages.calldoctor.Profiles_interfaces.Profile1;
+import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.utilities.StringGenerator;
 
 public class RCD04Test extends BaseTest implements Profile1, Profile2 {
@@ -13,18 +13,18 @@ public class RCD04Test extends BaseTest implements Profile1, Profile2 {
     String doctorFam;
     String nameGen;
 
-    @BeforeTest(groups = "mis")
+    @BeforeTest(groups = "CD")
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "mis")
+    @AfterTest(groups = "CD")
     public void afterTest() throws Exception {
     }
 
-    @Test(groups = "mis", description = "передать вызов на странице карты вызова")
+    @Test(groups = "CD", description = "передать вызов на странице карты вызова")
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 

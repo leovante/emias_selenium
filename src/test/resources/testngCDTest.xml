@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="CDTest Test Suite">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="platform" value="WINDOWS"/>
+    <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
+    <parameter name="login" value="temnikov"/>
+    <parameter name="pass" value="1212"/>
+    <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
+        <groups>
+            <run>
+                <include name="test"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="emias.calldoctor.RCD01Test"/>
+        </classes>
+    </test>
+</suite>

@@ -8,12 +8,15 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
+import pages.calldoctor.Profiles_interfaces.Profile0;
+import pages.calldoctor.Profiles_interfaces.Profile1;
+import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.utilities.JSWaiter;
 
 import static org.testng.Assert.assertTrue;
 import static pages.utilities.Waiter.waitVisibility;
 
-public class CreateCallPage extends BasePage implements Profile1, Profile2 {
+public class CreateCallPage extends BasePage implements Profile1, Profile2, Profile0 {
     @FindBy(xpath = "//div[contains(text(),'СМП')]")
     WebElement SMP;
 
@@ -98,7 +101,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
     @FindBy(xpath = "//*[contains(.,'Неотложный')]")
     WebElement neotlozhniy;
 
-    @FindBy(xpath = "//button[3]/span/span")
+    @FindBy(id = "save")
     WebElement saveBtns;
 
     @FindBy(id = "callFamily")
@@ -128,6 +131,45 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2 {
 
     public CreateCallPage(WebDriver driver) {
         super(driver);
+    }
+
+    @Step
+    public void createCallProfile0() throws InterruptedException {
+        Actions action = new Actions(driver);
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        click(addCallBtn);
+        waitVisibility(noviyVizov);
+
+/*адрес*/
+        placeholder_adress.clear();
+        click(placeholder_adress);
+
+        placeholder_adress.sendKeys(adressPro0_1);
+        click(list_first_container);
+
+        placeholder_adress.sendKeys(adressPro0_2);
+        click(list_first_container);
+
+        placeholder_adress.sendKeys(adressPro0_3);
+        click(list_first_container);
+
+/*обязательные поля*/
+        sendKeys(dom, domPro1);
+        click(chkBoxTelephone);
+
+        click(hz);
+        click(vozr);
+        hz2.click();
+
+/*жалоба*/
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].value='" + zhalobaPro0 + "';", zhaloba);
+        zhaloba.sendKeys(Keys.SPACE);
+        action.sendKeys(Keys.ENTER).perform();
+
+        saveBtns.click();
     }
 
     @Step
