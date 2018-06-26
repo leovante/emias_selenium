@@ -400,6 +400,12 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
 
     @Step
     public void closeCardBtn() {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Карта вызова')]")));
+
         WebElement close = driver.findElement(By.xpath("//mat-icon[contains(text(),'close')]"));
         wait.until(ExpectedConditions.elementToBeClickable(close));
         close.click();

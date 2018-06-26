@@ -19,8 +19,6 @@ public abstract class BaseTest {
     public static Pages page;
     public static String curUrlCalldoctor = null;
 
-//    ScreenshotListener listner;
-
     @Parameters(value = {"browser", "platform"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String browser,
