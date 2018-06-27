@@ -23,7 +23,7 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.dashboardPage().clickLogoType();
     }
 
-    @Test(groups = "test", description = "пустой вызов")
+    @Test(groups = "test", description = "пустой вызов", enabled = false)
     public void testCallRegistrEmpy() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 
@@ -54,5 +54,14 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
+    }
+
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР", enabled = false)
+    public void testCallSMPApi() throws InterruptedException {
+        page.createCallPage().createCallProfile3();
+        driver.get(curUrlCalldoctor);
+
+        page.dashboardPage().openNewCallProgressFrame();
+        page.fullCardPage().verifyCallProfile3();
     }
 }

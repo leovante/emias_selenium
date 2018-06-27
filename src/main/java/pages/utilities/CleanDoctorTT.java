@@ -30,9 +30,8 @@ public class CleanDoctorTT {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Done.");
+                    System.out.println("Clean is done.");
                 }
-                System.out.println("Clean is done.\n");
             }
         } catch (Exception e) {
             System.out.println();
@@ -54,9 +53,8 @@ public class CleanDoctorTT {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Done.");
+                    System.out.println("Finalize is done.");
                 }
-                System.out.println("Clean is done.\n");
             }
         } catch (Exception e) {
             System.out.println();

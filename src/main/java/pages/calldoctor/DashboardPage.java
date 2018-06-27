@@ -1,14 +1,14 @@
 package pages.calldoctor;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
+import pages.utilities.JSWaiter;
 
 public class DashboardPage extends BasePage {
     Actions action = new Actions(driver);
@@ -105,5 +105,21 @@ public class DashboardPage extends BasePage {
 
         isDisplayedOnCardPage(nameGen);
         isDisplayedOnCardPage(telephone);
+    }
+
+
+    @Step
+    public void openNewCallProgressFrame() throws InterruptedException {
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+
+        clickJSext(newCallProgressFrame.findElement(By.id("order")));
+        click(newCallProgressFrame);
+
+        Thread.sleep(5000);
+        clickJSext(newCallProgressFrame
+                .findElement(By.xpath("//app-call-doctor-short-card"))
+                .findElement(By.xpath("//mat-icon[contains(text(),'assignment')]")));
     }
 }

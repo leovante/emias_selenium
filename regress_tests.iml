@@ -59,5 +59,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" name="Maven: javax.xml.bind:jaxb-api:2.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-nop:1.7.25" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1" level="project" />
   </component>
 </module>

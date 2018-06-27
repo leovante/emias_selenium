@@ -13,9 +13,10 @@ import pages.BasePage;
 import pages.calldoctor.Profiles_interfaces.Profile0;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.calldoctor.Profiles_interfaces.Profile3;
 import pages.utilities.JSWaiter;
 
-public class FullCardPage extends BasePage implements Profile0, Profile1, Profile2 {
+public class FullCardPage extends BasePage implements Profile0, Profile1, Profile2, Profile3 {
 
     @FindBy(id = "doneCall")
     WebElement doneCall;
@@ -350,6 +351,79 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
 
         isDisplayedOnCardPage(stationSMPPro2);
         return famPro2;
+    }
+
+    @Step
+    public String verifyCallProfile3() throws InterruptedException {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Карта вызова')]")));
+
+        Thread.sleep(700);
+        isDisplayedOnCardPage("Дата");
+        isDisplayedOnCardPage("Время");
+        isDisplayedOnCardPage("Статус");
+        isDisplayedOnCardPage("Вид вызова");
+        isDisplayedOnCardPage("Источник");
+        isDisplayedOnCardPage("АДРЕС");
+        isDisplayedOnCardPage("П-д");
+        isDisplayedOnCardPage("Домофон");
+        isDisplayedOnCardPage("Этаж");
+        isDisplayedOnCardPage("ЖАЛОБЫ");
+
+        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
+        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
+        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
+        isDisplayedOnCardPage("Возрастная категория");
+        isDisplayedOnCardPage("Возраст");
+        isDisplayedOnCardPage("Пол");
+        isDisplayedOnCardPage("Полис");
+        isDisplayedOnCardPage("Телефон");
+        isDisplayedOnCardPage("Тип вызывающего");
+        isDisplayedOnCardPage("Врач");
+        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
+        isDisplayedOnCardPage("Отменить вызов");
+        isDisplayedOnCardPage("Изменить");
+        isDisplayedOnCardPage("Передать в другое ЛПУ");
+
+        isDisplayedOnCardPage("Новый");
+        isDisplayedOnCardPage("Первичный");
+        isDisplayedOnCardPage("СМП");
+
+        //в истории вызова
+        isDisplayedOnCardPage("АВТОР");
+        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
+        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
+        isDisplayedOnCardPage("Новый");
+        isDisplayedOnCardPage("Карта создана");
+
+        //параметры профиля
+        isDisplayedOnCardPage(adressPro3);
+        isDisplayedOnCardPage(pdPro3);
+        isDisplayedOnCardPage(dfonPro3);
+        isDisplayedOnCardPage(etazhPro3);
+        isDisplayedOnCardPage(famPro3);
+        isDisplayedOnCardPage(namePro3);
+
+        isDisplayedOnCardPage(otchestvoPro3);
+        isDisplayedOnCardPage(nomerPolPro3);
+        isDisplayedOnCardPage(zhalobaPro3);
+        isDisplayedOnCardPage(birthDayPro3);
+        isDisplayedOnCardPage(goda24Pro3);
+        isDisplayedOnCardPage(vozrastKatPro3);
+
+        isDisplayedOnCardPage(telephonePro3);
+        isDisplayedOnCardPage(genderPro3);
+
+        isDisplayedOnCardPage(nameCallPro3);
+        isDisplayedOnCardPage(famCallPro3);
+        isDisplayedOnCardPage(otCallPro3);
+
+        isDisplayedOnCardPage(stationSMPPro3);
+        return famPro3;
     }
 
 

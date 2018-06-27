@@ -1,6 +1,13 @@
 package pages.calldoctor;
 
 import io.qameta.allure.Step;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClients;
+import org.json.simple.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +20,8 @@ import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.utilities.JSWaiter;
 
-import static org.testng.Assert.assertTrue;
+import java.io.InputStream;
+
 import static pages.utilities.Waiter.waitVisibility;
 
 public class CreateCallPage extends BasePage implements Profile1, Profile2, Profile0 {
@@ -270,163 +278,48 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     }
 
     @Step
-    public void createCallSMP() throws InterruptedException {
-        Actions action = new Actions(driver);
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        click(addCallBtn);
+    public void createCallProfile3() {
+        HttpClient httpClient = HttpClients.createDefault();
+        JSONObject json = new JSONObject();
+        json.put("name", "Тестовый");
+        json.put("family", "Тестовый");
+        json.put("ot", "СМП");
+        json.put("birthdate", "2002-01-10");
+        json.put("seriespol", "");
+        json.put("numberpol", "5098799789000154");
+        json.put("gender", "2");
+        json.put("address", "это не формализованный адрес");
+        json.put("complaint", "тестовый вызов");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+79606223551");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "12");
+        json.put("floor", "5");
 
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
 
-        /*адрес*/
-        click(clearAdress);
-        click(placeholder_adress);
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
 
-        placeholder_adress.sendKeys("Московская");
-        click(list_first_container);
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
 
-        placeholder_adress.sendKeys("Коломна");
-        click(list_first_container);
-
-        placeholder_adress.sendKeys("Первомайская");
-        click(list_first_container);
-
-/*обязательные поля*/
-        sendKeys(dom, "101");
-        click(chkBoxTelephone);
-
-        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
-        telephoneNumber.click();
-        click(hz);
-        click(vozr);
-        hz2.click();
-
-/*необязательные поля*/
-        sendKeys(korpus, "202");
-        sendKeys(stroenie, "303");
-        sendKeys(kvartira, "404");
-        sendKeys(pd, "505");
-        sendKeys(dfon, "606");
-        sendKeys(etazh, "707");
-
-        click(vidVisova);
-        clickJS(neotlozhniy);
-
-/*жалоба*/
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='автотест';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
-        action.sendKeys(Keys.ENTER).perform();
-
-/*кто пациент*/
-        sendKeys(seriyaPol, "12345678");
-        sendKeys(nomerPol, "87654321");
-        click(fam);
-        sendKeys(fam, "Автотемников");
-        sendKeys(name, "Автодмитрий");
-        sendKeys(otchestvo, "Автоолегович");
-
-/*кто вызывает*/
-        click(SMP);//не хочет выбирать СМП. Выбирает повторный
-
-        tipVisivaushego.click();
-        pacient.click();
-
-        saveBtns.click();
-    }
-
-    @Step
-    public void createCallSMPMkab() throws InterruptedException {
-        Actions action = new Actions(driver);
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        click(addCallBtn);
-
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
-        SMP.click();//вот здесь начинаются проблемы
-
-        /*адрес*/
-        click(clearAdress);
-        click(placeholder_adress);
-
-        placeholder_adress.sendKeys("Московская");
-        click(list_first_container);
-
-        placeholder_adress.sendKeys("Коломна");
-        click(list_first_container);
-
-        placeholder_adress.sendKeys("Первомайская");
-        click(list_first_container);
-
-/*обязательные поля*/
-        click(dom);
-        dom.sendKeys("1");
-
-        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
-        click(telephoneNumber);
-//        action.sendKeys(Keys.ENTER);
-//        click(chkBoxTelephone);
-        click(hz);
-        click(vozr);
-        hz2.click();
-
-/*необязательные поля*/
-        korpus.sendKeys("2");
-        stroenie.sendKeys("3");
-        kvartira.sendKeys("4");
-        pd.sendKeys("5");
-        dfon.sendKeys("6");
-        etazh.sendKeys("7");
-        click(vidVisova);
-        click(neotlozhniy);
-/*жалоба*/
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='автотест';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
-        action.sendKeys(Keys.ENTER).perform();
-
-/*кто пациент*/
-        seriyaPol.sendKeys("111111");
-        nomerPol.sendKeys("222222");
-        fam.sendKeys("Автотемников");
-        name.sendKeys("Автодмитрий");
-        otchestvo.sendKeys("Автоолегович");
-
-/*кто вызывает*/
-        tipVisivaushego.click();
-        pacient.click();
-        saveBtns.click();
-    }
-
-
-    @Step
-    public void verifyCancelOnDashbord() {
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//addCallBtn")));
-
-        WebElement waitOperationFrame = driver.findElement(By.xpath("//span[contains(text(),'Ожидают обработки')]"));
-        assertTrue(waitOperationFrame.isDisplayed() == false, "Фрейм 'Ожидают обработки' - не найден");
-
-/*
-        WebElement waitOperation = driver.findElement(By.xpath("//span[contains(text(),'Ожидают обработки')]"));
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By
-                .xpath("//span[contains(text(),'Ожидают обработки')]")));
-        waitOperation.click();
-*/
-
-/*
-        WebElement close = driver.findElement(By.xpath("//img[@src='assets/img/close.png']"));
-        wait.until(ExpectedConditions.elementToBeClickable(close));
-        close.click();
-
-        WebElement podrobnoOVizove = driver.findElement(By.xpath("//div[contains(text(),'Подробно о вызове')]"));
-        wait.until(ExpectedConditions.visibilityOfAllElements(podrobnoOVizove));
-*/
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        } finally {
+//            driver.close();
+        }
     }
 }

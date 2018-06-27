@@ -7,8 +7,9 @@ import pages.utilities.CleanDoctorTT;
 public class BeforeWorkTest extends BaseTest {
     CleanDoctorTT sql = new CleanDoctorTT();
 
-    @Test(groups = "shedule", description = "Создание расисания у врачей и закрытие старых вызовов")
+    @Test(groups = "mis", description = "Создание расисания у врачей и закрытие старых вызовов")
     public void cleanBeforeWork() throws ClassNotFoundException, InterruptedException {
+
         page.homePage().manageSheduleBtn();
         createShedule(20);
         page.homePage().logoHomeBtn();

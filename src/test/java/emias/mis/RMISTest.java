@@ -16,9 +16,6 @@ public class RMISTest extends BaseTest {
 
     @AfterTest(groups = "mis")
     public void afterTest() throws Exception {
-        page.homePage().logoHomeBtn();
-        //вот тут нужно что бы скрин был только если была ошибка
-//        takeSnapShot(driver, testResult);
     }
 
 
