@@ -18,7 +18,6 @@ public class RMISTest extends BaseTest {
     public void afterTest() throws Exception {
     }
 
-
     @Test(groups = "mis", description = "Создать расписание", enabled = false)
     @RetryCountIfFailed(4)
     public void createShedule() throws InterruptedException, ClassNotFoundException {
@@ -87,7 +86,7 @@ public class RMISTest extends BaseTest {
     }
 
     @Test(groups = "mis", description = "Перенести запись")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();

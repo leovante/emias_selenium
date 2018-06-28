@@ -23,7 +23,7 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
     public void afterTest() throws Exception {
     }
 
-    @Test(groups = "test", description = "пустой вызов")
+    @Test(groups = "test", description = "пустой вызов", enabled = false)
     @RetryCountIfFailed(4)
     public void testCallRegistrEmpy() throws InterruptedException {
         driver.get(curUrlCalldoctor);
@@ -67,5 +67,19 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
 
         page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile3();
+    }
+
+    @Test(groups = "test", description = "вызов ребенка с Портала", enabled = true)//скорость интернета не дает доделать
+    @RetryCountIfFailed(0)
+    public void testCallInternet() throws InterruptedException {
+        driver.get("https://uslugi.mosreg.ru/zdrav/");
+
+//        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
+//        driver.findElement(By.linkText("https://uslugi.mosreg.ru/zdrav/")).sendKeys(selectLinkOpeninNewTab);
+
+        page.createCallPage().createCallProfile4();
+        driver.get(curUrlCalldoctor);
+
+
     }
 }

@@ -38,16 +38,18 @@ abstract public class BasePage {
 //    }
 
     public void click(WebElement element) {
-        JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        JSWaiter.waitJQueryAngular();
+
+//        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+        wait.until(ExpectedConditions.visibilityOf(element)).click();
     }
 
     public void click(String name) {
-        JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        JSWaiter.waitJQueryAngular();
 
         wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
@@ -102,9 +104,9 @@ abstract public class BasePage {
     }
 
     public void waitClickable(WebElement webElement) {
-        JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }
