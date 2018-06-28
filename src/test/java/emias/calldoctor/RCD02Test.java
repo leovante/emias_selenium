@@ -1,6 +1,7 @@
 package emias.calldoctor;
 
 import emias.BaseTest;
+import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -25,6 +26,7 @@ public class RCD02Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "CD", description = "изменить карту вызова, созданную по п.1.1", enabled = false)
+    @RetryCountIfFailed(4)
     public void testEditProfile1() throws Exception {
         driver.get(curUrlCalldoctor);
 

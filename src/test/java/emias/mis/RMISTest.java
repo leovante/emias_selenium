@@ -1,7 +1,7 @@
 package emias.mis;
 
 import emias.BaseTest;
-import emias.retry.RetryAnalyzer;
+import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -19,7 +19,8 @@ public class RMISTest extends BaseTest {
     }
 
 
-    @Test(groups = "mis", description = "Создать расписание", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Создать расписание", enabled = false)
+    @RetryCountIfFailed(4)
     public void createShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -32,7 +33,8 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test(groups = "mis", description = "Копировать расписание", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Копировать расписание", enabled = false)
+    @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -50,7 +52,8 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyCreatedShedule();
     }
 
-    @Test(groups = "mis", description = "Указать неприемные дни", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Указать неприемные дни", enabled = false)
+    @RetryCountIfFailed(4)
     public void setNotReceiveDays() throws InterruptedException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -60,7 +63,8 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyNotReceiveDays();
     }
 
-    @Test(groups = "mis", description = "Удалить расписание", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Удалить расписание", enabled = false)
+    @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -82,7 +86,8 @@ public class RMISTest extends BaseTest {
         page.manageShedule().verifyDeletedShedle();
     }
 
-    @Test(groups = "mis", description = "Перенести запись", retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = "mis", description = "Перенести запись")
+    @RetryCountIfFailed(0)
     public void surviveShedule() throws InterruptedException, ClassNotFoundException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();

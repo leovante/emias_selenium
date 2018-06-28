@@ -4,6 +4,7 @@ package emias;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
 import pages.utilities.DriverManager;
@@ -22,9 +23,12 @@ public abstract class BaseTest {
     @Parameters(value = {"browser", "platform"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String browser,
-                            @Optional String platform) throws MalformedURLException {
+                            @Optional String platform,
+                            ITestContext context) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
+
+
         driver = new DriverManager(browser).createDriver();
         JSWaiter.setDriver(driver);
         SwitchToPage.setDriver(driver);
@@ -54,7 +58,7 @@ public abstract class BaseTest {
         curUrlCalldoctor = url;
     }
 
-    @BeforeGroups(groups = "CD", alwaysRun = true)
+    @AfterGroups(groups = "CD", alwaysRun = true)
     public void afterGroupsCD() {
         page.dashboardPage().exitToMis();
     }
