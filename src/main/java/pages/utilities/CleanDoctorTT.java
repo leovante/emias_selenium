@@ -14,7 +14,7 @@ public class CleanDoctorTT {
 
     @Step
     public static void deleteShedule(String name) throws ClassNotFoundException {
-        System.out.println("Clean base - " + name);
+        System.out.println("Start clean base - " + name);
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -31,6 +31,7 @@ public class CleanDoctorTT {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     System.out.println("Clean is done.");
+                    statement.close();
                 }
             }
         } catch (Exception e) {

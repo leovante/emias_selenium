@@ -74,7 +74,7 @@ public class SearchRow {
     }
 
     public void waitForSearchResults() {
-        //System.out.println("wait why table appeared");
+        //System.out.println("waitClickable why table appeared");
         wait.until(ExpectedConditions.elementToBeClickable(tableGrid));
         //System.out.println("the table appeared");
     }

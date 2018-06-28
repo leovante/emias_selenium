@@ -9,14 +9,11 @@
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
         <groups>
             <run>
-                <include name="mis"/>
+                <include name="CD"/>
             </run>
         </groups>
         <packages>
             <package name="emias.calldoctor"/>
         </packages>
-        <!--<classes>-->
-        <!--<class name="emias.calldoctor.RCD01Test"/>-->
-        <!--</classes>-->
     </test>
 </suite>

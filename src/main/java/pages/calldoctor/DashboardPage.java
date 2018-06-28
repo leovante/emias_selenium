@@ -52,7 +52,7 @@ public class DashboardPage extends BasePage {
     @Step
     public void clickLogoType() {
         click(logoType);
-        wait(cardSpace);
+        waitClickable(cardSpace);
     }
 
     @Step

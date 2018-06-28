@@ -1,6 +1,7 @@
 package emias.calldoctor;
 
 import emias.BaseTest;
+import emias.retry.RetryAnalyzer;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,7 +12,7 @@ import pages.utilities.StringGenerator;
 public class RCD01Test extends BaseTest implements Profile1, Profile2 {
     String nameGen;
 
-    @BeforeTest(groups = "CD")
+    @BeforeTest(groups = "CD, test")
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
@@ -20,10 +21,9 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
 
     @AfterTest(groups = "CD")
     public void afterTest() throws Exception {
-        page.dashboardPage().clickLogoType();
     }
 
-    @Test(groups = "test", description = "пустой вызов", enabled = false)
+    @Test(groups = "test", description = "пустой вызов", retryAnalyzer = RetryAnalyzer.class)
     public void testCallRegistrEmpy() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 

@@ -6,8 +6,6 @@
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
         <groups>
             <run>
-                <include name="shedule"/>
-                <include name="mis"/>
                 <include name="CC"/>
             </run>
         </groups>

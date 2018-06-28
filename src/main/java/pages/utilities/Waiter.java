@@ -37,7 +37,7 @@ public class Waiter {
         }
     }
 
-    public static void waitWidgetOvetlay() {
+    public static void waitWidgetOverlay() {
         boolean WidgetAssert = !webDriver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
         if (WidgetAssert) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));

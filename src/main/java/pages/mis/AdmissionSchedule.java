@@ -53,6 +53,7 @@ public class AdmissionSchedule extends BasePage {
         Thread.sleep(2000);
         Waiter.waitBlockOverlay();
         click(selectMkab);
+        Waiter.waitBlockOverlay();
         click(selectVibratBtn);//выбрать
         click(predvarit);
 

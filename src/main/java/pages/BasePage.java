@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.utilities.JSWaiter;
-import pages.utilities.Waiter;
 
 import java.util.List;
 
@@ -27,26 +26,22 @@ abstract public class BasePage {
     }
 
     public void hoverByAction(WebElement element) {
-        //Asynchronous wait
+        //Asynchronous waitClickable
         JSWaiter.waitJQueryAngular();
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
     }
 
-    public void click(By by) {
-        //Asynchronous wait
-        JSWaiter.waitJQueryAngular();
-        //Explicit wait
-        wait.until(ExpectedConditions.elementToBeClickable(by)).click();
-    }
+//    public void click(By by) {
+//        JSWaiter.waitJQueryAngular();
+//        waitClickable.until(ExpectedConditions.elementToBeClickable(by)).click();
+//    }
 
     public void click(WebElement element) {
         JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
-        element.click();
-        Waiter.waitAllEmias();
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public void click(String name) {
@@ -57,16 +52,15 @@ abstract public class BasePage {
         wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
         wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
-        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
-        element.click();
+                .elementToBeClickable(By.xpath("//*[contains(text(),'" + name + "')]")));
+        driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]")).click();
     }
 
     public void clickJS(WebElement element) {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        element.click();
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public void clickJSext(WebElement element) {
@@ -107,7 +101,7 @@ abstract public class BasePage {
         element.sendKeys(text);
     }
 
-    public void wait(WebElement webElement) {
+    public void waitClickable(WebElement webElement) {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
