@@ -39,7 +39,7 @@ public class DriverManager {
                     .build();
             this.chromeOptions = new ChromeOptions();
             this.chromeOptions.setHeadless(false);
-            this.chromeOptions.addArguments("window-size=1300,1020");
+            this.chromeOptions.addArguments("window-size=1900,1020");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
         }
         return driver;

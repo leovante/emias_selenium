@@ -3,11 +3,13 @@
 <suite name="CallCenter Test Suite">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
+    <listeners>
+        <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
+        <!--         <listener class-name="Listeners.TestListener"/> -->
+    </listeners>
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
         <groups>
             <run>
-                <include name="shedule"/>
-                <include name="mis"/>
                 <include name="CC"/>
             </run>
         </groups>

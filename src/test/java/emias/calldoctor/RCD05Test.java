@@ -1,6 +1,7 @@
 package emias.calldoctor;
 
 import emias.BaseTest;
+import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -24,6 +25,7 @@ public class RCD05Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "test", description = "пустой вызов", enabled = false)
+    @RetryCountIfFailed(4)
     public void testCallRegistrEmpy() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 

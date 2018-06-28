@@ -25,7 +25,7 @@ public class AdmissionSchedule extends BasePage {
     @FindBy(xpath = "//button[@id='selectPatientButton']/span")
     WebElement selectVibratBtn;
 
-    @FindBy(xpath = "//table[@id='mkabScheduleGrid']/tbody/tr[2]/td[3]")
+    @FindBy(xpath = "//table[@id='mkabScheduleGrid']/tbody/tr[3]/td[3]")
     WebElement selectMkab;
 
     @FindBy(xpath = "//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']")
@@ -53,6 +53,7 @@ public class AdmissionSchedule extends BasePage {
         Thread.sleep(2000);
         Waiter.waitBlockOverlay();
         click(selectMkab);
+        Waiter.waitBlockOverlay();
         click(selectVibratBtn);//выбрать
         click(predvarit);
 
@@ -62,6 +63,7 @@ public class AdmissionSchedule extends BasePage {
             String popupHandle = ite.next().toString();
             if (!popupHandle.contains(mwh)) {
                 driver.switchTo().window(popupHandle);
+                action.sendKeys(Keys.ESCAPE).perform();
         /*here you can perform operation in pop-up window**
                 After finished your operation in pop-up just select the main window again*/
                 driver.switchTo().window(mwh);

@@ -431,7 +431,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     public void cancelRecord() throws InterruptedException {
         isDisplayed("Карта вызова");
         click(cancelBtn);
-        wait(cancelField);
+        waitClickable(cancelField);
         cancelField.click();
         cancelField.sendKeys("отмена автотеста");
         click(cancelCall);

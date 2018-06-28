@@ -14,7 +14,7 @@ public class JSWaiter {
     //Get the driver from relevant test
     public static void setDriver(WebDriver driver) {
         jsWaitDriver = driver;
-        jsWait = new WebDriverWait(jsWaitDriver, 10);
+        jsWait = new WebDriverWait(jsWaitDriver, 20);
         jsExec = (JavascriptExecutor) jsWaitDriver;
     }
 
@@ -71,7 +71,7 @@ public class JSWaiter {
                 .executeScript("return document.readyState").toString().equals("complete");
 
         //Get JS is Ready
-        boolean jsReady = (Boolean) jsExec.executeScript("return document.readyState").toString().equals("complete");
+        boolean jsReady = jsExec.executeScript("return document.readyState").toString().equals("complete");
 
         //Wait Javascript until it is Ready!
         if (!jsReady) {
@@ -87,7 +87,7 @@ public class JSWaiter {
     public static void waitUntilJQueryReady() {
         JavascriptExecutor jsExec = (JavascriptExecutor) jsWaitDriver;
 
-        //First check that JQuery is defined on the page. If it is, then wait AJAX
+        //First check that JQuery is defined on the page. If it is, then waitClickable AJAX
         Boolean jQueryDefined = (Boolean) jsExec.executeScript("return typeof jQuery != 'undefined'");
         if (jQueryDefined == true) {
             //Pre Wait for stability (Optional)
@@ -110,7 +110,7 @@ public class JSWaiter {
     public static void waitUntilAngularReady() {
         JavascriptExecutor jsExec = (JavascriptExecutor) jsWaitDriver;
 
-        //First check that ANGULAR is defined on the page. If it is, then wait ANGULAR
+        //First check that ANGULAR is defined on the page. If it is, then waitClickable ANGULAR
         Boolean angularUnDefined = (Boolean) jsExec.executeScript("return window.angular === undefined");
         if (!angularUnDefined) {
             Boolean angularInjectorUnDefined = (Boolean) jsExec.executeScript("return angular.element(document).injector() === undefined");

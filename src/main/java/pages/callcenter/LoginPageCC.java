@@ -8,7 +8,7 @@ import pages.BasePage;
 
 public class LoginPageCC extends BasePage {
     //protected WebDriver driver;
-    //protected WebDriverWait wait;
+    //protected WebDriverWait waitClickable;
 
     @FindBy(id = "USER_LOGIN")
     WebElement log;

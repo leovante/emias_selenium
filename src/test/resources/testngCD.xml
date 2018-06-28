@@ -6,17 +6,18 @@
     <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1212"/>
+    <listeners>
+        <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
+        <!--         <listener class-name="Listeners.TestListener"/> -->
+    </listeners>
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
         <groups>
             <run>
-                <include name="mis"/>
+                <include name="CD"/>
             </run>
         </groups>
         <packages>
             <package name="emias.calldoctor"/>
         </packages>
-        <!--<classes>-->
-        <!--<class name="emias.calldoctor.RCD01Test"/>-->
-        <!--</classes>-->
     </test>
 </suite>

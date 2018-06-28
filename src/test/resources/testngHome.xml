@@ -6,10 +6,14 @@
     <parameter name="site" value="http://emias.softrust.ru/mis"/>
     <parameter name="login" value="admin"/>
     <parameter name="pass" value="11"/>
+    <listeners>
+        <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
+        <!--         <listener class-name="Listeners.TestListener"/> -->
+    </listeners>
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
         <groups>
             <run>
-                <include name="shedule"/>
+                <include name="mis"/>
             </run>
         </groups>
         <classes>
@@ -18,5 +22,5 @@
         </classes>
     </test>
 </suite>
-<!--mvn clean test-->
-<!--allure serve target/allure-results-->
+        <!--mvn clean test-->
+        <!--allure serve target/allure-results-->

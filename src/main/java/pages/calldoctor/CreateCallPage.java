@@ -18,13 +18,14 @@ import pages.BasePage;
 import pages.calldoctor.Profiles_interfaces.Profile0;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.calldoctor.Profiles_interfaces.Profile4;
 import pages.utilities.JSWaiter;
 
 import java.io.InputStream;
 
 import static pages.utilities.Waiter.waitVisibility;
 
-public class CreateCallPage extends BasePage implements Profile1, Profile2, Profile0 {
+public class CreateCallPage extends BasePage implements Profile1, Profile2, Profile0, Profile4 {
     @FindBy(xpath = "//div[contains(text(),'СМП')]")
     WebElement SMP;
 
@@ -138,6 +139,36 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
 
     @FindBy(xpath = "//button/span[contains(text(),'Да')]")
     WebElement allarmaYes;
+
+//    @FindBy(xpath = "//a/span[2][contains(text(),'в электронную регистратуру')]")
+//    WebElement pereytiVElectrRegistr;
+
+    @FindBy(xpath = "//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']")
+    WebElement pereytiVElectrRegistr;
+
+    @FindBy(xpath = "//a[@class='b-btn b-btn--red b-btn--login-section btn--call-doctor-at-home c-create-home-visit-popup']")
+    WebElement callDoctorBtn;
+
+    @FindBy(xpath = "//button/span[contains(text(),'Подтвердить вызов врача')]")
+    WebElement podtverdVizovVracha;
+
+    @FindBy(xpath = "//button/span[contains(text(),'Закрыть окно')]")
+    WebElement closeWindowBtn;
+
+    @FindBy(xpath = "//input[@name='nPol']")
+    WebElement nPolField;
+
+    @FindBy(xpath = "//input[@name='birthday']")
+    WebElement birthdayField;
+
+    @FindBy(id = "call_address")
+    WebElement call_address;
+
+    @FindBy(id = "call_phone")
+    WebElement call_phone;
+
+    @FindBy(id = "call_description")
+    WebElement call_description;
 
     public CreateCallPage(WebDriver driver) {
         super(driver);
@@ -321,5 +352,25 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         } finally {
 //            driver.close();
         }
+    }
+
+    @Step
+    public void createCallProfile4() {
+//        Actions action = new Actions(driver);
+//        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+
+        sendKeys(nPolField, nomerPolPro4);
+        sendKeys(birthdayField, birthDayPro4);
+        click(pereytiVElectrRegistr);
+        waitClickable(callDoctorBtn);
+        click(callDoctorBtn);
+        sendKeys(call_address, adressPro4);
+        sendKeys(call_phone, telephonePro4);
+        sendKeys(call_description, zhalobaPro4);
+        click(podtverdVizovVracha);
+        waitClickable(closeWindowBtn);
+        click(closeWindowBtn);
     }
 }
