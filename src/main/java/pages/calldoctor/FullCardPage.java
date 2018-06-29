@@ -10,13 +10,16 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
-import pages.calldoctor.Profiles_interfaces.Profile0;
-import pages.calldoctor.Profiles_interfaces.Profile1;
-import pages.calldoctor.Profiles_interfaces.Profile2;
-import pages.calldoctor.Profiles_interfaces.Profile3;
+import pages.calldoctor.Profiles_interfaces.*;
 import pages.utilities.JSWaiter;
 
-public class FullCardPage extends BasePage implements Profile0, Profile1, Profile2, Profile3 {
+public class FullCardPage extends BasePage implements
+        Profile0,
+        Profile1,
+        Profile2,
+        Profile3,
+        Profile4,
+        Profile5 {
 
     @FindBy(id = "doneCall")
     WebElement doneCall;
@@ -440,16 +443,92 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         return famPro3;
     }
 
+    @Step("проверяю отредактированный вызов")
+    public void verifyCallProfile5(String nameGen) throws InterruptedException {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Карта вызова')]")));
+
+        Thread.sleep(700);
+        isDisplayedOnCardPage("Дата");
+        isDisplayedOnCardPage("Время");
+        isDisplayedOnCardPage("Статус");
+        isDisplayedOnCardPage("Вид вызова");
+        isDisplayedOnCardPage("Источник");
+        isDisplayedOnCardPage("АДРЕС");
+        isDisplayedOnCardPage("П-д");
+        isDisplayedOnCardPage("Домофон");
+        isDisplayedOnCardPage("Этаж");
+        isDisplayedOnCardPage("ЖАЛОБЫ");
+
+        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
+        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
+        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
+        isDisplayedOnCardPage("Возрастная категория");
+        isDisplayedOnCardPage("Возраст");
+        isDisplayedOnCardPage("Пол");
+        isDisplayedOnCardPage("Полис");
+        isDisplayedOnCardPage("Телефон");
+        isDisplayedOnCardPage("Тип вызывающего");
+        isDisplayedOnCardPage("Врач");
+        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
+        isDisplayedOnCardPage("Отменить вызов");
+        isDisplayedOnCardPage("Изменить");
+        isDisplayedOnCardPage("Передать в другое ЛПУ");
+
+        isDisplayedOnCardPage("Новый");
+        isDisplayedOnCardPage("Первичный");
+        isDisplayedOnCardPage("СМП");
+
+        //в истории вызова
+        isDisplayedOnCardPage("АВТОР");
+        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
+        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
+        isDisplayedOnCardPage("Новый");
+        isDisplayedOnCardPage("ЖАЛОБЫ");
+//        isDisplayedOnCardPage("Серия полиса");
+        isDisplayedOnCardPage("Номер полиса");
+        isDisplayedOnCardPage("Имя вызывающего");
+
+        //адрес
+        isDisplayedOnCardPage(adressPro5);
+        isDisplayedOnCardPage(pdPro5);
+        isDisplayedOnCardPage(dfonPro5);
+        isDisplayedOnCardPage(etazhPro5);
+        //кто пациент
+        isDisplayedOnCardPage(famPro5);
+        isDisplayedOnCardPage(nameGen);
+        isDisplayedOnCardPage(otchestvoPro5);
+        isDisplayedOnCardPage(birthDayPro5);
+        isDisplayedOnCardPage(goda24Pro5);
+        isDisplayedOnCardPage(vozrastKatPro5);
+        isDisplayedOnCardPage(nomerPolPro5);
+        isDisplayedOnCardPage(seriyaPolPro5);
+        isDisplayedOnCardPage(genderPro5);
+        //жалобы
+        isDisplayedOnCardPage(zhalobaPro5);
+        isDisplayedOnCardPage(zhalobaPro1);
+        //кто вызвал
+        isDisplayedOnCardPage(telephonePro5);
+        isDisplayedOnCardPage(nameCallPro5);
+        isDisplayedOnCardPage(famCallPro5);
+        isDisplayedOnCardPage(otCallPro5);
+        isDisplayedOnCardPage(stationSMPPro5);
+        //кто обслуживает
+        isDisplayedOnCardPage("Не назначен");
+    }
+
 
     @Step("отмена вызов на странице подробной карты вызова")
     public void cancelRecordOnFullCardPage() throws InterruptedException {
         isDisplayed("Карта вызова");
         click(cancelBtn);
-//        waitClickable(cancelField);
-//        cancelField.click();
-        Thread.sleep(1000);
+
+//        Thread.sleep(1000);
         sendKeys(cancelField, "отмена автотестом");
-//        cancelField.sendKeys("отмена автотестом");
         click(cancelCall);
     }
 
@@ -495,11 +574,9 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     public void cancelRecordOnChangePage() throws InterruptedException {
         isDisplayed("Карта вызова");
         click(change);
-//        waitVisibility(changeVizov);
-//        click(cancelCall);
-        waitClickable(cancelField);
-//        cancelField.click();
-        cancelField.sendKeys("отмена автотестом");
+
+//        Thread.sleep(1000);
+        sendKeys(cancelField, "отмена автотестом");
         click(cancelCall);
     }
 

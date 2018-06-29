@@ -7,13 +7,14 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.calldoctor.Profiles_interfaces.Profile5;
 import pages.utilities.StringGenerator;
 
-public class RCD02Test extends BaseTest implements Profile1, Profile2 {
+public class RCD02Test extends BaseTest implements Profile1, Profile2, Profile5 {
     String nameGen;
 
 
-    @BeforeTest(groups = "CD")
+    @BeforeTest(groups = {"CD", "test"})
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
@@ -24,19 +25,18 @@ public class RCD02Test extends BaseTest implements Profile1, Profile2 {
     public void afterTest() throws Exception {
     }
 
-    @Test(groups = "CD", description = "изменить карту вызова, созданную по п.1.1", enabled = false)
-    @RetryCountIfFailed(2)
+    @Test(groups = "test", description = "изменить карту вызова, созданную по п.1.1")
+    @RetryCountIfFailed(0)
     public void testEditProfile1() throws Exception {
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
-        page.fullCardPage().verifyCallProfile1(nameGen);
 
         page.editCardPage().editCallBtn();
-        page.editCardPage().editCallProfile2(nameGen);
-        page.fullCardPage().verifyCallProfile2(nameGen);
+        page.editCardPage().editCallProfile5(nameGen);
+        page.fullCardPage().verifyCallProfile5(nameGen);
 
         page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro5_2, telephonePro5);
     }
 }
