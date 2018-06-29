@@ -25,7 +25,7 @@ public class RCD05Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "test", description = "пустой вызов", enabled = false)
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 

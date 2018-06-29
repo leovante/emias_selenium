@@ -30,6 +30,9 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     @FindBy(xpath = "//span[contains(text(),'Передать другому врачу')]")
     WebElement appoindBtn;
 
+    @FindBy(xpath = "//span[contains(text(),'Завершить обслуживание')]")
+    WebElement appoindBtns;
+
     @FindBy(id = "cancel")
     WebElement cancelBtn;
 
@@ -46,7 +49,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         super(driver);
     }
 
-    @Step
+    @Step("проверяю новый вызов")
     public void verifyCallProfile0() throws InterruptedException {
         isDisplayed("Карта вызова");
         Thread.sleep(700);
@@ -80,7 +83,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         isDisplayedOnCardPage(zhalobaPro0);
     }
 
-    @Step
+    @Step("проверяю новый вызов")
     public void verifyCallProfile1(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -141,7 +144,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         isDisplayedOnCardPage(vozrastKatPro1);
     }
 
-    @Step
+    @Step("проверяю активный вызов")
     public void verifyCallProfile1Activity(String doctorFam, String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -160,6 +163,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         isDisplayedOnCardPage("Домофон");
         isDisplayedOnCardPage("Этаж");
         isDisplayedOnCardPage("ЖАЛОБЫ");
+        isDisplayedOnCardPage("Плановое время обхода");
 
         isDisplayedOnCardPage("КТО ПАЦИЕНТ");
         isDisplayedOnCardPage("КТО ВЫЗВАЛ");
@@ -206,7 +210,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         isDisplayedOnCardPage(vozrastKatPro1);
     }
 
-    @Step
+    @Step("проверяю обслуженный вызов")
     public void verifyDoneDocGroup(String doctorFam, String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -279,7 +283,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         isDisplayedOnCardPage(vozrastKatPro1);
     }
 
-    @Step
+    @Step("проверяю новый вызов")
     public String verifyCallProfile2(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -353,7 +357,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         return famPro2;
     }
 
-    @Step
+    @Step("проверяю новый вызов от api СМП без МКАБ")
     public String verifyCallProfile3() throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -427,7 +431,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     }
 
 
-    @Step
+    @Step("отмена записи")
     public void cancelRecord() throws InterruptedException {
         isDisplayed("Карта вызова");
         click(cancelBtn);
@@ -437,12 +441,12 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         click(cancelCall);
     }
 
-    @Step
+    @Step("нажимаю на передать другому врачу")
     public void sendAnotherDoctorBtn() {
         click(appoindBtn);
     }
 
-    @Step
+    @Step("нажимаю на назначить врача")
     public void appoindDoctorBtn() throws InterruptedException {
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
@@ -454,7 +458,7 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         appoindBtns.click();
     }
 
-    @Step
+    @Step("нажимаю на завершить обслуживание")
     public void completeServiceBtn() throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
@@ -463,16 +467,18 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
                         .xpath("//div[contains(., 'Карта вызова')]")));
 
         Actions action = new Actions(driver);
-        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Завершить обслуживание')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
-        appoindBtns.click();
+        click(appoindBtns);
+//        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Завершить обслуживание')]"));
+//        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
+//        appoindBtns.click();
 
         click(mat_calendar_header);
         action.sendKeys(Keys.ENTER).perform();
         click(doneCall);
+        Thread.sleep(1000);
     }
 
-    @Step
+    @Step("закрыть подробную карту")
     public void closeCardBtn() {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();

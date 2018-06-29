@@ -23,8 +23,8 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
     public void afterTest() throws Exception {
     }
 
-    @Test(groups = "test", description = "пустой вызов", enabled = false)
-    @RetryCountIfFailed(4)
+    @Test(groups = "CD", description = "пустой вызов")
+    @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 
@@ -34,7 +34,7 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -43,11 +43,12 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
+        page.dashboardPage().clearFilterDepart();
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -56,16 +57,18 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
+        page.dashboardPage().clearFilterDepart();
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
     }
 
     @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР", enabled = false)
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testCallSMPApi() throws InterruptedException {
         page.createCallPage().createCallProfile3();
         driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame();
+
         page.fullCardPage().verifyCallProfile3();
     }
 

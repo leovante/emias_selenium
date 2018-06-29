@@ -1,5 +1,6 @@
 package pages.mis;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +36,7 @@ public class TransferRecords extends BasePage {
         super(driver);
     }
 
+    @Step("перенести запись")
     public void trancferRecord(String name) throws InterruptedException {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String secondDoctor = name;
@@ -67,6 +69,7 @@ public class TransferRecords extends BasePage {
         Waiter.waitAllEmias();
     }
 
+    @Step("выбрать врача в окне переноса записей")
     public void selectDoctorFromTranWindow(String doctorInlet) throws InterruptedException {
         Waiter.waitBlockOverlay();
         List<WebElement> doctors = driver.findElement(By
@@ -82,13 +85,14 @@ public class TransferRecords extends BasePage {
         }
     }
 
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-    }
-
+    @Step("проверка переноса записей")
     public void verifyTransferShedule() throws InterruptedException {
         Waiter.waitAllEmias();
         wait.until(ExpectedConditions.visibilityOfAllElements(recordElement));
+    }
+
+    public void waitWhileClickable(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }
 

@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -139,6 +140,7 @@ public class EditCardPage extends BasePage {
         super(driver);
     }
 
+    @Step("редактировать вызов")
     public void editCallProfile2(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
@@ -327,6 +329,7 @@ public class EditCardPage extends BasePage {
 
     }
 
+    @Step("редактирвоать вызов")
     public void editCallBtn() {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->

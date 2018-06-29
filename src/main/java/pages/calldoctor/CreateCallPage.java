@@ -226,11 +226,12 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
 
 /*обязательные поля*/
         sendKeys(dom, domPro1);
-        click(chkBoxTelephone);
+//        click(chkBoxTelephone);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
         jse1.executeScript("arguments[0].value='" + telephonePro1 + "';", telephoneNumber);
         telephoneNumber.click();
+        action.sendKeys(Keys.SPACE).perform();
 
         click(hz);
         click(vozr);
@@ -308,7 +309,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         saveBtns.click();
     }
 
-    @Step
+    @Step("создаю вызов от СМП по api")
     public void createCallProfile3() {
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
@@ -354,7 +355,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         }
     }
 
-    @Step
+    @Step("создаю вызов через портал")
     public void createCallProfile4() {
 //        Actions action = new Actions(driver);
 //        JSWaiter.waitJQueryAngular();

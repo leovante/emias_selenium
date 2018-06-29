@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
 import pages.utilities.JSWaiter;
 
+import java.util.List;
+
 public class DashboardPage extends BasePage {
     Actions action = new Actions(driver);
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
@@ -39,30 +41,42 @@ public class DashboardPage extends BasePage {
     @FindBy(id = "cardSpace")
     WebElement cardSpace;
 
+    @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
+    WebElement clearFilterDepart;
+
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
 
-    @Step
+    @Step("вышел в мис")
     public void exitToMis() {
         click(exitToMis);
         click(exitBtn);
     }
 
-    @Step
+    @Step("нажать на логотип")
     public void clickLogoType() {
         click(logoType);
         waitClickable(cardSpace);
     }
 
-    @Step
+    @Step("поиск в фильтре ФИО")
     public void searchFilterFio(String fioName) throws InterruptedException {
         clickJS(fioFilter);
         sendKeys(fioFilter, fioName);
-        Thread.sleep(4000);
     }
 
-    @Step
+    @Step("очистить фильтр подразделение")
+    public void clearFilterDepart() throws InterruptedException {
+
+        List<WebElement> closeList = driver.findElements(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
+        for (WebElement closeBtn : closeList) {
+            click(closeBtn);
+        }
+    }
+
+
+    @Step("поиск в фильтре врача")
     public void searchFilterDoctor(String fioName) throws InterruptedException {
         clickJS(docFilter);
         sendKeys(docFilter, fioName);
@@ -71,8 +85,9 @@ public class DashboardPage extends BasePage {
         Thread.sleep(4000);
     }
 
-    @Step
+    @Step("проверяю на дашборде запись в группе новые")
     public void verifyNewCallProgressFrame(String name, String adress, String telephone) throws InterruptedException {
+        Thread.sleep(4000);
         clickJSext(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);
 
@@ -81,8 +96,10 @@ public class DashboardPage extends BasePage {
         isDisplayedOnCardPage(telephone);
     }
 
-    @Step
+    @Step("проверяю на дашборде запись у врача в группе активные")
     public void verifyActiveDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {
+        Thread.sleep(4000);
+
         wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//div[@id='activeCallAllCount'][contains(text(),'1')]")));
 
@@ -94,8 +111,10 @@ public class DashboardPage extends BasePage {
         isDisplayedOnCardPage(telephone);
     }
 
-    @Step
+    @Step("проверка в группе обслуженные")
     public void verifyDoneDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {
+        Thread.sleep(4000);
+
         wait.until(ExpectedConditions
                 .presenceOfElementLocated(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]")));
 
@@ -108,7 +127,7 @@ public class DashboardPage extends BasePage {
     }
 
 
-    @Step
+    @Step("открываю фрейм ожидают обработки")
     public void openNewCallProgressFrame() throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->

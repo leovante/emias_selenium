@@ -1,5 +1,6 @@
 package pages.mis;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,11 +42,11 @@ public class BeforeWork extends BasePage {
     @FindBy(xpath = "(//button[@type='button'])[2]")
     WebElement pickTime_okonClose;
 
-
     public BeforeWork(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Установить время календаря")
     public void setTimeCalendar(String a, String b) throws InterruptedException {
         waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
@@ -58,6 +59,7 @@ public class BeforeWork extends BasePage {
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
 
+    @Step("Установить тип приема")
     public void setTypeOfReception(WebElement typeOfReception) {
         waitWhileClickable(ddlbusytypeButton);
         ddlbusytypeButton.click();                  //нажимаем на выпадающий список тип приема
@@ -67,7 +69,7 @@ public class BeforeWork extends BasePage {
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
-
+    @Step("Создать расписание")
     public void createShedule() throws InterruptedException {
         Waiter.waitAllEmias();
 
@@ -88,6 +90,7 @@ public class BeforeWork extends BasePage {
         Waiter.waitAllEmias();
 //        Waiter.waitAllEmias();
     }
+
 
     public void waitWhileClickable(WebElement webElement) {
         wait.until(ExpectedConditions.elementToBeClickable(webElement));

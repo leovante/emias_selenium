@@ -27,7 +27,7 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "test", description = "фильтр поиск по ФИО", enabled = false)
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 
@@ -39,7 +39,7 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "test", description = "фильтр поиск по врачу")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testFilterDoctor() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -56,7 +56,7 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "test", description = "фильтр поиск по виду вызова")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testTypeCall() throws Exception {
         driver.get(curUrlCalldoctor);
 

@@ -25,8 +25,8 @@ public class RCD04Test extends BaseTest implements Profile1, Profile2 {
     public void afterTest() throws Exception {
     }
 
-    @Test(groups = "CD", description = "передать вызов на странице карты вызова")
-    @RetryCountIfFailed(4)
+    @Test(groups = "CD", description = "передать вызов другому врачу")
+    @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -45,6 +45,7 @@ public class RCD04Test extends BaseTest implements Profile1, Profile2 {
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
+        page.dashboardPage().clearFilterDepart();
         page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
     }
 }
