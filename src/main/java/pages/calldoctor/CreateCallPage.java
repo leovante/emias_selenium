@@ -26,6 +26,7 @@ import java.io.InputStream;
 import static pages.utilities.Waiter.waitVisibility;
 
 public class CreateCallPage extends BasePage implements Profile1, Profile2, Profile0, Profile4 {
+
     @FindBy(xpath = "//div[contains(text(),'СМП')]")
     WebElement SMP;
 
@@ -205,9 +206,10 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     @Step("создаю вызов без МКАБ + Регистратура")
     public void createCallProfile1(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
-        JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        JSWaiter.waitJQueryAngular();
+
         click(addCallBtn);
         waitVisibility(noviyVizov);
 
@@ -374,4 +376,19 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         waitClickable(closeWindowBtn);
         click(closeWindowBtn);
     }
+
+    @Step("открыл страницу создания вызова")
+    public void createCallBtn() throws InterruptedException {
+        Actions action = new Actions(driver);
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        click(addCallBtn);
+        waitVisibility(noviyVizov);
+
+
+        saveBtns.click();
+
+    }
+
 }

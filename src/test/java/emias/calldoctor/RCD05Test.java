@@ -12,7 +12,7 @@ import pages.utilities.StringGenerator;
 public class RCD05Test extends BaseTest implements Profile1, Profile2 {
     String nameGen;
 
-    @BeforeTest(groups = "CD")
+    @BeforeTest(groups = {"CD", "test"})
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
@@ -21,15 +21,27 @@ public class RCD05Test extends BaseTest implements Profile1, Profile2 {
 
     @AfterTest(groups = "CD")
     public void afterTest() throws Exception {
-        page.dashboardPage().clickLogoType();
     }
 
-    @Test(groups = "test", description = "пустой вызов", enabled = false)
+    @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws InterruptedException {
+    public void testCancelCallRegistr() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 
-        page.createCallPage().createCallProfile0();
-        page.fullCardPage().cancelRecord();
+        page.createCallPage().createCallProfile1(nameGen);
+        page.fullCardPage().cancelRecordOnFullCardPage();
+        page.dashboardPage().searchFilterFio(nameGen);
+        page.dashboardPage().verifyRecordIsCancelFromDashboard();
+    }
+
+    @Test(groups = "CD", description = "отмена вызова на странице редактирования")
+    @RetryCountIfFailed(2)
+    public void testCancelCallRegistrEmpy() throws InterruptedException {
+        driver.get(curUrlCalldoctor);
+
+        page.createCallPage().createCallProfile1(nameGen);
+        page.fullCardPage().cancelRecordOnChangePage();
+        page.dashboardPage().searchFilterFio(nameGen);
+        page.dashboardPage().verifyRecordIsCancelFromDashboard();
     }
 }

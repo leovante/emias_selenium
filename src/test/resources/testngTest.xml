@@ -17,7 +17,7 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.calldoctor.RCD01Test"/>
+            <class name="emias.calldoctor.RCD05Test"/>
         </classes>
     </test>
 </suite>

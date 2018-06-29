@@ -12,8 +12,11 @@ import pages.utilities.JSWaiter;
 
 import java.util.List;
 
+import static org.testng.Assert.assertFalse;
+
 public class DashboardPage extends BasePage {
     Actions action = new Actions(driver);
+
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
     WebElement exitToMis;
 
@@ -41,9 +44,6 @@ public class DashboardPage extends BasePage {
     @FindBy(id = "cardSpace")
     WebElement cardSpace;
 
-    @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
-    WebElement clearFilterDepart;
-
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
@@ -62,8 +62,21 @@ public class DashboardPage extends BasePage {
 
     @Step("поиск в фильтре ФИО")
     public void searchFilterFio(String fioName) throws InterruptedException {
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        JSWaiter.waitJQueryAngular();
+
         clickJS(fioFilter);
         sendKeys(fioFilter, fioName);
+    }
+
+    @Step("поиск в фильтре врача")
+    public void searchFilterDoctor(String fioName) throws InterruptedException {
+        clickJS(docFilter);
+        sendKeys(docFilter, fioName);
+        action.sendKeys(Keys.ARROW_DOWN).perform();
+        action.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(4000);
     }
 
     @Step("очистить фильтр подразделение")
@@ -75,15 +88,6 @@ public class DashboardPage extends BasePage {
         }
     }
 
-
-    @Step("поиск в фильтре врача")
-    public void searchFilterDoctor(String fioName) throws InterruptedException {
-        clickJS(docFilter);
-        sendKeys(docFilter, fioName);
-        action.sendKeys(Keys.ARROW_DOWN).perform();
-        action.sendKeys(Keys.ENTER).perform();
-        Thread.sleep(4000);
-    }
 
     @Step("проверяю на дашборде запись в группе новые")
     public void verifyNewCallProgressFrame(String name, String adress, String telephone) throws InterruptedException {
@@ -126,12 +130,17 @@ public class DashboardPage extends BasePage {
         isDisplayedOnCardPage(telephone);
     }
 
+    @Step("Проверка что запись удалена с дашборда")
+    public void verifyRecordIsCancelFromDashboard() throws InterruptedException {
+        Thread.sleep(4000);
+        assertFalse(newCallProgressFrame.findElement(By.id("order")).isDisplayed());
+    }
 
     @Step("открываю фрейм ожидают обработки")
     public void openNewCallProgressFrame() throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        JSWaiter.waitJQueryAngular();
 
         clickJSext(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);

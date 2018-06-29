@@ -23,7 +23,6 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
 
     @AfterTest(groups = "CD")
     public void afterTest() throws Exception {
-        page.dashboardPage().clickLogoType();
     }
 
     @Test(groups = "test", description = "фильтр поиск по ФИО", enabled = false)

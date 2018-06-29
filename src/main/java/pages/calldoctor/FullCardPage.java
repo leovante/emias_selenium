@@ -39,11 +39,21 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     @FindBy(id = "cancelCall")
     WebElement cancelCall;
 
+    @FindBy(id = "change")
+    WebElement change;
+
     @FindBy(xpath = "//div[contains(text(),'Карта вызова')]")
     WebElement callCard;
 
-    @FindBy(xpath = "//input[@placeholder='Причина отмены вызова")
+//    @FindBy(xpath = "//input[@placeholder='Причина отмены'")
+//    WebElement cancelField;
+
+    @FindBy(xpath = "//input[@placeholder='Причина отмены вызова']")
     WebElement cancelField;
+
+    @FindBy(xpath = "//div[contains(text(),'Редактирование вызова')]")
+    WebElement changeVizov;
+
 
     public FullCardPage(WebDriver driver) {
         super(driver);
@@ -431,13 +441,15 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
     }
 
 
-    @Step("отмена записи")
-    public void cancelRecord() throws InterruptedException {
+    @Step("отмена вызов на странице подробной карты вызова")
+    public void cancelRecordOnFullCardPage() throws InterruptedException {
         isDisplayed("Карта вызова");
         click(cancelBtn);
-        waitClickable(cancelField);
-        cancelField.click();
-        cancelField.sendKeys("отмена автотеста");
+//        waitClickable(cancelField);
+//        cancelField.click();
+        Thread.sleep(1000);
+        sendKeys(cancelField, "отмена автотестом");
+//        cancelField.sendKeys("отмена автотестом");
         click(cancelCall);
     }
 
@@ -476,6 +488,19 @@ public class FullCardPage extends BasePage implements Profile0, Profile1, Profil
         action.sendKeys(Keys.ENTER).perform();
         click(doneCall);
         Thread.sleep(1000);
+    }
+
+
+    @Step("отмена вызов на странице редактирвоания")
+    public void cancelRecordOnChangePage() throws InterruptedException {
+        isDisplayed("Карта вызова");
+        click(change);
+//        waitVisibility(changeVizov);
+//        click(cancelCall);
+        waitClickable(cancelField);
+//        cancelField.click();
+        cancelField.sendKeys("отмена автотестом");
+        click(cancelCall);
     }
 
     @Step("закрыть подробную карту")
