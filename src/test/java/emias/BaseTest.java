@@ -52,8 +52,6 @@ public abstract class BaseTest {
         page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
-
-//        driver.get("http://192.168.7.19:6001/test/call/call_doctor_ui/call-doctor/board?ticket=t7zsrR0YvQRlp3lJYS0jKJNV0iik4wUMdzEgXNDtpEyZuZQrHX77ZqJ2O11UnOgX1DHriJXe6vZ%2BkgsHMnU1xMnAGoTQa0nyWMnJ6lShS7L6cGJpGGyR0M3Jlhgz1wTVz1QjW1woODUjtUE6X3KSOqtvsn3%2Fa2Lx5TDEhQG2psDKSZMl7i1%2FUVhRyDuf23%2BsEZuRtfv7ZTo%2BZ774dRCiDAC7z5deDUcuutxGMFWR%2FhwPEUS44kPBJjoJVBVZfFs58LK3FPTZL0js%2B0rNRAI%2BFt4dLcLYfI2YdpzaXFaDGrtnDRId&ReturnUrl=http:%2F%2F192.168.7.139%2Fwhc%2FMain%2FDefault");
         String url = driver.getCurrentUrl();
         curUrlCalldoctor = url;
     }
@@ -90,9 +88,10 @@ public abstract class BaseTest {
                                  @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login(site, login, pass);
+        driver.get("http://mis.softrust.ru/mis/Main/Default");
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
-//        driver.get("http://192.168.7.19:6001/test/call/call_doctor_ui/call-doctor/board?ticket=t7zsrR0YvQRlp3lJYS0jKJNV0iik4wUMdzEgXNDtpEyZuZQrHX77ZqJ2O11UnOgX1DHriJXe6vZ%2BkgsHMnU1xMnAGoTQa0nyWMnJ6lShS7L6cGJpGGyR0M3Jlhgz1wTVz1QjW1woODUjtUE6X3KSOqtvsn3%2Fa2Lx5TDEhQG2psDKSZMl7i1%2FUVhRyDuf23%2BsEZuRtfv7ZTo%2BZ774dRCiDAC7z5deDUcuutxGMFWR%2FhwPEUS44kPBJjoJVBVZfFs58LK3FPTZL0js%2B0rNRAI%2BFt4dLcLYfI2YdpzaXFaDGrtnDRId&ReturnUrl=http:%2F%2F192.168.7.139%2Fwhc%2FMain%2FDefault");
+        driver.get("http://109.95.224.42:2165/test/call/call_doctor_ui/call-doctor;709/board?ticket=bcNzk9MEiGwEe1JSseWBq4%2BI41Qaipq6K9uyshR50QBn1zJsAobTnQ3dJZiX8p10vS3nDLSdLkIenWZRdc8rc21FIczd%2FmQe9eHSAgKxVl8C9BS18t3q3DRl%2ByMO%2FUw1EvqtO6f%2B0gWzqXBQYR%2FlPpXi9%2FIUdctXYoHD9gMJnz0q9Qbvi%2FdF1G04Z6UssA0lwE6kMYIZQgZRqHH7x%2Bvq51aCcSgYGFM1ZVh%2FnxXLcghNdJjfMCsr4FbrB7ce0nN0MWs05RY%2BADgWMmIqR5vQOgpyNB5NxOPYXN%2F5Eo1aDITM96sI&ReturnUrl=http%3A%2F%2F192.168.7.139%2Fwhc%2FMain%2FDefault");
         String url = driver.getCurrentUrl();
         curUrlCalldoctor = url;
     }

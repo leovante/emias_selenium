@@ -59,7 +59,7 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР", enabled = false)
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР", enabled = true)
     @RetryCountIfFailed(4)
     public void testCallSMPApi() throws InterruptedException {
         page.createCallPage().createCallProfile3();
@@ -69,8 +69,8 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.fullCardPage().verifyCallProfile3();
     }
 
-    @Test(groups = "test", description = "вызов ребенка с Портала", enabled = true)//скорость интернета не дает доделать
-    @RetryCountIfFailed(0)
+    @Test(groups = "test", description = "вызов ребенка с Портала", enabled = false)//скорость интернета не дает доделать
+    @RetryCountIfFailed(4)
     public void testCallInternet() throws InterruptedException {
         driver.get("https://uslugi.mosreg.ru/zdrav/");
 
