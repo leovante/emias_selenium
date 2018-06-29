@@ -1,6 +1,7 @@
 package emias.mis;
 
 import emias.BaseTest;
+import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.Test;
 import pages.utilities.CleanDoctorTT;
 
@@ -8,10 +9,11 @@ public class BeforeWorkTest extends BaseTest {
     CleanDoctorTT sql = new CleanDoctorTT();
 
     @Test(groups = "mis", description = "Создание расисания у врачей и закрытие старых вызовов")
+    @RetryCountIfFailed(2)
     public void cleanBeforeWork() throws ClassNotFoundException, InterruptedException {
 
         page.homePage().manageSheduleBtn();
-        createShedule(20);
+        createShedule(15);
         page.homePage().logoHomeBtn();
     }
 

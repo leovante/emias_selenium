@@ -1,6 +1,7 @@
 package pages.mis;
 
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -38,6 +39,7 @@ public class AdmissionSchedule extends BasePage {
         super(driver);
     }
 
+    @Step("Сделать запись")
     public void createRecord(String first_doctor_fullname) throws InterruptedException {
         Actions action = new Actions(driver);
         String mwh = driver.getWindowHandle();

@@ -26,6 +26,7 @@ import java.io.InputStream;
 import static pages.utilities.Waiter.waitVisibility;
 
 public class CreateCallPage extends BasePage implements Profile1, Profile2, Profile0, Profile4 {
+
     @FindBy(xpath = "//div[contains(text(),'СМП')]")
     WebElement SMP;
 
@@ -205,9 +206,10 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     @Step("создаю вызов без МКАБ + Регистратура")
     public void createCallProfile1(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
-        JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        JSWaiter.waitJQueryAngular();
+
         click(addCallBtn);
         waitVisibility(noviyVizov);
 
@@ -226,11 +228,12 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
 
 /*обязательные поля*/
         sendKeys(dom, domPro1);
-        click(chkBoxTelephone);
+//        click(chkBoxTelephone);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
         jse1.executeScript("arguments[0].value='" + telephonePro1 + "';", telephoneNumber);
         telephoneNumber.click();
+        action.sendKeys(Keys.SPACE).perform();
 
         click(hz);
         click(vozr);
@@ -308,7 +311,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         saveBtns.click();
     }
 
-    @Step
+    @Step("создаю вызов от СМП по api")
     public void createCallProfile3() {
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
@@ -354,7 +357,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         }
     }
 
-    @Step
+    @Step("создаю вызов через портал")
     public void createCallProfile4() {
 //        Actions action = new Actions(driver);
 //        JSWaiter.waitJQueryAngular();
@@ -373,4 +376,19 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         waitClickable(closeWindowBtn);
         click(closeWindowBtn);
     }
+
+    @Step("открыл страницу создания вызова")
+    public void createCallBtn() throws InterruptedException {
+        Actions action = new Actions(driver);
+        JSWaiter.waitJQueryAngular();
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        click(addCallBtn);
+        waitVisibility(noviyVizov);
+
+
+        saveBtns.click();
+
+    }
+
 }

@@ -98,6 +98,7 @@ abstract public class BasePage {
     }
 
     public void sendKeys(WebElement element, String text) {
+        JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.clear();
         element.sendKeys(text);
@@ -108,5 +109,6 @@ abstract public class BasePage {
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
+//        wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 }

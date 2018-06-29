@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -7,12 +8,13 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BasePage;
+import pages.calldoctor.Profiles_interfaces.Profile5;
 import pages.utilities.JSWaiter;
 
 import static org.testng.Assert.assertTrue;
 import static pages.utilities.Waiter.waitVisibility;
 
-public class EditCardPage extends BasePage {
+public class EditCardPage extends BasePage implements Profile5 {
 
     @FindBy(xpath = "//addCallBtn[@id='btn_delete']/span[2]")
     WebElement deleteShedule;
@@ -20,8 +22,11 @@ public class EditCardPage extends BasePage {
     @FindBy(xpath = "//span[contains(.,'СМП')]")
     WebElement SMP;
 
-    @FindBy(xpath = "//button[@aria-label='Clear']/span/mat-icon")
+    @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
     WebElement cancelAdress;
+
+    @FindBy(xpath = "//button[@aria-label='Clear']/span/mat-icon")
+    WebElement cancelBirthDate;
 
     @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
     WebElement list_first_container;
@@ -119,6 +124,15 @@ public class EditCardPage extends BasePage {
     @FindBy(id = "callPatronymic")
     WebElement callPatronymic;
 
+    @FindBy(id = "birthDateTemp")
+    WebElement birthDateTemp;
+
+    @FindBy(id = "source0")
+    WebElement source0;
+
+    @FindBy(id = "sourceSmp")
+    WebElement sourceSmp;
+
     @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(23, 150, 112);']")
     WebElement thisDayLoadGreen;
 
@@ -139,7 +153,8 @@ public class EditCardPage extends BasePage {
         super(driver);
     }
 
-    public void editCallProfile2(String nameGen) throws InterruptedException {
+    @Step("редактирую вызов без привязывания МКАБ")
+    public void editCallProfile5(String nameGen) throws InterruptedException {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -151,52 +166,58 @@ public class EditCardPage extends BasePage {
         click(placeholder_adress);
         placeholder_adress.clear();
 
-        placeholder_adress.sendKeys("Московская");
+        placeholder_adress.sendKeys(adressPro5_1);
         click(list_first_container);
 
-        placeholder_adress.sendKeys("Коломна");
+        placeholder_adress.sendKeys(adressPro5_2);
         click(list_first_container);
 
-        placeholder_adress.sendKeys("Эдельвейс");
+        placeholder_adress.sendKeys(adressPro5_3);
         click(list_first_container);
 
 /*обязательные поля*/
-        sendKeys(dom, "121");
-        //click(chkBoxTelephone);
+        sendKeys(dom, domPro5);
+        click(cancelBirthDate);
+        sendKeys(birthDateTemp, birthDayPro5);
 
+        telephoneNumber.clear();
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
+        jse1.executeScript("arguments[0].value='" + telephonePro5 + "';", telephoneNumber);
         telephoneNumber.click();
-
-        click(hz);
-        click(vozr);
-        hz2.click();
+        action.sendKeys(Keys.SPACE).perform();
 
 /*необязательные поля*/
-        sendKeys(korpus, "222");
-        sendKeys(stroenie, "323");
-        sendKeys(kvartira, "424");
-        sendKeys(pd, "525");
-        sendKeys(dfon, "626");
-        sendKeys(etazh, "727");
+        click(source0);
+        sendKeys(korpus, korpusPro5);
+        sendKeys(stroenie, stroeniePro5);
+        sendKeys(kvartira, kvartiraPro5);
+        sendKeys(pd, pdPro5);
+        sendKeys(dfon, dfonPro5);
+        sendKeys(etazh, etazhPro5);
+        sendKeys(sourceSmp, stationSMPPro5);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='автотест2';", zhaloba);
+        jse.executeScript("arguments[0].value='" + zhalobaPro5 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
 /*кто пациент*/
-        sendKeys(seriyaPol, "159753");
-        sendKeys(nomerPol, "852456");
+        sendKeys(seriyaPol, seriyaPolPro5);
+        sendKeys(nomerPol, nomerPolPro5);
         click(fam);
-        sendKeys(fam, "АвтотемниковДва");
+        sendKeys(fam, famPro5);
         sendKeys(name, nameGen);
-        sendKeys(otchestvo, "АвтоолеговичДва");
+        sendKeys(otchestvo, otchestvoPro5);
 
 /*кто вызывает*/
-        tipVisivaushego.click();
-        pacient.click();
+//        tipVisivaushego.click();
+//        pacient.click();
+        sendKeys(sourceSmp, stationSMPPro5);
+        sendKeys(callFamily, famCallPro5);
+        sendKeys(callName, nameCallPro5);
+        sendKeys(callPatronymic, otCallPro5);
+
         click(saveBtns);
     }
 
@@ -327,10 +348,11 @@ public class EditCardPage extends BasePage {
 
     }
 
+    @Step("редактирвоать вызов")
     public void editCallBtn() {
-        JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        JSWaiter.waitJQueryAngular();
 
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By

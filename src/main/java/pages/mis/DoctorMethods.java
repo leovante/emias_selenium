@@ -22,7 +22,7 @@ public class DoctorMethods extends BasePage {
         super(driver);
     }
 
-    @Step
+    @Step("Получить уникального врача")
     public String getUnicalDoctor(String docName) {
         Waiter.waitAllEmias();
 
@@ -61,7 +61,7 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
-    @Step
+    @Step("Получить уникального врача")
     public String getUnicalDoctor3(int doctorNum) {
         Waiter.waitAllEmias();
         waitWhileClickable(doctorRow);
@@ -94,7 +94,7 @@ public class DoctorMethods extends BasePage {
         return doctorName;
     }
 
-    @Step
+    @Step("Получить уникального врача")
     public String getUnicalDoctor2(String docName) {
         Waiter.waitAllEmias();
 
@@ -133,7 +133,7 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
-    @Step
+    @Step("Выбрать врача")
     public void selectDoctor(String doctorInlet) throws InterruptedException {
         Waiter.waitAllEmias();
         Waiter.waitAllEmias();

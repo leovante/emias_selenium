@@ -17,8 +17,8 @@
             </run>
         </groups>
         <classes>
-            <!--<class name="emias.mis.BeforeWorkTest"/>-->
-            <class name="emias.mis.RMISTest"/>
+            <class name="emias.mis.BeforeWorkTest"/>
+            <!--<class name="emias.mis.RMISTest"/>-->
         </classes>
     </test>
 </suite>

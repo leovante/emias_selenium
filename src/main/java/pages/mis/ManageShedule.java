@@ -65,7 +65,7 @@ public class ManageShedule extends BasePage {
         super(driver);
     }
 
-    @Step
+    @Step("Создать расписание")
     public void createShedule() throws InterruptedException {
         Waiter.waitAllEmias();
 
@@ -87,7 +87,7 @@ public class ManageShedule extends BasePage {
 //        Waiter.waitAllEmias();
     }
 
-    @Step
+    @Step("задать неприемные дни")
     public void setNotReceiveDays(String firstDoctor) {
         Waiter.waitAllEmias();
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
@@ -107,7 +107,7 @@ public class ManageShedule extends BasePage {
         keyboard.pressKey(Keys.ENTER);
     }
 
-    @Step
+    @Step("копировать расисание")
     public void copyShedule(String docName) throws InterruptedException {
         Waiter.waitAllEmias();
         waitWhileClickable(copyShedule);
@@ -127,7 +127,7 @@ public class ManageShedule extends BasePage {
         Waiter.waitAllEmias();
     }
 
-    @Step
+    @Step("удалить расписание")
     public void deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         Waiter.waitAllEmias();
@@ -142,7 +142,7 @@ public class ManageShedule extends BasePage {
         Waiter.waitAllEmias();
     }
 
-    @Step
+    @Step("устанвотиь время в календаре")
     public void setTimeCalendar(String a, String b) throws InterruptedException {
         waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
@@ -155,7 +155,7 @@ public class ManageShedule extends BasePage {
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
 
-    @Step
+    @Step("установить тип приема")
     public void setTypeOfReception(WebElement typeOfReception) {
         waitWhileClickable(ddlbusytypeButton);
         ddlbusytypeButton.click();                  //нажимаем на выпадающий список тип приема
@@ -165,7 +165,7 @@ public class ManageShedule extends BasePage {
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
-    @Step
+    @Step("проверить неприемные дни")
     public void verifyNotReceiveDays() {
         Waiter.waitAllEmias();
         driver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
@@ -173,7 +173,7 @@ public class ManageShedule extends BasePage {
         System.out.println("Проверка наличия заголовка форс-мажора");
     }
 
-    @Step
+    @Step("проверить удаление расписания")
     public void verifyDeletedShedle() {
         if (!driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
@@ -185,7 +185,7 @@ public class ManageShedule extends BasePage {
         }
     }
 
-    @Step
+    @Step("получить фамилию")
     public String getSecondName(String name){
         if(name.contains(" ")){
             name= name.substring(0, name.indexOf(" "));
@@ -193,15 +193,15 @@ public class ManageShedule extends BasePage {
         return name;
     }
 
-    @Step
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-    }
-
-    @Step
+    @Step("проверка создания распсиания")
     public void verifyCreatedShedule()  throws InterruptedException{
         Thread.sleep(2000);
         driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//*[contains(text(),'23:44 ')]"));
     }
+
+    public void waitWhileClickable(WebElement webElement) {
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
 }

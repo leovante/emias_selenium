@@ -27,15 +27,12 @@ public abstract class BaseTest {
                             ITestContext context) throws MalformedURLException {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-
-
         driver = new DriverManager(browser).createDriver();
+        wait = new WebDriverWait(driver, 20);
+        page = new Pages(driver);
         JSWaiter.setDriver(driver);
         SwitchToPage.setDriver(driver);
         Waiter.setDriver(driver);
-        wait = new WebDriverWait(driver, 20);
-        page = new Pages(driver);
-
     }
 
     @AfterSuite(alwaysRun = true)

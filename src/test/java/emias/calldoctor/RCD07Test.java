@@ -26,7 +26,7 @@ public class RCD07Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "CD", description = "завершить обслуживание вызова")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
 
@@ -43,6 +43,7 @@ public class RCD07Test extends BaseTest implements Profile1, Profile2 {
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
+        page.dashboardPage().clearFilterDepart();
         page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
     }
 }
