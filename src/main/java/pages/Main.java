@@ -1,4 +1,4 @@
-package emias;
+package pages;
 
 import org.testng.TestListenerAdapter;
 import org.testng.TestNG;

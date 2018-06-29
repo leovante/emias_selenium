@@ -97,6 +97,34 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>maven-assembly-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<mainClass>src.main.java.pages.Main</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                    <!--<descriptorRefs>-->
+                        <!--<descriptorRef>jar-with-dependencies</descriptorRef>-->
+                        <!--<descriptorRef>bin</descriptorRef>-->
+                        <!--<descriptorRef>src</descriptorRef>-->
+                        <!--<descriptorRef>project</descriptorRef>-->
+                    <!--</descriptorRefs>-->
+                    <!--<descriptors>-->
+                        <!--<descriptor>assembly/ourAssembly.xml</descriptor>-->
+                    <!--</descriptors>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>trigger-assembly</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>single</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 </project>
