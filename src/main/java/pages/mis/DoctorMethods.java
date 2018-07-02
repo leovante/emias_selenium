@@ -61,7 +61,7 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
-    @Step("Получить уникального врача")
+    @Step("получить уникального врача")
     public String getUnicalDoctor3(int doctorNum) {
         Waiter.waitAllEmias();
         waitWhileClickable(doctorRow);
@@ -134,7 +134,7 @@ public class DoctorMethods extends BasePage {
     }
 
     @Step("Выбрать врача")
-    public void selectDoctor(String doctorInlet) throws InterruptedException {
+    public void selectDoctor(String doctorInlet) {
         Waiter.waitAllEmias();
         Waiter.waitAllEmias();
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")));

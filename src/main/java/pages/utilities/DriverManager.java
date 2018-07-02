@@ -23,6 +23,7 @@ public class DriverManager {
     }
 
     public WebDriver createDriver() {
+        browser = String.valueOf(browser);
         if (browser.equals("firefox")) {
             this.geckoDriverService = new GeckoDriverService.Builder()
                     .usingDriverExecutable(new File("src/main/resources/geckodriver.exe"))

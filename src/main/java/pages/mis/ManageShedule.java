@@ -108,7 +108,7 @@ public class ManageShedule extends BasePage {
     }
 
     @Step("копировать расисание")
-    public void copyShedule(String docName) throws InterruptedException {
+    public void copyShedule(String docName) {
         Waiter.waitAllEmias();
         waitWhileClickable(copyShedule);
         copyShedule.click();
@@ -186,7 +186,7 @@ public class ManageShedule extends BasePage {
     }
 
     @Step("получить фамилию")
-    public String getSecondName(String name){
+    public static String getSecondName(String name) {
         if(name.contains(" ")){
             name= name.substring(0, name.indexOf(" "));
         }

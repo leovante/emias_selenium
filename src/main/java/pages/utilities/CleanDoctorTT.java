@@ -13,7 +13,7 @@ public class CleanDoctorTT {
     static String password = "sagfhjkzYES!";
 
     @Step
-    public static void deleteShedule(String name) throws ClassNotFoundException {
+    public static void deleteShedule(String name) {
         System.out.println("Start clean base - " + name);
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -40,8 +40,8 @@ public class CleanDoctorTT {
         }
     }
 
-    @Step
-    public void finalizeCallDoctor() throws ClassNotFoundException {
+    @Step("Завершаю все существующие вызовы")
+    public void finalizeCallDoctor() {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
