@@ -20,7 +20,7 @@ public class RCD05Test extends BaseTest implements Profile1, Profile2 {
     }
 
     @AfterTest(groups = "CD")
-    public void afterTest() throws Exception {
+    public void afterTest() {
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
@@ -40,6 +40,7 @@ public class RCD05Test extends BaseTest implements Profile1, Profile2 {
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
+        page.fullCardPage().editCallBtn();
         page.fullCardPage().cancelRecordOnChangePage();
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyRecordIsCancelFromDashboard();

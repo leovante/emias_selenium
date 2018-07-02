@@ -42,6 +42,9 @@ public class FullCardPage extends BasePage implements
     @FindBy(id = "cancelCall")
     WebElement cancelCall;
 
+    @FindBy(xpath = "//a[@title='Отменить вызов']")
+    WebElement cancelCall2;
+
     @FindBy(id = "change")
     WebElement change;
 
@@ -526,8 +529,6 @@ public class FullCardPage extends BasePage implements
     public void cancelRecordOnFullCardPage() throws InterruptedException {
         isDisplayed("Карта вызова");
         click(cancelBtn);
-
-//        Thread.sleep(1000);
         sendKeys(cancelField, "отмена автотестом");
         click(cancelCall);
     }
@@ -538,7 +539,7 @@ public class FullCardPage extends BasePage implements
     }
 
     @Step("нажимаю на назначить врача")
-    public void appoindDoctorBtn() throws InterruptedException {
+    public void appoindDoctorBtn() {
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
                         .xpath("//div[contains(., 'Карта вызова')]")));
@@ -572,13 +573,18 @@ public class FullCardPage extends BasePage implements
 
     @Step("отмена вызов на странице редактирвоания")
     public void cancelRecordOnChangePage() throws InterruptedException {
+        isDisplayed("Редактирование вызова");
+        click(cancelCall);
+        sendKeys(cancelField, "отмена автотестом");
+        click(cancelCall2);
+    }
+
+    @Step("отмена вызов на странице редактирвоания")
+    public void editCallBtn() throws InterruptedException {
         isDisplayed("Карта вызова");
         click(change);
-
-//        Thread.sleep(1000);
-        sendKeys(cancelField, "отмена автотестом");
-        click(cancelCall);
     }
+
 
     @Step("закрыть подробную карту")
     public void closeCardBtn() {

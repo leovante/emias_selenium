@@ -42,8 +42,8 @@ abstract public class BasePage {
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();
 
-//        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-        wait.until(ExpectedConditions.visibilityOf(element)).click();
+//        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public void click(String name) {
@@ -73,7 +73,7 @@ abstract public class BasePage {
     }
 
     //Close popup if exists
-    public void handlePopup(By by) throws InterruptedException {
+    public void handlePopup(By by) {
         JSWaiter.waitJQueryAngular();
         List<WebElement> popup = driver.findElements(by);
         if (!popup.isEmpty()) {
@@ -82,13 +82,13 @@ abstract public class BasePage {
         }
     }
 
-    public void isDisplayedOnCardPage(String name) throws InterruptedException {
+    public void isDisplayedOnCardPage(String name) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'" + name + "')]")));
         WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));//не убирай спан
         assertTrue(element.isDisplayed());
     }
 
-    public void isDisplayed(String name) throws InterruptedException {
+    public void isDisplayed(String name) {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 

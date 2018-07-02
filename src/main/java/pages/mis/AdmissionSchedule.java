@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.BasePage;
+import pages.utilities.CleanDoctorTT;
 import pages.utilities.Waiter;
 
 import java.util.Iterator;
@@ -84,5 +85,30 @@ public class AdmissionSchedule extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(recordElement));
         WebElement containName = driver.findElement(By.xpath("//*[contains(.,'" + nameGen + "')]"));
         assertTrue(containName.isEnabled());
+    }
+
+    @Step("Сделать запись")
+    public void createShedule(int i) throws ClassNotFoundException, InterruptedException {
+        DoctorMethods doctorMethods = new DoctorMethods(driver);
+        BeforeWork beforeWork = new BeforeWork(driver);
+        ManageShedule manageShedule = new ManageShedule(driver);
+
+        int n = 1;
+        CleanDoctorTT sql = new CleanDoctorTT();
+        sql.finalizeCallDoctor();
+
+        while (n <= i) {
+            System.out.println("Обрабатываю врача №: " + n);
+            String doctor_num = doctorMethods.getUnicalDoctor3(n);
+            String doctor_num_fam = ManageShedule.getSecondName(doctor_num);
+            CleanDoctorTT.deleteShedule(doctor_num_fam);
+
+            doctorMethods.selectDoctor(doctor_num);
+            beforeWork.createShedule();
+            manageShedule.verifyCreatedShedule();
+            doctorMethods.selectDoctor(doctor_num);
+
+            n++;
+        }
     }
 }

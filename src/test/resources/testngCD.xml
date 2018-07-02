@@ -8,7 +8,6 @@
     <parameter name="pass" value="1212"/>
     <listeners>
         <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
-        <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
     <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
         <groups>
@@ -16,6 +15,9 @@
                 <include name="CD"/>
             </run>
         </groups>
+        <!--<classes>-->
+        <!--<class name="emias.calldoctor.RCD05Test"/>-->
+        <!--</classes>-->
         <packages>
             <package name="emias.calldoctor"/>
         </packages>
