@@ -26,7 +26,7 @@ public class MyStepdefs
 //    {
 //        for (String str : countries)
 //        {
-//            firstPage.get("Укажите страну").sendKeys(str);
+//            firstPage.get("Укажите страну").sendKeysJS(str);
 //            firstPage.get("Укажите страну").pressEnter();
 //        }
 //    }
@@ -42,7 +42,7 @@ public class MyStepdefs
 //    public void specifyBirthdayOfTourists(String day, String month, String year)
 //    {
 //        firstPage.get("Кто едет").click();
-//        firstPage.get("дд.мм.гггг").sendKeys(day + month + year);
+//        firstPage.get("дд.мм.гггг").sendKeysJS(day + month + year);
 //    }
 //
 //
@@ -66,13 +66,13 @@ public class MyStepdefs
 //        sleep(1000);
 //        if ("первая страница".equals(page))
 //        {
-//            firstPage.get(nameOfElement).sendKeys(text);
+//            firstPage.get(nameOfElement).sendKeysJS(text);
 //        } else if ("вторая страница".equals(page))
 //        {
-//            secondPage.get(nameOfElement).sendKeys(text);
+//            secondPage.get(nameOfElement).sendKeysJS(text);
 //        } else if ("третья страница".equals(page))
 //        {
-//            thirdPage.get(nameOfElement).sendKeys(text);
+//            thirdPage.get(nameOfElement).sendKeysJS(text);
 //        }
 //
 //    }

@@ -528,7 +528,7 @@ public class FullCardPage extends BasePage implements
     public void cancelRecordOnFullCardPage() {
         isDisplayed("Карта вызова");
         click(cancelBtn);
-        sendKeys(cancelField, "отмена автотестом");
+        sendKeysJS(cancelField, "отмена автотестом");
         click(cancelCall);
     }
 
@@ -564,7 +564,7 @@ public class FullCardPage extends BasePage implements
     public void cancelRecordOnChangePage() {
         isDisplayed("Редактирование вызова");
         click(cancelCall);
-        sendKeys(cancelField, "отмена автотестом");
+        sendKeysJS(cancelField, "отмена автотестом");
         click(cancelCall2);
     }
 

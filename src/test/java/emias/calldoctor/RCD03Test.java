@@ -13,7 +13,7 @@ import pages.utilities.StringGenerator;
 public class RCD03Test extends BaseTest implements Profile1, Profile2 {
     String nameGen;
 
-    @BeforeTest(groups = "CD")
+    @BeforeTest(groups = {"CD", "test"})
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());

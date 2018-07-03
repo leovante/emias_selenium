@@ -141,9 +141,6 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     @FindBy(xpath = "//button/span[contains(text(),'Да')]")
     WebElement allarmaYes;
 
-//    @FindBy(xpath = "//a/span[2][contains(text(),'в электронную регистратуру')]")
-//    WebElement pereytiVElectrRegistr;
-
     @FindBy(xpath = "//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']")
     WebElement pereytiVElectrRegistr;
 
@@ -188,7 +185,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         waitVisibility(noviyVizov);
 
 /*обязательные поля*/
-        sendKeys(dom, domPro0);
+        sendKeysJS(dom, domPro0);
         click(chkBoxTelephone);
 
         click(hz);
@@ -230,7 +227,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         click(list_first_container);
 
 /*обязательные поля*/
-        sendKeys(dom, domPro1);
+        sendKeysJS(dom, domPro1);
 //        click(chkBoxTelephone);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
@@ -243,12 +240,12 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         hz2.click();
 
 /*необязательные поля*/
-        sendKeys(korpus, korpusPro1);
-        sendKeys(stroenie, stroeniePro1);
-        sendKeys(kvartira, kvartiraPro1);
-        sendKeys(pd, pdPro1);
-        sendKeys(dfon, dfonPro1);
-        sendKeys(etazh, etazhPro1);
+        sendKeysJS(korpus, korpusPro1);
+        sendKeysJS(stroenie, stroeniePro1);
+        sendKeysJS(kvartira, kvartiraPro1);
+        sendKeysJS(pd, pdPro1);
+        sendKeysJS(dfon, dfonPro1);
+        sendKeysJS(etazh, etazhPro1);
         click(sex1);
 
 /*жалоба*/
@@ -258,13 +255,13 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         action.sendKeys(Keys.ENTER).perform();
 
 /*кто пациент*/
-        sendKeys(seriyaPol, seriyaPolPro1);
-        sendKeys(nomerPol, nomerPolPro1);
+        sendKeysJS(seriyaPol, seriyaPolPro1);
+        sendKeysJS(nomerPol, nomerPolPro1);
         click(fam);
-        sendKeys(fam, famPro1);
-        sendKeys(name, nameGen);
-        sendKeys(otchestvo, otchestvoPro1);
-        sendKeys(birthDay, birthDayPro1);
+        sendKeysJS(fam, famPro1);
+        sendKeysJS(name, nameGen);
+        sendKeysJS(otchestvo, otchestvoPro1);
+        sendKeysJS(birthDay, birthDayPro1);
 
 /*кто вызывает*/
         tipVisivaushego.click();
@@ -282,12 +279,12 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
 
 /*кто пациент*/
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
-        sendKeys(findPatientInput, nomerPolPro2);
+        sendKeysJS(findPatientInput, nomerPolPro2);
         clickJSext(famPro2Xpath);
 
 /*обязательные поля*/
         click(source0);
-        sendKeys(dom, domPro2);
+        sendKeysJS(dom, domPro2);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
         jse1.executeScript("arguments[0].value='" + telephonePro1 + "';", telephoneNumber);
@@ -295,9 +292,9 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         action.sendKeys(Keys.SPACE).perform();
 
 /*необязательные поля*/
-        sendKeys(pd, pdPro2);
-        sendKeys(dfon, dfonPro2);
-        sendKeys(etazh, etazhPro2);
+        sendKeysJS(pd, pdPro2);
+        sendKeysJS(dfon, dfonPro2);
+        sendKeysJS(etazh, etazhPro2);
         click(sex1);
 
 /*жалоба*/
@@ -308,10 +305,10 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
 
 
 /*кто вызывает*/
-        sendKeys(callFamily, famCallPro2);
-        sendKeys(callName, nameGen);
-        sendKeys(callPatronymic, otCallPro2);
-        sendKeys(stationSMP, stationSMPPro2);
+        sendKeysJS(callFamily, famCallPro2);
+        sendKeysJS(callName, nameGen);
+        sendKeysJS(callPatronymic, otCallPro2);
+        sendKeysJS(stationSMP, stationSMPPro2);
 
         saveBtns.click();
     }
@@ -360,26 +357,6 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         } finally {
 //            driver.close();
         }
-    }
-
-    @Step("создаю вызов через портал")
-    public void createCallProfile4() {
-//        Actions action = new Actions(driver);
-//        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-
-        sendKeys(nPolField, nomerPolPro4);
-        sendKeys(birthdayField, birthDayPro4);
-        click(pereytiVElectrRegistr);
-        waitClickable(callDoctorBtn);
-        click(callDoctorBtn);
-        sendKeys(call_address, adressPro4);
-        sendKeys(call_phone, telephonePro4);
-        sendKeys(call_description, zhalobaPro4);
-        click(podtverdVizovVracha);
-        waitClickable(closeWindowBtn);
-        click(closeWindowBtn);
     }
 
     @Step("открыл страницу создания вызова")

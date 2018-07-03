@@ -4,6 +4,7 @@ import emias.BaseTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
@@ -73,18 +74,12 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.fullCardPage().verifyCallProfile3(nameGen);
     }
 
-    @Test(groups = "test", description = "вызов ребенка с Портала", enabled = false)
-//скорость интернета не дает доделать
+    @Ignore
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @RetryCountIfFailed(0)
-    public void testCallInternet() {
+    public void testCallPortal() {
         driver.get("https://uslugi.mosreg.ru/zdrav/");
-
-//        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);
-//        driver.findElement(By.linkText("https://uslugi.mosreg.ru/zdrav/")).sendKeys(selectLinkOpeninNewTab);
-
-        page.createCallPage().createCallProfile4();
+        page.portalDashboard().createCallProfile4();
         driver.get(curUrlCalldoctor);
-
-
     }
 }

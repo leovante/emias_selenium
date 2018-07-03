@@ -78,13 +78,13 @@ public class DashboardPage extends BasePage {
     @Step("поиск в фильтре ФИО")
     public void searchFilterFio(String fioName) {
         clickJS(fioFilter);
-        sendKeys(fioFilter, fioName);
+        sendKeysJS(fioFilter, fioName);
     }
 
     @Step("поиск в фильтре врача")
     public void searchFilterDoctor(String fioName) throws InterruptedException {
         clickJS(docFilter);
-        sendKeys(docFilter, fioName);
+        sendKeysJS(docFilter, fioName);
         action.sendKeys(Keys.ARROW_DOWN).perform();
         action.sendKeys(Keys.ENTER).perform();
         Thread.sleep(4000);

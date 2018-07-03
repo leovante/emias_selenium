@@ -154,7 +154,7 @@ public class EditCardPage extends BasePage implements Profile5 {
     }
 
     @Step("редактирую вызов без привязывания МКАБ")
-    public void editCallProfile5(String nameGen) throws InterruptedException {
+    public void editCallProfile5(String nameGen) {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -176,9 +176,9 @@ public class EditCardPage extends BasePage implements Profile5 {
         click(list_first_container);
 
 /*обязательные поля*/
-        sendKeys(dom, domPro5);
+        sendKeysJS(dom, domPro5);
         click(cancelBirthDate);
-        sendKeys(birthDateTemp, birthDayPro5);
+        sendKeysJS(birthDateTemp, birthDayPro5);
 
         telephoneNumber.clear();
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
@@ -188,13 +188,13 @@ public class EditCardPage extends BasePage implements Profile5 {
 
 /*необязательные поля*/
         click(source0);
-        sendKeys(korpus, korpusPro5);
-        sendKeys(stroenie, stroeniePro5);
-        sendKeys(kvartira, kvartiraPro5);
-        sendKeys(pd, pdPro5);
-        sendKeys(dfon, dfonPro5);
-        sendKeys(etazh, etazhPro5);
-        sendKeys(sourceSmp, stationSMPPro5);
+        sendKeysJS(korpus, korpusPro5);
+        sendKeysJS(stroenie, stroeniePro5);
+        sendKeysJS(kvartira, kvartiraPro5);
+        sendKeysJS(pd, pdPro5);
+        sendKeysJS(dfon, dfonPro5);
+        sendKeysJS(etazh, etazhPro5);
+        sendKeysJS(sourceSmp, stationSMPPro5);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -203,26 +203,26 @@ public class EditCardPage extends BasePage implements Profile5 {
         action.sendKeys(Keys.ENTER).perform();
 
 /*кто пациент*/
-        sendKeys(seriyaPol, seriyaPolPro5);
-        sendKeys(nomerPol, nomerPolPro5);
+        sendKeysJS(seriyaPol, seriyaPolPro5);
+        sendKeysJS(nomerPol, nomerPolPro5);
         click(fam);
-        sendKeys(fam, famPro5);
-        sendKeys(name, nameGen);
-        sendKeys(otchestvo, otchestvoPro5);
+        sendKeysJS(fam, famPro5);
+        sendKeysJS(name, nameGen);
+        sendKeysJS(otchestvo, otchestvoPro5);
 
 /*кто вызывает*/
 //        tipVisivaushego.click();
 //        pacient.click();
-        sendKeys(sourceSmp, stationSMPPro5);
-        sendKeys(callFamily, famCallPro5);
-        sendKeys(callName, nameCallPro5);
-        sendKeys(callPatronymic, otCallPro5);
+        sendKeysJS(sourceSmp, stationSMPPro5);
+        sendKeysJS(callFamily, famCallPro5);
+        sendKeysJS(callName, nameCallPro5);
+        sendKeysJS(callPatronymic, otCallPro5);
 
         click(saveBtns);
     }
 
 
-    public void editCallToMkab2() throws InterruptedException {
+    public void editCallToMkab2() {
         Actions action = new Actions(driver);
 /*адрес*/
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
@@ -246,7 +246,7 @@ public class EditCardPage extends BasePage implements Profile5 {
 //        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
 //        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
 //        click(telephoneNumber);
-//        action.sendKeys(Keys.ENTER);
+//        action.sendKeysJS(Keys.ENTER);
         click(chkBoxTelephone);
         click(hz);
         click(vozr);
@@ -278,9 +278,9 @@ public class EditCardPage extends BasePage implements Profile5 {
         nomerPol.clear();
         nomerPol.sendKeys("54321");
 //        click(fam);
-//        fam.sendKeys("Автотемников");
-//        name.sendKeys("Автодмитрий");
-//        otchestvo.sendKeys("Автоолегович");
+//        fam.sendKeysJS("Автотемников");
+//        name.sendKeysJS("Автодмитрий");
+//        otchestvo.sendKeysJS("Автоолегович");
 
 /*кто вызывает*/
         tipVisivaushego.click();
