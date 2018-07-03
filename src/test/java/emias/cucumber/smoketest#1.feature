@@ -1,6 +1,4 @@
-@AcceptanceTest
-#   language: en
-
+@smoketest
 Feature: smoke test #1, go through the service to button "Купить"
 
   Scenario: go through the service to button "Купить"
@@ -22,13 +20,13 @@ Feature: smoke test #1, go through the service to button "Купить"
     And wait until spinner disappears
     Then collection of "Результаты поиска" should not be empty
 
-  Сценарий: go through service to yandex pay-page
+  Scenario: go through service to yandex pay-page
 
-    Дано press button with text "КУПИТЬ" on "вторая страница"
+    Given press button with text "КУПИТЬ" on "вторая страница"
     #actions at third page
-    И type to input with name "lastName" text: "TESTOVIY" on "третья страница"
-    И type to input with name "firstName" text: "TEST" on "третья страница"
-    И press button with text "Принимаю" on "третья страница"
-    И press element with value "Оформить" and it should be enabled
-    Когда press button with text "Оплатить" and it should be enabled
-    Тогда verify that page with url "https://money.yandex.ru/cashdesk" is opened
+    And type to input with name "lastName" text: "TESTOVIY" on "третья страница"
+    And type to input with name "firstName" text: "TEST" on "третья страница"
+    And press button with text "Принимаю" on "третья страница"
+    And press element with value "Оформить" and it should be enabled
+    When press button with text "Оплатить" and it should be enabled
+    Then verify that page with url "https://money.yandex.ru/cashdesk" is opened

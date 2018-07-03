@@ -2,18 +2,14 @@ package emias.cucumber;
 
 import com.codeborne.selenide.Configuration;
 import cucumber.api.CucumberOptions;
-import cucumber.api.SnippetType;
 import org.testng.annotations.BeforeClass;
 
 
 @CucumberOptions(
-//        plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
-        features = "emias/calldoctor/features",
-        glue = "emias/calldoctor/steps",
-        tags = "@AcceptanceTest",
-        dryRun = false,
-        strict = false,
-        snippets = SnippetType.UNDERSCORE)
+        plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
+        features = "src/test/java/ru/riskmarket/features",
+        glue = "ru/riskmarket/steps",
+        tags = "@smoketest")
 
 public class SmokeTest
 {

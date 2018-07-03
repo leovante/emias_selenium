@@ -3,18 +3,17 @@ package emias.cucumber;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.ru.Дано;
-import cucumber.api.java.ru.Допустим;
-import cucumber.api.java.ru.И;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MyStepdefs
 {
@@ -23,13 +22,13 @@ public class MyStepdefs
     SecondPage secondPage = page(SecondPage.class);
     ThirdPage thirdPage = page(ThirdPage.class);
 
-    @Дано("^open riskmarket\\.ru$")
+    @Given("^open riskmarket\\.ru$")
     public void openRiskmarketRu()
     {
         open("http://riskmarket.ru");
     }
 
-    @И("^select countries: (.*)$")
+    @And("^select countries: (.*)$")
     public void selectCountries(List<String> countries)
     {
         for (String str : countries)
@@ -110,7 +109,7 @@ public class MyStepdefs
     {
         sleep(3000);
         String currentUrl = url();
-//        assertThat(currentUrl, containsString(verifyUrl)); чото красное
+        assertThat(currentUrl, containsString(verifyUrl));
     }
 
     @And("^press element with value \"([^\"]*)\" and it should be enabled")
@@ -135,11 +134,5 @@ public class MyStepdefs
     public void checkThatElementWithNameIsDisplayed(String elementName)
     {
         firstPage.get(elementName).shouldBe(Condition.appears);
-    }
-
-    @Допустим("^open emias\.mosreg\.ru/demonstration/$")
-    public void openEmiasMosregRuDemonstration() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
-        throw new PendingException();
     }
 }
