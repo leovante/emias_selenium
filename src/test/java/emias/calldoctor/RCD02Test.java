@@ -22,11 +22,11 @@ public class RCD02Test extends BaseTest implements Profile1, Profile2, Profile5 
     }
 
     @AfterTest(groups = "CD")
-    public void afterTest() throws Exception {
+    public void afterTest() {
     }
 
-    @Test(groups = "test", description = "изменить карту вызова, созданную по п.1.1")
-    @RetryCountIfFailed(0)
+    @Test(groups = "CD", description = "изменить карту вызова, созданную по п.1.1")
+    @RetryCountIfFailed(2)
     public void testEditProfile1() throws Exception {
         driver.get(curUrlCalldoctor);
 
