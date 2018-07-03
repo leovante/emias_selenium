@@ -49,8 +49,6 @@ public abstract class BaseTest {
         page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
-
-//        driver.get("http://192.168.7.19:6001/test/call/call_doctor_ui/call-doctor/board?ticket=t7zsrR0YvQRlp3lJYS0jKJNV0iik4wUMdzEgXNDtpEyZuZQrHX77ZqJ2O11UnOgX1DHriJXe6vZ%2BkgsHMnU1xMnAGoTQa0nyWMnJ6lShS7L6cGJpGGyR0M3Jlhgz1wTVz1QjW1woODUjtUE6X3KSOqtvsn3%2Fa2Lx5TDEhQG2psDKSZMl7i1%2FUVhRyDuf23%2BsEZuRtfv7ZTo%2BZ774dRCiDAC7z5deDUcuutxGMFWR%2FhwPEUS44kPBJjoJVBVZfFs58LK3FPTZL0js%2B0rNRAI%2BFt4dLcLYfI2YdpzaXFaDGrtnDRId&ReturnUrl=http:%2F%2F192.168.7.139%2Fwhc%2FMain%2FDefault");
         String url = driver.getCurrentUrl();
         curUrlCalldoctor = url;
     }
@@ -87,9 +85,9 @@ public abstract class BaseTest {
                                  @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login(site, login, pass);
+        driver.get("http://mis.softrust.ru/mis/Main/Default");
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
-//        driver.get("http://192.168.7.19:6001/test/call/call_doctor_ui/call-doctor/board?ticket=t7zsrR0YvQRlp3lJYS0jKJNV0iik4wUMdzEgXNDtpEyZuZQrHX77ZqJ2O11UnOgX1DHriJXe6vZ%2BkgsHMnU1xMnAGoTQa0nyWMnJ6lShS7L6cGJpGGyR0M3Jlhgz1wTVz1QjW1woODUjtUE6X3KSOqtvsn3%2Fa2Lx5TDEhQG2psDKSZMl7i1%2FUVhRyDuf23%2BsEZuRtfv7ZTo%2BZ774dRCiDAC7z5deDUcuutxGMFWR%2FhwPEUS44kPBJjoJVBVZfFs58LK3FPTZL0js%2B0rNRAI%2BFt4dLcLYfI2YdpzaXFaDGrtnDRId&ReturnUrl=http:%2F%2F192.168.7.139%2Fwhc%2FMain%2FDefault");
         String url = driver.getCurrentUrl();
         curUrlCalldoctor = url;
     }

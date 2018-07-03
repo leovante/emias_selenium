@@ -20,7 +20,6 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String site, String login, String pass){
-//        driver.get("http://mis.softrust.ru/mis");
         driver.get(site);
         enterLoginText(login);
         enterPasswordText(pass);
