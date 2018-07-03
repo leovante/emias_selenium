@@ -12,8 +12,6 @@ import pages.utilities.JSWaiter;
 import pages.utilities.SwitchToPage;
 import pages.utilities.Waiter;
 
-import java.net.MalformedURLException;
-
 public abstract class BaseTest {
     public static WebDriver driver;
     public static WebDriverWait wait;
@@ -24,7 +22,7 @@ public abstract class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String browser,
                             @Optional String platform,
-                            ITestContext context) throws MalformedURLException {
+                            ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
         driver = new DriverManager(browser).createDriver();
@@ -36,7 +34,7 @@ public abstract class BaseTest {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void afterSuite() throws Exception {
+    public void afterSuite() {
         driver.quit();
     }
 
@@ -85,7 +83,7 @@ public abstract class BaseTest {
                                  @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login(site, login, pass);
-        driver.get("http://mis.softrust.ru/mis/Main/Default");
+//        driver.get("http://mis.softrust.ru/mis/Main/Default");
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
         String url = driver.getCurrentUrl();

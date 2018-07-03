@@ -22,11 +22,11 @@ public class DoctorMethods extends BasePage {
         super(driver);
     }
 
-    @Step("Получить уникального врача")
+    @Step("получить уникального врача")
     public String getUnicalDoctor(String docName) {
         Waiter.waitAllEmias();
 
-        waitWhileClickable(doctorRow);
+        waitClickable(doctorRow);
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
         dontUseNames.add(docName);
@@ -64,7 +64,7 @@ public class DoctorMethods extends BasePage {
     @Step("получить уникального врача")
     public String getUnicalDoctor3(int doctorNum) {
         Waiter.waitAllEmias();
-        waitWhileClickable(doctorRow);
+        waitClickable(doctorRow);
 
         List<String> badNames = new ArrayList<String>();
         Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null", "Моков Павел Александрович");
@@ -78,7 +78,7 @@ public class DoctorMethods extends BasePage {
         for (WebElement doctor : doctorList) {
             doctorName = doctor.getText();
 
-//                !badNames.contains(doctorName)
+//                !badNames.contains(doctorNamePro1)
 
 
             if (badNames.contains(doctorName)) {
@@ -94,11 +94,11 @@ public class DoctorMethods extends BasePage {
         return doctorName;
     }
 
-    @Step("Получить уникального врача")
+    @Step("получить уникального врача")
     public String getUnicalDoctor2(String docName) {
         Waiter.waitAllEmias();
 
-        waitWhileClickable(doctorRow);
+        waitClickable(doctorRow);
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
         dontUseNames.add(docName);
@@ -133,17 +133,11 @@ public class DoctorMethods extends BasePage {
         return doctorStringName;
     }
 
-    @Step("Выбрать врача")
+    @Step("выбрать врача")
     public void selectDoctor(String doctorInlet) {
         Waiter.waitAllEmias();
+        wait.until(ExpectedConditions
+                .elementToBeClickable(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]"))).click();
         Waiter.waitAllEmias();
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")));
-        driver.findElement(By.xpath("//*[contains(text(),'" + doctorInlet + "')]")).click();
-        Waiter.waitAllEmias();
-        Waiter.waitAllEmias();
-    }
-
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

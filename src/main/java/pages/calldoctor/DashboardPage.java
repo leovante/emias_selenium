@@ -35,6 +35,17 @@ public class DashboardPage extends BasePage {
     @FindBy(id = "newCallProgressFrame")
     WebElement newCallProgressFrame;
 
+    @FindBy(xpath = "//*[@id='newCallProgressFrame']/mat-expansion-panel/div")
+    WebElement matexpansionpanel;
+
+    @FindBy(xpath = "//*[@id='newCallProgressFrame']/mat-expansion-panel/div/div/div/app-call-doctor-short-card/div/div/div[3]")
+    WebElement smallMenu;
+
+    @FindBy(xpath = "//a[@title='Открыть карту вызова']")
+    WebElement openCard;
+
+
+
     @FindBy(id = "activeCallProgressFrame")
     WebElement activeCallProgressFrame;
 
@@ -61,7 +72,7 @@ public class DashboardPage extends BasePage {
     }
 
     @Step("поиск в фильтре ФИО")
-    public void searchFilterFio(String fioName) throws InterruptedException {
+    public void searchFilterFio(String fioName) {
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();
@@ -80,7 +91,7 @@ public class DashboardPage extends BasePage {
     }
 
     @Step("очистить фильтр подразделение")
-    public void clearFilterDepart() throws InterruptedException {
+    public void clearFilterDepart() {
 
         List<WebElement> closeList = driver.findElements(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (WebElement closeBtn : closeList) {
@@ -137,17 +148,17 @@ public class DashboardPage extends BasePage {
     }
 
     @Step("открываю фрейм ожидают обработки")
-    public void openNewCallProgressFrame() throws InterruptedException {
+    public void openNewCallProgressFrame(String nameGen) {
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();
 
+        waitClickable(newCallProgressFrame);
         clickJSext(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);
 
-        Thread.sleep(5000);
-        clickJSext(newCallProgressFrame
-                .findElement(By.xpath("//app-call-doctor-short-card"))
-                .findElement(By.xpath("//mat-icon[contains(text(),'assignment')]")));
+        hoverByAction(matexpansionpanel);
+        clickJSext(smallMenu);
+        clickJSext(openCard);
     }
 }

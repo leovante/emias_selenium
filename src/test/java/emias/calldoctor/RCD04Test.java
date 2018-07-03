@@ -7,11 +7,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.utilities.CleanDoctorTT;
 import pages.utilities.StringGenerator;
 
 public class RCD04Test extends BaseTest implements Profile1, Profile2 {
-    String doctorName;
-    String doctorFam;
     String nameGen;
 
     @BeforeTest(groups = "CD")
@@ -21,8 +20,10 @@ public class RCD04Test extends BaseTest implements Profile1, Profile2 {
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "CD")
-    public void afterTest() throws Exception {
+    @AfterTest(groups = {"CD", "test"})
+    public void afterTest() {
+        CleanDoctorTT.finalizePacientName(nameGen);
+
     }
 
     @Test(groups = "CD", description = "передать вызов другому врачу")
@@ -33,19 +34,15 @@ public class RCD04Test extends BaseTest implements Profile1, Profile2 {
         page.createCallPage().createCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
-        this.doctorName = page.setDoctorPage().getDoctorName(1);
-        page.setDoctorPage().appendDoctor(doctorName);
-        this.doctorFam = page.manageShedule().getSecondName(doctorName);
+        page.setDoctorPage().appendDoctor(doctorFamPro1);
 
         page.fullCardPage().sendAnotherDoctorBtn();
-        this.doctorName = page.setDoctorPage().getDoctorName(doctorName);
-        page.setDoctorPage().appendDoctor(doctorName);
-        this.doctorFam = page.manageShedule().getSecondName(doctorName);
-        page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
+        page.setDoctorPage().appendDoctor(doctorFamPro2);
+        page.fullCardPage().verifyCallProfile1Activity(doctorFamPro2, nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().clearFilterDepart();
-        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage().verifyActiveDocGroup(doctorFamPro2, nameGen, adressPro1_2, telephonePro1);
     }
 }

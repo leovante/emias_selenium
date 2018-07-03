@@ -1,5 +1,7 @@
 package pages;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +11,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.utilities.JSWaiter;
+import pages.utilities.NameOfElement;
 
+import java.lang.reflect.Field;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
@@ -18,7 +22,6 @@ import static org.testng.Assert.assertTrue;
 abstract public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
-
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -110,5 +113,24 @@ abstract public class BasePage {
         JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
 //        wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public SelenideElement get(String cucumberElementName) {
+        Class<?> clazz = this.getClass();
+        for (Field field : clazz.getDeclaredFields()) {
+            if (field.isAnnotationPresent(NameOfElement.class)) {
+                NameOfElement nameOfElementAnnotation = field.getAnnotation(NameOfElement.class);
+                if (nameOfElementAnnotation.value().equals(cucumberElementName)) {
+                    try {
+                        return (SelenideElement) field.get(this);
+
+                    } catch (IllegalAccessException e) {
+                        System.out.println("ERROR: element with name " + cucumberElementName + " at page " + this.getClass().getName() + " is not public");
+                    }
+                }
+            }
+        }
+        Selenide.screenshot("No_element");
+        throw new IllegalArgumentException("ERROR: there is no such element with name " + cucumberElementName + " at page " + this.getClass().getName());
     }
 }

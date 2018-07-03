@@ -27,4 +27,9 @@ public interface Profile1 {
     String vozrastKatPro1 = "Взрослый";
 
     String zhalobaPro1 = "автотест создание вызова без МКАБ через ВД";
+
+
+    String doctorNamePro1 = "Дмитрий";
+    String doctorFamPro1 = "Темников";
+
 }

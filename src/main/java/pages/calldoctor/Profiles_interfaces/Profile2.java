@@ -32,4 +32,9 @@ public interface Profile2 {
     String stationSMPPro2 = "Суперстанция";
 
     String zhalobaPro2 = "автотест создание вызова по МКАБ через ВД";
+
+    String doctorNamePro2 = "Инна";
+    String doctorFamPro2 = "Серова";
+    String doctorOtPro2 = "Кузьминична";
+
 }

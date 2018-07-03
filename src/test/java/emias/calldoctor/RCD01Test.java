@@ -7,20 +7,22 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.utilities.CleanDoctorTT;
 import pages.utilities.StringGenerator;
 
 public class RCD01Test extends BaseTest implements Profile1, Profile2 {
     String nameGen;
 
-    @BeforeTest(groups = {"CD", "Test"})
+    @BeforeTest(groups = {"CD", "test"})
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "CD")
-    public void afterTest() throws Exception {
+    @AfterTest(groups = {"CD", "test"})
+    public void afterTest() {
+        CleanDoctorTT.finalizePacientName(nameGen);
     }
 
     @Test(groups = "CD", description = "пустой вызов")
@@ -61,20 +63,20 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР", enabled = false)
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @RetryCountIfFailed(2)
     public void testCallSMPApi() throws InterruptedException {
-        page.createCallPage().createCallProfile3();
+        page.createCallPage().createCallProfile3(nameGen);
         driver.get(curUrlCalldoctor);
 
-        page.dashboardPage().openNewCallProgressFrame();
-
-        page.fullCardPage().verifyCallProfile3();
+        page.dashboardPage().openNewCallProgressFrame(nameGen);
+        page.fullCardPage().verifyCallProfile3(nameGen);
     }
 
-    @Test(groups = "test", description = "вызов ребенка с Портала", enabled = true)//скорость интернета не дает доделать
+    @Test(groups = "test", description = "вызов ребенка с Портала", enabled = false)
+//скорость интернета не дает доделать
     @RetryCountIfFailed(0)
-    public void testCallInternet() throws InterruptedException {
+    public void testCallInternet() {
         driver.get("https://uslugi.mosreg.ru/zdrav/");
 
 //        String selectLinkOpeninNewTab = Keys.chord(Keys.CONTROL,Keys.RETURN);

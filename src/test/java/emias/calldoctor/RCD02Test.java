@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.calldoctor.Profiles_interfaces.Profile5;
+import pages.utilities.CleanDoctorTT;
 import pages.utilities.StringGenerator;
 
 public class RCD02Test extends BaseTest implements Profile1, Profile2, Profile5 {
@@ -21,8 +22,9 @@ public class RCD02Test extends BaseTest implements Profile1, Profile2, Profile5 
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "CD")
+    @AfterTest(groups = {"CD", "test"})
     public void afterTest() {
+        CleanDoctorTT.finalizePacientName(nameGen);
     }
 
     @Test(groups = "CD", description = "изменить карту вызова, созданную по п.1.1")
@@ -35,6 +37,7 @@ public class RCD02Test extends BaseTest implements Profile1, Profile2, Profile5 
         page.editCardPage().editCallBtn();
         page.editCardPage().editCallProfile5(nameGen);
         page.fullCardPage().verifyCallProfile5(nameGen);
+        page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro5_2, telephonePro5);

@@ -171,12 +171,15 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     @FindBy(id = "call_description")
     WebElement call_description;
 
+    @FindBy(id = "sex1")
+    WebElement sex1;
+
     public CreateCallPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("создаю пустой вызов")
-    public void createCallProfile0() throws InterruptedException {
+    public void createCallProfile0() {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -204,7 +207,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     }
 
     @Step("создаю вызов без МКАБ + Регистратура")
-    public void createCallProfile1(String nameGen) throws InterruptedException {
+    public void createCallProfile1(String nameGen) {
         Actions action = new Actions(driver);
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
@@ -246,6 +249,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         sendKeys(pd, pdPro1);
         sendKeys(dfon, dfonPro1);
         sendKeys(etazh, etazhPro1);
+        click(sex1);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -269,7 +273,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     }
 
     @Step("создаю вызов с МКАБ + СМП")
-    public void createCallProfile2(String nameGen) throws InterruptedException {
+    public void createCallProfile2(String nameGen) {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -294,6 +298,7 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
         sendKeys(pd, pdPro2);
         sendKeys(dfon, dfonPro2);
         sendKeys(etazh, etazhPro2);
+        click(sex1);
 
 /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -312,10 +317,10 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     }
 
     @Step("создаю вызов от СМП по api")
-    public void createCallProfile3() {
+    public void createCallProfile3(String nameGen) {
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
-        json.put("name", "Тестовый");
+        json.put("name", nameGen);
         json.put("family", "Тестовый");
         json.put("ot", "СМП");
         json.put("birthdate", "2002-01-10");
@@ -378,17 +383,13 @@ public class CreateCallPage extends BasePage implements Profile1, Profile2, Prof
     }
 
     @Step("открыл страницу создания вызова")
-    public void createCallBtn() throws InterruptedException {
+    public void createCallBtn() {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         click(addCallBtn);
         waitVisibility(noviyVizov);
-
-
         saveBtns.click();
-
     }
-
 }

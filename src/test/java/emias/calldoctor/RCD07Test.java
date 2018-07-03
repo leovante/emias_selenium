@@ -7,11 +7,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.utilities.CleanDoctorTT;
 import pages.utilities.StringGenerator;
 
 public class RCD07Test extends BaseTest implements Profile1, Profile2 {
-    String doctorName;
-    String doctorFam;
     String nameGen;
 
     @BeforeTest(groups = "CD")
@@ -21,8 +20,10 @@ public class RCD07Test extends BaseTest implements Profile1, Profile2 {
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "CD")
-    public void afterTest() throws Exception {
+    @AfterTest(groups = {"CD", "test"})
+    public void afterTest() {
+        CleanDoctorTT.finalizePacientName(nameGen);
+
     }
 
     @Test(groups = "CD", description = "завершить обслуживание вызова")
@@ -33,17 +34,13 @@ public class RCD07Test extends BaseTest implements Profile1, Profile2 {
         page.createCallPage().createCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
-        this.doctorName = page.setDoctorPage().getDoctorName(1);
-        page.setDoctorPage().appendDoctor(doctorName);
-        this.doctorFam = page.manageShedule().getSecondName(doctorName);
-        page.fullCardPage().verifyCallProfile1Activity(doctorFam, nameGen);
-
+        page.setDoctorPage().appendDoctor(doctorFamPro1);
         page.fullCardPage().completeServiceBtn();
-        page.fullCardPage().verifyDoneDocGroup(doctorFam, nameGen);
+        page.fullCardPage().verifyDoneDocGroup(doctorFamPro1, nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen);
         page.dashboardPage().clearFilterDepart();
-        page.dashboardPage().verifyDoneDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage().verifyDoneDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
     }
 }

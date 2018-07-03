@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.utilities.CleanDoctorTT;
 import pages.utilities.StringGenerator;
 
 public class RCD05Test extends BaseTest implements Profile1, Profile2 {
@@ -19,8 +20,10 @@ public class RCD05Test extends BaseTest implements Profile1, Profile2 {
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "CD")
+    @AfterTest(groups = {"CD", "test"})
     public void afterTest() {
+        CleanDoctorTT.finalizePacientName(nameGen);
+
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")

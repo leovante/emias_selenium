@@ -8,19 +8,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.utilities.Waiter;
 
 public class HomePage extends BasePage{
-    @FindBy(xpath = "//span[contains(text(),'ЕМИАС Московской области')]")
+    @FindBy(xpath = "//span[contains(.,'ЕМИАС Московской области')]")
     WebElement homePageBtn;
 
-    @FindBy(xpath = "//span[contains(text(),'Ведение расписания')]")
+    @FindBy(xpath = "//span[contains(.,'Ведение расписания')]")
     WebElement timeTableBtn;
 
-    @FindBy(xpath = "//span[contains(text(),'Расписание приёма')]")
+    @FindBy(xpath = "//span[contains(.,'Расписание приёма')]")
     WebElement admissionScheduleBtn;
 
-    @FindBy(xpath = "//span[contains(text(),'Перенос записей')]")
+    @FindBy(xpath = "//span[contains(.,'Перенос записей')]")
     WebElement transferRecordsBtn;
 
-    @FindBy(xpath = "//span[contains(text(),'Диспетчер')]")
+    @FindBy(xpath = "//span[contains(.,'Диспетчер')]")
     WebElement callDoctorBtn;
 
     public HomePage(WebDriver driver){

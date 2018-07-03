@@ -7,11 +7,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.utilities.CleanDoctorTT;
 import pages.utilities.StringGenerator;
 
 public class RCD09Test extends BaseTest implements Profile1, Profile2 {
-    String doctorName;
-    String doctorFam;
     String nameGen;
 
     @BeforeTest(groups = {"CD", "test"})
@@ -21,8 +20,10 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
         this.nameGen = name;
     }
 
-    @AfterTest(groups = "CD")
+    @AfterTest(groups = {"CD", "test"})
     public void afterTest() {
+        CleanDoctorTT.finalizePacientName(nameGen);
+
     }
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
@@ -45,13 +46,11 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
         page.createCallPage().createCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
-        this.doctorName = page.setDoctorPage().getDoctorName(1);
-        page.setDoctorPage().appendDoctor(doctorName);
-        this.doctorFam = page.manageShedule().getSecondName(doctorName);
+        page.setDoctorPage().appendDoctor(doctorFamPro1);
         page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterDoctor(doctorFam);
-        page.dashboardPage().verifyActiveDocGroup(doctorFam, nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage().searchFilterDoctor(doctorFamPro1);
+        page.dashboardPage().verifyActiveDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
