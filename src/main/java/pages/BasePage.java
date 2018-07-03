@@ -41,8 +41,7 @@ abstract public class BasePage {
 //    }
 
     public void click(WebElement element) {
-        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        waitComplete();
         JSWaiter.waitJQueryAngular();
 
 //        wait.until(ExpectedConditions.visibilityOf(element));
@@ -50,8 +49,7 @@ abstract public class BasePage {
     }
 
     public void click(String name) {
-        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        waitComplete();
         JSWaiter.waitJQueryAngular();
 
         wait.until(ExpectedConditions
@@ -62,16 +60,14 @@ abstract public class BasePage {
     }
 
     public void clickJS(WebElement element) {
+        waitComplete();
         JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public void clickJSext(WebElement element) {
         JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        waitComplete();
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
@@ -86,6 +82,7 @@ abstract public class BasePage {
     }
 
     public void isDisplayedOnCardPage(String name) {
+        waitComplete();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'" + name + "')]")));
         WebElement element = driver.findElement(By.xpath("//span[contains(text(),'" + name + "')]"));//не убирай спан
         assertTrue(element.isDisplayed());
@@ -108,11 +105,15 @@ abstract public class BasePage {
     }
 
     public void waitClickable(WebElement webElement) {
-        new WebDriverWait(driver, 10).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+        waitComplete();
         JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
 //        wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public void waitComplete() {
+        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
     }
 
     public SelenideElement get(String cucumberElementName) {

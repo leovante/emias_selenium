@@ -32,6 +32,9 @@ public class DashboardPage extends BasePage {
     @FindBy(xpath = "//*[@placeholder='Врач']")
     WebElement docFilter;
 
+    @FindBy(xpath = "//*[@placeholder='Вид вызова']")
+    WebElement typeCall;
+
     @FindBy(id = "newCallProgressFrame")
     WebElement newCallProgressFrame;
 
@@ -44,7 +47,8 @@ public class DashboardPage extends BasePage {
     @FindBy(xpath = "//a[@title='Открыть карту вызова']")
     WebElement openCard;
 
-
+    @FindBy(xpath = "//span[contains(text(),'Неотложный')]")
+    WebElement typeCallFilterNeotlozhniy;
 
     @FindBy(id = "activeCallProgressFrame")
     WebElement activeCallProgressFrame;
@@ -73,10 +77,6 @@ public class DashboardPage extends BasePage {
 
     @Step("поиск в фильтре ФИО")
     public void searchFilterFio(String fioName) {
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        JSWaiter.waitJQueryAngular();
-
         clickJS(fioFilter);
         sendKeys(fioFilter, fioName);
     }
@@ -90,9 +90,17 @@ public class DashboardPage extends BasePage {
         Thread.sleep(4000);
     }
 
+    @Step("поиск в фильтре врача")
+    public void searchFilterTypeCallNeotlozhniy() throws InterruptedException {
+        clickJS(typeCall);
+        clickJS(typeCallFilterNeotlozhniy);
+        Thread.sleep(4000);
+    }
+
+
+
     @Step("очистить фильтр подразделение")
     public void clearFilterDepart() {
-
         List<WebElement> closeList = driver.findElements(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (WebElement closeBtn : closeList) {
             click(closeBtn);

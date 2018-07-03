@@ -7,10 +7,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
+import pages.calldoctor.Profiles_interfaces.Profile3;
 import pages.utilities.CleanDoctorTT;
 import pages.utilities.StringGenerator;
 
-public class RCD09Test extends BaseTest implements Profile1, Profile2 {
+public class RCD09Test extends BaseTest implements Profile1, Profile2, Profile3 {
     String nameGen;
 
     @BeforeTest(groups = {"CD", "test"})
@@ -23,7 +24,6 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
     @AfterTest(groups = {"CD", "test"})
     public void afterTest() {
         CleanDoctorTT.finalizePacientName(nameGen);
-
     }
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
@@ -55,9 +55,15 @@ public class RCD09Test extends BaseTest implements Profile1, Profile2 {
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @RetryCountIfFailed(2)
-    public void testTypeCall() {
+    public void testTypeCall() throws InterruptedException {
+        page.createCallPage().createCallProfile3(nameGen);
         driver.get(curUrlCalldoctor);
 
-//тут нужно создать вызов через api смп
+        page.dashboardPage().openNewCallProgressFrame(nameGen);
+        page.fullCardPage().verifyCallProfile3(nameGen);
+
+        page.dashboardPage().searchFilterFio(nameGen);
+        page.dashboardPage().searchFilterTypeCallNeotlozhniy();
+        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro3, telephonePro1);
     }
 }
