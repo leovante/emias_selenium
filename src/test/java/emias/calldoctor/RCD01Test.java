@@ -74,7 +74,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         page.fullCardPage().verifyCallProfile3(nameGen);
     }
 
-    @Test(groups = "test", description = "вызов ребенка с Портала")
+    @Test(groups = "CD", description = "вызов ребенка с Портала")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws InterruptedException {
         driver.manage().deleteAllCookies();
