@@ -649,7 +649,7 @@ public class FullCardPage extends AbstractPage implements
     @Step("закрыть подробную карту")
     public FullCardPage closeCardBtn() {
         isDisplayedJS("Карта вызова");
-        clickJSext(driver.findElement(By.xpath("//mat-icon[contains(text(),'close')]")));
+        clickJS(driver.findElement(By.xpath("//mat-icon[contains(text(),'close')]")));
         return this;
     }
 }

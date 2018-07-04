@@ -132,7 +132,7 @@ public class DashboardPage extends AbstractPage {
     @Step("проверяю на дашборде запись в группе новые")
     public DashboardPage verifyNewCallProgressFrame(String name, String adress, String telephone) throws InterruptedException {
         Thread.sleep(4000);
-        clickJSext(newCallProgressFrame.findElement(By.id("order")));
+        clickJS(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);
 
         click(adress);
@@ -186,12 +186,12 @@ public class DashboardPage extends AbstractPage {
         JSWaiter.waitJQueryAngular();
 
         waitClickableJS(newCallProgressFrame);
-        clickJSext(newCallProgressFrame.findElement(By.id("order")));
+        clickJS(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);
 
         hoverByAction(matexpansionpanel);
-        clickJSext(smallMenu);
-        clickJSext(openCard);
+        clickJS(smallMenu);
+        clickJS(openCard);
         return this;
     }
 }

@@ -34,11 +34,6 @@ abstract public class AbstractPage {
         actions.moveToElement(element).perform();
     }
 
-    public void click(WebElement element) {
-        waitComplete();
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-    }
-
     public void click(String name) {
         waitComplete();
         JSWaiter.waitJQueryAngular();
@@ -50,15 +45,14 @@ abstract public class AbstractPage {
         driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]")).click();
     }
 
-    public void clickJS(WebElement element) {
+    public void click(WebElement element) {
         waitComplete();
-        JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
-    public void clickJSext(WebElement element) {
-        JSWaiter.waitJQueryAngular();
+    public void clickJS(WebElement element) {
         waitComplete();
+        JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
@@ -182,5 +176,9 @@ abstract public class AbstractPage {
 
     public void waitVisibility(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public String getValue(WebElement element) {
+        return element.getAttribute("value");
     }
 }

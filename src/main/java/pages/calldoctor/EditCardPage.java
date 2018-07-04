@@ -9,12 +9,13 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
+import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile5;
 import pages.utilities.JSWaiter;
 
 import static org.testng.Assert.assertTrue;
 
-public class EditCardPage extends AbstractPage implements Profile5 {
+public class EditCardPage extends AbstractPage implements Profile1, Profile5 {
 
     @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
     @CacheLookup
@@ -297,7 +298,7 @@ public class EditCardPage extends AbstractPage implements Profile5 {
         assertTrue(naidena_mkab.isEnabled());
     }
 
-    public void verifyCallMkabNew() throws InterruptedException {
+    public EditCardPage verifyCallProfile1() throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -306,47 +307,55 @@ public class EditCardPage extends AbstractPage implements Profile5 {
                         .xpath("//div[contains(., 'Редактирование вызова')]")));
 
         Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Отменить вызов");
-        isDisplayedOnCardPage("Изменить");
-        isDisplayedOnCardPage("Передать в другое ЛПУ");
 
-        isDisplayedOnCardPage("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Афанасьева");
-        isDisplayedOnCardPage("Софья");
-        isDisplayedOnCardPage("Петровна");
-        isDisplayedOnCardPage("");
-        isDisplayedOnCardPage("7854215965847521");
-        isDisplayedOnCardPage("Представитель");
-        isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("автотест");
-        isDisplayedOnCardPage("19.02.2016");
-        isDisplayedOnCardPage("2 года");
-        isDisplayedOnCardPage("Ребенок");
-        isDisplayedOnCardPage("Автотемников");
-        isDisplayedOnCardPage("Автодмитрий");
-        isDisplayedOnCardPage("Автоолегович");
-        isDisplayedOnCardPage("Не назначен");
+//        document.getElementById('phone').value
+//        "+7 (848) 498-45-65"
+//        document.getElementById('ololo').value
 
+
+        assertTrue(driver.findElement(By.id("phone")).getAttribute("value").equals(telephonePro1));
+
+//        isDisplayedOnCardPage("Дата");
+//        isDisplayedOnCardPage("Время");
+//        isDisplayedOnCardPage("Статус");
+//        isDisplayedOnCardPage("Вид вызова");
+//        isDisplayedOnCardPage("Источник");
+//        isDisplayedOnCardPage("АДРЕС");
+//        isDisplayedOnCardPage("ЖАЛОБЫ");
+//        isDisplayedOnCardPage("Возрастная категория");
+//        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
+//        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
+//        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
+//        isDisplayedOnCardPage("Телефон");
+//        isDisplayedOnCardPage("Врач");
+//        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
+//        isDisplayedOnCardPage("АВТОР");
+//        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
+//        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
+//        isDisplayedOnCardPage("Отменить вызов");
+//        isDisplayedOnCardPage("Изменить");
+//        isDisplayedOnCardPage("Передать в другое ЛПУ");
+//
+//        isDisplayedOnCardPage("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
+//        isDisplayedOnCardPage("Новый");
+//        isDisplayedOnCardPage("Первичный");
+//        isDisplayedOnCardPage("Регистратура");
+//        isDisplayedOnCardPage("Афанасьева");
+//        isDisplayedOnCardPage("Софья");
+//        isDisplayedOnCardPage("Петровна");
+//        isDisplayedOnCardPage("");
+//        isDisplayedOnCardPage("7854215965847521");
+//        isDisplayedOnCardPage("Представитель");
+//        isDisplayedOnCardPage("Карта создана");
+//        isDisplayedOnCardPage("автотест");
+//        isDisplayedOnCardPage("19.02.2016");
+//        isDisplayedOnCardPage("2 года");
+//        isDisplayedOnCardPage("Ребенок");
+//        isDisplayedOnCardPage("Автотемников");
+//        isDisplayedOnCardPage("Автодмитрий");
+//        isDisplayedOnCardPage("Автоолегович");
+//        isDisplayedOnCardPage("Не назначен");
+        return this;
     }
 
     @Step("редактирвоать вызов")

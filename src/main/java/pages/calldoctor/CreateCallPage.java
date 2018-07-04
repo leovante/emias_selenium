@@ -27,8 +27,11 @@ import java.io.InputStream;
 
 public class CreateCallPage extends AbstractPage implements Profile1, Profile2, Profile0, Profile4 {
 
-    @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
+    @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
     @CacheLookup
+    WebElement cancelAdress;
+
+    @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
     WebElement list_first_container;
 
     @FindBy(xpath = "//input[@placeholder='Адрес']")
@@ -210,17 +213,17 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         waitVisibility(noviyVizov);
 
 /*адрес*/
-        placeholder_adress.clear();
-        click(placeholder_adress);
+        click(cancelAdress);
+        clickJS(placeholder_adress);
 
         placeholder_adress.sendKeys(adressPro1_1);
-        click(list_first_container);
+        clickJS(list_first_container);
 
         placeholder_adress.sendKeys(adressPro1_2);
-        click(list_first_container);
+        clickJS(list_first_container);
 
         placeholder_adress.sendKeys(adressPro1_3);
-        click(list_first_container);
+        clickJS(list_first_container);
 
 /*обязательные поля*/
         sendKeysJS(dom, domPro1);
@@ -276,7 +279,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
 /*кто пациент*/
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
         sendKeysJS(findPatientInput, nomerPolPro2);
-        clickJSext(famPro2Xpath);
+        clickJS(famPro2Xpath);
 
 /*обязательные поля*/
         click(source0);

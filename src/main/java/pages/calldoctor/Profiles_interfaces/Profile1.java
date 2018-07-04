@@ -6,7 +6,6 @@ public interface Profile1 {
     String adressPro1_3 = "Первомайская";
     String adressPro1 = "Московская обл., г. Коломна, ул. Первомайская, д.101а, стр.303, корп.202, кв.404";
 
-
     String domPro1 = "101а";
     String korpusPro1 = "202";
     String stroeniePro1 = "303";
@@ -27,7 +26,6 @@ public interface Profile1 {
     String vozrastKatPro1 = "Взрослый";
 
     String zhalobaPro1 = "автотест создание вызова без МКАБ через ВД";
-
 
     String doctorNamePro1 = "Дмитрий";
     String doctorFamPro1 = "Темников";

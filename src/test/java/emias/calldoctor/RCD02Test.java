@@ -27,19 +27,20 @@ public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profi
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "CD", description = "изменить карту вызова, созданную по п.1.1")
+    @Test(groups = "test", description = "изменить карту вызова, созданную по п.1.1")
     @RetryCountIfFailed(2)
     public void testEditProfile1() throws Exception {
         driver.get(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile1(nameGen);
-
-        page.editCardPage().editCallBtn()
+        page.editCardPage()
+                .editCallBtn()
+                .verifyCallProfile1()
                 .editCallProfile5(nameGen);
-        page.fullCardPage().verifyCallProfile5(nameGen)
+        page.fullCardPage()
+                .verifyCallProfile5(nameGen)
                 .closeCardBtn();
-
-        page.dashboardPage().searchFilterFio(nameGen)
+        page.dashboardPage()
+                .searchFilterFio(nameGen)
                 .verifyNewCallProgressFrame(nameGen, adressPro5_2, telephonePro5);
     }
 }
