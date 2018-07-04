@@ -8,10 +8,10 @@ import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.utilities.Waiter;
 
-public class BeforeWork extends BasePage {
+public class BeforeWork extends AbstractPage {
     @FindBy(xpath = "//button[@id='btn_create']/span[2]")
     WebElement createShedule;
 

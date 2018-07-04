@@ -2,10 +2,10 @@ package pages.callcenter;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pages.BasePage;
+import pages.AbstractPage;
 
 
-public class FindPatientPage extends BasePage {
+public class FindPatientPage extends AbstractPage {
     public FindPatientPage(WebDriver driver) {
         super(driver);
     }

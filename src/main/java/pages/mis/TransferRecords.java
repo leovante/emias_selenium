@@ -10,12 +10,12 @@ import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.utilities.Waiter;
 
 import java.util.List;
 
-public class TransferRecords extends BasePage {
+public class TransferRecords extends AbstractPage {
 
     @FindBy(xpath = "//button[@id='btn_transfer']/span[2]")
     WebElement btn_transfer;
@@ -70,7 +70,7 @@ public class TransferRecords extends BasePage {
     }
 
     @Step("выбрать врача в окне переноса записей")
-    public void selectDoctorFromTranWindow(String doctorInlet) throws InterruptedException {
+    public void selectDoctorFromTranWindow(String doctorInlet) {
         Waiter.waitBlockOverlay();
         List<WebElement> doctors = driver.findElement(By
                 .xpath("//div[@id='gview_resolve_collision_docprvdgrid1']/div[3]/div/table/tbody"))
@@ -86,7 +86,7 @@ public class TransferRecords extends BasePage {
     }
 
     @Step("проверка переноса записей")
-    public void verifyTransferShedule() throws InterruptedException {
+    public void verifyTransferShedule() {
         Waiter.waitAllEmias();
         wait.until(ExpectedConditions.visibilityOfAllElements(recordElement));
     }

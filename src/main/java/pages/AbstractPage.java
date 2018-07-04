@@ -19,11 +19,11 @@ import java.util.List;
 import static org.testng.Assert.assertTrue;
 
 
-abstract public class BasePage {
+abstract public class AbstractPage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BasePage(WebDriver driver) {
+    public AbstractPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 20);
     }
@@ -42,9 +42,6 @@ abstract public class BasePage {
 
     public void click(WebElement element) {
         waitComplete();
-        JSWaiter.waitJQueryAngular();
-
-//        wait.until(ExpectedConditions.visibilityOf(element));
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
@@ -88,12 +85,18 @@ abstract public class BasePage {
         assertTrue(element.isDisplayed());
     }
 
-    public void isDisplayed(String name) {
+    public void isDisplayedJS(String name) {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
         WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));//не убирай спан
+        assertTrue(element.isDisplayed());
+    }
+
+    public void isDisplayed(String name) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(text(),'" + name + "')]")));
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));
         assertTrue(element.isDisplayed());
     }
 

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-public class CleanDoctorTT {
+public class SQLDemonstration {
     static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     static String databaseName = "hlt_demonstration";
     static String userName = "sa";
@@ -88,7 +88,7 @@ public class CleanDoctorTT {
         }
     }
 
-    @Step("Завершаю вызовы пациента")
+    @Step("Завершаю вызовы пациента по имени")
     public static void finalizePacientName(String pacientName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -105,6 +105,31 @@ public class CleanDoctorTT {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     System.out.println("Pacient - " + pacientName + " finalize is done.");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+    }
+
+    @Step("Завершаю вызовы пациента по полису")
+    public static void finalizePacientNumberPol(String NumberPol) {
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.println("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_CallDoctor " +
+                                "set rf_CallDoctorStatusID = 3 " +
+                                "where NumberPol = '" + NumberPol + "'";
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Pacient - " + NumberPol + " finalize is done.");
                 }
             }
         } catch (Exception e) {

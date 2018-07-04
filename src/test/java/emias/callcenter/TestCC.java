@@ -1,13 +1,13 @@
 package emias.callcenter;
 
-import emias.BaseTest;
+import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 
-public class TestCC extends BaseTest {
+public class TestCC extends AbstractTest {
     String nPol = null;
     String birthDay = null;
     int count = 0;

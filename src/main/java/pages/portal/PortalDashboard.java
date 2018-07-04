@@ -6,10 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
-import pages.calldoctor.Profiles_interfaces.Profile4;
+import pages.AbstractPage;
 
-public class PortalDashboard extends BasePage implements Profile4 {
+import static org.testng.Assert.assertTrue;
+
+public class PortalDashboard extends AbstractPage {
 
     @FindBy(xpath = "//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']")
     WebElement pereytiVElectrRegistr;
@@ -29,8 +30,20 @@ public class PortalDashboard extends BasePage implements Profile4 {
     @FindBy(xpath = "//input[@name='birthday']")
     WebElement birthdayField;
 
+    @FindBy(xpath = "//div/div/div[2]/h2[contains(.,'Вы успешно вызвали врача на адрес:')]")
+    WebElement uspeshnoVizvaliVracha;
+
     @FindBy(id = "call_address")
     WebElement call_address;
+
+    @FindBy(id = "call_entrance")
+    WebElement call_entrance;
+
+    @FindBy(id = "call_stage")
+    WebElement call_stage;
+
+    @FindBy(id = "call_doorphone")
+    WebElement call_doorphone;
 
     @FindBy(id = "call_phone")
     WebElement call_phone;
@@ -43,17 +56,27 @@ public class PortalDashboard extends BasePage implements Profile4 {
     }
 
     @Step("создаю вызов через портал")
-    public void createCallProfile4() {
-        sendKeys(nPolField, nomerPolPro4);
-        sendKeys(birthdayField, birthDayPro4);
+    public void createCall(String nomPol,
+                           String birthDay,
+                           String adress,
+                           String pod,
+                           String etazh,
+                           String domofon,
+                           String telephone,
+                           String zhaloba) {
+        sendKeys(nPolField, nomPol);
+        sendKeys(birthdayField, birthDay);
         click(pereytiVElectrRegistr);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача')]"))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
 
-        sendKeys(call_address, adressPro4);
-        sendKeys(call_phone, telephonePro4);
-        sendKeys(call_description, zhalobaPro4);
-        click(podtverdVizovVracha);
-        waitClickable(closeWindowBtn);
-        click(closeWindowBtn);
+        sendKeys(call_address, adress);
+        sendKeys(call_entrance, pod);
+        sendKeys(call_stage, etazh);
+        sendKeys(call_doorphone, domofon);
+        sendKeys(call_phone, telephone);
+        sendKeys(call_description, zhaloba);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
+        wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
+        assertTrue(uspeshnoVizvaliVracha.isDisplayed());
     }
 }

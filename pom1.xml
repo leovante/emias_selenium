@@ -113,7 +113,7 @@
                     <!--</property>-->
                     <!--</systemProperties>-->
                     <includes>
-                        <include>emias.BaseTest.java</include>
+                        <include>emias.AbstractTest.java</include>
                         <include>emias.mis.RMISTest.java</include>
                         <include>%regex[.*(RMIS|Base).*Test.*]</include>
                         <include>%regex[pkg.*Test.*.java]</include>

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.utilities.Waiter;
 
-public class HomePage extends BasePage{
+public class HomePage extends AbstractPage {
     @FindBy(xpath = "//span[contains(.,'ЕМИАС Московской области')]")
     WebElement homePageBtn;
 

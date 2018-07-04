@@ -1,17 +1,17 @@
 package emias.calldoctor;
 
-import emias.BaseTest;
+import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
-import pages.utilities.CleanDoctorTT;
+import pages.calldoctor.Profiles_interfaces.Profile4;
+import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
-public class RCD01Test extends BaseTest implements Profile1, Profile2 {
+public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
     String nameGen;
 
     @BeforeTest(groups = {"CD", "test"})
@@ -23,7 +23,7 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
 
     @AfterTest(groups = {"CD", "test"})
     public void afterTest() {
-        CleanDoctorTT.finalizePacientName(nameGen);
+        SQLDemonstration.finalizePacientName(nameGen);
     }
 
     @Test(groups = "CD", description = "пустой вызов")
@@ -74,12 +74,24 @@ public class RCD01Test extends BaseTest implements Profile1, Profile2 {
         page.fullCardPage().verifyCallProfile3(nameGen);
     }
 
-    @Ignore
     @Test(groups = "test", description = "вызов ребенка с Портала")
-    @RetryCountIfFailed(0)
-    public void testCallPortal() {
+    @RetryCountIfFailed(2)
+    public void testCallPortal() throws InterruptedException {
+        driver.manage().deleteAllCookies();
         driver.get("https://uslugi.mosreg.ru/zdrav/");
-        page.portalDashboard().createCallProfile4();
+        SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
+        page.portalDashboard().createCall(
+                nomerPolPro4,
+                birthDayPro4,
+                adressPro4,
+                pdPro4,
+                etazhPro4,
+                dfonPro4,
+                telephonePro4,
+                zhalobaPro4);
         driver.get(curUrlCalldoctor);
+
+        page.dashboardPage().openNewCallProgressFrame(namePro4);
+        page.fullCardPage().verifyCallProfile4(nameGen);
     }
 }

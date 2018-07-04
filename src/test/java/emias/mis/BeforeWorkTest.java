@@ -1,13 +1,13 @@
 package emias.mis;
 
-import emias.BaseTest;
+import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
-import pages.utilities.CleanDoctorTT;
+import pages.utilities.SQLDemonstration;
 
-public class BeforeWorkTest extends BaseTest {
+public class BeforeWorkTest extends AbstractTest {
 
     @Test(groups = "mis", description = "Завершаю все вызовы и создаю новое расписание у врачей на сегодня")
     @RetryCountIfFailed(0)
@@ -15,7 +15,7 @@ public class BeforeWorkTest extends BaseTest {
         driver.get(curUrlCalldoctor);
 
         page.homePage().manageSheduleBtn();
-        CleanDoctorTT.finalizeAllCalls();
+        SQLDemonstration.finalizeAllCalls();
         createSomeRecords(15);
         page.homePage().logoHomeBtn();
     }
@@ -27,7 +27,7 @@ public class BeforeWorkTest extends BaseTest {
             System.out.println("Обрабатываю врача №: " + n);
             String doctor_num = page.doctorMethods().getUnicalDoctor3(n);
             String doctor_num_fam = ManageShedule.getSecondName(doctor_num);
-            CleanDoctorTT.deleteShedule(doctor_num_fam);
+            SQLDemonstration.deleteShedule(doctor_num_fam);
 
             page.doctorMethods().selectDoctor(doctor_num);
             page.beforeWork().createShedule();

@@ -7,14 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.calldoctor.Profiles_interfaces.Profile5;
 import pages.utilities.JSWaiter;
 
 import static org.testng.Assert.assertTrue;
 import static pages.utilities.Waiter.waitVisibility;
 
-public class EditCardPage extends BasePage implements Profile5 {
+public class EditCardPage extends AbstractPage implements Profile5 {
 
     @FindBy(xpath = "//addCallBtn[@id='btn_delete']/span[2]")
     WebElement deleteShedule;

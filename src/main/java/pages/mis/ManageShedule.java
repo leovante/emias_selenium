@@ -6,12 +6,12 @@ import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.utilities.Waiter;
 
 import java.util.List;
 
-public class ManageShedule extends BasePage {
+public class ManageShedule extends AbstractPage {
 
     @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
     WebElement deleteShedule;

@@ -10,11 +10,12 @@ public interface Profile4 {
     String korpusPro4 = "654б";
     String stroeniePro4 = "321в";
     String kvartiraPro4 = "126";
+
     String pdPro4 = "505";
     String dfonPro4 = "606";
     String etazhPro4 = "707";
 
-    String telephonePro4 = "+7 (951) 158-27-14";
+    String telephonePro4 = "9511582714";
 
     String nomerPolPro4 = "7854215965847521";
     String famPro4 = "Афанасьева";
@@ -31,5 +32,5 @@ public interface Profile4 {
 
     String stationSMPPro4 = "Суперстанция";
 
-    String zhalobaPro4 = "автотест создание вызова по МКАБ через ВД";
+    String zhalobaPro4 = "автотест создание вызова по МКАБ через Портал";
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.utilities.Waiter;
 
 import java.util.Iterator;
@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static org.testng.Assert.assertTrue;
 
-public class AdmissionSchedule extends BasePage {
+public class AdmissionSchedule extends AbstractPage {
     DoctorMethods doctorMethods;
 
     @FindBy(xpath = "//div[@id='schedule']/div/div/div/div[3]/div")

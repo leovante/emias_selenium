@@ -6,9 +6,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClients;
 import org.openqa.selenium.WebDriver;
-import pages.BasePage;
+import pages.AbstractPage;
 
-public class CreateCallApi extends BasePage {
+public class CreateCallApi extends AbstractPage {
 
     public CreateCallApi(WebDriver driver) {
         super(driver);

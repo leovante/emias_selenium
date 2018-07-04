@@ -3,9 +3,9 @@ package pages.callcenter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import pages.BasePage;
+import pages.AbstractPage;
 
-public class CallDoctorPage extends BasePage {
+public class CallDoctorPage extends AbstractPage {
     public CallDoctorPage(WebDriver driver) {
         super(driver);
     }

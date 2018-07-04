@@ -7,14 +7,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.utilities.JSWaiter;
 
 import java.util.List;
 
 import static org.testng.Assert.assertFalse;
 
-public class DashboardPage extends BasePage {
+public class DashboardPage extends AbstractPage {
     Actions action = new Actions(driver);
 
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")

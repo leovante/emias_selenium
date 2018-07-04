@@ -9,13 +9,13 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.utilities.JSWaiter;
 
 import java.util.List;
 
 
-public class SetDoctorPage extends BasePage {
+public class SetDoctorPage extends AbstractPage {
 
     @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(23, 150, 112);']")
     WebElement thisDayLoadGreen;

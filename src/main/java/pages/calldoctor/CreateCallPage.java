@@ -14,7 +14,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.calldoctor.Profiles_interfaces.Profile0;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
@@ -25,7 +25,7 @@ import java.io.InputStream;
 
 import static pages.utilities.Waiter.waitVisibility;
 
-public class CreateCallPage extends BasePage implements Profile1, Profile2, Profile0, Profile4 {
+public class CreateCallPage extends AbstractPage implements Profile1, Profile2, Profile0, Profile4 {
 
     @FindBy(xpath = "//div[contains(text(),'СМП')]")
     WebElement SMP;

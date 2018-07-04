@@ -12,7 +12,7 @@ import pages.utilities.JSWaiter;
 import pages.utilities.SwitchToPage;
 import pages.utilities.Waiter;
 
-public abstract class BaseTest {
+public abstract class AbstractTest {
     public static WebDriver driver;
     public static WebDriverWait wait;
     public static Pages page;

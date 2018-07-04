@@ -6,14 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.BasePage;
+import pages.AbstractPage;
 import pages.utilities.Waiter;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class DoctorMethods extends BasePage {
+public class DoctorMethods extends AbstractPage {
 
     @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
     WebElement doctorRow;

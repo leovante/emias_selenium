@@ -9,7 +9,7 @@ import pages.calldoctor.*;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
-public class Pages extends BasePage {
+public class Pages extends AbstractPage {
 
     public Pages(WebDriver driver) {
         super(driver);

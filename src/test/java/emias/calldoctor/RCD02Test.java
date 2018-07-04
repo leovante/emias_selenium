@@ -1,6 +1,6 @@
 package emias.calldoctor;
 
-import emias.BaseTest;
+import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -8,10 +8,10 @@ import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.calldoctor.Profiles_interfaces.Profile5;
-import pages.utilities.CleanDoctorTT;
+import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
-public class RCD02Test extends BaseTest implements Profile1, Profile2, Profile5 {
+public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profile5 {
     String nameGen;
 
 
@@ -24,7 +24,7 @@ public class RCD02Test extends BaseTest implements Profile1, Profile2, Profile5 
 
     @AfterTest(groups = {"CD", "test"})
     public void afterTest() {
-        CleanDoctorTT.finalizePacientName(nameGen);
+        SQLDemonstration.finalizePacientName(nameGen);
     }
 
     @Test(groups = "CD", description = "изменить карту вызова, созданную по п.1.1")
