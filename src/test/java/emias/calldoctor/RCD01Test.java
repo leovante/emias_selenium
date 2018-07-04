@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.calldoctor.Profiles_interfaces.Profile4;
+import pages.calldoctor.Profiles_interfaces.User;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
@@ -97,4 +98,33 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         page.dashboardPage().openNewCallProgressFrame(namePro4);
         page.fullCardPage().verifyCallProfile4(nameGen);
     }
+
+    @Test(groups = "test", description = "создание вызова через портал по рандомному МКАБу")//дата провайдер аннотацию добавить
+    @RetryCountIfFailed(2)
+    public void testRandomProfile(User user) throws InterruptedException {
+        driver.get("https://uslugi.mosreg.ru/zdrav/");
+        SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
+        page.portalDashboard().createRandomCall(user);
+        driver.get(curUrlCalldoctor);
+
+        page.dashboardPage().openNewCallProgressFrame(namePro4);
+        page.fullCardPage().verifyCallProfile4(nameGen);
+    }
 }
+
+/**Благодаря этому паттерну можно реализовать много интересных вещей, например,
+ * вы можете реализовать пул браузеров. Многие жалуются – наши web-тесты тормозят,
+ * потому что пока браузер поднимется, пока первая страница загрузится, пока скопируется профиль и так далее.
+ Браузеры не обязательно создавать прямо в тесте, вместо этого можно использовать Background Pool,
+ в котором настроено необходимое вам количество браузеров, и в этом пуле, когда браузер в него возвращается –
+ вы его очищаете, делаете еще что-то, но это все происходит в бэкграунде, в параллельных с выполнением ваших тестов потоках.
+ И только готовый к использованию браузер отдается вашему тесту, когда он запрашивает из браузерного пула новый браузер для себя.
+
+ Наконец, классический пример более сложного использования этого паттерна – когда вы имеете пул инстансов базы данных.
+ Вместо того, чтобы работать с реальной базой данных, вы поднимаете необходимый набор контейнеров базы данных в необходимом
+ количестве на разных портах, это делается очень просто с Docker или каким-то другим доступным вам инструментом виртуализации,
+ и после того, как вы поработали с базой данных, вы ее «потушили» и в пуле подняли новую. Благодаря этому вы можете постоянно иметь
+ чистую базу данных для работы, нет необходимости делать teardown или очистку базы, собирание и загрузку данных, и так далее.
+
+ https://habr.com/company/jugru/blog/338836/ посмотреть паттерн data provider и decorator
+ */

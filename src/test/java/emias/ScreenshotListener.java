@@ -15,7 +15,7 @@ public class ScreenshotListener extends TestListenerAdapter {
 //    public void onTestFailure(ITestResult result) {
 //        Calendar calendar = Calendar.getInstance();
 //        SimpleDateFormat formater = new SimpleDateFormat("dd_MM_yyyy_hh_mm_ss");
-//        String methodName = result.getName();
+//        String methodName = result.getFam();
 //        if (!result.isSuccess()) {
 //            File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 //            try {

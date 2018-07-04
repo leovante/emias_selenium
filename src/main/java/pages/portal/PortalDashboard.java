@@ -8,6 +8,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
+import pages.calldoctor.Profiles_interfaces.User;
 
 import static org.testng.Assert.assertTrue;
 
@@ -80,5 +81,25 @@ public class PortalDashboard extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
         wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
         assertTrue(uspeshnoVizvaliVracha.isDisplayed());
+    }
+
+    @Step("создаю рандомный вызов через портал")
+    public PortalDashboard createRandomCall(User user) {
+        sendKeys(nPolField, user.getNumPol());
+        sendKeys(birthdayField, user.getBirthDay());
+
+
+        click(pereytiVElectrRegistr);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
+//        sendKeys(call_address, adress);
+//        sendKeys(call_entrance, pod);
+//        sendKeys(call_stage, etazh);
+//        sendKeys(call_doorphone, domofon);
+//        sendKeys(call_phone, telephone);
+//        sendKeys(call_description, zhaloba);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
+        wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
+        assertTrue(uspeshnoVizvaliVracha.isDisplayed());
+        return this;
     }
 }
