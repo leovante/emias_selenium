@@ -10,6 +10,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -27,148 +28,144 @@ import static pages.utilities.Waiter.waitVisibility;
 
 public class CreateCallPage extends AbstractPage implements Profile1, Profile2, Profile0, Profile4 {
 
-    @FindBy(xpath = "//div[contains(text(),'СМП')]")
-    WebElement SMP;
-
-    @FindBy(xpath = "//span/button/span/mat-icon")
-    WebElement clearAdress;
-
     @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
+    @CacheLookup
     WebElement list_first_container;
 
     @FindBy(xpath = "//input[@placeholder='Адрес']")
+    @CacheLookup
     WebElement placeholder_adress;
 
     @FindBy(xpath = "//input[@placeholder='Дом']")
+    @CacheLookup
     WebElement dom;
 
     @FindBy(xpath = "//*[@mattooltip='Добавить вызов']")
+    @CacheLookup
     WebElement addCallBtn;
 
     @FindBy(id = "phone")
+    @CacheLookup
     WebElement telephoneNumber;
 
     @FindBy(xpath = "//label[@class='mat-checkbox-layout']/div")
+    @CacheLookup
     WebElement chkBoxTelephone;
 
     @FindBy(xpath = "//button[2]/span/mat-icon")
+    @CacheLookup
     WebElement hz;
 
     @FindBy(xpath = "//input[@placeholder='Возр. категория']")
+    @CacheLookup
     WebElement vozr;
 
     @FindBy(xpath = "//span[contains(.,'Взрослый')]")
+    @CacheLookup
     WebElement hz2;
 
     @FindBy(xpath = "//input[@placeholder='Корпус']")
+    @CacheLookup
     WebElement korpus;
 
     @FindBy(xpath = "//input[@placeholder='Строение']")
+    @CacheLookup
     WebElement stroenie;
 
     @FindBy(xpath = "//input[@placeholder='Квартира']")
+    @CacheLookup
     WebElement kvartira;
 
     @FindBy(xpath = "//input[@placeholder='П-д']")
+    @CacheLookup
     WebElement pd;
 
     @FindBy(xpath = "//input[@placeholder='Д-фон']")
+    @CacheLookup
     WebElement dfon;
 
     @FindBy(xpath = "//input[@placeholder='Этаж']")
+    @CacheLookup
     WebElement etazh;
 
     @FindBy(xpath = "//input[@aria-label='Введите текст жалобы']")
+    @CacheLookup
     WebElement zhaloba;
 
     @FindBy(xpath = "//input[@placeholder='Серия']")
+    @CacheLookup
     WebElement seriyaPol;
 
     @FindBy(xpath = "//input[@placeholder='Номер полиса']")
+    @CacheLookup
     WebElement nomerPol;
 
     @FindBy(xpath = "//input[@placeholder='Фамилия']")
+    @CacheLookup
     WebElement fam;
 
     @FindBy(xpath = "//input[@placeholder='Имя']")
+    @CacheLookup
     WebElement name;
 
     @FindBy(xpath = "//input[@placeholder='Отчество']")
+    @CacheLookup
     WebElement otchestvo;
 
     @FindBy(xpath = "//input[@placeholder='Тип вызывающего']")
+    @CacheLookup
     WebElement tipVisivaushego;
 
     @FindBy(xpath = "//input[@placeholder='Станция СМП']")
+    @CacheLookup
     WebElement stationSMP;
 
-    @FindBy(xpath = "//div[contains(.,'Вид вызова')]")
-    WebElement vidVisova;
-
     @FindBy(xpath = "//span[contains(.,'Пациент')]")
+    @CacheLookup
     WebElement pacient;
 
-    @FindBy(xpath = "//*[contains(.,'Неотложный')]")
-    WebElement neotlozhniy;
-
     @FindBy(id = "save")
+    @CacheLookup
     WebElement saveBtns;
 
     @FindBy(id = "callFamily")
+    @CacheLookup
     WebElement callFamily;
 
     @FindBy(id = "callName")
+    @CacheLookup
     WebElement callName;
 
     @FindBy(id = "callPatronymic")
+    @CacheLookup
     WebElement callPatronymic;
 
     @FindBy(xpath = "//div[contains(text(),'Новый вызов')]")
+    @CacheLookup
     WebElement noviyVizov;
 
     @FindBy(xpath = "//input[@placeholder='Дата рождения']")
+    @CacheLookup
     WebElement birthDay;
 
     @FindBy(id = "findPatientInput")
+    @CacheLookup
     WebElement findPatientInput;
 
     @FindBy(xpath = "//div/mat-option/span[contains(text(),'" + famPro2 + "')]")
+    @CacheLookup
     WebElement famPro2Xpath;
 
     @FindBy(id = "source0")
+    @CacheLookup
     WebElement source0;
 
     @FindBy(xpath = "//button/span[contains(text(),'Да')]")
+    @CacheLookup
     WebElement allarmaYes;
 
-    @FindBy(xpath = "//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']")
-    WebElement pereytiVElectrRegistr;
-
-    @FindBy(xpath = "//a[@class='b-btn b-btn--red b-btn--login-section btn--call-doctor-at-home c-create-home-visit-popup']")
-    WebElement callDoctorBtn;
-
-    @FindBy(xpath = "//button/span[contains(text(),'Подтвердить вызов врача')]")
-    WebElement podtverdVizovVracha;
-
-    @FindBy(xpath = "//button/span[contains(text(),'Закрыть окно')]")
-    WebElement closeWindowBtn;
-
-    @FindBy(xpath = "//input[@name='nPol']")
-    WebElement nPolField;
-
-    @FindBy(xpath = "//input[@name='birthday']")
-    WebElement birthdayField;
-
-    @FindBy(id = "call_address")
-    WebElement call_address;
-
-    @FindBy(id = "call_phone")
-    WebElement call_phone;
-
-    @FindBy(id = "call_description")
-    WebElement call_description;
-
     @FindBy(id = "sex1")
+    @CacheLookup
     WebElement sex1;
 
     public CreateCallPage(WebDriver driver) {

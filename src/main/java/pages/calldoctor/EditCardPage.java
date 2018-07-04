@@ -3,6 +3,7 @@ package pages.calldoctor;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,136 +17,136 @@ import static pages.utilities.Waiter.waitVisibility;
 
 public class EditCardPage extends AbstractPage implements Profile5 {
 
-    @FindBy(xpath = "//addCallBtn[@id='btn_delete']/span[2]")
-    WebElement deleteShedule;
-
-    @FindBy(xpath = "//span[contains(.,'СМП')]")
-    WebElement SMP;
-
     @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
+    @CacheLookup
     WebElement cancelAdress;
 
     @FindBy(xpath = "//button[@aria-label='Clear']/span/mat-icon")
+    @CacheLookup
     WebElement cancelBirthDate;
 
     @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
+    @CacheLookup
     WebElement list_first_container;
 
     @FindBy(xpath = "//input[@placeholder='Адрес']")
+    @CacheLookup
     WebElement placeholder_adress;
 
-    @FindBy(xpath = "//div[@class='autocomplete-list-container'")
-    WebElement containerKladr;
-
     @FindBy(xpath = "//input[@placeholder='Дом']")
+    @CacheLookup
     WebElement dom;
 
-    @FindBy(xpath = "//*[@mattooltip='Добавить вызов']")
-    WebElement addCallBtn;
-
-    @FindBy(xpath = "//span/mat-icon")
-    WebElement mat_icon;
-
     @FindBy(id = "phone")
+    @CacheLookup
     WebElement telephoneNumber;
 
     @FindBy(xpath = "//label[@class='mat-checkbox-layout']/div")
+    @CacheLookup
     WebElement chkBoxTelephone;
 
     @FindBy(xpath = "//button[2]/span/mat-icon")
+    @CacheLookup
     WebElement hz;
 
     @FindBy(xpath = "//input[@placeholder='Возр. категория']")
+    @CacheLookup
     WebElement vozr;
 
     @FindBy(xpath = "//span[contains(.,'Взрослый')]")
+    @CacheLookup
     WebElement hz2;
 
     @FindBy(xpath = "//input[@placeholder='Корпус']")
+    @CacheLookup
     WebElement korpus;
 
     @FindBy(xpath = "//input[@placeholder='Строение']")
+    @CacheLookup
     WebElement stroenie;
 
     @FindBy(xpath = "//input[@placeholder='Квартира']")
+    @CacheLookup
     WebElement kvartira;
 
     @FindBy(xpath = "//input[@placeholder='П-д']")
+    @CacheLookup
     WebElement pd;
 
     @FindBy(xpath = "//input[@placeholder='Д-фон']")
+    @CacheLookup
     WebElement dfon;
 
     @FindBy(xpath = "//input[@placeholder='Этаж']")
+    @CacheLookup
     WebElement etazh;
 
     @FindBy(xpath = "//input[@aria-label='Добавить жалобу']")
+    @CacheLookup
     WebElement zhaloba;
 
     @FindBy(xpath = "//input[@placeholder='Серия']")
+    @CacheLookup
     WebElement seriyaPol;
 
     @FindBy(xpath = "//input[@placeholder='Номер полиса']")
+    @CacheLookup
     WebElement nomerPol;
 
     @FindBy(xpath = "//input[@placeholder='Фамилия']")
+    @CacheLookup
     WebElement fam;
 
     @FindBy(xpath = "//input[@placeholder='Имя']")
+    @CacheLookup
     WebElement name;
 
     @FindBy(xpath = "//input[@placeholder='Отчество']")
+    @CacheLookup
     WebElement otchestvo;
 
     @FindBy(xpath = "//input[@placeholder='Тип вызывающего']")
+    @CacheLookup
     WebElement tipVisivaushego;
 
-    @FindBy(xpath = "//input[@placeholder='Вид вызова']")
-    WebElement vidVisova;
-
-    @FindBy(xpath = "//span[contains(.,'Пациент')]")
-    WebElement pacient;
-
     @FindBy(xpath = "//span[contains(.,'Представитель')]")
+    @CacheLookup
     WebElement predstav;
 
-    @FindBy(xpath = "//span[contains(.,'Неотложный')]")
-    WebElement neotlozhniy;
-
     @FindBy(xpath = "//span[contains(text(),'Сохранить')]")
+    @CacheLookup
     WebElement saveBtns;
 
     @FindBy(id = "callFamily")
+    @CacheLookup
     WebElement callFamily;
 
     @FindBy(id = "callName")
+    @CacheLookup
     WebElement callName;
 
     @FindBy(id = "callPatronymic")
+    @CacheLookup
     WebElement callPatronymic;
 
     @FindBy(id = "birthDateTemp")
+    @CacheLookup
     WebElement birthDateTemp;
 
     @FindBy(id = "source0")
+    @CacheLookup
     WebElement source0;
 
     @FindBy(id = "sourceSmp")
+    @CacheLookup
     WebElement sourceSmp;
 
-    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(23, 150, 112);']")
-    WebElement thisDayLoadGreen;
-
-    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(252, 194, 54);']")
-    WebElement thisDayLoadYellow;
-
-    @FindBy(xpath = "//span[contains(.,'Назначить на сегодня')]")
-    WebElement appenOnThisDay;
-
     @FindBy(xpath = "//div[contains(.,'Найдена МКАБ пациента Петров')]")
+    @CacheLookup
     WebElement naidena_mkab;
 
     @FindBy(xpath = "//div[contains(text(),'Редактирование вызова')]")
+    @CacheLookup
     WebElement redactirovanieVizova;
 
 

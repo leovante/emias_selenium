@@ -3,24 +3,30 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.utilities.Waiter;
 
 public class HomePage extends AbstractPage {
     @FindBy(xpath = "//span[contains(.,'ЕМИАС Московской области')]")
+    @CacheLookup
     WebElement homePageBtn;
 
     @FindBy(xpath = "//span[contains(.,'Ведение расписания')]")
+    @CacheLookup
     WebElement timeTableBtn;
 
     @FindBy(xpath = "//span[contains(.,'Расписание приёма')]")
+    @CacheLookup
     WebElement admissionScheduleBtn;
 
     @FindBy(xpath = "//span[contains(.,'Перенос записей')]")
+    @CacheLookup
     WebElement transferRecordsBtn;
 
     @FindBy(xpath = "//span[contains(.,'Диспетчер')]")
+    @CacheLookup
     WebElement callDoctorBtn;
 
     public HomePage(WebDriver driver){

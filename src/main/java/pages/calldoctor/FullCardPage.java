@@ -6,6 +6,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,43 +23,40 @@ public class FullCardPage extends AbstractPage implements
         Profile5 {
 
     @FindBy(id = "doneCall")
+    @CacheLookup
     WebElement doneCall;
 
     @FindBy(xpath = "//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']")
+    @CacheLookup
     WebElement mat_calendar_header;
 
-    @FindBy(xpath = "//*[contains(.,'Что изменилось')]")
-    WebElement chtoIzmenilos;
-
     @FindBy(xpath = "//span[contains(text(),'Передать другому врачу')]")
+    @CacheLookup
     WebElement appoindBtn;
 
     @FindBy(xpath = "//span[contains(text(),'Завершить обслуживание')]")
+    @CacheLookup
     WebElement appoindBtns;
 
     @FindBy(id = "cancel")
+    @CacheLookup
     WebElement cancelBtn;
 
     @FindBy(id = "cancelCall")
+    @CacheLookup
     WebElement cancelCall;
 
     @FindBy(xpath = "//a[@title='Отменить вызов']")
+    @CacheLookup
     WebElement cancelCall2;
 
     @FindBy(id = "change")
+    @CacheLookup
     WebElement change;
 
-    @FindBy(xpath = "//div[contains(text(),'Карта вызова')]")
-    WebElement callCard;
-
-//    @FindBy(xpath = "//input[@placeholder='Причина отмены'")
-//    WebElement cancelField;
-
     @FindBy(xpath = "//input[@placeholder='Причина отмены вызова']")
+    @CacheLookup
     WebElement cancelField;
-
-    @FindBy(xpath = "//div[contains(text(),'Редактирование вызова')]")
-    WebElement changeVizov;
 
 
     public FullCardPage(WebDriver driver) {

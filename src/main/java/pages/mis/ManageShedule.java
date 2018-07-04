@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
@@ -14,51 +15,67 @@ import java.util.List;
 public class ManageShedule extends AbstractPage {
 
     @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
+    @CacheLookup
     WebElement deleteShedule;
 
     @FindBy(id = "btn_delete_schedule")
+    @CacheLookup
     WebElement deleteSheduleBtnWindow;
 
     @FindBy(xpath = "//button[@id='btn_create']/span[2]")
+    @CacheLookup
     WebElement createShedule;
 
     @FindBy(id = "pickTime_nach")
+    @CacheLookup
     WebElement pickTime_nach;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
+    @CacheLookup
     WebElement pickTime_nachClose;
 
     @FindBy(id = "pickTime_okon")
+    @CacheLookup
     WebElement pickTime_okon;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
+    @CacheLookup
     WebElement pickTime_okonClose;
 
     @FindBy(xpath = "//a[@id='ddlbusytype-button']/span[2]")
+    @CacheLookup
     WebElement ddlbusytypeButton;
 
     @FindBy(linkText = "Прием по очереди")
+    @CacheLookup
     WebElement priemPoOcheredi;
 
     @FindBy(linkText = "Прием на дому (вызов на дом)")
+    @CacheLookup
     WebElement priemNaDomu;
 
     @FindBy(id = "schedule_add_button")
+    @CacheLookup
     WebElement schedule_add_button;
 
     @FindBy(xpath = "//button[@id='btn_save_schedule']/span")
+    @CacheLookup
     WebElement btn_save_schedule;
 
     @FindBy(xpath = "//button[@id='btn_busy']/span[2]")
+    @CacheLookup
     WebElement btn_notReciveDays;
 
     @FindBy(xpath = "//div[@id='radio_busy']/label[2]/span/span")
+    @CacheLookup
     WebElement row_doctorOnBoln;
 
     @FindBy(xpath = "//button[@id='btn_busy_save']/span")
+    @CacheLookup
     WebElement saveBtn;
 
     @FindBy(xpath = "//button[@id='btn_copy']/span[2]")
+    @CacheLookup
     WebElement copyShedule;
 
     public ManageShedule(WebDriver driver) {

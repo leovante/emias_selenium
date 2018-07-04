@@ -3,6 +3,7 @@ package pages.calldoctor;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,45 +19,59 @@ public class DashboardPage extends AbstractPage {
     Actions action = new Actions(driver);
 
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
+    @CacheLookup
     WebElement exitToMis;
 
     @FindBy(xpath = "//*[contains(text(),'Выход')]")
+    @CacheLookup
     WebElement exitBtn;
 
     @FindBy(xpath = "//img[@src='assets/img/call-doctor-logo.svg']")
+    @CacheLookup
     WebElement logoType;
 
     @FindBy(xpath = "//*[@placeholder='ФИО']")
+    @CacheLookup
     WebElement fioFilter;
 
     @FindBy(xpath = "//*[@placeholder='Врач']")
+    @CacheLookup
     WebElement docFilter;
 
     @FindBy(xpath = "//*[@placeholder='Вид вызова']")
+    @CacheLookup
     WebElement typeCall;
 
     @FindBy(id = "newCallProgressFrame")
+    @CacheLookup
     WebElement newCallProgressFrame;
 
     @FindBy(xpath = "//*[@id='newCallProgressFrame']/mat-expansion-panel/div")
+    @CacheLookup
     WebElement matexpansionpanel;
 
     @FindBy(xpath = "//*[@id='newCallProgressFrame']/mat-expansion-panel/div/div/div/app-call-doctor-short-card/div/div/div[3]")
+    @CacheLookup
     WebElement smallMenu;
 
     @FindBy(xpath = "//a[@title='Открыть карту вызова']")
+    @CacheLookup
     WebElement openCard;
 
     @FindBy(xpath = "//span[contains(text(),'Неотложный')]")
+    @CacheLookup
     WebElement typeCallFilterNeotlozhniy;
 
     @FindBy(id = "activeCallProgressFrame")
+    @CacheLookup
     WebElement activeCallProgressFrame;
 
     @FindBy(id = "doneCallProgressFrame")
+    @CacheLookup
     WebElement doneCallProgressFrame;
 
     @FindBy(id = "cardSpace")
+    @CacheLookup
     WebElement cardSpace;
 
     public DashboardPage(WebDriver driver) {

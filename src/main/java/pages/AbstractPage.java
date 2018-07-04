@@ -35,11 +35,6 @@ abstract public class AbstractPage {
         actions.moveToElement(element).perform();
     }
 
-//    public void click(By by) {
-//        JSWaiter.waitJQueryAngular();
-//        waitClickable.until(ExpectedConditions.elementToBeClickable(by)).click();
-//    }
-
     public void click(WebElement element) {
         waitComplete();
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();

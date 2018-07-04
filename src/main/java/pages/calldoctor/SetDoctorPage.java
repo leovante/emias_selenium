@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,16 +18,12 @@ import java.util.List;
 
 public class SetDoctorPage extends AbstractPage {
 
-    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(23, 150, 112);']")
-    WebElement thisDayLoadGreen;
-
-    @FindBy(xpath = "//div[@style='width: 50%; background-color: rgb(252, 194, 54);']")
-    WebElement thisDayLoadYellow;
-
     @FindBy(xpath = "//span[contains(.,'Назначить на сегодня')]")
+    @CacheLookup
     WebElement appenOnThisDay;
 
     @FindBy(xpath = "//span[contains(.,'ЗАГРУЗКА СЕГОДНЯ')]")
+    @CacheLookup
     WebElement loadCurrently;
 
     public SetDoctorPage(WebDriver driver) {

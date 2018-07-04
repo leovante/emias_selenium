@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
@@ -18,18 +19,23 @@ import java.util.List;
 public class TransferRecords extends AbstractPage {
 
     @FindBy(xpath = "//button[@id='btn_transfer']/span[2]")
+    @CacheLookup
     WebElement btn_transfer;
 
     @FindBy(xpath = "//button[@id='btn_transfer_schedule']/span")
+    @CacheLookup
     WebElement btn_transfer_schedule;
 
     @FindBy(xpath = "//table[@id='collision_grid']/tbody/tr[2]")
+    @CacheLookup
     WebElement doctors_recive_record;
 
     @FindBy(xpath = "//table[@id='collision_item_grid']/tbody/tr[2]")
+    @CacheLookup
     WebElement doctors_record;
 
     @FindBy(xpath = "//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']")
+    @CacheLookup
     WebElement recordElement;
 
     public TransferRecords(WebDriver driver) {
@@ -37,7 +43,7 @@ public class TransferRecords extends AbstractPage {
     }
 
     @Step("перенести запись")
-    public void trancferRecord(String name) throws InterruptedException {
+    public void trancferRecord(String name) {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String secondDoctor = name;
         Waiter.waitAllEmias();
