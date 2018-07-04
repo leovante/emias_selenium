@@ -13,7 +13,6 @@ import pages.calldoctor.Profiles_interfaces.Profile5;
 import pages.utilities.JSWaiter;
 
 import static org.testng.Assert.assertTrue;
-import static pages.utilities.Waiter.waitVisibility;
 
 public class EditCardPage extends AbstractPage implements Profile5 {
 

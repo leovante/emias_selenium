@@ -24,7 +24,6 @@ import pages.utilities.JSWaiter;
 
 import java.io.InputStream;
 
-import static pages.utilities.Waiter.waitVisibility;
 
 public class CreateCallPage extends AbstractPage implements Profile1, Profile2, Profile0, Profile4 {
 

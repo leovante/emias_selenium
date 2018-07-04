@@ -11,7 +11,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
-import pages.utilities.Waiter;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -49,19 +48,19 @@ public class AdmissionSchedule extends AbstractPage {
     public void createRecord(String first_doctor_fullname) throws InterruptedException {
         Actions action = new Actions(driver);
         String mwh = driver.getWindowHandle();
-        Waiter.waitAllEmias();
+        waitAllEmias();
 
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
-        Waiter.waitAllEmias();
+        waitAllEmias();
 
         wait.until(ExpectedConditions.elementToBeClickable(recordElement));
         recordElement.click();
 
         action.sendKeys(Keys.ENTER).perform();//нажали поиск мкаб
         Thread.sleep(2000);
-        Waiter.waitBlockOverlay();
+        waitBlockOverlay();
         click(selectMkab);
-        Waiter.waitBlockOverlay();
+        waitBlockOverlay();
         click(selectVibratBtn);//выбрать
         click(predvarit);
 
@@ -84,9 +83,9 @@ public class AdmissionSchedule extends AbstractPage {
     }
 
     public void verifyFindCallName(String nameGen) {
-        Waiter.waitAllEmias();
+        waitAllEmias();
         wait.until(ExpectedConditions.elementToBeClickable(RecordsArea));
-        Waiter.waitAllEmias();
+        waitAllEmias();
         wait.until(ExpectedConditions.elementToBeClickable(recordElement));
         WebElement containName = driver.findElement(By.xpath("//*[contains(.,'" + nameGen + "')]"));
         assertTrue(containName.isEnabled());

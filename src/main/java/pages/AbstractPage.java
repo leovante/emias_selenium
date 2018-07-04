@@ -18,10 +18,9 @@ import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-
 abstract public class AbstractPage {
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    public WebDriver driver;
+    public WebDriverWait wait;
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -29,7 +28,7 @@ abstract public class AbstractPage {
     }
 
     public void hoverByAction(WebElement element) {
-        //Asynchronous waitClickable
+        //Asynchronous waitClickableJS
         JSWaiter.waitJQueryAngular();
         Actions actions = new Actions(driver);
         actions.moveToElement(element).perform();
@@ -110,11 +109,15 @@ abstract public class AbstractPage {
         element.sendKeys(text);
     }
 
-    public void waitClickable(WebElement webElement) {
+    public void waitClickableJS(WebElement webElement) {
         waitComplete();
         JSWaiter.waitJQueryAngular();
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
-//        wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public void waitClickable(WebElement webElement) {
+        waitComplete();
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 
     public void waitComplete() {
@@ -139,5 +142,45 @@ abstract public class AbstractPage {
         }
         Selenide.screenshot("No_element");
         throw new IllegalArgumentException("ERROR: there is no such element with name " + cucumberElementName + " at page " + this.getClass().getName());
+    }
+
+    public void waitAllEmias() {
+        boolean WidgetAssert = !driver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+        boolean BlockAssert = !driver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+        boolean loaderLeftSpacer = !driver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.id("loaderleftspacer"))));
+        }
+    }
+
+    public void waitBlockOverlay() {
+        boolean BlockAssert = !driver.findElements(By.xpath("//div[@class='blockUI blockOverlay']")).isEmpty();
+        if (BlockAssert) {
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.xpath("//div[@class='blockUI blockOverlay']"))));
+        }
+    }
+
+    public void waitWidgetOverlay() {
+        boolean WidgetAssert = !driver.findElements(By.xpath("//div[@class='ui-widget-overlay']")).isEmpty();
+        if (WidgetAssert) {
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.xpath("//div[@class='ui-widget-overlay']"))));
+        }
+    }
+
+    public void waitSpacer() {
+        boolean loaderLeftSpacer = !driver.findElements(By.id("loaderleftspacer")).isEmpty();
+        if (loaderLeftSpacer) {
+            wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.id("loaderleftspacer"))));
+        }
+    }
+
+    public void waitVisibility(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

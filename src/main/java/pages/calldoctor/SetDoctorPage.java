@@ -87,7 +87,7 @@ public class SetDoctorPage extends AbstractPage {
                         .xpath("//div[contains(., 'ЗАГРУЗКА СЕГОДНЯ')]")));
 
 
-        waitClickable(driver.findElement(By.xpath("//div[contains(text(),'" + doctorName + "')]")));
+        waitClickableJS(driver.findElement(By.xpath("//div[contains(text(),'" + doctorName + "')]")));
         click(driver.findElement(By.xpath("//div[contains(text(),'" + doctorName + "')]")));
         click(appenOnThisDay);
     }

@@ -9,7 +9,6 @@ import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
-import pages.utilities.Waiter;
 
 public class BeforeWork extends AbstractPage {
     @FindBy(xpath = "//button[@id='btn_create']/span[2]")
@@ -71,7 +70,7 @@ public class BeforeWork extends AbstractPage {
 
     @Step("Создать расписание")
     public void createShedule() throws InterruptedException {
-        Waiter.waitAllEmias();
+        waitAllEmias();
 
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String a = "0700", b = "2344";
@@ -87,7 +86,7 @@ public class BeforeWork extends AbstractPage {
         waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-        Waiter.waitAllEmias();
+        waitAllEmias();
 //        Waiter.waitAllEmias();
     }
 

@@ -87,7 +87,7 @@ public class JSWaiter {
     public static void waitUntilJQueryReady() {
         JavascriptExecutor jsExec = (JavascriptExecutor) jsWaitDriver;
 
-        //First check that JQuery is defined on the page. If it is, then waitClickable AJAX
+        //First check that JQuery is defined on the page. If it is, then waitClickableJS AJAX
         Boolean jQueryDefined = (Boolean) jsExec.executeScript("return typeof jQuery != 'undefined'");
         if (jQueryDefined == true) {
             //Pre Wait for stability (Optional)
@@ -110,7 +110,7 @@ public class JSWaiter {
     public static void waitUntilAngularReady() {
         JavascriptExecutor jsExec = (JavascriptExecutor) jsWaitDriver;
 
-        //First check that ANGULAR is defined on the page. If it is, then waitClickable ANGULAR
+        //First check that ANGULAR is defined on the page. If it is, then waitClickableJS ANGULAR
         Boolean angularUnDefined = (Boolean) jsExec.executeScript("return window.angular === undefined");
         if (!angularUnDefined) {
             Boolean angularInjectorUnDefined = (Boolean) jsExec.executeScript("return angular.element(document).injector() === undefined");

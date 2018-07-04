@@ -10,7 +10,6 @@ import pages.Pages;
 import pages.utilities.DriverManager;
 import pages.utilities.JSWaiter;
 import pages.utilities.SwitchToPage;
-import pages.utilities.Waiter;
 
 public abstract class AbstractTest {
     public static WebDriver driver;
@@ -30,7 +29,6 @@ public abstract class AbstractTest {
         page = new Pages(driver);
         JSWaiter.setDriver(driver);
         SwitchToPage.setDriver(driver);
-        Waiter.setDriver(driver);
     }
 
     @AfterSuite(alwaysRun = true)

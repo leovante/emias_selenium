@@ -51,7 +51,7 @@ public class SearchRow {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void filterCallDoctor() throws InterruptedException {
+    public void filterCallDoctor() {
         wait.until(ExpectedConditions.elementToBeClickable(callDoctorSearchBtn));
         wait.until(ExpectedConditions.visibilityOfAllElements(menuBtn, menuBtn1, menuBtn2));
         wait.until(ExpectedConditions.elementToBeClickable(click_one));
@@ -65,7 +65,7 @@ public class SearchRow {
         click_six.click();
     }
 
-    public void clickCallDoctorSearchBtn() throws InterruptedException {
+    public void clickCallDoctorSearchBtn() {
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
@@ -74,7 +74,7 @@ public class SearchRow {
     }
 
     public void waitForSearchResults() {
-        //System.out.println("waitClickable why table appeared");
+        //System.out.println("waitClickableJS why table appeared");
         wait.until(ExpectedConditions.elementToBeClickable(tableGrid));
         //System.out.println("the table appeared");
     }

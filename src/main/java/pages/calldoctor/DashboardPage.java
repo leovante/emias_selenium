@@ -87,7 +87,7 @@ public class DashboardPage extends AbstractPage {
     @Step("нажать на логотип")
     public void clickLogoType() {
         click(logoType);
-        waitClickable(cardSpace);
+        waitClickableJS(cardSpace);
     }
 
     @Step("поиск в фильтре ФИО")
@@ -176,7 +176,7 @@ public class DashboardPage extends AbstractPage {
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();
 
-        waitClickable(newCallProgressFrame);
+        waitClickableJS(newCallProgressFrame);
         clickJSext(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);
 

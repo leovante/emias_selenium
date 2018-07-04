@@ -8,7 +8,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
-import pages.utilities.Waiter;
 
 import java.util.List;
 
@@ -84,7 +83,7 @@ public class ManageShedule extends AbstractPage {
 
     @Step("Создать расписание")
     public void createShedule() throws InterruptedException {
-        Waiter.waitAllEmias();
+        waitAllEmias();
 
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String a = "2330", b = "2344";
@@ -100,17 +99,17 @@ public class ManageShedule extends AbstractPage {
         waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-        Waiter.waitAllEmias();
+        waitAllEmias();
 //        Waiter.waitAllEmias();
     }
 
     @Step("задать неприемные дни")
     public ManageShedule setNotReceiveDays(String firstDoctor) {
-        Waiter.waitAllEmias();
+        waitAllEmias();
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
 
         driver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-        Waiter.waitAllEmias();
+        waitAllEmias();
 
         waitWhileClickable(btn_notReciveDays);
         btn_notReciveDays.click();//задать неприемные дни
@@ -127,7 +126,7 @@ public class ManageShedule extends AbstractPage {
 
     @Step("копировать расисание")
     public void copyShedule(String docName) {
-        Waiter.waitAllEmias();
+        waitAllEmias();
         waitWhileClickable(copyShedule);
         copyShedule.click();
 
@@ -142,13 +141,13 @@ public class ManageShedule extends AbstractPage {
             }
         }
         driver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        Waiter.waitAllEmias();
+        waitAllEmias();
     }
 
     @Step("удалить расписание")
     public ManageShedule deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
-        Waiter.waitAllEmias();
+        waitAllEmias();
 
         waitWhileClickable(deleteShedule);
         deleteShedule.click();                     //кнопка удалить расписание
@@ -157,7 +156,7 @@ public class ManageShedule extends AbstractPage {
 
         Thread.sleep(1000);
         keyboard.pressKey(Keys.ENTER);
-        Waiter.waitAllEmias();
+        waitAllEmias();
         return this;
     }
 
@@ -186,7 +185,7 @@ public class ManageShedule extends AbstractPage {
 
     @Step("проверить неприемные дни")
     public ManageShedule verifyNotReceiveDays() {
-        Waiter.waitAllEmias();
+        waitAllEmias();
         driver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
                 .findElements(By.xpath("span[contains(text(),'Врач на больничном')]"));//это название заголовка
         System.out.println("Проверка наличия заголовка форс-мажора");

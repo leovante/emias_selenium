@@ -12,7 +12,6 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
-import pages.utilities.Waiter;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class TransferRecords extends AbstractPage {
     public void trancferRecord(String name) {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String secondDoctor = name;
-        Waiter.waitAllEmias();
+        waitAllEmias();
         waitWhileClickable(btn_transfer);
         btn_transfer.click();//большая кнопка перенести
         waitWhileClickable(btn_transfer_schedule);
@@ -61,7 +60,7 @@ public class TransferRecords extends AbstractPage {
         driver.findElement(By.xpath("(//li[@id='SCH_CollisionResolve']/a/span)[2]")).click();
         selectDoctorFromTranWindow(secondDoctor);
 
-        Waiter.waitBlockOverlay();
+        waitBlockOverlay();
         WebElement secondFrame = driver
                 .findElement(By.xpath("//table[@id='resolve_collision_grid']/tbody"))
                 .findElement(By.xpath(".//td[@title='23:44']"));
@@ -69,15 +68,15 @@ public class TransferRecords extends AbstractPage {
         wait.until(ExpectedConditions.elementToBeClickable(secondFrame));
         secondFrame.click();
         driver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();//перенести
-        Waiter.waitBlockOverlay();
+        waitBlockOverlay();
 
         keyboard.pressKey(Keys.ENTER);
-        Waiter.waitAllEmias();
+        waitAllEmias();
     }
 
     @Step("выбрать врача в окне переноса записей")
     public void selectDoctorFromTranWindow(String doctorInlet) {
-        Waiter.waitBlockOverlay();
+        waitBlockOverlay();
         List<WebElement> doctors = driver.findElement(By
                 .xpath("//div[@id='gview_resolve_collision_docprvdgrid1']/div[3]/div/table/tbody"))
                 .findElements(By.xpath("tr/td[2]/div"));
@@ -93,7 +92,7 @@ public class TransferRecords extends AbstractPage {
 
     @Step("проверка переноса записей")
     public void verifyTransferShedule() {
-        Waiter.waitAllEmias();
+        waitAllEmias();
         wait.until(ExpectedConditions.visibilityOfAllElements(recordElement));
     }
 
