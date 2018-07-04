@@ -178,7 +178,7 @@ abstract public class AbstractPage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    public String getValue(WebElement element) {
+    public String getWebElementValue(WebElement element) {
         return element.getAttribute("value");
     }
 }

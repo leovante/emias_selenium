@@ -15,7 +15,7 @@ import pages.utilities.JSWaiter;
 
 import static org.testng.Assert.assertTrue;
 
-public class EditCardPage extends AbstractPage implements Profile1, Profile5 {
+public class PerformCardPage extends AbstractPage implements Profile1, Profile5 {
 
     @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
     @CacheLookup
@@ -141,6 +141,10 @@ public class EditCardPage extends AbstractPage implements Profile1, Profile5 {
     @CacheLookup
     WebElement sourceSmp;
 
+    @FindBy(id = "phone")
+    @CacheLookup
+    WebElement phone;
+
     @FindBy(xpath = "//div[contains(.,'Найдена МКАБ пациента Петров')]")
     @CacheLookup
     WebElement naidena_mkab;
@@ -150,12 +154,12 @@ public class EditCardPage extends AbstractPage implements Profile1, Profile5 {
     WebElement redactirovanieVizova;
 
 
-    public EditCardPage(WebDriver driver) {
+    public PerformCardPage(WebDriver driver) {
         super(driver);
     }
 
     @Step("редактирую вызов без привязывания МКАБ")
-    public EditCardPage editCallProfile5(String nameGen) {
+    public PerformCardPage editCallProfile5(String nameGen) {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -298,68 +302,58 @@ public class EditCardPage extends AbstractPage implements Profile1, Profile5 {
         assertTrue(naidena_mkab.isEnabled());
     }
 
-    public EditCardPage verifyCallProfile1() throws InterruptedException {
+    @Step("проверяю на странице редактирования корректность данных")
+    public PerformCardPage verifyCallProfile1() throws InterruptedException {
         JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
 
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
                         .xpath("//div[contains(., 'Редактирование вызова')]")));
 
         Thread.sleep(700);
+        assertTrue(getWebElementValue(phone).equals(telephonePro1));
 
-//        document.getElementById('phone').value
-//        "+7 (848) 498-45-65"
-//        document.getElementById('ololo').value
+        /**
+         * источник
+         * вид вызова
+         * серия
+         * номер
+         * фам
+         * имя
+         * от
+         * др
+         * возраст
+         * возр кат
+         * пол
+         * адрес
+         * дом
+         * корпус
+         * строение
+         * квартира
+         * п-д
+         * д-фон
+         * этаж
+         * жалобы
+         * тип вызывающего
+         * фам
+         * имя
+         * от
+         * телефон
+         */
 
+        isDisplayedOnCardPage("Источник");
+        isDisplayedOnCardPage("Вид вызова");
+        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
+        isDisplayedOnCardPage("АДРЕС");
+        isDisplayedOnCardPage("ЖАЛОБЫ");
+        isDisplayedOnCardPage("КТО ВЫЗЫВАЕТ");
+        isDisplayedOnCardPage("Телефон");
 
-        assertTrue(driver.findElement(By.id("phone")).getAttribute("value").equals(telephonePro1));
-
-//        isDisplayedOnCardPage("Дата");
-//        isDisplayedOnCardPage("Время");
-//        isDisplayedOnCardPage("Статус");
-//        isDisplayedOnCardPage("Вид вызова");
-//        isDisplayedOnCardPage("Источник");
-//        isDisplayedOnCardPage("АДРЕС");
-//        isDisplayedOnCardPage("ЖАЛОБЫ");
-//        isDisplayedOnCardPage("Возрастная категория");
-//        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-//        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-//        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-//        isDisplayedOnCardPage("Телефон");
-//        isDisplayedOnCardPage("Врач");
-//        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-//        isDisplayedOnCardPage("АВТОР");
-//        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-//        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-//        isDisplayedOnCardPage("Отменить вызов");
-//        isDisplayedOnCardPage("Изменить");
-//        isDisplayedOnCardPage("Передать в другое ЛПУ");
-//
-//        isDisplayedOnCardPage("Московская обл., г. Коломна, ул. Первомайская, д.1, корп.2, стр.3, кв.4");
-//        isDisplayedOnCardPage("Новый");
-//        isDisplayedOnCardPage("Первичный");
-//        isDisplayedOnCardPage("Регистратура");
-//        isDisplayedOnCardPage("Афанасьева");
-//        isDisplayedOnCardPage("Софья");
-//        isDisplayedOnCardPage("Петровна");
-//        isDisplayedOnCardPage("");
-//        isDisplayedOnCardPage("7854215965847521");
-//        isDisplayedOnCardPage("Представитель");
-//        isDisplayedOnCardPage("Карта создана");
-//        isDisplayedOnCardPage("автотест");
-//        isDisplayedOnCardPage("19.02.2016");
-//        isDisplayedOnCardPage("2 года");
-//        isDisplayedOnCardPage("Ребенок");
-//        isDisplayedOnCardPage("Автотемников");
-//        isDisplayedOnCardPage("Автодмитрий");
-//        isDisplayedOnCardPage("Автоолегович");
-//        isDisplayedOnCardPage("Не назначен");
         return this;
     }
 
     @Step("редактирвоать вызов")
-    public EditCardPage editCallBtn() {
+    public PerformCardPage editCallBtn() {
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();

@@ -27,7 +27,7 @@ public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profi
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "test", description = "изменить карту вызова, созданную по п.1.1")
+    @Test(groups = "test", description = "изменить карту вызова из регистратуры")
     @RetryCountIfFailed(2)
     public void testEditProfile1() throws Exception {
         driver.get(curUrlCalldoctor);
