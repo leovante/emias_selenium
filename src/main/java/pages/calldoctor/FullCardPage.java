@@ -64,7 +64,7 @@ public class FullCardPage extends AbstractPage implements
     }
 
     @Step("проверяю новый вызов")
-    public void verifyCallProfile0() throws InterruptedException {
+    public FullCardPage verifyCallProfile0() throws InterruptedException {
         isDisplayedJS("Карта вызова");
         Thread.sleep(700);
         isDisplayedOnCardPage("Дата");
@@ -95,10 +95,11 @@ public class FullCardPage extends AbstractPage implements
 
         isDisplayedOnCardPage(adressPro0);
         isDisplayedOnCardPage(zhalobaPro0);
+        return this;
     }
 
     @Step("проверяю новый вызов")
-    public void verifyCallProfile1(String nameGen) throws InterruptedException {
+    public FullCardPage verifyCallProfile1(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
@@ -156,10 +157,11 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage(birthDayPro1);
         isDisplayedOnCardPage(goda24Pro1);
         isDisplayedOnCardPage(vozrastKatPro1);
+        return this;
     }
 
     @Step("проверяю активный вызов")
-    public void verifyCallProfile1Activity(String doctorFam, String nameGen) throws InterruptedException {
+    public FullCardPage verifyCallProfile1Activity(String doctorFam, String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
@@ -222,10 +224,11 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage(birthDayPro1);
         isDisplayedOnCardPage(goda24Pro1);
         isDisplayedOnCardPage(vozrastKatPro1);
+        return this;
     }
 
     @Step("проверяю обслуженный вызов")
-    public void verifyDoneDocGroup(String doctorFam, String nameGen) throws InterruptedException {
+    public FullCardPage verifyDoneDocGroup(String doctorFam, String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
@@ -295,6 +298,7 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage(birthDayPro1);
         isDisplayedOnCardPage(goda24Pro1);
         isDisplayedOnCardPage(vozrastKatPro1);
+        return this;
     }
 
     @Step("проверяю новый вызов")
@@ -372,7 +376,7 @@ public class FullCardPage extends AbstractPage implements
     }
 
     @Step("проверяю новый вызов от api СМП без МКАБ")
-    public void verifyCallProfile3(String nameGen) throws InterruptedException {
+    public FullCardPage verifyCallProfile3(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -441,10 +445,11 @@ public class FullCardPage extends AbstractPage implements
 //        isDisplayedOnCardPage(otCallPro3);
 
 //        isDisplayedOnCardPage(stationSMPPro3);
+        return this;
     }
 
     @Step("проверяю новый вызов через Портал")
-    public void verifyCallProfile4(String nameGen) throws InterruptedException {
+    public FullCardPage verifyCallProfile4(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -502,10 +507,11 @@ public class FullCardPage extends AbstractPage implements
 
         isDisplayedOnCardPage("+7 (951) 158-27-14");
         isDisplayedOnCardPage(genderPro4);
+        return this;
     }
 
     @Step("проверяю отредактированный вызов")
-    public void verifyCallProfile5(String nameGen) throws InterruptedException {
+    public FullCardPage verifyCallProfile5(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
 
@@ -580,15 +586,17 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage(stationSMPPro5);
         //кто обслуживает
         isDisplayedOnCardPage("Не назначен");
+        return this;
     }
 
 
     @Step("отмена вызов на странице подробной карты вызова")
-    public void cancelRecordOnFullCardPage() {
+    public FullCardPage cancelRecordOnFullCardPage() {
         isDisplayedJS("Карта вызова");
         click(cancelBtn);
         sendKeysJS(cancelField, "отмена автотестом");
         click(cancelCall);
+        return this;
     }
 
     @Step("нажимаю на передать другому врачу")
@@ -597,15 +605,16 @@ public class FullCardPage extends AbstractPage implements
     }
 
     @Step("нажимаю на назначить врача")
-    public void appoindDoctorBtn() {
+    public FullCardPage appoindDoctorBtn() {
         isDisplayedJS("Карта вызова");
         WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Назначить')]"));
         wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
         appoindBtns.click();
+        return this;
     }
 
     @Step("нажимаю на завершить обслуживание")
-    public void completeServiceBtn() throws InterruptedException {
+    public FullCardPage completeServiceBtn() throws InterruptedException {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();
         isDisplayedJS("Карта вызова");
@@ -616,27 +625,31 @@ public class FullCardPage extends AbstractPage implements
         action.sendKeys(Keys.ENTER).perform();
         click(doneCall);
         Thread.sleep(1000);
+        return this;
     }
 
 
     @Step("отмена вызов на странице редактирвоания")
-    public void cancelRecordOnChangePage() {
+    public FullCardPage cancelRecordOnChangePage() {
         isDisplayedJS("Редактирование вызова");
         click(cancelCall);
         sendKeysJS(cancelField, "отмена автотестом");
         click(cancelCall2);
+        return this;
     }
 
     @Step("отмена вызов на странице редактирвоания")
-    public void editCallBtn() {
+    public FullCardPage editCallBtn() {
         isDisplayedJS("Карта вызова");
         click(change);
+        return this;
     }
 
 
     @Step("закрыть подробную карту")
-    public void closeCardBtn() {
+    public FullCardPage closeCardBtn() {
         isDisplayedJS("Карта вызова");
         clickJSext(driver.findElement(By.xpath("//mat-icon[contains(text(),'close')]")));
+        return this;
     }
 }

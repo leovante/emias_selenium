@@ -35,12 +35,12 @@ public class RCD07Test extends AbstractTest implements Profile1, Profile2 {
 
         page.fullCardPage().appoindDoctorBtn();
         page.setDoctorPage().appendDoctor(doctorFamPro1);
-        page.fullCardPage().completeServiceBtn();
-        page.fullCardPage().verifyDoneDocGroup(doctorFamPro1, nameGen);
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage().completeServiceBtn()
+                .verifyDoneDocGroup(doctorFamPro1, nameGen)
+                .closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().clearFilterDepart();
-        page.dashboardPage().verifyDoneDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage().searchFilterFio(nameGen)
+                .clearFilterDepart()
+                .verifyDoneDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
     }
 }

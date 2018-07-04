@@ -35,11 +35,11 @@ public class RCD03Test extends AbstractTest implements Profile1, Profile2 {
         page.fullCardPage().appoindDoctorBtn();
         page.setDoctorPage().appendDoctor(doctorFamPro1);
         page.manageShedule().getSecondName(doctorFamPro1);
-        page.fullCardPage().verifyCallProfile1Activity(doctorFamPro1, nameGen);
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage().verifyCallProfile1Activity(doctorFamPro1, nameGen)
+                .closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().clearFilterDepart();
-        page.dashboardPage().verifyActiveDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage().searchFilterFio(nameGen)
+                .clearFilterDepart()
+                .verifyActiveDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
     }
 }

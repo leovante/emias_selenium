@@ -41,8 +41,8 @@ public class RCD04Test extends AbstractTest implements Profile1, Profile2 {
         page.fullCardPage().verifyCallProfile1Activity(doctorFamPro2, nameGen);
         page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().clearFilterDepart();
-        page.dashboardPage().verifyActiveDocGroup(doctorFamPro2, nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage().searchFilterFio(nameGen)
+                .clearFilterDepart()
+                .verifyActiveDocGroup(doctorFamPro2, nameGen, adressPro1_2, telephonePro1);
     }
 }

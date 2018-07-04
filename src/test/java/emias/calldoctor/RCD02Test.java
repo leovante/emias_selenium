@@ -34,12 +34,12 @@ public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profi
 
         page.createCallPage().createCallProfile1(nameGen);
 
-        page.editCardPage().editCallBtn();
-        page.editCardPage().editCallProfile5(nameGen);
-        page.fullCardPage().verifyCallProfile5(nameGen);
-        page.fullCardPage().closeCardBtn();
+        page.editCardPage().editCallBtn()
+                .editCallProfile5(nameGen);
+        page.fullCardPage().verifyCallProfile5(nameGen)
+                .closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro5_2, telephonePro5);
+        page.dashboardPage().searchFilterFio(nameGen)
+                .verifyNewCallProgressFrame(nameGen, adressPro5_2, telephonePro5);
     }
 }

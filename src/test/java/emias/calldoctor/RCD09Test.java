@@ -34,8 +34,8 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
+        page.dashboardPage().searchFilterFio(nameGen)
+                .verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
     }
 
     @Test(groups = "CD", description = "фильтр поиск по врачу")
@@ -49,8 +49,9 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
         page.setDoctorPage().appendDoctor(doctorFamPro1);
         page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterDoctor(doctorFamPro1);
-        page.dashboardPage().verifyActiveDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
+        page.dashboardPage()
+                .searchFilterDoctor(doctorFamPro1)
+                .verifyActiveDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
@@ -62,8 +63,9 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
         page.dashboardPage().openNewCallProgressFrame(nameGen);
         page.fullCardPage().verifyCallProfile3(nameGen);
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().searchFilterTypeCallNeotlozhniy();
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro3, telephonePro1);
+        page.dashboardPage()
+                .searchFilterFio(nameGen)
+                .searchFilterTypeCallNeotlozhniy()
+                .verifyNewCallProgressFrame(nameGen, adressPro3, telephonePro1);
     }
 }

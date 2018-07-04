@@ -79,52 +79,58 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("вышел в мис")
-    public void exitToMis() {
+    public DashboardPage exitToMis() {
         click(exitToMis);
         click(exitBtn);
+        return this;
     }
 
     @Step("нажать на логотип")
-    public void clickLogoType() {
+    public DashboardPage clickLogoType() {
         click(logoType);
         waitClickableJS(cardSpace);
+        return this;
     }
 
     @Step("поиск в фильтре ФИО")
-    public void searchFilterFio(String fioName) {
+    public DashboardPage searchFilterFio(String fioName) {
         clickJS(fioFilter);
         sendKeysJS(fioFilter, fioName);
+        return this;
     }
 
     @Step("поиск в фильтре врача")
-    public void searchFilterDoctor(String fioName) throws InterruptedException {
+    public DashboardPage searchFilterDoctor(String fioName) throws InterruptedException {
         clickJS(docFilter);
         sendKeysJS(docFilter, fioName);
         action.sendKeys(Keys.ARROW_DOWN).perform();
         action.sendKeys(Keys.ENTER).perform();
         Thread.sleep(4000);
+        return this;
     }
 
     @Step("поиск в фильтре врача")
-    public void searchFilterTypeCallNeotlozhniy() throws InterruptedException {
+    public DashboardPage searchFilterTypeCallNeotlozhniy() throws InterruptedException {
         clickJS(typeCall);
         clickJS(typeCallFilterNeotlozhniy);
         Thread.sleep(4000);
+        return this;
     }
 
 
 
     @Step("очистить фильтр подразделение")
-    public void clearFilterDepart() {
+    public DashboardPage clearFilterDepart() {
         List<WebElement> closeList = driver.findElements(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (WebElement closeBtn : closeList) {
             click(closeBtn);
         }
+        return this;
     }
 
 
     @Step("проверяю на дашборде запись в группе новые")
-    public void verifyNewCallProgressFrame(String name, String adress, String telephone) throws InterruptedException {
+    public DashboardPage verifyNewCallProgressFrame(String name, String adress, String telephone) throws InterruptedException {
         Thread.sleep(4000);
         clickJSext(newCallProgressFrame.findElement(By.id("order")));
         click(newCallProgressFrame);
@@ -132,10 +138,11 @@ public class DashboardPage extends AbstractPage {
         click(adress);
         isDisplayedOnCardPage(name);
         isDisplayedOnCardPage(telephone);
+        return this;
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public void verifyActiveDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {
+    public DashboardPage verifyActiveDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {
         Thread.sleep(4000);
 
         wait.until(ExpectedConditions
@@ -147,6 +154,7 @@ public class DashboardPage extends AbstractPage {
 
         isDisplayedOnCardPage(nameGen);
         isDisplayedOnCardPage(telephone);
+        return this;
     }
 
     @Step("проверка в группе обслуженные")
@@ -165,13 +173,14 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyRecordIsCancelFromDashboard() throws InterruptedException {
+    public DashboardPage verifyRecordIsCancelFromDashboard() throws InterruptedException {
         Thread.sleep(4000);
         assertFalse(newCallProgressFrame.findElement(By.id("order")).isDisplayed());
+        return this;
     }
 
     @Step("открываю фрейм ожидают обработки")
-    public void openNewCallProgressFrame(String nameGen) {
+    public DashboardPage openNewCallProgressFrame(String nameGen) {
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();
@@ -183,5 +192,6 @@ public class DashboardPage extends AbstractPage {
         hoverByAction(matexpansionpanel);
         clickJSext(smallMenu);
         clickJSext(openCard);
+        return this;
     }
 }

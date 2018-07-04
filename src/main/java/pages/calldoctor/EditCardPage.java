@@ -154,7 +154,7 @@ public class EditCardPage extends AbstractPage implements Profile5 {
     }
 
     @Step("редактирую вызов без привязывания МКАБ")
-    public void editCallProfile5(String nameGen) {
+    public EditCardPage editCallProfile5(String nameGen) {
         Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
@@ -219,6 +219,7 @@ public class EditCardPage extends AbstractPage implements Profile5 {
         sendKeysJS(callPatronymic, otCallPro5);
 
         click(saveBtns);
+        return this;
     }
 
 
@@ -349,7 +350,7 @@ public class EditCardPage extends AbstractPage implements Profile5 {
     }
 
     @Step("редактирвоать вызов")
-    public void editCallBtn() {
+    public EditCardPage editCallBtn() {
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();
@@ -362,5 +363,6 @@ public class EditCardPage extends AbstractPage implements Profile5 {
         WebElement editBtn = driver.findElement(By.xpath("//button[@id='change']"));
         wait.until(ExpectedConditions.elementToBeClickable(editBtn));
         editBtn.click();
+        return this;
     }
 }

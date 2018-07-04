@@ -33,8 +33,8 @@ public class RCD05Test extends AbstractTest implements Profile1, Profile2 {
 
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().cancelRecordOnFullCardPage();
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyRecordIsCancelFromDashboard();
+        page.dashboardPage().searchFilterFio(nameGen)
+                .verifyRecordIsCancelFromDashboard();
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
@@ -43,9 +43,9 @@ public class RCD05Test extends AbstractTest implements Profile1, Profile2 {
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
-        page.fullCardPage().editCallBtn();
-        page.fullCardPage().cancelRecordOnChangePage();
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().verifyRecordIsCancelFromDashboard();
+        page.fullCardPage().editCallBtn()
+                .cancelRecordOnChangePage();
+        page.dashboardPage().searchFilterFio(nameGen)
+                .verifyRecordIsCancelFromDashboard();
     }
 }

@@ -31,5 +31,4 @@ public interface Profile1 {
 
     String doctorNamePro1 = "Дмитрий";
     String doctorFamPro1 = "Темников";
-
 }

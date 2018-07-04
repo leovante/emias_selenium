@@ -32,8 +32,9 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile0();
-        page.fullCardPage().verifyCallProfile0();
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage()
+                .verifyCallProfile0()
+                .closeCardBtn();
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура")
@@ -42,12 +43,14 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
-        page.fullCardPage().verifyCallProfile1(nameGen);
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage()
+                .verifyCallProfile1(nameGen)
+                .closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().clearFilterDepart();
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
+        page.dashboardPage()
+                .searchFilterFio(nameGen)
+                .clearFilterDepart()
+                .verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
@@ -59,9 +62,9 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         this.nameGen = page.fullCardPage().verifyCallProfile2(nameGen);
         page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen);
-        page.dashboardPage().clearFilterDepart();
-        page.dashboardPage().verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
+        page.dashboardPage().searchFilterFio(nameGen)
+                .clearFilterDepart()
+                .verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
