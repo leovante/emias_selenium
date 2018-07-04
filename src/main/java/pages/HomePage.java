@@ -42,27 +42,30 @@ public class HomePage extends AbstractPage {
     }
 
     @Step("Захожу в расписание приема")
-    public void admissionScheduleBtn(){
+    public HomePage admissionScheduleBtn() {
         Waiter.waitAllEmias();
         waitWhileClickable(admissionScheduleBtn);
         admissionScheduleBtn.click();
         Waiter.waitAllEmias();
+        return this;
     }
 
     @Step("Захожу в перенос записей")
-    public void transferRecordsBtn(){
+    public HomePage transferRecordsBtn() {
         Waiter.waitAllEmias();
         waitWhileClickable(transferRecordsBtn);
         transferRecordsBtn.click();
         Waiter.waitAllEmias();
+        return this;
     }
 
     @Step("Нажимаю на логотип")
-    public void logoHomeBtn(){
+    public HomePage logoHomeBtn() {
         Waiter.waitAllEmias();
         waitWhileClickable(homePageBtn);
         homePageBtn.click();
         Waiter.waitAllEmias();
+        return this;
     }
 
     @Step("Захожу в Диспетчер")

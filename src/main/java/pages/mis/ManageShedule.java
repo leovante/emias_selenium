@@ -105,7 +105,7 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("задать неприемные дни")
-    public void setNotReceiveDays(String firstDoctor) {
+    public ManageShedule setNotReceiveDays(String firstDoctor) {
         Waiter.waitAllEmias();
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
 
@@ -122,6 +122,7 @@ public class ManageShedule extends AbstractPage {
         saveBtn.click();//нажали сохранить
 
         keyboard.pressKey(Keys.ENTER);
+        return this;
     }
 
     @Step("копировать расисание")
@@ -145,7 +146,7 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("удалить расписание")
-    public void deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
+    public ManageShedule deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         Waiter.waitAllEmias();
 
@@ -157,6 +158,7 @@ public class ManageShedule extends AbstractPage {
         Thread.sleep(1000);
         keyboard.pressKey(Keys.ENTER);
         Waiter.waitAllEmias();
+        return this;
     }
 
     @Step("устанвотиь время в календаре")
@@ -183,15 +185,16 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("проверить неприемные дни")
-    public void verifyNotReceiveDays() {
+    public ManageShedule verifyNotReceiveDays() {
         Waiter.waitAllEmias();
         driver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
                 .findElements(By.xpath("span[contains(text(),'Врач на больничном')]"));//это название заголовка
         System.out.println("Проверка наличия заголовка форс-мажора");
+        return this;
     }
 
     @Step("проверить удаление расписания")
-    public void verifyDeletedShedle() {
+    public ManageShedule verifyDeletedShedle() {
         if (!driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
@@ -200,6 +203,7 @@ public class ManageShedule extends AbstractPage {
                 .findElements(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
+        return this;
     }
 
     @Step("получить фамилию")
@@ -211,10 +215,11 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("проверка создания распсиания")
-    public void verifyCreatedShedule()  throws InterruptedException{
+    public ManageShedule verifyCreatedShedule() throws InterruptedException {
         Thread.sleep(2000);
         driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElement(By.xpath("//*[contains(text(),'23:44 ')]"));
+        return this;
     }
 
     public void waitWhileClickable(WebElement webElement) {

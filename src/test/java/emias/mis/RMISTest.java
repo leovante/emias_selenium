@@ -9,17 +9,16 @@ import pages.utilities.SQLDemonstration;
 
 public class RMISTest extends AbstractTest {
 
-    @BeforeTest(groups = "mis")
+    @BeforeTest(groups = {"mis", "test"})
     public void beforeTest() {
-        System.out.println();
     }
 
-    @AfterTest(groups = "mis")
+    @AfterTest(groups = {"mis", "test"})
     public void afterTest() {
     }
 
     @Test(groups = "mis", description = "Создать расписание", enabled = false)
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -57,9 +56,9 @@ public class RMISTest extends AbstractTest {
         driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
-        page.manageShedule().setNotReceiveDays(firstDoctor);
-
-        page.manageShedule().verifyNotReceiveDays();
+        page.manageShedule()
+                .setNotReceiveDays(firstDoctor)
+                .verifyNotReceiveDays();
     }
 
     @Test(groups = "mis", description = "Удалить расписание", enabled = false)
@@ -76,13 +75,15 @@ public class RMISTest extends AbstractTest {
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();
-        page.doctorMethods().selectDoctor(first_doctor_fullname);
-        page.doctorMethods().selectDoctor(second_doctor_fullname);
+        page.doctorMethods()
+                .selectDoctor(first_doctor_fullname)
+                .selectDoctor(second_doctor_fullname);
         page.manageShedule().createShedule();
 
-        page.manageShedule().verifyCreatedShedule();
-        page.manageShedule().deleteShedule();
-        page.manageShedule().verifyDeletedShedle();
+        page.manageShedule()
+                .verifyCreatedShedule()
+                .deleteShedule()
+                .verifyDeletedShedle();
     }
 
     @Test(groups = "mis", description = "Перенести запись")
@@ -99,25 +100,29 @@ public class RMISTest extends AbstractTest {
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();
-        page.doctorMethods().selectDoctor(first_doctor_fullname);
-        page.doctorMethods().selectDoctor(second_doctor_fullname);
+        page.doctorMethods()
+                .selectDoctor(first_doctor_fullname)
+                .selectDoctor(second_doctor_fullname);
         page.manageShedule().createShedule();
 
-        page.homePage().logoHomeBtn();
-        page.homePage().admissionScheduleBtn();
+        page.homePage()
+                .logoHomeBtn()
+                .admissionScheduleBtn();
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.admissionSchedule().createRecord(first_doctor_fullname);
 
-        page.homePage().logoHomeBtn();
-        page.homePage().transferRecordsBtn();
+        page.homePage()
+                .logoHomeBtn()
+                .transferRecordsBtn();
 
         first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.transferRecords().trancferRecord(second_doctor_fullname);
-        page.doctorMethods().selectDoctor(first_doctor_fullname);
-        page.doctorMethods().selectDoctor(second_doctor_fullname);
+        page.doctorMethods()
+                .selectDoctor(first_doctor_fullname)
+                .selectDoctor(second_doctor_fullname);
 
         page.transferRecords().verifyTransferShedule();
     }

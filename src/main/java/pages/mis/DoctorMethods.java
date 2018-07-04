@@ -136,10 +136,11 @@ public class DoctorMethods extends AbstractPage {
     }
 
     @Step("выбрать врача")
-    public void selectDoctor(String doctorInlet) {
+    public DoctorMethods selectDoctor(String doctorInlet) {
         Waiter.waitAllEmias();
         wait.until(ExpectedConditions
                 .elementToBeClickable(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]"))).click();
         Waiter.waitAllEmias();
+        return this;
     }
 }
