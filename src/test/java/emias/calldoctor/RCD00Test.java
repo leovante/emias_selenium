@@ -4,14 +4,12 @@ import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
-import pages.calldoctor.Profiles_interfaces.Profile1;
-import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.mis.ManageShedule;
 import pages.utilities.SQLDemonstration;
 
 import java.util.ArrayList;
 
-public class RCD00Test extends AbstractTest implements Profile1, Profile2 {
+public class RCD00Test extends AbstractTest {
 
     @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
