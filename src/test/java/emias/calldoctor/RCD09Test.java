@@ -2,6 +2,7 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Issue;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -27,6 +28,7 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException {
         driver.get(curUrlCalldoctor);
@@ -39,6 +41,7 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "фильтр поиск по врачу")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException {
         driver.get(curUrlCalldoctor);
@@ -55,6 +58,7 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException {
         page.createCallPage().createCallProfile3(nameGen);

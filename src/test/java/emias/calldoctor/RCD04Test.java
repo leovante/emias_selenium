@@ -2,6 +2,7 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Issue;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -27,6 +28,7 @@ public class RCD04Test extends AbstractTest implements Profile1, Profile2 {
     }
 
     @Test(groups = "CD", description = "передать вызов другому врачу")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);

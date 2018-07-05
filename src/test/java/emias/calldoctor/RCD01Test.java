@@ -2,6 +2,8 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Issue;
+import io.qameta.allure.TmsLink;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -28,6 +30,8 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "пустой вызов")
+    @Issue("EMIAS-90")
+    @TmsLink("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws InterruptedException {
         driver.get(curUrlCalldoctor);
@@ -39,6 +43,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         driver.get(curUrlCalldoctor);
@@ -55,6 +60,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         driver.get(curUrlCalldoctor);
@@ -69,6 +75,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallSMPApi() throws InterruptedException {
         page.createCallPage().createCallProfile3(nameGen);
@@ -79,6 +86,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws InterruptedException {
         driver.manage().deleteAllCookies();
@@ -100,6 +108,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "test", description = "создание вызова через портал по рандомному МКАБу")//дата провайдер аннотацию добавить
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testRandomProfile(User user) throws InterruptedException {
         driver.get("https://uslugi.mosreg.ru/zdrav/");
@@ -127,4 +136,18 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
  чистую базу данных для работы, нет необходимости делать teardown или очистку базы, собирание и загрузку данных, и так далее.
 
  https://habr.com/company/jugru/blog/338836/ посмотреть паттерн data provider и decorator
+
+ @DataProvider
+ public Object[][] dataProvider() {
+ return new Object[][]{
+ {1}, {2}, {3}
+ };
+ }
+
+ @Attachment
+ public byte[] attachScreenshot() {
+ return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+ }
+
+
  */

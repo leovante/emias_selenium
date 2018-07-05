@@ -2,6 +2,7 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Issue;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -28,6 +29,7 @@ public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @Test(groups = "test", description = "изменить карту вызова из регистратуры")
+    @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testEditProfile1() throws Exception {
         driver.get(curUrlCalldoctor);
