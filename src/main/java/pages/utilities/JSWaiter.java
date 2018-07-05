@@ -29,11 +29,11 @@ public class JSWaiter {
 
         //Wait JQuery until it is Ready!
         if (!jqueryReady) {
-            System.out.println("JQuery is NOT Ready!");
+//            System.out.println("JQuery is NOT Ready!");
             //Wait for jQuery to load
             jsWait.until(jQueryLoad);
         } else {
-            System.out.println("JQuery is Ready!");
+//            System.out.println("JQuery is Ready!");
         }
     }
 
@@ -53,11 +53,11 @@ public class JSWaiter {
 
         //Wait ANGULAR until it is Ready!
         if (!angularReady) {
-            System.out.println("ANGULAR is NOT Ready!");
+//            System.out.println("ANGULAR is NOT Ready!");
             //Wait for Angular to load
             wait.until(angularLoad);
         } else {
-            System.out.println("ANGULAR is Ready!");
+//            System.out.println("ANGULAR is Ready!");
         }
     }
 
@@ -75,11 +75,11 @@ public class JSWaiter {
 
         //Wait Javascript until it is Ready!
         if (!jsReady) {
-            System.out.println("JS in NOT Ready!");
+//            System.out.println("JS in NOT Ready!");
             //Wait for Javascript to load
             wait.until(jsLoad);
         } else {
-            System.out.println("JS is Ready!");
+//            System.out.println("JS is Ready!");
         }
     }
 
@@ -102,7 +102,7 @@ public class JSWaiter {
             //Post Wait for stability (Optional)
             sleep(20);
         } else {
-            System.out.println("jQuery is not defined on this site!");
+//            System.out.println("jQuery is not defined on this site!");
         }
     }
 
@@ -127,10 +127,10 @@ public class JSWaiter {
                 //Post Wait for stability (Optional)
                 sleep(20);
             } else {
-                System.out.println("Angular injector is not defined on this site!");
+//                System.out.println("Angular injector is not defined on this site!");
             }
         } else {
-            System.out.println("Angular is not defined on this site!");
+//            System.out.println("Angular is not defined on this site!");
         }
     }
 

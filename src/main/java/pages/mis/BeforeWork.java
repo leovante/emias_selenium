@@ -6,49 +6,38 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import pages.AbstractPage;
 
 public class BeforeWork extends AbstractPage {
     @FindBy(xpath = "//button[@id='btn_create']/span[2]")
-    @CacheLookup
     WebElement createShedule;
 
     @FindBy(xpath = "//a[@id='ddlbusytype-button']/span[2]")
-    @CacheLookup
     WebElement ddlbusytypeButton;
 
     @FindBy(id = "pickTime_nach")
-    @CacheLookup
     WebElement pickTime_nach;
 
     @FindBy(id = "schedule_add_button")
-    @CacheLookup
     WebElement schedule_add_button;
 
     @FindBy(linkText = "Прием на дому (вызов на дом)")
-    @CacheLookup
     WebElement priemNaDomu;
 
     @FindBy(linkText = "Прием по очереди")
-    @CacheLookup
     WebElement priemPoOcheredi;
 
     @FindBy(xpath = "//button[@id='btn_save_schedule']/span")
-    @CacheLookup
     WebElement btn_save_schedule;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
-    @CacheLookup
     WebElement pickTime_nachClose;
 
     @FindBy(id = "pickTime_okon")
-    @CacheLookup
     WebElement pickTime_okon;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
-    @CacheLookup
     WebElement pickTime_okonClose;
 
     public BeforeWork(WebDriver driver) {
