@@ -6,69 +6,79 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 
 public class BeforeWork extends AbstractPage {
     @FindBy(xpath = "//button[@id='btn_create']/span[2]")
+    @CacheLookup
     WebElement createShedule;
 
     @FindBy(xpath = "//a[@id='ddlbusytype-button']/span[2]")
+    @CacheLookup
     WebElement ddlbusytypeButton;
 
     @FindBy(id = "pickTime_nach")
+    @CacheLookup
     WebElement pickTime_nach;
 
     @FindBy(id = "schedule_add_button")
+    @CacheLookup
     WebElement schedule_add_button;
 
     @FindBy(linkText = "Прием на дому (вызов на дом)")
+    @CacheLookup
     WebElement priemNaDomu;
 
     @FindBy(linkText = "Прием по очереди")
+    @CacheLookup
     WebElement priemPoOcheredi;
 
     @FindBy(xpath = "//button[@id='btn_save_schedule']/span")
+    @CacheLookup
     WebElement btn_save_schedule;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
+    @CacheLookup
     WebElement pickTime_nachClose;
 
     @FindBy(id = "pickTime_okon")
+    @CacheLookup
     WebElement pickTime_okon;
 
     @FindBy(xpath = "(//button[@type='button'])[2]")
+    @CacheLookup
     WebElement pickTime_okonClose;
 
     public BeforeWork(WebDriver driver) {
         super(driver);
     }
 
-    @Step("Установить время календаря")
+    @Step("установить время календаря")
     public void setTimeCalendar(String a, String b) throws InterruptedException {
-        waitWhileClickable(pickTime_nach);
+        waitClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
-        waitWhileClickable(pickTime_nachClose);
+        waitClickable(pickTime_nachClose);
         pickTime_nachClose.click();
         Thread.sleep(500);
-        waitWhileClickable(pickTime_okon);
+        waitClickable(pickTime_okon);
         pickTime_okon.sendKeys(b);          //нажимаем на поле окончание интервала
-        waitWhileClickable(pickTime_okonClose);
+        waitClickable(pickTime_okonClose);
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
 
-    @Step("Установить тип приема")
+    @Step("установить тип приема")
     public void setTypeOfReception(WebElement typeOfReception) {
-        waitWhileClickable(ddlbusytypeButton);
+        waitClickable(ddlbusytypeButton);
         ddlbusytypeButton.click();                  //нажимаем на выпадающий список тип приема
-        waitWhileClickable(typeOfReception);
+        waitClickable(typeOfReception);
         typeOfReception.click();                     //выбор типа приема
-        waitWhileClickable(schedule_add_button);
+        waitClickable(schedule_add_button);
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
-    @Step("Создать расписание")
+    @Step("создать расписание")
     public void createShedule() throws InterruptedException {
         waitAllEmias();
 
@@ -83,17 +93,10 @@ public class BeforeWork extends AbstractPage {
         setTimeCalendar(c, d);
         setTypeOfReception(priemPoOcheredi);
 
-        waitWhileClickable(btn_save_schedule);
+        waitClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
         waitAllEmias();
 //        Waiter.waitAllEmias();
     }
-
-
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-    }
-
 }
-

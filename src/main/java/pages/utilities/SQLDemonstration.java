@@ -12,7 +12,7 @@ public class SQLDemonstration {
     static String userName = "sa";
     static String password = "sagfhjkzYES!";
 
-    @Step
+    @Step("удаляю расписание этого врача")
     public static void deleteShedule(String name) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -39,7 +39,7 @@ public class SQLDemonstration {
         }
     }
 
-    @Step("Завершаю все существующие вызовы")
+    @Step("завершаю все существующие вызовы")
     public static void finalizeAllCalls() {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -62,7 +62,7 @@ public class SQLDemonstration {
         }
     }
 
-    @Step("Завершаю вызовы этого врача")
+    @Step("завершаю вызовы этого врача")
     public static void finalizeCallLpuDoctor(String doctorName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -88,7 +88,7 @@ public class SQLDemonstration {
         }
     }
 
-    @Step("Завершаю вызовы пациента по имени")
+    @Step("завершаю вызовы пациента по имени")
     public static void finalizePacientName(String pacientName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -113,7 +113,7 @@ public class SQLDemonstration {
         }
     }
 
-    @Step("Завершаю вызовы пациента по полису")
+    @Step("завершаю вызовы пациента по полису")
     public static void finalizePacientNumberPol(String NumberPol) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +

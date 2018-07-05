@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,75 +18,99 @@ public class CreateCall {
     private WebDriverWait wait;
 
     @FindBy(xpath = "//button[@id='add_doc_house_btn']/span[2]")
+    @CacheLookup
     WebElement createCall;
 
     @FindBy(xpath = "//button[@id='openmkabbtn_dochouse']/span")
+    @CacheLookup
     WebElement openMkab;
 
     @FindBy(id = "sinpDocHouseDLG_Call_MKABSelector")
+    @CacheLookup
     WebElement searchField;
 
     @FindBy(id = "btnfindDocHouseDLG_Call_MKABSelector")
+    @CacheLookup
     WebElement searchMkab;
 
     @FindBy(xpath = "//tr[@id='2467543']/td[3]")
+    @CacheLookup
     WebElement mkabPosition;
 
     @FindBy(xpath = "//span[@class='ui-button-text'][text()='Выбрать']")
+    @CacheLookup
     WebElement selectPkab;
 
     @FindBy(xpath = "//input[@readonly='readonly']")
+    @CacheLookup
     WebElement readonly;
 
     @FindBy(id = "Person_DomophonCode")
+    @CacheLookup
     WebElement person_DomophonCode;
 
     @FindBy(id = "Person_Entrance")
+    @CacheLookup
     WebElement person_Entrance;
 
     @FindBy(id = "Person_Floor")
+    @CacheLookup
     WebElement person_Floor;
 
     @FindBy(xpath = "//div[@id='s2id_Complaint']/ul")
+    @CacheLookup
     WebElement pole_Zhalobi;
 
     @FindBy(id = "s2id_autogen1")
+    @CacheLookup
     WebElement zhaloba;
 
     @FindBy(xpath = "//span[@class='select2-match'][text()='боль']")
+    @CacheLookup
     WebElement waitZhaloba;
 
     @FindBy(xpath = "(//img[@alt='Выбор'])[3]")
+    @CacheLookup
     WebElement selectDoctor;
 
     @FindBy(xpath = "//tr[@id='341']/td[3]")
+    @CacheLookup
     WebElement doctorNarickaya;
 
     @FindBy(xpath = "CallDoctorType-button")
+    @CacheLookup
     WebElement viewCall;
 
     @FindBy(linkText = "Первичный")
+    @CacheLookup
     WebElement pervichniy;
 
     @FindBy(xpath = "//a[@id='CallDoctorStatus-button']/span")
+    @CacheLookup
     WebElement statusCall;
 
     @FindBy(linkText = "Завершенный")
+    @CacheLookup
     WebElement zavershenniy;
 
     @FindBy(xpath = "//button[@id='btnSave']/span")
+    @CacheLookup
     WebElement saveCall;
 
     @FindBy(id = "ui-dialog-title-whcdialog")
+    @CacheLookup
     WebElement dialogDoctorIsFull;
 
     @FindBy(xpath = "(//img[@alt='Выбор'])[3]")
+    @CacheLookup
     WebElement dialogSelect;
 
     @FindBy(id = "sinpclrDocHouseDLG_Call_DoctorSelector")
+    @CacheLookup
     WebElement clearFieldSearchDoctor;
 
     @FindBy(xpath = "//button[@id='btnSave']/span")
+    @CacheLookup
     WebElement saveDialogBtn;
 
     public CreateCall(WebDriver driver) {
@@ -94,7 +119,7 @@ public class CreateCall {
         PageFactory.initElements(webDriver, this);
     }
 
-    public void createNewCall_ExistingMkab() throws InterruptedException {
+    public void createNewCall_ExistingMkab() {
         Actions action = new Actions(webDriver);
 
         wait.until(ExpectedConditions.elementToBeClickable(createCall));

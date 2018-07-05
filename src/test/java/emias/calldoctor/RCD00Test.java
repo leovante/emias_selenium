@@ -31,7 +31,9 @@ public class RCD00Test extends AbstractTest {
             String doctor_fam = ManageShedule.getSecondName(doctor_num);
             SQLDemonstration.finalizeCallLpuDoctor(doctor_fam);
             SQLDemonstration.deleteShedule(doctor_fam);
+        }
 
+        for (String doctor_num : doctors) {
             page.doctorMethods().selectDoctor(doctor_num);
             page.beforeWork().createShedule();
             page.manageShedule().verifyCreatedShedule();
