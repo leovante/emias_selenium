@@ -103,7 +103,7 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage searchFilterDoctor(String fioName) throws InterruptedException {
         clickJS(docFilter);
         sendKeysJS(docFilter, fioName);
-        action.sendKeys(Keys.ARROW_DOWN).perform();
+//        action.sendKeys(Keys.ARROW_DOWN).perform();
         action.sendKeys(Keys.ENTER).perform();
         Thread.sleep(4000);
         return this;

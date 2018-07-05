@@ -5,8 +5,10 @@ import org.apache.commons.text.RandomStringGenerator;
 public class StringGenerator {
 
     public String generator() {
-        String name = new RandomStringGenerator.Builder()
-                .withinRange('а', 'я').build()
+        String name = new RandomStringGenerator
+                .Builder()
+                .withinRange('а', 'я')
+                .build()
                 .generate(8);
         return stringUpper(name);
     }

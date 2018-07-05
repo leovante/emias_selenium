@@ -40,7 +40,7 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
 
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @RetryCountIfFailed(2)
-    public void testFilterDoctor() throws Exception {
+    public void testFilterDoctor() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
@@ -61,7 +61,9 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
         driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(nameGen);
-        page.fullCardPage().verifyCallProfile3(nameGen);
+        page.fullCardPage()
+                .verifyCallProfile3(nameGen)
+                .closeCardBtn();
 
         page.dashboardPage()
                 .searchFilterFio(nameGen)
