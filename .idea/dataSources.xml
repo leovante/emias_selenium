@@ -6,6 +6,7 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://12.8.1.66;databaseName=hlt_demonstration</jdbc-url>
+      <default-dialect>TSQL</default-dialect>
     </data-source>
     <data-source source="LOCAL" name="hlt_Krasnogorsk_GB2_200401@12.8.1.62" uuid="b998b3c3-51a8-47ef-8ba3-fbb203abb565">
       <driver-ref>sqlserver.ms</driver-ref>

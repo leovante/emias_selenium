@@ -72,10 +72,19 @@ public class SQLDemonstration {
             System.out.println("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
-                        "update hlt_CallDoctor " +
-                                "set rf_CallDoctorStatusID = 3 " +
-                                "from hlt_CallDoctor cd  inner join hlt_LPUDoctor ldoc on cd.rf_LPUDoctorID = ldoc.LPUDoctorID " +
-                                "where ldoc.FAM_V = '" + doctorName + "'";
+//                        "update hlt_CallDoctor " +
+//                                "set rf_CallDoctorStatusID = 3 " +
+//                                "from hlt_CallDoctor cd  inner join hlt_LPUDoctor ldoc on cd.rf_LPUDoctorID = ldoc.LPUDoctorID " +
+//                                "where ldoc.FAM_V = '" + doctorName + "'";
+                        "update " +
+                                "hlt_CallDoctor " +
+                                "set " +
+                                "rf_CallDoctorStatusID = 3 " +
+                                "from hlt_LPUDoctor ldoc " +
+                                "inner join hlt_DocPRVD dvd on ldoc.LPUDoctorID = dvd.rf_LPUDoctorID " +
+                                "inner join hlt_CallDoctor cd on cd.rf_DocPRVDID = dvd.DocPRVDID " +
+                                "where ldoc.FAM_V = '" + doctorName + "' and " +
+                                "cd.rf_CallDoctorStatusID != 3";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
