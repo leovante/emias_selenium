@@ -14,7 +14,6 @@ import pages.utilities.JSWaiter;
 import java.util.List;
 
 import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
 
 public class DashboardPage extends AbstractPage {
     Actions action = new Actions(driver);
@@ -156,8 +155,8 @@ public class DashboardPage extends AbstractPage {
         click(activeCallProgressFrame);
         click(adress);
 
-        assertTrue(makeWebelement(nameGen).isDisplayed());
-        assertTrue(makeWebelement(telephone).isDisplayed());
+        assertTextIsVisible(nameGen);
+        assertTextIsVisible(telephone);
         return this;
     }
 

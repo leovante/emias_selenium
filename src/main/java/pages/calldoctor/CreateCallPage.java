@@ -345,13 +345,13 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         HttpClient httpClient = HttpClients.createDefault();
 
         JSONObject kladraddress = new JSONObject();
-        kladraddress.put("addressString", "Белгородская обл., г. Белгород, ул. Есенина, д.1а, стр.2, корп.3, кв.4");
+        kladraddress.put("addressString", "Белгородская обл., г. Белгород, ул. Есенина, д.11а, стр.2, корп.3, кв.4");
         kladraddress.put("addressStringMin", "Белгородская обл., г. Белгород, ул. Есенина");
         kladraddress.put("appartment", "4");
         kladraddress.put("building", "3");
         kladraddress.put("code", "31000001000007700");
         kladraddress.put("construction", "2");
-        kladraddress.put("number", "1а");
+        kladraddress.put("number", "11а");
 
         JSONObject json = new JSONObject();
         json.put("name", nameGen);

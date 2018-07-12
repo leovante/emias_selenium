@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.calldoctor.Profiles_interfaces.Profile4;
-import pages.calldoctor.Profiles_interfaces.User;
+import pages.calldoctor.Profiles_interfaces.User0;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
@@ -26,7 +26,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterTest() {
-        SQLDemonstration.finalizePacientName(nameGen);
+        //SQLDemonstration.finalizePacientName(nameGen);
     }
 
     @Test(groups = "CD", description = "пустой вызов")
@@ -89,7 +89,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testCallSMPApi2() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 
@@ -126,10 +126,10 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
 //дата провайдер аннотацию добавить
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testRandomProfile(User user) throws InterruptedException {
+    public void testRandomProfile(User0 user0) throws InterruptedException {
         driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-        page.portalDashboard().createRandomCall(user);
+        page.portalDashboard().createRandomCall(user0);
         driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);

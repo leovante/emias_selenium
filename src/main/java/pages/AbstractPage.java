@@ -73,10 +73,9 @@ abstract public class AbstractPage {
         assertTrue(element.isDisplayed());
     }
 
-    public WebElement makeWebelement(String name) {
+    public void assertTextIsVisible(String name) {
         waitComplete();
-        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));//не убирай спан
-        return element;
+        assertTrue(driver.findElement(By.xpath("//*[contains(.,'" + name + "')]")).isDisplayed());
     }
 
     public void isDisplayedJS(String name) {

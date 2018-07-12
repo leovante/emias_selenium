@@ -5,7 +5,7 @@
     <parameter name="platform" value="WINDOWS"/>
     <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
     <parameter name="login" value="temnikov"/>
-    <parameter name="pass" value="1212"/>
+    <parameter name="pass" value="1213"/>
     <listeners>
         <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->

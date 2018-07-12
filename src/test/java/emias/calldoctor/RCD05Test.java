@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
-import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 public class RCD05Test extends AbstractTest implements Profile1, Profile2 {
@@ -23,8 +22,7 @@ public class RCD05Test extends AbstractTest implements Profile1, Profile2 {
 
     @AfterTest(groups = {"CD", "test"})
     public void afterTest() {
-        SQLDemonstration.finalizePacientName(nameGen);
-
+        //SQLDemonstration.finalizePacientName(nameGen);
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")

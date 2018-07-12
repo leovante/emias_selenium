@@ -14,8 +14,6 @@ import pages.AbstractPage;
 import pages.calldoctor.Profiles_interfaces.*;
 import pages.utilities.JSWaiter;
 
-import static org.testng.Assert.assertTrue;
-
 public class FullCardPage extends AbstractPage implements
         Profile0,
         Profile1,
@@ -423,20 +421,20 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Стенд ЕМИАС МО");
 
         //параметры профиля
-        assertTrue(makeWebelement(adressPro3).isDisplayed());
-        assertTrue(makeWebelement(pdPro3).isDisplayed());
-        assertTrue(makeWebelement(dfonPro3).isDisplayed());
-        assertTrue(makeWebelement(etazhPro3).isDisplayed());
+        assertTextIsVisible(adressPro3);
+        assertTextIsVisible(pdPro3);
+        assertTextIsVisible(dfonPro3);
+        assertTextIsVisible(etazhPro3);
 
-        assertTrue(makeWebelement(nomerPolPro3).isDisplayed());
-        assertTrue(makeWebelement(zhalobaPro3).isDisplayed());
-        assertTrue(makeWebelement(birthDayPro3).isDisplayed());
-        assertTrue(makeWebelement(goda24Pro3).isDisplayed());
-        assertTrue(makeWebelement(vozrastKatPro3).isDisplayed());
+        assertTextIsVisible(nomerPolPro3);
+        assertTextIsVisible(zhalobaPro3);
+        assertTextIsVisible(birthDayPro3);
+        assertTextIsVisible(goda24Pro3);
+        assertTextIsVisible(vozrastKatPro3);
 
-        assertTrue(makeWebelement(telephonePro3).isDisplayed());
-        assertTrue(makeWebelement(genderPro3).isDisplayed());
-        assertTrue(makeWebelement(nameGen).isDisplayed());
+        assertTextIsVisible(telephonePro3);
+        assertTextIsVisible(genderPro3);
+        assertTextIsVisible(nameGen);
         return this;
     }
 
@@ -486,20 +484,20 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Стенд ЕМИАС МО");
 
         //параметры профиля
-        assertTrue(makeWebelement(adressPro6).isDisplayed());
-        assertTrue(makeWebelement(pdPro6).isDisplayed());
-        assertTrue(makeWebelement(dfonPro6).isDisplayed());
-        assertTrue(makeWebelement(etazhPro6).isDisplayed());
+        assertTextIsVisible(adressPro6);
+        assertTextIsVisible(pdPro6);
+        assertTextIsVisible(dfonPro6);
+        assertTextIsVisible(etazhPro6);
 
-        assertTrue(makeWebelement(nomerPolPro6).isDisplayed());
-        assertTrue(makeWebelement(zhalobaPro6).isDisplayed());
-        assertTrue(makeWebelement(birthDayPro6).isDisplayed());
-        assertTrue(makeWebelement(goda24Pro6).isDisplayed());
-        assertTrue(makeWebelement(vozrastKatPro6).isDisplayed());
+        assertTextIsVisible(nomerPolPro6);
+        assertTextIsVisible(zhalobaPro6);
+        assertTextIsVisible(birthDayPro6);
+        assertTextIsVisible(goda24Pro6);
+        assertTextIsVisible(vozrastKatPro6);
 
-        assertTrue(makeWebelement(telephonePro6).isDisplayed());
-        assertTrue(makeWebelement(genderPro6).isDisplayed());
-        assertTrue(makeWebelement(nameGen).isDisplayed());
+        assertTextIsVisible(telephonePro6);
+        assertTextIsVisible(genderPro6);
+        assertTextIsVisible(nameGen);
         return this;
     }
 
@@ -547,21 +545,21 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Стенд ЕМИАС МО");
 
         //параметры профиля
-        assertTrue(makeWebelement(adressPro4).isDisplayed());
-        assertTrue(makeWebelement(pdPro4).isDisplayed());
-        assertTrue(makeWebelement(etazhPro4).isDisplayed());
-        assertTrue(makeWebelement(dfonPro4).isDisplayed());
-        assertTrue(makeWebelement(famPro4).isDisplayed());
-        assertTrue(makeWebelement(otchestvoPro4).isDisplayed());
+        assertTextIsVisible(adressPro4);
+        assertTextIsVisible(pdPro4);
+        assertTextIsVisible(etazhPro4);
+        assertTextIsVisible(dfonPro4);
+        assertTextIsVisible(famPro4);
+        assertTextIsVisible(otchestvoPro4);
 
-        assertTrue(makeWebelement(nomerPolPro4).isDisplayed());
-        assertTrue(makeWebelement(zhalobaPro4).isDisplayed());
-        assertTrue(makeWebelement(birthDayPro4).isDisplayed());
-        assertTrue(makeWebelement(goda24Pro4).isDisplayed());
-        assertTrue(makeWebelement(vozrastKatPro4).isDisplayed());
+        assertTextIsVisible(nomerPolPro4);
+        assertTextIsVisible(zhalobaPro4);
+        assertTextIsVisible(birthDayPro4);
+        assertTextIsVisible(goda24Pro4);
+        assertTextIsVisible(vozrastKatPro4);
 
         isDisplayedOnCardPage("+7 (951) 158-27-14");
-        assertTrue(makeWebelement(genderPro4).isDisplayed());
+        assertTextIsVisible(genderPro4);
         return this;
     }
 
