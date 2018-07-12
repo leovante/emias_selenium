@@ -14,6 +14,7 @@ import pages.utilities.JSWaiter;
 import java.util.List;
 
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class DashboardPage extends AbstractPage {
     Actions action = new Actions(driver);
@@ -74,6 +75,10 @@ public class DashboardPage extends AbstractPage {
     @CacheLookup
     WebElement cardSpace;
 
+    @FindBy(id = "activeDocGroup")
+    WebElement activeDocGroup;
+
+
     public DashboardPage(WebDriver driver) {
         super(driver);
     }
@@ -103,7 +108,8 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage searchFilterDoctor(String fioName) throws InterruptedException {
         clickJS(docFilter);
         sendKeysJS(docFilter, fioName);
-//        action.sendKeys(Keys.ARROW_DOWN).perform();
+        Thread.sleep(1000);
+//        waitClickable(driver.findElement(By.xpath("//call-doctor-board/st-autocompile/mat-form-field/div/div/div/div/ul/li[@data-value='" + fioName + "']")));
         action.sendKeys(Keys.ENTER).perform();
         Thread.sleep(4000);
         return this;
@@ -144,16 +150,14 @@ public class DashboardPage extends AbstractPage {
     @Step("проверяю на дашборде запись у врача в группе активные")
     public DashboardPage verifyActiveDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {
         Thread.sleep(4000);
-
-        wait.until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath("//div[@id='activeCallAllCount'][contains(text(),'1')]")));
-
-        click(driver.findElement(By.xpath("//span[contains(text(),'" + doctorFam + "')]")));
+        activeDocGroup.findElement(By.xpath("//*[contains(text(),'" + doctorFam + "')]")).click();
+//        click(driver.findElement(By.xpath("//span[contains(text(),'" + doctorFam + "')]")));
+        clickJS(activeCallProgressFrame.findElement(By.id("order")));
         click(activeCallProgressFrame);
         click(adress);
 
-        isDisplayedOnCardPage(nameGen);
-        isDisplayedOnCardPage(telephone);
+        assertTrue(makeWebelement(nameGen).isDisplayed());
+        assertTrue(makeWebelement(telephone).isDisplayed());
         return this;
     }
 

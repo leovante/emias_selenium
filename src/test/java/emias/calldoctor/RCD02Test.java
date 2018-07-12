@@ -28,7 +28,7 @@ public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profi
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "test", description = "изменить карту вызова из регистратуры")
+    @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testEditProfile1() throws Exception {
@@ -36,7 +36,7 @@ public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profi
         page.createCallPage().createCallProfile1(nameGen);
         page.editCardPage()
                 .editCallBtn()
-                .verifyCallProfile1()
+                .verifyCallProfile1(nameGen)
                 .editCallProfile5(nameGen);
         page.fullCardPage()
                 .verifyCallProfile5(nameGen)

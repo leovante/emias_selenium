@@ -40,7 +40,7 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
                 .verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
     }
 
-    @Test(groups = "CD", description = "фильтр поиск по врачу")
+    @Test(groups = "test", description = "фильтр поиск по врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException {

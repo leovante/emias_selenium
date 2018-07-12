@@ -24,7 +24,7 @@ public interface Profile5 {
     String genderPro5 = "Ж";
     String birthDayPro5 = "19.02.2016";
     String goda24Pro5 = "2 года";
-    String vozrastKatPro5 = "Ребенок";
+    String vozrastKatPro5 = "Дети";
 
     String famCallPro5 = "Автотемников";
     String nameCallPro5 = "Автотемников";

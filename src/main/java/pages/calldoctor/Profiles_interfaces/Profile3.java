@@ -23,7 +23,7 @@ public interface Profile3 {
     String genderPro3 = "Ж";
     String birthDayPro3 = "10.01.2002";
     String goda24Pro3 = "16 лет";
-    String vozrastKatPro3 = "Ребенок";
+    String vozrastKatPro3 = "Дети";
 
 //    String famCallPro3 = "Автотемников";
 //    String nameCallPro3 = "Автотемников";

@@ -26,6 +26,7 @@ import java.io.InputStream;
 
 
 public class CreateCallPage extends AbstractPage implements Profile1, Profile2, Profile0, Profile4 {
+    Actions action = new Actions(driver);
 
     @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
     @CacheLookup
@@ -55,15 +56,12 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
     WebElement chkBoxTelephone;
 
     @FindBy(xpath = "//button[2]/span/mat-icon")
-    @CacheLookup
     WebElement hz;
 
     @FindBy(xpath = "//input[@placeholder='Возр. категория']")
-    @CacheLookup
     WebElement vozr;
 
-    @FindBy(xpath = "//span[contains(.,'Взрослый')]")
-    @CacheLookup
+    @FindBy(xpath = "//span[contains(.,'Взрослые')]")
     WebElement hz2;
 
     @FindBy(xpath = "//input[@placeholder='Корпус']")
@@ -176,14 +174,8 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
 
     @Step("создаю пустой вызов")
     public void createCallProfile0() {
-        Actions action = new Actions(driver);
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        click(addCallBtn);
-        waitVisibility(noviyVizov);
-
-/*обязательные поля*/
+        createCallBtn();
+        /*обязательные поля*/
         sendKeysJS(dom, domPro0);
         click(chkBoxTelephone);
 
@@ -191,7 +183,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         click(vozr);
         hz2.click();
 
-/*жалоба*/
+        /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + zhalobaPro0 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
@@ -204,15 +196,9 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
 
     @Step("создаю вызов без МКАБ + Регистратура")
     public void createCallProfile1(String nameGen) {
-        Actions action = new Actions(driver);
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        JSWaiter.waitJQueryAngular();
+        createCallBtn();
 
-        click(addCallBtn);
-        waitVisibility(noviyVizov);
-
-/*адрес*/
+        /*адрес*/
         click(cancelAdress);
         clickJS(placeholder_adress);
 
@@ -225,7 +211,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         placeholder_adress.sendKeys(adressPro1_3);
         clickJS(list_first_container);
 
-/*обязательные поля*/
+        /*обязательные поля*/
         sendKeysJS(dom, domPro1);
 //        click(chkBoxTelephone);
 
@@ -238,7 +224,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         click(vozr);
         hz2.click();
 
-/*необязательные поля*/
+        /*необязательные поля*/
         sendKeysJS(korpus, korpusPro1);
         sendKeysJS(stroenie, stroeniePro1);
         sendKeysJS(kvartira, kvartiraPro1);
@@ -247,13 +233,13 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         sendKeysJS(etazh, etazhPro1);
         click(sex1);
 
-/*жалоба*/
+        /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + zhalobaPro1 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
-/*кто пациент*/
+        /*кто пациент*/
         sendKeysJS(seriyaPol, seriyaPolPro1);
         sendKeysJS(nomerPol, nomerPolPro1);
         click(fam);
@@ -262,7 +248,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         sendKeysJS(otchestvo, otchestvoPro1);
         sendKeysJS(birthDay, birthDayPro1);
 
-/*кто вызывает*/
+        /*кто вызывает*/
         tipVisivaushego.click();
         pacient.click();
         saveBtns.click();
@@ -270,18 +256,14 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
 
     @Step("создаю вызов с МКАБ + СМП")
     public void createCallProfile2(String nameGen) {
-        Actions action = new Actions(driver);
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        click(addCallBtn);
+        createCallBtn();
 
-/*кто пациент*/
+        /*кто пациент*/
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
         sendKeysJS(findPatientInput, nomerPolPro2);
         clickJS(famPro2Xpath);
 
-/*обязательные поля*/
+        /*обязательные поля*/
         click(source0);
         sendKeysJS(dom, domPro2);
 
@@ -290,20 +272,20 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         telephoneNumber.click();
         action.sendKeys(Keys.SPACE).perform();
 
-/*необязательные поля*/
+        /*необязательные поля*/
         sendKeysJS(pd, pdPro2);
         sendKeysJS(dfon, dfonPro2);
         sendKeysJS(etazh, etazhPro2);
         click(sex1);
 
-/*жалоба*/
+        /*жалоба*/
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + zhalobaPro2 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
 
-/*кто вызывает*/
+        /*кто вызывает*/
         sendKeysJS(callFamily, famCallPro2);
         sendKeysJS(callName, nameGen);
         sendKeysJS(callPatronymic, otCallPro2);
@@ -312,7 +294,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         saveBtns.click();
     }
 
-    @Step("создаю вызов от СМП по api")
+    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfile3(String nameGen) {
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
@@ -321,7 +303,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         json.put("ot", "СМП");
         json.put("birthdate", "2002-01-10");
         json.put("seriespol", "");
-        json.put("numberpol", "5098799789000154");
+        json.put("numberpol", "5098799789000154");//реальный мкаб
         json.put("gender", "2");
         json.put("address", "это не формализованный адрес");
         json.put("complaint", "тестовый вызов");
@@ -358,14 +340,68 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         }
     }
 
+    @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
+    public void createCallProfile6(String nameGen) {
+        HttpClient httpClient = HttpClients.createDefault();
+
+        JSONObject kladraddress = new JSONObject();
+        kladraddress.put("addressString", "Белгородская обл., г. Белгород, ул. Есенина, д.1а, стр.2, корп.3, кв.4");
+        kladraddress.put("addressStringMin", "Белгородская обл., г. Белгород, ул. Есенина");
+        kladraddress.put("appartment", "4");
+        kladraddress.put("building", "3");
+        kladraddress.put("code", "31000001000007700");
+        kladraddress.put("construction", "2");
+        kladraddress.put("number", "1а");
+
+        JSONObject json = new JSONObject();
+        json.put("name", nameGen);
+        json.put("family", "Тестов");
+        json.put("ot", "Тестович");
+        json.put("birthdate", "2000-01-01");
+        json.put("seriespol", "404");
+        json.put("numberpol", "501");
+        json.put("gender", "1");
+        json.put("complaint", "тестовый вызов по апи от СМП");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+79606223551");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "12");
+        json.put("floor", "5");
+        json.put("kladraddress", kladraddress);
+
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
+
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        } finally {
+//            driver.close();
+        }
+    }
+
     @Step("открыл страницу создания вызова")
     public void createCallBtn() {
-        Actions action = new Actions(driver);
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         click(addCallBtn);
         waitVisibility(noviyVizov);
-        saveBtns.click();
     }
 }

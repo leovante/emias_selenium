@@ -42,16 +42,12 @@ public abstract class AbstractTest {
                                @Optional String login,
                                @Optional String pass) {
         System.out.println("Site: " + site);
-        page.loginPage().login(site, login, pass);
+        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
         String url = driver.getCurrentUrl();
-        curUrlCalldoctor = url;
-    }
-
-    @AfterGroups(groups = "CD", alwaysRun = true)
-    public void afterGroupsCD() {
-        page.dashboardPage().exitToMis();
+        curUrlCalldoctor = "http://192.168.7.48:8020/test/call/call_doctor_ui/call-doctor/board;docPrvdId=1210?ticket=KEHrb%2FkvTOKr3u1HlAyhK0y4BHiG20Bmv7l42aN6jt7NaIPz4%2BKHUinBRa9RxaIPOqWvpzGkcxs%2FfydP9toOUH2ydMRApDs%2BrUk7D78u0BxVOx1TwGypg%2BYocd0TN7cD%2B1dQELdApXKGQ8tmACh8zsk63PnHh1Suepda6o9cEDPu3KflSmQDCySa2mNyoic9OCE%2BkzAN2PWg8%2BM%2BplqaOMVQfybefhAzN28%2FinUIM%2B1AGdHPRp57e5T2Wh4N1hDA6FxPtDBDj25m%2BtJ3eeu9Qgv2miJQR8mJSwS4luTsbBpwPzTF&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
+//        curUrlCalldoctor = url;
     }
 
     @Parameters(value = {"site", "login", "pass"})
@@ -60,7 +56,7 @@ public abstract class AbstractTest {
                                 @Optional String login,
                                 @Optional String pass) {
         System.out.println("Site: " + site);
-        page.loginPage().login(site, login, pass);
+        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
         String url = driver.getCurrentUrl();
         curUrlCalldoctor = url;
     }
@@ -80,11 +76,12 @@ public abstract class AbstractTest {
                                  @Optional String login,
                                  @Optional String pass) {
         System.out.println("Site: " + site);
-        page.loginPage().login(site, login, pass);
+        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
 //        driver.get("http://mis.softrust.ru/mis/Main/Default");
         page.homePage().callDoctorBtn();
         pages.utilities.SwitchToPage.switchToPage();
         String url = driver.getCurrentUrl();
-        curUrlCalldoctor = url;
+        curUrlCalldoctor = "http://192.168.7.48:8020/test/call/call_doctor_ui/call-doctor/board;docPrvdId=1210?ticket=KEHrb%2FkvTOKr3u1HlAyhK0y4BHiG20Bmv7l42aN6jt7NaIPz4%2BKHUinBRa9RxaIPOqWvpzGkcxs%2FfydP9toOUH2ydMRApDs%2BrUk7D78u0BxVOx1TwGypg%2BYocd0TN7cD%2B1dQELdApXKGQ8tmACh8zsk63PnHh1Suepda6o9cEDPu3KflSmQDCySa2mNyoic9OCE%2BkzAN2PWg8%2BM%2BplqaOMVQfybefhAzN28%2FinUIM%2B1AGdHPRp57e5T2Wh4N1hDA6FxPtDBDj25m%2BtJ3eeu9Qgv2miJQR8mJSwS4luTsbBpwPzTF&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
+//        curUrlCalldoctor = url;
     }
 }

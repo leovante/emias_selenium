@@ -4,8 +4,8 @@ import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
@@ -17,14 +17,14 @@ import pages.utilities.StringGenerator;
 public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
     String nameGen;
 
-    @BeforeTest(groups = {"CD", "test"})
+    @BeforeMethod(groups = {"CD", "test"})
     public void beforeTest() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
-    @AfterTest(groups = {"CD", "test"})
+    @AfterMethod(groups = {"CD", "test"})
     public void afterTest() {
         SQLDemonstration.finalizePacientName(nameGen);
     }
@@ -78,11 +78,26 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallSMPApi() throws InterruptedException {
+        driver.get(curUrlCalldoctor);
+
         page.createCallPage().createCallProfile3(nameGen);
         driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(nameGen);
         page.fullCardPage().verifyCallProfile3(nameGen);
+    }
+
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(0)
+    public void testCallSMPApi2() throws InterruptedException {
+        driver.get(curUrlCalldoctor);
+
+        page.createCallPage().createCallProfile6(nameGen);
+        driver.get(curUrlCalldoctor);
+
+        page.dashboardPage().openNewCallProgressFrame(nameGen);
+        page.fullCardPage().verifyCallProfile6(nameGen);
     }
 
     @Test(groups = "CD", description = "вызов ребенка с Портала")
@@ -107,7 +122,8 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         page.fullCardPage().verifyCallProfile4(nameGen);
     }
 
-    @Test(groups = "test", description = "создание вызова через портал по рандомному МКАБу")//дата провайдер аннотацию добавить
+    @Test(groups = "tes", description = "создание вызова через портал по рандомному МКАБу")
+//дата провайдер аннотацию добавить
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testRandomProfile(User user) throws InterruptedException {

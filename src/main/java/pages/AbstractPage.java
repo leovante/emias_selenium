@@ -73,6 +73,12 @@ abstract public class AbstractPage {
         assertTrue(element.isDisplayed());
     }
 
+    public WebElement makeWebelement(String name) {
+        waitComplete();
+        WebElement element = driver.findElement(By.xpath("//*[contains(text(),'" + name + "')]"));//не убирай спан
+        return element;
+    }
+
     public void isDisplayedJS(String name) {
         JSWaiter.waitJQueryAngular();
         JSWaiter.waitUntilJSReady();

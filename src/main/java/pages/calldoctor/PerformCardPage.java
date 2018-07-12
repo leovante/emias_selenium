@@ -26,7 +26,6 @@ public class PerformCardPage extends AbstractPage implements Profile1, Profile5 
     WebElement cancelBirthDate;
 
     @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
-    @CacheLookup
     WebElement list_first_container;
 
     @FindBy(xpath = "//input[@placeholder='Адрес']")
@@ -144,6 +143,10 @@ public class PerformCardPage extends AbstractPage implements Profile1, Profile5 
     @FindBy(id = "phone")
     @CacheLookup
     WebElement phone;
+
+    @FindBy(id = "age")
+    @CacheLookup
+    WebElement age;
 
     @FindBy(xpath = "//div[contains(.,'Найдена МКАБ пациента Петров')]")
     @CacheLookup
@@ -303,7 +306,7 @@ public class PerformCardPage extends AbstractPage implements Profile1, Profile5 
     }
 
     @Step("проверяю на странице редактирования корректность данных")
-    public PerformCardPage verifyCallProfile1() throws InterruptedException {
+    public PerformCardPage verifyCallProfile1(String nameGen) throws InterruptedException {
         JSWaiter.waitJQueryAngular();
 
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
@@ -312,42 +315,34 @@ public class PerformCardPage extends AbstractPage implements Profile1, Profile5 
 
         Thread.sleep(700);
         assertTrue(getWebElementValue(phone).equals(telephonePro1));
+        assertTrue(getWebElementValue(seriyaPol).equals(seriyaPolPro1));
+        assertTrue(getWebElementValue(nomerPol).equals(nomerPolPro1));
+        assertTrue(getWebElementValue(fam).equals(famPro1));
+        assertTrue(getWebElementValue(name).equals(nameGen));
+        assertTrue(getWebElementValue(otchestvo).equals(otchestvoPro1));
+        assertTrue(getWebElementValue(birthDateTemp).equals(birthDayPro1));
+        assertTrue(getWebElementValue(age).equals(goda24Pro1));
+        assertTrue(getWebElementValue(vozr).equals(vozrastKatPro1));
+        assertTrue(getWebElementValue(placeholder_adress).equals(adressPro1editPage));
+        assertTrue(getWebElementValue(dom).equals(domPro1));
+        assertTrue(getWebElementValue(korpus).equals(korpusPro1));
+        assertTrue(getWebElementValue(stroenie).equals(stroeniePro1));
+        assertTrue(getWebElementValue(kvartira).equals(kvartiraPro1));
+        assertTrue(getWebElementValue(pd).equals(pdPro1));
+        assertTrue(getWebElementValue(dfon).equals(dfonPro1));
+        assertTrue(getWebElementValue(etazh).equals(etazhPro1));
+        isDisplayed(zhalobaPro1);
+        assertTrue(getWebElementValue(tipVisivaushego).equals("Представитель"));
+        assertTrue(getWebElementValue(telephoneNumber).equals(telephonePro1));
+        //фио представителя нехватает
 
-        /**
-         * источник
-         * вид вызова
-         * серия
-         * номер
-         * фам
-         * имя
-         * от
-         * др
-         * возраст
-         * возр кат
-         * пол
-         * адрес
-         * дом
-         * корпус
-         * строение
-         * квартира
-         * п-д
-         * д-фон
-         * этаж
-         * жалобы
-         * тип вызывающего
-         * фам
-         * имя
-         * от
-         * телефон
-         */
-
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-        isDisplayedOnCardPage("КТО ВЫЗЫВАЕТ");
-        isDisplayedOnCardPage("Телефон");
+        isDisplayed("Источник");
+        isDisplayed("Вид вызова");
+        isDisplayed("КТО ПАЦИЕНТ");
+        isDisplayed("АДРЕС");
+        isDisplayed("ЖАЛОБЫ");
+        isDisplayed("КТО ВЫЗЫВАЕТ");
+        isDisplayed("Телефон");
 
         return this;
     }

@@ -84,7 +84,7 @@ public class SetDoctorPage extends AbstractPage {
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'ЗАГРУЗКА СЕГОДНЯ')]")));
+                        .xpath("//div[contains(., '" + doctorName + "')]")));
 
 
         waitClickableJS(driver.findElement(By.xpath("//div[contains(text(),'" + doctorName + "')]")));

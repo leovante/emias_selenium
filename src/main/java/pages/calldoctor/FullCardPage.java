@@ -14,13 +14,16 @@ import pages.AbstractPage;
 import pages.calldoctor.Profiles_interfaces.*;
 import pages.utilities.JSWaiter;
 
+import static org.testng.Assert.assertTrue;
+
 public class FullCardPage extends AbstractPage implements
         Profile0,
         Profile1,
         Profile2,
         Profile3,
         Profile4,
-        Profile5 {
+        Profile5,
+        Profile6 {
 
     @FindBy(id = "doneCall")
     @CacheLookup
@@ -89,7 +92,7 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Новый");
         isDisplayedOnCardPage("Первичный");
         isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Взрослый");
+        isDisplayedOnCardPage("Взрослые");
         isDisplayedOnCardPage("Карта создана");
         isDisplayedOnCardPage("Не назначен");
 
@@ -138,7 +141,7 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Новый");
         isDisplayedOnCardPage("Первичный");
         isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Взрослый");
+        isDisplayedOnCardPage("Взрослые");
         isDisplayedOnCardPage("Пациент");
         isDisplayedOnCardPage("Карта создана");
         isDisplayedOnCardPage("Не назначен");
@@ -404,6 +407,68 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Пол");
         isDisplayedOnCardPage("Полис");
         isDisplayedOnCardPage("Телефон");
+        isDisplayedOnCardPage("Врач");
+        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
+
+        isDisplayedOnCardPage("Новый");
+        isDisplayedOnCardPage("Неотложный");
+        isDisplayedOnCardPage("СМП");
+
+        //в истории вызова
+        isDisplayedOnCardPage("АВТОР");
+        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
+        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
+        isDisplayedOnCardPage("Новый");
+        isDisplayedOnCardPage("Карта создана");
+        isDisplayedOnCardPage("Стенд ЕМИАС МО");
+
+        //параметры профиля
+        assertTrue(makeWebelement(adressPro3).isDisplayed());
+        assertTrue(makeWebelement(pdPro3).isDisplayed());
+        assertTrue(makeWebelement(dfonPro3).isDisplayed());
+        assertTrue(makeWebelement(etazhPro3).isDisplayed());
+
+        assertTrue(makeWebelement(nomerPolPro3).isDisplayed());
+        assertTrue(makeWebelement(zhalobaPro3).isDisplayed());
+        assertTrue(makeWebelement(birthDayPro3).isDisplayed());
+        assertTrue(makeWebelement(goda24Pro3).isDisplayed());
+        assertTrue(makeWebelement(vozrastKatPro3).isDisplayed());
+
+        assertTrue(makeWebelement(telephonePro3).isDisplayed());
+        assertTrue(makeWebelement(genderPro3).isDisplayed());
+        assertTrue(makeWebelement(nameGen).isDisplayed());
+        return this;
+    }
+
+    @Step("проверяю новый вызов от api СМП без МКАБ")
+    public FullCardPage verifyCallProfile6(String nameGen) throws InterruptedException {
+        JSWaiter.waitJQueryAngular();
+        JSWaiter.waitUntilJSReady();
+
+        WebElement dynamicElement = (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .xpath("//div[contains(., 'Карта вызова')]")));
+
+        Thread.sleep(700);
+        isDisplayedOnCardPage("Дата");
+        isDisplayedOnCardPage("Время");
+        isDisplayedOnCardPage("Статус");
+        isDisplayedOnCardPage("Вид вызова");
+        isDisplayedOnCardPage("Источник");
+        isDisplayedOnCardPage("АДРЕС");
+        isDisplayedOnCardPage("П-д");
+        isDisplayedOnCardPage("Домофон");
+        isDisplayedOnCardPage("Этаж");
+        isDisplayedOnCardPage("ЖАЛОБЫ");
+
+        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
+        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
+        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
+        isDisplayedOnCardPage("Возрастная категория");
+        isDisplayedOnCardPage("Возраст");
+        isDisplayedOnCardPage("Пол");
+        isDisplayedOnCardPage("Полис");
+        isDisplayedOnCardPage("Телефон");
 //        isDisplayedOnCardPage("Тип вызывающего");
         isDisplayedOnCardPage("Врач");
         isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
@@ -420,31 +485,21 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Карта создана");
         isDisplayedOnCardPage("Стенд ЕМИАС МО");
 
-
         //параметры профиля
-        isDisplayedOnCardPage(adressPro3);
-        isDisplayedOnCardPage(pdPro3);
-        isDisplayedOnCardPage(dfonPro3);
-        isDisplayedOnCardPage(etazhPro3);
-//        isDisplayedOnCardPage(famPro3);
-//        isDisplayedOnCardPage(namePro3);
+        assertTrue(makeWebelement(adressPro6).isDisplayed());
+        assertTrue(makeWebelement(pdPro6).isDisplayed());
+        assertTrue(makeWebelement(dfonPro6).isDisplayed());
+        assertTrue(makeWebelement(etazhPro6).isDisplayed());
 
-//        isDisplayedOnCardPage(otchestvoPro3);
-        isDisplayedOnCardPage(nomerPolPro3);
-        isDisplayedOnCardPage(zhalobaPro3);
-        isDisplayedOnCardPage(birthDayPro3);
-        isDisplayedOnCardPage(goda24Pro3);
-        isDisplayedOnCardPage(vozrastKatPro3);
+        assertTrue(makeWebelement(nomerPolPro6).isDisplayed());
+        assertTrue(makeWebelement(zhalobaPro6).isDisplayed());
+        assertTrue(makeWebelement(birthDayPro6).isDisplayed());
+        assertTrue(makeWebelement(goda24Pro6).isDisplayed());
+        assertTrue(makeWebelement(vozrastKatPro6).isDisplayed());
 
-        isDisplayedOnCardPage(telephonePro3);
-        isDisplayedOnCardPage(genderPro3);
-        isDisplayedOnCardPage(nameGen);
-
-//        isDisplayedOnCardPage(nameCallPro3);
-//        isDisplayedOnCardPage(famCallPro3);
-//        isDisplayedOnCardPage(otCallPro3);
-
-//        isDisplayedOnCardPage(stationSMPPro3);
+        assertTrue(makeWebelement(telephonePro6).isDisplayed());
+        assertTrue(makeWebelement(genderPro6).isDisplayed());
+        assertTrue(makeWebelement(nameGen).isDisplayed());
         return this;
     }
 
@@ -492,21 +547,21 @@ public class FullCardPage extends AbstractPage implements
         isDisplayedOnCardPage("Стенд ЕМИАС МО");
 
         //параметры профиля
-        isDisplayedOnCardPage(adressPro4);
-        isDisplayedOnCardPage(pdPro4);
-        isDisplayedOnCardPage(etazhPro4);
-        isDisplayedOnCardPage(dfonPro4);
-        isDisplayedOnCardPage(famPro4);
-        isDisplayedOnCardPage(otchestvoPro4);
+        assertTrue(makeWebelement(adressPro4).isDisplayed());
+        assertTrue(makeWebelement(pdPro4).isDisplayed());
+        assertTrue(makeWebelement(etazhPro4).isDisplayed());
+        assertTrue(makeWebelement(dfonPro4).isDisplayed());
+        assertTrue(makeWebelement(famPro4).isDisplayed());
+        assertTrue(makeWebelement(otchestvoPro4).isDisplayed());
 
-        isDisplayedOnCardPage(nomerPolPro4);
-        isDisplayedOnCardPage(zhalobaPro4);
-        isDisplayedOnCardPage(birthDayPro4);
-        isDisplayedOnCardPage(goda24Pro4);
-        isDisplayedOnCardPage(vozrastKatPro4);
+        assertTrue(makeWebelement(nomerPolPro4).isDisplayed());
+        assertTrue(makeWebelement(zhalobaPro4).isDisplayed());
+        assertTrue(makeWebelement(birthDayPro4).isDisplayed());
+        assertTrue(makeWebelement(goda24Pro4).isDisplayed());
+        assertTrue(makeWebelement(vozrastKatPro4).isDisplayed());
 
         isDisplayedOnCardPage("+7 (951) 158-27-14");
-        isDisplayedOnCardPage(genderPro4);
+        assertTrue(makeWebelement(genderPro4).isDisplayed());
         return this;
     }
 
