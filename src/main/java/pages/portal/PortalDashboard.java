@@ -59,25 +59,33 @@ public class PortalDashboard extends AbstractPage {
     }
 
     @Step("создаю вызов через портал")
-    public void createCall(String nomPol,
-                           String birthDay,
-                           String adress,
-                           String pod,
-                           String etazh,
-                           String domofon,
-                           String telephone,
-                           String zhaloba) {
-        sendKeys(nPolField, nomPol);
-        sendKeys(birthdayField, birthDay);
+    public void createCall(User user) {
+        //сделать цикл, который делал бы проверку всего что есть в классе профиля
+        //сделать проверку
+/**
+ * public class Item
+ * {
+ *   ...
+ *   public virtual void CalculateCost() { ... }
+ * }
+ *
+ * public class Boots : Item
+ * {
+ *   public override void CalculateCost() { ... }
+ * }
+ */
+//        sendKeys(nPolField, user.getProfile());
+//        sendKeys(nPolField, nomPol);
+//        sendKeys(birthdayField, birthDay);
         click(pereytiVElectrRegistr);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
 
-        sendKeys(call_address, adress);
-        sendKeys(call_entrance, pod);
-        sendKeys(call_stage, etazh);
-        sendKeys(call_doorphone, domofon);
-        sendKeys(call_phone, telephone);
-        sendKeys(call_description, zhaloba);
+//        sendKeys(call_address, adress);
+//        sendKeys(call_entrance, pod);
+//        sendKeys(call_stage, etazh);
+//        sendKeys(call_doorphone, domofon);
+//        sendKeys(call_phone, telephone);
+//        sendKeys(call_description, zhaloba);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
         wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
         assertTrue(uspeshnoVizvaliVracha.isDisplayed());

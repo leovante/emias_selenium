@@ -29,11 +29,16 @@ public class User {
     String doctorNamePro1 = "Дмитрий";
     String doctorFamPro1 = "Темников";
 
+
     public String getBirthDay() {
         return birthDay;
     }
 
     public String getNumPol() {
         return numPol;
+    }
+
+    public User getProfile() {
+        return this;
     }
 }

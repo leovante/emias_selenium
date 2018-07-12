@@ -7,11 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
+import pages.calldoctor.Profiles_interfaces.User;
 import pages.utilities.DriverManager;
 import pages.utilities.JSWaiter;
 import pages.utilities.SwitchToPage;
 
 public abstract class AbstractTest {
+    public User user;
     public static WebDriver driver;
     public static WebDriverWait wait;
     public static Pages page;
