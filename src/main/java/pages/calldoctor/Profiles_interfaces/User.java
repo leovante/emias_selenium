@@ -29,6 +29,7 @@ public class User {
     String doctorNamePro1 = "Дмитрий";
     String doctorFamPro1 = "Темников";
 
+
     public String getBirthDay() {
         return birthDay;
     }
@@ -37,7 +38,7 @@ public class User {
         return numPol;
     }
 
-    public User() {
-
+    public User getProfile() {
+        return this;
     }
 }
