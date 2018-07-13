@@ -36,4 +36,8 @@ public class User {
     public String getNumPol() {
         return numPol;
     }
+
+    public User() {
+
+    }
 }

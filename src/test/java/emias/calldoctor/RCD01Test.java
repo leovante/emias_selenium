@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.calldoctor.Profiles_interfaces.Profile4;
-import pages.calldoctor.Profiles_interfaces.User0;
+import pages.calldoctor.Profiles_interfaces.User;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
@@ -107,15 +107,15 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         driver.manage().deleteAllCookies();
         driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-        page.portalDashboard().createCall(
-                nomerPolPro4,
-                birthDayPro4,
-                adressPro4,
-                pdPro4,
-                etazhPro4,
-                dfonPro4,
-                telephonePro4,
-                zhalobaPro4);
+        page.portalDashboard().createCall();
+//                nomerPolPro4,
+//                birthDayPro4,
+//                adressPro4,
+//                pdPro4,
+//                etazhPro4,
+//                dfonPro4,
+//                telephonePro4,
+//                zhalobaPro4);
         driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);
@@ -126,7 +126,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
 //дата провайдер аннотацию добавить
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testRandomProfile(User0 user0) throws InterruptedException {
+    public void testRandomProfile(User user0) throws InterruptedException {
         driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
         page.portalDashboard().createRandomCall(user0);

@@ -186,4 +186,6 @@ abstract public class AbstractPage {
     public String getWebElementValue(WebElement element) {
         return element.getAttribute("value");
     }
+
+    public abstract void createCall();
 }

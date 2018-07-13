@@ -59,34 +59,51 @@ public class PortalDashboard extends AbstractPage {
     }
 
     @Step("создаю вызов через портал")
-    public void createCall(String nomPol,
-                           String birthDay,
-                           String adress,
-                           String pod,
-                           String etazh,
-                           String domofon,
-                           String telephone,
-                           String zhaloba) {
-        sendKeys(nPolField, nomPol);
-        sendKeys(birthdayField, birthDay);
-        click(pereytiVElectrRegistr);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
-
-        sendKeys(call_address, adress);
-        sendKeys(call_entrance, pod);
-        sendKeys(call_stage, etazh);
-        sendKeys(call_doorphone, domofon);
-        sendKeys(call_phone, telephone);
-        sendKeys(call_description, zhaloba);
+    public void createCall(Object user) {
+//        sendKeys(nPolField, nomPol);
+//        sendKeys(birthdayField, birthDay);
+//        click(pereytiVElectrRegistr);
+//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
+//
+//        sendKeys(call_address, adress);
+//        sendKeys(call_entrance, pod);
+//        sendKeys(call_stage, etazh);
+//        sendKeys(call_doorphone, domofon);
+//        sendKeys(call_phone, telephone);
+//        sendKeys(call_description, zhaloba);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
         wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
         assertTrue(uspeshnoVizvaliVracha.isDisplayed());
     }
+//    @Step("создаю вызов через портал")
+//    public void createCall(String nomPol,
+//                           String birthDay,
+//                           String adress,
+//                           String pod,
+//                           String etazh,
+//                           String domofon,
+//                           String telephone,
+//                           String zhaloba) {
+//        sendKeys(nPolField, nomPol);
+//        sendKeys(birthdayField, birthDay);
+//        click(pereytiVElectrRegistr);
+//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
+//
+//        sendKeys(call_address, adress);
+//        sendKeys(call_entrance, pod);
+//        sendKeys(call_stage, etazh);
+//        sendKeys(call_doorphone, domofon);
+//        sendKeys(call_phone, telephone);
+//        sendKeys(call_description, zhaloba);
+//        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
+//        wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
+//        assertTrue(uspeshnoVizvaliVracha.isDisplayed());
+//    }
 
     @Step("создаю рандомный вызов через портал")
-    public PortalDashboard createRandomCall(User user) {
-        sendKeys(nPolField, user.getNumPol());
-        sendKeys(birthdayField, user.getBirthDay());
+    public PortalDashboard createRandomCall(User user0) {
+        sendKeys(nPolField, user0.getNumPol());
+        sendKeys(birthdayField, user0.getBirthDay());
 
 
         click(pereytiVElectrRegistr);
