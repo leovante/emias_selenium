@@ -115,7 +115,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         page.fullCardPage().verifyCallProfile4(nameGen);
     }
 
-    @Test(groups = "tes", description = "создание вызова через портал по рандомному МКАБу")
+    @Test(groups = "test", description = "создание вызова через портал по рандомному МКАБу")
 //дата провайдер аннотацию добавить
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
