@@ -33,4 +33,6 @@ public interface Profile4 {
     String stationSMPPro4 = "Суперстанция";
 
     String zhalobaPro4 = "автотест создание вызова по МКАБ через Портал";
+
+
 }

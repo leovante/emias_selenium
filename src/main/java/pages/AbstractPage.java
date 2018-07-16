@@ -74,7 +74,7 @@ abstract public class AbstractPage {
     }
 
     public void assertTextIsVisible(String name) {
-        waitComplete();
+        waitComplete();//сделать тут перебор всех элементов и поставить условие что хотя бы один из них видимый
         assertTrue(driver.findElement(By.xpath("//*[contains(.,'" + name + "')]")).isDisplayed());
     }
 
@@ -186,6 +186,4 @@ abstract public class AbstractPage {
     public String getWebElementValue(WebElement element) {
         return element.getAttribute("value");
     }
-
-    public abstract void createCall();
 }

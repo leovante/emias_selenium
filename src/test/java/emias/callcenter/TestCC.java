@@ -15,7 +15,7 @@ public class TestCC extends AbstractTest {
     @BeforeTest(groups = "CC")
     public void patient() {
         ArrayList<String> date = new ArrayList<>();
-        date.add("18.08.1991");
+//        date.add("18.08.1991");
         date.add("10.01.2002");
         date.add("25.10.1999");
         date.add("30.11.1975");
@@ -23,7 +23,7 @@ public class TestCC extends AbstractTest {
         date.add("12.12.2012");
 
         ArrayList<String> pol = new ArrayList<>();
-        pol.add("5051800881001952");
+//        pol.add("5051800881001952");
         pol.add("5098799789000154");
         pol.add("45 558320");
         pol.add("38-09 560219");

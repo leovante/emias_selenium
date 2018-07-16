@@ -16,11 +16,11 @@
                 <include name="test"/>
             </run>
         </groups>
-        <packages>
-            <package name="emias.calldoctor"/>
-        </packages>
-        <!--<classes>-->
-        <!--<class name="emias.calldoctor.RCD01Test"/>-->
-        <!--</classes>-->
+        <!--<packages>-->
+        <!--<package name="emias.calldoctor"/>-->
+        <!--</packages>-->
+        <classes>
+            <class name="emias.calldoctor.RCD01Test"/>
+        </classes>
     </test>
 </suite>

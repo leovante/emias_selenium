@@ -8,7 +8,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
-import pages.calldoctor.Profiles_interfaces.User;
+import pages.calldoctor.Profiles_interfaces.User6;
 
 import static org.testng.Assert.assertTrue;
 
@@ -32,79 +32,82 @@ public class PortalDashboard extends AbstractPage {
 
     @FindBy(id = "call_address")
     @CacheLookup
-    WebElement call_address;
+    WebElement address;
 
     @FindBy(id = "call_entrance")
     @CacheLookup
-    WebElement call_entrance;
+    WebElement entrance;
 
     @FindBy(id = "call_stage")
     @CacheLookup
-    WebElement call_stage;
+    WebElement stage;
 
     @FindBy(id = "call_doorphone")
     @CacheLookup
-    WebElement call_doorphone;
+    WebElement doorphone;
 
     @FindBy(id = "call_phone")
     @CacheLookup
-    WebElement call_phone;
+    WebElement phone;
 
     @FindBy(id = "call_description")
     @CacheLookup
-    WebElement call_description;
+    WebElement description;
 
     public PortalDashboard(WebDriver driver) {
         super(driver);
     }
 
-    @Step("создаю вызов через портал")
-    public void createCall(User user) {
+    public void createCall(User6 user) {
+        this.createCallHelper(user);
         //сделать цикл, который делал бы проверку всего что есть в классе профиля
         //сделать проверку
-/**
- * public class Item
- * {
- *   ...
- *   public virtual void CalculateCost() { ... }
- * }
- *
- * public class Boots : Item
- * {
- *   public override void CalculateCost() { ... }
- * }
- */
-//        sendKeys(nPolField, user.getProfile());
-//        sendKeys(nPolField, nomPol);
-//        sendKeys(birthdayField, birthDay);
+//  public class Item
+//  {
+//    ...
+//    public virtual void CalculateCost() { ... }
+//  }
+//
+//  public class Boots : Item
+//  {
+//    public override void CalculateCost() { ... }
+//  }
+    }
+
+    @Step("создаю вызов через портал")
+    public void createCallHelper(User6 user) {
+        sendKeys(nPolField, user.getData("nPol"));
+        sendKeys(birthdayField, user.getData("birthDay"));
+
         click(pereytiVElectrRegistr);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
 
-//        sendKeys(call_address, adress);
-//        sendKeys(call_entrance, pod);
-//        sendKeys(call_stage, etazh);
-//        sendKeys(call_doorphone, domofon);
-//        sendKeys(call_phone, telephone);
-//        sendKeys(call_description, zhaloba);
+        sendKeys(address, user.getData("adress"));
+        sendKeys(entrance, user.getData("pd"));
+        sendKeys(stage, user.getData("etazh"));
+        sendKeys(doorphone, user.getData("dfon"));
+        sendKeys(phone, user.getData("telephone"));
+        sendKeys(description, user.getData("zhaloba"));
+
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
         wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
         assertTrue(uspeshnoVizvaliVracha.isDisplayed());
     }
 
     @Step("создаю рандомный вызов через портал")
-    public PortalDashboard createRandomCall(User user) {
-        sendKeys(nPolField, user.getNumPol());
-        sendKeys(birthdayField, user.getBirthDay());
+    public PortalDashboard createRandomCall() {
+//        sendKeys(nPolField, user.getNumPol());
+//        sendKeys(birthdayField, user.getBirthDay());
 
 
         click(pereytiVElectrRegistr);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"))).click();
-//        sendKeys(call_address, adress);
-//        sendKeys(call_entrance, pod);
-//        sendKeys(call_stage, etazh);
-//        sendKeys(call_doorphone, domofon);
-//        sendKeys(call_phone, telephone);
-//        sendKeys(call_description, zhaloba);
+//        sendKeys(address, adress);
+//        sendKeys(entrance, pod);
+//        sendKeys(stage, etazh);
+//        sendKeys(doorphone, domofon);
+//        sendKeys(phone, telephone);
+//        sendKeys(description, zhaloba);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"))).click();
         wait.until(ExpectedConditions.visibilityOf(uspeshnoVizvaliVracha));
         assertTrue(uspeshnoVizvaliVracha.isDisplayed());

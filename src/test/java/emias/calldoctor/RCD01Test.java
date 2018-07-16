@@ -10,10 +10,12 @@ import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.calldoctor.Profiles_interfaces.Profile4;
+import pages.calldoctor.Profiles_interfaces.User6;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
+    private User6 user6 = new User6();
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -106,7 +108,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         driver.manage().deleteAllCookies();
         driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-        page.portalDashboard().createCall(user);
+        page.portalDashboard().createCallHelper(user6);
         driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);
@@ -120,7 +122,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     public void testRandomProfile() throws InterruptedException {
         driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-        page.portalDashboard().createRandomCall(user);
+        page.portalDashboard().createRandomCall();
         driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);
