@@ -4,6 +4,13 @@ import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.ScreenshotException;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,6 +20,9 @@ import pages.calldoctor.Profiles_interfaces.Profile4;
 import pages.calldoctor.Profiles_interfaces.User6;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
+
+import java.io.File;
+import java.io.IOException;
 
 public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
     private User6 user6 = new User6();
@@ -26,8 +36,23 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 
     @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod() {
+    public void afterMethod(ITestResult result) {
         //SQLDemonstration.finalizePacientName(nameGen);
+        if (!result.isSuccess()) {
+            try {
+                WebDriver returned = new Augmenter().augment(driver);
+                if (returned != null) {
+                    File f = ((TakesScreenshot) returned).getScreenshotAs(OutputType.FILE);
+                    try {
+                        FileUtils.copyFile(f, new File("E:\\Test_results" + result.getName() + " " + /*getFileName()*/ ".jpg"));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (ScreenshotException se) {
+                se.printStackTrace();
+            }
+        }
     }
 
     @Test(groups = "CD", description = "пустой вызов")
@@ -130,33 +155,29 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     }
 }
 
-/**Благодаря этому паттерну можно реализовать много интересных вещей, например,
+/**
+ * Благодаря этому паттерну можно реализовать много интересных вещей, например,
  * вы можете реализовать пул браузеров. Многие жалуются – наши web-тесты тормозят,
  * потому что пока браузер поднимется, пока первая страница загрузится, пока скопируется профиль и так далее.
- Браузеры не обязательно создавать прямо в тесте, вместо этого можно использовать Background Pool,
- в котором настроено необходимое вам количество браузеров, и в этом пуле, когда браузер в него возвращается –
- вы его очищаете, делаете еще что-то, но это все происходит в бэкграунде, в параллельных с выполнением ваших тестов потоках.
- И только готовый к использованию браузер отдается вашему тесту, когда он запрашивает из браузерного пула новый браузер для себя.
-
- Наконец, классический пример более сложного использования этого паттерна – когда вы имеете пул инстансов базы данных.
- Вместо того, чтобы работать с реальной базой данных, вы поднимаете необходимый набор контейнеров базы данных в необходимом
- количестве на разных портах, это делается очень просто с Docker или каким-то другим доступным вам инструментом виртуализации,
- и после того, как вы поработали с базой данных, вы ее «потушили» и в пуле подняли новую. Благодаря этому вы можете постоянно иметь
- чистую базу данных для работы, нет необходимости делать teardown или очистку базы, собирание и загрузку данных, и так далее.
-
- https://habr.com/company/jugru/blog/338836/ посмотреть паттерн data provider и decorator
-
- @DataProvider
- public Object[][] dataProvider() {
- return new Object[][]{
- {1}, {2}, {3}
- };
- }
-
- @Attachment
- public byte[] attachScreenshot() {
- return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
- }
-
-
+ * Браузеры не обязательно создавать прямо в тесте, вместо этого можно использовать Background Pool,
+ * в котором настроено необходимое вам количество браузеров, и в этом пуле, когда браузер в него возвращается –
+ * вы его очищаете, делаете еще что-то, но это все происходит в бэкграунде, в параллельных с выполнением ваших тестов потоках.
+ * И только готовый к использованию браузер отдается вашему тесту, когда он запрашивает из браузерного пула новый браузер для себя.
+ * <p>
+ * Наконец, классический пример более сложного использования этого паттерна – когда вы имеете пул инстансов базы данных.
+ * Вместо того, чтобы работать с реальной базой данных, вы поднимаете необходимый набор контейнеров базы данных в необходимом
+ * количестве на разных портах, это делается очень просто с Docker или каким-то другим доступным вам инструментом виртуализации,
+ * и после того, как вы поработали с базой данных, вы ее «потушили» и в пуле подняли новую. Благодаря этому вы можете постоянно иметь
+ * чистую базу данных для работы, нет необходимости делать teardown или очистку базы, собирание и загрузку данных, и так далее.
+ * <p>
+ * https://habr.com/company/jugru/blog/338836/ посмотреть паттерн data provider и decorator
+ *
+ * @DataProvider public Object[][] dataProvider() {
+ * return new Object[][]{
+ * {1}, {2}, {3}
+ * };
+ * }
+ * @Attachment public byte[] attachScreenshot() {
+ * return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+ * }
  */
