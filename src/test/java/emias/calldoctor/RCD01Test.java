@@ -19,14 +19,14 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
-    public void beforeTest() {
+    public void beforeMethod() {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
     }
 
     @AfterMethod(groups = {"CD", "test"})
-    public void afterTest() {
+    public void afterMethod() {
         //SQLDemonstration.finalizePacientName(nameGen);
     }
 
