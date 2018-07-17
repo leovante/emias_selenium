@@ -196,7 +196,7 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
     }
 
     @Step("создаю вызов -МКАБ +Регистр")
-    public void createCallProfile1(String nameGen) {
+    public void createCallProfile1(Class user, String nameGen) {
         /**
          * таких профилей будет несколько
          * в него нужно передавать класс с содержимым профиля

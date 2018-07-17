@@ -11,19 +11,17 @@ import org.testng.annotations.Test;
 import pages.calldoctor.Profiles_interfaces.Profile1;
 import pages.calldoctor.Profiles_interfaces.Profile2;
 import pages.calldoctor.Profiles_interfaces.Profile4;
-import pages.calldoctor.Profiles_interfaces.User6;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
-    private User6 user6 = new User6();
-    String nameGen;
+    //    private static final Object User6 = ;
+    private String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
     public void beforeMethod() {
         StringGenerator nameGen = new StringGenerator();
-        String name = String.valueOf(nameGen.generator());
-        this.nameGen = name;
+        this.nameGen = String.valueOf(nameGen.generator());
     }
 
     @AfterMethod(groups = {"CD", "test"})
@@ -65,7 +63,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     public void testCallRegistr() throws Exception {
         //driver.get(curUrlCalldoctor);
 
-        page.createCallPage().createCallProfile1(nameGen);
+//        page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage()
                 .verifyCallProfile1(nameGen)
                 .closeCardBtn();
@@ -124,7 +122,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         //driver.manage().deleteAllCookies();
         //driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-        page.portalDashboard().createCallHelper(user6);
+//        page.portalDashboard().createCallHelper(user6);
         //driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);
