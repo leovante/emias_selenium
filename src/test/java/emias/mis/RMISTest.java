@@ -20,7 +20,7 @@ public class RMISTest extends AbstractTest {
     @Test(groups = "mis", description = "Создать расписание", enabled = false)
     @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
@@ -34,7 +34,7 @@ public class RMISTest extends AbstractTest {
     @Test(groups = "mis", description = "Копировать расписание", enabled = false)
     @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
@@ -53,7 +53,7 @@ public class RMISTest extends AbstractTest {
     @Test(groups = "mis", description = "Указать неприемные дни", enabled = false)
     @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         page.manageShedule()
@@ -64,7 +64,7 @@ public class RMISTest extends AbstractTest {
     @Test(groups = "mis", description = "Удалить расписание", enabled = false)
     @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
@@ -89,7 +89,7 @@ public class RMISTest extends AbstractTest {
     @Test(groups = "mis", description = "Перенести запись")
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);

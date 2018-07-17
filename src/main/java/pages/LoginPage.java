@@ -1,9 +1,12 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage extends AbstractPage {
 
@@ -19,15 +22,19 @@ public class LoginPage extends AbstractPage {
     @CacheLookup
     WebElement loginButton;
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public LoginPage(/*WebDriver driver*/) {
+        //super(driver);
     }
 
     public void login(String site, String login, String pass) {
-        driver.get(site);
-        enterLoginText(login);
-        enterPasswordText(pass);
-        clickLoginButton();
+        open(site);
+        $(By.id("Login")).setValue(login);
+        $(By.id("Password")).setValue(pass);
+        $(By.id("loginBtn")).click();
+//        driver.get(site);
+//        enterLoginText(login);
+//        enterPasswordText(pass);
+//        clickLoginButton();
     }
 
     public void enterLoginText(String text) {

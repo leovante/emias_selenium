@@ -2,7 +2,6 @@ package pages.portal;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -54,8 +53,8 @@ public class PortalDashboard extends AbstractPage {
     @CacheLookup
     WebElement description;
 
-    public PortalDashboard(WebDriver driver) {
-        super(driver);
+    public PortalDashboard(/*WebDriver driver*/) {
+//        super(driver);
     }
 
     public void createCall(User6 user) {

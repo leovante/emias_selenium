@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="RMIS Test Suite">
+<suite name="Name suite - MIS">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
     <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
@@ -10,7 +10,7 @@
         <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
-    <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
+    <test verbose="1" name="MIS">
         <groups>
             <run>
                 <include name="mis"/>

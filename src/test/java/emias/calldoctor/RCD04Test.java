@@ -30,7 +30,7 @@ public class RCD04Test extends AbstractTest implements Profile1, Profile2 {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
 

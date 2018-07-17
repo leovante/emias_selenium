@@ -1,10 +1,6 @@
 package emias.screenshots;
 
-import emias.AbstractTest;
 import io.qameta.allure.Attachment;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
@@ -12,26 +8,27 @@ import org.testng.TestListenerAdapter;
 public class CustomTestListener extends TestListenerAdapter {
 
     @Override
-    public void onTestFailure(ITestResult result){
+    public void onTestFailure(ITestResult result) {
         saveScreenshot(result);
     }
 
     @Override
-    public void onTestSuccess(ITestResult result){
+    public void onTestSuccess(ITestResult result) {
         saveScreenshot(result);
     }
 
     @Override
-    public void onTestSkipped(ITestResult result){
+    public void onTestSkipped(ITestResult result) {
         saveScreenshot(result);
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
-    private byte[] saveScreenshot(ITestResult result){
+    private void saveScreenshot(ITestResult result) {
         Object currentClass = result.getInstance();
-        WebDriver driver = ((AbstractTest) currentClass).getDriver();
-        return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-    }}
+        //WebDriver driver = ((AbstractTest) currentClass).getDriver();
+        //return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+    }
+}
 
 /**
  * public class CustomTestListener extends TestListenerAdapter {

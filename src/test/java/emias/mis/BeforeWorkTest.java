@@ -12,7 +12,7 @@ public class BeforeWorkTest extends AbstractTest {
     @Test(groups = "mis", description = "Завершаю все вызовы и создаю новое расписание у врачей на сегодня")
     @RetryCountIfFailed(0)
     public void cleanBeforeWork() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.homePage().manageSheduleBtn();
         SQLDemonstration.finalizeAllCalls();

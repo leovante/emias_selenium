@@ -29,7 +29,7 @@ public class RCD05Test extends AbstractTest implements Profile1, Profile2 {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCancelCallRegistr() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().cancelRecordOnFullCardPage();
@@ -41,7 +41,7 @@ public class RCD05Test extends AbstractTest implements Profile1, Profile2 {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCancelCallRegistrEmpy() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage().editCallBtn()

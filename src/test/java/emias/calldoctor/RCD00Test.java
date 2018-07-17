@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public class RCD00Test extends AbstractTest {
 
-    @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(groups = {"mis"}, description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
-    public void cleanBeforeCallDoctorTests() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+    public void cleanBeforeTest() throws InterruptedException {
+        //driver.get(curUrlCalldoctor);
 
         page.homePage().manageSheduleBtn();
         createDoctorShedule();

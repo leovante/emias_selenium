@@ -4,12 +4,6 @@ import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.remote.ScreenshotException;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,9 +14,6 @@ import pages.calldoctor.Profiles_interfaces.Profile4;
 import pages.calldoctor.Profiles_interfaces.User6;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
-
-import java.io.File;
-import java.io.IOException;
 
 public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
     private User6 user6 = new User6();
@@ -38,21 +29,21 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod(ITestResult result) {
         //SQLDemonstration.finalizePacientName(nameGen);
-        if (!result.isSuccess()) {
-            try {
-                WebDriver returned = new Augmenter().augment(driver);
-                if (returned != null) {
-                    File f = ((TakesScreenshot) returned).getScreenshotAs(OutputType.FILE);
-                    try {
-                        FileUtils.copyFile(f, new File("E:\\Test_results" + result.getName() + " " + /*getFileName()*/ ".jpg"));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } catch (ScreenshotException se) {
-                se.printStackTrace();
-            }
-        }
+//        if (!result.isSuccess()) {
+//            try {
+//                WebDriver returned = new Augmenter().augment(driver);
+//                if (returned != null) {
+//                    File f = ((TakesScreenshot) returned).getScreenshotAs(OutputType.FILE);
+//                    try {
+//                        FileUtils.copyFile(f, new File("E:\\Test_results" + result.getName() + " " + /*getFileName()*/ ".jpg"));
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            } catch (ScreenshotException se) {
+//                se.printStackTrace();
+//            }
+//        }
     }
 
     @Test(groups = "CD", description = "пустой вызов")
@@ -60,7 +51,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @TmsLink("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile0();
         page.fullCardPage()
@@ -68,11 +59,11 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура")
+    @Test(groups = "test", description = "вызов с иточником Регистратура")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(0)
     public void testCallRegistr() throws Exception {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage()
@@ -89,7 +80,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile2(nameGen);
         this.nameGen = page.fullCardPage().verifyCallProfile2(nameGen);
@@ -104,10 +95,10 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallSMPApi() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile3(nameGen);
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(nameGen);
         page.fullCardPage().verifyCallProfile3(nameGen);
@@ -117,10 +108,10 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallSMPApi2() throws InterruptedException {
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile6(nameGen);
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(nameGen);
         page.fullCardPage().verifyCallProfile6(nameGen);
@@ -130,25 +121,25 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws InterruptedException {
-        driver.manage().deleteAllCookies();
-        driver.get("https://uslugi.mosreg.ru/zdrav/");
+        //driver.manage().deleteAllCookies();
+        //driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
         page.portalDashboard().createCallHelper(user6);
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);
         page.fullCardPage().verifyCallProfile4(nameGen);
     }
 
-    @Test(groups = "test", description = "создание вызова через портал по рандомному МКАБу")
+    @Test(groups = "tes", description = "создание вызова через портал по рандомному МКАБу")
 //дата провайдер аннотацию добавить
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(0)
     public void testRandomProfile() throws InterruptedException {
-        driver.get("https://uslugi.mosreg.ru/zdrav/");
+        //driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
         page.portalDashboard().createRandomCall();
-        driver.get(curUrlCalldoctor);
+        //driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);
         page.fullCardPage().verifyCallProfile4(nameGen);

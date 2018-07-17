@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Home RMIS Test Suite">
+<suite name="Name Suite - Home">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
     <parameter name="login" value="admin"/>
@@ -8,7 +8,7 @@
     <listeners>
         <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
     </listeners>
-    <test verbose="1" name="D:/Design program/GitHub/emias_selenium">
+    <test verbose="1" name="CallDoctor">
         <groups>
             <run>
                 <include name="test"/>

@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.callcenter.CallDoctorPage;
 import pages.callcenter.FindPatientPage;
@@ -11,17 +10,18 @@ import pages.portal.PortalDashboard;
 
 public class Pages extends AbstractPage {
 
-    public Pages(WebDriver driver) {
-        super(driver);
+    public Pages(/*WebDriver driver*/) {
+//        super();
+        //super(/*driver*/);
     }
 
     public HomePage homePage() {
-        HomePage homePage = PageFactory.initElements(driver, HomePage.class);
+        HomePage homePage = new HomePage(); //PageFactory.initElements(driver, HomePage.class);
         return homePage;
     }
 
     public LoginPage loginPage() {
-        LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+        LoginPage loginPage = new LoginPage();// = PageFactory.initElements(driver, LoginPage.class);
         return loginPage;
     }
 
@@ -51,7 +51,7 @@ public class Pages extends AbstractPage {
     }
 
     public CreateCallPage createCallPage() {
-        CreateCallPage createCallPage = PageFactory.initElements(driver, CreateCallPage.class);
+        CreateCallPage createCallPage = new CreateCallPage(); //PageFactory.initElements(driver, CreateCallPage.class);
         return createCallPage;
     }
 
@@ -103,7 +103,7 @@ public class Pages extends AbstractPage {
      * PORTAL
      */
     public PortalDashboard portalDashboard() {
-        PortalDashboard portalDashboard = PageFactory.initElements(driver, PortalDashboard.class);
+        PortalDashboard portalDashboard = new PortalDashboard();// PageFactory.initElements(driver, PortalDashboard.class);
         return portalDashboard;
     }
 }

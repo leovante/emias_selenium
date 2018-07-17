@@ -3,7 +3,7 @@ package pages.utilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.ArrayList;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class SwitchToPage {
     private static WebDriver driver;
@@ -14,11 +14,13 @@ public class SwitchToPage {
     }
 
     public static void switchToPage() {
-        String mainWindowHandle = driver.getWindowHandle();
-        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
-        System.out.println(driver.getTitle());
+// by index
+        switchTo().window(1);
+
+// by name or title or handle
+//        switchTo().window("Title of the window");
+
+// for switching to default window
+//        switchTo().defaultContent();
     }
-
-
 }

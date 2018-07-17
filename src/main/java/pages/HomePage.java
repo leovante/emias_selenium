@@ -1,10 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class HomePage extends AbstractPage {
     @FindBy(xpath = "//span[contains(.,'ЕМИАС Московской области')]")
@@ -27,8 +29,8 @@ public class HomePage extends AbstractPage {
     @CacheLookup
     WebElement callDoctorBtn;
 
-    public HomePage(WebDriver driver){
-        super(driver);
+    public HomePage(/*WebDriver driver*/) {
+        //super(driver);
     }
 
     @Step("Захожу в ведение расписания")
@@ -68,9 +70,10 @@ public class HomePage extends AbstractPage {
 
     @Step("Захожу в Диспетчер")
     public void callDoctorBtn(){
-        waitAllEmias();
-        waitClickable(callDoctorBtn);
-        callDoctorBtn.click();
-        waitAllEmias();
+        $(By.xpath("//span[contains(.,'Диспетчер')]")).click();
+//        waitAllEmias();
+//        waitClickable(callDoctorBtn);
+//        callDoctorBtn.click();
+//        waitAllEmias();
     }
 }

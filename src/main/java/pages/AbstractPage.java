@@ -27,6 +27,9 @@ abstract public class AbstractPage {
         wait = new WebDriverWait(driver, 20);
     }
 
+    protected AbstractPage() {
+    }
+
     public void hoverByAction(WebElement element) {
         //Asynchronous waitClickableJS
         JSWaiter.waitJQueryAngular();
