@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,13 +10,18 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Profile;
 import pages.utilities.JSWaiter;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static org.testng.Assert.assertFalse;
 
-public class DashboardPage extends AbstractPage {
+public class DashboardPage extends AbstractPage implements Profile {
+    Map proData;
     Actions action = new Actions(driver);
 
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
@@ -145,6 +151,23 @@ public class DashboardPage extends AbstractPage {
         isDisplayedOnCardPage(telephone);
         return this;
     }
+
+    @Step("проверяю на дашборде запись в группе новые")
+    public DashboardPage verifyNewCallProgressFrame(String name) throws InterruptedException, IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
+        this.proData = new ObjectMapper().readValue(reader, Map.class);
+
+        Thread.sleep(4000);
+        clickJS(newCallProgressFrame.findElement(By.id("order")));
+        click(newCallProgressFrame);
+
+        click((String) proData.get(adressDashboard));
+        isDisplayedOnCardPage(name);
+        isDisplayedOnCardPage((String) proData.get(telephone));
+        return this;
+    }
+
+
 
     @Step("проверяю на дашборде запись у врача в группе активные")
     public DashboardPage verifyActiveDocGroup(String doctorFam, String nameGen, String adress, String telephone) throws InterruptedException {

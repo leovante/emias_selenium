@@ -7,7 +7,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
-import pages.calldoctor.Profiles_interfaces.User6;
+import pages.calldoctor.profiles_interfaces.User6;
 
 import static org.testng.Assert.assertTrue;
 

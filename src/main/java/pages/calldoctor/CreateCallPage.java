@@ -1,6 +1,7 @@
 package pages.calldoctor;
 
 import com.codeborne.selenide.SelenideElement;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -9,199 +10,49 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.json.simple.JSONObject;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
-import pages.calldoctor.Profiles_interfaces.Profile0;
-import pages.calldoctor.Profiles_interfaces.Profile1;
-import pages.calldoctor.Profiles_interfaces.Profile2;
-import pages.calldoctor.Profiles_interfaces.Profile4;
-import pages.utilities.JSWaiter;
+import pages.calldoctor.profiles_interfaces.Profile;
+import pages.calldoctor.profiles_interfaces.Profile4;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
-public class CreateCallPage extends AbstractPage implements Profile1, Profile2, Profile0, Profile4 {
-//    Actions action = new Actions(driver);
-
-    @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
-    @CacheLookup
-    WebElement cancelAdress;
-
-    @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
-    WebElement list_first_container;
-
-    @FindBy(xpath = "//input[@placeholder='Адрес']")
-    @CacheLookup
-    WebElement placeholder_adress;
-
-    @FindBy(xpath = "//input[@placeholder='Дом']")
-    @CacheLookup
-    WebElement dom;
-
-    @FindBy(xpath = "//*[@mattooltip='Добавить вызов']")
-    @CacheLookup
-    WebElement addCallBtn;
-
-    @FindBy(id = "phone")
-    @CacheLookup
-    WebElement telephoneNumber;
-
-    @FindBy(xpath = "//label[@class='mat-checkbox-layout']/div")
-    @CacheLookup
-    WebElement chkBoxTelephone;
-
-    @FindBy(xpath = "//button[2]/span/mat-icon")
-    WebElement hz;
-
-    @FindBy(xpath = "//input[@placeholder='Возр. категория']")
-    WebElement vozr;
-
-    @FindBy(xpath = "//span[contains(.,'Взрослые')]")
-    WebElement hz2;
-
-    @FindBy(xpath = "//input[@placeholder='Корпус']")
-    @CacheLookup
-    WebElement korpus;
-
-    @FindBy(xpath = "//input[@placeholder='Строение']")
-    @CacheLookup
-    WebElement stroenie;
-
-    @FindBy(xpath = "//input[@placeholder='Квартира']")
-    @CacheLookup
-    WebElement kvartira;
-
-    @FindBy(xpath = "//input[@placeholder='П-д']")
-    @CacheLookup
-    WebElement pd;
-
-    @FindBy(xpath = "//input[@placeholder='Д-фон']")
-    @CacheLookup
-    WebElement dfon;
-
-    @FindBy(xpath = "//input[@placeholder='Этаж']")
-    @CacheLookup
-    WebElement etazh;
-
+public class CreateCallPage extends AbstractPage implements Profile, Profile2, Profile0, Profile4 {
+    private Map proData;
     SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
 
-    @FindBy(xpath = "//input[@placeholder='Серия']")
-    @CacheLookup
-    WebElement seriyaPol;
-
-    @FindBy(xpath = "//input[@placeholder='Номер полиса']")
-    @CacheLookup
-    WebElement nomerPol;
-
-    @FindBy(xpath = "//input[@placeholder='Фамилия']")
-    @CacheLookup
-    WebElement fam;
-
-    @FindBy(xpath = "//input[@placeholder='Имя']")
-    @CacheLookup
-    WebElement name;
-
-    @FindBy(xpath = "//input[@placeholder='Отчество']")
-    @CacheLookup
-    WebElement otchestvo;
-
-    @FindBy(xpath = "//input[@placeholder='Тип вызывающего']")
-    @CacheLookup
-    WebElement tipVisivaushego;
-
-    @FindBy(xpath = "//input[@placeholder='Станция СМП']")
-    @CacheLookup
-    WebElement stationSMP;
-
-    @FindBy(xpath = "//span[contains(.,'Пациент')]")
-    @CacheLookup
-    WebElement pacient;
-
-    @FindBy(id = "save")
-    @CacheLookup
-    WebElement saveBtns;
-
-    @FindBy(id = "callFamily")
-    @CacheLookup
-    WebElement callFamily;
-
-    @FindBy(id = "callName")
-    @CacheLookup
-    WebElement callName;
-
-    @FindBy(id = "callPatronymic")
-    @CacheLookup
-    WebElement callPatronymic;
-
-    @FindBy(xpath = "//div[contains(text(),'Новый вызов')]")
-    @CacheLookup
-    WebElement noviyVizov;
-
-    @FindBy(xpath = "//input[@placeholder='Дата рождения']")
-    @CacheLookup
-    WebElement birthDay;
-
-    @FindBy(id = "findPatientInput")
-    @CacheLookup
-    WebElement findPatientInput;
-
-    @FindBy(xpath = "//div/mat-option/span[contains(text(),'" + famPro2 + "')]")
-    @CacheLookup
-    WebElement famPro2Xpath;
-
-    @FindBy(id = "source0")
-    @CacheLookup
-    WebElement source0;
-
-    @FindBy(xpath = "//button/span[contains(text(),'Да')]")
-    @CacheLookup
-    WebElement allarmaYes;
-
-    @FindBy(id = "sex1")
-    @CacheLookup
-    WebElement sex1;
-
-    public CreateCallPage(/*WebDriver driver*/) {
-        //super(driver);
+    public CreateCallPage() {
     }
 
     @Step("создаю пустой вызов")
-    public void createCallProfile0() {
-        createCallBtn();
-        /*обязательные поля*/
-        sendKeysJS(dom, domPro0);
-        click(chkBoxTelephone);
-
-        click(hz);
-        click(vozr);
-        hz2.click();
-
-        /*жалоба*/
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + zhalobaPro0 + "';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
-        //action.sendKeys(Keys.ENTER).perform();
-
-        saveBtns.click();
-
-        click(allarmaYes);
+    public void createCallProfile0() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile0.json");
+        this.proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .adress()
+                .telephoneChk()
+                .complaint()
+                .vozrastKat()
+                .complaint()
+                .saveBtn()
+                .adressAlarma();
     }
 
     @Step("создаю вызов -МКАБ +Регистр")
-    public void createCallProfile1(Class user, String nameGen) {
-        /**
-         * таких профилей будет несколько
-         * в него нужно передавать класс с содержимым профиля
-         * этот профиль должен перезаписывать переменные находящиеся здесь и по ним создавать профиль
-         */
+    public void createCallProfile1(String nameGen) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile1.json");
+        this.proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .adress()
                 .telephone()
@@ -210,137 +61,11 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
                 .sexM()
                 .complaint()
                 .polis()
-                .FIO()
+                .FIO(nameGen)
                 .birthDay()
                 .caller()
                 .saveBtn();
     }
-//    @Step("создаю вызов -МКАБ +Регистр")
-//    public void createCallProfile1(String nameGen) throws InterruptedException {
-//        $(By.id("addNewCall")).click();
-//        /*адрес*/
-//        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
-//        $(By.xpath("//input[@placeholder='Адрес']")).click();
-//        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adressPro1_1);
-//        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-//        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adressPro1_2);
-//        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-//        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adressPro1_3);
-//        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-//        /*обязательные поля*/
-//        $(By.xpath("//input[@placeholder='Дом']")).setValue(domPro1);
-//        $(By.id("phone")).setValue(telephonePro1);
-//        $(By.xpath("//button[2]/span/mat-icon")).click();
-//        $(By.xpath("//input[@placeholder='Возр. категория']")).click();
-//        $(By.xpath("//span[contains(.,'Взрослые')]")).click();
-//        /*необязательные поля*/
-//        $(By.xpath("//input[@placeholder='Корпус']")).setValue(korpusPro1);
-//        $(By.xpath("//input[@placeholder='Строение']")).setValue(stroeniePro1);
-//        $(By.xpath("//input[@placeholder='Квартира']")).setValue(kvartiraPro1);
-//        $(By.xpath("//input[@placeholder='П-д']")).setValue(pdPro1);
-//        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(dfonPro1);
-//        $(By.xpath("//input[@placeholder='Этаж']")).setValue(etazhPro1);
-//        $(By.id("sex1")).click();
-//        /*жалоба*/
-//        WebDriver driver = getWebDriver();
-//        JavascriptExecutor jse = (JavascriptExecutor) driver;
-//        jse.executeScript("arguments[0].value='" + zhalobaPro1 + "';", zhaloba);
-//        zhaloba.sendKeys(Keys.SPACE);
-//        /*кто пациент*/
-//        $(By.xpath("//input[@placeholder='Серия']")).setValue(seriyaPolPro1);
-//        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(nomerPolPro1);
-//        $(By.xpath("//input[@placeholder='Фамилия']")).setValue(famPro1);
-//        $(By.xpath("//input[@placeholder='Имя']")).setValue(nameGen);
-//        $(By.xpath("//input[@placeholder='Отчество']")).setValue(otchestvoPro1);
-//        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(birthDayPro1);
-//        /*кто вызывает*/
-//        $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
-//        $(By.xpath("//span[contains(.,'Пациент')]")).click();
-//        $(By.id("save")).click();
-//    }
-
-    public CreateCallPage addNewCall() {
-        $(By.id("addNewCall")).click();
-        return this;
-    }
-
-    private CreateCallPage adress() {
-        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
-        //тут нужно сделать цикл, потому что адрес может быть разной длины
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adressPro1_1);
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adressPro1_2);
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adressPro1_3);
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Дом']")).setValue(domPro1);
-        return this;
-    }
-
-    private CreateCallPage telephone() {
-        $(By.id("phone")).setValue(telephonePro1);
-        return this;
-    }
-
-    private CreateCallPage vozrastKat() {
-        $(By.xpath("//button[2]/span/mat-icon")).click();
-        $(By.xpath("//input[@placeholder='Возр. категория']")).click();
-        $(By.xpath("//span[contains(.,'Взрослые')]")).click();
-        return this;
-    }
-
-    private CreateCallPage adressAddition() {
-        $(By.xpath("//input[@placeholder='Корпус']")).setValue(korpusPro1);
-        $(By.xpath("//input[@placeholder='Строение']")).setValue(stroeniePro1);
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue(kvartiraPro1);
-        $(By.xpath("//input[@placeholder='П-д']")).setValue(pdPro1);
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(dfonPro1);
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue(etazhPro1);
-        return this;
-    }
-
-    private CreateCallPage sexM() {
-        $(By.id("sex1")).click();
-        return this;
-    }
-
-    private CreateCallPage complaint() {
-        WebDriver driver = getWebDriver();
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + zhalobaPro1 + "';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
-        return this;
-    }
-
-    private CreateCallPage polis() {
-        $(By.xpath("//input[@placeholder='Серия']")).setValue(seriyaPolPro1);
-        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(nomerPolPro1);
-        return this;
-    }
-
-    private CreateCallPage FIO() {
-        $(By.xpath("//input[@placeholder='Фамилия']")).setValue(famPro1);
-        $(By.xpath("//input[@placeholder='Имя']")).setValue(namePro2/*nameGen*/);
-        $(By.xpath("//input[@placeholder='Отчество']")).setValue(otchestvoPro1);
-        return this;
-    }
-
-    private CreateCallPage birthDay() {
-        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(birthDayPro1);
-        return this;
-    }
-
-    private CreateCallPage caller() {
-        $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
-        $(By.xpath("//span[contains(.,'Пациент')]")).click();
-        return this;
-    }
-
-    private CreateCallPage saveBtn() {
-        $(By.id("save")).click();
-        return this;
-    }
-
 
     @Step("создаю вызов с МКАБ + СМП")
     public void createCallProfile2(String nameGen) {
@@ -353,10 +78,10 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
 
         /*обязательные поля*/
         click(source0);
-        sendKeysJS(dom, domPro2);
+        sendKeysJS(dom1, domPro2);
 
         JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='" + telephonePro1 + "';", telephoneNumber);
+        jse1.executeScript("arguments[0].value='" + proData.get(telephone) + "';", telephoneNumber);
         telephoneNumber.click();
         //action.sendKeys(Keys.SPACE).perform();
 
@@ -484,12 +209,102 @@ public class CreateCallPage extends AbstractPage implements Profile1, Profile2, 
         }
     }
 
-    @Step("открыл страницу создания вызова")
-    public void createCallBtn() {
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        click(addCallBtn);
-        waitVisibility(noviyVizov);
+    public CreateCallPage addNewCall() {
+        $(By.id("addNewCall")).click();
+        return this;
+    }
+
+    private CreateCallPage adress() {
+        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
+        //тут нужно сделать цикл, потому что адрес может быть разной длины
+        $(By.xpath("//input[@placeholder='Адрес']")).setValue((String) proData.get(adress_1));
+        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adress_2);
+        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adress_3);
+        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+        $(By.xpath("//input[@placeholder='Дом']")).setValue(dom);
+        return this;
+    }
+
+    private CreateCallPage adressAlarma() {
+        //тут нажимаем на кнопку - да во всплывающем окне
+        return this;
+    }
+
+    private CreateCallPage telephone() {
+        $(By.id("phone")).setValue((String) proData.get(telephone));
+        return this;
+    }
+
+    private CreateCallPage telephoneChk() {
+        $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
+        return this;
+    }
+
+    private CreateCallPage vozrastKat() {
+        $(By.xpath("//button[2]/span/mat-icon")).click();
+        $(By.xpath("//input[@placeholder='Возр. категория']")).click();
+        $(By.xpath("//span[contains(.,'Взрослые')]")).click();
+        return this;
+    }
+
+    private CreateCallPage adressAddition() {
+        $(By.xpath("//input[@placeholder='Корпус']")).setValue((String) proData.get(korpus));
+        $(By.xpath("//input[@placeholder='Строение']")).setValue((String) proData.get(stroenie));
+        $(By.xpath("//input[@placeholder='Квартира']")).setValue((String) proData.get(kvartira));
+        $(By.xpath("//input[@placeholder='П-д']")).setValue((String) proData.get(pd));
+        $(By.xpath("//input[@placeholder='Д-фон']")).setValue((String) proData.get(dfon));
+        $(By.xpath("//input[@placeholder='Этаж']")).setValue((String) proData.get(etazh));
+        return this;
+    }
+
+    private CreateCallPage sexM() {
+        $(By.id("sex1")).click();
+        return this;
+    }
+
+    private CreateCallPage complaint() {
+        WebDriver driver = getWebDriver();
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].value='" + proData.get(zhaloba) + "';", zhaloba);
+        zhaloba.sendKeys(Keys.SPACE);
+        return this;
+    }
+
+    private CreateCallPage polis() {
+        $(By.xpath("//input[@placeholder='Серия']")).setValue((String) proData.get(seriyaPol));
+        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue((String) proData.get(nomerPol));
+        return this;
+    }
+
+    private CreateCallPage FIO(String nameGen) {
+        $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
+        $(By.xpath("//input[@placeholder='Имя']")).setValue(nameGen);
+        $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
+        return this;
+    }
+
+    private CreateCallPage FIO() {
+        $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
+        $(By.xpath("//input[@placeholder='Имя']")).setValue((String) proData.get(name));
+        $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
+        return this;
+    }
+
+    private CreateCallPage birthDay() {
+        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue((String) proData.get(birthDay));
+        return this;
+    }
+
+    private CreateCallPage caller() {
+        $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+        $(By.xpath("//span[contains(.,'Пациент')]")).click();
+        return this;
+    }
+
+    private CreateCallPage saveBtn() {
+        $(By.id("save")).click();
+        return this;
     }
 }

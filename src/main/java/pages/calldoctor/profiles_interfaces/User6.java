@@ -1,4 +1,4 @@
-package pages.calldoctor.Profiles_interfaces;
+package pages.calldoctor.profiles_interfaces;
 
 import java.util.HashMap;
 import java.util.Map;

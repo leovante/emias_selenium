@@ -8,15 +8,16 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.calldoctor.Profiles_interfaces.Profile1;
-import pages.calldoctor.Profiles_interfaces.Profile2;
-import pages.calldoctor.Profiles_interfaces.Profile4;
+import pages.calldoctor.profiles_interfaces.Profile;
+import pages.calldoctor.profiles_interfaces.Profile2;
+import pages.calldoctor.profiles_interfaces.Profile4;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
-public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
+public class RCD01Test extends AbstractTest implements Profile, Profile2, Profile4 {
     //    private static final Object User6 = ;
     private String nameGen;
+
 
     @BeforeMethod(groups = {"CD", "test"})
     public void beforeMethod() {
@@ -63,7 +64,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     public void testCallRegistr() throws Exception {
         //driver.get(curUrlCalldoctor);
 
-//        page.createCallPage().createCallProfile1(nameGen);
+        page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage()
                 .verifyCallProfile1(nameGen)
                 .closeCardBtn();
@@ -71,7 +72,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .clearFilterDepart()
-                .verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
+                .verifyNewCallProgressFrame(nameGen, adress_3, telephone);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
@@ -86,7 +87,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
 
         page.dashboardPage().searchFilterFio(nameGen)
                 .clearFilterDepart()
-                .verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
+                .verifyNewCallProgressFrame("Profile1");
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
