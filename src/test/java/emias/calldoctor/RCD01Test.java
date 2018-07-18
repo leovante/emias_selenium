@@ -68,7 +68,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура")
+    @Test(groups = "test", description = "вызов с иточником Регистратура")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
@@ -85,7 +85,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
                 .verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
     }
 
-    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(groups = "test", description = "вызов с источником СМП и привязкой МКАБ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
@@ -113,7 +113,7 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         page.fullCardPage().verifyCallProfile3(nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallSMPApi2() throws InterruptedException {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class RCD00Test extends AbstractTest {
 
     @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed()
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
         driver.get(curUrlCalldoctor);
 

@@ -52,7 +52,7 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
         }
     }
 
-    @Test(groups = "CD", description = "фильтр поиск по ФИО")
+    @Test(groups = "test", description = "фильтр поиск по ФИО")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException {
@@ -84,7 +84,7 @@ public class RCD09Test extends AbstractTest implements Profile1, Profile2, Profi
                 .verifyActiveDocGroup(doctorFamPro1, nameGen, adressPro1_2, telephonePro1);
     }
 
-    @Test(groups = "CD", description = "фильтр поиск по виду вызова")
+    @Test(groups = "test", description = "фильтр поиск по виду вызова")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException {

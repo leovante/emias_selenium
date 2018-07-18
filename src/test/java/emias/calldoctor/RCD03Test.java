@@ -25,7 +25,7 @@ public class RCD03Test extends AbstractTest implements Profile1, Profile2 {
         //SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "CD", description = "назначить врача на сегодня")
+    @Test(groups = "test", description = "назначить врача на сегодня")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
