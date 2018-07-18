@@ -11,13 +11,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.*;
+import pages.calldoctor.profiles_interfaces.Profile;
 import pages.utilities.JSWaiter;
 
 public class FullCardPage extends AbstractPage implements
-        Profile0,
         Profile,
-        Profile2,
         Profile3,
         Profile4,
         Profile5,

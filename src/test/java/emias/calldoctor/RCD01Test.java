@@ -9,12 +9,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.calldoctor.profiles_interfaces.Profile2;
-import pages.calldoctor.profiles_interfaces.Profile4;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
-public class RCD01Test extends AbstractTest implements Profile, Profile2, Profile4 {
+import java.io.IOException;
+
+public class RCD01Test extends AbstractTest implements Profile {
     //    private static final Object User6 = ;
     private String nameGen;
 
@@ -49,7 +49,7 @@ public class RCD01Test extends AbstractTest implements Profile, Profile2, Profil
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws InterruptedException {
+    public void testCallRegistrEmpy() throws InterruptedException, IOException {
         //driver.get(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile0();
@@ -116,15 +116,15 @@ public class RCD01Test extends AbstractTest implements Profile, Profile2, Profil
         page.fullCardPage().verifyCallProfile6(nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws InterruptedException {
-        //driver.manage().deleteAllCookies();
-        //driver.get("https://uslugi.mosreg.ru/zdrav/");
+        driver.manage().deleteAllCookies();
+        driver.get("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-//        page.portalDashboard().createCallHelper(user6);
-        //driver.get(curUrlCalldoctor);
+        page.portalDashboard().createCallHelper(user6);
+        driver.get(curUrlCalldoctor);
 
         page.dashboardPage().openNewCallProgressFrame(namePro4);
         page.fullCardPage().verifyCallProfile4(nameGen);

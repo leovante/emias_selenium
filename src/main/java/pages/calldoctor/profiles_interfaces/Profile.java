@@ -28,6 +28,12 @@ public interface Profile {
     String vKat = null;
 
     String zhaloba = null;
+    String station = null;
+
+    String callFamily = null;
+    String callName = null;
+    String callPatronymic = null;
+
 
     String doctorNamePro1 = null;
     String doctorFamPro1 = null;

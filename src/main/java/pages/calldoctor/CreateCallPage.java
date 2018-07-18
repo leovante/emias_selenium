@@ -13,11 +13,8 @@ import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.calldoctor.profiles_interfaces.Profile4;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,12 +22,10 @@ import java.io.InputStream;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
-public class CreateCallPage extends AbstractPage implements Profile, Profile2, Profile0, Profile4 {
+public class CreateCallPage extends AbstractPage implements Profile {
     private Map proData;
-    SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
 
     public CreateCallPage() {
     }
@@ -63,48 +58,23 @@ public class CreateCallPage extends AbstractPage implements Profile, Profile2, P
                 .polis()
                 .FIO(nameGen)
                 .birthDay()
-                .caller()
+                .callerPatient()
                 .saveBtn();
     }
 
     @Step("создаю вызов с МКАБ + СМП")
-    public void createCallProfile2(String nameGen) {
-        createCallBtn();
-
-        /*кто пациент*/
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Новый вызов')]")));
-        sendKeysJS(findPatientInput, nomerPolPro2);
-        clickJS(famPro2Xpath);
-
-        /*обязательные поля*/
-        click(source0);
-        sendKeysJS(dom1, domPro2);
-
-        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-        jse1.executeScript("arguments[0].value='" + proData.get(telephone) + "';", telephoneNumber);
-        telephoneNumber.click();
-        //action.sendKeys(Keys.SPACE).perform();
-
-        /*необязательные поля*/
-        sendKeysJS(pd, pdPro2);
-        sendKeysJS(dfon, dfonPro2);
-        sendKeysJS(etazh, etazhPro2);
-        click(sex1);
-
-        /*жалоба*/
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + zhalobaPro2 + "';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
-        //action.sendKeys(Keys.ENTER).perform();
-
-
-        /*кто вызывает*/
-        sendKeysJS(callFamily, famCallPro2);
-        sendKeysJS(callName, nameGen);
-        sendKeysJS(callPatronymic, otCallPro2);
-        sendKeysJS(stationSMP, stationSMPPro2);
-
-        saveBtns.click();
+    public void createCallProfile2(String nameGen) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
+        this.proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .sourceSMP()
+                .searchField()
+                .adressAddition()
+                .polis()
+                .telephone()
+                .complaint()
+                .callerPredstavit(nameGen)
+                .saveBtn();
     }
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
@@ -209,8 +179,20 @@ public class CreateCallPage extends AbstractPage implements Profile, Profile2, P
         }
     }
 
+
     public CreateCallPage addNewCall() {
         $(By.id("addNewCall")).click();
+        return this;
+    }
+
+    public CreateCallPage sourceSMP() {
+        $(By.id("source0")).click();
+        return this;
+    }
+
+    public CreateCallPage searchField() {
+        $(By.id("findPatientInput")).setValue(nomerPol);
+        $(By.id("findPatientInput")).pressEnter();
         return this;
     }
 
@@ -265,7 +247,8 @@ public class CreateCallPage extends AbstractPage implements Profile, Profile2, P
     }
 
     private CreateCallPage complaint() {
-        WebDriver driver = getWebDriver();
+        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
+
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + proData.get(zhaloba) + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
@@ -297,9 +280,20 @@ public class CreateCallPage extends AbstractPage implements Profile, Profile2, P
         return this;
     }
 
-    private CreateCallPage caller() {
+    private CreateCallPage callerPatient() {
         $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
         $(By.xpath("//span[contains(.,'Пациент')]")).click();
+        return this;
+    }
+
+    private CreateCallPage callerPredstavit(String nameGen) {
+        $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+        $(By.xpath("//span[contains(.,'Представитель')]")).click();
+        $(By.id("sourceSmp")).setValue(station);
+        $(By.id("callFamily")).setValue(callFamily);
+        $(By.id("callName")).setValue(nameGen);
+        $(By.id("callPatronymic")).setValue(callPatronymic);
+
         return this;
     }
 

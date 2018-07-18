@@ -3,6 +3,7 @@ package emias;
 //import org.codehaus.plexus.util.FileUtils;
 
 import com.codeborne.selenide.Configuration;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
@@ -12,12 +13,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class AbstractTest {
-    //    public static WebDriver driver;
-//    public static WebDriverWait wait;
+    public static WebDriver driver;
     public static Pages page;
-//    public static String curUrlCalldoctor = null;
+    public static String curUrlCalldoctor = null;
 
     @Parameters(value = {"browser", "platform"})
     @BeforeSuite(alwaysRun = true)
@@ -29,11 +30,8 @@ public abstract class AbstractTest {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         System.setProperty("selenide.browser", "Chrome");
         Configuration.timeout = 10000;
-//        driver = new DriverManager(browser).createDriver();
-//        wait = new WebDriverWait(driver, 20);
-        page = new Pages(/*driver*/);
-//        JSWaiter.setDriver(driver);
-//        SwitchToPage.setDriver(driver);
+        page = new Pages();
+        driver = getWebDriver();
     }
 
     @AfterSuite(alwaysRun = true)

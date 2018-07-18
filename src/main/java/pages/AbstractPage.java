@@ -19,7 +19,6 @@ import java.util.List;
 import static org.testng.Assert.assertTrue;
 
 abstract public class AbstractPage {
-    public WebDriver driver;
     public WebDriverWait wait;
 
     public AbstractPage(WebDriver driver) {
