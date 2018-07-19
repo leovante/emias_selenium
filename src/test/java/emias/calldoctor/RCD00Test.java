@@ -11,12 +11,15 @@ import java.util.ArrayList;
 
 public class RCD00Test extends AbstractTest {
 
+<<<<<<< .merge_file_a05364
 <<<<<<< .merge_file_a09164
     @Test(groups = {"mis"}, description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeTest() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
 =======
+=======
+>>>>>>> .merge_file_a11688
     @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed()
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
