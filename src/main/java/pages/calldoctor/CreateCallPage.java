@@ -25,7 +25,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 
 public class CreateCallPage extends AbstractPage implements Profile {
-    private Map proData;
 
     public CreateCallPage() {
     }

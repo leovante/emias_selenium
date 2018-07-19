@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,63 +20,48 @@ import java.util.Map;
 import static org.testng.Assert.assertFalse;
 
 public class DashboardPage extends AbstractPage implements Profile {
-    Map proData;
     Actions action = new Actions(driver);
 
     @FindBy(xpath = "//mat-icon[contains(text(),'more_vert')]")
-    @CacheLookup
     WebElement exitToMis;
 
     @FindBy(xpath = "//*[contains(text(),'Выход')]")
-    @CacheLookup
     WebElement exitBtn;
 
     @FindBy(xpath = "//img[@src='assets/img/call-doctor-logo.svg']")
-    @CacheLookup
     WebElement logoType;
 
     @FindBy(xpath = "//*[@placeholder='ФИО']")
-    @CacheLookup
     WebElement fioFilter;
 
     @FindBy(xpath = "//*[@placeholder='Врач']")
-    @CacheLookup
     WebElement docFilter;
 
     @FindBy(xpath = "//*[@placeholder='Вид вызова']")
-    @CacheLookup
     WebElement typeCall;
 
     @FindBy(id = "newCallProgressFrame")
-    @CacheLookup
     WebElement newCallProgressFrame;
 
     @FindBy(xpath = "//*[@id='newCallProgressFrame']/mat-expansion-panel/div")
-    @CacheLookup
     WebElement matexpansionpanel;
 
     @FindBy(xpath = "//*[@id='newCallProgressFrame']/mat-expansion-panel/div/div/div/app-call-doctor-short-card/div/div/div[3]")
-    @CacheLookup
     WebElement smallMenu;
 
     @FindBy(xpath = "//a[@title='Открыть карту вызова']")
-    @CacheLookup
     WebElement openCard;
 
     @FindBy(xpath = "//span[contains(text(),'Неотложный')]")
-    @CacheLookup
     WebElement typeCallFilterNeotlozhniy;
 
     @FindBy(id = "activeCallProgressFrame")
-    @CacheLookup
     WebElement activeCallProgressFrame;
 
     @FindBy(id = "doneCallProgressFrame")
-    @CacheLookup
     WebElement doneCallProgressFrame;
 
     @FindBy(id = "cardSpace")
-    @CacheLookup
     WebElement cardSpace;
 
     @FindBy(id = "activeDocGroup")
@@ -153,9 +137,9 @@ public class DashboardPage extends AbstractPage implements Profile {
     }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public DashboardPage verifyNewCallProgressFrame(String name) throws InterruptedException, IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
+    public DashboardPage verifyNewCallProgressFrame(String profile) throws InterruptedException, IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
         Thread.sleep(4000);
         clickJS(newCallProgressFrame.findElement(By.id("order")));
@@ -206,7 +190,10 @@ public class DashboardPage extends AbstractPage implements Profile {
     }
 
     @Step("открываю фрейм ожидают обработки")
-    public DashboardPage openNewCallProgressFrame(String nameGen) {
+    public DashboardPage openNewCallProgressFrame(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         JSWaiter.waitJQueryAngular();

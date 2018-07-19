@@ -119,14 +119,14 @@ public class RCD01Test extends AbstractTest implements Profile {
     @Test(groups = "test", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallPortal() throws InterruptedException {
+    public void testCallPortal() throws InterruptedException, IOException {
         driver.manage().deleteAllCookies();
         driver.get("https://uslugi.mosreg.ru/zdrav/");
-        SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-        page.portalDashboard().createCallHelper(user6);
+        SQLDemonstration.finalizePacientNumberPol("Profile4");
+        page.portalDashboard().createCall("Profile4");
         driver.get(curUrlCalldoctor);
 
-        page.dashboardPage().openNewCallProgressFrame(namePro4);
+        page.dashboardPage().openNewCallProgressFrame("Profile4");
         page.fullCardPage().verifyCallProfile4(nameGen);
     }
 

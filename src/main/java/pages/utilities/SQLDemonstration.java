@@ -1,12 +1,18 @@
 package pages.utilities;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
+import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Profile;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Map;
 
-public class SQLDemonstration {
+public class SQLDemonstration extends AbstractPage implements Profile {
     static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     static String databaseName = "hlt_demonstration";
     static String userName = "sa";
@@ -123,7 +129,10 @@ public class SQLDemonstration {
     }
 
     @Step("завершаю вызовы пациента по полису")
-    public static void finalizePacientNumberPol(String NumberPol) {
+    public static void finalizePacientNumberPol(String profileName) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profileName + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -134,11 +143,11 @@ public class SQLDemonstration {
                 String sql =
                         "update hlt_CallDoctor " +
                                 "set rf_CallDoctorStatusID = 3 " +
-                                "where NumberPol = '" + NumberPol + "'";
+                                "where NumberPol = '" + proData.get(nomerPol) + "'";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Pacient - " + NumberPol + " finalize is done.");
+                    System.out.println("Pacient - " + proData.get(nomerPol) + " finalize is done.");
                 }
             }
         } catch (Exception e) {
