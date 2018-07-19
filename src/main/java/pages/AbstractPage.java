@@ -7,14 +7,9 @@ import java.util.Map;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 abstract public class AbstractPage {
-    //    public WebDriverWait wait;
     public WebDriver driver;
-    public Map proData;
-
 
     public AbstractPage() {
-//        this.driver = driver;
-//        wait = new WebDriverWait(driver, 20);
         this.driver = getWebDriver();
     }
 

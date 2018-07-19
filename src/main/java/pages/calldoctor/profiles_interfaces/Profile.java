@@ -35,6 +35,6 @@ public interface Profile {
     String callPatronymic = null;
 
 
-    String doctorNamePro1 = null;
-    String doctorFamPro1 = null;
+    String doctorName = null;
+    String doctorFam = null;
 }

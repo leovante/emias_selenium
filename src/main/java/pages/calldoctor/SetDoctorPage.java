@@ -1,12 +1,11 @@
 package pages.calldoctor;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -15,19 +14,16 @@ import pages.utilities.JSWaiter;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$;
+
 
 public class SetDoctorPage extends AbstractPage {
 
-    @FindBy(xpath = "//span[contains(.,'Назначить на сегодня')]")
-    @CacheLookup
-    WebElement appenOnThisDay;
+    SelenideElement appenOnThisDay = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
+    SelenideElement loadCurrently = $(By.xpath("//span[contains(.,'ЗАГРУЗКА СЕГОДНЯ')]"));
 
-    @FindBy(xpath = "//span[contains(.,'ЗАГРУЗКА СЕГОДНЯ')]")
-    @CacheLookup
-    WebElement loadCurrently;
+    public SetDoctorPage() {
 
-    public SetDoctorPage(WebDriver driver) {
-        super(driver);
     }
 
     @Step("получить имя врача")
@@ -39,7 +35,7 @@ public class SetDoctorPage extends AbstractPage {
                 .until(ExpectedConditions.presenceOfElementLocated(By
                         .xpath("//div[contains(., 'ЗАГРУЗКА СЕГОДНЯ')]")));
 
-        click(loadCurrently);
+        loadCurrently.click();
 
 
         String doctorName = null;
@@ -63,7 +59,7 @@ public class SetDoctorPage extends AbstractPage {
                 .until(ExpectedConditions.presenceOfElementLocated(By
                         .xpath("//div[contains(., 'ЗАГРУЗКА СЕГОДНЯ')]")));
 
-        click(loadCurrently);
+        loadCurrently.click();
 
         String doctorName = null;
         List<WebElement> doctorList = driver
@@ -87,8 +83,8 @@ public class SetDoctorPage extends AbstractPage {
                         .xpath("//div[contains(., '" + doctorName + "')]")));
 
 
-        waitClickableJS(driver.findElement(By.xpath("//div[contains(text(),'" + doctorName + "')]")));
-        click(driver.findElement(By.xpath("//div[contains(text(),'" + doctorName + "')]")));
-        click(appenOnThisDay);
+        $(By.xpath("//div[contains(text(),'" + doctorName + "')]")).should(Condition.visible);
+        $(By.xpath("//div[contains(text(),'" + doctorName + "')]")).click();
+        appenOnThisDay.click();
     }
 }

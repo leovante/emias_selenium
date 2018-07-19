@@ -3,14 +3,14 @@ package emias;
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeGroups;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.Pages;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.switchTo;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class AbstractTest {
@@ -32,23 +32,16 @@ public abstract class AbstractTest {
         driver = getWebDriver();
     }
 
-    @AfterSuite(alwaysRun = true)
-    public void afterSuite() {
-//        driver.quit();
-    }
-
     @Parameters(value = {"site", "login", "pass"})
     @BeforeGroups(groups = "CD", alwaysRun = true)
     public void beforeGroupsCD(@Optional String site,
                                @Optional String login,
                                @Optional String pass) {
         System.out.println("Site: " + site);
-//        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-//        page.homePage().callDoctorBtn();
-        pages.utilities.SwitchToPage.switchToPage();
-//        String url = driver.getCurrentUrl();
-//        curUrlCalldoctor = "http://192.168.7.48:8020/test/call/call_doctor_ui/call-doctor/board;docPrvdId=1210?ticket=KEHrb%2FkvTOKr3u1HlAyhK0y4BHiG20Bmv7l42aN6jt7NaIPz4%2BKHUinBRa9RxaIPOqWvpzGkcxs%2FfydP9toOUH2ydMRApDs%2BrUk7D78u0BxVOx1TwGypg%2BYocd0TN7cD%2B1dQELdApXKGQ8tmACh8zsk63PnHh1Suepda6o9cEDPu3KflSmQDCySa2mNyoic9OCE%2BkzAN2PWg8%2BM%2BplqaOMVQfybefhAzN28%2FinUIM%2B1AGdHPRp57e5T2Wh4N1hDA6FxPtDBDj25m%2BtJ3eeu9Qgv2miJQR8mJSwS4luTsbBpwPzTF&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
-//        curUrlCalldoctor = driver.getCurrentUrl();
+        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
+        page.homePage().callDoctorBtn();
+        switchTo().window(1);
+        curUrlCalldoctor = driver.getCurrentUrl();
     }
 
     @Parameters(value = {"site", "login", "pass"})
@@ -57,9 +50,8 @@ public abstract class AbstractTest {
                                 @Optional String login,
                                 @Optional String pass) {
         System.out.println("Site: " + site);
-//        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-//        String url = driver.getCurrentUrl();
-//        curUrlCalldoctor = url;
+        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
+        curUrlCalldoctor = driver.getCurrentUrl();
     }
 
     @BeforeGroups(groups = "CC", alwaysRun = true)
@@ -76,7 +68,6 @@ public abstract class AbstractTest {
         open("http://service.emias.mosreg.ru/test/call/call_doctor_ui/call-doctor/board;docPrvdId=1211?ticket=C%2FQZnj68wErhP4mV892v5evR7%2BxPvSDpoS8UQQwk%2FkL2F95HXWUwnUrXo%2FN25VeVBCVQtKB2LrFsy%2BzT4SGVO%2BO%2BQqivjETVFVKt1VF26wWIRbsO%2BZNaH54psOOoYi2nv0PfAfiLLBKgNEVsG57hUdNX8LIRYi3QvTXlvCAoLPgFsJqmtZLqWHhRcgZmERxFcXO6VCiFm38STaxK7XfR9fRJYshdeA%2FuVtAdFs5vKlr2v%2FT8R67IYPI%2B4mCqD3grjBBUdxtBo3MDyk4ZCD0LcXmaq0LEHBME0SD1fMCQoTs14221&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault");
     }
 
-
 //    public static void disableWarning() {
 //        try {
 //            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
@@ -91,13 +82,13 @@ public abstract class AbstractTest {
 //        }
 //    }
 
-    public String getFileName() {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy_hh.mm.ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-
-    public void getDriver() {
+//    public String getFileName() {
+//        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy_hh.mm.ss");
+//        Date date = new Date();
+//        return dateFormat.format(date);
+//    }
+//
+//    public void getDriver() {
 //        return this.driver;
-    }
+//    }
 }

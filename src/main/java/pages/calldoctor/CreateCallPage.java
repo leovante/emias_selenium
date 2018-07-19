@@ -12,7 +12,6 @@ import org.apache.http.impl.client.HttpClients;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
 
@@ -32,13 +31,13 @@ public class CreateCallPage extends AbstractPage implements Profile {
     @Step("создаю пустой вызов")
     public void createCallProfile0() throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile0.json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
-                .adress()
+                .adress(proData)
                 .telephoneChk()
-                .complaint()
+                .complaint(proData)
                 .vozrastKat()
-                .complaint()
+                .complaint(proData)
                 .saveBtn()
                 .adressAlarma();
     }
@@ -46,17 +45,17 @@ public class CreateCallPage extends AbstractPage implements Profile {
     @Step("создаю вызов -МКАБ +Регистр")
     public void createCallProfile1(String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile1.json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
-                .adress()
-                .telephone()
+                .adress(proData)
+                .telephone(proData)
                 .vozrastKat()
-                .adressAddition()
+                .adressAddition(proData)
                 .sexM()
-                .complaint()
-                .polis()
-                .FIO(nameGen)
-                .birthDay()
+                .complaint(proData)
+                .polis(proData)
+                .FIO(nameGen, proData)
+                .birthDay(proData)
                 .callerPatient()
                 .saveBtn();
     }
@@ -64,15 +63,15 @@ public class CreateCallPage extends AbstractPage implements Profile {
     @Step("создаю вызов с МКАБ + СМП")
     public void createCallProfile2(String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .sourceSMP()
                 .searchField()
-                .adressAddition()
-                .polis()
-                .telephone()
-                .complaint()
-                .callerPredstavit(nameGen)
+                .adressAddition(proData)
+                .polis(proData)
+                .telephone(proData)
+                .complaint(proData)
+                .callerPredstavit(nameGen, proData)
                 .saveBtn();
     }
 
@@ -178,24 +177,48 @@ public class CreateCallPage extends AbstractPage implements Profile {
         }
     }
 
+    // TODO: 7/19/2018 доделать
+    private CreateCallPage setDeafult(){
+        $(By.id("source1")).click();
+        //кнопка очистки привязки полиса
+        //найти все крестики на странице, засунуть в массив и нажать на все
+        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
+        $(By.xpath("//input[@placeholder='Дом']")).clear();
+        $(By.id("phone")).clear();
+        $(By.xpath("//label[@class='mat-checkbox-layout']")).clear();
+        $(By.xpath("//input[@placeholder='Корпус']")).clear();
+        $(By.xpath("//input[@placeholder='Строение']")).clear();
+        $(By.xpath("//input[@placeholder='Квартира']")).clear();
+        $(By.xpath("//input[@placeholder='П-д']")).clear();
+        $(By.xpath("//input[@placeholder='Д-фон']")).clear();
+        $(By.xpath("//input[@placeholder='Этаж']")).clear();
+        $(By.xpath("//input[@placeholder='Серия']")).clear();
+        $(By.xpath("//input[@placeholder='Номер полиса']")).clear();
+        $(By.xpath("//input[@placeholder='Фамилия']")).clear();
+        $(By.xpath("//input[@placeholder='Имя']")).clear();
+        $(By.xpath("//input[@placeholder='Отчество']")).clear();
+        $(By.xpath("//input[@placeholder='Дата рождения']")).clear();
 
-    public CreateCallPage addNewCall() {
+        return this;
+    }
+
+    private CreateCallPage addNewCall() {
         $(By.id("addNewCall")).click();
         return this;
     }
 
-    public CreateCallPage sourceSMP() {
+    private CreateCallPage sourceSMP() {
         $(By.id("source0")).click();
         return this;
     }
 
-    public CreateCallPage searchField() {
+    private CreateCallPage searchField() {
         $(By.id("findPatientInput")).setValue(nomerPol);
         $(By.id("findPatientInput")).pressEnter();
         return this;
     }
 
-    private CreateCallPage adress() {
+    private CreateCallPage adress(Map proData) {
         $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
         //тут нужно сделать цикл, потому что адрес может быть разной длины
         $(By.xpath("//input[@placeholder='Адрес']")).setValue((String) proData.get(adress_1));
@@ -208,12 +231,13 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
+    // TODO: 7/19/2018
     private CreateCallPage adressAlarma() {
         //тут нажимаем на кнопку - да во всплывающем окне
         return this;
     }
 
-    private CreateCallPage telephone() {
+    private CreateCallPage telephone(Map proData) {
         $(By.id("phone")).setValue((String) proData.get(telephone));
         return this;
     }
@@ -230,7 +254,7 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
-    private CreateCallPage adressAddition() {
+    private CreateCallPage adressAddition(Map proData) {
         $(By.xpath("//input[@placeholder='Корпус']")).setValue((String) proData.get(korpus));
         $(By.xpath("//input[@placeholder='Строение']")).setValue((String) proData.get(stroenie));
         $(By.xpath("//input[@placeholder='Квартира']")).setValue((String) proData.get(kvartira));
@@ -245,36 +269,35 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
-    private CreateCallPage complaint() {
-        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
+    private CreateCallPage complaint(Map proData) {
+        SelenideElement zhalob = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + proData.get(zhaloba) + "';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
+        jse.executeScript("arguments[0].value='" + proData.get(zhaloba) + "';", zhalob);
         return this;
     }
 
-    private CreateCallPage polis() {
+    private CreateCallPage polis(Map proData) {
         $(By.xpath("//input[@placeholder='Серия']")).setValue((String) proData.get(seriyaPol));
         $(By.xpath("//input[@placeholder='Номер полиса']")).setValue((String) proData.get(nomerPol));
         return this;
     }
 
-    private CreateCallPage FIO(String nameGen) {
+    private CreateCallPage FIO(String nameGen, Map proData) {
         $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
         $(By.xpath("//input[@placeholder='Имя']")).setValue(nameGen);
         $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
         return this;
     }
 
-    private CreateCallPage FIO() {
+    private CreateCallPage FIO(Map proData) {
         $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
         $(By.xpath("//input[@placeholder='Имя']")).setValue((String) proData.get(name));
         $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
         return this;
     }
 
-    private CreateCallPage birthDay() {
+    private CreateCallPage birthDay(Map proData) {
         $(By.xpath("//input[@placeholder='Дата рождения']")).setValue((String) proData.get(birthDay));
         return this;
     }
@@ -285,14 +308,13 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
-    private CreateCallPage callerPredstavit(String nameGen) {
+    private CreateCallPage callerPredstavit(String nameGen, Map proData) {
         $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
         $(By.xpath("//span[contains(.,'Представитель')]")).click();
-        $(By.id("sourceSmp")).setValue(station);
-        $(By.id("callFamily")).setValue(callFamily);
+        $(By.id("sourceSmp")).setValue((String) proData.get(station));
+        $(By.id("callFamily")).setValue((String) proData.get(callFamily));
         $(By.id("callName")).setValue(nameGen);
-        $(By.id("callPatronymic")).setValue(callPatronymic);
-
+        $(By.id("callPatronymic")).setValue((String) proData.get(callPatronymic));
         return this;
     }
 

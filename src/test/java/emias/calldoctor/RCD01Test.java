@@ -50,12 +50,12 @@ public class RCD01Test extends AbstractTest implements Profile {
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
     @RetryCountIfFailed()
-    public void testCallRegistrEmpy() throws InterruptedException, IOException {
+    public void testCallRegistrEmpy() throws IOException {
         open(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile0();
         page.fullCardPage()
-                .verifyCallProfile0()
+                .verifyCallProfile0("Profile0")
                 .closeCardBtn();
     }
 
@@ -67,7 +67,7 @@ public class RCD01Test extends AbstractTest implements Profile {
 
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage()
-                .verifyCallProfile1(nameGen)
+                .verifyCallProfile1(nameGen, "Profile1")
                 .closeCardBtn();
 
         page.dashboardPage()
@@ -82,7 +82,7 @@ public class RCD01Test extends AbstractTest implements Profile {
     public void testCallRegistrMkab() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile2(nameGen);
-        this.nameGen = page.fullCardPage().verifyCallProfile2(nameGen);
+        this.nameGen = page.fullCardPage().verifyCallProfile(nameGen, "Profile2");
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen)
