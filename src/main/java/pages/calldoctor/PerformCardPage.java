@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -9,13 +10,17 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
-import pages.calldoctor.Profiles_interfaces.Profile1;
-import pages.calldoctor.Profiles_interfaces.Profile5;
+import pages.calldoctor.profiles_interfaces.Profile;
+import pages.calldoctor.profiles_interfaces.Profile5;
 import pages.utilities.JSWaiter;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
 
 import static org.testng.Assert.assertTrue;
 
-public class PerformCardPage extends AbstractPage implements Profile1, Profile5 {
+public class PerformCardPage extends AbstractPage implements Profile, Profile5 {
 
     @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
     @CacheLookup
@@ -307,14 +312,15 @@ public class PerformCardPage extends AbstractPage implements Profile1, Profile5 
     }
 
     @Step("проверяю на странице редактирования корректность данных")
-    public PerformCardPage verifyCallProfile1(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
+    public PerformCardPage verifyCallProfile1(String nameGen) throws IOException {
 
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Редактирование вызова')]")));
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile1.json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
-        Thread.sleep(700);
+        for (Object entry : proData.entrySet()) {
+
+        }
+
         assertTrue(getWebElementValue(phone).equals(telephonePro1));
         assertTrue(getWebElementValue(seriyaPol).equals(seriyaPolPro1));
         assertTrue(getWebElementValue(nomerPol).equals(nomerPolPro1));

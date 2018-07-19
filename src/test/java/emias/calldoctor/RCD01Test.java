@@ -8,15 +8,17 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.calldoctor.Profiles_interfaces.Profile1;
-import pages.calldoctor.Profiles_interfaces.Profile2;
-import pages.calldoctor.Profiles_interfaces.Profile4;
+import pages.calldoctor.profiles_interfaces.Profile;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
-public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profile4 {
-    //    private static final Object User6 = ;
+import java.io.IOException;
+
+import static com.codeborne.selenide.Selenide.open;
+
+public class RCD01Test extends AbstractTest implements Profile {
     private String nameGen;
+
 
     @BeforeMethod(groups = {"CD", "test"})
     public void beforeMethod() {
@@ -47,9 +49,9 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @Test(groups = "CD", description = "пустой вызов")
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws InterruptedException {
-        //driver.get(curUrlCalldoctor);
+    @RetryCountIfFailed()
+    public void testCallRegistrEmpy() throws InterruptedException, IOException {
+        open(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile0();
         page.fullCardPage()
@@ -61,9 +63,9 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
     @Issue("EMIAS-90")
     @RetryCountIfFailed(0)
     public void testCallRegistr() throws Exception {
-        //driver.get(curUrlCalldoctor);
+        open(curUrlCalldoctor);
 
-//        page.createCallPage().createCallProfile1(nameGen);
+        page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage()
                 .verifyCallProfile1(nameGen)
                 .closeCardBtn();
@@ -71,75 +73,58 @@ public class RCD01Test extends AbstractTest implements Profile1, Profile2, Profi
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .clearFilterDepart()
-                .verifyNewCallProgressFrame(nameGen, adressPro1_3, telephonePro1);
+                .verifyNewCallProgressFrame(nameGen, "Profile1");
     }
 
     @Test(groups = "test", description = "вызов с источником СМП и привязкой МКАБ")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed()
     public void testCallRegistrMkab() throws Exception {
-        //driver.get(curUrlCalldoctor);
-
+        open(curUrlCalldoctor);
         page.createCallPage().createCallProfile2(nameGen);
         this.nameGen = page.fullCardPage().verifyCallProfile2(nameGen);
         page.fullCardPage().closeCardBtn();
 
         page.dashboardPage().searchFilterFio(nameGen)
                 .clearFilterDepart()
-                .verifyNewCallProgressFrame(nameGen, adressPro2_2, telephonePro1);
+                .verifyNewCallProgressFrame("Profile1");
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallSMPApi() throws InterruptedException {
-        //driver.get(curUrlCalldoctor);
+    @RetryCountIfFailed()
+    public void testCallSMPApi() throws InterruptedException, IOException {
+        open(curUrlCalldoctor);
 
         page.createCallPage().createCallProfile3(nameGen);
         //driver.get(curUrlCalldoctor);
 
-        page.dashboardPage().openNewCallProgressFrame(nameGen);
+        page.dashboardPage().openNewCallProgressFrame("Profile3");
         page.fullCardPage().verifyCallProfile3(nameGen);
     }
 
     @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallSMPApi2() throws InterruptedException {
-        //driver.get(curUrlCalldoctor);
-
+    @RetryCountIfFailed()
+    public void testCallSMPApi2() throws InterruptedException, IOException {
+        open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
-        //driver.get(curUrlCalldoctor);
 
-        page.dashboardPage().openNewCallProgressFrame(nameGen);
+        page.dashboardPage().openNewCallProgressFrame("Profile6");
         page.fullCardPage().verifyCallProfile6(nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
-    @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallPortal() throws InterruptedException {
-        //driver.manage().deleteAllCookies();
-        //driver.get("https://uslugi.mosreg.ru/zdrav/");
-        SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-//        page.portalDashboard().createCallHelper(user6);
-        //driver.get(curUrlCalldoctor);
-
-        page.dashboardPage().openNewCallProgressFrame(namePro4);
-        page.fullCardPage().verifyCallProfile4(nameGen);
-    }
-
-    @Test(groups = "tes", description = "создание вызова через портал по рандомному МКАБу")
-//дата провайдер аннотацию добавить
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(0)
-    public void testRandomProfile() throws InterruptedException {
-        //driver.get("https://uslugi.mosreg.ru/zdrav/");
-        SQLDemonstration.finalizePacientNumberPol(nomerPolPro4);
-        page.portalDashboard().createRandomCall();
-        //driver.get(curUrlCalldoctor);
+    public void testCallPortal() throws InterruptedException, IOException {
+        driver.manage().deleteAllCookies();
+        open("https://uslugi.mosreg.ru/zdrav/");
+        SQLDemonstration.finalizePacientNumberPol("Profile4");
+        page.portalDashboard().createCall("Profile4");
+        open(curUrlCalldoctor);
 
-        page.dashboardPage().openNewCallProgressFrame(namePro4);
+        page.dashboardPage().openNewCallProgressFrame("Profile4");
         page.fullCardPage().verifyCallProfile4(nameGen);
     }
 }

@@ -6,12 +6,12 @@ import io.qameta.allure.Issue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.calldoctor.Profiles_interfaces.Profile1;
-import pages.calldoctor.Profiles_interfaces.Profile2;
-import pages.calldoctor.Profiles_interfaces.Profile5;
+import pages.calldoctor.profiles_interfaces.Profile;
+import pages.calldoctor.profiles_interfaces.Profile2;
+import pages.calldoctor.profiles_interfaces.Profile5;
 import pages.utilities.StringGenerator;
 
-public class RCD02Test extends AbstractTest implements Profile1, Profile2, Profile5 {
+public class RCD02Test extends AbstractTest implements Profile, Profile2, Profile5 {
     String nameGen;
 
 
