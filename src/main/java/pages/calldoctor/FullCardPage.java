@@ -1,65 +1,35 @@
 package pages.calldoctor;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
 import pages.utilities.JSWaiter;
 
-public class FullCardPage extends AbstractPage implements
-        Profile,
-        Profile3,
-        Profile4,
-        Profile5,
-        Profile6 {
+import static com.codeborne.selenide.Selenide.$;
 
-    @FindBy(id = "doneCall")
-    @CacheLookup
-    WebElement doneCall;
+public class FullCardPage extends AbstractPage implements Profile {
 
-    @FindBy(xpath = "//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']")
-    @CacheLookup
-    WebElement mat_calendar_header;
-
-    @FindBy(xpath = "//span[contains(text(),'Передать другому врачу')]")
-    @CacheLookup
-    WebElement appoindBtn;
-
-    @FindBy(xpath = "//span[contains(text(),'Завершить обслуживание')]")
-    @CacheLookup
-    WebElement appoindBtns;
-
-    @FindBy(id = "cancel")
-    @CacheLookup
-    WebElement cancelBtn;
-
-    @FindBy(id = "cancelCall")
-    @CacheLookup
-    WebElement cancelCall;
-
-    @FindBy(xpath = "//a[@title='Отменить вызов']")
-    @CacheLookup
-    WebElement cancelCall2;
-
-    @FindBy(id = "change")
-    @CacheLookup
-    WebElement change;
-
-    @FindBy(xpath = "//input[@placeholder='Причина отмены вызова']")
-    @CacheLookup
-    WebElement cancelField;
+    SelenideElement doneCall = $(By.id("doneCall"));
+    SelenideElement mat_calendar_header = $(By.xpath("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"));
+    SelenideElement appoindBtn = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
+    SelenideElement appoindBtns = $(By.xpath("//span[contains(text(),'Завершить обслуживание')]"));
+    SelenideElement cancelBtn = $(By.id("cancel"));
+    SelenideElement cancelCall = $(By.id("cancelCall"));
+    SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
+    SelenideElement change = $(By.id("change"));
+    SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
 
 
     public FullCardPage(WebDriver driver) {
-        super(driver);
+
     }
 
     @Step("проверяю новый вызов")
