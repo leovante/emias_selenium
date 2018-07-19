@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import pages.callcenter.CallDoctorPage;
 import pages.callcenter.FindPatientPage;
@@ -10,7 +11,7 @@ import pages.portal.PortalDashboard;
 
 public class Pages extends AbstractPage {
 
-    public Pages(/*WebDriver driver*/) {
+    public Pages(/*WebDriver driver*/WebDriver driver) {
 //        super();
         //super(/*driver*/);
     }
