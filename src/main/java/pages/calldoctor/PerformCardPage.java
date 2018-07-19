@@ -1,171 +1,64 @@
 package pages.calldoctor;
 
+import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.calldoctor.profiles_interfaces.Profile5;
 import pages.utilities.JSWaiter;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.$;
 import static org.testng.Assert.assertTrue;
 
-public class PerformCardPage extends AbstractPage implements Profile, Profile5 {
+public class PerformCardPage extends AbstractPage implements Profile {
 
-    @FindBy(id = "4198BD84-7A21-4E38-B36B-3ECB2E956408")
-    @CacheLookup
-    WebElement cancelAdress;
+    SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
+    SelenideElement cancelBirthDate = $(By.xpath("//button[@aria-label='Clear']/span/mat-icon"));
+    SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
+    SelenideElement placeholder_adress = $(By.xpath("//input[@placeholder='Адрес']"));
+    SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
+    SelenideElement telephoneNumber = $(By.id("phone"));
+    SelenideElement chkBoxTelephone = $(By.xpath("//label[@class='mat-checkbox-layout']/div"));
+    SelenideElement hz = $(By.xpath("//button[2]/span/mat-icon"));
+    SelenideElement vozr = $(By.xpath("//input[@placeholder='Возр. категория']"));
+    SelenideElement hz2 = $(By.xpath("//span[contains(.,'Взрослый')]"));
+    SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
+    SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
+    SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
+    SelenideElement pd = $(By.xpath("//input[@placeholder='П-д']"));
+    SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
+    SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
+    SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Добавить жалобу']"));
+    SelenideElement seriyaPol = $(By.xpath("//input[@placeholder='Серия']"));
+    SelenideElement nomerPol = $(By.xpath("//input[@placeholder='Номер полиса']"));
+    SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
+    SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
+    SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
+    SelenideElement tipVisivaushego = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
+    SelenideElement predstav = $(By.xpath("//span[contains(.,'Представитель')]"));
+    SelenideElement saveBtns = $(By.xpath("//span[contains(text(),'Сохранить')]"));
+    SelenideElement callFamily = $(By.id("callFamily"));
+    SelenideElement callName = $(By.id("callName"));
+    SelenideElement callPatronymic = $(By.id("callPatronymic"));
+    SelenideElement birthDateTemp = $(By.id("birthDateTemp"));
+    SelenideElement source0 = $(By.id("source0"));
+    SelenideElement sourceSmp = $(By.id("sourceSmp"));
+    SelenideElement phone = $(By.id("phone"));
+    SelenideElement age = $(By.id("age"));
+    SelenideElement naidena_mkab = $(By.xpath("//div[contains(.,'Найдена МКАБ пациента Петров')]"));
+    SelenideElement redactirovanieVizova = $(By.xpath("//div[contains(text(),'Редактирование вызова')]"));
 
-    @FindBy(xpath = "//button[@aria-label='Clear']/span/mat-icon")
-    @CacheLookup
-    WebElement cancelBirthDate;
-
-    @FindBy(xpath = "//div[@class='autocomplete-list-container']/ul/li")
-    WebElement list_first_container;
-
-    @FindBy(xpath = "//input[@placeholder='Адрес']")
-    @CacheLookup
-    WebElement placeholder_adress;
-
-    @FindBy(xpath = "//input[@placeholder='Дом']")
-    @CacheLookup
-    WebElement dom;
-
-    @FindBy(id = "phone")
-    @CacheLookup
-    WebElement telephoneNumber;
-
-    @FindBy(xpath = "//label[@class='mat-checkbox-layout']/div")
-    @CacheLookup
-    WebElement chkBoxTelephone;
-
-    @FindBy(xpath = "//button[2]/span/mat-icon")
-    @CacheLookup
-    WebElement hz;
-
-    @FindBy(xpath = "//input[@placeholder='Возр. категория']")
-    @CacheLookup
-    WebElement vozr;
-
-    @FindBy(xpath = "//span[contains(.,'Взрослый')]")
-    @CacheLookup
-    WebElement hz2;
-
-    @FindBy(xpath = "//input[@placeholder='Корпус']")
-    @CacheLookup
-    WebElement korpus;
-
-    @FindBy(xpath = "//input[@placeholder='Строение']")
-    @CacheLookup
-    WebElement stroenie;
-
-    @FindBy(xpath = "//input[@placeholder='Квартира']")
-    @CacheLookup
-    WebElement kvartira;
-
-    @FindBy(xpath = "//input[@placeholder='П-д']")
-    @CacheLookup
-    WebElement pd;
-
-    @FindBy(xpath = "//input[@placeholder='Д-фон']")
-    @CacheLookup
-    WebElement dfon;
-
-    @FindBy(xpath = "//input[@placeholder='Этаж']")
-    @CacheLookup
-    WebElement etazh;
-
-    @FindBy(xpath = "//input[@aria-label='Добавить жалобу']")
-    @CacheLookup
-    WebElement zhaloba;
-
-    @FindBy(xpath = "//input[@placeholder='Серия']")
-    @CacheLookup
-    WebElement seriyaPol;
-
-    @FindBy(xpath = "//input[@placeholder='Номер полиса']")
-    @CacheLookup
-    WebElement nomerPol;
-
-    @FindBy(xpath = "//input[@placeholder='Фамилия']")
-    @CacheLookup
-    WebElement fam;
-
-    @FindBy(xpath = "//input[@placeholder='Имя']")
-    @CacheLookup
-    WebElement name;
-
-    @FindBy(xpath = "//input[@placeholder='Отчество']")
-    @CacheLookup
-    WebElement otchestvo;
-
-    @FindBy(xpath = "//input[@placeholder='Тип вызывающего']")
-    @CacheLookup
-    WebElement tipVisivaushego;
-
-    @FindBy(xpath = "//span[contains(.,'Представитель')]")
-    @CacheLookup
-    WebElement predstav;
-
-    @FindBy(xpath = "//span[contains(text(),'Сохранить')]")
-    @CacheLookup
-    WebElement saveBtns;
-
-    @FindBy(id = "callFamily")
-    @CacheLookup
-    WebElement callFamily;
-
-    @FindBy(id = "callName")
-    @CacheLookup
-    WebElement callName;
-
-    @FindBy(id = "callPatronymic")
-    @CacheLookup
-    WebElement callPatronymic;
-
-    @FindBy(id = "birthDateTemp")
-    @CacheLookup
-    WebElement birthDateTemp;
-
-    @FindBy(id = "source0")
-    @CacheLookup
-    WebElement source0;
-
-    @FindBy(id = "sourceSmp")
-    @CacheLookup
-    WebElement sourceSmp;
-
-    @FindBy(id = "phone")
-    @CacheLookup
-    WebElement phone;
-
-    @FindBy(id = "age")
-    @CacheLookup
-    WebElement age;
-
-    @FindBy(xpath = "//div[contains(.,'Найдена МКАБ пациента Петров')]")
-    @CacheLookup
-    WebElement naidena_mkab;
-
-    @FindBy(xpath = "//div[contains(text(),'Редактирование вызова')]")
-    @CacheLookup
-    WebElement redactirovanieVizova;
-
-
-    public PerformCardPage(WebDriver driver) {
-        super(driver);
+    public PerformCardPage() {
     }
-
 
     @Step("редактирую вызов без привязывания МКАБ")
     public PerformCardPage editCallProfile5(String nameGen) {
@@ -176,9 +69,8 @@ public class PerformCardPage extends AbstractPage implements Profile, Profile5 {
         waitVisibility(redactirovanieVizova);
 
 /*адрес*/
-        click(cancelAdress);
-        click(placeholder_adress);
-        placeholder_adress.clear();
+        cancelAdress.click();
+        placeholder_adress.click();
 
         placeholder_adress.sendKeys(adressPro5_1);
         click(list_first_container);

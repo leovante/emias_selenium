@@ -1,22 +1,23 @@
 package pages.calldoctor;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.commands.PressEnter;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.utilities.JSWaiter;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class FullCardPage extends AbstractPage implements Profile {
-
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header = $(By.xpath("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"));
     SelenideElement appoindBtn = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
@@ -27,624 +28,290 @@ public class FullCardPage extends AbstractPage implements Profile {
     SelenideElement change = $(By.id("change"));
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
 
-
-    public FullCardPage(WebDriver driver) {
+    public FullCardPage() {
 
     }
 
+    public void baseElements() {
+        ArrayList<String> elements = null;
+        elements.add("Карта вызова");
+        elements.add("Дата");
+        elements.add("Время");
+        elements.add("Статус");
+        elements.add("Вид вызова");
+        elements.add("Источник");
+        elements.add("АДРЕС");
+        elements.add("ЖАЛОБЫ");
+        elements.add("КТО ПАЦИЕНТ");
+        elements.add("КТО ВЫЗВАЛ");
+        elements.add("КТО ОБСЛУЖИВАЕТ");
+        elements.add("Возрастная категория");
+        elements.add("Телефон");
+        elements.add("Врач");
+        elements.add("ИСТОРИЯ ВЫЗОВА");
+        elements.add("АВТОР");
+        elements.add("ЧТО ИЗМЕНИЛОСЬ");
+        elements.add("ИЗМЕНЕНИЕ");
+        elements.add("Новый");
+        elements.add("Первичный");
+        elements.add("Регистратура");
+        elements.add("Взрослые");
+        elements.add("Карта создана");
+        elements.add("Не назначен");
+
+        for (String element : elements) {
+            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
+        }
+    }
+
+    public void baseElementsNewCall() {
+        ArrayList<String> elements = null;
+        elements.add("Карта вызова");
+        elements.add("Дата");
+        elements.add("Время");
+        elements.add("Статус");
+        elements.add("Вид вызова");
+        elements.add("Источник");
+        elements.add("АДРЕС");
+        elements.add("ЖАЛОБЫ");
+        elements.add("КТО ПАЦИЕНТ");
+        elements.add("КТО ВЫЗВАЛ");
+        elements.add("КТО ОБСЛУЖИВАЕТ");
+        elements.add("Возрастная категория");
+        elements.add("Телефон");
+        elements.add("Врач");
+        elements.add("ИСТОРИЯ ВЫЗОВА");
+        elements.add("АВТОР");
+        elements.add("ЧТО ИЗМЕНИЛОСЬ");
+        elements.add("ИЗМЕНЕНИЕ");
+        elements.add("Новый");
+        elements.add("Первичный");
+        elements.add("Регистратура");
+        elements.add("Взрослые");
+        elements.add("Карта создана");
+        elements.add("Не назначен");
+
+        for (String element : elements) {
+            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
+        }
+    }
+
+    public void baseElementsActivityCall() {
+        ArrayList<String> elements = null;
+        elements.add("Карта вызова");
+        elements.add("Дата");
+        elements.add("Время");
+        elements.add("Статус");
+        elements.add("Вид вызова");
+        elements.add("Источник");
+        elements.add("АДРЕС");
+        elements.add("ЖАЛОБЫ");
+        elements.add("КТО ПАЦИЕНТ");
+        elements.add("КТО ВЫЗВАЛ");
+        elements.add("КТО ОБСЛУЖИВАЕТ");
+        elements.add("Возрастная категория");
+        elements.add("Телефон");
+        elements.add("Врач");
+        elements.add("ИСТОРИЯ ВЫЗОВА");
+        elements.add("АВТОР");
+        elements.add("ЧТО ИЗМЕНИЛОСЬ");
+        elements.add("ИЗМЕНЕНИЕ");
+        elements.add("Новый");
+        elements.add("Первичный");
+        elements.add("Регистратура");
+        elements.add("Взрослые");
+        elements.add("Карта создана");
+        elements.add("Не назначен");
+
+        for (String element : elements) {
+            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
+        }
+    }
+
+    public void baseElementsDoneCall() {
+        ArrayList<String> elements = null;
+        elements.add("Карта вызова");
+        elements.add("Дата");
+        elements.add("Время");
+        elements.add("Статус");
+        elements.add("Вид вызова");
+        elements.add("Источник");
+        elements.add("АДРЕС");
+        elements.add("ЖАЛОБЫ");
+        elements.add("КТО ПАЦИЕНТ");
+        elements.add("КТО ВЫЗВАЛ");
+        elements.add("КТО ОБСЛУЖИВАЕТ");
+        elements.add("Возрастная категория");
+        elements.add("Телефон");
+        elements.add("Врач");
+        elements.add("ИСТОРИЯ ВЫЗОВА");
+        elements.add("АВТОР");
+        elements.add("ЧТО ИЗМЕНИЛОСЬ");
+        elements.add("ИЗМЕНЕНИЕ");
+        elements.add("Новый");
+        elements.add("Первичный");
+        elements.add("Регистратура");
+        elements.add("Взрослые");
+        elements.add("Карта создана");
+        elements.add("Не назначен");
+
+        for (String element : elements) {
+            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
+        }
+    }
+
+
     @Step("проверяю новый вызов")
-    public FullCardPage verifyCallProfile0() throws InterruptedException {
-        isDisplayedJS("Карта вызова");
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
+    public FullCardPage verifyCallProfile0(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        baseElements();
 
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Взрослые");
-        isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("Не назначен");
-
-        isDisplayedOnCardPage(adressPro0);
-        isDisplayedOnCardPage(zhalobaPro0);
+        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
         return this;
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyCallProfile1(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
+    public FullCardPage verifyCallProfile1(String nameGen, String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        baseElements();
 
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
+        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Регистратура" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Взрослые" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Пациент" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Стенд ЕМИАС МО" + "')]")).should(Condition.visible);
 
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Отменить вызов");
-        isDisplayedOnCardPage("Изменить");
-        isDisplayedOnCardPage("Передать в другое ЛПУ");
-
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Взрослые");
-        isDisplayedOnCardPage("Пациент");
-        isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("Не назначен");
-//        isDisplayedOnCardPage("Стенд ЕМИАС МО");
-
-        isDisplayedOnCardPage(adressPro1);
-        isDisplayedOnCardPage(pdPro1);
-        isDisplayedOnCardPage(dfonPro1);
-        isDisplayedOnCardPage(etazhPro1);
-        isDisplayedOnCardPage(nameGen);
-        isDisplayedOnCardPage(famPro1);
-        isDisplayedOnCardPage(otchestvoPro1);
-        isDisplayedOnCardPage(seriyaPolPro1);
-        isDisplayedOnCardPage(nomerPolPro1);
-        isDisplayedOnCardPage(zhalobaPro1);
-        isDisplayedOnCardPage(birthDayPro1);
-        isDisplayedOnCardPage(goda24Pro1);
-        isDisplayedOnCardPage(vozrastKatPro1);
+        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(pd) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(dfon) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(etazh) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(nameGen) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(fam) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(otchestvo) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(seriyaPol) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(nomerPol) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(birthDay) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(age) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(vKat) + "')]")).should(Condition.visible);
         return this;
     }
 
     @Step("проверяю активный вызов")
-    public FullCardPage verifyCallProfile1Activity(String doctorFam, String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
+    public FullCardPage verifyCallProfile1Activity(String nameGen, String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        baseElements();
 
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-        isDisplayedOnCardPage("Плановое время обхода");
+        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Регистратура" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Взрослые" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Пациент" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Стенд ЕМИАС МО" + "')]")).should(Condition.visible);
 
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("Отменить вызов");
-        isDisplayedOnCardPage("Изменить");
-        isDisplayedOnCardPage("Передать в другое ЛПУ");
-
-        isDisplayedOnCardPage("Активный");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Пациент");
-
-        //в истории вызова
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("Назначенный врач");
-        isDisplayedOnCardPage("Дата перевода в статус активный");
-
-        //параметры профиля
-        isDisplayedOnCardPage(adressPro1);
-        isDisplayedOnCardPage(pdPro1);
-        isDisplayedOnCardPage(dfonPro1);
-        isDisplayedOnCardPage(etazhPro1);
-        isDisplayedOnCardPage(nameGen);
-        isDisplayedOnCardPage(doctorFam);
-        isDisplayedOnCardPage(famPro1);
-        isDisplayedOnCardPage(otchestvoPro1);
-        isDisplayedOnCardPage(seriyaPolPro1);
-        isDisplayedOnCardPage(nomerPolPro1);
-        isDisplayedOnCardPage(zhalobaPro1);
-        isDisplayedOnCardPage(birthDayPro1);
-        isDisplayedOnCardPage(goda24Pro1);
-        isDisplayedOnCardPage(vozrastKatPro1);
+        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(pd) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(dfon) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(etazh) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(nameGen) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(fam) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(otchestvo) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(seriyaPol) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(nomerPol) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(birthDay) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(age) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(vKat) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(doctorFam) + "')]")).should(Condition.visible);
         return this;
     }
 
     @Step("проверяю обслуженный вызов")
-    public FullCardPage verifyDoneDocGroup(String doctorFam, String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
+    public FullCardPage verifyDoneDocGroup(String nameGen, String profile) throws IOException {
+        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        Selenide.refresh();
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        baseElements();
 
-        driver.navigate().refresh();
+        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Активный" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Регистратура" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Взрослые" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Пациент" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Стенд ЕМИАС МО" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Назначенный врач" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Дата перевода в статус активный" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Дата и время завершения обслуживания вызова" + "')]")).should(Condition.visible);
 
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-        WebElement dynamicElement2 = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-
-
-        isDisplayedOnCardPage("Обслуженный");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("Регистратура");
-        isDisplayedOnCardPage("Пациент");
-
-        //в истории вызова
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Активный");
-        isDisplayedOnCardPage("Назначенный врач");
-        isDisplayedOnCardPage("Дата перевода в статус активный");
-        isDisplayedOnCardPage("Дата и время завершения обслуживания вызова");
-
-        //параметры профиля
-        isDisplayedOnCardPage(adressPro1);
-        isDisplayedOnCardPage(pdPro1);
-        isDisplayedOnCardPage(dfonPro1);
-        isDisplayedOnCardPage(etazhPro1);
-        isDisplayedOnCardPage(nameGen);
-        isDisplayedOnCardPage(doctorFam);
-        isDisplayedOnCardPage(famPro1);
-        isDisplayedOnCardPage(otchestvoPro1);
-        isDisplayedOnCardPage(seriyaPolPro1);
-        isDisplayedOnCardPage(nomerPolPro1);
-        isDisplayedOnCardPage(zhalobaPro1);
-        isDisplayedOnCardPage(birthDayPro1);
-        isDisplayedOnCardPage(goda24Pro1);
-        isDisplayedOnCardPage(vozrastKatPro1);
-        return this;
-    }
-
-    @Step("проверяю новый вызов")
-    public String verifyCallProfile2(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Тип вызывающего");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("Отменить вызов");
-        isDisplayedOnCardPage("Изменить");
-        isDisplayedOnCardPage("Передать в другое ЛПУ");
-
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("СМП");
-
-        //в истории вызова
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Карта создана");
-
-        //параметры профиля
-        isDisplayedOnCardPage(adressPro2);
-        isDisplayedOnCardPage(pdPro2);
-        isDisplayedOnCardPage(dfonPro2);
-        isDisplayedOnCardPage(etazhPro2);
-        isDisplayedOnCardPage(nameGen);
-        isDisplayedOnCardPage(famPro2);
-        isDisplayedOnCardPage(namePro2);
-
-        isDisplayedOnCardPage(otchestvoPro2);
-        isDisplayedOnCardPage(nomerPolPro2);
-        isDisplayedOnCardPage(zhalobaPro2);
-        isDisplayedOnCardPage(birthDayPro2);
-        isDisplayedOnCardPage(goda24Pro2);
-        isDisplayedOnCardPage(vozrastKatPro2);
-
-        isDisplayedOnCardPage(telephonePro2);
-        isDisplayedOnCardPage(genderPro2);
-
-        isDisplayedOnCardPage(nameCallPro2);
-        isDisplayedOnCardPage(famCallPro2);
-        isDisplayedOnCardPage(otCallPro2);
-
-        isDisplayedOnCardPage(stationSMPPro2);
-        return famPro2;
-    }
-
-    @Step("проверяю новый вызов от api СМП без МКАБ")
-    public FullCardPage verifyCallProfile3(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Неотложный");
-        isDisplayedOnCardPage("СМП");
-
-        //в истории вызова
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("Стенд ЕМИАС МО");
-
-        //параметры профиля
-        assertTextIsVisible(adressPro3);
-        assertTextIsVisible(pdPro3);
-        assertTextIsVisible(dfonPro3);
-        assertTextIsVisible(etazhPro3);
-
-        assertTextIsVisible(nomerPolPro3);
-        assertTextIsVisible(zhalobaPro3);
-        assertTextIsVisible(birthDayPro3);
-        assertTextIsVisible(goda24Pro3);
-        assertTextIsVisible(vozrastKatPro3);
-
-        assertTextIsVisible(telephonePro3);
-        assertTextIsVisible(genderPro3);
-        assertTextIsVisible(nameGen);
-        return this;
-    }
-
-    @Step("проверяю новый вызов от api СМП без МКАБ")
-    public FullCardPage verifyCallProfile6(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-//        isDisplayedOnCardPage("Тип вызывающего");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Неотложный");
-        isDisplayedOnCardPage("СМП");
-
-        //в истории вызова
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("Стенд ЕМИАС МО");
-
-        //параметры профиля
-        assertTextIsVisible(adressPro6);
-        assertTextIsVisible(pdPro6);
-        assertTextIsVisible(dfonPro6);
-        assertTextIsVisible(etazhPro6);
-
-        assertTextIsVisible(nomerPolPro6);
-        assertTextIsVisible(zhalobaPro6);
-        assertTextIsVisible(birthDayPro6);
-        assertTextIsVisible(goda24Pro6);
-        assertTextIsVisible(vozrastKatPro6);
-
-        assertTextIsVisible(telephonePro6);
-        assertTextIsVisible(genderPro6);
-        assertTextIsVisible(nameGen);
-        return this;
-    }
-
-    @Step("проверяю новый вызов через Портал")
-    public FullCardPage verifyCallProfile4(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Врач");
-
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("Интернет");
-
-        //в истории вызова
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Карта создана");
-        isDisplayedOnCardPage("Стенд ЕМИАС МО");
-
-        //параметры профиля
-        assertTextIsVisible(adressPro4);
-        assertTextIsVisible(pdPro4);
-        assertTextIsVisible(etazhPro4);
-        assertTextIsVisible(dfonPro4);
-        assertTextIsVisible(famPro4);
-        assertTextIsVisible(otchestvoPro4);
-
-        assertTextIsVisible(nomerPolPro4);
-        assertTextIsVisible(zhalobaPro4);
-        assertTextIsVisible(birthDayPro4);
-        assertTextIsVisible(goda24Pro4);
-        assertTextIsVisible(vozrastKatPro4);
-
-        isDisplayedOnCardPage("+7 (951) 158-27-14");
-        assertTextIsVisible(genderPro4);
-        return this;
-    }
-
-    @Step("проверяю отредактированный вызов")
-    public FullCardPage verifyCallProfile5(String nameGen) throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., 'Карта вызова')]")));
-
-        Thread.sleep(700);
-        isDisplayedOnCardPage("Дата");
-        isDisplayedOnCardPage("Время");
-        isDisplayedOnCardPage("Статус");
-        isDisplayedOnCardPage("Вид вызова");
-        isDisplayedOnCardPage("Источник");
-        isDisplayedOnCardPage("АДРЕС");
-        isDisplayedOnCardPage("П-д");
-        isDisplayedOnCardPage("Домофон");
-        isDisplayedOnCardPage("Этаж");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-
-        isDisplayedOnCardPage("КТО ПАЦИЕНТ");
-        isDisplayedOnCardPage("КТО ВЫЗВАЛ");
-        isDisplayedOnCardPage("КТО ОБСЛУЖИВАЕТ");
-        isDisplayedOnCardPage("Возрастная категория");
-        isDisplayedOnCardPage("Возраст");
-        isDisplayedOnCardPage("Пол");
-        isDisplayedOnCardPage("Полис");
-        isDisplayedOnCardPage("Телефон");
-        isDisplayedOnCardPage("Тип вызывающего");
-        isDisplayedOnCardPage("Врач");
-        isDisplayedOnCardPage("ИСТОРИЯ ВЫЗОВА");
-        isDisplayedOnCardPage("Отменить вызов");
-        isDisplayedOnCardPage("Изменить");
-        isDisplayedOnCardPage("Передать в другое ЛПУ");
-
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("Первичный");
-        isDisplayedOnCardPage("СМП");
-
-        //в истории вызова
-        isDisplayedOnCardPage("АВТОР");
-        isDisplayedOnCardPage("ЧТО ИЗМЕНИЛОСЬ");
-        isDisplayedOnCardPage("ИЗМЕНЕНИЕ");
-        isDisplayedOnCardPage("Новый");
-        isDisplayedOnCardPage("ЖАЛОБЫ");
-//        isDisplayedOnCardPage("Серия полиса");
-        isDisplayedOnCardPage("Номер полиса");
-        isDisplayedOnCardPage("Имя вызывающего");
-
-        //адрес
-        isDisplayedOnCardPage(adressPro5);
-        isDisplayedOnCardPage(pdPro5);
-        isDisplayedOnCardPage(dfonPro5);
-        isDisplayedOnCardPage(etazhPro5);
-        //кто пациент
-        isDisplayedOnCardPage(famPro5);
-        isDisplayedOnCardPage(nameGen);
-        isDisplayedOnCardPage(otchestvoPro5);
-        isDisplayedOnCardPage(birthDayPro5);
-        isDisplayedOnCardPage(goda24Pro5);
-        isDisplayedOnCardPage(vozrastKatPro5);
-        isDisplayedOnCardPage(nomerPolPro5);
-        isDisplayedOnCardPage(seriyaPolPro5);
-        isDisplayedOnCardPage(genderPro5);
-        //жалобы
-        isDisplayedOnCardPage(zhalobaPro5);
-        isDisplayedOnCardPage(zhalobaPro1);
-        //кто вызвал
-        isDisplayedOnCardPage(telephonePro5);
-        isDisplayedOnCardPage(nameCallPro5);
-        isDisplayedOnCardPage(famCallPro5);
-        isDisplayedOnCardPage(otCallPro5);
-        isDisplayedOnCardPage(stationSMPPro5);
-        //кто обслуживает
-        isDisplayedOnCardPage("Не назначен");
+        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(pd) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(dfon) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(etazh) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(nameGen) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(fam) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(otchestvo) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(seriyaPol) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(nomerPol) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(birthDay) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(age) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(vKat) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get(doctorFam) + "')]")).should(Condition.visible);
         return this;
     }
 
 
-    @Step("отмена вызов на странице подробной карты вызова")
+    @Step("отменить вызов")
     public FullCardPage cancelRecordOnFullCardPage() {
-        isDisplayedJS("Карта вызова");
-        click(cancelBtn);
-        sendKeysJS(cancelField, "отмена автотестом");
-        click(cancelCall);
+        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        cancelBtn.click();
+        cancelField.setValue("отмена автотестом");
+        cancelCall.click();
         return this;
     }
 
-    @Step("нажимаю на передать другому врачу")
+    @Step("передать другому врачу")
     public void sendAnotherDoctorBtn() {
-        click(appoindBtn);
+        appoindBtn.click();
     }
 
-    @Step("нажимаю на назначить врача")
+    @Step("назначить врача")
     public FullCardPage appoindDoctorBtn() {
-        isDisplayedJS("Карта вызова");
-        WebElement appoindBtns = driver.findElement(By.xpath("//span[contains(text(),'Назначить')]"));
-        wait.until(ExpectedConditions.elementToBeClickable(appoindBtns));
+        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//span[contains(text(),'Назначить')]")).should(Condition.visible);
         appoindBtns.click();
         return this;
     }
 
-    @Step("нажимаю на завершить обслуживание")
+    @Step("завершить обслуживание")
     public FullCardPage completeServiceBtn() throws InterruptedException {
-        JSWaiter.waitJQueryAngular();
-        JSWaiter.waitUntilJSReady();
-        isDisplayedJS("Карта вызова");
-        Actions action = new Actions(driver);
-        click(appoindBtns);
+        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        appoindBtns.click();
+        mat_calendar_header.click();
 
-        click(mat_calendar_header);
-        action.sendKeys(Keys.ENTER).perform();
-        click(doneCall);
+        new PressEnter();
+        doneCall.click();
         Thread.sleep(1000);
         return this;
     }
@@ -652,25 +319,24 @@ public class FullCardPage extends AbstractPage implements Profile {
 
     @Step("отмена вызов на странице редактирвоания")
     public FullCardPage cancelRecordOnChangePage() {
-        isDisplayedJS("Редактирование вызова");
-        click(cancelCall);
-        sendKeysJS(cancelField, "отмена автотестом");
-        click(cancelCall2);
+        $(By.xpath("//*[contains(.,'" + "Редактирование вызова" + "')]")).should(Condition.visible);
+        cancelCall.click();
+        cancelField.setValue("отмена автотестом");
+        cancelCall2.click();
         return this;
     }
 
     @Step("отмена вызов на странице редактирвоания")
     public FullCardPage editCallBtn() {
-        isDisplayedJS("Карта вызова");
-        click(change);
+        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        change.click();
         return this;
     }
 
-
     @Step("закрыть подробную карту")
     public FullCardPage closeCardBtn() {
-        isDisplayedJS("Карта вызова");
-        clickJS(driver.findElement(By.xpath("//mat-icon[contains(text(),'close')]")));
+        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//mat-icon[contains(text(),'close')]")).click();
         return this;
     }
 }

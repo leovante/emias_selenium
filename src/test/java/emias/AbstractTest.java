@@ -1,7 +1,5 @@
 package emias;
 
-//import org.codehaus.plexus.util.FileUtils;
-
 import com.codeborne.selenide.Configuration;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
