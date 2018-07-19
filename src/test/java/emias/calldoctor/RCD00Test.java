@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class RCD00Test extends AbstractTest {
 
+<<<<<<< .merge_file_a10924
 <<<<<<< .merge_file_a05364
 <<<<<<< .merge_file_a09164
     @Test(groups = {"mis"}, description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
@@ -20,6 +21,8 @@ public class RCD00Test extends AbstractTest {
 =======
 =======
 >>>>>>> .merge_file_a11688
+=======
+>>>>>>> .merge_file_a14284
     @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed()
     public void cleanBeforeCallDoctorTests() throws InterruptedException {

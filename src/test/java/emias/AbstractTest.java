@@ -103,18 +103,4 @@ public abstract class AbstractTest {
         return dateFormat.format(date);
     }
 
-//<<<<<<< .merge_file_a13804
-//    public void getDriver() {
-////        return this.driver;
-//=======
-//    public WebDriver getDriver() {
-//        return driver;
-//<<<<<<< .merge_file_a12972
-//<<<<<<< .merge_file_a05880
-//>>>>>>> .merge_file_a09948
-//=======
-//>>>>>>> .merge_file_a07960
-//=======
-//>>>>>>> .merge_file_a01028
-//    }
 }
