@@ -190,19 +190,19 @@ public class FullCardPage extends AbstractPage implements Profile {
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Стенд ЕМИАС МО" + "')]")).should(Condition.visible);
 
-        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(pd) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(dfon) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(etazh) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("dfon") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("etazh") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get(nameGen) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(fam) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(otchestvo) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(seriyaPol) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(nomerPol) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(birthDay) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(age) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(vKat) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("fam") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("otchestvo") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("nomerPol") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("birthDay") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("age") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         return this;
     }
 

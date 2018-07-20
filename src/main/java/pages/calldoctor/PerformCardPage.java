@@ -1,24 +1,12 @@
+
 package pages.calldoctor;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.qameta.allure.Step;
-import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.utilities.JSWaiter;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
-import static org.testng.Assert.assertTrue;
 
 public class PerformCardPage extends AbstractPage implements Profile {
 
@@ -60,11 +48,13 @@ public class PerformCardPage extends AbstractPage implements Profile {
 
     public PerformCardPage() {
     }
-
+/*
     @Step("редактирую вызов без привязывания МКАБ")
     public PerformCardPage editCallProfile5(String nameGen) throws IOException {
 
-        /*адрес*/
+        */
+    /*адрес*//*
+
         cancelAdress.click();
         placeholder_adress.click();
 
@@ -77,7 +67,9 @@ public class PerformCardPage extends AbstractPage implements Profile {
         placeholder_adress.sendKeys(adressPro5_3);
         click(list_first_container);
 
-        /*обязательные поля*/
+        */
+    /*обязательные поля*//*
+
         sendKeysJS(dom, domPro5);
         click(cancelBirthDate);
         sendKeysJS(birthDateTemp, birthDayPro5);
@@ -88,7 +80,9 @@ public class PerformCardPage extends AbstractPage implements Profile {
         telephoneNumber.click();
         action.sendKeys(Keys.SPACE).perform();
 
-        /*необязательные поля*/
+        */
+    /*необязательные поля*//*
+
         click(source0);
         sendKeysJS(korpus, korpusPro5);
         sendKeysJS(stroenie, stroeniePro5);
@@ -98,13 +92,17 @@ public class PerformCardPage extends AbstractPage implements Profile {
         sendKeysJS(etazh, etazhPro5);
         sendKeysJS(sourceSmp, stationSMPPro5);
 
-        /*жалоба*/
+        */
+    /*жалоба*//*
+
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + zhalobaPro5 + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
-        /*кто пациент*/
+        */
+    /*кто пациент*//*
+
         sendKeysJS(seriyaPol, seriyaPolPro5);
         sendKeysJS(nomerPol, nomerPolPro5);
         click(fam);
@@ -112,7 +110,9 @@ public class PerformCardPage extends AbstractPage implements Profile {
         sendKeysJS(name, nameGen);
         sendKeysJS(otchestvo, otchestvoPro5);
 
-        /*кто вызывает*/
+        */
+    /*кто вызывает*//*
+
 //        tipVisivaushego.click();
 //        pacient.click();
         sendKeysJS(sourceSmp, stationSMPPro5);
@@ -127,7 +127,9 @@ public class PerformCardPage extends AbstractPage implements Profile {
     @Step("редактирую вызов c МКАБ")
     public void editCallToMkab() {
         Actions action = new Actions(driver);
-        /*адрес*/
+        */
+    /*адрес*//*
+
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
         click(cancelAdress);
         click(placeholder_adress);
@@ -141,7 +143,9 @@ public class PerformCardPage extends AbstractPage implements Profile {
         placeholder_adress.sendKeys("Первомайская");
         click(list_first_container);
 
-        /*обязательные поля*/
+        */
+    /*обязательные поля*//*
+
         dom.clear();
         click(dom);
         dom.sendKeys("1");
@@ -155,7 +159,9 @@ public class PerformCardPage extends AbstractPage implements Profile {
         click(vozr);
         hz2.click();
 
-        /*необязательные поля*/
+        */
+    /*необязательные поля*//*
+
         korpus.clear();
         korpus.sendKeys("2");
         stroenie.clear();
@@ -169,13 +175,17 @@ public class PerformCardPage extends AbstractPage implements Profile {
         etazh.clear();
         etazh.sendKeys("7");
 
-        /*жалоба*/
+        */
+    /*жалоба*//*
+
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='автотест';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);
         action.sendKeys(Keys.ENTER).perform();
 
-        /*кто пациент*/
+        */
+    /*кто пациент*//*
+
         seriyaPol.clear();
         seriyaPol.sendKeys("321");
         nomerPol.clear();
@@ -185,7 +195,9 @@ public class PerformCardPage extends AbstractPage implements Profile {
 //        name.sendKeysJS("Автодмитрий");
 //        otchestvo.sendKeysJS("Автоолегович");
 
-        /*кто вызывает*/
+        */
+    /*кто вызывает*//*
+
         tipVisivaushego.click();
         predstav.click();
 //        click(callFamily);
@@ -259,5 +271,5 @@ public class PerformCardPage extends AbstractPage implements Profile {
         return this;
     }
 
-
+*/
 }

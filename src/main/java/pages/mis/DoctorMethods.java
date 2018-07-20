@@ -1,39 +1,36 @@
 package pages.mis;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class DoctorMethods extends AbstractPage {
 
-    @FindBy(xpath = "//tr[@role='row'][@tabindex='-1']")
-    @CacheLookup
-    WebElement doctorRow;
+    SelenideElement doctorRow = $(By.xpath("//tr[@role='row'][@tabindex='-1']"));
 
-    public DoctorMethods(WebDriver driver) {
-        super(driver);
+    public DoctorMethods() {
     }
 
     @Step("получить уникального врача")
     public String getUnicalDoctor(String docName) {
-        waitAllEmias();
+//        waitAllEmias();
 
-        waitClickableJS(doctorRow);
+        doctorRow.shouldBe(Condition.visible);
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
         dontUseNames.add(docName);
 
         System.out.println(dontUseNames);
-        waitAllEmias();
+//        waitAllEmias();
 
 
         String doctorStringName = docName;
@@ -64,8 +61,8 @@ public class DoctorMethods extends AbstractPage {
 
     @Step("получить уникального врача")
     public String getUnicalDoctor3(int doctorNum) {
-        waitAllEmias();
-        waitClickableJS(doctorRow);
+//        waitAllEmias();
+        doctorRow.shouldBe(Condition.visible);
 
         List<String> badNames = new ArrayList<String>();
         Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null", "Моков Павел Александрович");
@@ -97,15 +94,15 @@ public class DoctorMethods extends AbstractPage {
 
     @Step("получить уникального врача")
     public String getUnicalDoctor2(String docName) {
-        waitAllEmias();
+//        waitAllEmias();
 
-        waitClickableJS(doctorRow);
+        doctorRow.shouldBe(Condition.visible);
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
         dontUseNames.add(docName);
 
         System.out.println(dontUseNames);
-        waitAllEmias();
+//        waitAllEmias();
 
 
         String doctorStringName = docName;
@@ -136,10 +133,9 @@ public class DoctorMethods extends AbstractPage {
 
     @Step("выбрать врача")
     public DoctorMethods selectDoctor(String doctorInlet) {
-        waitAllEmias();
-        wait.until(ExpectedConditions
-                .elementToBeClickable(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]"))).click();
-        waitAllEmias();
+//        waitAllEmias();
+        $(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]")).click();
+//        waitAllEmias();
         return this;
     }
 }

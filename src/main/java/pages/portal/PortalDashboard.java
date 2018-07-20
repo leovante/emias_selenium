@@ -1,5 +1,6 @@
 package pages.portal;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
@@ -12,7 +13,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
-import static org.testng.Assert.assertTrue;
 
 public class PortalDashboard extends AbstractPage implements Profile {
 
@@ -26,30 +26,35 @@ public class PortalDashboard extends AbstractPage implements Profile {
     SelenideElement description = $(By.id("call_description"));
     SelenideElement address = $(By.id("call_address"));
     SelenideElement stage = $(By.id("call_stage"));
+    SelenideElement vizvatVrachaNaDom = $(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"));
+    SelenideElement podtvVizovVracha = $(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"));
+    SelenideElement adresVizova = $(By.xpath("//*[contains(text(),'Адрес вызова')]"));
+    SelenideElement standEMIAS = $(By.xpath("//*[contains(text(),'Стенд ЕМИАС МО')]"));
 
     public PortalDashboard() {
 //        super(driver);
     }
 
     @Step("создаю вызов через портал")
-    public void createCall(String profile) throws IOException {
+    public void createCall(String profile) throws IOException, InterruptedException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 
-        nPolField.setValue((String) proData.get(nomerPol));
-        birthdayField.setValue((String) proData.get(birthDay));
-
+        nPolField.setValue((String) proData.get("nomerPol"));
+        birthdayField.setValue((String) proData.get("birthDay"));
         pereytiVElectrRegistr.click();
-        $(By.xpath("//a[contains(text(),'Вызвать врача на дом')]")).click();
+        standEMIAS.shouldBe(Condition.visible);
+        vizvatVrachaNaDom.click();
+        Thread.sleep(1000);
+        adresVizova.shouldBe(Condition.visible);
+        address.setValue((String) proData.get("addressFULL"));
+        entrance.setValue((String) proData.get("pd"));
+        entrance.setValue((String) proData.get("stage"));
+        doorphone.setValue((String) proData.get("dfon"));
+        phone.setValue((String) proData.get("telephone"));
+        description.setValue((String) proData.get("zhaloba"));
 
-        address.setValue((String) proData.get(address));
-        entrance.setValue((String) proData.get(pd));
-        entrance.setValue((String) proData.get(stage));
-        doorphone.setValue((String) proData.get(dfon));
-        phone.setValue((String) proData.get(telephone));
-        description.setValue((String) proData.get(zhaloba));
-
-        $(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]")).click();
-        assertTrue(uspeshnoVizvaliVracha.isDisplayed());
+        podtvVizovVracha.click();
+        uspeshnoVizvaliVracha.shouldBe(Condition.visible);
     }
 }

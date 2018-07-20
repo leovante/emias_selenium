@@ -1,51 +1,37 @@
 package pages.mis;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.commands.PressEnter;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class TransferRecords extends AbstractPage {
 
-    @FindBy(xpath = "//button[@id='btn_transfer']/span[2]")
-    @CacheLookup
-    WebElement btn_transfer;
+    SelenideElement btn_transfer = $(By.xpath("//button[@id='btn_transfer']/span[2]"));
+    SelenideElement btn_transfer_schedule = $(By.xpath("//button[@id='btn_transfer_schedule']/span"));
+    SelenideElement doctors_recive_record = $(By.xpath("//table[@id='collision_grid']/tbody/tr[2]"));
+    SelenideElement doctors_record = $(By.xpath("//table[@id='collision_item_grid']/tbody/tr[2]"));
+    SelenideElement recordElement = $(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
 
-    @FindBy(xpath = "//button[@id='btn_transfer_schedule']/span")
-    @CacheLookup
-    WebElement btn_transfer_schedule;
+    public TransferRecords() {
 
-    @FindBy(xpath = "//table[@id='collision_grid']/tbody/tr[2]")
-    @CacheLookup
-    WebElement doctors_recive_record;
-
-    @FindBy(xpath = "//table[@id='collision_item_grid']/tbody/tr[2]")
-    @CacheLookup
-    WebElement doctors_record;
-
-    @FindBy(xpath = "//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']")
-    @CacheLookup
-    WebElement recordElement;
-
-    public TransferRecords(WebDriver driver) {
-        super(driver);
     }
 
     @Step("перенести запись")
     public void trancferRecord(String name) {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String secondDoctor = name;
-        waitAllEmias();
+//        waitAllEmias();
         waitWhileClickable(btn_transfer);
         btn_transfer.click();//большая кнопка перенести
         waitWhileClickable(btn_transfer_schedule);
@@ -60,29 +46,27 @@ public class TransferRecords extends AbstractPage {
         driver.findElement(By.xpath("(//li[@id='SCH_CollisionResolve']/a/span)[2]")).click();
         selectDoctorFromTranWindow(secondDoctor);
 
-        waitBlockOverlay();
-        WebElement secondFrame = driver
-                .findElement(By.xpath("//table[@id='resolve_collision_grid']/tbody"))
-                .findElement(By.xpath(".//td[@title='23:44']"));
+//        waitBlockOverlay();
+        $(By.xpath("//table[@id='resolve_collision_grid']/tbody"))
+                .$(By.xpath(".//td[@title='23:44']")).click();
         //вот здесь вместо tr[2] искать текущую дату
-        wait.until(ExpectedConditions.elementToBeClickable(secondFrame));
-        secondFrame.click();
-        driver.findElement(By.xpath("//button[@id='btn_transfer_collision']/span")).click();//перенести
-        waitBlockOverlay();
-
-        keyboard.pressKey(Keys.ENTER);
-        waitAllEmias();
+        $(By.xpath("//button[@id='btn_transfer_collision']/span")).click();//перенести
+//        waitBlockOverlay();
+        new PressEnter();
+//        keyboard.pressKey(Keys.ENTER);
+//        waitAllEmias();
     }
 
     @Step("выбрать врача в окне переноса записей")
     public void selectDoctorFromTranWindow(String doctorInlet) {
-        waitBlockOverlay();
-        List<WebElement> doctors = driver.findElement(By
+//        waitBlockOverlay();
+        List<WebElement> doctors = $(By
                 .xpath("//div[@id='gview_resolve_collision_docprvdgrid1']/div[3]/div/table/tbody"))
                 .findElements(By.xpath("tr/td[2]/div"));
         for (WebElement doctor : doctors) {
-            WebElement doctorLink = doctor.findElement(By.tagName("span"));
-            String doctorLinkText = doctorLink.getText();
+//            WebElement doctorLink = doctor.findElement(By.tagName("span"));
+//            String doctorLinkText = doctorLink.getText();
+            String doctorLinkText = doctor.findElement(By.tagName("span")).getText();
             if (doctorLinkText.equals(doctorInlet)) {
                 doctor.click();
                 break;
@@ -92,12 +76,12 @@ public class TransferRecords extends AbstractPage {
 
     @Step("проверка переноса записей")
     public void verifyTransferShedule() {
-        waitAllEmias();
-        wait.until(ExpectedConditions.visibilityOfAllElements(recordElement));
+//        waitAllEmias();
+        recordElement.shouldBe(Condition.visible);
     }
 
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    public void waitWhileClickable(SelenideElement webElement) {
+        webElement.click();
     }
 }
 

@@ -1,13 +1,12 @@
 package pages.callcenter;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import pages.AbstractPage;
 
 
 public class FindPatientPage extends AbstractPage {
-    public FindPatientPage(WebDriver driver) {
-        super(driver);
+    public FindPatientPage() {
+
     }
 
     public void findPatient(String nPol, String birthDay) {

@@ -1,9 +1,7 @@
 package pages.callcenter;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 
 public class LoginPageCC extends AbstractPage {
@@ -19,8 +17,8 @@ public class LoginPageCC extends AbstractPage {
     @FindBy(xpath = "//button[@type='submit']")
     WebElement loginButton;
 
-    public LoginPageCC(WebDriver driver) {
-        super(driver);
+    public LoginPageCC() {
+
     }
 
     public void login() {
@@ -32,13 +30,13 @@ public class LoginPageCC extends AbstractPage {
     }
 
     public void enterLoginText(String text) {
-        wait.until(ExpectedConditions.elementToBeClickable(log));
+//        wait.until(ExpectedConditions.elementToBeClickable(log));
         log.clear();
         log.sendKeys(text);
     }
 
     public void enterPasswordText(String text) {
-        wait.until(ExpectedConditions.elementToBeClickable(pass));
+//        wait.until(ExpectedConditions.elementToBeClickable(pass));
         pass.clear();
         pass.sendKeys(text);
     }

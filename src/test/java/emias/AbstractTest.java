@@ -66,6 +66,7 @@ public abstract class AbstractTest {
 //        page.homePage().callDoctorBtn();
 //        pages.utilities.SwitchToPage.switchToPage();
         open("http://service.emias.mosreg.ru/test/call/call_doctor_ui/call-doctor/board;docPrvdId=1211?ticket=C%2FQZnj68wErhP4mV892v5evR7%2BxPvSDpoS8UQQwk%2FkL2F95HXWUwnUrXo%2FN25VeVBCVQtKB2LrFsy%2BzT4SGVO%2BO%2BQqivjETVFVKt1VF26wWIRbsO%2BZNaH54psOOoYi2nv0PfAfiLLBKgNEVsG57hUdNX8LIRYi3QvTXlvCAoLPgFsJqmtZLqWHhRcgZmERxFcXO6VCiFm38STaxK7XfR9fRJYshdeA%2FuVtAdFs5vKlr2v%2FT8R67IYPI%2B4mCqD3grjBBUdxtBo3MDyk4ZCD0LcXmaq0LEHBME0SD1fMCQoTs14221&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault");
+        curUrlCalldoctor = driver.getCurrentUrl();
     }
 
 //    public static void disableWarning() {

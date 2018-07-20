@@ -76,8 +76,8 @@ public class Pages extends AbstractPage {
     }
 
     public PerformCardPage editCardPage() {
-        PerformCardPage editCardPage = PageFactory.initElements(driver, PerformCardPage.class);
-        return editCardPage;
+        PerformCardPage performCardPage = new PerformCardPage(); //PageFactory.initElements(driver, PerformCardPage.class);
+        return performCardPage;
     }
 
 

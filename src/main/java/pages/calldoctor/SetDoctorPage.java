@@ -74,17 +74,17 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("назначиь врача")
-    public void appendDoctor(String doctorName) {
+    public void appendDoctor(String profile) {
         JSWaiter.waitJQueryAngular();
         new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         WebElement dynamicElement = (new WebDriverWait(driver, 20))
                 .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., '" + doctorName + "')]")));
+                        .xpath("//div[contains(., '" + profile + "')]")));
 
 
-        $(By.xpath("//div[contains(text(),'" + doctorName + "')]")).should(Condition.visible);
-        $(By.xpath("//div[contains(text(),'" + doctorName + "')]")).click();
+        $(By.xpath("//div[contains(text(),'" + profile + "')]")).should(Condition.visible);
+        $(By.xpath("//div[contains(text(),'" + profile + "')]")).click();
         appenOnThisDay.click();
     }
 }

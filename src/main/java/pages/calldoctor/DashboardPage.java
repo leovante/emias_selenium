@@ -6,12 +6,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.utilities.JSWaiter;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,9 +52,9 @@ public class DashboardPage extends AbstractPage implements Profile {
     }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio(String fioName) {
+    public DashboardPage searchFilterFio(String profile) {
         fioFilter.click();
-        fioFilter.setValue(fioName);
+        fioFilter.setValue(profile);
         return this;
     }
 
@@ -116,7 +112,7 @@ public class DashboardPage extends AbstractPage implements Profile {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(String doctorFam, String nameGen, String profile) throws InterruptedException, IOException {
+    public DashboardPage verifyActiveDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 
@@ -153,13 +149,13 @@ public class DashboardPage extends AbstractPage implements Profile {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage openNewCallProgressFrame(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+    public DashboardPage openNewCallProgressFrame(String profile) {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        JSWaiter.waitJQueryAngular();
+//        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
+//                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+//        JSWaiter.waitJQueryAngular();
 
         newCallProgressFrame.click();
         newCallProgressFrame.$(By.id("order")).click();

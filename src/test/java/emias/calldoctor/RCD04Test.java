@@ -7,10 +7,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.calldoctor.profiles_interfaces.Profile2;
 import pages.utilities.StringGenerator;
 
-public class RCD04Test extends AbstractTest implements Profile, Profile2 {
+public class RCD04Test extends AbstractTest implements Profile {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -35,15 +34,15 @@ public class RCD04Test extends AbstractTest implements Profile, Profile2 {
         page.createCallPage().createCallProfile1(nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor(doctorFamPro1);
+        page.setDoctorPage().appendDoctor("Profile1");
 
         page.fullCardPage().sendAnotherDoctorBtn();
-        page.setDoctorPage().appendDoctor(doctorFamPro2);
-        page.fullCardPage().verifyCallProfile1Activity(doctorFamPro2, nameGen);
+        page.setDoctorPage().appendDoctor("Profile2");
+        page.fullCardPage().verifyCallProfile1Activity(nameGen, "Profile2");
         page.fullCardPage().closeCardBtn();
 
-        page.dashboardPage().searchFilterFio(nameGen)
+        page.dashboardPage().searchFilterFio("Profile2")
                 .clearFilterDepart()
-                .verifyActiveDocGroup(doctorFamPro2, nameGen, adressPro1_2, telephonePro1);
+                .verifyActiveDocGroup(nameGen, "Profile2");
     }
 }

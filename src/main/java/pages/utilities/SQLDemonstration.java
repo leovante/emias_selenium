@@ -143,11 +143,11 @@ public class SQLDemonstration extends AbstractPage implements Profile {
                 String sql =
                         "update hlt_CallDoctor " +
                                 "set rf_CallDoctorStatusID = 3 " +
-                                "where NumberPol = '" + proData.get(nomerPol) + "'";
+                                "where NumberPol = '" + proData.get("nomerPol") + "'";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Pacient - " + proData.get(nomerPol) + " finalize is done.");
+                    System.out.println("Pacient - " + proData.get("nomerPol") + " finalize is done.");
                 }
             }
         } catch (Exception e) {

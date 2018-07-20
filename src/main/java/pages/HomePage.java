@@ -1,70 +1,54 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class HomePage extends AbstractPage {
-    @FindBy(xpath = "//span[contains(.,'ЕМИАС Московской области')]")
-    @CacheLookup
-    WebElement homePageBtn;
 
-    @FindBy(xpath = "//span[contains(.,'Ведение расписания')]")
-    @CacheLookup
-    WebElement timeTableBtn;
+    SelenideElement homePageBtn = $(By.xpath("//span[contains(.,'ЕМИАС Московской области')]"));
+    SelenideElement timeTableBtn = $(By.xpath("//span[contains(.,'Ведение расписания')]"));
+    SelenideElement admissionScheduleBtn = $(By.xpath("//span[contains(.,'Расписание приёма')]"));
+    SelenideElement transferRecordsBtn = $(By.xpath("//span[contains(.,'Перенос записей')]"));
+    SelenideElement callDoctorBtn = $(By.xpath("//span[contains(.,'Диспетчер')]"));
 
-    @FindBy(xpath = "//span[contains(.,'Расписание приёма')]")
-    @CacheLookup
-    WebElement admissionScheduleBtn;
-
-    @FindBy(xpath = "//span[contains(.,'Перенос записей')]")
-    @CacheLookup
-    WebElement transferRecordsBtn;
-
-    @FindBy(xpath = "//span[contains(.,'Диспетчер')]")
-    @CacheLookup
-    WebElement callDoctorBtn;
-
-    public HomePage(/*WebDriver driver*/) {
-        //super(driver);
+    public HomePage() {
     }
 
     @Step("Захожу в ведение расписания")
     public void manageSheduleBtn(){
-        waitAllEmias();
-        waitClickable(timeTableBtn);
+//        waitAllEmias();
+//        waitClickable(timeTableBtn);
         timeTableBtn.click();
-        waitAllEmias();
+//        waitAllEmias();
     }
 
     @Step("Захожу в расписание приема")
     public HomePage admissionScheduleBtn() {
-        waitAllEmias();
-        waitClickable(admissionScheduleBtn);
+//        waitAllEmias();
+//        waitClickable(admissionScheduleBtn);
         admissionScheduleBtn.click();
-        waitAllEmias();
+//        waitAllEmias();
         return this;
     }
 
     @Step("Захожу в перенос записей")
     public HomePage transferRecordsBtn() {
-        waitAllEmias();
-        waitClickable(transferRecordsBtn);
+//        waitAllEmias();
+//        waitClickable(transferRecordsBtn);
         transferRecordsBtn.click();
-        waitAllEmias();
+//        waitAllEmias();
         return this;
     }
 
     @Step("Нажимаю на логотип")
     public HomePage logoHomeBtn() {
-        waitAllEmias();
-        waitClickable(homePageBtn);
+//        waitAllEmias();
+//        waitClickable(homePageBtn);
         homePageBtn.click();
-        waitAllEmias();
+//        waitAllEmias();
         return this;
     }
 

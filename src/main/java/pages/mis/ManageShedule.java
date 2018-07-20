@@ -1,89 +1,46 @@
 package pages.mis;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.commands.PressEnter;
 import io.qameta.allure.Step;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.AbstractPage;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class ManageShedule extends AbstractPage {
 
-    @FindBy(xpath = "//button[@id='btn_delete']/span[2]")
-    @CacheLookup
-    WebElement deleteShedule;
+    SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
+    SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
+    SelenideElement createShedule = $(By.xpath("//button[@id='btn_create']/span[2]"));
+    SelenideElement pickTime_nach = $(By.id("pickTime_nach"));
+    SelenideElement pickTime_nachClose = $(By.xpath("(//button[@type='button'])[2]"));
+    SelenideElement pickTime_okon = $(By.id("pickTime_okon"));
+    SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
+    SelenideElement ddlbusytypeButton = $(By.xpath("//a[@id='ddlbusytype-button']/span[2]"));
+    SelenideElement priemPoOcheredi = $(By.linkText("Прием по очереди"));
+    SelenideElement priemNaDomu = $(By.linkText("Прием на дому (вызов на дом)"));
+    SelenideElement schedule_add_button = $(By.id("schedule_add_button"));
+    SelenideElement btn_save_schedule = $(By.xpath("//button[@id='btn_save_schedule']/span"));
+    SelenideElement btn_notReciveDays = $(By.xpath("//button[@id='btn_busy']/span[2]"));
+    SelenideElement row_doctorOnBoln = $(By.xpath("//div[@id='radio_busy']/label[2]/span/span"));
+    SelenideElement saveBtn = $(By.xpath("//button[@id='btn_busy_save']/span"));
+    SelenideElement copyShedule = $(By.xpath("//button[@id='btn_copy']/span[2]"));
 
-    @FindBy(id = "btn_delete_schedule")
-    @CacheLookup
-    WebElement deleteSheduleBtnWindow;
-
-    @FindBy(xpath = "//button[@id='btn_create']/span[2]")
-    @CacheLookup
-    WebElement createShedule;
-
-    @FindBy(id = "pickTime_nach")
-    @CacheLookup
-    WebElement pickTime_nach;
-
-    @FindBy(xpath = "(//button[@type='button'])[2]")
-    @CacheLookup
-    WebElement pickTime_nachClose;
-
-    @FindBy(id = "pickTime_okon")
-    @CacheLookup
-    WebElement pickTime_okon;
-
-    @FindBy(xpath = "(//button[@type='button'])[2]")
-    @CacheLookup
-    WebElement pickTime_okonClose;
-
-    @FindBy(xpath = "//a[@id='ddlbusytype-button']/span[2]")
-    @CacheLookup
-    WebElement ddlbusytypeButton;
-
-    @FindBy(linkText = "Прием по очереди")
-    @CacheLookup
-    WebElement priemPoOcheredi;
-
-    @FindBy(linkText = "Прием на дому (вызов на дом)")
-    @CacheLookup
-    WebElement priemNaDomu;
-
-    @FindBy(id = "schedule_add_button")
-    @CacheLookup
-    WebElement schedule_add_button;
-
-    @FindBy(xpath = "//button[@id='btn_save_schedule']/span")
-    @CacheLookup
-    WebElement btn_save_schedule;
-
-    @FindBy(xpath = "//button[@id='btn_busy']/span[2]")
-    @CacheLookup
-    WebElement btn_notReciveDays;
-
-    @FindBy(xpath = "//div[@id='radio_busy']/label[2]/span/span")
-    @CacheLookup
-    WebElement row_doctorOnBoln;
-
-    @FindBy(xpath = "//button[@id='btn_busy_save']/span")
-    @CacheLookup
-    WebElement saveBtn;
-
-    @FindBy(xpath = "//button[@id='btn_copy']/span[2]")
-    @CacheLookup
-    WebElement copyShedule;
-
-    public ManageShedule(WebDriver driver) {
-        super(driver);
+    public ManageShedule() {
     }
 
     @Step("Создать расписание")
     public void createShedule() throws InterruptedException {
-        waitAllEmias();
+//        waitAllEmias();
 
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String a = "2330", b = "2344";
@@ -96,43 +53,44 @@ public class ManageShedule extends AbstractPage {
         setTimeCalendar(c, d);
         setTypeOfReception(priemPoOcheredi);
 
-        waitWhileClickable(btn_save_schedule);
+//        waitWhileClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-        waitAllEmias();
+//        waitAllEmias();
 //        Waiter.waitAllEmias();
     }
 
     @Step("задать неприемные дни")
     public ManageShedule setNotReceiveDays(String firstDoctor) {
-        waitAllEmias();
-        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
+//        waitAllEmias();
+//        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
 
-        driver.findElement(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
-        waitAllEmias();
+        $(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
+//        waitAllEmias();
 
-        waitWhileClickable(btn_notReciveDays);
+//        waitWhileClickable(btn_notReciveDays);
         btn_notReciveDays.click();//задать неприемные дни
 
-        waitWhileClickable(row_doctorOnBoln);
+//        waitWhileClickable(row_doctorOnBoln);
         row_doctorOnBoln.click();//выбрали форс-мажор
 
-        waitWhileClickable(saveBtn);
+//        waitWhileClickable(saveBtn);
         saveBtn.click();//нажали сохранить
 
-        keyboard.pressKey(Keys.ENTER);
+        new PressEnter();
+//        keyboard.pressKey(Keys.ENTER);
         return this;
     }
 
     @Step("копировать расисание")
     public void copyShedule(String docName) {
-        waitAllEmias();
-        waitWhileClickable(copyShedule);
+//        waitAllEmias();
+//        waitWhileClickable(copyShedule);
         copyShedule.click();
 
-        driver.findElement(By.xpath("//table[@id='copy_selected_grid']/tbody/tr[2]/td[2]")).click();
-        driver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
-        driver.findElement(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        $(By.xpath("//table[@id='copy_selected_grid']/tbody/tr[2]/td[2]")).click();
+        $(By.xpath("//button[@id='next_wizcopy']/span")).click();
+        $(By.xpath("//button[@id='next_wizcopy']/span")).click();
         List<WebElement> closeBtnList = driver.findElements(By.xpath("//span[contains(text(),'Закрыть')]"));
         for (WebElement closeBtn : closeBtnList) {
             try {
@@ -140,65 +98,67 @@ public class ManageShedule extends AbstractPage {
             } catch (ElementNotVisibleException ex) {
             }
         }
-        driver.findElement(By.xpath("//button[@id='finish_wizcopy']/span")).click();
-        waitAllEmias();
+        $(By.xpath("//button[@id='finish_wizcopy']/span")).click();
+//        waitAllEmias();
     }
 
     @Step("удалить расписание")
     public ManageShedule deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
-        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
-        waitAllEmias();
+//        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
+//        waitAllEmias();
 
-        waitWhileClickable(deleteShedule);
+//        waitWhileClickable(deleteShedule);
         deleteShedule.click();                     //кнопка удалить расписание
-        waitWhileClickable(deleteSheduleBtnWindow);
+//        waitWhileClickable(deleteSheduleBtnWindow);
         deleteSheduleBtnWindow.click();            //подтверждение удаления
 
         Thread.sleep(1000);
-        keyboard.pressKey(Keys.ENTER);
-        waitAllEmias();
+        new PressEnter();
+//        keyboard.pressKey(Keys.ENTER);
+//        waitAllEmias();
         return this;
     }
 
     @Step("устанвотиь время в календаре")
     public void setTimeCalendar(String a, String b) throws InterruptedException {
-        waitWhileClickable(pickTime_nach);
+//        waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
-        waitWhileClickable(pickTime_nachClose);
+//        waitWhileClickable(pickTime_nachClose);
         pickTime_nachClose.click();
         Thread.sleep(500);
-        waitWhileClickable(pickTime_okon);
+//        waitWhileClickable(pickTime_okon);
         pickTime_okon.sendKeys(b);          //нажимаем на поле окончание интервала
-        waitWhileClickable(pickTime_okonClose);
+//        waitWhileClickable(pickTime_okonClose);
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
 
     @Step("установить тип приема")
-    public void setTypeOfReception(WebElement typeOfReception) {
-        waitWhileClickable(ddlbusytypeButton);
+    public void setTypeOfReception(SelenideElement typeOfReception) {
+//        waitWhileClickable(ddlbusytypeButton);
         ddlbusytypeButton.click();                  //нажимаем на выпадающий список тип приема
-        waitWhileClickable(typeOfReception);
+//        waitWhileClickable(typeOfReception);
         typeOfReception.click();                     //выбор типа приема
-        waitWhileClickable(schedule_add_button);
+//        waitWhileClickable(schedule_add_button);
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
     @Step("проверить неприемные дни")
     public ManageShedule verifyNotReceiveDays() {
-        waitAllEmias();
-        driver.findElement(By.xpath("//div[@id='schedule']/div/div/div"))
-                .findElements(By.xpath("span[contains(text(),'Врач на больничном')]"));//это название заголовка
+//        waitAllEmias();
+        $(By.xpath("//div[@id='schedule']/div/div/div"))
+                .$(By.xpath("span[contains(text(),'Врач на больничном')]"))
+                .shouldBe(Condition.visible);//это название заголовка
         System.out.println("Проверка наличия заголовка форс-мажора");
         return this;
     }
 
     @Step("проверить удаление расписания")
     public ManageShedule verifyDeletedShedle() {
-        if (!driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+        if (!$(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
-        if (!driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+        if (!$(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#FFFF99;border-color:#FFFF99;color:#979797']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }
@@ -216,13 +176,13 @@ public class ManageShedule extends AbstractPage {
     @Step("проверка создания распсиания")
     public ManageShedule verifyCreatedShedule() throws InterruptedException {
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
-                .findElement(By.xpath("//*[contains(text(),'23:44 ')]"));
+        $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
+                .$(By.xpath("//*[contains(text(),'23:44 ')]"));
         return this;
     }
 
-    public void waitWhileClickable(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-    }
+//    public void waitWhileClickable(WebElement webElement) {
+//        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+//    }
 
 }

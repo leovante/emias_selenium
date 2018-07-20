@@ -64,12 +64,10 @@ public class RCD01Test extends AbstractTest implements Profile {
     @RetryCountIfFailed(0)
     public void testCallRegistr() throws Exception {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage()
                 .verifyCallProfile1(nameGen, "Profile1")
                 .closeCardBtn();
-
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .clearFilterDepart()
@@ -82,50 +80,45 @@ public class RCD01Test extends AbstractTest implements Profile {
     public void testCallRegistrMkab() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile2(nameGen);
-        this.nameGen = page.fullCardPage().verifyCallProfile(nameGen, "Profile2");
-        page.fullCardPage().closeCardBtn();
-
+        page.fullCardPage()
+                .verifyCallProfile1(nameGen, "Profile2")
+                .closeCardBtn();
         page.dashboardPage().searchFilterFio(nameGen)
                 .clearFilterDepart()
                 .verifyNewCallProgressFrame("Profile1");
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed()
-    public void testCallSMPApi() throws InterruptedException, IOException {
+    public void testCallSMPApi() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile3(nameGen);
-        //driver.get(curUrlCalldoctor);
-
         page.dashboardPage().openNewCallProgressFrame("Profile3");
-        page.fullCardPage().verifyCallProfile3(nameGen);
+        page.fullCardPage().verifyCallProfile1(nameGen, "Profile3");
     }
 
     @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed()
-    public void testCallSMPApi2() throws InterruptedException, IOException {
+    public void testCallSMPApi2() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
-
         page.dashboardPage().openNewCallProgressFrame("Profile6");
-        page.fullCardPage().verifyCallProfile6(nameGen);
+        page.fullCardPage().verifyCallProfile1(nameGen, "Profile6");
     }
 
     @Test(groups = "test", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(0)
-    public void testCallPortal() throws InterruptedException, IOException {
+    public void testCallPortal() throws IOException, InterruptedException {
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard().createCall("Profile4");
         open(curUrlCalldoctor);
-
         page.dashboardPage().openNewCallProgressFrame("Profile4");
-        page.fullCardPage().verifyCallProfile4(nameGen);
+        page.fullCardPage().verifyCallProfile1(nameGen, "Profile4");
     }
 }
 
