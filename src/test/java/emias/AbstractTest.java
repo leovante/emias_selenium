@@ -25,7 +25,7 @@ public abstract class AbstractTest {
                             ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         System.setProperty("selenide.browser", "Chrome");
         Configuration.timeout = 10000;
         page = new Pages();
