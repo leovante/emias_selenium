@@ -9,7 +9,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
@@ -18,7 +17,6 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RCD01Test extends AbstractTest implements Profile {
     private String nameGen;
-
 
     @BeforeMethod(groups = {"CD", "test"})
     public void beforeMethod() {
@@ -59,7 +57,7 @@ public class RCD01Test extends AbstractTest implements Profile {
                 .closeCardBtn();
     }
 
-    @Test(groups = "test", description = "вызов с иточником Регистратура")
+    @Test(groups = "CD", description = "вызов с иточником Регистратура")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(0)
     public void testCallRegistr() throws Exception {
@@ -74,7 +72,7 @@ public class RCD01Test extends AbstractTest implements Profile {
                 .verifyNewCallProgressFrame(nameGen, "Profile1");
     }
 
-    @Test(groups = "test", description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed()
     public void testCallRegistrMkab() throws Exception {
@@ -88,7 +86,7 @@ public class RCD01Test extends AbstractTest implements Profile {
                 .verifyNewCallProgressFrame("Profile1");
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed()
     public void testCallSMPApi() throws IOException {
@@ -98,7 +96,7 @@ public class RCD01Test extends AbstractTest implements Profile {
         page.fullCardPage().verifyCallProfile1(nameGen, "Profile3");
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed()
     public void testCallSMPApi2() throws IOException {
@@ -114,7 +112,7 @@ public class RCD01Test extends AbstractTest implements Profile {
     public void testCallPortal() throws IOException, InterruptedException {
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
-        SQLDemonstration.finalizePacientNumberPol("Profile4");
+//        SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard().createCall("Profile4");
         open(curUrlCalldoctor);
         page.dashboardPage().openNewCallProgressFrame("Profile4");

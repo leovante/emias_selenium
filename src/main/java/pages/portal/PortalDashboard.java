@@ -32,27 +32,26 @@ public class PortalDashboard extends AbstractPage implements Profile {
     SelenideElement standEMIAS = $(By.xpath("//*[contains(text(),'Стенд ЕМИАС МО')]"));
 
     public PortalDashboard() {
-//        super(driver);
     }
 
     @Step("создаю вызов через портал")
-    public void createCall(String profile) throws IOException, InterruptedException {
+    public void createCall(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
 
-        nPolField.setValue((String) proData.get("nomerPol"));
-        birthdayField.setValue((String) proData.get("birthDay"));
+        nPolField.sendKeys((String) proData.get("nomerPol"));
+        birthdayField.sendKeys((String) proData.get("birthDay"));
         pereytiVElectrRegistr.click();
         standEMIAS.shouldBe(Condition.visible);
         vizvatVrachaNaDom.click();
-        Thread.sleep(1000);
         adresVizova.shouldBe(Condition.visible);
-        address.setValue((String) proData.get("addressFULL"));
-        entrance.setValue((String) proData.get("pd"));
-        entrance.setValue((String) proData.get("stage"));
-        doorphone.setValue((String) proData.get("dfon"));
-        phone.setValue((String) proData.get("telephone"));
-        description.setValue((String) proData.get("zhaloba"));
+
+        address.setValue(proData.get("adressFULL"));
+        entrance.setValue(proData.get("pd"));
+        stage.setValue(proData.get("etazh"));
+        doorphone.setValue(proData.get("dfon"));
+        phone.setValue(proData.get("telephone"));
+        description.setValue(proData.get("zhaloba"));
 
         podtvVizovVracha.click();
         uspeshnoVizvaliVracha.shouldBe(Condition.visible);
