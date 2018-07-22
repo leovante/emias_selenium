@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Profile;
+import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
@@ -112,7 +113,7 @@ public class RCD01Test extends AbstractTest implements Profile {
     public void testCallPortal() throws IOException, InterruptedException {
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
-//        SQLDemonstration.finalizePacientNumberPol("Profile4");
+        SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard().createCall("Profile4");
         open(curUrlCalldoctor);
         page.dashboardPage().openNewCallProgressFrame("Profile4");

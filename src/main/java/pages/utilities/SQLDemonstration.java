@@ -131,7 +131,7 @@ public class SQLDemonstration extends AbstractPage implements Profile {
     @Step("завершаю вызовы пациента по полису")
     public static void finalizePacientNumberPol(String profileName) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profileName + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
 
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
