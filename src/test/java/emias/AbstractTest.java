@@ -1,6 +1,7 @@
 package emias;
 
 import com.codeborne.selenide.Configuration;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeGroups;
@@ -28,10 +29,13 @@ public abstract class AbstractTest {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         System.setProperty("selenide.browser", "Chrome");
+        Configuration.startMaximized = false;
         Configuration.browserSize = "1900x1020";
         Configuration.timeout = 10000;
         page = new Pages();
         driver = getWebDriver();
+        Dimension dimension = new Dimension(1920, 1080);
+        driver.manage().window().setSize(dimension);
     }
 
     @Parameters(value = {"site", "login", "pass"})
