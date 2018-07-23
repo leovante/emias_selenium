@@ -35,23 +35,23 @@ public class PortalDashboard extends AbstractPage implements Profile {
     }
 
     @Step("создаю вызов через портал")
-    public void createCall(String profile) throws IOException {
+    public void createCall(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
 
-        nPolField.sendKeys((String) proData.get("nomerPol"));
-        birthdayField.sendKeys((String) proData.get("birthDay"));
+        nPolField.sendKeys(proData.get("nomerPol"));
+        birthdayField.sendKeys(proData.get("birthDay"));
         pereytiVElectrRegistr.click();
         standEMIAS.shouldBe(Condition.visible);
         vizvatVrachaNaDom.click();
         adresVizova.shouldBe(Condition.visible);
 
-        address.setValue(proData.get("adressFULL"));
+        address.setValue(proData.get("adressFull"));
         entrance.setValue(proData.get("pd"));
         stage.setValue(proData.get("etazh"));
         doorphone.setValue(proData.get("dfon"));
         phone.setValue(proData.get("telephone"));
-        description.setValue(proData.get("zhaloba"));
+        description.setValue(proData.get("zhaloba") + ", " + nameGen);
 
         podtvVizovVracha.click();
         uspeshnoVizvaliVracha.shouldBe(Condition.visible);

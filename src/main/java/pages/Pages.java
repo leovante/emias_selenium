@@ -26,27 +26,27 @@ public class Pages extends AbstractPage {
     }
 
     public ManageShedule manageShedule() {
-        ManageShedule manageShedule = PageFactory.initElements(driver, ManageShedule.class);
+        ManageShedule manageShedule = new ManageShedule(); //PageFactory.initElements(driver, ManageShedule.class);
         return manageShedule;
     }
 
     public CreateMedicalCard medicalCard() {
-        CreateMedicalCard medicalCard = PageFactory.initElements(driver, CreateMedicalCard.class);
+        CreateMedicalCard medicalCard = new CreateMedicalCard();//PageFactory.initElements(driver, CreateMedicalCard.class);
         return medicalCard;
     }
 
     public AdmissionSchedule admissionSchedule() {
-        AdmissionSchedule admissionSchedule = PageFactory.initElements(driver, AdmissionSchedule.class);
+        AdmissionSchedule admissionSchedule = new AdmissionSchedule(); //PageFactory.initElements(driver, AdmissionSchedule.class);
         return admissionSchedule;
     }
 
     public TransferRecords transferRecords() {
-        TransferRecords transferRecords = PageFactory.initElements(driver, TransferRecords.class);
+        TransferRecords transferRecords = new TransferRecords(); //PageFactory.initElements(driver, TransferRecords.class);
         return transferRecords;
     }
 
     public DoctorMethods doctorMethods() {
-        DoctorMethods doctorMethods = PageFactory.initElements(driver, DoctorMethods.class);
+        DoctorMethods doctorMethods = new DoctorMethods(); //PageFactory.initElements(driver, DoctorMethods.class);
         return doctorMethods;
     }
 
@@ -56,22 +56,22 @@ public class Pages extends AbstractPage {
     }
 
     public SetDoctorPage setDoctorPage() {
-        SetDoctorPage setDoctorPage = PageFactory.initElements(driver, SetDoctorPage.class);
+        SetDoctorPage setDoctorPage = new SetDoctorPage(); //PageFactory.initElements(driver, SetDoctorPage.class);
         return setDoctorPage;
     }
 
     public FullCardPage fullCardPage() {
-        FullCardPage fullCardPage = PageFactory.initElements(driver, FullCardPage.class);
+        FullCardPage fullCardPage = new FullCardPage(); //PageFactory.initElements(driver, FullCardPage.class);
         return fullCardPage;
     }
 
     public DashboardPage dashboardPage() {
-        DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
+        DashboardPage dashboardPage = new DashboardPage();// = PageFactory.initElements(driver, DashboardPage.class);
         return dashboardPage;
     }
 
     public BeforeWork beforeWork() {
-        BeforeWork beforeWork = PageFactory.initElements(driver, BeforeWork.class);
+        BeforeWork beforeWork = new BeforeWork(); //PageFactory.initElements(driver, BeforeWork.class);
         return beforeWork;
     }
 

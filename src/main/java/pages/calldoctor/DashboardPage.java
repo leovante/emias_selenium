@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Profile;
 
@@ -26,7 +27,7 @@ public class DashboardPage extends AbstractPage implements Profile {
     SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
     SelenideElement typeCall = $(By.xpath("//*[@placeholder='Вид вызова']"));
     SelenideElement newCallProgressFrame = $(By.id("newCallProgressFrame"));
-    SelenideElement matexpansionpanel = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"));
+    SelenideElement matExpansionPanel = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"));
     SelenideElement smallMenu = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div/div/div/app-call-doctor-short-card/div/div/div[3]"));
     SelenideElement openCard = $(By.xpath("//a[@title='Открыть карту вызова']"));
     SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
@@ -149,7 +150,7 @@ public class DashboardPage extends AbstractPage implements Profile {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage openNewCallProgressFrame(String profile) {
+    public DashboardPage openNewCallProgressFrame(String profile) throws InterruptedException {
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
 //        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
@@ -159,10 +160,12 @@ public class DashboardPage extends AbstractPage implements Profile {
 
         newCallProgressFrame.click();
         newCallProgressFrame.$(By.id("order")).click();
-        newCallProgressFrame.click();
+//        newCallProgressFrame.click();
 
-
-        matexpansionpanel.hover();
+        Thread.sleep(2000);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(matExpansionPanel).perform();
+//        matExpansionPanel.hover();
         smallMenu.click();
         openCard.click();
         return this;

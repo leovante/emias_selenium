@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Profile;
+import pages.calldoctor.profiles_interfaces.User;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
@@ -90,7 +91,7 @@ public class RCD01Test extends AbstractTest implements Profile {
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed()
-    public void testCallSMPApi() throws IOException {
+    public void testCallSMPApi() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame("Profile3");
@@ -100,24 +101,25 @@ public class RCD01Test extends AbstractTest implements Profile {
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed()
-    public void testCallSMPApi2() throws IOException {
+    public void testCallSMPApi2() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame("Profile6");
         page.fullCardPage().verifyCallProfile1(nameGen, "Profile6");
     }
 
-    @Test(groups = "test", description = "вызов ребенка с Портала")
+    @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException {
+        User user = new User();
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
-        page.portalDashboard().createCall("Profile4");
+        page.portalDashboard().createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
         page.dashboardPage().openNewCallProgressFrame("Profile4");
-        page.fullCardPage().verifyCallProfile1(nameGen, "Profile4");
+        page.fullCardPage().verifyCallProfile1("Profile4", nameGen);
     }
 }
 

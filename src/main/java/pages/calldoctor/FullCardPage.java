@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Profile;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class FullCardPage extends AbstractPage implements Profile {
+public class FullCardPage extends AbstractPage {
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header = $(By.xpath("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"));
     SelenideElement appoindBtn = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
@@ -29,11 +28,10 @@ public class FullCardPage extends AbstractPage implements Profile {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
 
     public FullCardPage() {
-
     }
 
     public void baseElements() {
-        ArrayList<String> elements = null;
+        ArrayList<String> elements = new ArrayList<>();
         elements.add("Карта вызова");
         elements.add("Дата");
         elements.add("Время");
@@ -54,8 +52,6 @@ public class FullCardPage extends AbstractPage implements Profile {
         elements.add("ИЗМЕНЕНИЕ");
         elements.add("Новый");
         elements.add("Первичный");
-        elements.add("Регистратура");
-        elements.add("Взрослые");
         elements.add("Карта создана");
         elements.add("Не назначен");
 
@@ -167,13 +163,13 @@ public class FullCardPage extends AbstractPage implements Profile {
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         baseElements();
 
-        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
         return this;
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyCallProfile1(String nameGen, String profile) throws IOException {
+    public FullCardPage verifyCallProfile1(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         baseElements();
@@ -183,9 +179,6 @@ public class FullCardPage extends AbstractPage implements Profile {
         $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + "Регистратура" + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + "Взрослые" + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + "Пациент" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Стенд ЕМИАС МО" + "')]")).should(Condition.visible);
@@ -195,7 +188,7 @@ public class FullCardPage extends AbstractPage implements Profile {
         $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("dfon") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("etazh") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(nameGen) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + nameGen + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("fam") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("otchestvo") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
@@ -203,6 +196,7 @@ public class FullCardPage extends AbstractPage implements Profile {
         $(By.xpath("//*[contains(.,'" + proData.get("birthDay") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         return this;
     }
 
@@ -224,20 +218,21 @@ public class FullCardPage extends AbstractPage implements Profile {
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Стенд ЕМИАС МО" + "')]")).should(Condition.visible);
 
-        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(pd) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(dfon) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(etazh) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("dfon") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("etazh") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get(nameGen) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(fam) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(otchestvo) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(seriyaPol) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(nomerPol) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(birthDay) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(age) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(vKat) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(doctorFam) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("fam") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("otchestvo") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("nomerPol") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("birthDay") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("age") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
         return this;
     }
 
@@ -264,20 +259,20 @@ public class FullCardPage extends AbstractPage implements Profile {
         $(By.xpath("//*[contains(.,'" + "Дата перевода в статус активный" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Дата и время завершения обслуживания вызова" + "')]")).should(Condition.visible);
 
-        $(By.xpath("//*[contains(.,'" + proData.get(adressFull) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(zhaloba) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(pd) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(dfon) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(etazh) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("dfon") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("etazh") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get(nameGen) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(fam) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(otchestvo) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(seriyaPol) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(nomerPol) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(birthDay) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(age) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(vKat) + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get(doctorFam) + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("fam") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("otchestvo") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("nomerPol") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("birthDay") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("age") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
         return this;
     }
 

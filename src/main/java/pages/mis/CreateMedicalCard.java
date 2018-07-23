@@ -2,17 +2,13 @@ package pages.mis;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateMedicalCard {
     private WebDriver webDriver;
     private WebDriverWait wait;
 
-    public CreateMedicalCard(WebDriver driver){
-        webDriver = driver;
-        wait = new WebDriverWait(webDriver, 60);
-        PageFactory.initElements(webDriver, this);
+    public CreateMedicalCard() {
     }
 
     public void createNewMkab(){
