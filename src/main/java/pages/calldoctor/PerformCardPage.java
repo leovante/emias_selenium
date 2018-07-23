@@ -4,11 +4,10 @@ package pages.calldoctor;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Profile;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class PerformCardPage extends AbstractPage implements Profile {
+public class PerformCardPage extends AbstractPage {
 
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
     SelenideElement cancelBirthDate = $(By.xpath("//button[@aria-label='Clear']/span/mat-icon"));

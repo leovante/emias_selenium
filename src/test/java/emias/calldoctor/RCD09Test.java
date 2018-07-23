@@ -1,18 +1,26 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import pages.calldoctor.profiles_interfaces.Profile;
+import emias.TestngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Issue;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import pages.utilities.StringGenerator;
 
-public class RCD09Test extends AbstractTest implements Profile {
-//    String nameGen;
-//
-//    @BeforeMethod(groups = {"CD", "test"})
-//    public void beforeMethod() {
-//        StringGenerator nameGen = new StringGenerator();
-//        String name = String.valueOf(nameGen.generator());
-//        this.nameGen = name;
-//    }
-//
+import java.io.IOException;
+
+import static com.codeborne.selenide.Selenide.open;
+
+public class RCD09Test extends AbstractTest {
+    String nameGen;
+
+    @BeforeMethod(groups = {"CD", "test"})
+    public void beforeMethod() {
+        StringGenerator nameGen = new StringGenerator();
+        String name = String.valueOf(nameGen.generator());
+        this.nameGen = name;
+    }
+
 //    @AfterMethod(groups = {"CD", "test"})
 //    public void afterMethod(ITestResult result) {
 //        //SQLDemonstration.finalizePacientName(nameGen);
@@ -82,4 +90,14 @@ public class RCD09Test extends AbstractTest implements Profile {
 //                .searchFilterTypeCallNeotlozhniy()
 //                .verifyNewCallProgressFrame(nameGen, adressPro3, telephonePro1);
 //    }
+
+    @Test(groups = "test", description = "проверка кнопки выход")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testTypeCall() throws IOException {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile7();
+        page.fullCardPage().appoindDoctorBtn();
+
+    }
 }

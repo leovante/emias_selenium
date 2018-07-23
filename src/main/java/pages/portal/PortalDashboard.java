@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Profile;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +13,7 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class PortalDashboard extends AbstractPage implements Profile {
+public class PortalDashboard extends AbstractPage {
 
     SelenideElement pereytiVElectrRegistr = $(By.xpath("//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']"));
     SelenideElement nPolField = $(By.xpath("//input[@name='nPol']"));

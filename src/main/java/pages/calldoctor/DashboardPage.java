@@ -8,7 +8,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Profile;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertFalse;
 
-public class DashboardPage extends AbstractPage implements Profile {
+public class DashboardPage extends AbstractPage {
 
     SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
@@ -92,9 +91,9 @@ public class DashboardPage extends AbstractPage implements Profile {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
-        $(By.xpath("//[contains(.,'" + proData.get(adressDashboard) + "')]")).click();
+        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//[contains(.,'" + nameGen + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get(telephone) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -106,9 +105,9 @@ public class DashboardPage extends AbstractPage implements Profile {
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        $(By.xpath("//[contains(.,'" + proData.get(adressDashboard) + "')]")).click();
-        $(By.xpath("//[contains(.,'" + proData.get(name) + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get(telephone) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//[contains(.,'" + proData.get("name") + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -118,7 +117,7 @@ public class DashboardPage extends AbstractPage implements Profile {
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 
         Thread.sleep(4000);
-        $(By.xpath("//*[contains(text(),'" + doctorFam + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + proData.get(doctorFam) + "')]")).click();
         activeCallProgressFrame.$(By.id("order")).click();
         activeCallProgressFrame.click();
         $(By.xpath("//[contains(.,'" + proData.get(adressDashboard) + "')]")).click();
@@ -161,7 +160,7 @@ public class DashboardPage extends AbstractPage implements Profile {
         newCallProgressFrame.click();
         newCallProgressFrame.$(By.id("order")).click();
 //        newCallProgressFrame.click();
-
+        // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
         Thread.sleep(2000);
         Actions actions = new Actions(driver);
         actions.moveToElement(matExpansionPanel).perform();

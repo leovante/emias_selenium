@@ -8,7 +8,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Profile;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
@@ -16,7 +15,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class RCD01Test extends AbstractTest implements Profile {
+public class RCD01Test extends AbstractTest {
     private String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -65,7 +64,7 @@ public class RCD01Test extends AbstractTest implements Profile {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1(nameGen);
         page.fullCardPage()
-                .verifyCallProfile1(nameGen, "Profile1")
+                .verifyCallProfile1("Profile1", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
@@ -80,7 +79,7 @@ public class RCD01Test extends AbstractTest implements Profile {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile2(nameGen);
         page.fullCardPage()
-                .verifyCallProfile1(nameGen, "Profile2")
+                .verifyCallProfile1("Profile2", nameGen)
                 .closeCardBtn();
         page.dashboardPage().searchFilterFio(nameGen)
                 .clearFilterDepart()
@@ -94,7 +93,7 @@ public class RCD01Test extends AbstractTest implements Profile {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame("Profile3");
-        page.fullCardPage().verifyCallProfile1(nameGen, "Profile3");
+        page.fullCardPage().verifyCallProfile1("Profile3", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
@@ -104,7 +103,7 @@ public class RCD01Test extends AbstractTest implements Profile {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame("Profile6");
-        page.fullCardPage().verifyCallProfile1(nameGen, "Profile6");
+        page.fullCardPage().verifyCallProfile1("Profile6", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов ребенка с Портала")

@@ -17,15 +17,17 @@ public class RCD00Test extends AbstractTest {
         driver.get(curUrlCalldoctor);
 
             page.homePage().manageSheduleBtn();
-//        createDoctorShedule();
+        createDoctorShedule();
         }
 
         @Step("Создаю расписание врача")
         public void createDoctorShedule () throws InterruptedException {
             ArrayList<String> doctors = new ArrayList<>();
             doctors.add("Темников Дмитрий Олегович");//Юр. лицо глюченное
-            doctors.add("Серова Инна Кузьминична");//Юр лицо
-            doctors.add("Немцова Татьяна Андреевна");//Взрослая поликлиника
+            doctors.add("Моков Павел Александрович");//педиатр
+            doctors.add("Серова Нина Кузьминична");//терапевт
+            doctors.add("Длиннофамилов Иван Николаевич");//уролог
+            doctors.add("Немцова Татьяна Андреевна");//педиатр
 
             for (String doctor_num : doctors) {
                 String doctor_fam = ManageShedule.getSecondName(doctor_num);

@@ -13,7 +13,6 @@ import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Profile;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +22,7 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class CreateCallPage extends AbstractPage implements Profile {
+public class CreateCallPage extends AbstractPage {
 
     public CreateCallPage() {
     }
@@ -31,12 +30,11 @@ public class CreateCallPage extends AbstractPage implements Profile {
     @Step("создаю пустой вызов")
     public void createCallProfile0() throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile0.json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
-                .adress(proData)
                 .telephoneChk()
                 .complaint(proData)
-                .vozrastKat()
+                .vozrastKat(proData)
                 .complaint(proData)
                 .saveBtn()
                 .adressAlarma();
@@ -49,7 +47,7 @@ public class CreateCallPage extends AbstractPage implements Profile {
         addNewCall()
                 .adress(proData)
                 .telephone(proData)
-                .vozrastKat()
+                .vozrastKat(proData)
                 .adressAddition(proData)
                 .sexM()
                 .complaint(proData)
@@ -63,10 +61,10 @@ public class CreateCallPage extends AbstractPage implements Profile {
     @Step("создаю вызов с МКАБ + СМП")
     public void createCallProfile2(String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .sourceSMP()
-                .searchField()
+                .searchField(proData)
                 .adressAddition(proData)
                 .polis(proData)
                 .telephone(proData)
@@ -177,6 +175,21 @@ public class CreateCallPage extends AbstractPage implements Profile {
         }
     }
 
+    @Step("создаю пустой вызов ребенка М")
+    public void createCallProfile7() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile7.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .telephoneChk()
+                .complaint(proData)
+                .vozrastKat(proData)
+                .complaint(proData)
+                .saveBtn()
+                .adressAlarma();
+    }
+
+
+
     // TODO: 7/19/2018 доделать
     private CreateCallPage setDeafult(){
         $(By.id("source1")).click();
@@ -212,22 +225,22 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
-    private CreateCallPage searchField() {
-        $(By.id("findPatientInput")).setValue(nomerPol);
+    private CreateCallPage searchField(Map<String, String> proData) {
+        $(By.id("findPatientInput")).setValue(proData.get("nomerPol"));
         $(By.id("findPatientInput")).pressEnter();
         return this;
     }
 
-    private CreateCallPage adress(Map proData) {
+    private CreateCallPage adress(Map<String, String> proData) {
         $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
         //тут нужно сделать цикл, потому что адрес может быть разной длины
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue((String) proData.get(adress_1));
+        $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_1"));
         $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adress_2);
+        $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_2"));
         $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adress_3);
+        $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_3"));
         $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Дом']")).setValue(dom);
+        $(By.xpath("//input[@placeholder='Дом']")).setValue(proData.get("dom"));
         return this;
     }
 
@@ -237,8 +250,8 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
-    private CreateCallPage telephone(Map proData) {
-        $(By.id("phone")).setValue((String) proData.get(telephone));
+    private CreateCallPage telephone(Map<String, String> proData) {
+        $(By.id("phone")).setValue(proData.get("telephone"));
         return this;
     }
 
@@ -247,20 +260,20 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
-    private CreateCallPage vozrastKat() {
+    private CreateCallPage vozrastKat(Map proData) {
         $(By.xpath("//button[2]/span/mat-icon")).click();
         $(By.xpath("//input[@placeholder='Возр. категория']")).click();
-        $(By.xpath("//span[contains(.,'Взрослые')]")).click();
+        $(By.xpath("//span[contains(.,'" + proData.get("vKat") + "')]")).click();
         return this;
     }
 
-    private CreateCallPage adressAddition(Map proData) {
-        $(By.xpath("//input[@placeholder='Корпус']")).setValue((String) proData.get(korpus));
-        $(By.xpath("//input[@placeholder='Строение']")).setValue((String) proData.get(stroenie));
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue((String) proData.get(kvartira));
-        $(By.xpath("//input[@placeholder='П-д']")).setValue((String) proData.get(pd));
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue((String) proData.get(dfon));
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue((String) proData.get(etazh));
+    private CreateCallPage adressAddition(Map<String, String> proData) {
+        $(By.xpath("//input[@placeholder='Корпус']")).setValue(proData.get("korpus"));
+        $(By.xpath("//input[@placeholder='Строение']")).setValue(proData.get("stroenie"));
+        $(By.xpath("//input[@placeholder='Квартира']")).setValue(proData.get("kvartira"));
+        $(By.xpath("//input[@placeholder='П-д']")).setValue(proData.get("pd"));
+        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(proData.get("dfon"));
+        $(By.xpath("//input[@placeholder='Этаж']")).setValue(proData.get("etazh"));
         return this;
     }
 
@@ -273,32 +286,32 @@ public class CreateCallPage extends AbstractPage implements Profile {
         SelenideElement zhalob = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
 
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + proData.get(zhaloba) + "';", zhalob);
+        jse.executeScript("arguments[0].value='" + proData.get("zhaloba") + "';", zhalob);
         return this;
     }
 
-    private CreateCallPage polis(Map proData) {
-        $(By.xpath("//input[@placeholder='Серия']")).setValue((String) proData.get(seriyaPol));
-        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue((String) proData.get(nomerPol));
+    private CreateCallPage polis(Map<String, String> proData) {
+        $(By.xpath("//input[@placeholder='Серия']")).setValue(proData.get("seriyaPol"));
+        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(proData.get("nomerPol"));
         return this;
     }
 
-    private CreateCallPage FIO(String nameGen, Map proData) {
-        $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
+    private CreateCallPage FIO(String nameGen, Map<String, String> proData) {
+        $(By.xpath("//input[@placeholder='Фамилия']")).setValue(proData.get("fam"));
         $(By.xpath("//input[@placeholder='Имя']")).setValue(nameGen);
-        $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
+        $(By.xpath("//input[@placeholder='Отчество']")).setValue(proData.get("otchestvo"));
         return this;
     }
 
-    private CreateCallPage FIO(Map proData) {
-        $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
-        $(By.xpath("//input[@placeholder='Имя']")).setValue((String) proData.get(name));
-        $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
+    private CreateCallPage FIO(Map<String, String> proData) {
+        $(By.xpath("//input[@placeholder='Фамилия']")).setValue(proData.get("fam"));
+        $(By.xpath("//input[@placeholder='Имя']")).setValue(proData.get("name"));
+        $(By.xpath("//input[@placeholder='Отчество']")).setValue(proData.get("otchestvo"));
         return this;
     }
 
-    private CreateCallPage birthDay(Map proData) {
-        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue((String) proData.get(birthDay));
+    private CreateCallPage birthDay(Map<String, String> proData) {
+        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(proData.get("birthDay"));
         return this;
     }
 
@@ -308,13 +321,13 @@ public class CreateCallPage extends AbstractPage implements Profile {
         return this;
     }
 
-    private CreateCallPage callerPredstavit(String nameGen, Map proData) {
+    private CreateCallPage callerPredstavit(String nameGen, Map<String, String> proData) {
         $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
         $(By.xpath("//span[contains(.,'Представитель')]")).click();
-        $(By.id("sourceSmp")).setValue((String) proData.get(station));
-        $(By.id("callFamily")).setValue((String) proData.get(callFamily));
+        $(By.id("sourceSmp")).setValue(proData.get("station"));
+        $(By.id("callFamily")).setValue(proData.get("callFamily"));
         $(By.id("callName")).setValue(nameGen);
-        $(By.id("callPatronymic")).setValue((String) proData.get(callPatronymic));
+        $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
         return this;
     }
 

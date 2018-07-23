@@ -3,7 +3,6 @@ package pages.utilities;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Profile;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +11,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Map;
 
-public class SQLDemonstration extends AbstractPage implements Profile {
+public class SQLDemonstration extends AbstractPage {
     static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     static String databaseName = "hlt_demonstration";
     static String userName = "sa";
