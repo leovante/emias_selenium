@@ -27,7 +27,7 @@ public abstract class AbstractTest {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
 //        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         System.setProperty("selenide.browser", "Chrome");
-//        Configuration.startMaximized = true;
+        Configuration.startMaximized = true;
         Configuration.browserSize = "1900x1020";
         Configuration.timeout = 10000;
         Configuration.headless = true;
