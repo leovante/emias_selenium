@@ -1,14 +1,17 @@
 package emias.calldoctor;
 
+import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.TestngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
+import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RCD09Test extends AbstractTest {
@@ -97,7 +100,7 @@ public class RCD09Test extends AbstractTest {
     public void testTypeCall() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile7();
-        page.fullCardPage().appoindDoctorBtn();
-
+        page.dashboardPage().exitToMis();
+        $(By.xpath("//div[contains(.,'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
     }
 }

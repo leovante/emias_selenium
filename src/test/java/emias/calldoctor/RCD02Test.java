@@ -1,9 +1,8 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import pages.calldoctor.profiles_interfaces.Profile;
 
-public class RCD02Test extends AbstractTest implements Profile {
+public class RCD02Test extends AbstractTest {
     String nameGen;
 //
 //

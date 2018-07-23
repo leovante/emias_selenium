@@ -62,7 +62,7 @@ public class CreateCallPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
-                .sourceSMP()
+                .sourceSMP(proData)
                 .searchField(proData)
                 .adressAddition(proData)
                 .polis(proData)
@@ -179,6 +179,7 @@ public class CreateCallPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile7.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
+                .adress(proData)
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
@@ -192,6 +193,7 @@ public class CreateCallPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile8.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
+                .adress(proData)
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
@@ -205,6 +207,7 @@ public class CreateCallPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile8.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
+                .adress(proData)
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
@@ -217,6 +220,7 @@ public class CreateCallPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile10.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
+                .adress(proData)
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
@@ -225,11 +229,12 @@ public class CreateCallPage extends AbstractPage {
                 .adressAlarma();
     }
 
-    @Step("создаю пустой вызов взрослого М")
+    @Step("создаю пустой вызов взрослого Ж")
     public void createCallProfile11() throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
+                .adress(proData)
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
@@ -243,6 +248,7 @@ public class CreateCallPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
+                .adress(proData)
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
@@ -250,12 +256,13 @@ public class CreateCallPage extends AbstractPage {
                 .adressAlarma();
     }
 
-    @Step("создаю пустой вызов Без Возр Кат")
+    @Step("создаю пустой вызов Без Возр Кат, Без Пола СМП")
     public void createCallProfile13() throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
-                .sourceSMP()
+                .adress(proData)
+                .sourceSMP(proData)
                 .telephone(proData)
                 .complaint(proData)
                 .saveBtn()
@@ -263,12 +270,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
 
-
-
-
-
     // TODO: 7/19/2018 доделать
-    private CreateCallPage setDeafult(){
+    private CreateCallPage setDeafult() {
         $(By.id("source1")).click();
         //кнопка очистки привязки полиса
         //найти все крестики на странице, засунуть в массив и нажать на все
@@ -297,8 +300,13 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage sourceSMP() {
+    private CreateCallPage sourceSMP(Map<String, String> proData) {
         $(By.id("source0")).click();
+        $(By.id("sourceSmp")).setValue(proData.get("sourceSmp"));
+        $(By.id("callFamily")).setValue(proData.get("callFamily"));
+        $(By.id("callName")).setValue(proData.get("callName"));
+        $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
+        $(By.id("telephone")).setValue(proData.get("telephone"));
         return this;
     }
 
@@ -310,20 +318,24 @@ public class CreateCallPage extends AbstractPage {
 
     private CreateCallPage adress(Map<String, String> proData) {
         $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
-        //тут нужно сделать цикл, потому что адрес может быть разной длины
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_1"));
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_2"));
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_3"));
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+        if (!proData.get("adress_1").isEmpty()) {
+            $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_1"));
+            $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+        }
+        if (!proData.get("adress_2").isEmpty()) {
+            $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_2"));
+            $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+        }
+        if (!proData.get("adress_3").isEmpty()) {
+            $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_3"));
+            $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+        }
         $(By.xpath("//input[@placeholder='Дом']")).setValue(proData.get("dom"));
         return this;
     }
 
-    // TODO: 7/19/2018
     private CreateCallPage adressAlarma() {
-        //тут нажимаем на кнопку - да во всплывающем окне
+        $(By.xpath("//button[@aria-label='Close dialog']")).click();
         return this;
     }
 

@@ -19,8 +19,9 @@ import static com.codeborne.selenide.Selenide.$;
 public class FullCardPage extends AbstractPage {
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header = $(By.xpath("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"));
-    SelenideElement appoindBtn = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
-    SelenideElement appoindBtns = $(By.xpath("//span[contains(text(),'Завершить обслуживание')]"));
+    SelenideElement setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
+    SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
+    SelenideElement completeServiceBtn = $(By.id("toDone"));
     SelenideElement cancelBtn = $(By.id("cancel"));
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
@@ -288,21 +289,21 @@ public class FullCardPage extends AbstractPage {
 
     @Step("передать другому врачу")
     public void sendAnotherDoctorBtn() {
-        appoindBtn.click();
+        setAnotherDoctor.click();
     }
 
     @Step("назначить врача")
     public FullCardPage appoindDoctorBtn() {
         $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).should(Condition.visible);
-        appoindBtns.click();
+        appoindDoctorBtn.click();
         return this;
     }
 
     @Step("завершить обслуживание")
     public FullCardPage completeServiceBtn() throws InterruptedException {
         $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
-        appoindBtns.click();
+        completeServiceBtn.click();
         mat_calendar_header.click();
 
         new PressEnter();

@@ -117,12 +117,12 @@ public class DashboardPage extends AbstractPage {
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 
         Thread.sleep(4000);
-        $(By.xpath("//*[contains(text(),'" + proData.get(doctorFam) + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         activeCallProgressFrame.$(By.id("order")).click();
         activeCallProgressFrame.click();
-        $(By.xpath("//[contains(.,'" + proData.get(adressDashboard) + "')]")).click();
+        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//[contains(.,'" + nameGen + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get(telephone) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -135,9 +135,9 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]"));
         $(By.xpath("//span[contains(text(),'" + doctorFam + "')]")).click();
         doneCallProgressFrame.click();
-        $(By.xpath("//[contains(.,'" + proData.get(adressDashboard) + "')]")).click();
+        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//[contains(.,'" + nameGen + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get(telephone) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
     }
 
     @Step("Проверка что запись удалена с дашборда")
