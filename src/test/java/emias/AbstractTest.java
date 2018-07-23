@@ -30,7 +30,7 @@ public abstract class AbstractTest {
 //        Configuration.startMaximized = true;
         Configuration.browserSize = "1900x1020";
         Configuration.timeout = 10000;
-        Configuration.headless = false;
+        Configuration.headless = true;
         page = new Pages();
         driver = getWebDriver();
 //
