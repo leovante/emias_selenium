@@ -258,7 +258,7 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("создаю пустой вызов Без Возр Кат, Без Пола СМП")
     public void createCallProfile13() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile13.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .adress(proData)

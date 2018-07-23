@@ -76,8 +76,8 @@ public class FCD10Test extends AbstractTest {
         page.fullCardPage().appoindDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldNot(Condition.visible);
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
@@ -90,7 +90,7 @@ public class FCD10Test extends AbstractTest {
         page.fullCardPage().appoindDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldNot(Condition.visible);
+        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
@@ -119,6 +119,6 @@ public class FCD10Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
+        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 }
