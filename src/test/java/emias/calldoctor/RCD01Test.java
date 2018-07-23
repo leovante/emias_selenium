@@ -9,7 +9,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Profile;
-import pages.calldoctor.profiles_interfaces.User;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
@@ -112,7 +111,6 @@ public class RCD01Test extends AbstractTest implements Profile {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException {
-        User user = new User();
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
