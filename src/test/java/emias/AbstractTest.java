@@ -1,6 +1,7 @@
 package emias;
 
 import com.codeborne.selenide.Configuration;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeGroups;
@@ -34,10 +35,10 @@ public abstract class AbstractTest {
         page = new Pages();
         driver = getWebDriver();
 
-//        Dimension dimension = new Dimension(1920, 1080);
-//        driver.manage().window().setSize(dimension);
-//        driver.manage().window().maximize();
-//
+        Dimension dimension = new Dimension(1920, 1080);
+        driver.manage().window().setSize(dimension);
+        driver.manage().window().maximize();
+
 //        ChromeOptions option = new ChromeOptions();
 //        option.addArguments("--window-size=1900,1020");
 //        driver = new ChromeDriver(option);
