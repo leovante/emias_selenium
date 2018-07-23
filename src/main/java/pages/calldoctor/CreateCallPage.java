@@ -35,7 +35,6 @@ public class CreateCallPage extends AbstractPage {
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
-                .complaint(proData)
                 .saveBtn()
                 .adressAlarma();
     }
@@ -49,7 +48,7 @@ public class CreateCallPage extends AbstractPage {
                 .telephone(proData)
                 .vozrastKat(proData)
                 .adressAddition(proData)
-                .sexM()
+                .sex(proData)
                 .complaint(proData)
                 .polis(proData)
                 .FIO(nameGen, proData)
@@ -183,10 +182,88 @@ public class CreateCallPage extends AbstractPage {
                 .telephoneChk()
                 .complaint(proData)
                 .vozrastKat(proData)
+                .sex(proData)
+                .saveBtn()
+                .adressAlarma();
+    }
+
+    @Step("создаю пустой вызов ребенка Ж")
+    public void createCallProfile8() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile8.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .telephoneChk()
+                .complaint(proData)
+                .vozrastKat(proData)
+                .sex(proData)
+                .saveBtn()
+                .adressAlarma();
+    }
+
+    @Step("создаю пустой вызов ребенка Без Пола")
+    public void createCallProfile9() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile8.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .telephoneChk()
+                .complaint(proData)
+                .vozrastKat(proData)
+                .saveBtn()
+                .adressAlarma();
+    }
+
+    @Step("создаю пустой вызов взрослого М")
+    public void createCallProfile10() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile10.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .telephoneChk()
+                .complaint(proData)
+                .vozrastKat(proData)
+                .sex(proData)
+                .saveBtn()
+                .adressAlarma();
+    }
+
+    @Step("создаю пустой вызов взрослого М")
+    public void createCallProfile11() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .telephoneChk()
+                .complaint(proData)
+                .vozrastKat(proData)
+                .sex(proData)
+                .saveBtn()
+                .adressAlarma();
+    }
+
+    @Step("создаю пустой вызов взрослого Без Пола")
+    public void createCallProfile12() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .telephoneChk()
+                .complaint(proData)
+                .vozrastKat(proData)
+                .saveBtn()
+                .adressAlarma();
+    }
+
+    @Step("создаю пустой вызов Без Возр Кат")
+    public void createCallProfile13() throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        addNewCall()
+                .sourceSMP()
+                .telephone(proData)
                 .complaint(proData)
                 .saveBtn()
                 .adressAlarma();
     }
+
+
+
 
 
 
@@ -277,8 +354,8 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage sexM() {
-        $(By.id("sex1")).click();
+    private CreateCallPage sex(Map<String, String> proData) {
+        $(By.id(proData.get("sex"))).click();
         return this;
     }
 
