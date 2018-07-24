@@ -306,7 +306,7 @@ public class CreateCallPage extends AbstractPage {
         $(By.id("callFamily")).setValue(proData.get("callFamily"));
         $(By.id("callName")).setValue(proData.get("callName"));
         $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
-        $(By.id("telephone")).setValue(proData.get("telephone"));
+        $(By.id("phone")).setValue(proData.get("telephone"));
         return this;
     }
 
