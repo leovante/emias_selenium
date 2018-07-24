@@ -1,14 +1,18 @@
 package emias;
 
-import com.codeborne.selenide.Configuration;
-import org.openqa.selenium.Dimension;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import pages.Pages;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Selenide.switchTo;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -25,19 +29,32 @@ public abstract class AbstractTest {
                             ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//        driver.manage().window().maximize();
+
+        ChromeDriverService chromeDriverService = new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
+                .usingAnyFreePort()
+                .build();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setHeadless(true);
+        chromeOptions.addArguments("window-size=1900,1020");
+        driver = new ChromeDriver(chromeDriverService, chromeOptions);
+
+        WebDriverRunner.setWebDriver(driver);
 //        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-        System.setProperty("selenide.browser", "Chrome");
+//        Configuration.browser = WebDriverRunner.CHROME;
+
+//        Configuration.headless = true;
 //        Configuration.startMaximized = true;
-        Configuration.browserSize = "1900x1020";
-        Configuration.timeout = 10000;
-        Configuration.headless = true;
+//        Configuration.browser = "chrome";
+//        Configuration.browserPosition = "0x0";
+//        Configuration.browserSize = "1024x768";
+//        Configuration.timeout = 10000;
         page = new Pages();
         driver = getWebDriver();
-
-        Dimension dimension = new Dimension(1920, 1080);
-        driver.manage().window().setSize(dimension);
-        driver.manage().window().maximize();
+//        Dimension dimension = new Dimension(1920, 1080);
+//        driver.manage().window().setSize(dimension);
+//        driver.manage().window().maximize();
 
 //        ChromeOptions option = new ChromeOptions();
 //        option.addArguments("--window-size=1900,1020");
