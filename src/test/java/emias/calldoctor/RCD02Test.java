@@ -4,8 +4,8 @@ import emias.AbstractTest;
 
 public class RCD02Test extends AbstractTest {
     String nameGen;
-//
-//
+
+
 //    @BeforeMethod(groups = {"CD", "test"})
 //    public void beforeMethod() {
 //        StringGenerator nameGen = new StringGenerator();

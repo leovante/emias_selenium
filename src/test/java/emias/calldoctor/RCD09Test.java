@@ -94,7 +94,7 @@ public class RCD09Test extends AbstractTest {
 //                .verifyNewCallProgressFrame(nameGen, adressPro3, telephonePro1);
 //    }
 
-    @Test(groups = "test", description = "проверка кнопки выход")
+    @Test(groups = "CD", description = "проверка кнопки выход")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws IOException {

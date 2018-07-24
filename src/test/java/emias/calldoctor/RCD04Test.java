@@ -6,6 +6,7 @@ import io.qameta.allure.Issue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 public class RCD04Test extends AbstractTest {
@@ -20,11 +21,10 @@ public class RCD04Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod() {
-        //SQLDemonstration.finalizePacientName(nameGen);
-
+        SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "test", description = "передать вызов другому врачу")
+    @Test(groups = "CD", description = "передать вызов другому врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {

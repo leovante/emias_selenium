@@ -26,7 +26,7 @@ public class RCD01Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod(ITestResult result) {
-        //SQLDemonstration.finalizePacientName(nameGen);
+        SQLDemonstration.finalizePacientName(nameGen);
 //        if (!result.isSuccess()) {
 //            try {
 //                WebDriver returned = new Augmenter().augment(driver);
@@ -47,7 +47,7 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "пустой вызов")
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
-    @RetryCountIfFailed()
+    @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException {
         open(curUrlCalldoctor);
 
@@ -59,7 +59,7 @@ public class RCD01Test extends AbstractTest {
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1(nameGen);
@@ -74,7 +74,7 @@ public class RCD01Test extends AbstractTest {
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed()
+    @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile2(nameGen);
@@ -88,7 +88,7 @@ public class RCD01Test extends AbstractTest {
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed()
+    @RetryCountIfFailed(2)
     public void testCallSMPApi() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
@@ -98,7 +98,7 @@ public class RCD01Test extends AbstractTest {
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed()
+    @RetryCountIfFailed(2)
     public void testCallSMPApi2() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
