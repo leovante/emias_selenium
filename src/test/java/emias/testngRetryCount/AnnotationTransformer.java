@@ -1,4 +1,4 @@
-package emias.TestngRetryCount;
+package emias.testngRetryCount;
 
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;

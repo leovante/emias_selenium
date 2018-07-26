@@ -1,29 +1,18 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage extends AbstractPage {
 
-    @FindBy(id = "Login")
-    @CacheLookup
-    WebElement loginInputField;
+    SelenideElement loginInputField = $(By.id("Login"));
+    SelenideElement passInputField = $(By.id("Password"));
+    SelenideElement loginButton = $(By.id("loginBtn"));
 
-    @FindBy(id = "Password")
-    @CacheLookup
-    WebElement passInputField;
-
-    @FindBy(id = "loginBtn")
-    @CacheLookup
-    WebElement loginButton;
-
-    public LoginPage(/*WebDriver driver*/) {
-        //super(driver);
+    public LoginPage() {
     }
 
     public void login(String site, String login, String pass) {
@@ -31,10 +20,6 @@ public class LoginPage extends AbstractPage {
         $(By.id("Login")).setValue(login);
         $(By.id("Password")).setValue(pass);
         $(By.id("loginBtn")).click();
-//        driver.get(site);
-//        enterLoginText(login);
-//        enterPasswordText(pass);
-//        clickLoginButton();
     }
 
     public void enterLoginText(String text) {
@@ -45,6 +30,12 @@ public class LoginPage extends AbstractPage {
     public void enterPasswordText(String text) {
         passInputField.clear();
         passInputField.sendKeys(text);
+    }
+
+    public void defaultSetting() {
+        $(By.id("curuserinfo")).click();
+        $(By.id("postsradio")).$(By.xpath("*[contains(.,'Стенд ЕМИАС МО')]")).click();
+        $(By.xpath("//*[contains(text(),'ui-dialog-title-postsradio')]")).$(By.xpath("*[contains(text(),'Выбрать')]")).click();
     }
 
     public void clickLoginButton() {

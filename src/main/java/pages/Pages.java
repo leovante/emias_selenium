@@ -25,6 +25,11 @@ public class Pages extends AbstractPage {
         return loginPage;
     }
 
+    public NapravlenieNaIssledovanie napravlenieNaIssledovanie() {
+        NapravlenieNaIssledovanie napravlenieNaIssledovanie = new NapravlenieNaIssledovanie();// = PageFactory.initElements(driver, LoginPage.class);
+        return napravlenieNaIssledovanie;
+    }
+
     public ManageShedule manageShedule() {
         ManageShedule manageShedule = new ManageShedule(); //PageFactory.initElements(driver, ManageShedule.class);
         return manageShedule;

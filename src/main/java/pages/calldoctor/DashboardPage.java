@@ -161,10 +161,12 @@ public class DashboardPage extends AbstractPage {
         newCallProgressFrame.$(By.id("order")).click();
 //        newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         Actions actions = new Actions(driver);
         actions.moveToElement(matExpansionPanel).perform();
 //        matExpansionPanel.hover();
+        Thread.sleep(1000);
+        actions.moveToElement(matExpansionPanel).perform();
         smallMenu.click();
         openCard.click();
         return this;

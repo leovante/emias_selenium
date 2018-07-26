@@ -1,4 +1,4 @@
-package emias.TestngRetryCount;
+package emias.testngRetryCount;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;

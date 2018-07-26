@@ -42,7 +42,7 @@ public class CreateCallPage extends AbstractPage {
     @Step("создаю вызов -МКАБ +Регистр")
     public void createCallProfile1(String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile1.json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .adress(proData)
                 .telephone(proData)
