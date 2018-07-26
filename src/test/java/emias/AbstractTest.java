@@ -29,7 +29,6 @@ public abstract class AbstractTest {
                             ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-//        driver.manage().window().maximize();
 
         ChromeDriverService chromeDriverService = new ChromeDriverService.Builder()
                 .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
@@ -41,24 +40,8 @@ public abstract class AbstractTest {
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
 
         WebDriverRunner.setWebDriver(driver);
-//        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-//        Configuration.browser = WebDriverRunner.CHROME;
-
-//        Configuration.headless = true;
-//        Configuration.startMaximized = true;
-//        Configuration.browser = "chrome";
-//        Configuration.browserPosition = "0x0";
-//        Configuration.browserSize = "1024x768";
-//        Configuration.timeout = 10000;
         page = new Pages();
         driver = getWebDriver();
-//        Dimension dimension = new Dimension(1920, 1080);
-//        driver.manage().window().setSize(dimension);
-//        driver.manage().window().maximize();
-
-//        ChromeOptions option = new ChromeOptions();
-//        option.addArguments("--window-size=1900,1020");
-//        driver = new ChromeDriver(option);
     }
 
     @Parameters(value = {"site", "login", "pass"})
