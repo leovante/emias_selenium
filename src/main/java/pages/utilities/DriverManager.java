@@ -1,13 +1,15 @@
 package pages.utilities;
 
-import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.openqa.selenium.Dimension;
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.GeckoDriverService;
+
+import java.awt.*;
+import java.io.File;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
@@ -23,7 +25,7 @@ public class DriverManager {
         this.browser = browser;
     }
 
-    public void createDriver() {
+    public WebDriver createDriver() {
         if (browser.equals("firefox")) {
 //            this.geckoDriverService = new GeckoDriverService.Builder()
 //                    .usingDriverExecutable(new File("src/main/resources/geckodriver.exe"))
@@ -35,28 +37,29 @@ public class DriverManager {
 //            driver = new FirefoxDriver(geckoDriverService, firefoxOptions);
         }
         if (browser.equals("chrome")) {
-//            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-//            System.setProperty("selenide.browser", "Chrome");
+//            ChromeDriverManager.getInstance().setup();
+//            Configuration.browser = browser;
+//            Configuration.headless = true;
+//            Configuration.timeout = 10000;
+//            Configuration.browserSize = "1920x1070";
+//            Configuration.browserPosition = "0x0";
+//            this.driver = getWebDriver();
+//            driver.manage().window().setSize(new Dimension(1920, 1080));
+            this.chromeDriverService = new ChromeDriverService.Builder()
+                    .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
+                    .usingAnyFreePort()
+                    .build();
+            this.chromeOptions = new ChromeOptions();
+            this.chromeOptions.setHeadless(true);
+            this.chromeOptions.addArguments("window-size=1900,1020");
+            driver = new ChromeDriver(chromeDriverService, chromeOptions);
+            WebDriverRunner.setWebDriver(driver);
 
-            ChromeDriverManager.getInstance().setup();
-            Configuration.browser = browser;
-            Configuration.headless = true;
-            Configuration.timeout = 10000;
-            Configuration.browserSize = "1920x1070";
-            Configuration.browserPosition = "0x0";
-            driver = getWebDriver();
-            driver.manage().window().setSize(new Dimension(1280, 1024));
-
-//            this.chromeDriverService = new ChromeDriverService.Builder()
-//                    .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
-//                    .usingAnyFreePort()
-//                    .build();
-//            this.chromeOptions = new ChromeOptions();
-//            this.chromeOptions.setHeadless(false);
-//            this.chromeOptions.addArguments("window-size=1900,1020");
-//            driver = new ChromeDriver(chromeDriverService, chromeOptions);
-//            System.setProperty("selenide.browser", "Chrome");
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
+            System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
         }
         System.out.println("DriverManager - " + getWebDriver());
+        return this.driver;
     }
 }

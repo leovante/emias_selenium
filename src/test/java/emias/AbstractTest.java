@@ -1,16 +1,12 @@
 package emias;
 
-import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
-
-import java.awt.*;
+import pages.utilities.DriverManager;
 
 import static com.codeborne.selenide.Selenide.switchTo;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public abstract class AbstractTest {
     public static WebDriver driver;
@@ -24,33 +20,8 @@ public abstract class AbstractTest {
                             ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-//        new DriverManager(browser).createDriver();
-
-        ChromeDriverManager.getInstance().setup();
-        Configuration.browser = browser;
-        Configuration.headless = true;
-        Configuration.timeout = 10000;
-        Configuration.browserSize = "1920x1070";
-        Configuration.browserPosition = "0x0";
-        driver = getWebDriver();
-//        driver.manage().window().setSize(new org.openqa.selenium.Dimension(1920, 1070));
-
-//        ChromeDriverService chromeDriverService = new ChromeDriverService.Builder()
-//                .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
-//                .usingAnyFreePort()
-//                .build();
-//        ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.setHeadless(true);
-//        chromeOptions.addArguments("window-size=1900,1020");
-//        driver = new ChromeDriver(chromeDriverService, chromeOptions);
-//        WebDriverRunner.setWebDriver(driver);
-
+        driver = new DriverManager(browser).createDriver();
         page = new Pages();
-//        driver = getWebDriver();
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        System.out.println("Monitor screen resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
-        System.out.println("getWebDriver().manage().window().getSize(): " + getWebDriver().manage().window().getSize());
     }
 
     @AfterSuite(alwaysRun = true)
@@ -79,7 +50,6 @@ public abstract class AbstractTest {
                                 @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-
         curUrlCalldoctor = driver.getCurrentUrl();
     }
 
