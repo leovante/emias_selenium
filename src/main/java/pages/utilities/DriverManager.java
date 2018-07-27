@@ -2,6 +2,7 @@ package pages.utilities;
 
 import com.codeborne.selenide.Configuration;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -41,9 +42,10 @@ public class DriverManager {
             Configuration.browser = browser;
             Configuration.headless = true;
             Configuration.timeout = 10000;
-            Configuration.browserSize = "1910x1070";
-            Configuration.startMaximized = true;
+            Configuration.browserSize = "1920x1070";
             Configuration.browserPosition = "0x0";
+            driver = getWebDriver();
+            driver.manage().window().setSize(new Dimension(1280, 1024));
 
 //            this.chromeDriverService = new ChromeDriverService.Builder()
 //                    .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
