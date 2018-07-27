@@ -1,5 +1,6 @@
 package pages.utilities;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -15,8 +16,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class DriverManager {
     public ChromeOptions chromeOptions;
-    public FirefoxOptions firefoxOptions;
     public ChromeDriverService chromeDriverService;
+    public FirefoxOptions firefoxOptions;
     public GeckoDriverService geckoDriverService;
     public String browser;
     public WebDriver driver;
@@ -54,6 +55,7 @@ public class DriverManager {
             this.chromeOptions.addArguments("window-size=1900,1020");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
+            Configuration.timeout = 10000;
 
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
