@@ -28,7 +28,7 @@ public class RCD02Test extends AbstractTest {
 
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testEditProfile1() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);

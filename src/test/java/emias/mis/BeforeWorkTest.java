@@ -10,7 +10,7 @@ import pages.utilities.SQLDemonstration;
 public class BeforeWorkTest extends AbstractTest {
 
     @Test(groups = "mis", description = "Завершаю все вызовы и создаю новое расписание у врачей на сегодня")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void cleanBeforeWork() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
 

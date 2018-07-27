@@ -1,17 +1,12 @@
 package emias;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
+import pages.utilities.DriverManager;
 
 import java.awt.*;
-import java.io.File;
 
 import static com.codeborne.selenide.Selenide.switchTo;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -28,18 +23,17 @@ public abstract class AbstractTest {
                             ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
+        new DriverManager(browser).createDriver();
 
-        ChromeDriverService chromeDriverService = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
-                .usingAnyFreePort()
-                .build();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(true);
-        chromeOptions.addArguments("window-size=1900,1020");
-        driver = new ChromeDriver(chromeDriverService, chromeOptions);
-
-        WebDriverRunner.setWebDriver(driver);
-        Configuration.timeout = 10000;
+//        ChromeDriverService chromeDriverService = new ChromeDriverService.Builder()
+//                .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
+//                .usingAnyFreePort()
+//                .build();
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.setHeadless(true);
+//        chromeOptions.addArguments("window-size=1900,1020");
+//        driver = new ChromeDriver(chromeDriverService, chromeOptions);
+//        WebDriverRunner.setWebDriver(driver);
         page = new Pages();
         driver = getWebDriver();
 
