@@ -33,7 +33,7 @@ public abstract class AbstractTest {
                 .usingAnyFreePort()
                 .build();
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(false);
+        chromeOptions.setHeadless(true);
         chromeOptions.addArguments("window-size=1900,1020");
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
 
