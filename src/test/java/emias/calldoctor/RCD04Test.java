@@ -30,7 +30,7 @@ public class RCD04Test extends AbstractTest {
     public void testCallRegistr() throws Exception {
         //driver.get(curUrlCalldoctor);
 
-        page.createCallPage().createCallProfile1(nameGen);
+        page.createCallPage().createCallProfile1("Profile1", nameGen);
 
         page.fullCardPage().appoindDoctorBtn();
         page.setDoctorPage().appendDoctor("Profile1");

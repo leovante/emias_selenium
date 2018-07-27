@@ -50,26 +50,26 @@ public class RCD01Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException {
         open(curUrlCalldoctor);
-
-        page.createCallPage().createCallProfile0();
+        page.createCallPage().createCallProfile0("Profile0");
         page.fullCardPage()
                 .verifyCallProfile0("Profile0")
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура")
+    @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1(nameGen);
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile1("Profile1", nameGen);
         page.fullCardPage()
                 .verifyCallProfile1("Profile1", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen)
-                .clearFilterDepart()
-                .verifyNewCallProgressFrame(nameGen, "Profile1");
+//                .searchFilterFio(nameGen)
+//                .clearFilterDepart()
+                .verifyNewCallProgressFrame("Profile1", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
@@ -81,9 +81,10 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage()
                 .verifyCallProfile1("Profile2", nameGen)
                 .closeCardBtn();
-        page.dashboardPage().searchFilterFio(nameGen)
-                .clearFilterDepart()
-                .verifyNewCallProgressFrame("Profile1");
+        page.dashboardPage()
+//                .searchFilterFio(nameGen)
+//                .clearFilterDepart()
+                .verifyNewCallProgressFrame("Profile2");
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
@@ -96,7 +97,7 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage().verifyCallProfile1("Profile3", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallSMPApi2() throws IOException, InterruptedException {
@@ -120,7 +121,7 @@ public class RCD01Test extends AbstractTest {
     }
 }
 
-/**
+/*
  * Благодаря этому паттерну можно реализовать много интересных вещей, например,
  * вы можете реализовать пул браузеров. Многие жалуются – наши web-тесты тормозят,
  * потому что пока браузер поднимется, пока первая страница загрузится, пока скопируется профиль и так далее.

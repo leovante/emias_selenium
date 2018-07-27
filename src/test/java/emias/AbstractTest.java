@@ -7,10 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
-import org.testng.annotations.BeforeGroups;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.Pages;
 
 import java.io.File;
@@ -46,6 +43,11 @@ public abstract class AbstractTest {
         driver = getWebDriver();
     }
 
+    @AfterSuite(alwaysRun = true)
+    public void afterSutie() {
+//        driver.quit();
+    }
+
     @Parameters(value = {"site", "login", "pass"})
     @BeforeGroups(groups = "CD", alwaysRun = true)
     public void beforeGroupsCD(@Optional String site,
@@ -53,10 +55,12 @@ public abstract class AbstractTest {
                                @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-        page.loginPage().defaultSetting();
+//        page.loginPage().defaultSetting();todo попросиль Лешу с делать </br> в меню выбора подразделения
         page.homePage().callDoctorBtn();
         switchTo().window(1);
-        curUrlCalldoctor = driver.getCurrentUrl();
+        curUrlCalldoctor = //driver.getCurrentUrl();
+                "http://service.emias.mosreg.ru/test/call/call_doctor_ui/call-doctor/board;docprvdid=1239?ticket=Ibc%2FOpI8MZaJjSIcdDuiWNYSz8ouUeancY6IJAXs%2Bu3RbApDxrMLWlzx%2BkOW0YXQ63Y5jQjXoUOxOa1I%2BuTXY0CShzuoHTtPewYeEHUOX%2FOY61mX5%2FqWvxRZ8slrHlYMim3E49r2TvhK8cA0ZI4ZuAaEEb0syr%2Fbs4%2B8S9oAuFLyy5hz%2BlY92r5KQvxeL8FVEsYbGdQnh7bJjI6fqm9%2Bclm3pRjVWWhy0PXSoBS0UZ14OLqP8XPm8ZAqepx%2FkLP4AK5LOcyrYLL4raglH4eIS1TXQ3hnZceTAwuOBhtjCtpePT9P&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
+
     }
 
     @Parameters(value = {"site", "login", "pass"})
