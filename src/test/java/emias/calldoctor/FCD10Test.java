@@ -85,8 +85,7 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall5() throws IOException {
         open(curUrlCalldoctor);
-
-        page.createCallPage().createCallProfile11();
+        page.createCallPage().createCallProfile11("Profile11");
         page.fullCardPage().appoindDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -99,8 +98,7 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall6() throws IOException {
         open(curUrlCalldoctor);
-
-        page.createCallPage().createCallProfile12();
+        page.createCallPage().createCallProfile12("Profile12");
         page.fullCardPage().appoindDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -108,13 +106,12 @@ public class FCD10Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола СМП")
+    @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testChildCall7() throws IOException {
         open(curUrlCalldoctor);
-
-        page.createCallPage().createCallProfile13();
+        page.createCallPage().createCallProfile13("Profile13", nameGen);
         page.fullCardPage().appoindDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);

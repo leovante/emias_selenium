@@ -273,8 +273,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("создаю пустой вызов взрослого Ж")
-    public void createCallProfile11() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
+    public void createCallProfile11(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .adress(proData)
@@ -287,8 +287,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("создаю пустой вызов взрослого Без Пола")
-    public void createCallProfile12() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile11.json");
+    public void createCallProfile12(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .adress(proData)
@@ -299,19 +299,19 @@ public class CreateCallPage extends AbstractPage {
                 .adressAlarma();
     }
 
-    @Step("создаю пустой вызов Без Возр Кат, Без Пола СМП")
-    public void createCallProfile13() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile13.json");
+    @Step("создаю пустой вызов Без Возр Кат, Без Пола, СМП")
+    public void createCallProfile13(String profile, String nameGen) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .adress(proData)
                 .sourceSMP(proData)
+                .caller(nameGen, proData)
                 .telephone(proData)
                 .complaint(proData)
                 .saveBtn()
                 .adressAlarma();
     }
-
 
     // TODO: 7/19/2018 доделать
     public CreateCallPage setDeafult() {
