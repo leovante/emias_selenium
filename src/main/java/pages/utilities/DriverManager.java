@@ -16,8 +16,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class DriverManager {
     public ChromeOptions chromeOptions;
-    public FirefoxOptions firefoxOptions;
     public ChromeDriverService chromeDriverService;
+    public FirefoxOptions firefoxOptions;
     public GeckoDriverService geckoDriverService;
     public String browser;
     public WebDriver driver;

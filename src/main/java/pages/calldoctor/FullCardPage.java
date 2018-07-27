@@ -239,7 +239,7 @@ public class FullCardPage extends AbstractPage {
 
     @Step("проверяю обслуженный вызов")
     public FullCardPage verifyDoneDocGroup(String nameGen, String profile) throws IOException {
-        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         Selenide.refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -280,7 +280,7 @@ public class FullCardPage extends AbstractPage {
 
     @Step("отменить вызов")
     public FullCardPage cancelRecordOnFullCardPage() {
-        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         cancelBtn.click();
         cancelField.setValue("отмена автотестом");
         cancelCall.click();
@@ -294,7 +294,7 @@ public class FullCardPage extends AbstractPage {
 
     @Step("назначить врача")
     public FullCardPage appoindDoctorBtn() {
-        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).should(Condition.visible);
         appoindDoctorBtn.click();
         return this;
@@ -302,7 +302,7 @@ public class FullCardPage extends AbstractPage {
 
     @Step("завершить обслуживание")
     public FullCardPage completeServiceBtn() throws InterruptedException {
-        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         completeServiceBtn.click();
         mat_calendar_header.click();
 
@@ -324,14 +324,14 @@ public class FullCardPage extends AbstractPage {
 
     @Step("отмена вызов на странице редактирвоания")
     public FullCardPage editCallBtn() {
-        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         change.click();
         return this;
     }
 
     @Step("закрыть подробную карту")
     public FullCardPage closeCardBtn() {
-        $(By.xpath("//*[contains(.,'" + "Карта вызова" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         $(By.xpath("//mat-icon[contains(text(),'close')]")).click();
         return this;
     }

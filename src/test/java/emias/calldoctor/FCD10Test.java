@@ -98,7 +98,7 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall6() throws IOException {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile12("Profile12");
+        page.createCallPage().createCallProfile12("Profile11");
         page.fullCardPage().appoindDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
