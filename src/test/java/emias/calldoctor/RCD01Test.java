@@ -1,7 +1,7 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import emias.TestngRetryCount.RetryCountIfFailed;
+import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
 import org.testng.ITestResult;

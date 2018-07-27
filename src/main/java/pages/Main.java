@@ -1,7 +1,5 @@
 package pages;
 
-import java.util.Arrays;
-
 public class Main {
     public static void main(String[] args) {
 //        TestListenerAdapter tla = new TestListenerAdapter();
@@ -13,7 +11,6 @@ public class Main {
 //        testng.setTestSuites(suites);
 //        testng.run();
 
-        int[] arr1 = Arrays.asList(args[0].split(",")).stream().mapToInt(Integer::parseInt).toArray();
 
     }
 }

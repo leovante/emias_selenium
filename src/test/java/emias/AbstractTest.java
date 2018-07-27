@@ -1,5 +1,6 @@
 package emias;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,11 +36,12 @@ public abstract class AbstractTest {
                 .usingAnyFreePort()
                 .build();
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(true);
+        chromeOptions.setHeadless(false);
         chromeOptions.addArguments("window-size=1900,1020");
         driver = new ChromeDriver(chromeDriverService, chromeOptions);
 
         WebDriverRunner.setWebDriver(driver);
+        Configuration.timeout = 10000;
         page = new Pages();
         driver = getWebDriver();
     }
@@ -51,6 +53,7 @@ public abstract class AbstractTest {
                                @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
+        page.loginPage().defaultSetting();
         page.homePage().callDoctorBtn();
         switchTo().window(1);
         curUrlCalldoctor = driver.getCurrentUrl();

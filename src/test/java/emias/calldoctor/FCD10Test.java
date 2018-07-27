@@ -2,7 +2,7 @@ package emias.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
-import emias.TestngRetryCount.RetryCountIfFailed;
+import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;

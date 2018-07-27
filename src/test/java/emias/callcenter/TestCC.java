@@ -1,7 +1,7 @@
 package emias.callcenter;
 
 import emias.AbstractTest;
-import emias.TestngRetryCount.RetryCountIfFailed;
+import emias.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 

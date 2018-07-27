@@ -27,19 +27,13 @@ public class AdmissionSchedule extends AbstractPage {
 
     @Step("Сделать запись")
     public void createRecord(String first_doctor_fullname) throws InterruptedException {
-//        Actions action = new Actions(driver);
         String mwh = driver.getWindowHandle();
-//        waitAllEmias();
         RecordsArea.shouldBe(Condition.visible);
-//        waitAllEmias();
         recordElement.shouldBe(Condition.visible);
         recordElement.click();
         new PressEnter();
-//        action.sendKeys(Keys.ENTER).perform();//нажали поиск мкаб
         Thread.sleep(2000);
-//        waitBlockOverlay();
         selectMkab.click();
-//        waitBlockOverlay();
         selectVibratBtn.click();
         predvarit.click();
 
@@ -59,12 +53,8 @@ public class AdmissionSchedule extends AbstractPage {
     }
 
     public void verifyFindCallName(String nameGen) {
-//        waitAllEmias();
         RecordsArea.shouldBe(Condition.visible);
-//        waitAllEmias();
         recordElement.should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + nameGen + "')]")).shouldBe(Condition.enabled);
-//        assertTrue(containName.isEnabled());
     }
-
 }

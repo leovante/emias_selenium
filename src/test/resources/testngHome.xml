@@ -6,7 +6,7 @@
     <parameter name="login" value="admin"/>
     <parameter name="pass" value="11"/>
     <listeners>
-        <listener class-name="emias.TestngRetryCount.AnnotationTransformer"/>
+        <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
     <test verbose="1" name="CallDoctor">
         <groups>
