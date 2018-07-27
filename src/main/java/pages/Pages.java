@@ -4,7 +4,10 @@ import org.openqa.selenium.support.PageFactory;
 import pages.callcenter.CallDoctorPage;
 import pages.callcenter.FindPatientPage;
 import pages.callcenter.LoginPageCC;
-import pages.calldoctor.*;
+import pages.calldoctor.CreateCallPage;
+import pages.calldoctor.DashboardPage;
+import pages.calldoctor.FullCardPage;
+import pages.calldoctor.SetDoctorPage;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
@@ -79,12 +82,6 @@ public class Pages extends AbstractPage {
         BeforeWork beforeWork = new BeforeWork(); //PageFactory.initElements(driver, BeforeWork.class);
         return beforeWork;
     }
-
-    public PerformCardPage editCardPage() {
-        PerformCardPage performCardPage = new PerformCardPage(); //PageFactory.initElements(driver, PerformCardPage.class);
-        return performCardPage;
-    }
-
 
     /**
      * CALL CENTER

@@ -83,7 +83,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public DashboardPage verifyNewCallProgressFrame(String nameGen, String profile) throws InterruptedException, IOException {
+    public DashboardPage verifyNewCallProgressFrame(String profile, String nameGen) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 
@@ -91,9 +91,9 @@ public class DashboardPage extends AbstractPage {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
-        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
-        $(By.xpath("//[contains(.,'" + nameGen + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -105,9 +105,9 @@ public class DashboardPage extends AbstractPage {
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
-        $(By.xpath("//[contains(.,'" + proData.get("name") + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + proData.get("name") + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -120,9 +120,9 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         activeCallProgressFrame.$(By.id("order")).click();
         activeCallProgressFrame.click();
-        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
-        $(By.xpath("//[contains(.,'" + nameGen + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -135,9 +135,9 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]"));
         $(By.xpath("//span[contains(text(),'" + doctorFam + "')]")).click();
         doneCallProgressFrame.click();
-        $(By.xpath("//[contains(.,'" + proData.get("adressDashboard") + "')]")).click();
-        $(By.xpath("//[contains(.,'" + nameGen + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//[contains(.,'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
     }
 
     @Step("Проверка что запись удалена с дашборда")
@@ -150,15 +150,8 @@ public class DashboardPage extends AbstractPage {
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
     public DashboardPage openNewCallProgressFrame(String profile) throws InterruptedException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-
-//        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-//                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-//        JSWaiter.waitJQueryAngular();
-
-        newCallProgressFrame.click();
         newCallProgressFrame.$(By.id("order")).click();
+        newCallProgressFrame.click();
 //        newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
         Thread.sleep(5000);
