@@ -16,8 +16,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class DriverManager {
     public ChromeOptions chromeOptions;
-    public ChromeDriverService chromeDriverService;
     public FirefoxOptions firefoxOptions;
+    public ChromeDriverService chromeDriverService;
     public GeckoDriverService geckoDriverService;
     public String browser;
     public WebDriver driver;
@@ -46,6 +46,7 @@ public class DriverManager {
 //            Configuration.browserPosition = "0x0";
 //            this.driver = getWebDriver();
 //            driver.manage().window().setSize(new Dimension(1920, 1080));
+
             this.chromeDriverService = new ChromeDriverService.Builder()
                     .usingDriverExecutable(new File("src/main/resources/chromedriver.exe"))
                     .usingAnyFreePort()
@@ -62,6 +63,6 @@ public class DriverManager {
             System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
         }
         System.out.println("DriverManager - " + getWebDriver());
-        return this.driver;
+        return driver;
     }
 }
