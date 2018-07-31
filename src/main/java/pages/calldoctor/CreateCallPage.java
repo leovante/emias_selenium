@@ -115,6 +115,19 @@ public class CreateCallPage extends AbstractPage {
                 .saveBtn();
     }
 
+    @Step("создаю вызов с МКАБ + СМП")
+    public void editCallProfile2(String profile, String nameGen) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + "Profile2.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        sourceSMP(proData)
+                .searchField(proData)
+                .adressAddition(proData)
+                .telephone(proData)
+                .complaint(proData)
+                .caller(nameGen, proData)
+                .saveBtn();
+    }
+
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfile3(String nameGen) {
         HttpClient httpClient = HttpClients.createDefault();

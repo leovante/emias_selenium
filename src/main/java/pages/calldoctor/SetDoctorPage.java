@@ -2,6 +2,7 @@ package pages.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,7 +13,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.AbstractPage;
 import pages.utilities.JSWaiter;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -74,17 +78,11 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("назначиь врача")
-    public void appendDoctor(String profile) {
-        JSWaiter.waitJQueryAngular();
-        new WebDriverWait(driver, 30).until((ExpectedCondition<Boolean>) wd ->
-                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
-        WebElement dynamicElement = (new WebDriverWait(driver, 20))
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//div[contains(., '" + profile + "')]")));
-
-
-        $(By.xpath("//div[contains(text(),'" + profile + "')]")).should(Condition.visible);
-        $(By.xpath("//div[contains(text(),'" + profile + "')]")).click();
+    public void appendDoctor(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + "Profile2.json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
+        $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         appenOnThisDay.click();
     }
 }
