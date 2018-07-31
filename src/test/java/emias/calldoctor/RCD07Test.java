@@ -32,8 +32,8 @@ public class RCD07Test extends AbstractTest {
     public void testCallRegistr() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile1");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
                 .completeServiceBtn()
                 .verifyDoneDocGroup(nameGen, "Profile1")

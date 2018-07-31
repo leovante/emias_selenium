@@ -23,12 +23,12 @@
   "age": "2",
   "vKat": "Дети",
   "competition": "автотест создание вызова без МКАБ через ВД",
-  "doctorName": "Инна",
-  "doctorFam": "Серова",
-  "doctorOt": "Кузьминична",
   "department": "Стенд ЕМИАС МО",
   "whoIsCall": "СМП",
   "sourceSMP": "Суперстанция",
   "callFamily": "Автотемников",
-  "callPatronymic": "Автоолегович"
+  "callPatronymic": "Автоолегович",
+  "doctorName": "Инна",
+  "doctorFam": "Серова",
+  "doctorOt": "Кузьминична"
 }

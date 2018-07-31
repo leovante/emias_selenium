@@ -31,18 +31,16 @@ public class RCD04Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-
-        page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile1");
-
-        page.fullCardPage().sendAnotherDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile2");
-        page.fullCardPage().verifyCallProfile1Activity(nameGen, "Profile2");
-        page.fullCardPage().closeCardBtn();
-
-        page.dashboardPage().searchFilterFio("Profile2")
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
+        page.fullCardPage().changeDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile2");
+        page.fullCardPage()
+                .verifyCallProfile1Activity(nameGen, "Profile2")
+                .closeCardBtn();
+        page.dashboardPage()
+                .searchFilterFio("Profile2")
                 .clearFilterDepart()
                 .verifyActiveDocGroup(nameGen, "Profile2");
     }

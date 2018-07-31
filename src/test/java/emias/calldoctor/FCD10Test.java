@@ -29,12 +29,10 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile7();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
@@ -43,11 +41,9 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall2() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile8();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
@@ -57,11 +53,9 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall3() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile9();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
@@ -71,11 +65,9 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall4() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile10();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
@@ -86,10 +78,9 @@ public class FCD10Test extends AbstractTest {
     public void testChildCall5() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile11("Profile11");
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
@@ -99,10 +90,9 @@ public class FCD10Test extends AbstractTest {
     public void testChildCall6() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile12("Profile11");
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
@@ -112,10 +102,9 @@ public class FCD10Test extends AbstractTest {
     public void testChildCall7() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile13("Profile13", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 }

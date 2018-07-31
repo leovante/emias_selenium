@@ -66,10 +66,7 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage()
                 .verifyCallProfile1("Profile1", nameGen)
                 .closeCardBtn();
-        page.dashboardPage()
-//                .searchFilterFio(nameGen)
-//                .clearFilterDepart()
-                .verifyNewCallProgressFrame("Profile1", nameGen);
+        page.dashboardPage().verifyNewCallProgressFrame("Profile1", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
@@ -81,16 +78,13 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage()
                 .verifyCallProfile1("Profile2", nameGen)
                 .closeCardBtn();
-        page.dashboardPage()
-//                .searchFilterFio(nameGen)
-//                .clearFilterDepart()
-                .verifyNewCallProgressFrame("Profile2");
+        page.dashboardPage().verifyNewCallProgressFrame("Profile2");
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallSMPApi() throws IOException, InterruptedException {
+    public void testCallSMPApiChildMkab() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame("Profile3");
@@ -100,7 +94,7 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallSMPApi2() throws IOException, InterruptedException {
+    public void testCallSMPApiAdultKladr() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame("Profile6");

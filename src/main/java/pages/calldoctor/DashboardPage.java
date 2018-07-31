@@ -52,9 +52,9 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio(String profile) {
+    public DashboardPage searchFilterFio(String nameGen) {
         fioFilter.click();
-        fioFilter.setValue(profile);
+        fioFilter.setValue(nameGen);
         return this;
     }
 
@@ -146,16 +146,11 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage openNewCallProgressFrame(String profile) throws InterruptedException {
+    public DashboardPage openNewCallProgressFrame(String profile) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-//        newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
-        Thread.sleep(5000);
         Actions actions = new Actions(driver);
-        actions.moveToElement(matExpansionPanel).perform();
-//        matExpansionPanel.hover();
-        Thread.sleep(1000);
         actions.moveToElement(matExpansionPanel).perform();
         smallMenu.click();
         openCard.click();

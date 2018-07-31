@@ -1,6 +1,5 @@
 package emias.calldoctor;
 
-import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Attachment;
@@ -17,6 +16,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static org.testng.Assert.assertTrue;
 
 public class RCD09Test extends AbstractTest {
     String nameGen;
@@ -68,8 +68,8 @@ public class RCD09Test extends AbstractTest {
     public void testFilterDoctor() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile1");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterDoctor("Profile1")
@@ -87,7 +87,7 @@ public class RCD09Test extends AbstractTest {
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .searchFilterTypeCallNeotlozhniy()
-                .verifyNewCallProgressFrame("Profile1", nameGen);
+                .verifyNewCallProgressFrame("Profile3", nameGen);
     }
 
     @Test(groups = "CD", description = "проверка кнопки выход")
@@ -97,6 +97,6 @@ public class RCD09Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile7();
         page.dashboardPage().exitToMis();
-        $(By.xpath("//div[contains(text(),'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
+        assertTrue($(By.xpath("//span[contains(text(),'Расписание приёма')]")).isDisplayed());
     }
 }

@@ -117,7 +117,7 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("создаю вызов с МКАБ + СМП")
     public void editCallProfile2(String profile, String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + "Profile2.json");
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         sourceSMP(proData)
                 .searchField(proData)
@@ -331,6 +331,7 @@ public class CreateCallPage extends AbstractPage {
         $(By.id("source1")).click();
         new PressEscape();
         List<SelenideElement> selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')]"));
+        selenideElements.add($(By.xpath("//path[@fill='#121313']")));
         for (SelenideElement element : selenideElements) {
             element.click();
         }
@@ -428,7 +429,6 @@ public class CreateCallPage extends AbstractPage {
 
     private CreateCallPage complaint(Map proData) {
         SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
-
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + proData.get("zhaloba") + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);

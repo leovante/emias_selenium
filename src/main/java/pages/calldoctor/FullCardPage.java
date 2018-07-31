@@ -288,12 +288,12 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("передать другому врачу")
-    public void sendAnotherDoctorBtn() {
+    public void changeDoctorBtn() {
         setAnotherDoctor.click();
     }
 
     @Step("назначить врача")
-    public FullCardPage appoindDoctorBtn() {
+    public FullCardPage chooseDoctorBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).should(Condition.visible);
         appoindDoctorBtn.click();

@@ -18,7 +18,7 @@ public class PortalDashboard extends AbstractPage {
     SelenideElement pereytiVElectrRegistr = $(By.xpath("//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']"));
     SelenideElement nPolField = $(By.xpath("//input[@name='nPol']"));
     SelenideElement birthdayField = $(By.xpath("//input[@name='birthday']"));
-    SelenideElement uspeshnoVizvaliVracha = $(By.xpath("//*[contains(text(),'Вы успешно вызвали врача на адрес')]"));
+    SelenideElement uspeshnoVizvaliVracha = $(By.xpath("//*[contains(.,'Вы успешно вызвали врача на адрес:')]"));
     SelenideElement entrance = $(By.id("call_entrance"));
     SelenideElement doorphone = $(By.id("call_doorphone"));
     SelenideElement phone = $(By.id("call_phone"));
