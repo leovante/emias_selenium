@@ -18,7 +18,7 @@ public class SQLDemonstration extends AbstractPage {
     static String password = "sagfhjkzYES!";
 
     @Step("удаляю расписание этого врача")
-    public static void deleteShedule(String name) {
+    public static void deleteShedule(String fam) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -30,7 +30,7 @@ public class SQLDemonstration extends AbstractPage {
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
                                 "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
                                 "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '17530101', GETDATE()) / 7) * 7) - 7, '17530101') " +
-                                "AND ldoc.FAM_V = '" + name + "'";
+                                "AND ldoc.FAM_V = '" + fam + "'";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);

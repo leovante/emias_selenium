@@ -52,11 +52,11 @@ public class DriverManager {
                     .usingAnyFreePort()
                     .build();
             this.chromeOptions = new ChromeOptions();
-            this.chromeOptions.setHeadless(true);
+//            this.chromeOptions.setHeadless(true);
             this.chromeOptions.addArguments("window-size=1900,1020");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
-            Configuration.timeout = 10000;
+            Configuration.timeout = 20000;
 
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());

@@ -48,7 +48,7 @@ public class RCD09Test extends AbstractTest {
 //        }
     }
 
-    @Test(groups = "test", description = "фильтр поиск по ФИО")
+    @Test(groups = "CD", description = "фильтр поиск по ФИО")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
@@ -62,7 +62,7 @@ public class RCD09Test extends AbstractTest {
 
     //    @Listeners({CustomTestListener.class}) //https://automated-testing.info/t/pomogite-podklyuchit-allure-k-proektu-java-testng-maven/7122/15
     @Attachment(value = "Console error", type = "text/plain")
-    @Test(groups = "CD", description = "фильтр поиск по врачу")
+    @Test(groups = "test", description = "фильтр поиск по врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException {
@@ -82,7 +82,7 @@ public class RCD09Test extends AbstractTest {
     public void testTypeCall() throws InterruptedException, IOException {
         page.createCallPage().createCallProfile3(nameGen);
         open(curUrlCalldoctor);
-        page.dashboardPage().openNewCallProgressFrame(nameGen);
+        page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)

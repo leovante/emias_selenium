@@ -42,6 +42,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
     SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
     SelenideElement pd = $(By.xpath("//input[@placeholder='П-д']"));
+
     SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
     SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
     SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Добавить жалобу']"));
@@ -50,6 +51,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
     SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
     SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
+
     SelenideElement tipVisivaushego = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
     SelenideElement predstav = $(By.xpath("//span[contains(.,'Представитель')]"));
     SelenideElement saveBtns = $(By.xpath("//span[contains(text(),'Сохранить')]"));
@@ -331,8 +333,13 @@ public class CreateCallPage extends AbstractPage {
         $(By.id("source1")).click();
         new PressEscape();
         List<SelenideElement> selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')]"));
-        selenideElements.add($(By.xpath("//path[@fill='#121313']")));
+        List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
+
         for (SelenideElement element : selenideElements) {
+            element.click();
+        }
+
+        for (SelenideElement element : selenideElements2) {
             element.click();
         }
 
@@ -373,6 +380,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage adress(Map<String, String> proData) {
+        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         if (!proData.get("adress_1").isEmpty()) {
             $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
             $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_1"));
@@ -428,7 +436,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage complaint(Map proData) {
-        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
+        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + proData.get("zhaloba") + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);

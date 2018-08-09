@@ -1,6 +1,5 @@
 package pages.calldoctor;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
@@ -26,7 +25,7 @@ public class SetDoctorPage extends AbstractPage {
     public void chooseDoctor(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
+//        $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
         $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         appenOnThisDay.click();
     }

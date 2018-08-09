@@ -84,33 +84,34 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallSMPApiChildMkab() throws IOException, InterruptedException {
+    public void testCallSMPApiChildMkab() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
-        page.dashboardPage().openNewCallProgressFrame("Profile3");
+        page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile1("Profile3", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallSMPApiAdultKladr() throws IOException, InterruptedException {
+    public void testCallSMPApiAdultKladr() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
-        page.dashboardPage().openNewCallProgressFrame("Profile6");
+        page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile1("Profile6", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallPortal() throws IOException, InterruptedException {
+    public void testCallFromPortal() throws IOException {
+        open("https://uslugi.mosreg.ru/zdrav/");
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard().createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
-        page.dashboardPage().openNewCallProgressFrame("Profile4");
+        page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile1("Profile4", nameGen);
     }
 }

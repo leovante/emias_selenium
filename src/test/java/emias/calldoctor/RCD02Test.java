@@ -37,10 +37,10 @@ public class RCD02Test extends AbstractTest {
                 .verifyCallProfile1("Profile1", nameGen);
     }
 
-    @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
+    @Test(groups = "test", description = "изменить карту вызова из регистратуры")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testEditProfile1() throws Exception {
+    public void testEditCallProfile1() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
         page.createCallPage()

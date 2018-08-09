@@ -26,10 +26,10 @@ public class RCD07Test extends AbstractTest {
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "test", description = "завершить обслуживание вызова")
+    @Test(groups = "CD", description = "завершить обслуживание вызова")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallRegistr() throws Exception {
+    public void testCompleteCallRegistr() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
         page.fullCardPage().chooseDoctorBtn();
