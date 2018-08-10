@@ -63,8 +63,9 @@ public class DashboardPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         docFilter.click();
-        docFilter.setValue(proData.get("fioName"));
-        docFilter.pressEnter();
+        docFilter.setValue(proData.get("doctorFam"));
+        $(By.xpath("//ul/li/div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
+//        docFilter.pressEnter();
         return this;
     }
 
@@ -111,11 +112,27 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
+    public DashboardPage verifyActiveDocGroup(String nameGen, String profile, String profile2) throws InterruptedException, IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        File reader2 = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile2 + ".json");
+        Map proData2 = new ObjectMapper().readValue(reader2, Map.class);
+        Thread.sleep(4000);
+        $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
+        activeCallProgressFrame.$(By.id("order")).click();
+        activeCallProgressFrame.click();
+        $(By.xpath("//*[contains(text(),'" + proData2.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData2.get("telephone") + "')]")).shouldBe(Condition.visible);
+        return this;
+    }
+
+    @Step("проверяю на дашборде запись у врача в группе активные")
     public DashboardPage verifyActiveDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
-        $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
+        $(By.xpath("//span[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         activeCallProgressFrame.$(By.id("order")).click();
         activeCallProgressFrame.click();
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();

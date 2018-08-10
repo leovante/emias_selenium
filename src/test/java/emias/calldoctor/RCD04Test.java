@@ -26,7 +26,7 @@ public class RCD04Test extends AbstractTest {
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "test", description = "передать вызов другому врачу")
+    @Test(groups = "CD", description = "передать вызов другому врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() throws Exception {
@@ -40,8 +40,8 @@ public class RCD04Test extends AbstractTest {
                 .verifyCallProfile1Activity(nameGen, "Profile1", "Profile2")
                 .closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio("Profile2")
                 .clearFilterDepart()
-                .verifyActiveDocGroup(nameGen, "Profile2");
+                .searchFilterFio(nameGen)
+                .verifyActiveDocGroup(nameGen, "Profile2", "Profile1");
     }
 }

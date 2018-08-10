@@ -62,9 +62,9 @@ public class RCD09Test extends AbstractTest {
 
     //    @Listeners({CustomTestListener.class}) //https://automated-testing.info/t/pomogite-podklyuchit-allure-k-proektu-java-testng-maven/7122/15
     @Attachment(value = "Console error", type = "text/plain")
-    @Test(groups = "test", description = "фильтр поиск по врачу")
+    @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(0)
     public void testFilterDoctor() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
@@ -72,6 +72,7 @@ public class RCD09Test extends AbstractTest {
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
+                .clearFilterDepart()
                 .searchFilterDoctor("Profile1")
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }

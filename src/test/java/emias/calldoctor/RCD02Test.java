@@ -37,7 +37,7 @@ public class RCD02Test extends AbstractTest {
                 .verifyCallProfile1("Profile1", nameGen);
     }
 
-    @Test(groups = "test", description = "изменить карту вызова из регистратуры")
+    @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testEditCallProfile1() throws Exception {
@@ -51,6 +51,7 @@ public class RCD02Test extends AbstractTest {
                 .verifyCallProfile1("Profile2", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
+                .clearFilterDepart()
                 .searchFilterFio(nameGen)
                 .verifyNewCallProgressFrame("Profile2", nameGen);
     }

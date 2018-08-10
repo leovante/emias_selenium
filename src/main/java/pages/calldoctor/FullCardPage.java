@@ -12,9 +12,11 @@ import pages.AbstractPage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class FullCardPage extends AbstractPage {
     SelenideElement doneCall = $(By.id("doneCall"));
@@ -387,8 +389,8 @@ public class FullCardPage extends AbstractPage {
 
     @Step("закрыть подробную карту")
     public FullCardPage closeCardBtn() {
-        SelenideElement page = $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
-//        List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
+        SelenideElement page = $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
+        List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
 //        for (SelenideElement element : elements) {
 //            if (page.equals(true))
