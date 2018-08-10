@@ -107,4 +107,25 @@ public class FCD10Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
+
+    @Test(groups = "CD", description = "создаю вызов в ВД что бы проверить что отобразился участковый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testPreviewUchDoctorWithKladr() throws Exception {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile2(nameGen);
+        page.fullCardPage().chooseDoctorBtn();
+        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "создаю вызов через СМП что бы проверить что отобразился участковый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testPreviewUchDoctorWithoutKladr() {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfileDetkina();
+        page.dashboardPage().openNewCallProgressFrame();
+        page.fullCardPage().chooseDoctorBtn();
+        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+    }
 }
