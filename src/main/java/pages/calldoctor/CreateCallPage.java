@@ -330,6 +330,8 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfileDetkina() {
+//        String token = new Tokenizer();
+
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
         json.put("name", "Лариса");
