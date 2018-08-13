@@ -127,7 +127,41 @@ public class FCD10Test extends AbstractTest {
         SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
         page.createCallPage().createCallProfileDetkina();
         page.dashboardPage().openNewCallProgressFrame();
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage()
+                .verifyCallProfileDetkina("ProfileDetkina")
+                .chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testMkabAndTapIconIsGrey() throws IOException, InterruptedException {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
+        page.fullCardPage()
+                .completeServiceBtn()
+                .verifyDoneDocGroup("Profile1", nameGen)
+                .verifyMkabIconDisable()
+                .verifyTapIconDisable()
+                .closeCardBtn();
+    }
+
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testMkabIconIsRedTapIconIsGrey() throws IOException, InterruptedException {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile2("Profile2");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile2");
+        page.fullCardPage()
+                .completeServiceBtn()
+                .verifyDoneDocGroup("Profile2")
+                .verifyMkabIconEnable()
+                .verifyTapIconDisable()
+                .closeCardBtn();
     }
 }
