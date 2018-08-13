@@ -53,4 +53,7 @@ public class RCD05Test extends AbstractTest {
                 .searchFilterFio(nameGen)
                 .verifyRecordIsCancelFromDashboard();
     }
+
+    // TODO: 13.08.2018 отмена вызова на дашборде
+    // TODO: 13.08.2018 отмена вызова в мис
 }

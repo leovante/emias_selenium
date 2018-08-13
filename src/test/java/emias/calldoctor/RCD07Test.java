@@ -43,4 +43,6 @@ public class RCD07Test extends AbstractTest {
                 .clearFilterDepart()
                 .verifyDoneDocGroup(nameGen, "Profile1");
     }
+
+    // TODO: 13.08.2018 завершить обслуживание в мис
 }

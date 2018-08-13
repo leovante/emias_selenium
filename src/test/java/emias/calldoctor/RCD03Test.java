@@ -42,4 +42,9 @@ public class RCD03Test extends AbstractTest {
                 .clearFilterDepart()
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }
+
+    // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра
+    // TODO: 13.08.2018 тест назначить врача вызову из СМП
+    // TODO: 13.08.2018 тест назначить врача вызову из КЦ
+    // TODO: 13.08.2018 тест назначить врача вызову из Портала
 }

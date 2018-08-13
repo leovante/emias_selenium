@@ -100,4 +100,6 @@ public class RCD09Test extends AbstractTest {
         page.dashboardPage().exitToMis();
         assertTrue($(By.xpath("//span[contains(text(),'Расписание приёма')]")).isDisplayed());
     }
+
+    // TODO: 13.08.2018 сделать тест отображение вызовов в различных подразделениях и группах
 }
