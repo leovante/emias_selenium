@@ -15,7 +15,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class FCD10Test extends AbstractTest {
+public class FCD01Test extends AbstractTest {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
