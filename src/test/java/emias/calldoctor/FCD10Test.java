@@ -7,6 +7,7 @@ import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
@@ -121,8 +122,9 @@ public class FCD10Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю вызов через СМП что бы проверить что отобразился участковый")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testPreviewUchDoctorWithoutKladr() {
+    public void testPreviewUchDoctorWithoutKladr() throws IOException {
         open(curUrlCalldoctor);
+        SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
         page.createCallPage().createCallProfileDetkina();
         page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().chooseDoctorBtn();

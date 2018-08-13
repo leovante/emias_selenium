@@ -25,9 +25,11 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertTrue;
+import static pages.utilities.Tokenizer.getToken;
 
 
 public class CreateCallPage extends AbstractPage {
+
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
     SelenideElement cancelBirthDate = $(By.xpath("//button[@aria-label='Clear']/span/mat-icon"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
@@ -330,8 +332,7 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfileDetkina() {
-//        String token = new Tokenizer();
-
+        String token = getToken();
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
         json.put("name", "Лариса");
@@ -354,9 +355,9 @@ public class CreateCallPage extends AbstractPage {
         json.put("floor", "");
 
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
+            request.addHeader("Authorization", "Bearer " + token);
 
             StringEntity params = new StringEntity(json.toString(), "UTF-8");
             request.setEntity(params);
@@ -376,8 +377,6 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-
-    // TODO: 7/19/2018 доделать
     public CreateCallPage setDeafult() {
         $(By.id("source1")).click();
         new PressEscape();
