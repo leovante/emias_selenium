@@ -93,7 +93,7 @@ public class RCD01Test extends AbstractTest {
     public void testCallSMPApi() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
-        page.dashboardPage().openNewCallProgressFrame("Profile3");
+        page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile1("Profile3", nameGen);
     }
 
@@ -103,7 +103,7 @@ public class RCD01Test extends AbstractTest {
     public void testCallSMPApi2() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
-        page.dashboardPage().openNewCallProgressFrame("Profile6");
+        page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile1("Profile6", nameGen);
     }
 
@@ -116,7 +116,7 @@ public class RCD01Test extends AbstractTest {
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard().createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
-        page.dashboardPage().openNewCallProgressFrame("Profile4");
+        page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile1("Profile4", nameGen);
     }
 }

@@ -117,7 +117,7 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfile3(String nameGen) {
-        HttpClient httpClient = HttpClients.createDefault();
+        HttpClient httpClient = HttpClients.createDefault(); // TODO: 7/28/2018 добавить номер дома и т.п.
         JSONObject json = new JSONObject();
         json.put("name", nameGen);
         json.put("family", "Тестовый");

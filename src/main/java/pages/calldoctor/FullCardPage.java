@@ -202,7 +202,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю активный вызов")
-    public FullCardPage verifyCallProfile1Activity(String nameGen, String profile) throws IOException {
+    public FullCardPage verifyCallProfile1Activity(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         baseElements();
@@ -238,7 +238,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю обслуженный вызов")
-    public FullCardPage verifyDoneDocGroup(String nameGen, String profile) throws IOException {
+    public FullCardPage verifyDoneDocGroup(String profile, String nameGen) throws IOException {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         Selenide.refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");

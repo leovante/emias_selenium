@@ -59,9 +59,11 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPage searchFilterDoctor(String fioName) {
+    public DashboardPage searchFilterDoctor(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         docFilter.click();
-        docFilter.setValue(fioName);
+        docFilter.setValue(proData.get("doctorFam"));
         docFilter.pressEnter();
         return this;
     }
@@ -112,7 +114,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
+    public DashboardPage verifyActiveDocGroup(String profile, String nameGen) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 
@@ -127,13 +129,13 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(String doctorFam, String nameGen, String profile) throws InterruptedException, IOException {
+    public void verifyDoneDocGroup(String profile, String nameGen) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
 
         $(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]"));
-        $(By.xpath("//span[contains(text(),'" + doctorFam + "')]")).click();
+        $(By.xpath("//span[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         doneCallProgressFrame.click();
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
@@ -149,7 +151,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage openNewCallProgressFrame(String profile) throws InterruptedException {
+    public DashboardPage openNewCallProgressFrame() throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 //        newCallProgressFrame.click();

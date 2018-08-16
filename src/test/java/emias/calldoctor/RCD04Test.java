@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
+import static com.codeborne.selenide.Selenide.open;
+
 public class RCD04Test extends AbstractTest {
     String nameGen;
 
@@ -28,20 +30,17 @@ public class RCD04Test extends AbstractTest {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
-        //driver.get(curUrlCalldoctor);
-
+        open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-
         page.fullCardPage().appoindDoctorBtn();
         page.setDoctorPage().appendDoctor("Profile1");
-
         page.fullCardPage().sendAnotherDoctorBtn();
         page.setDoctorPage().appendDoctor("Profile2");
-        page.fullCardPage().verifyCallProfile1Activity(nameGen, "Profile2");
-        page.fullCardPage().closeCardBtn();
-
-        page.dashboardPage().searchFilterFio("Profile2")
-                .clearFilterDepart()
-                .verifyActiveDocGroup(nameGen, "Profile2");
+        page.fullCardPage()
+                .verifyCallProfile1Activity("Profile2", nameGen)
+                .closeCardBtn();
+        page.dashboardPage()
+                .searchFilterFio("Profile2")
+                .verifyActiveDocGroup("Profile2", nameGen);
     }
 }
