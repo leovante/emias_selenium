@@ -36,7 +36,7 @@ public class RCD07Test extends AbstractTest {
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup(nameGen, "Profile1")
+                .verifyDoneDocGroup("Profile1", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)

@@ -119,14 +119,16 @@ public class FCD01Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю вызов через СМП что бы проверить что отобразился участковый")
+    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что отобразился участковый")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladr() throws IOException {
         open(curUrlCalldoctor);
         SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
         page.createCallPage().createCallProfileDetkina();
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage()
+                .searchFilterFio_Fam("ProfileDetkina")
+                .openNewCallProgressFrame();
         page.fullCardPage()
                 .verifyCallProfileDetkina("ProfileDetkina")
                 .chooseDoctorBtn();

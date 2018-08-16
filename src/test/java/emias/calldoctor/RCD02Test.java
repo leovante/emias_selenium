@@ -52,7 +52,7 @@ public class RCD02Test extends AbstractTest {
                 .closeCardBtn();
         page.dashboardPage()
                 .clearFilterDepart()
-                .searchFilterFio(nameGen)
-                .verifyNewCallProgressFrame("Profile2", nameGen);
+//                .searchFilterFio(nameGen)
+                .verifyNewCallProgressFrame("Profile2");
     }
 }

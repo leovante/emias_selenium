@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import pages.AbstractPage;
+import pages.utilities.Tokenizer;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,6 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertTrue;
-import static pages.utilities.Tokenizer.getToken;
 
 
 public class CreateCallPage extends AbstractPage {
@@ -332,7 +332,8 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfileDetkina() {
-        String token = getToken();
+        Tokenizer tokenizer = new Tokenizer();
+        String token = tokenizer.getToken();
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
         json.put("name", "Лариса");
@@ -353,7 +354,6 @@ public class CreateCallPage extends AbstractPage {
         json.put("sourceCode", "2");
         json.put("entrance", "");
         json.put("floor", "");
-
         try {
             HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");

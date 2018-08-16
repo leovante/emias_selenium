@@ -101,7 +101,7 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage().verifyCallProfile1("Profile6", nameGen);
     }
 
-    @Test(groups = "test", description = "вызов ребенка с Портала")
+    @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallFromPortal() throws IOException {
@@ -111,7 +111,9 @@ public class RCD01Test extends AbstractTest {
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard().createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage()
+                .clearFilterDepart()
+                .openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfile1("Profile4", nameGen);
     }
 }
