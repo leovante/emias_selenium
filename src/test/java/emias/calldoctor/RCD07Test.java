@@ -29,11 +29,11 @@ public class RCD07Test extends AbstractTest {
     @Test(groups = "CD", description = "завершить обслуживание вызова")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallRegistr() throws Exception {
+    public void testCompleteCallRegistr() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile1");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
                 .completeServiceBtn()
                 .verifyDoneDocGroup("Profile1", nameGen)
@@ -41,6 +41,8 @@ public class RCD07Test extends AbstractTest {
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .clearFilterDepart()
-                .verifyDoneDocGroup("Profile1", nameGen);
+                .verifyDoneDocGroup(nameGen, "Profile1");
     }
+
+    // TODO: 13.08.2018 завершить обслуживание в мис
 }

@@ -52,19 +52,29 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio(String profile) {
+    public DashboardPage searchFilterFio(String nameGen) {
         fioFilter.click();
-        fioFilter.setValue(profile);
+        fioFilter.setValue(nameGen);
+        return this;
+    }
+
+    @Step("поиск в фильтре ФИО")
+    public DashboardPage searchFilterFio_Fam(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        fioFilter.click();
+        fioFilter.setValue(proData.get("fam"));
         return this;
     }
 
     @Step("поиск в фильтре врача")
     public DashboardPage searchFilterDoctor(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         docFilter.click();
         docFilter.setValue(proData.get("doctorFam"));
-        docFilter.pressEnter();
+        $(By.xpath("//ul/li/div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
+//        docFilter.pressEnter();
         return this;
     }
 
@@ -88,11 +98,9 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage verifyNewCallProgressFrame(String profile, String nameGen) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
-
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
@@ -103,7 +111,6 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage verifyNewCallProgressFrame(String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
-
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
@@ -114,12 +121,27 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(String profile, String nameGen) throws InterruptedException, IOException {
+    public DashboardPage verifyActiveDocGroup(String nameGen, String profile, String profile2) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
-
+        File reader2 = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile2 + ".json");
+        Map proData2 = new ObjectMapper().readValue(reader2, Map.class);
         Thread.sleep(4000);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
+        activeCallProgressFrame.$(By.id("order")).click();
+        activeCallProgressFrame.click();
+        $(By.xpath("//*[contains(text(),'" + proData2.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData2.get("telephone") + "')]")).shouldBe(Condition.visible);
+        return this;
+    }
+
+    @Step("проверяю на дашборде запись у врача в группе активные")
+    public DashboardPage verifyActiveDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Thread.sleep(4000);
+        $(By.xpath("//span[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         activeCallProgressFrame.$(By.id("order")).click();
         activeCallProgressFrame.click();
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
@@ -129,11 +151,10 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(String profile, String nameGen) throws InterruptedException, IOException {
+    public void verifyDoneDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
-
         $(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]"));
         $(By.xpath("//span[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         doneCallProgressFrame.click();
@@ -151,18 +172,13 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage openNewCallProgressFrame() throws InterruptedException {
+    public DashboardPage openNewCallProgressFrame() {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-//        newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
-        Thread.sleep(5000);
         Actions actions = new Actions(driver);
         actions.moveToElement(matExpansionPanel).perform();
-//        matExpansionPanel.hover();
-        Thread.sleep(1000);
-        actions.moveToElement(matExpansionPanel).perform();
-        smallMenu.click();
+        actions.moveToElement(smallMenu).perform();
         openCard.click();
         return this;
     }

@@ -29,18 +29,19 @@ public class RCD04Test extends AbstractTest {
     @Test(groups = "CD", description = "передать вызов другому врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallRegistr() throws Exception {
+    public void testSendCallToSecondDoctor_Registr() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile1");
-        page.fullCardPage().sendAnotherDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile2");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
+        page.fullCardPage().changeDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile2");
         page.fullCardPage()
-                .verifyCallProfile1Activity("Profile2", nameGen)
+                .verifyCallProfile1Activity(nameGen, "Profile1", "Profile2")
                 .closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio("Profile2")
-                .verifyActiveDocGroup("Profile2", nameGen);
+                .clearFilterDepart()
+                .searchFilterFio(nameGen)
+                .verifyActiveDocGroup(nameGen, "Profile2", "Profile1");
     }
 }

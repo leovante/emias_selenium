@@ -1,6 +1,5 @@
 package emias.calldoctor;
 
-import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Attachment;
@@ -17,6 +16,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
+import static org.testng.Assert.assertTrue;
 
 public class RCD09Test extends AbstractTest {
     String nameGen;
@@ -64,16 +64,17 @@ public class RCD09Test extends AbstractTest {
     @Attachment(value = "Console error", type = "text/plain")
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(0)
     public void testFilterDoctor() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile1");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
+                .clearFilterDepart()
                 .searchFilterDoctor("Profile1")
-                .verifyActiveDocGroup("Profile1", nameGen);
+                .verifyActiveDocGroup(nameGen, "Profile1");
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
@@ -97,6 +98,8 @@ public class RCD09Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile7();
         page.dashboardPage().exitToMis();
-        $(By.xpath("//div[contains(.,'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
+        assertTrue($(By.xpath("//span[contains(text(),'Расписание приёма')]")).isDisplayed());
     }
+
+    // TODO: 13.08.2018 сделать тест отображение вызовов в различных подразделениях и группах
 }

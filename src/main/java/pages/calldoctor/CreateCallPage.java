@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import pages.AbstractPage;
+import pages.utilities.Tokenizer;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +29,7 @@ import static org.testng.Assert.assertTrue;
 
 
 public class CreateCallPage extends AbstractPage {
+
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
     SelenideElement cancelBirthDate = $(By.xpath("//button[@aria-label='Clear']/span/mat-icon"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
@@ -42,6 +44,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
     SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
     SelenideElement pd = $(By.xpath("//input[@placeholder='П-д']"));
+
     SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
     SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
     SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Добавить жалобу']"));
@@ -50,6 +53,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
     SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
     SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
+
     SelenideElement tipVisivaushego = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
     SelenideElement predstav = $(By.xpath("//span[contains(.,'Представитель')]"));
     SelenideElement saveBtns = $(By.xpath("//span[contains(text(),'Сохранить')]"));
@@ -107,6 +111,19 @@ public class CreateCallPage extends AbstractPage {
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .sourceSMP(proData)
+                .searchField(proData)
+                .adressAddition(proData)
+                .telephone(proData)
+                .complaint(proData)
+                .caller(nameGen, proData)
+                .saveBtn();
+    }
+
+    @Step("создаю вызов с МКАБ + СМП")
+    public void editCallProfile2(String profile, String nameGen) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        sourceSMP(proData)
                 .searchField(proData)
                 .adressAddition(proData)
                 .telephone(proData)
@@ -313,12 +330,64 @@ public class CreateCallPage extends AbstractPage {
                 .adressAlarma();
     }
 
-    // TODO: 7/19/2018 доделать
+    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
+    public void createCallProfileDetkina() {
+        Tokenizer tokenizer = new Tokenizer();
+        String token = tokenizer.getToken();
+        HttpClient httpClient = HttpClients.createDefault();
+        JSONObject json = new JSONObject();
+        json.put("name", "Лариса");
+        json.put("family", "Деткина");
+        json.put("ot", "Львовна");
+        json.put("birthdate", "2018-01-01");
+        json.put("seriespol", "1111");
+        json.put("numberpol", "11111111");//реальный мкаб
+        json.put("gender", "1");
+        json.put("address", "Московская обл., Щелковский р-н, г Щелково, ул Заводская, дом 7, кв. 3");
+        json.put("complaint", "автотест проверка блока участкового врача при формализованном адресе");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+71111111111");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "");
+        json.put("floor", "");
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + token);
+
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        } finally {
+//            driver.close();
+        }
+    }
+
     public CreateCallPage setDeafult() {
         $(By.id("source1")).click();
         new PressEscape();
         List<SelenideElement> selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')]"));
+        List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
+
         for (SelenideElement element : selenideElements) {
+            element.click();
+        }
+
+        for (SelenideElement element : selenideElements2) {
             element.click();
         }
 
@@ -359,6 +428,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage adress(Map<String, String> proData) {
+        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         if (!proData.get("adress_1").isEmpty()) {
             $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
             $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_1"));
@@ -414,8 +484,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage complaint(Map proData) {
-        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
-
+        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + proData.get("zhaloba") + "';", zhaloba);
         zhaloba.sendKeys(Keys.SPACE);

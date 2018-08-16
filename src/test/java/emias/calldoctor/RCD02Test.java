@@ -26,22 +26,33 @@ public class RCD02Test extends AbstractTest {
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
+    @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testEditProfile1() throws Exception {
+    public void testVerifyEditPageProfile1() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
         page.createCallPage()
                 .editCallBtn()
-                .verifyCallProfile1("Profile1", nameGen)
-                .setDeafult();
-//                .editCallProfile5(nameGen);
+                .verifyCallProfile1("Profile1", nameGen);
+    }
+
+    @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testEditCallProfile1() throws Exception {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage()
+                .editCallBtn()
+                .setDeafult()
+                .editCallProfile2("Profile2", nameGen);
         page.fullCardPage()
-//                .verifyCallProfile5(nameGen)
+                .verifyCallProfile1("Profile2", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen);
-//                .verifyNewCallProgressFrame(nameGen, adressPro5_2, telephonePro5);
+                .clearFilterDepart()
+//                .searchFilterFio(nameGen)
+                .verifyNewCallProgressFrame("Profile2");
     }
 }

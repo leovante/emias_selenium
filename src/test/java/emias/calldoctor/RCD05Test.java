@@ -31,7 +31,7 @@ public class RCD05Test extends AbstractTest {
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCancelCallRegistr() throws InterruptedException, IOException {
+    public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
         page.fullCardPage().cancelRecordOnFullCardPage();
@@ -43,7 +43,7 @@ public class RCD05Test extends AbstractTest {
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCancelCallRegistrEmpy() throws InterruptedException, IOException {
+    public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
         page.fullCardPage()
@@ -53,4 +53,7 @@ public class RCD05Test extends AbstractTest {
                 .searchFilterFio(nameGen)
                 .verifyRecordIsCancelFromDashboard();
     }
+
+    // TODO: 13.08.2018 отмена вызова на дашборде
+    // TODO: 13.08.2018 отмена вызова в мис
 }

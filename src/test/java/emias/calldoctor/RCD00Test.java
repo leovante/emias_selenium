@@ -24,18 +24,15 @@ public class RCD00Test extends AbstractTest {
     @Step("Создаю расписание врача")
     public void createDoctorShedule() throws InterruptedException {
         ArrayList<String> doctors = new ArrayList<>();
-        doctors.add("Темников Дмитрий Олегович");//Юр. лицо глюченное
-        doctors.add("Моков Павел Александрович");//педиатр
-        doctors.add("Серова Нина Кузьминична");//терапевт
-        doctors.add("Длиннофамилов Иван Николаевич");//уролог
-        doctors.add("Немцова Татьяна Андреевна");//педиатр
-
+        doctors.add("Темников Дмитрий Олегович");
+        doctors.add("Моков Павел Александрович");
+        doctors.add("Серова Нина Кузьминична");
+        doctors.add("Немцова Татьяна Андреевна");
         for (String doctor_num : doctors) {
             String doctor_fam = ManageShedule.getSecondName(doctor_num);
             SQLDemonstration.finalizeCallLpuDoctor(doctor_fam);
             SQLDemonstration.deleteShedule(doctor_fam);
         }
-
         for (String doctor_num : doctors) {
             page.doctorMethods().selectDoctor(doctor_num);
             page.beforeWork().createShedule();

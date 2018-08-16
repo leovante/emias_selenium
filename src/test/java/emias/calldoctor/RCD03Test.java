@@ -29,18 +29,22 @@ public class RCD03Test extends AbstractTest {
     @Test(groups = "CD", description = "назначить врача на сегодня")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallRegistr() throws Exception {
+    public void testAppendDoctorToCall_Registr() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
-        page.setDoctorPage().appendDoctor("Profile1");
-//        page.manageShedule().getSecondName("Profile1");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
-                .verifyCallProfile1Activity("Profile1", nameGen)
+                .verifyCallProfile1Activity(nameGen, "Profile1")
                 .closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
-//                .clearFilterDepart()
-                .verifyActiveDocGroup("Profile1", nameGen);
+                .clearFilterDepart()
+                .verifyActiveDocGroup(nameGen, "Profile1");
     }
+
+    // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра
+    // TODO: 13.08.2018 тест назначить врача вызову из СМП
+    // TODO: 13.08.2018 тест назначить врача вызову из КЦ
+    // TODO: 13.08.2018 тест назначить врача вызову из Портала
 }

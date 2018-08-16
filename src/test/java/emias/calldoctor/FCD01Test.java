@@ -7,6 +7,7 @@ import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class FCD10Test extends AbstractTest {
+public class FCD01Test extends AbstractTest {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -29,12 +30,10 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile7();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
@@ -43,11 +42,9 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall2() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile8();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
@@ -57,11 +54,9 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall3() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile9();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
@@ -71,11 +66,9 @@ public class FCD10Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testChildCall4() throws IOException {
         open(curUrlCalldoctor);
-
         page.createCallPage().createCallProfile10();
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
@@ -86,10 +79,9 @@ public class FCD10Test extends AbstractTest {
     public void testChildCall5() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile11("Profile11");
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
@@ -99,10 +91,9 @@ public class FCD10Test extends AbstractTest {
     public void testChildCall6() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile12("Profile11");
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
@@ -112,10 +103,67 @@ public class FCD10Test extends AbstractTest {
     public void testChildCall7() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile13("Profile13", nameGen);
-        page.fullCardPage().appoindDoctorBtn();
+        page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Длиннофамилов')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "создаю вызов в ВД что бы проверить что отобразился участковый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testPreviewUchDoctorWithKladr() throws Exception {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile2(nameGen);
+        page.fullCardPage().chooseDoctorBtn();
+        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что отобразился участковый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testPreviewUchDoctorWithoutKladr() throws IOException {
+        open(curUrlCalldoctor);
+        SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
+        page.createCallPage().createCallProfileDetkina();
+        page.dashboardPage()
+                .searchFilterFio_Fam("ProfileDetkina")
+                .openNewCallProgressFrame();
+        page.fullCardPage()
+                .verifyCallProfileDetkina("ProfileDetkina")
+                .chooseDoctorBtn();
+        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testMkabAndTapIconIsGrey() throws IOException, InterruptedException {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile1");
+        page.fullCardPage()
+                .completeServiceBtn()
+                .verifyDoneDocGroup("Profile1", nameGen)
+                .verifyMkabIconDisable()
+                .verifyTapIconDisable()
+                .closeCardBtn();
+    }
+
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testMkabIconIsRedTapIconIsGrey() throws IOException, InterruptedException {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile2("Profile2");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile2");
+        page.fullCardPage()
+                .completeServiceBtn()
+                .verifyDoneDocGroup("Profile2")
+                .verifyMkabIconEnable()
+                .verifyTapIconDisable()
+                .closeCardBtn();
     }
 }

@@ -4,7 +4,7 @@
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
     <parameter name="login" value="temnikov"/>
-    <parameter name="pass" value="1213"/>
+    <parameter name="pass" value="1214"/>
     <listeners>
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
@@ -14,11 +14,11 @@
                 <include name="test"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.calldoctor.RCD09Test"/>
-        </classes>
-        <!--<packages>-->
-        <!--<package name="emias.calldoctor"/>-->
-        <!--</packages>-->
+        <!--<classes>-->
+        <!--<class name="emias.calldoctor.RCD09Test"/>-->
+        <!--</classes>-->
+        <packages>
+            <package name="emias.calldoctor"/>
+        </packages>
     </test>
 </suite>

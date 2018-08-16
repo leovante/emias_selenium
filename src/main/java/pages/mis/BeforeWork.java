@@ -29,46 +29,31 @@ public class BeforeWork extends AbstractPage {
 
     @Step("установить время календаря")
     public void setTimeCalendar(String a, String b) throws InterruptedException {
-//        waitClickable(pickTime_nach);
         pickTime_nach.setValue(a);          //нажимаем на поле начала интервала
-//        waitClickable(pickTime_nachClose);
         pickTime_nachClose.click();
         Thread.sleep(500);
-//        waitClickable(pickTime_okon);
         pickTime_okon.setValue(b);          //нажимаем на поле окончание интервала
-//        waitClickable(pickTime_okonClose);
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
 
     @Step("установить тип приема")
     public void setTypeOfReception(WebElement typeOfReception) {
-//        waitClickable(ddlbusytypeButton);
         ddlbusytypeButton.click();                  //нажимаем на выпадающий список тип приема
-//        waitClickable(typeOfReception);
         typeOfReception.click();                     //выбор типа приема
-//        waitClickable(schedule_add_button);
         schedule_add_button.click();                 //нажали кнопу добавить
     }
 
     @Step("создать расписание")
     public void createShedule() throws InterruptedException {
-//        waitAllEmias();
-
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String a = "0700", b = "2344";
         String c = "2344", d = "2359";
         createShedule.click();
-
         setTimeCalendar(a, b);
         setTypeOfReception(priemNaDomu);
-
         setTimeCalendar(c, d);
         setTypeOfReception(priemPoOcheredi);
-
-//        waitClickable(btn_save_schedule);
         btn_save_schedule.click();                   //нажимаем кнопку сохранить
         keyboard.pressKey(Keys.ENTER);
-//        waitAllEmias();
-//        Waiter.waitAllEmias();
     }
 }
