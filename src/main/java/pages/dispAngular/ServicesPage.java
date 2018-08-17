@@ -18,7 +18,16 @@ public class ServicesPage extends AbstractPage {
     public void fillProfile1() throws InterruptedException {
         switchAllServicesTap()
                 .fillMeasureArtPressure()
-                .fillMeasureOpros_Anketirovanie();
+                .fillMeasureOpros_Anketirovanie()
+                .fillAntropometriya()
+                .fillIndividProfConsulting()
+                .fillOpredelenieLvlGlukozi()
+                .fillOpredelenieLvlHolesterina()
+                .fillFlurography()
+                .fillOpredelenieOtnositSummSSR()
+                .fillPriem_OsmotrTerapevta()
+                .fillZakluchenie()
+                .saveBtn();
     }
 
     public ServicesPage switchAllServicesTap() {
@@ -64,6 +73,46 @@ public class ServicesPage extends AbstractPage {
         Thread.sleep(700);
         MeasureOpros_Anketirovanie.hover();
         MeasureOpros_Anketirovanie.click();
+        return this;
+    }
+
+    public ServicesPage fillAntropometriya() {
+        return this;
+    }
+
+    public ServicesPage fillIndividProfConsulting() {
+        return this;
+    }
+
+    public ServicesPage fillOpredelenieLvlGlukozi() {
+        return this;
+    }
+
+    public ServicesPage fillOpredelenieLvlHolesterina() {
+        return this;
+    }
+
+    public ServicesPage fillFlurography() {
+        return this;
+    }
+
+    public ServicesPage fillOpredelenieOtnositSummSSR() {
+        return this;
+    }
+
+    public ServicesPage fillPriem_OsmotrTerapevta() {
+        return this;
+    }
+
+    public ServicesPage fillZakluchenie() {
+        return this;
+    }
+
+    public ServicesPage saveBtn() {
+        return this;
+    }
+
+    public ServicesPage podpisatBtn() {
         return this;
     }
 }
