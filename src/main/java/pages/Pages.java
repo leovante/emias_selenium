@@ -8,7 +8,7 @@ import pages.calldoctor.CreateCallPage;
 import pages.calldoctor.DashboardPage;
 import pages.calldoctor.FullCardPage;
 import pages.calldoctor.SetDoctorPage;
-import pages.dispAngular.ServicesPage;
+import pages.disp.ServicesPage;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 

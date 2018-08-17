@@ -1,4 +1,4 @@
-package pages.dispAngular;
+package pages.disp;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -29,6 +29,7 @@ public class ServicesPage extends AbstractPage {
                 .fillZakluchenie()
                 .saveBtn();
     }
+
 
     public ServicesPage switchAllServicesTap() {
         AllServicesTap.click();
