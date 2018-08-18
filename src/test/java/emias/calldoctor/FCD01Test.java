@@ -166,4 +166,6 @@ public class FCD01Test extends AbstractTest {
                 .verifyTapIconDisable()
                 .closeCardBtn();
     }
+
+    // TODO: 18.08.2018 сделать тест проверки учетки врача при перезаходе под другим логином и паролем
 }
