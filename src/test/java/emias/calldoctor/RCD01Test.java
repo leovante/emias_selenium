@@ -45,7 +45,6 @@ public class RCD01Test extends AbstractTest {
 //        }
     }
 
-
     @DataProvider(name = "ProfileRegistr")
     public static Object[][] credentials() {
         return new Object[][]{
@@ -81,26 +80,12 @@ public class RCD01Test extends AbstractTest {
                 .verifyNewCallGroup("Profile1", nameGen);
     }
 
-/*
-    @Test(groups = "", dataProvider = "ProfileRegistr", description = "тестирую создание вызова через датаПровайдер")//из минусов не создается уникальный дескрипшн к тесту
-    public void testCallRegistr_DataProvider(String profileDProvider, String searchField) throws Exception {
-        open(curUrlCalldoctor);
-        page.createCallPage()
-                .createNewCall(profileDProvider, nameGen, searchField);
-        page.fullCardPage()
-                .verifyCallNewCallGroup(profileDProvider, nameGen)
-                .closeCardBtn();
-        page.dashboardPage()
-                .verifyNewCallGroup(profileDProvider, nameGen);
-    }
-*/
-
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         open(curUrlCalldoctor);
-        page.createCallPage().createNewCall("Profile7", nameGen, "y");
+        page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile2", nameGen)
                 .closeCardBtn();
@@ -145,10 +130,25 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile4", nameGen);
     }
+
+    /*
+    @Test(groups = "", dataProvider = "ProfileRegistr", description = "тестирую создание вызова через датаПровайдер")//из минусов не создается уникальный дескрипшн к тесту
+    public void testCallRegistr_DataProvider(String profileDProvider, String searchField) throws Exception {
+        open(curUrlCalldoctor);
+        page.createCallPage()
+                .createNewCall(profileDProvider, nameGen, searchField);
+        page.fullCardPage()
+                .verifyCallNewCallGroup(profileDProvider, nameGen)
+                .closeCardBtn();
+        page.dashboardPage()
+                .verifyNewCallGroup(profileDProvider, nameGen);
+    }
+*/
+
 }
 
 // TODO: 18.08.2018 create new call from CC for api
-// TODO: 18.08.2018 пока напишу тут. Сделать пару тестов для проверки кладра
+// TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
 
 /*
  * Благодаря этому паттерну можно реализовать много интересных вещей, например,
@@ -167,11 +167,6 @@ public class RCD01Test extends AbstractTest {
  * <p>
  * https://habr.com/company/jugru/blog/338836/ посмотреть паттерн data provider и decorator
  *
- * @DataProvider public Object[][] dataProvider() {
- * return new Object[][]{
- * {1}, {2}, {3}
- * };
- * }
  * @Attachment public byte[] attachScreenshot() {
  * return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
  * }

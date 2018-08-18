@@ -1,4 +1,5 @@
 {
+  "source": "Регистратура",
   "adressFull": "",
   "adressDashboard": "Московская обл., д.1",
   "adress_1": "",
@@ -11,7 +12,7 @@
   "pd": "",
   "dfon": "",
   "etazh": "",
-  "telephone": "",
+
   "seriyaPol": "",
   "nomerPol": "",
   "fam": "",
@@ -22,12 +23,16 @@
   "sex": "",
   "age": "",
   "vKat": "Взрослые",
+
   "zhaloba": "автотест создал пустой вызов",
+  "whoIsCall": "Пациент",
   "famCall": "",
   "nameCall": "",
   "otCall": "",
+  "telephone": "",
+
   "department": "",
   "doctorName": "",
   "doctorFam": "Серова",
-  "whoIsCall": "Пациент"
+  "doctorOt": ""
 }

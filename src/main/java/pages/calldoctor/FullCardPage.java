@@ -87,102 +87,6 @@ public class FullCardPage extends AbstractPage {
         }
     }
 
-    public void baseElementsNewCall() {
-        ArrayList<String> elements = null;
-        elements.add("Карта вызова");
-        elements.add("Дата");
-        elements.add("Время");
-        elements.add("Статус");
-        elements.add("Вид вызова");
-        elements.add("Источник");
-        elements.add("АДРЕС");
-        elements.add("ЖАЛОБЫ");
-        elements.add("КТО ПАЦИЕНТ");
-        elements.add("КТО ВЫЗВАЛ");
-        elements.add("КТО ОБСЛУЖИВАЕТ");
-        elements.add("Возрастная категория");
-        elements.add("Телефон");
-        elements.add("Врач");
-        elements.add("ИСТОРИЯ ВЫЗОВА");
-        elements.add("АВТОР");
-        elements.add("ЧТО ИЗМЕНИЛОСЬ");
-        elements.add("ИЗМЕНЕНИЕ");
-        elements.add("Новый");
-        elements.add("Первичный");
-        elements.add("Регистратура");
-        elements.add("Взрослые");
-        elements.add("Карта создана");
-        elements.add("Не назначен");
-
-        for (String element : elements) {
-            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
-        }
-    }
-
-    public void baseElementsActivityCall() {
-        ArrayList<String> elements = null;
-        elements.add("Карта вызова");
-        elements.add("Дата");
-        elements.add("Время");
-        elements.add("Статус");
-        elements.add("Вид вызова");
-        elements.add("Источник");
-        elements.add("АДРЕС");
-        elements.add("ЖАЛОБЫ");
-        elements.add("КТО ПАЦИЕНТ");
-        elements.add("КТО ВЫЗВАЛ");
-        elements.add("КТО ОБСЛУЖИВАЕТ");
-        elements.add("Возрастная категория");
-        elements.add("Телефон");
-        elements.add("Врач");
-        elements.add("ИСТОРИЯ ВЫЗОВА");
-        elements.add("АВТОР");
-        elements.add("ЧТО ИЗМЕНИЛОСЬ");
-        elements.add("ИЗМЕНЕНИЕ");
-        elements.add("Новый");
-        elements.add("Первичный");
-        elements.add("Регистратура");
-        elements.add("Взрослые");
-        elements.add("Карта создана");
-        elements.add("Не назначен");
-
-        for (String element : elements) {
-            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
-        }
-    }
-
-    public void baseElementsDoneCall() {
-        ArrayList<String> elements = null;
-        elements.add("Карта вызова");
-        elements.add("Дата");
-        elements.add("Время");
-        elements.add("Статус");
-        elements.add("Вид вызова");
-        elements.add("Источник");
-        elements.add("АДРЕС");
-        elements.add("ЖАЛОБЫ");
-        elements.add("КТО ПАЦИЕНТ");
-        elements.add("КТО ВЫЗВАЛ");
-        elements.add("КТО ОБСЛУЖИВАЕТ");
-        elements.add("Возрастная категория");
-        elements.add("Телефон");
-        elements.add("Врач");
-        elements.add("ИСТОРИЯ ВЫЗОВА");
-        elements.add("АВТОР");
-        elements.add("ЧТО ИЗМЕНИЛОСЬ");
-        elements.add("ИЗМЕНЕНИЕ");
-        elements.add("Новый");
-        elements.add("Первичный");
-        elements.add("Регистратура");
-        elements.add("Взрослые");
-        elements.add("Карта создана");
-        elements.add("Не назначен");
-
-        for (String element : elements) {
-            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
-        }
-    }
-
     @Step("проверяю новый вызов")
     public FullCardPage verifyCallProfile0(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
@@ -283,6 +187,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -327,7 +232,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         Selenide.refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         baseElements();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
@@ -450,6 +355,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
+        System.out.println("Карта закрыта!");
         return this;
     }
 

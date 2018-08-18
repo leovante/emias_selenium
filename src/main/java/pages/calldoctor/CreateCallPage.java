@@ -85,12 +85,12 @@ public class CreateCallPage extends AbstractPage {
                     .sourceCall(proData)
                     .adress(proData)
                     .vozrastKat(proData)
+                    .birthDay(proData)
                     .adressAddition(proData)
                     .sex(proData)
                     .complaint(proData)
                     .polis(proData)
                     .FIO(nameGen, proData)
-                    .birthDay(proData)
                     .caller(nameGen, proData)
                     .telephone(proData)
                     .saveBtn()
@@ -212,6 +212,7 @@ public class CreateCallPage extends AbstractPage {
         } finally {
 //            driver.close();
         }
+        System.out.println("Карта вызова создана!");
     }
 
     @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
@@ -347,6 +348,7 @@ public class CreateCallPage extends AbstractPage {
         $(By.xpath("//input[@placeholder='Имя']")).clear();
         $(By.xpath("//input[@placeholder='Отчество']")).clear();
         $(By.xpath("//input[@placeholder='Дата рождения']")).clear();
+        System.out.println("Карта вызова очищена для редактирования!");
         return this;
     }
 
