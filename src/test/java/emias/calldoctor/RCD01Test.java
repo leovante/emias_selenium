@@ -49,8 +49,8 @@ public class RCD01Test extends AbstractTest {
     @DataProvider(name = "ProfileRegistr")
     public static Object[][] credentials() {
         return new Object[][]{
-                {"Profile1"},
-                {"Profile2"}
+                {"Profile1", "n"},
+                {"Profile2", "y"},
         };
     }
 
@@ -60,7 +60,7 @@ public class RCD01Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile0("Profile0");
+        page.createCallPage().createNewCall("Profile0", nameGen, "n");
         page.fullCardPage()
                 .verifyCallProfile0("Profile0")
                 .closeCardBtn();
@@ -72,36 +72,40 @@ public class RCD01Test extends AbstractTest {
     public void testCallRegistr() throws Exception {
         open(curUrlCalldoctor);
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage()
+                .createNewCall("Profile1", nameGen, "n");
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile1", nameGen)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallGroup("Profile1", nameGen);
+        page.dashboardPage()
+                .verifyNewCallGroup("Profile1", nameGen);
     }
 
-    @Test(groups = "test", dataProvider = "ProfileRegistr", description = "вызов с иточником Регистратура без МКАБ")
-    @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallRegistr_DataProvider(String profile) throws Exception {
+/*
+    @Test(groups = "", dataProvider = "ProfileRegistr", description = "тестирую создание вызова через датаПровайдер")//из минусов не создается уникальный дескрипшн к тесту
+    public void testCallRegistr_DataProvider(String profileDProvider, String searchField) throws Exception {
         open(curUrlCalldoctor);
-        open(curUrlCalldoctor);
-        page.createCallPage().createNewCall(profile, nameGen, "n");
+        page.createCallPage()
+                .createNewCall(profileDProvider, nameGen, searchField);
         page.fullCardPage()
-                .verifyCallNewCallGroup(profile, nameGen)
+                .verifyCallNewCallGroup(profileDProvider, nameGen)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallGroup(profile, nameGen);
+        page.dashboardPage()
+                .verifyNewCallGroup(profileDProvider, nameGen);
     }
+*/
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile2(nameGen);
+        page.createCallPage().createNewCall("Profile7", nameGen, "y");
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile2", nameGen)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallGroup("Profile2");
+        page.dashboardPage()
+                .verifyNewCallGroup("Profile2");
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
@@ -132,12 +136,14 @@ public class RCD01Test extends AbstractTest {
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
-        page.portalDashboard().createCall("Profile4", nameGen);
+        page.portalDashboard()
+                .createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
         page.dashboardPage()
                 .clearFilterDepart()
                 .openNewCallProgressFrame();
-        page.fullCardPage().verifyCallNewCallGroup("Profile4", nameGen);
+        page.fullCardPage()
+                .verifyCallNewCallGroup("Profile4", nameGen);
     }
 }
 

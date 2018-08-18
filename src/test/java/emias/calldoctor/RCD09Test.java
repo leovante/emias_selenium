@@ -53,7 +53,7 @@ public class RCD09Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
@@ -67,7 +67,7 @@ public class RCD09Test extends AbstractTest {
     @RetryCountIfFailed(0)
     public void testFilterDoctor() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage().closeCardBtn();
@@ -94,9 +94,8 @@ public class RCD09Test extends AbstractTest {
     @Test(groups = "CD", description = "проверка кнопки выход")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testExitToMis() throws IOException {
+    public void testExitToMis() {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile7();
         page.dashboardPage().exitToMis();
         assertTrue($(By.xpath("//span[contains(text(),'Расписание приёма')]")).isDisplayed());
     }

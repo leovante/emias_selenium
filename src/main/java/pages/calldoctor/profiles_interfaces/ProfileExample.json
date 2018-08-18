@@ -1,4 +1,5 @@
 {
+  "source": "",
   "adressFull": "",
   "adressDashboard": "",
   "adress_1": "",
@@ -11,9 +12,9 @@
   "pd": "",
   "dfon": "",
   "etazh": "",
+
   "seriyaPol": "",
   "nomerPol": "",
-  "telephone": "",
   "birthDay": "",
   "fam": "",
   "name": "",
@@ -27,6 +28,8 @@
   "famCall": "",
   "nameCall": "",
   "otCall": "",
+  "telephone": "",
+
   "department": "",
   "doctorName": "",
   "doctorFam": "",

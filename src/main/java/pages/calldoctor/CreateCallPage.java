@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEscape;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -32,7 +33,6 @@ import static org.testng.Assert.assertTrue;
 public class CreateCallPage extends AbstractPage {
 
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
-    SelenideElement cancelBirthDate = $(By.xpath("//button[@aria-label='Clear']/span/mat-icon"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
     SelenideElement placeholder_adress = $(By.xpath("//input[@placeholder='Адрес']"));
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
@@ -84,8 +84,6 @@ public class CreateCallPage extends AbstractPage {
             addNewCall()
                     .sourceCall(proData)
                     .adress(proData)
-                    .telephone(proData)
-                    .telephoneChk(proData)
                     .vozrastKat(proData)
                     .adressAddition(proData)
                     .sex(proData)
@@ -94,74 +92,70 @@ public class CreateCallPage extends AbstractPage {
                     .FIO(nameGen, proData)
                     .birthDay(proData)
                     .caller(nameGen, proData)
+                    .telephone(proData)
                     .saveBtn()
                     .adressAlarma(proData);
         } else if (searchPolis.equals("y")) {
             addNewCall()
                     .sourceCall(proData)
-//                        .adress(proData)
-//                        .telephone(proData)
-//                        .telephoneChk(proData)
-//                        .vozrastKat(proData)
-//                        .adressAddition(proData)
-//                        .sex(proData)
-//                    .polis(proData)
                     .searchField(proData)
+                    .adressAddition(proData)
                     .complaint(proData)
-//                        .FIO(nameGen, proData)
-//                        .birthDay(proData)
                     .caller(nameGen, proData)
+                    .telephone(proData)
                     .saveBtn()
                     .adressAlarma(proData);
         }
+        System.out.println("Вызов создан!");
     }
 
-    @Step("создаю пустой вызов")
-    public void createCallProfile0(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephoneChk()
-                .complaint(proData)
-                .vozrastKat(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
+//    @Step("создаю пустой вызов")
+//    public void createCallProfile0(String profile) throws IOException {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+//        addNewCall()
+//                .adress(proData)
+//                .telephone(proData)
+//                .complaint(proData)
+//                .vozrastKat(proData)
+//                .saveBtn()
+//                .adressAlarma();
+//    }
 
-    @Step("создаю вызов -МКАБ +Регистр")
-    public void createCallProfile1(String profile, String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephone(proData)
-                .vozrastKat(proData)
-                .adressAddition(proData)
-                .sex(proData)
-                .complaint(proData)
-                .polis(proData)
-                .FIO(nameGen, proData)
-                .birthDay(proData)
-                .caller(proData)
-                .saveBtn();
-    }
+//    @Step("создаю вызов -МКАБ +Регистр")
+//    public void createCallProfile1(String profile, String nameGen) throws IOException {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+//        addNewCall()
+//                .adress(proData)
+//                .telephone(proData)
+//                .vozrastKat(proData)
+//                .adressAddition(proData)
+//                .sex(proData)
+//                .complaint(proData)
+//                .polis(proData)
+//                .FIO(nameGen, proData)
+//                .birthDay(proData)
+//                .caller(nameGen, proData)
+//                .telephone(proData)
+//                .saveBtn();
+//    }
 
-    @Step("создаю вызов с МКАБ + СМП")
-    public void createCallProfile2(String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .sourceCall(proData)
-                .searchField(proData)
-                .adressAddition(proData)
-                .telephone(proData)
-                .complaint(proData)
-                .caller(nameGen, proData)
-                .saveBtn();
-    }
+//    @Step("создаю вызов с МКАБ + СМП")
+//    public void createCallProfile2(String nameGen) throws IOException {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
+//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+//        addNewCall()
+//                .sourceCall(proData)
+//                .searchField(proData)
+//                .adressAddition(proData)
+//                .complaint(proData)
+//                .caller(nameGen, proData)
+//                .telephone(proData)
+//                .saveBtn();
+//    }
 
-    @Step("создаю вызов с МКАБ + СМП")
+    @Step("редактирую вызов с МКАБ + СМП")
     public void editCallProfile2(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
@@ -276,102 +270,6 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-    @Step("создаю пустой вызов ребенка М")
-    public void createCallProfile7() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile7.json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephoneChk()
-                .complaint(proData)
-                .vozrastKat(proData)
-                .sex(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
-
-    @Step("создаю пустой вызов ребенка Ж")
-    public void createCallProfile8() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile8.json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephoneChk()
-                .complaint(proData)
-                .vozrastKat(proData)
-                .sex(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
-
-    @Step("создаю пустой вызов ребенка Без Пола")
-    public void createCallProfile9() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile8.json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephoneChk()
-                .complaint(proData)
-                .vozrastKat(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
-
-    @Step("создаю пустой вызов взрослого М")
-    public void createCallProfile10() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile10.json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephoneChk()
-                .complaint(proData)
-                .vozrastKat(proData)
-                .sex(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
-
-    @Step("создаю пустой вызов взрослого Ж")
-    public void createCallProfile11(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephoneChk()
-                .complaint(proData)
-                .vozrastKat(proData)
-                .sex(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
-
-    @Step("создаю пустой вызов взрослого Без Пола")
-    public void createCallProfile12(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .telephoneChk()
-                .complaint(proData)
-                .vozrastKat(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
-
-    @Step("создаю пустой вызов Без Возр Кат, Без Пола, СМП")
-    public void createCallProfile13(String profile, String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress(proData)
-                .sourceCall(proData)
-                .caller(nameGen, proData)
-                .telephone(proData)
-                .complaint(proData)
-                .saveBtn()
-                .adressAlarma();
-    }
-
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfileDetkina() {
         Tokenizer tokenizer = new Tokenizer();
@@ -467,7 +365,6 @@ public class CreateCallPage extends AbstractPage {
         } catch (Exception e) {
             throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
         }
-        $(By.id("phone")).setValue(proData.get("telephone"));
         return this;
     }
 
@@ -478,19 +375,19 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage adress(Map<String, String> proData) {
-        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
+        cancelAdress.shouldBe(Condition.visible);
         if (!proData.get("adress_1").isEmpty()) {
-            $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
-            $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_1"));
-            $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+            cancelAdress.click();
+            placeholder_adress.setValue(proData.get("adress_1"));
+            list_first_container.click();
         }
         if (!proData.get("adress_2").isEmpty()) {
-            $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_2"));
-            $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+            placeholder_adress.setValue(proData.get("adress_2"));
+            list_first_container.click();
         }
         if (!proData.get("adress_3").isEmpty()) {
-            $(By.xpath("//input[@placeholder='Адрес']")).setValue(proData.get("adress_3"));
-            $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
+            placeholder_adress.setValue(proData.get("adress_3"));
+            list_first_container.click();
         }
         $(By.xpath("//input[@placeholder='Дом']")).setValue(proData.get("dom"));
         return this;
@@ -499,10 +396,6 @@ public class CreateCallPage extends AbstractPage {
     private CreateCallPage adressAlarma(Map<String, String> proData) {
         if (proData.get("adress_3").equals(""))
             $(By.xpath("//button[@aria-label='Close dialog']")).click();
-        return this;
-    }
-    private CreateCallPage adressAlarma() {
-        $(By.xpath("//button[@aria-label='Close dialog']")).click();
         return this;
     }
 
@@ -517,15 +410,6 @@ public class CreateCallPage extends AbstractPage {
         } catch (Exception e) {
             throw new InvalidArgumentException("Ошибка, не найден номер телефона у профиля!");
         }
-        return this;
-    }
-
-    private CreateCallPage telephoneChk(Map<String, String> proData) {
-        $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
-        return this;
-    }
-    private CreateCallPage telephoneChk() {
-        $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
         return this;
     }
 
@@ -547,7 +431,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage sex(Map<String, String> proData) {
-        $(By.id(proData.get("sex"))).click();
+        if (!proData.get("sex").equals(""))
+            $(By.id(proData.get("sex"))).click();
         return this;
     }
 
@@ -572,28 +457,8 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage FIO(Map<String, String> proData) {
-        $(By.xpath("//input[@placeholder='Фамилия']")).setValue(proData.get("fam"));
-        $(By.xpath("//input[@placeholder='Имя']")).setValue(proData.get("name"));
-        $(By.xpath("//input[@placeholder='Отчество']")).setValue(proData.get("otchestvo"));
-        return this;
-    }
-
     private CreateCallPage birthDay(Map<String, String> proData) {
         $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(proData.get("birthDay"));
-        return this;
-    }
-
-    private CreateCallPage caller(Map<String, String> proData) {
-        if (proData.get("whoIsCall").equals("Пациент")) {
-            $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
-            $(By.xpath("//span[contains(.,'" + proData.get("whoIsCall") + "')]")).click();
-        }
-        if (proData.get("whoIsCall").equals("Представитель")) {
-            $(By.id("sourceSmp")).setValue(proData.get("station"));
-            $(By.id("callFamily")).setValue(proData.get("callFamily"));
-            $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
-        }
         return this;
     }
 
@@ -603,13 +468,13 @@ public class CreateCallPage extends AbstractPage {
             $(By.xpath("//span[contains(.,'" + proData.get("whoIsCall") + "')]")).click();
         }
         if (proData.get("whoIsCall").equals("Представитель")) {
-            $(By.id("sourceSmp")).setValue(proData.get("sourceCall"));
+//            $(By.id("sourceSmp")).setValue(proData.get("sourceCall"));
             $(By.id("callFamily")).setValue(proData.get("callFamily"));
             $(By.id("callName")).setValue(nameGen);
             $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
         }
         if (proData.get("whoIsCall").equals("СМП")) {
-            $(By.id("sourceSmp")).setValue(proData.get("sourceCall"));
+            $(By.id("sourceSmp")).setValue(proData.get("sourceSmp"));
             $(By.id("callFamily")).setValue(proData.get("callFamily"));
             $(By.id("callName")).setValue(nameGen);
             $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
@@ -626,168 +491,6 @@ public class CreateCallPage extends AbstractPage {
         $(By.id("change")).click();
         return this;
     }
-
-//    @Step("редактирую вызов без привязывания МКАБ")
-//    public CreateCallPage editCallProfile5(String nameGen) throws IOException {
-//
-//
-//        /*адрес*/
-//
-//        cancelAdress.click();
-//        placeholder_adress.click();
-//
-//        placeholder_adress.sendKeys(adressPro5_1);
-//        click(list_first_container);
-//
-//        placeholder_adress.sendKeys(adressPro5_2);
-//        click(list_first_container);
-//
-//        placeholder_adress.sendKeys(adressPro5_3);
-//        click(list_first_container);
-//
-//
-//        /*обязательные поля*/
-//
-//        sendKeysJS(dom, domPro5);
-//        click(cancelBirthDate);
-//        sendKeysJS(birthDateTemp, birthDayPro5);
-//
-//        telephoneNumber.clear();
-//        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-//        jse1.executeScript("arguments[0].value='" + telephonePro5 + "';", telephoneNumber);
-//        telephoneNumber.click();
-//        action.sendKeys(Keys.SPACE).perform();
-//
-//
-//        /*необязательные поля*/
-//
-//        click(source0);
-//        sendKeysJS(korpus, korpusPro5);
-//        sendKeysJS(stroenie, stroeniePro5);
-//        sendKeysJS(kvartira, kvartiraPro5);
-//        sendKeysJS(pd, pdPro5);
-//        sendKeysJS(dfon, dfonPro5);
-//        sendKeysJS(etazh, etazhPro5);
-//        sendKeysJS(sourceSmp, stationSMPPro5);
-//
-//
-//        /*жалоба*/
-//
-//        JavascriptExecutor jse = (JavascriptExecutor) driver;
-//        jse.executeScript("arguments[0].value='" + zhalobaPro5 + "';", zhaloba);
-//        zhaloba.sendKeys(Keys.SPACE);
-//        action.sendKeys(Keys.ENTER).perform();
-//
-//
-//        /*кто пациент*/
-//
-//        sendKeysJS(seriyaPol, seriyaPolPro5);
-//        sendKeysJS(nomerPol, nomerPolPro5);
-//        click(fam);
-//        sendKeysJS(fam, famPro5);
-//        sendKeysJS(name, nameGen);
-//        sendKeysJS(otchestvo, otchestvoPro5);
-//
-//
-//        /*кто вызывает*/
-//
-////        tipVisivaushego.click();
-////        pacient.click();
-//        sendKeysJS(sourceSmp, stationSMPPro5);
-//        sendKeysJS(callFamily, famCallPro5);
-//        sendKeysJS(callName, nameCallPro5);
-//        sendKeysJS(callPatronymic, otCallPro5);
-//
-//        click(saveBtns);
-//        return this;
-//    }
-
-//    @Step("редактирую вызов c МКАБ")
-//    public void editCallToMkab() {
-//        Actions action = new Actions(driver);
-//
-//        /*адрес*/
-//
-//        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*")));
-//        click(cancelAdress);
-//        click(placeholder_adress);
-//
-//        placeholder_adress.sendKeys("Московская");
-//        click(list_first_container);
-//
-//        placeholder_adress.sendKeys("Коломна");
-//        click(list_first_container);
-//
-//        placeholder_adress.sendKeys("Первомайская");
-//        click(list_first_container);
-//
-//
-//        /*обязательные поля*/
-//
-//        dom.clear();
-//        click(dom);
-//        dom.sendKeys("1");
-//
-////        JavascriptExecutor jse1 = (JavascriptExecutor) driver;
-////        jse1.executeScript("arguments[0].value='+7 (951) 158-27-14';", telephoneNumber);
-////        click(telephoneNumber);
-////        action.sendKeysJS(Keys.ENTER);
-//        click(chkBoxTelephone);
-//        click(hz);
-//        click(vKat);
-//        hz2.click();
-//
-//
-//        /*необязательные поля*/
-//
-//        korpus.clear();
-//        korpus.sendKeys("2");
-//        stroenie.clear();
-//        stroenie.sendKeys("3");
-//        kvartira.clear();
-//        kvartira.sendKeys("4");
-//        pd.clear();
-//        pd.sendKeys("5");
-//        dfon.clear();
-//        dfon.sendKeys("6");
-//        etazh.clear();
-//        etazh.sendKeys("7");
-//
-//
-//        /*жалоба*/
-//
-//        JavascriptExecutor jse = (JavascriptExecutor) driver;
-//        jse.executeScript("arguments[0].value='автотест';", zhaloba);
-//        zhaloba.sendKeys(Keys.SPACE);
-//        action.sendKeys(Keys.ENTER).perform();
-//
-//
-//        /*кто пациент*/
-//
-//        seriyaPol.clear();
-//        seriyaPol.sendKeys("321");
-//        nomerPol.clear();
-//        nomerPol.sendKeys("54321");
-////        click(fam);
-////        fam.sendKeysJS("Автотемников");
-////        name.sendKeysJS("Автодмитрий");
-////        otchestvo.sendKeysJS("Автоолегович");
-//
-//
-//        /*кто вызывает*/
-//
-//        tipVisivaushego.click();
-//        predstav.click();
-////        click(callFamily);
-//        callFamily.clear();
-//        callFamily.sendKeys("Автотемниковизменил");
-//        callName.clear();
-//        callName.sendKeys("Автодмитрийизменил");
-//        callPatronymic.clear();
-//        callPatronymic.sendKeys("Автоолеговичизменил");
-//
-//        assertTrue(naidena_mkab.isEnabled());
-//    }
 
     @Step("проверяю на странице редактирования корректность данных")
     public CreateCallPage verifyCallProfile1(String profile, String nameGen) throws IOException {

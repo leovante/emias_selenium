@@ -250,7 +250,8 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -317,6 +318,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData2.get("doctorFam") + "')]")).should(Condition.visible);
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -352,6 +354,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -386,6 +389,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 

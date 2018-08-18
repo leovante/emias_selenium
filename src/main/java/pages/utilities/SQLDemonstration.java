@@ -12,10 +12,10 @@ import java.sql.Statement;
 import java.util.Map;
 
 public class SQLDemonstration extends AbstractPage {
-    static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
-    static String databaseName = "hlt_demonstration";
-    static String userName = "sa";
-    static String password = "sagfhjkzYES!";
+    private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
+    private static String databaseName = "hlt_demonstration";
+    private static String userName = "sa";
+    private static String password = "sagfhjkzYES!";
 
     @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
@@ -130,7 +130,7 @@ public class SQLDemonstration extends AbstractPage {
     @Step("завершаю вызовы пациента по полису")
     public static void finalizePacientNumberPol(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
