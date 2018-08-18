@@ -106,66 +106,7 @@ public class CreateCallPage extends AbstractPage {
                     .saveBtn()
                     .adressAlarma(proData);
         }
-        System.out.println("Вызов создан!");
-    }
-
-//    @Step("создаю пустой вызов")
-//    public void createCallProfile0(String profile) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-//        addNewCall()
-//                .adress(proData)
-//                .telephone(proData)
-//                .complaint(proData)
-//                .vozrastKat(proData)
-//                .saveBtn()
-//                .adressAlarma();
-//    }
-
-//    @Step("создаю вызов -МКАБ +Регистр")
-//    public void createCallProfile1(String profile, String nameGen) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-//        addNewCall()
-//                .adress(proData)
-//                .telephone(proData)
-//                .vozrastKat(proData)
-//                .adressAddition(proData)
-//                .sex(proData)
-//                .complaint(proData)
-//                .polis(proData)
-//                .FIO(nameGen, proData)
-//                .birthDay(proData)
-//                .caller(nameGen, proData)
-//                .telephone(proData)
-//                .saveBtn();
-//    }
-
-//    @Step("создаю вызов с МКАБ + СМП")
-//    public void createCallProfile2(String nameGen) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
-//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-//        addNewCall()
-//                .sourceCall(proData)
-//                .searchField(proData)
-//                .adressAddition(proData)
-//                .complaint(proData)
-//                .caller(nameGen, proData)
-//                .telephone(proData)
-//                .saveBtn();
-//    }
-
-    @Step("редактирую вызов с МКАБ + СМП")
-    public void editCallProfile2(String profile, String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        sourceCall(proData)
-                .searchField(proData)
-                .adressAddition(proData)
-                .telephone(proData)
-                .complaint(proData)
-                .caller(nameGen, proData)
-                .saveBtn();
+        System.out.println("Вызов создан! " + driver.getCurrentUrl());
     }
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
@@ -316,6 +257,20 @@ public class CreateCallPage extends AbstractPage {
         } finally {
 //            driver.close();
         }
+    }
+
+    @Step("редактирую вызов с МКАБ + СМП")
+    public void editCallProfile2(String profile, String nameGen) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        sourceCall(proData)
+                .searchField(proData)
+                .adressAddition(proData)
+                .telephone(proData)
+                .complaint(proData)
+                .caller(nameGen, proData)
+                .saveBtn();
+        System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
     }
 
     public CreateCallPage setDeafult() {
@@ -543,6 +498,7 @@ public class CreateCallPage extends AbstractPage {
                 nameCall.getAttribute("value").equals(proData.get("nameCall")));
         assertTrue(
                 otCall.getAttribute("value").equals(proData.get("otCall")));
+        System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
         return this;
     }
 }

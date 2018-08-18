@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class SetDoctorPage extends AbstractPage {
     SelenideElement appenOnThisDay = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
-    SelenideElement loadCurrently = $(By.xpath("//span[contains(.,'ЗАГРУЗКА СЕГОДНЯ')]"));
 
     public SetDoctorPage() {
 

@@ -95,6 +95,7 @@ public class FullCardPage extends AbstractPage {
 
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
+        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -124,6 +125,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
+        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -155,7 +157,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена!");
+        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -187,7 +189,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена!");
+        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -212,7 +214,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("pd") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + proData.get("dfon") + "')]")).should(Condition.visible);
+        $(By.xpath("//span[contains(text(),'" + proData.get("dfon") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("etazh") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("fam") + "')]")).should(Condition.visible);
@@ -220,10 +222,10 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
+        $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData2.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена!");
+        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -259,7 +261,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена!");
+        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -294,7 +296,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена!");
+        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
