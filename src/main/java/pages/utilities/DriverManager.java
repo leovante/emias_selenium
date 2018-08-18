@@ -52,7 +52,7 @@ public class DriverManager {
                     .usingAnyFreePort()
                     .build();
             this.chromeOptions = new ChromeOptions();
-            this.chromeOptions.setHeadless(true);
+//            this.chromeOptions.setHeadless(true);
             this.chromeOptions.addArguments("window-size=1900,1020");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);

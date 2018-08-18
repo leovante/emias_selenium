@@ -7,6 +7,7 @@ import io.qameta.allure.TmsLink;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
@@ -44,6 +45,15 @@ public class RCD01Test extends AbstractTest {
 //        }
     }
 
+
+    @DataProvider(name = "ProfileRegistr")
+    public static Object[][] credentials() {
+        return new Object[][]{
+                {"Profile1"},
+                {"Profile2"}
+        };
+    }
+
     @Test(groups = "CD", description = "пустой вызов")
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
@@ -69,6 +79,19 @@ public class RCD01Test extends AbstractTest {
         page.dashboardPage().verifyNewCallGroup("Profile1", nameGen);
     }
 
+    @Test(groups = "test", dataProvider = "ProfileRegistr", description = "вызов с иточником Регистратура без МКАБ")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testCallRegistr_DataProvider(String profile) throws Exception {
+        open(curUrlCalldoctor);
+        open(curUrlCalldoctor);
+        page.createCallPage().createNewCall(profile, nameGen, "n");
+        page.fullCardPage()
+                .verifyCallNewCallGroup(profile, nameGen)
+                .closeCardBtn();
+        page.dashboardPage().verifyNewCallGroup(profile, nameGen);
+    }
+
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
@@ -84,7 +107,7 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallSMPApiChildMkab() throws IOException {
+    public void testCallSmpChildMkab() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
@@ -94,7 +117,7 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallSMPApiAdultKladr() throws IOException {
+    public void testCallSmpAdultKladr() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
@@ -104,7 +127,7 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallFromPortal() throws IOException {
+    public void testCallPortal() throws IOException {
         open("https://uslugi.mosreg.ru/zdrav/");
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
@@ -117,6 +140,9 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage().verifyCallNewCallGroup("Profile4", nameGen);
     }
 }
+
+// TODO: 18.08.2018 create new call from CC for api
+// TODO: 18.08.2018 пока напишу тут. Сделать пару тестов для проверки кладра
 
 /*
  * Благодаря этому паттерну можно реализовать много интересных вещей, например,

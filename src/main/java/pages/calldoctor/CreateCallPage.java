@@ -12,6 +12,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
 import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import pages.AbstractPage;
@@ -62,7 +63,6 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement callPatronymic = $(By.id("callPatronymic"));
     SelenideElement birthDateTemp = $(By.id("birthDateTemp"));
     SelenideElement source0 = $(By.id("source0"));
-    SelenideElement sourceSmp = $(By.id("sourceSmp"));
     SelenideElement phone = $(By.id("phone"));
     SelenideElement age = $(By.id("age"));
     SelenideElement famCall = $(By.id("callFamily"));
@@ -70,8 +70,50 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement otCall = $(By.id("callPatronymic"));
     SelenideElement naidena_mkab = $(By.xpath("//div[contains(.,'Найдена МКАБ пациента Петров')]"));
     SelenideElement redactirovanieVizova = $(By.xpath("//div[contains(text(),'Редактирование вызова')]"));
+    SelenideElement sourceSmp = $(By.id("source0"));
+    SelenideElement sourceReg = $(By.id("source1"));
+
 
     public CreateCallPage() {
+    }
+
+    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        if (searchPolis.equals("n")) {
+            addNewCall()
+                    .sourceCall(proData)
+                    .adress(proData)
+                    .telephone(proData)
+                    .telephoneChk(proData)
+                    .vozrastKat(proData)
+                    .adressAddition(proData)
+                    .sex(proData)
+                    .complaint(proData)
+                    .polis(proData)
+                    .FIO(nameGen, proData)
+                    .birthDay(proData)
+                    .caller(nameGen, proData)
+                    .saveBtn()
+                    .adressAlarma(proData);
+        } else if (searchPolis.equals("y")) {
+            addNewCall()
+                    .sourceCall(proData)
+//                        .adress(proData)
+//                        .telephone(proData)
+//                        .telephoneChk(proData)
+//                        .vozrastKat(proData)
+//                        .adressAddition(proData)
+//                        .sex(proData)
+//                    .polis(proData)
+                    .searchField(proData)
+                    .complaint(proData)
+//                        .FIO(nameGen, proData)
+//                        .birthDay(proData)
+                    .caller(nameGen, proData)
+                    .saveBtn()
+                    .adressAlarma(proData);
+        }
     }
 
     @Step("создаю пустой вызов")
@@ -110,7 +152,7 @@ public class CreateCallPage extends AbstractPage {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
-                .sourceSMP(proData)
+                .sourceCall(proData)
                 .searchField(proData)
                 .adressAddition(proData)
                 .telephone(proData)
@@ -123,7 +165,7 @@ public class CreateCallPage extends AbstractPage {
     public void editCallProfile2(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        sourceSMP(proData)
+        sourceCall(proData)
                 .searchField(proData)
                 .adressAddition(proData)
                 .telephone(proData)
@@ -322,7 +364,7 @@ public class CreateCallPage extends AbstractPage {
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .adress(proData)
-                .sourceSMP(proData)
+                .sourceCall(proData)
                 .caller(nameGen, proData)
                 .telephone(proData)
                 .complaint(proData)
@@ -415,8 +457,16 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage sourceSMP(Map<String, String> proData) {
-        $(By.id("source0")).click();
+    private CreateCallPage sourceCall(Map<String, String> proData) {
+        try {
+            if (proData.get("source").equals("Регистратура")) {
+                sourceReg.click();
+            } else if (proData.get("source").equals("СМП")) {
+                sourceSmp.click();
+            }
+        } catch (Exception e) {
+            throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
+        }
         $(By.id("phone")).setValue(proData.get("telephone"));
         return this;
     }
@@ -446,16 +496,34 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
+    private CreateCallPage adressAlarma(Map<String, String> proData) {
+        if (proData.get("adress_3").equals(""))
+            $(By.xpath("//button[@aria-label='Close dialog']")).click();
+        return this;
+    }
     private CreateCallPage adressAlarma() {
         $(By.xpath("//button[@aria-label='Close dialog']")).click();
         return this;
     }
 
     private CreateCallPage telephone(Map<String, String> proData) {
-        $(By.id("phone")).setValue(proData.get("telephone"));
+        try {
+            if (!proData.get("telephone").equals("")) {
+                $(By.id("phone")).setValue(proData.get("telephone"));
+            }
+            if (proData.get("telephone").equals("")) {
+                $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
+            }
+        } catch (Exception e) {
+            throw new InvalidArgumentException("Ошибка, не найден номер телефона у профиля!");
+        }
         return this;
     }
 
+    private CreateCallPage telephoneChk(Map<String, String> proData) {
+        $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
+        return this;
+    }
     private CreateCallPage telephoneChk() {
         $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
         return this;
@@ -535,13 +603,13 @@ public class CreateCallPage extends AbstractPage {
             $(By.xpath("//span[contains(.,'" + proData.get("whoIsCall") + "')]")).click();
         }
         if (proData.get("whoIsCall").equals("Представитель")) {
-            $(By.id("sourceSmp")).setValue(proData.get("sourceSMP"));
+            $(By.id("sourceSmp")).setValue(proData.get("sourceCall"));
             $(By.id("callFamily")).setValue(proData.get("callFamily"));
             $(By.id("callName")).setValue(nameGen);
             $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
         }
         if (proData.get("whoIsCall").equals("СМП")) {
-            $(By.id("sourceSmp")).setValue(proData.get("sourceSMP"));
+            $(By.id("sourceSmp")).setValue(proData.get("sourceCall"));
             $(By.id("callFamily")).setValue(proData.get("callFamily"));
             $(By.id("callName")).setValue(nameGen);
             $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
@@ -553,7 +621,6 @@ public class CreateCallPage extends AbstractPage {
         $(By.id("save")).click();
         return this;
     }
-
 
     public CreateCallPage editCallBtn() {
         $(By.id("change")).click();

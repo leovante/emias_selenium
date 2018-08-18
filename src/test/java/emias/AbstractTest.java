@@ -32,11 +32,10 @@ public abstract class AbstractTest {
     public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-//        page.loginPage().changeDepartment();todo попросиль Лешу сделать </br> в меню выбора подразделения
         page.homePage().callDoctorBtn();
         switchTo().window(1);
-        curUrlCalldoctor = //driver.getCurrentUrl();
-                "http://service.emias.mosreg.ru/test/call/call_doctor_ui/call-doctor/board;docprvdid=1239?ticket=Ibc%2FOpI8MZaJjSIcdDuiWNYSz8ouUeancY6IJAXs%2Bu3RbApDxrMLWlzx%2BkOW0YXQ63Y5jQjXoUOxOa1I%2BuTXY0CShzuoHTtPewYeEHUOX%2FOY61mX5%2FqWvxRZ8slrHlYMim3E49r2TvhK8cA0ZI4ZuAaEEb0syr%2Fbs4%2B8S9oAuFLyy5hz%2BlY92r5KQvxeL8FVEsYbGdQnh7bJjI6fqm9%2Bclm3pRjVWWhy0PXSoBS0UZ14OLqP8XPm8ZAqepx%2FkLP4AK5LOcyrYLL4raglH4eIS1TXQ3hnZceTAwuOBhtjCtpePT9P&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
+        curUrlCalldoctor = driver.getCurrentUrl();
+//                "http://service.emias.mosreg.ru/test/call/call_doctor_ui/call-doctor/board;docprvdid=1239?ticket=Ibc%2FOpI8MZaJjSIcdDuiWNYSz8ouUeancY6IJAXs%2Bu3RbApDxrMLWlzx%2BkOW0YXQ63Y5jQjXoUOxOa1I%2BuTXY0CShzuoHTtPewYeEHUOX%2FOY61mX5%2FqWvxRZ8slrHlYMim3E49r2TvhK8cA0ZI4ZuAaEEb0syr%2Fbs4%2B8S9oAuFLyy5hz%2BlY92r5KQvxeL8FVEsYbGdQnh7bJjI6fqm9%2Bclm3pRjVWWhy0PXSoBS0UZ14OLqP8XPm8ZAqepx%2FkLP4AK5LOcyrYLL4raglH4eIS1TXQ3hnZceTAwuOBhtjCtpePT9P&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
     }
 
     @Parameters(value = {"site", "login", "pass"})
