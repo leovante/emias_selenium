@@ -32,8 +32,6 @@ public class DashboardPage extends AbstractPage {
     SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
     SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
     SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
-    SelenideElement cardSpace = $(By.id("cardSpace"));
-    SelenideElement activeDocGroup = $(By.id("activeDocGroup"));
 
     public DashboardPage() {
     }
@@ -95,7 +93,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public DashboardPage verifyNewCallProgressFrame(String profile, String nameGen) throws InterruptedException, IOException {
+    public DashboardPage verifyNewCallGroup(String profile, String nameGen) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
@@ -108,7 +106,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public DashboardPage verifyNewCallProgressFrame(String profile) throws InterruptedException, IOException {
+    public DashboardPage verifyNewCallGroup(String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
@@ -151,7 +149,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
+    public DashboardPage verifyDoneDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
@@ -161,6 +159,7 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        return this;
     }
 
     @Step("Проверка что запись удалена с дашборда")

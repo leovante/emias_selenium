@@ -15,9 +15,7 @@ public abstract class AbstractTest {
 
     @Parameters(value = {"browser", "platform"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String browser,
-                            @Optional String platform,
-                            ITestContext context) {
+    public void beforeSuite(@Optional String browser, @Optional String platform, ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
         driver = new DriverManager(browser).createDriver();
@@ -31,12 +29,10 @@ public abstract class AbstractTest {
 
     @Parameters(value = {"site", "login", "pass"})
     @BeforeGroups(groups = "CD", alwaysRun = true)
-    public void beforeGroupsCD(@Optional String site,
-                               @Optional String login,
-                               @Optional String pass) {
+    public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-//        page.loginPage().defaultSetting();todo попросиль Лешу с делать </br> в меню выбора подразделения
+//        page.loginPage().changeDepartment();todo попросиль Лешу сделать </br> в меню выбора подразделения
         page.homePage().callDoctorBtn();
         switchTo().window(1);
         curUrlCalldoctor = //driver.getCurrentUrl();
@@ -45,9 +41,7 @@ public abstract class AbstractTest {
 
     @Parameters(value = {"site", "login", "pass"})
     @BeforeGroups(groups = "mis", alwaysRun = true)
-    public void beforeGroupsMIS(@Optional String site,
-                                @Optional String login,
-                                @Optional String pass) {
+    public void beforeGroupsMIS(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
         page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
         curUrlCalldoctor = driver.getCurrentUrl();
@@ -55,8 +49,7 @@ public abstract class AbstractTest {
 
     @Parameters(value = {"login", "pass"})
     @BeforeGroups(groups = "test", alwaysRun = true)
-    public void beforeGroupsTest(@Optional String login,
-                                 @Optional String pass) {
+    public void beforeGroupsTest(@Optional String login, @Optional String pass) {
         page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
         page.homePage().callDoctorBtn();
         switchTo().window(1);

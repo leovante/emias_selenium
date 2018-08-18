@@ -64,9 +64,9 @@ public class RCD01Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile1("Profile1", nameGen);
         page.fullCardPage()
-                .verifyCallProfile1("Profile1", nameGen)
+                .verifyCallNewCallGroup("Profile1", nameGen)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallProgressFrame("Profile1", nameGen);
+        page.dashboardPage().verifyNewCallGroup("Profile1", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
@@ -76,9 +76,9 @@ public class RCD01Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile2(nameGen);
         page.fullCardPage()
-                .verifyCallProfile1("Profile2", nameGen)
+                .verifyCallNewCallGroup("Profile2", nameGen)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallProgressFrame("Profile2");
+        page.dashboardPage().verifyNewCallGroup("Profile2");
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
@@ -88,7 +88,7 @@ public class RCD01Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfile1("Profile3", nameGen);
+        page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
@@ -98,7 +98,7 @@ public class RCD01Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfile1("Profile6", nameGen);
+        page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
     @Test(groups = "CD", description = "вызов ребенка с Портала")
@@ -114,7 +114,7 @@ public class RCD01Test extends AbstractTest {
         page.dashboardPage()
                 .clearFilterDepart()
                 .openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfile1("Profile4", nameGen);
+        page.fullCardPage().verifyCallNewCallGroup("Profile4", nameGen);
     }
 }
 

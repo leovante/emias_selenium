@@ -48,11 +48,11 @@ public class RCD02Test extends AbstractTest {
                 .setDeafult()
                 .editCallProfile2("Profile2", nameGen);
         page.fullCardPage()
-                .verifyCallProfile1("Profile2", nameGen)
+                .verifyCallNewCallGroup("Profile2", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearFilterDepart()
 //                .searchFilterFio(nameGen)
-                .verifyNewCallProgressFrame("Profile2");
+                .verifyNewCallGroup("Profile2");
     }
 }

@@ -37,7 +37,7 @@ public class RCD04Test extends AbstractTest {
         page.fullCardPage().changeDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile2");
         page.fullCardPage()
-                .verifyCallProfile1Activity(nameGen, "Profile1", "Profile2")
+                .verifyCallActivityGroup(nameGen, "Profile1", "Profile2")
                 .closeCardBtn();
         page.dashboardPage()
                 .clearFilterDepart()

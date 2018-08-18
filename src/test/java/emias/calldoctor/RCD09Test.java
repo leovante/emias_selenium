@@ -57,7 +57,7 @@ public class RCD09Test extends AbstractTest {
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
-                .verifyNewCallProgressFrame("Profile1", nameGen);
+                .verifyNewCallGroup("Profile1", nameGen);
     }
 
     //    @Listeners({CustomTestListener.class}) //https://automated-testing.info/t/pomogite-podklyuchit-allure-k-proektu-java-testng-maven/7122/15
@@ -88,7 +88,7 @@ public class RCD09Test extends AbstractTest {
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .searchFilterTypeCallNeotlozhniy()
-                .verifyNewCallProgressFrame("Profile3", nameGen);
+                .verifyNewCallGroup("Profile3", nameGen);
     }
 
     @Test(groups = "CD", description = "проверка кнопки выход")
