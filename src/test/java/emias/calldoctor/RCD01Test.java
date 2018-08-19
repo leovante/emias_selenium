@@ -1,32 +1,50 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
+import emias.retry.RetryAnalyzer;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import pages.Pages;
+import pages.utilities.DriverManager;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
+@Listeners(RetryAnalyzer.class)
 public class RCD01Test extends AbstractTest {
     private String nameGen;
 
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
+    @Parameters({"browser", "platform", "login", "pass"})
+    @BeforeMethod()
+    public void beforeMethod(@Optional String browser, @Optional String platform, @Optional String login, @Optional String pass) {
+        System.out.println(Thread.currentThread().getId());
+        System.out.println("Browser: " + browser);
+        System.out.println("Platform: " + platform);
+        driver = new DriverManager(browser).createDriver();
+        page = new Pages();
+
+        String site = "http://emias.mosreg.ru/demonstration/";
+        System.out.println("Site: " + site);
+
+        page.loginPage().login(site, login, pass);
+        page.homePage().callDoctorBtn();
+        switchTo().window(1);
+        curUrlCalldoctor = driver.getCurrentUrl();
+
         StringGenerator nameGen = new StringGenerator();
         this.nameGen = String.valueOf(nameGen.generator());
     }
 
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod(ITestResult result) {
+    @AfterMethod()
+    public void afterMethod() {
+        System.out.println(Thread.currentThread().getId());
+        driver.manage().deleteAllCookies();
+        close();
         SQLDemonstration.finalizePacientName(nameGen);
 //        if (!result.isSuccess()) {
 //            try {
@@ -53,11 +71,11 @@ public class RCD01Test extends AbstractTest {
         };
     }
 
-    @Test(groups = "CD", description = "пустой вызов")
+    @Test(description = "пустой вызов", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile0", nameGen, "n");
         page.fullCardPage()
@@ -65,11 +83,11 @@ public class RCD01Test extends AbstractTest {
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
+    @Test(description = "вызов с иточником Регистратура без МКАБ", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
-        open(curUrlCalldoctor);
+        Assert.assertTrue(false);
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage()
                 .createNewCall("Profile1", nameGen, "n");
@@ -80,10 +98,10 @@ public class RCD01Test extends AbstractTest {
                 .verifyNewCallGroup("Profile1", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(description = "вызов с источником СМП и привязкой МКАБ", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage()
@@ -93,34 +111,32 @@ public class RCD01Test extends AbstractTest {
                 .verifyNewCallGroup("Profile2");
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Test(description = "вызов ребенка с Портала", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
+        System.out.println(Thread.currentThread().getId());
+        SQLDemonstration.finalizePacientProfile("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
-        driver.manage().deleteAllCookies();
-        open("https://uslugi.mosreg.ru/zdrav/");
-        SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard()
                 .createCall("Profile4", nameGen);
         open(curUrlCalldoctor);

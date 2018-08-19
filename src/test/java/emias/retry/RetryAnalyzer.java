@@ -7,8 +7,7 @@ import org.testng.log4testng.Logger;
 public class RetryAnalyzer extends TestListenerAdapter implements IRetryAnalyzer {
     private static Logger logger = Logger.getLogger(RetryAnalyzer.class);
     private int counter = 0;
-    private static final int retryLimit = 3;
-
+    private static final int retryLimit = 2;
     @Override
     public boolean retry(ITestResult result) {
         logger.info("Running retry for " + result.getMethod());

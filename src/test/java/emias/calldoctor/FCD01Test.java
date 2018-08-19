@@ -124,7 +124,7 @@ public class FCD01Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladr() throws IOException {
         open(curUrlCalldoctor);
-        SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
+        SQLDemonstration.finalizePacientProfile("ProfileDetkina");
         page.createCallPage().createCallProfileDetkina();
         page.dashboardPage()
                 .searchFilterFio_Fam("ProfileDetkina")
