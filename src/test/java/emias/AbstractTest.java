@@ -1,15 +1,28 @@
 package emias;
 
+import cucumber.api.CucumberOptions;
+import cucumber.api.SnippetType;
 import org.openqa.selenium.WebDriver;
 import pages.Pages;
 
 import java.awt.*;
+
+@CucumberOptions(
+//        plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
+        features = "emias/calldoctor/features",
+        glue = "emias/calldoctor/steps",
+        tags = "@acceptanceTest",
+        dryRun = false,
+        strict = false,
+        snippets = SnippetType.UNDERSCORE)
 
 public abstract class AbstractTest {
     public static WebDriver driver;
     public static Pages page;
     public static String curUrlCalldoctor = null;
     public Robot rb;
+
+
 
 //    @Parameters({"browser", "platform"})
 //    @BeforeSuite(alwaysRun = true)
