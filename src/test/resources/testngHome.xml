@@ -14,12 +14,12 @@
                 <include name="test"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.calldoctor.RCD09Test"/>
-        </classes>
-        <!--<packages>-->
-            <!--<package name="emias.calldoctor"/>-->
-        <!--</packages>-->
+        <!--<classes>-->
+            <!--<class name="emias.calldoctor.RCD09Test"/>-->
+        <!--</classes>-->
+        <packages>
+            <package name="emias.calldoctor"/>
+        </packages>
     </test>
 </suite>
         <!--mvn clean test-->

@@ -8,6 +8,7 @@ import pages.calldoctor.CreateCallPage;
 import pages.calldoctor.DashboardPage;
 import pages.calldoctor.FullCardPage;
 import pages.calldoctor.SetDoctorPage;
+import pages.disp.ServicesPage;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
@@ -108,4 +109,11 @@ public class Pages extends AbstractPage {
         PortalDashboard portalDashboard = new PortalDashboard();// PageFactory.initElements(driver, PortalDashboard.class);
         return portalDashboard;
     }
+
+    public ServicesPage servicesPage() {
+        ServicesPage servicesPage = new ServicesPage();// PageFactory.initElements(driver, PortalDashboard.class);
+        return servicesPage;
+    }
+
+
 }

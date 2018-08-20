@@ -18,37 +18,26 @@ import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertFalse;
 
 public class DashboardPage extends AbstractPage {
-
-    SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
-    SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
-    SelenideElement logoType = $(By.xpath("//img[@src='assets/img/call-doctor-logo.svg']"));
-    SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
-    SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
-    SelenideElement typeCall = $(By.xpath("//*[@placeholder='Вид вызова']"));
-    SelenideElement newCallProgressFrame = $(By.id("newCallProgressFrame"));
-    SelenideElement matExpansionPanel = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"));
-    SelenideElement smallMenu = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div/div/div/app-call-doctor-short-card/div/div/div[3]"));
-    SelenideElement openCard = $(By.xpath("//a[@title='Открыть карту вызова']"));
-    SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
-    SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
-    SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
-    SelenideElement cardSpace = $(By.id("cardSpace"));
-    SelenideElement activeDocGroup = $(By.id("activeDocGroup"));
+    private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
+    private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
+    private SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
+    private SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
+    private SelenideElement typeCall = $(By.xpath("//*[@placeholder='Вид вызова']"));
+    private SelenideElement newCallProgressFrame = $(By.id("newCallProgressFrame"));
+    private SelenideElement matExpansionPanel = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"));
+    private SelenideElement smallMenu = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div/div/div/app-call-doctor-short-card/div/div/div[3]"));
+    private SelenideElement openCard = $(By.xpath("//a[@title='Открыть карту вызова']"));
+    private SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
+    private SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
+    private SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
 
     public DashboardPage() {
     }
 
     @Step("вышел в мис")
-    public DashboardPage exitToMis() {
+    public void exitToMis() {
         exitToMis.click();
         exitBtn.click();
-        return this;
-    }
-
-    @Step("нажать на логотип")
-    public DashboardPage clickLogoType() {
-        logoType.click();
-        return this;
     }
 
     @Step("поиск в фильтре ФИО")
@@ -95,20 +84,27 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public DashboardPage verifyNewCallProgressFrame(String profile, String nameGen) throws InterruptedException, IOException {
+    public void verifyNewCallGroup(String profile, String nameGen) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
-        return this;
+        if (proData.get("source").equals("СМП")) {
+            $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
+            $(By.xpath("//*[contains(text(),'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
+            $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        }
+        if (!proData.get("source").equals("СМП")) {
+            $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
+            $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+            $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        }
+        System.out.println("Краткая карта вызова проверена!");
     }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public DashboardPage verifyNewCallProgressFrame(String profile) throws InterruptedException, IOException {
+    public void verifyNewCallGroup(String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
@@ -117,11 +113,11 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + proData.get("name") + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
-        return this;
+        System.out.println("Краткая карта вызова проверена!");
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(String nameGen, String profile, String profile2) throws InterruptedException, IOException {
+    public void verifyActiveDocGroup(String nameGen, String profile, String profile2) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         File reader2 = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile2 + ".json");
@@ -133,11 +129,11 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData2.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData2.get("telephone") + "')]")).shouldBe(Condition.visible);
-        return this;
+        System.out.println("Краткая карта вызова проверена!");
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
+    public void verifyActiveDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
@@ -147,7 +143,7 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
-        return this;
+        System.out.println("Краткая карта вызова проверена!");
     }
 
     @Step("проверка в группе обслуженные")
@@ -161,18 +157,18 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        System.out.println("Краткая карта вызова проверена!");
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public DashboardPage verifyRecordIsCancelFromDashboard() throws InterruptedException {
+    public void verifyRecordIsCancelFromDashboard() throws InterruptedException {
         Thread.sleep(4000);
         assertFalse(newCallProgressFrame.findElement(By.id("order")).isDisplayed());
         newCallProgressFrame.$(By.id("order")).shouldBe(Condition.not(Condition.visible));
-        return this;
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage openNewCallProgressFrame() {
+    public void openNewCallProgressFrame() {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
@@ -180,6 +176,5 @@ public class DashboardPage extends AbstractPage {
         actions.moveToElement(matExpansionPanel).perform();
         actions.moveToElement(smallMenu).perform();
         openCard.click();
-        return this;
     }
 }

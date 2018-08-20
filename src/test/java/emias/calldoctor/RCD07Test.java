@@ -31,7 +31,7 @@ public class RCD07Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testCompleteCallRegistr() throws Exception {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
@@ -43,6 +43,5 @@ public class RCD07Test extends AbstractTest {
                 .clearFilterDepart()
                 .verifyDoneDocGroup(nameGen, "Profile1");
     }
-
     // TODO: 13.08.2018 завершить обслуживание в мис
 }

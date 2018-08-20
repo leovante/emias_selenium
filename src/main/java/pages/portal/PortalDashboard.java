@@ -19,6 +19,8 @@ public class PortalDashboard extends AbstractPage {
     SelenideElement nPolField = $(By.xpath("//input[@name='nPol']"));
     SelenideElement birthdayField = $(By.xpath("//input[@name='birthday']"));
     SelenideElement uspeshnoVizvaliVracha = $(By.xpath("//*[contains(.,'Вы успешно вызвали врача на адрес:')]"));
+    SelenideElement popupWindow = $(By.xpath("//*[contains(text(),'Московская обл.,Химки г.,Пролетарская ул.,987а стр. 321в кор. 654б,к.126')]"));
+    SelenideElement popupWindow2 = $(By.xpath("//*[contains(text(),'Вызов к детям (до 15 лет) обслуживается только в присутствии законных представителей."));
     SelenideElement entrance = $(By.id("call_entrance"));
     SelenideElement doorphone = $(By.id("call_doorphone"));
     SelenideElement phone = $(By.id("call_phone"));
@@ -54,5 +56,7 @@ public class PortalDashboard extends AbstractPage {
 
         podtvVizovVracha.click();
         uspeshnoVizvaliVracha.shouldBe(Condition.visible);
+        popupWindow.shouldBe(Condition.visible);
+        popupWindow2.shouldBe(Condition.visible);
     }
 }

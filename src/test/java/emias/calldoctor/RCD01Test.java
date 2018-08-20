@@ -1,31 +1,50 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
+import emias.retry.RetryAnalyzer;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
-import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import pages.Pages;
+import pages.utilities.DriverManager;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
+@Listeners(RetryAnalyzer.class)
 public class RCD01Test extends AbstractTest {
     private String nameGen;
 
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
+    @Parameters({"browser", "platform", "login", "pass"})
+    @BeforeMethod()
+    public void beforeMethod(@Optional String browser, @Optional String platform, @Optional String login, @Optional String pass) {
+        System.out.println(Thread.currentThread().getId());
+        System.out.println("Browser: " + browser);
+        System.out.println("Platform: " + platform);
+        driver = new DriverManager(browser).createDriver();
+        page = new Pages();
+
+        String site = "http://emias.mosreg.ru/demonstration/";
+        System.out.println("Site: " + site);
+
+        page.loginPage().login(site, login, pass);
+        page.homePage().callDoctorBtn();
+        switchTo().window(1);
+        curUrlCalldoctor = driver.getCurrentUrl();
+
         StringGenerator nameGen = new StringGenerator();
         this.nameGen = String.valueOf(nameGen.generator());
     }
 
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod(ITestResult result) {
+    @AfterMethod()
+    public void afterMethod() {
+        System.out.println(Thread.currentThread().getId());
+        driver.manage().deleteAllCookies();
+        close();
         SQLDemonstration.finalizePacientName(nameGen);
 //        if (!result.isSuccess()) {
 //            try {
@@ -44,80 +63,114 @@ public class RCD01Test extends AbstractTest {
 //        }
     }
 
-    @Test(groups = "CD", description = "пустой вызов")
+    @DataProvider(name = "ProfileRegistr")
+    public static Object[][] credentials() {
+        return new Object[][]{
+                {"Profile1", "n"},
+                {"Profile2", "y"},
+        };
+    }
+
+    @Test(description = "пустой вызов", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile0("Profile0");
+        page.createCallPage().createNewCall("Profile0", nameGen, "n");
         page.fullCardPage()
                 .verifyCallProfile0("Profile0")
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
+    @Test(description = "вызов с иточником Регистратура без МКАБ", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
+        Assert.assertTrue(false);
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
-        open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage()
+                .createNewCall("Profile1", nameGen, "n");
         page.fullCardPage()
-                .verifyCallProfile1("Profile1", nameGen)
+                .verifyCallNewCallGroup("Profile1", nameGen)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallProgressFrame("Profile1", nameGen);
+        page.dashboardPage()
+                .verifyNewCallGroup("Profile1", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(description = "вызов с источником СМП и привязкой МКАБ", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile2(nameGen);
+        page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage()
-                .verifyCallProfile1("Profile2", nameGen)
+                .verifyCallNewCallGroup("Profile2", nameGen)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallProgressFrame("Profile2");
+        page.dashboardPage()
+                .verifyNewCallGroup("Profile2");
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallSMPApiChildMkab() throws IOException {
+    public void testCallSmpChildMkab() throws IOException {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfile1("Profile3", nameGen);
+        page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallSMPApiAdultKladr() throws IOException {
+    public void testCallSmpAdultKladr() throws IOException {
+        System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfile1("Profile6", nameGen);
+        page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Test(description = "вызов ребенка с Портала", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
-    public void testCallFromPortal() throws IOException {
+    public void testCallPortal() throws IOException {
+        System.out.println(Thread.currentThread().getId());
+        SQLDemonstration.finalizePacientProfile("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
-        driver.manage().deleteAllCookies();
-        open("https://uslugi.mosreg.ru/zdrav/");
-        SQLDemonstration.finalizePacientNumberPol("Profile4");
-        page.portalDashboard().createCall("Profile4", nameGen);
+        page.portalDashboard()
+                .createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
         page.dashboardPage()
                 .clearFilterDepart()
                 .openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfile1("Profile4", nameGen);
+        page.fullCardPage()
+                .verifyCallNewCallGroup("Profile4", nameGen);
     }
+
+    /*
+    @Test(groups = "", dataProvider = "ProfileRegistr", description = "тестирую создание вызова через датаПровайдер")//из минусов не создается уникальный дескрипшн к тесту
+    public void testCallRegistr_DataProvider(String profileDProvider, String searchField) throws Exception {
+        open(curUrlCalldoctor);
+        page.createCallPage()
+                .createNewCall(profileDProvider, nameGen, searchField);
+        page.fullCardPage()
+                .verifyCallNewCallGroup(profileDProvider, nameGen)
+                .closeCardBtn();
+        page.dashboardPage()
+                .verifyNewCallGroup(profileDProvider, nameGen);
+    }
+*/
+
 }
 
+// TODO: 18.08.2018 create new call from CC for api
+// TODO: 18.08.2018 сделать вызовы по апи от смп и проверить отображение подсветки что вызов неотложный и что он без возрастной категории
+// TODO: 18.08.2018 создать вызов с адресом как в двух участках (один участок с номерами домов, другой только улица), указать номер дома как в участке с домами. Проверить что появляется окно с выбором участка. В выпадающем списке корректные участки
+// TODO: 18.08.2018 создать вызов с адресом как в двух участках (один участок с номерами домов, другой только улица), указать уникальный номер дома. Проверить что появляется окно с выбором участка. В выпадающем списке корректные участки
+// TODO: 18.08.2018 создать вызов с адресом как в двух участках (один участок с номерами домов, второй участок с такими же номерами домов), указать такой же номер дома. Проверить что появляется окно с выбором участка. В выпадающем списке корректные участки
+// TODO: 18.08.2018 создать вызов с адресом как в двух участках (один участок с номерами домов, второй участок с такими же номерами домов), указать уникальный номер дома. Проверить что появляется окно с выбором участка. В выпадающем списке корректные участки
+// TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
+// TODO: 19.08.2018 на странице выбора врача в поле формализации адреса ввести другой адрес. Проверить что в хедере данный адрес изменился
 /*
  * Благодаря этому паттерну можно реализовать много интересных вещей, например,
  * вы можете реализовать пул браузеров. Многие жалуются – наши web-тесты тормозят,
@@ -135,11 +188,6 @@ public class RCD01Test extends AbstractTest {
  * <p>
  * https://habr.com/company/jugru/blog/338836/ посмотреть паттерн data provider и decorator
  *
- * @DataProvider public Object[][] dataProvider() {
- * return new Object[][]{
- * {1}, {2}, {3}
- * };
- * }
  * @Attachment public byte[] attachScreenshot() {
  * return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
  * }

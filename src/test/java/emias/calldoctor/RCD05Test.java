@@ -33,7 +33,7 @@ public class RCD05Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().cancelRecordOnFullCardPage();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
@@ -45,7 +45,7 @@ public class RCD05Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage()
                 .editCallBtn()
                 .cancelRecordOnChangePage();

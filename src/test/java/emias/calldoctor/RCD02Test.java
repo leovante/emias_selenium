@@ -31,7 +31,7 @@ public class RCD02Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testVerifyEditPageProfile1() throws Exception {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.createCallPage()
                 .editCallBtn()
                 .verifyCallProfile1("Profile1", nameGen);
@@ -42,17 +42,17 @@ public class RCD02Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testEditCallProfile1() throws Exception {
         open(curUrlCalldoctor);
-        page.createCallPage().createCallProfile1("Profile1", nameGen);
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.createCallPage()
                 .editCallBtn()
                 .setDeafult()
                 .editCallProfile2("Profile2", nameGen);
         page.fullCardPage()
-                .verifyCallProfile1("Profile2", nameGen)
+                .verifyCallNewCallGroup("Profile2", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearFilterDepart()
 //                .searchFilterFio(nameGen)
-                .verifyNewCallProgressFrame("Profile2");
+                .verifyNewCallGroup("Profile2");
     }
 }
