@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="1" configfailurepolicy="continue">
+    <!--<suite name="Name suite - CD" verbose="10" parallel="methods" thread-count="2">-->
+    <listeners>
+        <listener class-name="emias.retry.AnnotationTransformer"/>
+    </listeners>
+    <test name="CallDoctor_Chrome">
+        <parameter name="browser" value="chrome"/>
+        <parameter name="platform" value="WINDOWS"/>
+        <parameter name="login" value="temnikov"/>
+        <parameter name="pass" value="1214"/>
+        <classes>
+            <class name="emias.AbstractTest"/>
+        </classes>
+    </test>
+</suite>
+

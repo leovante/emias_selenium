@@ -15,7 +15,6 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-@Listeners(RetryAnalyzer.class)
 public class RCD01Test extends AbstractTest {
     private String nameGen;
 
