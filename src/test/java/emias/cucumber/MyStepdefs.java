@@ -3,10 +3,12 @@ package emias.cucumber;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.ru.Дано;
+import cucumber.api.java.ru.Допустим;
 import cucumber.api.java.ru.И;
 
 import java.util.List;
@@ -133,5 +135,11 @@ public class MyStepdefs
     public void checkThatElementWithNameIsDisplayed(String elementName)
     {
         firstPage.get(elementName).shouldBe(Condition.appears);
+    }
+
+    @Допустим("^open emias\.mosreg\.ru/demonstration/$")
+    public void openEmiasMosregRuDemonstration() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        throw new PendingException();
     }
 }

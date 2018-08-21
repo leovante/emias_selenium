@@ -93,8 +93,6 @@
         </dependency>
     </dependencies>
 
-    <repositories></repositories>
-
     <build>
         <plugins>
             <plugin>

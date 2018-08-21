@@ -8,9 +8,9 @@ import pages.Pages;
 import java.awt.*;
 
 @CucumberOptions(
-//        plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
-        features = "emias/calldoctor/features",
-        glue = "emias/calldoctor/steps",
+        plugin = {"html:target/cucumber-report/acceptanceTest", "json:target/cucumber.json"},
+        features = "src/tst/java/emias/calldoctor/features",
+        glue = "src/tst/java/emias/calldoctor/steps",
         tags = "@acceptanceTest",
         dryRun = false,
         strict = false,
