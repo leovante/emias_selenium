@@ -21,6 +21,7 @@ public class TestCC extends AbstractTest {
         date.add("30.11.1975");
         date.add("19.02.2016");
         date.add("12.12.2012");
+        date.add("18.08.1991");
 
         ArrayList<String> pol = new ArrayList<>();
 //        pol.add("5051800881001952");
@@ -29,6 +30,7 @@ public class TestCC extends AbstractTest {
         pol.add("38-09 560219");
         pol.add("7854215965847521");
         pol.add("7754610821003323");
+        pol.add("5051800881001952");
 
         this.nPol = pol.get(count);
         this.birthDay = date.get(count);
