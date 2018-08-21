@@ -1,5 +1,5 @@
 @AcceptanceTest
-#   language: ru
+#   language: en
 
 Feature: smoke test #1, go through the service to button "Купить"
 
