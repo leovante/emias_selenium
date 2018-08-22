@@ -114,6 +114,7 @@ public class ServicesPage extends AbstractPage {
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover();
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).click();
         Thread.sleep(700);
+        MeasureIndividualnoeProfConsulting.$(By.id("multiLineText1")).hover();
         MeasureIndividualnoeProfConsulting.$(By.id("multiLineTextTextarea1")).sendKeys("Тестовая рекомендацтя");
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
         Thread.sleep(3000);
