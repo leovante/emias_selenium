@@ -1,11 +1,12 @@
 package emias.mis;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
+
+//import emias.testngRetryCount.RetryCountIfFailed;
 
 public class RMISTest extends AbstractTest {
 
@@ -18,7 +19,7 @@ public class RMISTest extends AbstractTest {
     }
 
     @Test(groups = "mis", description = "Создать расписание", enabled = false)
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -32,7 +33,7 @@ public class RMISTest extends AbstractTest {
     }
 
     @Test(groups = "mis", description = "Копировать расписание", enabled = false)
-    @RetryCountIfFailed(4)
+//    @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -51,7 +52,7 @@ public class RMISTest extends AbstractTest {
     }
 
     @Test(groups = "mis", description = "Указать неприемные дни", enabled = false)
-    @RetryCountIfFailed(4)
+//    @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
         //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -62,7 +63,7 @@ public class RMISTest extends AbstractTest {
     }
 
     @Test(groups = "mis", description = "Удалить расписание", enabled = false)
-    @RetryCountIfFailed(4)
+//    @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
@@ -87,7 +88,7 @@ public class RMISTest extends AbstractTest {
     }
 
     @Test(groups = "mis", description = "Перенести запись")
-    @RetryCountIfFailed(4)
+//    @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();

@@ -1,7 +1,6 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Attachment;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
@@ -50,7 +49,7 @@ public class RCD09Test extends AbstractTest {
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
@@ -64,7 +63,7 @@ public class RCD09Test extends AbstractTest {
     @Attachment(value = "Console error", type = "text/plain")
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(0)
+//    @RetryCountIfFailed(0)
     public void testFilterDoctor() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
@@ -79,11 +78,11 @@ public class RCD09Test extends AbstractTest {
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException {
         page.createCallPage().createCallProfile3(nameGen);
         open(curUrlCalldoctor);
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile3");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
@@ -93,7 +92,7 @@ public class RCD09Test extends AbstractTest {
 
     @Test(groups = "CD", description = "проверка кнопки выход")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void testExitToMis() {
         open(curUrlCalldoctor);
         page.dashboardPage().exitToMis();

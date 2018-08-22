@@ -1,7 +1,6 @@
 package emias.callcenter;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -35,7 +34,7 @@ public class TestCC extends AbstractTest {
     }
 
     @Test(groups = "CC", invocationCount = 6)
-    @RetryCountIfFailed(4)
+//    @RetryCountIfFailed(4)
     public void testCallCenter() throws InterruptedException {
         page.loginPageCC().login();
         page.findPatientPage().findPatient(nPol, birthDay);

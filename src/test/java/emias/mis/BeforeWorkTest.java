@@ -1,7 +1,6 @@
 package emias.mis;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
@@ -10,7 +9,7 @@ import pages.utilities.SQLDemonstration;
 public class BeforeWorkTest extends AbstractTest {
 
     @Test(groups = "mis", description = "Завершаю все вызовы и создаю новое расписание у врачей на сегодня")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void cleanBeforeWork() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
 

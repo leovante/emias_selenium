@@ -1,7 +1,6 @@
 package emias.callcenter;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,7 +18,7 @@ public class RTD01Test extends AbstractTest {
 
     @Test(groups = "mis", description = "создаю направление на исследование")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void testNapravlenie() {
 //        open(curUrlCalldoctor);
 

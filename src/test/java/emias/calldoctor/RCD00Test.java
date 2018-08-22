@@ -1,7 +1,6 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
@@ -14,7 +13,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class RCD00Test extends AbstractTest {
 
     @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
         open(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();

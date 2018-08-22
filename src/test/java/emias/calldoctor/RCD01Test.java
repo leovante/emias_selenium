@@ -4,7 +4,6 @@ import emias.AbstractTest;
 import emias.retry.RetryAnalyzer;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
-import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.Pages;
 import pages.utilities.DriverManager;
@@ -22,7 +21,7 @@ public class RCD01Test extends AbstractTest {
     @Parameters({"browser", "platform", "login", "pass"})
     @BeforeMethod()
     public void beforeMethod(@Optional String browser, @Optional String platform, @Optional String login, @Optional String pass) {
-        System.out.println(Thread.currentThread().getId());
+        System.out.println("Бефор метод " + Thread.currentThread().getId());
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
         driver = new DriverManager(browser).createDriver();
@@ -42,40 +41,18 @@ public class RCD01Test extends AbstractTest {
 
     @AfterMethod()
     public void afterMethod() {
-        System.out.println(Thread.currentThread().getId());
+        System.out.println("Афтер метод " + Thread.currentThread().getId());
         driver.manage().deleteAllCookies();
         close();
         SQLDemonstration.finalizePacientName(nameGen);
-//        if (!result.isSuccess()) {
-//            try {
-//                WebDriver returned = new Augmenter().augment(driver);
-//                if (returned != null) {
-//                    File f = ((TakesScreenshot) returned).getScreenshotAs(OutputType.FILE);
-//                    try {
-//                        FileUtils.copyFile(f, new File("E:\\Test_results" + result.getName() + " " + /*getFileName()*/ ".jpg"));
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            } catch (ScreenshotException se) {
-//                se.printStackTrace();
-//            }
-//        }
     }
 
-    @DataProvider(name = "ProfileRegistr")
-    public static Object[][] credentials() {
-        return new Object[][]{
-                {"Profile1", "n"},
-                {"Profile2", "y"},
-        };
-    }
 
     @Test(description = "пустой вызов", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
     public void testCallRegistrEmpy() throws IOException {
-        System.out.println(Thread.currentThread().getId());
+        System.out.println("тест RegistrEmpy " + Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile0", nameGen, "n");
         page.fullCardPage()
@@ -83,11 +60,10 @@ public class RCD01Test extends AbstractTest {
                 .closeCardBtn();
     }
 
-    @Test(description = "вызов с иточником Регистратура без МКАБ", retryAnalyzer = RetryAnalyzer.class)
+/*    @Test(description = "вызов с иточником Регистратура без МКАБ", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
     public void testCallRegistr() throws Exception {
-        Assert.assertTrue(false);
-        System.out.println(Thread.currentThread().getId());
+        System.out.println("тест Registr " + Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage()
                 .createNewCall("Profile1", nameGen, "n");
@@ -101,7 +77,7 @@ public class RCD01Test extends AbstractTest {
     @Test(description = "вызов с источником СМП и привязкой МКАБ", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
     public void testCallRegistrMkab() throws Exception {
-        System.out.println(Thread.currentThread().getId());
+        System.out.println("тест RegistrMkab " + Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage()
@@ -117,7 +93,7 @@ public class RCD01Test extends AbstractTest {
         System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile3(nameGen);
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile3");
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
@@ -127,14 +103,14 @@ public class RCD01Test extends AbstractTest {
         System.out.println(Thread.currentThread().getId());
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile6(nameGen);
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile6");
         page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
     @Test(description = "вызов ребенка с Портала", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
     public void testCallPortal() throws IOException {
-        System.out.println(Thread.currentThread().getId());
+        System.out.println("тест Portal " + Thread.currentThread().getId());
         SQLDemonstration.finalizePacientProfile("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard()
@@ -142,12 +118,21 @@ public class RCD01Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.dashboardPage()
                 .clearFilterDepart()
-                .openNewCallProgressFrame();
+                .openNewCallProgressFrame("Profile4");
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile4", nameGen);
-    }
+    }*/
 
     /*
+
+        @DataProvider(name = "ProfileRegistr")
+    public static Object[][] credentials() {
+        return new Object[][]{
+                {"Profile1", "n"},
+                {"Profile2", "y"},
+        };
+    }
+
     @Test(groups = "", dataProvider = "ProfileRegistr", description = "тестирую создание вызова через датаПровайдер")//из минусов не создается уникальный дескрипшн к тесту
     public void testCallRegistr_DataProvider(String profileDProvider, String searchField) throws Exception {
         open(curUrlCalldoctor);

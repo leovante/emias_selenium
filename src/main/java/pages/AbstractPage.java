@@ -10,5 +10,4 @@ abstract public class AbstractPage {
     public AbstractPage() {
         this.driver = getWebDriver();
     }
-
 }

@@ -168,12 +168,17 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public void openNewCallProgressFrame() {
+    public void openNewCallProgressFrame(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+
+
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
         Actions actions = new Actions(driver);
-        actions.moveToElement(matExpansionPanel).perform();
+        actions.moveToElement($(By.xpath("//*[contains(.,'" + proData.get("adressDashboard") + "')]/mat-expansion-panel/div"))).perform();
+//        actions.moveToElement(matExpansionPanel).perform();
         actions.moveToElement(smallMenu).perform();
         openCard.click();
     }

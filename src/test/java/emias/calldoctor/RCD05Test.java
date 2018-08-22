@@ -1,7 +1,6 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +11,8 @@ import pages.utilities.StringGenerator;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
+
+//import emias.testngRetryCount.RetryCountIfFailed;
 
 public class RCD05Test extends AbstractTest {
     String nameGen;
@@ -30,7 +31,7 @@ public class RCD05Test extends AbstractTest {
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
@@ -42,7 +43,7 @@ public class RCD05Test extends AbstractTest {
 
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+//    @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");

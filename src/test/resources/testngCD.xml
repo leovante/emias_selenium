@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Name suite - CD" verbose="10">
+<suite name="Name suite - CD" verbose="1" thread-count="2" parallel="tests">
     <!--<suite name="Name suite - CD" verbose="10" parallel="methods" thread-count="2">-->
     <listeners>
         <listener class-name="emias.retry.AnnotationTransformer"/>
     </listeners>
-    <test name="CallDoctor_Chrome">
+    <test name="CallDoctorChromeTest" group-by-instances="true">
         <parameter name="browser" value="chrome"/>
         <parameter name="platform" value="WINDOWS"/>
         <parameter name="login" value="temnikov"/>
@@ -17,7 +17,7 @@
         <!--<package name="emias.calldoctor"/>-->
         <!--</packages>-->
     </test>
-    <test name="CallDoctor_FireFox">
+    <test name="CallDoctorFireFoxTest" group-by-instances="true">
         <parameter name="browser" value="firefox"/>
         <parameter name="platform" value="WINDOWS"/>
         <parameter name="login" value="temnikov"/>
