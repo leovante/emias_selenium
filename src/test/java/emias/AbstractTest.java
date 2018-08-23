@@ -31,7 +31,7 @@ public abstract class AbstractTest {
     @BeforeGroups(groups = "CD", alwaysRun = true)
     public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
-        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
+        page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();
         switchTo().window(1);
         curUrlCalldoctor = driver.getCurrentUrl();

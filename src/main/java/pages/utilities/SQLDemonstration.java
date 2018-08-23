@@ -24,7 +24,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -34,7 +34,7 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Doctor Time Table clean is done.");
+                    System.out.println("Table DTT is clean.");
                     statement.close();
                 }
             }
@@ -74,7 +74,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
 //                        "update hlt_CallDoctor " +
@@ -93,11 +93,10 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Doctor - " + doctorName + " finalize is done.");
+                    System.out.println("Doctor: " + doctorName + " is finalize.");
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }

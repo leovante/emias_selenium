@@ -44,6 +44,6 @@ public class RCD00Test extends AbstractTest {
 
     @Step("Завершение вызовов до прошлой недели")
     public void finallizeOldCalls() {
-
+// TODO: 23.08.2018 доделать
     }
 }

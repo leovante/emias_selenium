@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Name suite - CD">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="platform" value="WINDOWS"/>
+    <parameter name="site" value="http://192.168.7.139/whc"/>
+    <parameter name="login" value="admin"/>
+    <parameter name="pass" value="11"/>
+    <listeners>
+        <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
+    </listeners>
+
+    <test verbose="1" name="cleanBeforeTest">
+        <groups>
+            <run>
+                <include name="mis"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="emias.calldoctor.RCD00Test"/>
+        </classes>
+    </test>
+
+    <test verbose="1" name="CallDoctor">
+        <groups>
+            <run>
+                <include name="CD"/>
+            </run>
+        </groups>
+        <!--<classes>-->
+        <!--<class name="emias.calldoctor.RCD02Test"/>-->
+        <!--</classes>-->
+        <packages>
+            <package name="emias.calldoctor"/>
+        </packages>
+    </test>
+</suite>

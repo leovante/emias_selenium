@@ -4,10 +4,7 @@ import org.openqa.selenium.support.PageFactory;
 import pages.callcenter.CallDoctorPage;
 import pages.callcenter.FindPatientPage;
 import pages.callcenter.LoginPageCC;
-import pages.calldoctor.CreateCallPage;
-import pages.calldoctor.DashboardPage;
-import pages.calldoctor.FullCardPage;
-import pages.calldoctor.SetDoctorPage;
+import pages.calldoctor.*;
 import pages.disp.ServicesPage;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
@@ -77,6 +74,11 @@ public class Pages extends AbstractPage {
     public DashboardPage dashboardPage() {
         DashboardPage dashboardPage = new DashboardPage();// = PageFactory.initElements(driver, DashboardPage.class);
         return dashboardPage;
+    }
+
+    public SetLpuPage setLpuPage() {
+        SetLpuPage setLpuPage = new SetLpuPage();// = PageFactory.initElements(driver, DashboardPage.class);
+        return setLpuPage;
     }
 
     public BeforeWork beforeWork() {

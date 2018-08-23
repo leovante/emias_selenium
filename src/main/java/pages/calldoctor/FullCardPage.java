@@ -25,6 +25,7 @@ public class FullCardPage extends AbstractPage {
     SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
     SelenideElement completeServiceBtn = $(By.id("toDone"));
     SelenideElement cancelBtn = $(By.id("cancel"));
+    SelenideElement toLpu = $(By.id("toLpu"));
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
     SelenideElement change = $(By.id("change"));
@@ -396,5 +397,10 @@ public class FullCardPage extends AbstractPage {
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//*[@class='mat-icon call-doctor-red-text material-icons']")).click();
         return this;
+    }
+
+    @Step("передать в другое ЛПУ через подробную карту вызова")
+    public void transferToDepartBtn() {
+        toLpu.click();
     }
 }

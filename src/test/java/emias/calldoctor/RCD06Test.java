@@ -1,10 +1,20 @@
 package emias.calldoctor;
 
+import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
+import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Issue;
+import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
+
+import java.io.IOException;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class RCD06Test extends AbstractTest {
     String nameGen;
@@ -21,27 +31,33 @@ public class RCD06Test extends AbstractTest {
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-//    @Test(groups = "CD", description = "завершить обслуживание вызова")
-//    @Issue("EMIAS-90")
-//    @RetryCountIfFailed(2)
-//    public void testCompleteCallRegistr() throws Exception {
-//        open(curUrlCalldoctor);
-//        page.createCallPage().createCallProfile1("Profile1", nameGen);
-//        page.fullCardPage().chooseDoctorBtn();
-//        page.setDoctorPage().chooseDoctor("Profile1");
-//        page.fullCardPage()
-//                .completeServiceBtn()
-//                .verifyDoneDocGroup(nameGen, "Profile1")
-//                .closeCardBtn();
-//        page.dashboardPage()
-//                .searchFilterFio(nameGen)
-//                .clearFilterDepart()
-//                .verifyDoneDocGroup(nameGen, "Profile1");
-//    }
+    @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testTransferCallLpu_Depart() throws IOException {
+        open(curUrlCalldoctor);
+        page.createCallPage()
+                .createNewCall("ProfileTransferLpu-Dep", nameGen, "n");
+        $(By.xpath("//*[contains(.,'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
+        page.fullCardPage().transferToDepartBtn();
+        page.setLpuPage().transfer("ProfileTransferLpu-Dep");
+        $(By.xpath("//*[contains(.,'Детское подразделение')]")).shouldBe(Condition.visible);
+    }
 
-    // TODO: 13.08.2018 передать вызов из юр. Лица в подразделение
+    @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testTransferCallDepart_Depart() {
+//        open(curUrlCalldoctor);
+//        page.createCallPage()
+//                .createNewCall("ProfileTransferLpu-Dep", nameGen, "n");
+//        $(By.xpath("//*[contains(.,'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
+//        page.fullCardPage().transferToDepartBtn();
+//        page.setLpuPage().transfer("ProfileTransferLpu-Dep");
+//        $(By.xpath("//*[contains(.,'Детское подразделение')]")).shouldBe(Condition.visible);
+    }
+
     // TODO: 13.08.2018 передать вызов из подразделения в др.подразделение
     // TODO: 13.08.2018 передать вызов из подразделения в юр. Лицо
     // TODO: 13.08.2018 передать вызов из первого ЛПУ в др. ЛПУ
-
 }
