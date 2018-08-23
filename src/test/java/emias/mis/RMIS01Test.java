@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
 
-public class RMISTest extends AbstractTest {
+public class RMIS01Test extends AbstractTest {
 
     @BeforeTest(groups = {"mis", "test"})
     public void beforeTest() {
@@ -127,3 +127,4 @@ public class RMISTest extends AbstractTest {
         page.transferRecords().verifyTransferShedule();
     }
 }
+// TODO: 8/24/2018 сделать тест переходов на различные сервисы
