@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class SetDoctorPage extends AbstractPage {
     SelenideElement appenOnThisDay = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
-    SelenideElement loadCurrently = $(By.xpath("//span[contains(.,'ЗАГРУЗКА СЕГОДНЯ')]"));
 
     public SetDoctorPage() {
 
@@ -25,8 +24,8 @@ public class SetDoctorPage extends AbstractPage {
     public void chooseDoctor(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-//        $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
         $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         appenOnThisDay.click();
+        System.out.println("Врач выбран!");
     }
 }

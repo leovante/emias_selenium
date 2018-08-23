@@ -12,10 +12,10 @@ import java.sql.Statement;
 import java.util.Map;
 
 public class SQLDemonstration extends AbstractPage {
-    static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
-    static String databaseName = "hlt_demonstration";
-    static String userName = "sa";
-    static String password = "sagfhjkzYES!";
+    private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
+    private static String databaseName = "hlt_demonstration";
+    private static String userName = "sa";
+    private static String password = "sagfhjkzYES!";
 
     @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
@@ -24,7 +24,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -34,7 +34,7 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Doctor Time Table clean is done.");
+                    System.out.println("Table DTT is clean.");
                     statement.close();
                 }
             }
@@ -74,7 +74,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
 //                        "update hlt_CallDoctor " +
@@ -93,11 +93,10 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Doctor - " + doctorName + " finalize is done.");
+                    System.out.println("Doctor: " + doctorName + " is finalize.");
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }
@@ -130,7 +129,7 @@ public class SQLDemonstration extends AbstractPage {
     @Step("завершаю вызовы пациента по полису")
     public static void finalizePacientNumberPol(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -154,4 +153,6 @@ public class SQLDemonstration extends AbstractPage {
             e.printStackTrace();
         }
     }
+
+
 }

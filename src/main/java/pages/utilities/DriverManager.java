@@ -52,7 +52,7 @@ public class DriverManager {
                     .usingAnyFreePort()
                     .build();
             this.chromeOptions = new ChromeOptions();
-//            this.chromeOptions.setHeadless(true);
+            this.chromeOptions.setHeadless(true);
             this.chromeOptions.addArguments("window-size=1900,1020");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
@@ -65,4 +65,18 @@ public class DriverManager {
         System.out.println("DriverManager - " + getWebDriver());
         return driver;
     }
+
+    /*public class WebDriverFactory {
+    public static WebDriver createWebDriver() {
+        String webdriver = System.getProperty("browser", "firefox");
+        switch(webdriver) {
+            case "firefox":
+                return new FirefoxDriver();
+            case "chrome":
+                return new ChromeDriver();
+            default:
+                throw new RuntimeException("Unsupported webdriver: " + webdriver);
+        }
+    }
+}*/
 }
