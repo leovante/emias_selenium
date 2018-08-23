@@ -127,4 +127,3 @@ public class RMIS01Test extends AbstractTest {
         page.transferRecords().verifyTransferShedule();
     }
 }
-// TODO: 8/24/2018 сделать тест переходов на различные сервисы
