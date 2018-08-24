@@ -1,25 +1,9 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import pages.utilities.SQLDemonstration;
-import pages.utilities.StringGenerator;
 
 public class RCD06Test extends AbstractTest {
     String nameGen;
-
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
-        StringGenerator nameGen = new StringGenerator();
-        String name = String.valueOf(nameGen.generator());
-        this.nameGen = name;
-    }
-
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod() {
-        SQLDemonstration.finalizePacientName(nameGen);
-    }
 
 //    @Test(groups = "CD", description = "завершить обслуживание вызова")
 //    @Issue("EMIAS-90")

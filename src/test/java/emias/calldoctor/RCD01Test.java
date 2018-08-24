@@ -4,48 +4,13 @@ import emias.AbstractTest;
 import emias.retry.RetryAnalyzer;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
-import org.testng.annotations.*;
-import pages.Pages;
-import pages.utilities.DriverManager;
-import pages.utilities.SQLDemonstration;
-import pages.utilities.StringGenerator;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
 
 public class RCD01Test extends AbstractTest {
-    private String nameGen;
-
-    @Parameters({"browser", "platform", "login", "pass"})
-    @BeforeMethod()
-    public void beforeMethod(@Optional String browser, @Optional String platform, @Optional String login, @Optional String pass) {
-        System.out.println("Бефор метод " + Thread.currentThread().getId());
-        System.out.println("Browser: " + browser);
-        System.out.println("Platform: " + platform);
-        driver = new DriverManager(browser).createDriver();
-        page = new Pages();
-
-        String site = "http://emias.mosreg.ru/demonstration/";
-        System.out.println("Site: " + site);
-
-        page.loginPage().login(site, login, pass);
-        page.homePage().callDoctorBtn();
-        switchTo().window(1);
-        curUrlCalldoctor = driver.getCurrentUrl();
-
-        StringGenerator nameGen = new StringGenerator();
-        this.nameGen = String.valueOf(nameGen.generator());
-    }
-
-    @AfterMethod()
-    public void afterMethod() {
-        System.out.println("Афтер метод " + Thread.currentThread().getId());
-        driver.manage().deleteAllCookies();
-        close();
-        SQLDemonstration.finalizePacientName(nameGen);
-    }
-
 
     @Test(description = "пустой вызов", retryAnalyzer = RetryAnalyzer.class)
     @Issue("EMIAS-90")
