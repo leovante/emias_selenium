@@ -44,14 +44,14 @@ public abstract class AbstractTest {
     @BeforeGroups(groups = "mis", alwaysRun = true)
     public void beforeGroupsMIS(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
-        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
+        page.loginPage().login(site, login, pass);
         curUrlCalldoctor = driver.getCurrentUrl();
     }
 
-    @Parameters(value = {"login", "pass"})
+    @Parameters(value = {"site", "login", "pass"})
     @BeforeGroups(groups = "test", alwaysRun = true)
-    public void beforeGroupsTest(@Optional String login, @Optional String pass) {
-        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
+    public void beforeGroupsTest(@Optional String site, @Optional String login, @Optional String pass) {
+        page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();
         switchTo().window(1);
         curUrlCalldoctor = driver.getCurrentUrl();

@@ -57,7 +57,7 @@ public class RCD01Test extends AbstractTest {
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException {
+    public void testCallRegistrEmpy() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile0", nameGen, "n");
         page.fullCardPage()

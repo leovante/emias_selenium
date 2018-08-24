@@ -235,7 +235,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         Selenide.refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         baseElements();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);

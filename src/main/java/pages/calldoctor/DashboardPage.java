@@ -50,18 +50,18 @@ public class DashboardPage extends AbstractPage {
     @Step("поиск в фильтре ФИО")
     public DashboardPage searchFilterFio_Fam(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         fioFilter.click();
-        fioFilter.setValue(proData.get("fam"));
+        fioFilter.setValue((String) proData.get("fam"));
         return this;
     }
 
     @Step("поиск в фильтре врача")
     public DashboardPage searchFilterDoctor(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         docFilter.click();
-        docFilter.setValue(proData.get("doctorFam"));
+        docFilter.setValue((String) proData.get("doctorFam"));
         $(By.xpath("//ul/li/div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
 //        docFilter.pressEnter();
         return this;

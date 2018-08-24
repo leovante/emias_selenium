@@ -3,6 +3,7 @@
 <suite name="Name suite - test">
     <parameter name="browser" value="chrome"/>
     <parameter name="platform" value="WINDOWS"/>
+    <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
     <listeners>
