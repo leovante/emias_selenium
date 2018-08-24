@@ -28,7 +28,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testChildCall() throws IOException {
+    public void testChildCall() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile7", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -40,7 +40,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testChildCall2() throws IOException {
+    public void testChildCall2() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile8", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -52,7 +52,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testChildCall3() throws IOException {
+    public void testChildCall3() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile9", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -64,7 +64,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testChildCall4() throws IOException {
+    public void testChildCall4() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile10", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -76,7 +76,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testChildCall5() throws IOException {
+    public void testChildCall5() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile11", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -88,7 +88,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testChildCall6() throws IOException {
+    public void testChildCall6() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile12", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -100,7 +100,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testChildCall7() throws IOException {
+    public void testChildCall7() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile13", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -138,7 +138,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testMkabAndTapIconIsGrey() throws IOException, InterruptedException {
+    public void testMkab_TapIconGrey() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -154,7 +154,7 @@ public class FCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testMkabIconIsRedTapIconIsGrey() throws IOException, InterruptedException {
+    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage().chooseDoctorBtn();

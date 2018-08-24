@@ -34,14 +34,14 @@ public class RCD06Test extends AbstractTest {
     @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testTransferCallLpu_Depart() throws IOException {
+    public void testTransferCallLpu_Depart() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage()
                 .createNewCall("ProfileTransferLpu-Dep", nameGen, "n");
         $(By.xpath("//*[contains(.,'Стенд ЕМИАС МО')]")).shouldBe(Condition.visible);
         page.fullCardPage().transferToDepartBtn();
         page.setLpuPage().transfer("ProfileTransferLpu-Dep");
-        $(By.xpath("//*[contains(.,'Детское подразделение')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(.,'Детская поликлиника')]")).shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")

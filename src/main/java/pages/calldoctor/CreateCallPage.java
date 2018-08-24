@@ -77,7 +77,7 @@ public class CreateCallPage extends AbstractPage {
     public CreateCallPage() {
     }
 
-    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException {
+    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException, InterruptedException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         if (searchPolis.equals("n")) {
@@ -106,6 +106,11 @@ public class CreateCallPage extends AbstractPage {
                     .saveBtn()
                     .adressAlarma(proData);
         }
+        String old = driver.getCurrentUrl();
+        do {
+            Thread.sleep(100);
+        }
+        while (old.equals(driver.getCurrentUrl()));
         System.out.println("Вызов создан! " + driver.getCurrentUrl());
     }
 

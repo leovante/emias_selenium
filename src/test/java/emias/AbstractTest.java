@@ -1,5 +1,6 @@
 package emias;
 
+import emias.testngRetryCount.RetryCountIfFailed;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
@@ -28,6 +29,7 @@ public abstract class AbstractTest {
     }
 
     @Parameters(value = {"site", "login", "pass"})
+    @RetryCountIfFailed(2)
     @BeforeGroups(groups = "CD", alwaysRun = true)
     public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
