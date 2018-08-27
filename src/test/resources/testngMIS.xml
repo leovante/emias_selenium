@@ -17,7 +17,7 @@
         <!--</run>-->
         <!--</groups>-->
         <classes>
-            <!--<class name="emias.mis.BeforeWorkTest"/>-->
+            <!--<class name="emias.mis.RMIS00Test->
             <class name="emias.callcenter.RTD01Test"/>
         </classes>
     </test>

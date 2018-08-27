@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
 import pages.utilities.SQLDemonstration;
 
-public class BeforeWorkTest extends AbstractTest {
+public class RMIS00Test extends AbstractTest {
 
     @Test(groups = "mis", description = "Завершаю все вызовы и создаю новое расписание у врачей на сегодня")
     @RetryCountIfFailed(2)
