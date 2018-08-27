@@ -24,6 +24,13 @@ public class LoginPage extends AbstractPage {
         $(By.id("loginBtn")).click();
     }
 
+    public void login(String login, String pass) {
+        setCookieOfDepartment();
+        $(By.id("Login")).setValue(login);
+        $(By.id("Password")).setValue(pass);
+        $(By.id("loginBtn")).click();
+    }
+
     public void enterLoginText(String text) {
         loginInputField.clear();
         loginInputField.sendKeys(text);

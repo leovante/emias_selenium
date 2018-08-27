@@ -294,7 +294,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("years") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
         System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());

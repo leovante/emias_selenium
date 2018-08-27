@@ -26,7 +26,7 @@ public class RCD03Test extends AbstractTest {
         SQLDemonstration.finalizePacientName(nameGen);
     }
 
-    @Test(groups = "CD", description = "назначить врача на сегодня")
+    @Test(groups = "CD", description = "назначить вызову из регистратуры врача на сегодня")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
@@ -43,8 +43,49 @@ public class RCD03Test extends AbstractTest {
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }
 
+    @Test(groups = "CD", description = "назначить вызову из СМП врача на сегодня")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testAppendDoctorToCall_SMP() throws Exception {
+        open(curUrlCalldoctor);
+        page.createCallPage().createNewCall("Profile2", nameGen, "y");
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile2");
+        page.fullCardPage()
+                .verifyCallActivityGroup(nameGen, "Profile2")
+                .closeCardBtn();
+        page.dashboardPage()
+                .searchFilterFio(nameGen)
+                .clearFilterDepart()
+                .verifyActiveDocGroup(nameGen, "Profile2");
+    }
+
+    @Test(groups = "CD", description = "назначить вызову с Портала врача на сегодня")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testAppendDoctorToCall_Portal() throws Exception {
+        open("https://uslugi.mosreg.ru/zdrav/");
+        driver.manage().deleteAllCookies();
+        open("https://uslugi.mosreg.ru/zdrav/");
+        SQLDemonstration.finalizePacientNumberPol("Profile4");
+        page.portalDashboard()
+                .createCall("Profile4", nameGen);
+        open(curUrlCalldoctor);
+        page.dashboardPage()
+                .clearFilterDepart()
+                .openNewCallProgressFrame();
+        page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctor("Profile4");
+        page.fullCardPage()
+                .verifyCallActivityGroup(nameGen, "Profile4")
+                .closeCardBtn();
+        page.dashboardPage()
+                .searchFilterFio(nameGen)
+                .clearFilterDepart()
+                .verifyActiveDocGroup(nameGen, "Profile4");
+    }
+
+
     // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра
-    // TODO: 13.08.2018 тест назначить врача вызову из СМП
     // TODO: 13.08.2018 тест назначить врача вызову из КЦ
-    // TODO: 13.08.2018 тест назначить врача вызову из Портала
 }

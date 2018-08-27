@@ -12,8 +12,7 @@ import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class FCD01Test extends AbstractTest {
     String nameGen;
@@ -167,5 +166,16 @@ public class FCD01Test extends AbstractTest {
                 .closeCardBtn();
     }
 
-    // TODO: 18.08.2018 сделать тест проверки учетки врача при перезаходе под другим логином и паролем
+    @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testRelogingAnotherOperator() {
+        open(curUrlCalldoctor);
+        switchTo().window(0);
+        page.homePage().exitBtn();
+        page.loginPage().login("Admin", "RChS2014");
+        page.homePage().callDoctorBtn();
+        switchTo().window(1);
+        $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
+    }
 }
