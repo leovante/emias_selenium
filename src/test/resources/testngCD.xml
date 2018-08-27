@@ -21,6 +21,7 @@
     <test name="CallDoctorFireFoxTest" group-by-instances="true">
         <parameter name="browser" value="firefox"/>
         <parameter name="platform" value="WINDOWS"/>
+        <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
         <parameter name="login" value="temnikov"/>
         <parameter name="pass" value="1214"/>
         <groups>

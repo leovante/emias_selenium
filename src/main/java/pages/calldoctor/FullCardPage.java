@@ -95,7 +95,7 @@ public class FullCardPage extends AbstractPage {
 
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+//        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
         return this;
     }
 
