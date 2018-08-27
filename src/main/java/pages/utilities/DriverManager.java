@@ -26,7 +26,7 @@ public class DriverManager {
         this.browser = browser;
     }
 
-    public WebDriver createDriver() {
+    public WebDriver createDriver(Boolean headless) {
         if (browser.equals("firefox")) {
 //            this.geckoDriverService = new GeckoDriverService.Builder()
 //                    .usingDriverExecutable(new File("src/main/resources/geckodriver.exe"))
@@ -52,7 +52,7 @@ public class DriverManager {
                     .usingAnyFreePort()
                     .build();
             this.chromeOptions = new ChromeOptions();
-            this.chromeOptions.setHeadless(true);
+            this.chromeOptions.setHeadless(headless);
             this.chromeOptions.addArguments("window-size=1900,1020");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);

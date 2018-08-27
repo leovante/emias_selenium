@@ -175,7 +175,7 @@ public class FCD01Test extends AbstractTest {
         page.homePage().exitBtn();
         page.loginPage().login("Admin", "RChS2014");
         page.homePage().callDoctorBtn();
-        switchTo().window(1);
+        switchTo().window(2);
         $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
     }
 }

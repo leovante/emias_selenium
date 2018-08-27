@@ -11,9 +11,7 @@ import pages.portal.PortalDashboard;
 
 public class Pages extends AbstractPage {
 
-    public Pages(/*WebDriver driver*/ ) {
-//        super();
-        //super(/*driver*/);
+    public Pages() {
     }
 
     public HomePage homePage() {

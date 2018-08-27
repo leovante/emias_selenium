@@ -1,12 +1,15 @@
 package emias;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
 import pages.utilities.DriverManager;
 
+import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public abstract class AbstractTest {
@@ -14,18 +17,20 @@ public abstract class AbstractTest {
     public static Pages page;
     public static String curUrlCalldoctor = null;
 
-    @Parameters(value = {"browser", "platform"})
+    @Parameters(value = {"browser", "platform", "headless"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String browser, @Optional String platform, ITestContext context) {
+    public void beforeSuite(@Optional String browser, @Optional String platform, @Optional Boolean headless, ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-        driver = new DriverManager(browser).createDriver();
+        driver = new DriverManager(browser).createDriver(headless);
         page = new Pages();
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
     }
 
     @AfterSuite(alwaysRun = true)
     public void afterSutie() {
 //        driver.quit();
+        close();
     }
 
     @Parameters(value = {"site", "login", "pass"})

@@ -10,7 +10,5 @@ public class Main {
 //        suites.add("src/test/resources/testngTest.xml");
 //        testng.setTestSuites(suites);
 //        testng.run();
-
-
     }
 }

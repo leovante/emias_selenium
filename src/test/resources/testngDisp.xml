@@ -6,6 +6,7 @@
     <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
+    <parameter name="headless" value="false"/>
     <!--<listeners>-->
     <!--<listener class-name="emias.testngRetryCount.AnnotationTransformer"/>-->
     <!--</listeners>-->
