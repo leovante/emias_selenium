@@ -72,7 +72,7 @@ public class RCD09Test extends AbstractTest {
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
-                .clearFilterDepart()
+                .clearAllFilters()
                 .searchFilterDoctor("Profile1")
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }

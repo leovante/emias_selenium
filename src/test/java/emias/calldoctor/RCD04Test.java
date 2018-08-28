@@ -40,7 +40,7 @@ public class RCD04Test extends AbstractTest {
                 .verifyCallActivityGroup(nameGen, "Profile1", "Profile2")
                 .closeCardBtn();
         page.dashboardPage()
-                .clearFilterDepart()
+                .clearAllFilters()
                 .searchFilterFio(nameGen)
                 .verifyActiveDocGroup(nameGen, "Profile2", "Profile1");
     }

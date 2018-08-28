@@ -36,10 +36,10 @@ public class RCD06Test extends AbstractTest {
         page.createCallPage()
                 .createNewCall("ProfileTransferLpu-Dep", nameGen, "n");
         page.fullCardPage()
-                .verifyDepart("firstDepart")
+                .verifyDepart("ProfileTransferLpu-Dep", "firstDepart")
                 .transferToDepartBtn();
         page.setLpuPage().transfer("ProfileTransferLpu-Dep", "detskayaPol");
-        page.fullCardPage().verifyDepart("detskayaPol");
+        page.fullCardPage().verifyDepart("ProfileTransferLpu-Dep", "detskayaPol");
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
@@ -50,32 +50,32 @@ public class RCD06Test extends AbstractTest {
         page.createCallPage()
                 .createNewCall("ProfileTransferDep-Dep", nameGen, "n");
         page.fullCardPage()
-                .verifyDepart("firstDepart")
+                .verifyDepart("ProfileTransferDep-Dep", "firstDepart")
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferLpu-Dep", "detskayaPol");
+        page.setLpuPage().transfer("ProfileTransferDep-Dep", "detskayaPol");
         page.fullCardPage()
-                .verifyDepart("detskayaPol")
+                .verifyDepart("ProfileTransferDep-Dep", "detskayaPol")
                 .transferToDepartBtn();
         page.setLpuPage().transfer("ProfileTransferDep-Dep", "vzroslayaPol");
-        page.fullCardPage().verifyDepart("vzroslayaPol");
+        page.fullCardPage().verifyDepart("ProfileTransferDep-Dep", "vzroslayaPol");
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testTransferCallPodr_Lpu() throws IOException, InterruptedException {
+    public void testTransferCallDepart_Lpu() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage()
-                .createNewCall("ProfileTransferDep-Dep", nameGen, "n");
+                .createNewCall("ProfileTransferDep-Lpu", nameGen, "n");
         page.fullCardPage()
-                .verifyDepart("firstDepart")
+                .verifyDepart("ProfileTransferDep-Lpu", "firstDepart")
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferLpu-Dep", "detskayaPol");
+        page.setLpuPage().transfer("ProfileTransferDep-Lpu", "detskayaPol");
         page.fullCardPage()
-                .verifyDepart("detskayaPol")
+                .verifyDepart("ProfileTransferDep-Lpu", "detskayaPol")
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferDep-Dep", "firstDepart");
-        page.fullCardPage().verifyDepart("firstDepart");
+        page.setLpuPage().transfer("ProfileTransferDep-Lpu", "firstDepart");
+        page.fullCardPage().verifyDepart("ProfileTransferDep-Lpu", "firstDepart");
     }
 
     @Test(groups = "CD", description = "передача вызова из ЛПУ в ЛПУ")

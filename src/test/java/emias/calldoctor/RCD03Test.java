@@ -38,8 +38,8 @@ public class RCD03Test extends AbstractTest {
                 .verifyCallActivityGroup(nameGen, "Profile1")
                 .closeCardBtn();
         page.dashboardPage()
+                .clearAllFilters()
                 .searchFilterFio(nameGen)
-                .clearFilterDepart()
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }
 
@@ -55,24 +55,24 @@ public class RCD03Test extends AbstractTest {
                 .verifyCallActivityGroup(nameGen, "Profile2")
                 .closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen)
-                .clearFilterDepart()
-                .verifyActiveDocGroup(nameGen, "Profile2");
+                .clearAllFilters()
+                .searchFilterDoctor("Profile2")
+                .verifyActiveDocGroup("Profile2");
     }
 
     @Test(groups = "CD", description = "назначить вызову с Портала врача на сегодня")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {
+        SQLDemonstration.finalizePacientNumberPol("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
-        SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard()
                 .createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
         page.dashboardPage()
-                .clearFilterDepart()
+                .clearAllFilters()
                 .openNewCallProgressFrame();
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile4");
@@ -80,8 +80,8 @@ public class RCD03Test extends AbstractTest {
                 .verifyCallActivityGroup(nameGen, "Profile4")
                 .closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen)
-                .clearFilterDepart()
+                .clearAllFilters()
+                .searchFilterDoctor("Profile4")
                 .verifyActiveDocGroup(nameGen, "Profile4");
     }
 

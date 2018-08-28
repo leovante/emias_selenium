@@ -19,6 +19,7 @@ public class PortalDashboard extends AbstractPage {
     SelenideElement nPolField = $(By.xpath("//input[@name='nPol']"));
     SelenideElement birthdayField = $(By.xpath("//input[@name='birthday']"));
     SelenideElement uspeshnoVizvaliVracha = $(By.xpath("//*[contains(.,'Вы успешно вызвали врача на адрес:')]"));
+    SelenideElement closeWindow = $(By.id("create-home-visit-popup-success")).$(By.xpath(".//*[contains(.,'Закрыть окно')]"));
     SelenideElement entrance = $(By.id("call_entrance"));
     SelenideElement doorphone = $(By.id("call_doorphone"));
     SelenideElement phone = $(By.id("call_phone"));
@@ -53,6 +54,8 @@ public class PortalDashboard extends AbstractPage {
         description.setValue(proData.get("zhaloba") + ", " + nameGen);
 
         podtvVizovVracha.click();
-        uspeshnoVizvaliVracha.shouldBe(Condition.visible);
+
+        closeWindow.shouldBe(Condition.visible);
+        closeWindow.click();
     }
 }

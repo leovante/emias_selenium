@@ -57,12 +57,15 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPage searchFilterDoctor(String profile) throws IOException {
+    public DashboardPage searchFilterDoctor(String profile) throws IOException, InterruptedException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         docFilter.click();
         docFilter.setValue((String) proData.get("doctorFam"));
-        $(By.xpath("//ul/li/div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
+        $(By.xpath("//ul/li/div[contains(text(),'" + proData.get("doctorFam") + "')]")).shouldBe(Condition.visible);
+        Thread.sleep(1000);
+        $(By.xpath("//ul/li[contains(@data-value,'" + proData.get("doctorFam") + "')]")).click();
+//        new PressEnter();
 //        docFilter.pressEnter();
         return this;
     }
@@ -75,7 +78,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("очистить фильтр подразделение")
-    public DashboardPage clearFilterDepart() {
+    public DashboardPage clearAllFilters() {
         ElementsCollection closeList = $$(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (SelenideElement closeBtn : closeList) {
             closeBtn.click();
@@ -142,6 +145,20 @@ public class DashboardPage extends AbstractPage {
         activeCallProgressFrame.click();
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
+        System.out.println("Краткая карта вызова проверена!");
+    }
+
+    @Step("проверяю на дашборде запись у врача в группе активные")
+    public void verifyActiveDocGroup(String profile) throws InterruptedException, IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        Thread.sleep(4000);
+        $(By.xpath("//span[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
+        activeCallProgressFrame.$(By.id("order")).click();
+        activeCallProgressFrame.click();
+        $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + proData.get("name") + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         System.out.println("Краткая карта вызова проверена!");
     }

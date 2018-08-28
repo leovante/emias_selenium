@@ -96,7 +96,7 @@ public class FullCardPage extends AbstractPage {
 
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -126,7 +126,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -158,7 +158,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -190,7 +190,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта проверена!");
         return this;
     }
 
@@ -226,7 +226,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData2.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -262,7 +262,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("years") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -297,7 +297,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("years") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -405,8 +405,10 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("Проверка текущего подразделения у карты вызова")
-    public FullCardPage verifyDepart(String currDepart) {
-        $(By.xpath("//*[contains(.,'" + currDepart + "')]")).shouldBe(Condition.visible);
+    public FullCardPage verifyDepart(String profile, String currDepart) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'" + proData.get(currDepart) + "')]")).shouldBe(Condition.visible);
         return this;
     }
 }

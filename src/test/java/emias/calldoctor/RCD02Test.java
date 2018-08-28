@@ -51,7 +51,7 @@ public class RCD02Test extends AbstractTest {
                 .verifyCallNewCallGroup("Profile2", nameGen)
                 .closeCardBtn();
         page.dashboardPage()
-                .clearFilterDepart()
+                .clearAllFilters()
 //                .searchFilterFio(nameGen)
                 .verifyNewCallGroup("Profile2");
     }

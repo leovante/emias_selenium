@@ -116,7 +116,7 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallPortal() throws IOException {
+    public void testCallPortal() throws IOException, InterruptedException {
         open("https://uslugi.mosreg.ru/zdrav/");
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
@@ -125,7 +125,7 @@ public class RCD01Test extends AbstractTest {
                 .createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
         page.dashboardPage()
-                .clearFilterDepart()
+                .clearAllFilters()
                 .openNewCallProgressFrame();
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile4", nameGen);
