@@ -403,4 +403,10 @@ public class FullCardPage extends AbstractPage {
     public void transferToDepartBtn() {
         toLpu.click();
     }
+
+    @Step("Проверка текущего подразделения у карты вызова")
+    public FullCardPage verifyDepart(String currDepart) {
+        $(By.xpath("//*[contains(.,'" + currDepart + "')]")).shouldBe(Condition.visible);
+        return this;
+    }
 }

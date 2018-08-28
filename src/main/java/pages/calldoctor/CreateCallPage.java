@@ -112,6 +112,7 @@ public class CreateCallPage extends AbstractPage {
         }
         while (old.equals(driver.getCurrentUrl()));
         System.out.println("Вызов создан! " + driver.getCurrentUrl());
+
     }
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")

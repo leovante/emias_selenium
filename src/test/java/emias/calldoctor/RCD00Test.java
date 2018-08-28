@@ -29,6 +29,7 @@ public class RCD00Test extends AbstractTest {
         doctors.add("Моков Павел Александрович");
         doctors.add("Серова Нина Кузьминична");
         doctors.add("Немцова Татьяна Андреевна");
+        doctors.add("Юдина Татьяна Борисовна");//взрослая поликлиника
         for (String doctor_num : doctors) {
             String doctor_fam = ManageShedule.getSecondName(doctor_num);
             SQLDemonstration.finalizeCallLpuDoctor(doctor_fam);
