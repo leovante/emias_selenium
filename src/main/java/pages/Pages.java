@@ -9,7 +9,6 @@ import pages.calldoctor.DashboardPage;
 import pages.calldoctor.FullCardPage;
 import pages.calldoctor.SetDoctorPage;
 import pages.disp.ServicesPage;
-import pages.mis.*;
 import pages.portal.PortalDashboard;
 
 public class Pages extends AbstractPage {
@@ -29,35 +28,7 @@ public class Pages extends AbstractPage {
         return loginPage;
     }
 
-    public NapravlenieNaIssledovanie napravlenieNaIssledovanie() {
-        NapravlenieNaIssledovanie napravlenieNaIssledovanie = new NapravlenieNaIssledovanie();// = PageFactory.initElements(driver, LoginPage.class);
-        return napravlenieNaIssledovanie;
-    }
 
-    public ManageShedule manageShedule() {
-        ManageShedule manageShedule = new ManageShedule(); //PageFactory.initElements(driver, ManageShedule.class);
-        return manageShedule;
-    }
-
-    public CreateMedicalCard medicalCard() {
-        CreateMedicalCard medicalCard = new CreateMedicalCard();//PageFactory.initElements(driver, CreateMedicalCard.class);
-        return medicalCard;
-    }
-
-    public AdmissionSchedule admissionSchedule() {
-        AdmissionSchedule admissionSchedule = new AdmissionSchedule(); //PageFactory.initElements(driver, AdmissionSchedule.class);
-        return admissionSchedule;
-    }
-
-    public TransferRecords transferRecords() {
-        TransferRecords transferRecords = new TransferRecords(); //PageFactory.initElements(driver, TransferRecords.class);
-        return transferRecords;
-    }
-
-    public DoctorMethods doctorMethods() {
-        DoctorMethods doctorMethods = new DoctorMethods(); //PageFactory.initElements(driver, DoctorMethods.class);
-        return doctorMethods;
-    }
 
     public CreateCallPage createCallPage() {
         CreateCallPage createCallPage = new CreateCallPage(); //PageFactory.initElements(driver, CreateCallPage.class);
@@ -79,10 +50,6 @@ public class Pages extends AbstractPage {
         return dashboardPage;
     }
 
-    public BeforeWork beforeWork() {
-        BeforeWork beforeWork = new BeforeWork(); //PageFactory.initElements(driver, BeforeWork.class);
-        return beforeWork;
-    }
 
     /**
      * CALL CENTER

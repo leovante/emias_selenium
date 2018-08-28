@@ -7,3 +7,10 @@ Risk Market account:
 
 login: riskmarket.testoviy2016@yandex.ru
 password: l0dcfJMB
+
+
+cmd /C start/MIN java -jar selenium-server-standalone-3.14.0.jar -role hub -port 4445 -timeout 300 -browserTimeout 360
+cmd /C start/MIN java -jar selenium-server-standalone-3.14.0.jar -role node -port 5599 -hub http://localhost:4445/grid/register -nodeConfig NodeConfig.json -Dwebdriver.chrome.driver=chromedriver.exe
+
+java -jar selenium-server-standalone-3.14.0.jar -role hub
+java -jar selenium-server-standalone-3.14.0.jar -role node -port 5599 -hub http://localhost:4444/grid/register -Dwebdriver.chrome.driver=chromedriver.exe

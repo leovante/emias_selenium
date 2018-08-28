@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Name suite - CD" verbose="1" thread-count="2" parallel="classes">
+<suite name="Name suite - CD" verbose="1" thread-count="2" parallel="tests">
     <!--<suite name="Name suite - CD" verbose="10" parallel="methods" thread-count="2">-->
     <listeners>
         <listener class-name="emias.retry.AnnotationTransformer"/>
     </listeners>
-    <test name="CallDoctorChromeTest" group-by-instances="true">
+    <test name="CallDoctorChromeTest" parallel="true">
         <parameter name="browser" value="chrome"/>
         <parameter name="platform" value="WINDOWS"/>
         <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
         <parameter name="login" value="temnikov"/>
         <parameter name="pass" value="1214"/>
-        <!--<classes>-->
-        <!--<class name="emias.calldoctor.RCD01Test"/>-->
-        <!--</classes>-->
-        <packages>
-            <package name="emias.calldoctor"/>
-        </packages>
+        <classes>
+            <class name="emias.calldoctor.RCD01Test"/>
+            <class name="emias.calldoctor.RCD02Test"/>
+        </classes>
+        <!--<packages>-->
+        <!--<package name="emias.calldoctor"/>-->
+        <!--</packages>-->
     </test>
-    <test name="CallDoctorFireFoxTest" group-by-instances="true">
+    <test name="CallDoctorFireFoxTest" parallel="true">
         <parameter name="browser" value="firefox"/>
         <parameter name="platform" value="WINDOWS"/>
         <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
@@ -29,12 +30,13 @@
                 <include name="CD"/>
             </run>
         </groups>
-        <!--<classes>-->
-        <!--<class name="emias.calldoctor.RCD01Test"/>-->
-        <!--</classes>-->
-        <packages>
-            <package name="emias.calldoctor"/>
-        </packages>
+        <classes>
+            <class name="emias.calldoctor.RCD01Test"/>
+            <class name="emias.calldoctor.RCD02Test"/>
+        </classes>
+        <!--<packages>-->
+        <!--<package name="emias.calldoctor"/>-->
+        <!--</packages>-->
     </test>
 </suite>
 
