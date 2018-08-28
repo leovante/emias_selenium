@@ -60,10 +60,28 @@ public class RCD06Test extends AbstractTest {
         page.fullCardPage().verifyDepart("vzroslayaPol");
     }
 
-    @Test(groups = "CD", description = "передача вызова в другоей ЛПУ")
+    @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testTransferCallLPU_LPU() {
+    public void testTransferCallPodr_Lpu() throws IOException, InterruptedException {
+        open(curUrlCalldoctor);
+        page.createCallPage()
+                .createNewCall("ProfileTransferDep-Dep", nameGen, "n");
+        page.fullCardPage()
+                .verifyDepart("firstDepart")
+                .transferToDepartBtn();
+        page.setLpuPage().transfer("ProfileTransferLpu-Dep", "detskayaPol");
+        page.fullCardPage()
+                .verifyDepart("detskayaPol")
+                .transferToDepartBtn();
+        page.setLpuPage().transfer("ProfileTransferDep-Dep", "firstDepart");
+        page.fullCardPage().verifyDepart("firstDepart");
+    }
+
+    @Test(groups = "CD", description = "передача вызова из ЛПУ в ЛПУ")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testTransferCallLpu_Lpu() {
 //        open(curUrlCalldoctor);
 //        page.createCallPage()
 //                .createNewCall("ProfileTransferDep-Dep", nameGen, "n");
@@ -74,10 +92,9 @@ public class RCD06Test extends AbstractTest {
 //        page.fullCardPage()
 //                .verifyDepart("detskayaPol")
 //                .transferToDepartBtn();
-//        page.setLpuPage().transfer("ProfileTransferDep-Dep", "vzroslayaPol");
-//        page.fullCardPage().verifyDepart("vzroslayaPol");
+//        page.setLpuPage().transfer("ProfileTransferDep-Dep", "firstDepart");
+//        page.fullCardPage().verifyDepart("firstDepart");
     }
 
-    // TODO: 13.08.2018 передать вызов из подразделения в юр. Лицо
     // TODO: 13.08.2018 передать вызов из первого ЛПУ в др. ЛПУ
 }
