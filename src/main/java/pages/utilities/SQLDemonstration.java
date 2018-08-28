@@ -67,6 +67,32 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
+    @Step("завершаю все существующие вызовы")
+    public static void finalizeAllTestCalls() {
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.println("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_calldoctor " +
+                                "set rf_CallDoctorStatusID = 3 " +
+                                "where rf_CallDoctorStatusID != 3 " +
+                                "and Complaint like '%тест%'";
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Finalize is done.");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+    }
+
     @Step("завершаю вызовы этого врача")
     public static void finalizeCallLpuDoctor(String doctorName) {
         String url = connectionUrl +

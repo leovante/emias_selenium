@@ -23,7 +23,7 @@ public class RCD04Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod() {
-        SQLDemonstration.finalizePacientName(nameGen);
+        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Test(groups = "CD", description = "передать вызов другому врачу")

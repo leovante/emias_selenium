@@ -30,8 +30,8 @@ public class RCD09Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod(ITestResult result) {
-        SQLDemonstration.finalizePacientName(nameGen);
-//        if (!result.isSuccess()) {
+        SQLDemonstration.finalizeAllTestCalls();
+        //        if (!result.isSuccess()) {
 //            try {
 //                WebDriver returned = new Augmenter().augment(driver);
 //                if (returned != null) {

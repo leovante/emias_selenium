@@ -25,7 +25,7 @@ public class RCD05Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod() {
-        SQLDemonstration.finalizePacientName(nameGen);
+        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
