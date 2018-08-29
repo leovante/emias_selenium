@@ -112,6 +112,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + "Неотложный" + "')]")).should(Condition.visible);
 //        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible); это есть в baseElements
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
@@ -139,10 +140,10 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
 //        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
 //        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible); это есть в baseElements
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
