@@ -28,21 +28,6 @@ public class RCD01Test extends AbstractTest {
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod(ITestResult result) {
         SQLDemonstration.finalizeAllTestCalls();
-//        if (!result.isSuccess()) {
-//            try {
-//                WebDriver returned = new Augmenter().augment(driver);
-//                if (returned != null) {
-//                    File f = ((TakesScreenshot) returned).getScreenshotAs(OutputType.FILE);
-//                    try {
-//                        FileUtils.copyFile(f, new File("E:\\Test_results" + result.getName() + " " + /*getFileName()*/ ".jpg"));
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            } catch (ScreenshotException se) {
-//                se.printStackTrace();
-//            }
-//        }
     }
 
     @DataProvider(name = "ProfileRegistr")
@@ -116,7 +101,7 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallPortal() throws IOException, InterruptedException {
+    public void testCallPortal() throws IOException {
         open("https://uslugi.mosreg.ru/zdrav/");
         driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
@@ -131,20 +116,15 @@ public class RCD01Test extends AbstractTest {
                 .verifyCallNewCallGroup("Profile4", nameGen);
     }
 
-    /*
-    @Test(groups = "", dataProvider = "ProfileRegistr", description = "тестирую создание вызова через датаПровайдер")//из минусов не создается уникальный дескрипшн к тесту
-    public void testCallRegistr_DataProvider(String profileDProvider, String searchField) throws Exception {
+    @Test(groups = "CD", description = "вызов из Портала по api, ребенок по МКАБ без КЛАДР")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testCallPortalChildMkab() throws IOException {
         open(curUrlCalldoctor);
-        page.createCallPage()
-                .createNewCall(profileDProvider, nameGen, searchField);
-        page.fullCardPage()
-                .verifyCallNewCallGroup(profileDProvider, nameGen)
-                .closeCardBtn();
-        page.dashboardPage()
-                .verifyNewCallGroup(profileDProvider, nameGen);
+        page.createCallPage().createCallProfile14();
+        page.dashboardPage().openNewCallProgressFrame();
+        page.fullCardPage().verifyCallProfileDetkina("Profile14");
     }
-*/
-
 }
 
 // TODO: 18.08.2018 create new call from CC for api
@@ -155,24 +135,4 @@ public class RCD01Test extends AbstractTest {
 // TODO: 18.08.2018 создать вызов с адресом как в двух участках (один участок с номерами домов, второй участок с такими же номерами домов), указать уникальный номер дома. Проверить что появляется окно с выбором участка. В выпадающем списке корректные участки
 // TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
 // TODO: 19.08.2018 на странице выбора врача в поле формализации адреса ввести другой адрес. Проверить что в хедере данный адрес изменился
-/*
- * Благодаря этому паттерну можно реализовать много интересных вещей, например,
- * вы можете реализовать пул браузеров. Многие жалуются – наши web-тесты тормозят,
- * потому что пока браузер поднимется, пока первая страница загрузится, пока скопируется профиль и так далее.
- * Браузеры не обязательно создавать прямо в тесте, вместо этого можно использовать Background Pool,
- * в котором настроено необходимое вам количество браузеров, и в этом пуле, когда браузер в него возвращается –
- * вы его очищаете, делаете еще что-то, но это все происходит в бэкграунде, в параллельных с выполнением ваших тестов потоках.
- * И только готовый к использованию браузер отдается вашему тесту, когда он запрашивает из браузерного пула новый браузер для себя.
- * <p>
- * Наконец, классический пример более сложного использования этого паттерна – когда вы имеете пул инстансов базы данных.
- * Вместо того, чтобы работать с реальной базой данных, вы поднимаете необходимый набор контейнеров базы данных в необходимом
- * количестве на разных портах, это делается очень просто с Docker или каким-то другим доступным вам инструментом виртуализации,
- * и после того, как вы поработали с базой данных, вы ее «потушили» и в пуле подняли новую. Благодаря этому вы можете постоянно иметь
- * чистую базу данных для работы, нет необходимости делать teardown или очистку базы, собирание и загрузку данных, и так далее.
- * <p>
- * https://habr.com/company/jugru/blog/338836/ посмотреть паттерн data provider и decorator
- *
- * @Attachment public byte[] attachScreenshot() {
- * return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
- * }
- */
+// TODO: 29.08.2018 делать проверку на время создания вызова

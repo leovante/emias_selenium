@@ -19,7 +19,6 @@ public class RCD00Test extends AbstractTest {
         open(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
         createDoctorShedule();
-        finallizeOldCalls();
     }
 
     @Step("Создаю расписание врача")
@@ -41,10 +40,5 @@ public class RCD00Test extends AbstractTest {
             page.manageShedule().verifyCreatedShedule();
             page.doctorMethods().selectDoctor(doctor_num);
         }
-    }
-
-    @Step("Завершение вызовов до прошлой недели")
-    public void finallizeOldCalls() {
-// TODO: 23.08.2018 доделать
     }
 }
