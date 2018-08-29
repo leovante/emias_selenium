@@ -43,7 +43,7 @@ public class RCD03Test extends AbstractTest {
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }
 
-    @Test(groups = "CD", description = "назначить вызову из СМП врача на сегодня")
+    @Test(groups = "test", description = "назначить вызову из СМП врача на сегодня")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {
@@ -60,7 +60,7 @@ public class RCD03Test extends AbstractTest {
                 .verifyActiveDocGroup("Profile2");
     }
 
-    @Test(groups = "CD", description = "назначить вызову с Портала врача на сегодня")
+    @Test(groups = "test", description = "назначить вызову с Портала врача на сегодня")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {

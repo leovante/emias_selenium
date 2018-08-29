@@ -141,6 +141,19 @@ public class FCD01Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
+    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что участок определился по адресу вызова, а не мкаб")
+    @Issue("EMIAS-90")
+    @RetryCountIfFailed(2)
+    public void testUchastokWithCallAdress() throws IOException {
+        open(curUrlCalldoctor);
+        SQLDemonstration.finalizePacientNumberPol("ProfileDetkinaVGostyah");
+        page.createCallPage().createCallProfileDetkinaVGostah();
+        page.dashboardPage()
+                .searchFilterFio_Fam("ProfileDetkinaVGostyah")
+                .openNewCallProgressFrame();
+        page.fullCardPage().verifyCallProfileDetkina("ProfileDetkinaVGostyah");
+    }
+
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
