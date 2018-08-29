@@ -29,8 +29,8 @@ public abstract class AbstractTest {
 
     @AfterSuite(alwaysRun = true)
     public void afterSutie() {
-//        driver.quit();
         close();
+        driver.quit();
     }
 
     @Parameters(value = {"site", "login", "pass"})

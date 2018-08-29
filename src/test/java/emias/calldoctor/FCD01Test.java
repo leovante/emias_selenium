@@ -5,6 +5,7 @@ import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
@@ -22,6 +23,11 @@ public class FCD01Test extends AbstractTest {
         StringGenerator nameGen = new StringGenerator();
         String name = String.valueOf(nameGen.generator());
         this.nameGen = name;
+    }
+
+    @AfterMethod(groups = {"CD", "test"})
+    public void afterMethod() {
+        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
@@ -130,7 +136,8 @@ public class FCD01Test extends AbstractTest {
                 .openNewCallProgressFrame();
         page.fullCardPage()
                 .verifyCallProfileDetkina("ProfileDetkina")
-                .chooseDoctorBtn();
+                .chooseDoctorBtn()
+                .saveAdressAsKladr();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
@@ -171,11 +178,14 @@ public class FCD01Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
         open(curUrlCalldoctor);
+        driver.close();
         switchTo().window(0);
         page.homePage().exitBtn();
         page.loginPage().login("Admin", "RChS2014");
         page.homePage().callDoctorBtn();
-        switchTo().window(2);
+        switchTo().window(1);
         $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
     }
+
+
 }

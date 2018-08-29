@@ -244,6 +244,7 @@ public class CreateCallPage extends AbstractPage {
             HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + token);
+            request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
 
             StringEntity params = new StringEntity(json.toString(), "UTF-8");
             request.setEntity(params);

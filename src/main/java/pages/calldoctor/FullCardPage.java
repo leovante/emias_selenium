@@ -363,6 +363,13 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
+    @Step("сохранить распознанный адрес")
+    public FullCardPage saveAdressAsKladr() {
+        $(By.xpath("//*[contains(text(),'Адрес успешно распознан.')]")).click();
+        $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
+        return this;
+    }
+
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
     @Step("проверяем что кнопка МКАБ не активна")

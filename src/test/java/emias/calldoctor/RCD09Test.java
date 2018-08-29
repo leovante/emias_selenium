@@ -2,7 +2,6 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
-import io.qameta.allure.Attachment;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.ITestResult;
@@ -31,21 +30,6 @@ public class RCD09Test extends AbstractTest {
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod(ITestResult result) {
         SQLDemonstration.finalizeAllTestCalls();
-        //        if (!result.isSuccess()) {
-//            try {
-//                WebDriver returned = new Augmenter().augment(driver);
-//                if (returned != null) {
-//                    File f = ((TakesScreenshot) returned).getScreenshotAs(OutputType.FILE);
-//                    try {
-//                        FileUtils.copyFile(f, new File("D:\\Test_results\\" + result.getName() + " " + /*getFileName()*/ ".jpg"));
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            } catch (ScreenshotException se) {
-//                se.printStackTrace();
-//            }
-//        }
     }
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
@@ -60,11 +44,10 @@ public class RCD09Test extends AbstractTest {
                 .verifyNewCallGroup("Profile1", nameGen);
     }
 
-    //    @Listeners({CustomTestListener.class}) //https://automated-testing.info/t/pomogite-podklyuchit-allure-k-proektu-java-testng-maven/7122/15
-    @Attachment(value = "Console error", type = "text/plain")
+    //    @Attachment(value = "Console error", type = "text/plain")
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
