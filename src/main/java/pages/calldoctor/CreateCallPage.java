@@ -160,6 +160,51 @@ public class CreateCallPage extends AbstractPage {
         System.out.println("Карта вызова создана!");
     }
 
+    @Step("создаю вызов от СМП по api проверка что нельзя назначит неформализованный адрес на врача. Есть два педиатрических участка с таким адресом")
+    public void createCallProfile19(String nameGen) {
+        HttpClient httpClient = HttpClients.createDefault();
+        JSONObject json = new JSONObject();
+        json.put("name", nameGen);
+        json.put("family", "Тестовый");
+        json.put("ot", "СМП");
+        json.put("birthdate", "2017-01-10");
+        json.put("seriespol", "");
+        json.put("numberpol", "5098799789000154");//реальный мкаб
+        json.put("gender", "2");
+        json.put("address", "Московская обл., Щелковский р-н., г. Щелково, ул. Заводская, д.7");
+        json.put("complaint", "тестовый вызов");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+79606223551");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "12");
+        json.put("floor", "5");
+
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
+
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        }
+        System.out.println("Карта вызова создана!");
+    }
+
     @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
     public void createCallProfile6(String nameGen) {
         HttpClient httpClient = HttpClients.createDefault();
@@ -278,7 +323,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("numberpol", "11111111");//реальный мкаб
         json.put("gender", "1");
         json.put("address", "Белгородская обл., г. Белгород, ул. Есенина, д.45, кв.3");
-        json.put("complaint", "автотест проверка у участок - #6 Педиатрический");
+        json.put("complaint", "автотест проверка что участок - #6 Педиатрический");
         json.put("diagnosis", "j20");
         json.put("type", "4");
         json.put("codedomophone", "12№#!@-тут символы");
@@ -338,7 +383,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("floor", "");
 
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + token);
             request.addHeader("ClientApplication", "CB174067-702F-42D0-B0EB-1D84A514515D");

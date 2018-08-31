@@ -3,7 +3,7 @@ package emias.calldoctor;
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
-import io.qameta.allure.Issue;
+import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -31,7 +31,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -43,7 +43,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall2() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -55,7 +55,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall3() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -67,7 +67,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall4() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -79,7 +79,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall5() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -91,7 +91,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall6() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -103,7 +103,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall7() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -115,7 +115,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю вызов в ВД что бы проверить что отобразился участковый")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithKladr() throws Exception {
         open(curUrlCalldoctor);
@@ -125,7 +125,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что отобразился участковый")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladr() throws IOException {
         open(curUrlCalldoctor);
@@ -141,8 +141,9 @@ public class FCD01Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что участок определился по адресу вызова, а не мкаб")
-    @Issue("EMIAS-90")
+    @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
+            "что участок определился по адресу вызова, а не мкаб")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testUchastokWithCallAdress() throws IOException {
         open(curUrlCalldoctor);
@@ -155,7 +156,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -171,7 +172,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -187,7 +188,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
-    @Issue("EMIAS-90")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
         open(curUrlCalldoctor);
@@ -200,5 +201,15 @@ public class FCD01Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
     }
 
-
+    @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначит врача")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testCallSmpChildMkab() {
+        open(curUrlCalldoctor);
+        page.createCallPage().createCallProfile19(nameGen);
+        page.dashboardPage().openNewCallProgressFrame();
+        page.fullCardPage().chooseDoctorBtn();
+        $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
+    }
 }

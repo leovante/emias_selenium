@@ -88,7 +88,7 @@ public class FullCardPage extends AbstractPage {
         }
     }
 
-    @Step("проверяю новый вызов")
+    @Step("проверяю новый вызов {profile}")
     public FullCardPage verifyCallProfile0(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -100,7 +100,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю новый вызов")
+    @Step("проверяю новый вызов {profile}")
     public FullCardPage verifyCallProfileDetkina(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -127,12 +127,12 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get("uchastocs") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("uchastocs") + "')]")).shouldNotBe(Condition.visible);
         System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
-    @Step("проверяю новый вызов")
+    @Step("проверяю новый вызов {profile}")
     public FullCardPage verifyCallNewCallGroup(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -164,7 +164,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю активный вызов")
+    @Step("проверяю активный вызов {profile}")
     public FullCardPage verifyCallActivityGroup(String nameGen, String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -196,7 +196,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю активный вызов")
+    @Step("проверяю активный вызов {profile} {profile2}")
     public FullCardPage verifyCallActivityGroup(String nameGen, String profile, String profile2) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -232,7 +232,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю обслуженный вызов")
+    @Step("проверяю обслуженный вызов {profile}")
     public FullCardPage verifyDoneDocGroup(String profile, String nameGen) throws IOException {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         Selenide.refresh();
@@ -268,7 +268,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю обслуженный вызов")
+    @Step("проверяю обслуженный вызов {profile}")
     public FullCardPage verifyDoneDocGroup(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);

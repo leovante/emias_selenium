@@ -31,23 +31,23 @@ public class FCD02Test extends AbstractTest {
         SQLDemonstration.finalizeAllTestCalls();
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile15", nameGen, "n");
-        $(By.xpath("Не удалось однозначно определить участок")).shouldBe(Condition.visible);
-        $(By.xpath("#2 Педиатрический")).shouldBe(Condition.visible);
-        $(By.xpath("#6 Педиатрический")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
 
-        $(By.xpath("#1 Гинекологический")).shouldNotBe(Condition.visible);
-        $(By.xpath("#3 Участок врача общей практики")).shouldNotBe(Condition.visible);
-        $(By.xpath("#4 Терапевтический")).shouldNotBe(Condition.visible);
-        $(By.xpath("#5 Дерматологический")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#4 Терапевтический')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException {
@@ -56,7 +56,7 @@ public class FCD02Test extends AbstractTest {
         $(By.xpath("#2 Педиатрический")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException {
@@ -71,7 +71,7 @@ public class FCD02Test extends AbstractTest {
         $(By.xpath("#5 Дерматологический")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException {

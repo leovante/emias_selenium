@@ -2,6 +2,7 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
 import org.testng.ITestResult;
@@ -98,7 +99,8 @@ public class RCD01Test extends AbstractTest {
         page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Flaky
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
@@ -116,7 +118,7 @@ public class RCD01Test extends AbstractTest {
                 .verifyCallNewCallGroup("Profile4", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов из Портала по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов из Портала по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortalChildMkab() throws IOException {

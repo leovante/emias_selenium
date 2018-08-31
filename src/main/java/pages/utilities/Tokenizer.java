@@ -21,7 +21,7 @@ public class Tokenizer {
         try {
             HttpGet request = new HttpGet("http://12.8.1.126:2224/api/v2/auth/a7f391d4-d5d8-44d5-a770-f7b527bb1233/token?Birthday=2018-01-01&s_pol=1111&n_pol=11111111");
 
-            request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
+            request.addHeader("ClientApplication", ClientApplication);
             //            System.out.println(request);
 
             ResponseHandler<String> handler = new BasicResponseHandler();

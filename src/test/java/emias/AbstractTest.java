@@ -41,8 +41,8 @@ public abstract class AbstractTest {
         page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();
         switchTo().window(1);
-        curUrlCalldoctor = driver.getCurrentUrl();
-//                "http://service.emias.mosreg.ru/test/call/call_doctor_ui/call-doctor/board;docprvdid=1239?ticket=Ibc%2FOpI8MZaJjSIcdDuiWNYSz8ouUeancY6IJAXs%2Bu3RbApDxrMLWlzx%2BkOW0YXQ63Y5jQjXoUOxOa1I%2BuTXY0CShzuoHTtPewYeEHUOX%2FOY61mX5%2FqWvxRZ8slrHlYMim3E49r2TvhK8cA0ZI4ZuAaEEb0syr%2Fbs4%2B8S9oAuFLyy5hz%2BlY92r5KQvxeL8FVEsYbGdQnh7bJjI6fqm9%2Bclm3pRjVWWhy0PXSoBS0UZ14OLqP8XPm8ZAqepx%2FkLP4AK5LOcyrYLL4raglH4eIS1TXQ3hnZceTAwuOBhtjCtpePT9P&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
+//        curUrlCalldoctor = driver.getCurrentUrl();
+        curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=HOtAmcLuy0mM1OIXdsHa7Bd%2FihvJXhgrx8Y%2BK%2BTIiZ5vHmuZ2b9bOW1kdeTWUWr9OwCLOBR4bVJC4JicymQbe9rJFsoi8cQ9BlXrPn4PbFsFmd43RsJcIL4z5v2CyFzu7oF4biRLTo1qId5NK29i0kUmIPBMYMFEuYyr%2BJQV7%2FUUVLoOxPCC5%2BIu00h3q8mOwmI5IOXeOJv06W2XhaR4MkoSdcsz9A7vhjSfEcEW9gkNX5XN3%2BV7RlspQtY21Twl3yfYur40DRpL35HSEmlKxOgjcymNWBOZ2xPW78p%2BHUaaG3GN&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
     }
 
     @Parameters(value = {"site", "login", "pass"})
@@ -59,7 +59,8 @@ public abstract class AbstractTest {
         page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();
         switchTo().window(1);
-        curUrlCalldoctor = driver.getCurrentUrl();
+//        curUrlCalldoctor = driver.getCurrentUrl();
+        curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=HOtAmcLuy0mM1OIXdsHa7Bd%2FihvJXhgrx8Y%2BK%2BTIiZ5vHmuZ2b9bOW1kdeTWUWr9OwCLOBR4bVJC4JicymQbe9rJFsoi8cQ9BlXrPn4PbFsFmd43RsJcIL4z5v2CyFzu7oF4biRLTo1qId5NK29i0kUmIPBMYMFEuYyr%2BJQV7%2FUUVLoOxPCC5%2BIu00h3q8mOwmI5IOXeOJv06W2XhaR4MkoSdcsz9A7vhjSfEcEW9gkNX5XN3%2BV7RlspQtY21Twl3yfYur40DRpL35HSEmlKxOgjcymNWBOZ2xPW78p%2BHUaaG3GN&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
     }
 
 //    @Parameters(value = {"login", "pass"})
