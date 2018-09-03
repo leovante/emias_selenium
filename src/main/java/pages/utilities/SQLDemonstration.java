@@ -51,7 +51,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor set rf_calldoctorstatusid = 3";
@@ -74,7 +74,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor " +
@@ -134,7 +134,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_CallDoctor " +
@@ -162,7 +162,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_CallDoctor " +
@@ -179,6 +179,4 @@ public class SQLDemonstration extends AbstractPage {
             e.printStackTrace();
         }
     }
-
-
 }

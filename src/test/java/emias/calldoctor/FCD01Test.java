@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -141,6 +142,7 @@ public class FCD01Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
+    @Flaky
     @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Создание вызова")

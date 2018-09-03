@@ -45,7 +45,7 @@ public class RCD03Test extends AbstractTest {
     }
 
     @Flaky
-    @Test(groups = "test", description = "назначить вызову из СМП врача на сегодня")
+    @Test(groups = "test", description = "назначить врача вызову из СМП на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {

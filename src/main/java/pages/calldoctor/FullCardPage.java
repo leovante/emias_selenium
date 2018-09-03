@@ -192,6 +192,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("uchastocs") + "')]")).shouldNotBe(Condition.visible);
         System.out.println("Подробная карта проверена!");
         return this;
     }

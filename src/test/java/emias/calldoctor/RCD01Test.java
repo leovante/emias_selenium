@@ -100,7 +100,7 @@ public class RCD01Test extends AbstractTest {
     }
 
     @Flaky
-    @Test(groups = "test", description = "вызов ребенка с Портала")
+    @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
