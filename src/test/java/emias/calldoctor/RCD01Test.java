@@ -118,14 +118,14 @@ public class RCD01Test extends AbstractTest {
                 .verifyCallNewCallGroup("Profile4", nameGen);
     }
 
-    @Test(groups = "test", description = "вызов из Портала по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов из Портала по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCallPortalChildMkab() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile14();
         page.dashboardPage().openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfileDetkina("Profile14");
+        page.fullCardPage().verifyCallProfileDetkina("Profile14");//почему-то 2 педиатрический сразу. С Таким адресом два участка
     }
 }
 

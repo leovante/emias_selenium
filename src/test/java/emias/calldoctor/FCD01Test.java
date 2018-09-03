@@ -143,7 +143,7 @@ public class FCD01Test extends AbstractTest {
     }
 
     @Flaky
-    @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
+    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)

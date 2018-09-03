@@ -8,6 +8,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
 import pages.utilities.DriverManager;
+import pages.utilities.SQLDemonstration;
 
 import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -29,6 +30,7 @@ public abstract class AbstractTest {
 
     @AfterSuite(alwaysRun = true)
     public void afterSutie() {
+        SQLDemonstration.finalizeAllCalls();
         close();
         driver.quit();
     }

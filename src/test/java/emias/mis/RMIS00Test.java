@@ -13,9 +13,8 @@ public class RMIS00Test extends AbstractTest {
     @RetryCountIfFailed(2)
     public void cleanBeforeWork() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
-
-        page.homePage().manageSheduleBtn();
         SQLDemonstration.finalizeAllCalls();
+        page.homePage().manageSheduleBtn();
         createSomeRecords(15);
         page.homePage().logoHomeBtn();
     }
