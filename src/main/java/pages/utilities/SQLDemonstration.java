@@ -179,4 +179,32 @@ public class SQLDemonstration extends AbstractPage {
             e.printStackTrace();
         }
     }
+
+    @Step("Сбросить мероприятия у карты вызова")
+    public static void setDefaultServices(String cardID) { // TODO: 04.09.2018 доделать обнуление заключения
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_disp_Exam" +
+                                " set IsDeviation = 0," +
+                                " IsOtkaz = 0," +
+                                " IsSigned = 0" +
+                                " from hlt_disp_Card dc" +
+                                " inner join hlt_disp_Exam de on dc.Guid = de.rf_CardGuid" +
+                                " where dc.disp_CardID = '" + cardID + "'";
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Card: " + cardID + " is default!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

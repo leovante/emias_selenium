@@ -11,6 +11,17 @@
     <!--<listener class-name="emias.testngRetryCount.AnnotationTransformer"/>-->
     <!--</listeners>-->
 
+    <test verbose="1" name="cleanBeforeTest">
+        <groups>
+            <run>
+                <include name="mis"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="emias.disp.RDisp00Test"/>
+        </classes>
+    </test>
+
     <test verbose="1" name="Dispanserisation">
         <groups>
             <run>

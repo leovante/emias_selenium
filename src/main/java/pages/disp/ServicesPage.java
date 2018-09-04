@@ -32,17 +32,17 @@ public class ServicesPage extends AbstractPage {
 
     }
 
-    public void fillProfile1() {
+    public void fillProfile1() throws InterruptedException {
         switchAllServicesTap()
-//                .fillMeasureArtPressure()
-//                .fillMeasureOpros_Anketirovanie()
-//                .fillAntropometriya()
-//                .fillIndividProfConsulting()
-//                .fillOpredelenieLvlGlukozi()
-//                .fillOpredelenieLvlHolesterina()
-//                .fillFlurography()
-//                .fillOpredelenieOtnositSummSSR()
-//                .fillPriem_OsmotrTerapevta()
+                .fillMeasureArtPressure()
+                .fillMeasureOpros_Anketirovanie()
+                .fillAntropometriya()
+                .fillIndividProfConsulting()
+                .fillOpredelenieLvlGlukozi()
+                .fillOpredelenieLvlHolesterina()
+                .fillFlurography()
+                .fillOpredelenieOtnositSummSSR()
+                .fillPriem_OsmotrTerapevta()
                 .fillZakluchenie()
                 .saveBtn();
     }
@@ -334,13 +334,13 @@ public class ServicesPage extends AbstractPage {
                 .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
         ResultatObrasheniya
                 .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'01 - Выписан')]")).click();
-        ResultatObrasheniya
+                .$(By.xpath(".//*[contains(text(),'01 - ВЫПИСАН')]")).click();
+        IshodObrashenia
                 .$(By.xpath("../."))
                 .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        ResultatObrasheniya
+        IshodObrashenia
                 .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'01 - Выписан')]")).click();
+                .$(By.xpath(".//*[contains(text(),'01 - ВЫЗДОРОВЛЕНИЕ')]")).click();
         return this;
     }
 

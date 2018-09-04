@@ -4,7 +4,6 @@ import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
-import pages.mis.ManageShedule;
 import pages.utilities.SQLDemonstration;
 
 import java.util.ArrayList;
@@ -12,34 +11,21 @@ import java.util.ArrayList;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RDisp00Test extends AbstractTest {
-    private String nameGen;
 
-    @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(groups = "mis", description = "обнуляю карты диспансеризации")
     @RetryCountIfFailed(2)
-    public void cleanBeforeCallDoctorTests() throws InterruptedException {
+    public void cleanBeforeDisp() {
         open(curUrlCalldoctor);
         page.homePage().manageSheduleBtn();
-        createDoctorShedule();
+        setDefaultCard();
     }
 
-    @Step("Создаю расписание врача")
-    public void createDoctorShedule() throws InterruptedException {
-        ArrayList<String> doctors = new ArrayList<>();
-        doctors.add("Темников Дмитрий Олегович");
-        doctors.add("Моков Павел Александрович");
-        doctors.add("Серова Нина Кузьминична");
-        doctors.add("Немцова Татьяна Андреевна");
-        doctors.add("Юдина Татьяна Борисовна");//взрослая поликлиника
-        for (String doctor_num : doctors) {
-            String doctor_fam = ManageShedule.getSecondName(doctor_num);
-            SQLDemonstration.finalizeCallLpuDoctor(doctor_fam);
-            SQLDemonstration.deleteShedule(doctor_fam);
-        }
-        for (String doctor_num : doctors) {
-            page.doctorMethods().selectDoctor(doctor_num);
-            page.beforeWork().createShedule();
-            page.manageShedule().verifyCreatedShedule();
-            page.doctorMethods().selectDoctor(doctor_num);
+    @Step("Обнуляю карты диспансеризации")
+    public void setDefaultCard() {
+        ArrayList<String> cardID = new ArrayList<>();
+        cardID.add("1837");
+        for (String cards : cardID) {
+            SQLDemonstration.setDefaultServices(cards);
         }
     }
 }
