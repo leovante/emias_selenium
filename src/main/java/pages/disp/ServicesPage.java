@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import pages.AbstractPage;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class ServicesPage extends AbstractPage {
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
@@ -12,10 +13,13 @@ public class ServicesPage extends AbstractPage {
     SelenideElement MeasureOpros_Anketirovanie = $(By.id("beccc8c1-33b3-4ed0-8c0b-22f78b792769"));
     SelenideElement MeasureAntropometriya = $(By.id("25f46d44-4c68-4c4f-a335-44598a650311"));
     SelenideElement MeasureIndividualnoeProfConsulting = $(By.id("a8025542-603e-41b2-aa0d-0eb21c5d2a79"));
+    SelenideElement IFrameIndividualnoeProfConsulting = $(By.xpath("//*[contains(text(),'/test/disp/disp_ui/webmis/api/ehr/medicalrecords/3eee9c96-13b0-48aa-966b-ee9abe4a6092/editview')]"));
+
     SelenideElement MeasureOpredelenieLvlGlukozi = $(By.id("943965b9-7193-465f-9d8f-8a8be0d4c1f6"));
     SelenideElement MeasureOpredelenieLvlHolesterina = $(By.id("060c0f05-72d1-45b7-ba3c-a05cb4681dc5"));
     SelenideElement MeasureFlura = $(By.id("b4a9f405-b61a-45eb-a2bb-2421ce2dbf23"));
     SelenideElement MeasureOpredelenieOtnositelnogoSSR = $(By.id("0356c7d1-bd48-48dd-ae8f-cbb8db035a5e"));
+    SelenideElement MeasureOsmotrTerapevta = $(By.id("bf064816-995c-4720-a2e6-c6b016faa9dd"));
 
     public ServicesPage() {
 
@@ -31,6 +35,7 @@ public class ServicesPage extends AbstractPage {
                 .fillOpredelenieLvlHolesterina()
                 .fillFlurography()
                 .fillOpredelenieOtnositSummSSR()
+
                 .fillPriem_OsmotrTerapevta()
                 .fillZakluchenie()
                 .saveBtn();
@@ -114,12 +119,16 @@ public class ServicesPage extends AbstractPage {
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover();
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).click();
         Thread.sleep(700);
-        MeasureIndividualnoeProfConsulting.$(By.id("multiLineText1")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.id("multiLineTextTextarea1")).sendKeys("Тестовая рекомендацтя");
+
+        switchTo().frame(MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
+        $(By.id("multiLineTextTextarea1")).sendKeys("Автотестовая рекомендация");
+        switchTo().defaultContent();
+
+        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).hover();
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
         Thread.sleep(3000);
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
+        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
         Thread.sleep(700);
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover();
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).click();
@@ -154,30 +163,33 @@ public class ServicesPage extends AbstractPage {
 
     public ServicesPage fillFlurography() throws InterruptedException {
         Thread.sleep(700);
-        MeasureFlura.hover();
+        MeasureFlura.$(By.xpath("../tr[2]")).hover();
         MeasureFlura.click();
         Thread.sleep(700);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Результат флюорографии')]")).hover();
+        MeasureFlura.$(By.xpath("../tr[3]")).hover();
         MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Результат флюорографии')]")).click();
         Thread.sleep(700);
+
+        switchTo().frame(MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
+        $(By.id("singleLineTextInput2")).sendKeys("666");
+        switchTo().defaultContent();
+
+        Thread.sleep(700);
+        MeasureFlura.$(By.xpath("../tr[3]")).hover();
         MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        Thread.sleep(3000);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
         Thread.sleep(700);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).click();
+        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
+        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
         Thread.sleep(700);
-        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover();
-        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).click();
+        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
         Thread.sleep(700);
-        MeasureFlura.hover();
-        MeasureFlura.click();
+        MeasureFlura.hover().click();
         return this;
     }
 
     public ServicesPage fillOpredelenieOtnositSummSSR() throws InterruptedException {
         Thread.sleep(700);
+        MeasureOpredelenieOtnositelnogoSSR.$(By.xpath("../tr[2]")).hover();
         MeasureOpredelenieOtnositelnogoSSR.click();
         Thread.sleep(700);
         MeasureOpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
@@ -188,25 +200,47 @@ public class ServicesPage extends AbstractPage {
 
     public ServicesPage fillPriem_OsmotrTerapevta() throws InterruptedException {
         Thread.sleep(700);
-        MeasureFlura.hover();
-        MeasureFlura.click();
+        MeasureOsmotrTerapevta.$(By.xpath("../tr[2]")).hover();
+        MeasureOsmotrTerapevta.click();
         Thread.sleep(700);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]")).click();
-        Thread.sleep(700);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
+        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).hover();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]"))
+                .click();
         Thread.sleep(3000);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//tbody"))
+                .hover();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//button[contains(text(),'Просмотреть')]"))
+                .click();
+        Thread.sleep(3000);
+        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//table")).$(By.xpath("../div")).hover();
+        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
         Thread.sleep(700);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).click();
+        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
         Thread.sleep(700);
-        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover();
-        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).click();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]"))
+                .click();
+
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+                .$(By.xpath("../../../../../div[2]"))
+                .$(By.xpath(".//*[contains(text(),'add')]")).click();
+
+
+        MeasureOsmotrTerapevta
+                .$(By.xpath("./td[4]/mat-checkbox")).hover();
+        MeasureOsmotrTerapevta.$(By.xpath("./td[4]/mat-checkbox")).click();
         Thread.sleep(700);
-        MeasureFlura.hover();
-        MeasureFlura.click();
+        MeasureOsmotrTerapevta.hover();
+        MeasureOsmotrTerapevta.click();
         return this;
     }
 

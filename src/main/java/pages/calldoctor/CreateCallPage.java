@@ -107,12 +107,17 @@ public class CreateCallPage extends AbstractPage {
                     .adressAlarma(proData);
         }
         String old = driver.getCurrentUrl();
-        do {
-            Thread.sleep(100);
-        }
-        while (old.equals(driver.getCurrentUrl()));
-        System.out.println("Вызов создан! " + driver.getCurrentUrl());
 
+        int i = 11;
+        do {
+            Thread.sleep(1000);
+            i--;
+            System.out.println("Жду ссылку на новый вызов. i = " + i);
+        }
+        while (old.equals(driver.getCurrentUrl()) && i >= 1);
+        if (!old.equals(driver.getCurrentUrl()))
+        System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов не создан!");
     }
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
@@ -404,7 +409,6 @@ public class CreateCallPage extends AbstractPage {
         }
         System.out.println("Карта вызова создана!");
     }
-
 
 
     @Step("редактирую вызов с МКАБ + СМП")
