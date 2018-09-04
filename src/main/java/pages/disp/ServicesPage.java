@@ -20,23 +20,29 @@ public class ServicesPage extends AbstractPage {
     SelenideElement MeasureFlura = $(By.id("b4a9f405-b61a-45eb-a2bb-2421ce2dbf23"));
     SelenideElement MeasureOpredelenieOtnositelnogoSSR = $(By.id("0356c7d1-bd48-48dd-ae8f-cbb8db035a5e"));
     SelenideElement MeasureOsmotrTerapevta = $(By.id("bf064816-995c-4720-a2e6-c6b016faa9dd"));
+    SelenideElement Zakluchenie = $(By.xpath("//*[contains(text(),'Заключение')]"));
+    SelenideElement VidOplati = $(By.xpath("//*[@placeholder='Вид оплаты']"));
+    SelenideElement CelPosesheniya = $(By.xpath("//*[@placeholder='Цель посещения']"));
+    SelenideElement MestoObsluzhivaniya = $(By.xpath("//*[@placeholder='Место обслуживания']"));
+    SelenideElement ResultatObrasheniya = $(By.xpath("//*[@placeholder='Результат обращения']"));
+    SelenideElement IshodObrashenia = $(By.xpath("//*[@placeholder='Исход обращения']"));
+    SelenideElement VrachPishetZakluchenie = $(By.xpath("//*[@placeholder='Врач, который пишет заключение']"));
 
     public ServicesPage() {
 
     }
 
-    public void fillProfile1() throws InterruptedException {
+    public void fillProfile1() {
         switchAllServicesTap()
-                .fillMeasureArtPressure()
-                .fillMeasureOpros_Anketirovanie()
-                .fillAntropometriya()
-                .fillIndividProfConsulting()
-                .fillOpredelenieLvlGlukozi()
-                .fillOpredelenieLvlHolesterina()
-                .fillFlurography()
-                .fillOpredelenieOtnositSummSSR()
-
-                .fillPriem_OsmotrTerapevta()
+//                .fillMeasureArtPressure()
+//                .fillMeasureOpros_Anketirovanie()
+//                .fillAntropometriya()
+//                .fillIndividProfConsulting()
+//                .fillOpredelenieLvlGlukozi()
+//                .fillOpredelenieLvlHolesterina()
+//                .fillFlurography()
+//                .fillOpredelenieOtnositSummSSR()
+//                .fillPriem_OsmotrTerapevta()
                 .fillZakluchenie()
                 .saveBtn();
     }
@@ -98,10 +104,10 @@ public class ServicesPage extends AbstractPage {
         MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
         Thread.sleep(3000);
         MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
+        Thread.sleep(700);
         MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
         Thread.sleep(700);
         MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).click();
         Thread.sleep(700);
         MeasureAntropometriya.$(By.xpath("./td[4]/mat-checkbox")).hover();
         MeasureAntropometriya.$(By.xpath("./td[4]/mat-checkbox")).click();
@@ -227,17 +233,48 @@ public class ServicesPage extends AbstractPage {
                 .$(By.xpath("../tr[3]"))
                 .$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]"))
                 .click();
-
+        /*диагнозы*/
         MeasureOsmotrTerapevta
                 .$(By.xpath("../tr[3]"))
                 .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div[2]"))
                 .$(By.xpath(".//*[contains(text(),'add')]")).click();
-
-
         MeasureOsmotrTerapevta
-                .$(By.xpath("./td[4]/mat-checkbox")).hover();
-        MeasureOsmotrTerapevta.$(By.xpath("./td[4]/mat-checkbox")).click();
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+                .$(By.xpath("../../../../../div/table/tbody/tr/td[2]"))
+                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+                .$(By.xpath("../../../../../div/table/tbody/tr/td[2]"))
+                .$(By.xpath(".//*[contains(text(),'1 - Предварительный')]")).click();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+                .$(By.xpath("../../../../../div/table/tbody/tr/td[3]"))
+                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+                .$(By.xpath("../../../../../div/table/tbody/tr/td[3]"))
+                .$(By.xpath(".//*[contains(text(),'2 - Установлено ранее')]")).click();
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+                .$(By.xpath("../../../../../div/table/tbody/tr/td[4]"))
+                .$(By.xpath(".//*[@placeholder = 'undefined']")).val("J20.1");
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+                .$(By.xpath("../../../../../div/table/tbody/tr/td[4]"))
+                .$(By.xpath(".//*[contains(text(),'J20.1 - Острый бронхит, вызванный Haemophilus influenzae [палочкой Афанасьева-Пфейффера]')]")).click();
+        /*услуги*/
+        Thread.sleep(700);
+        MeasureOsmotrTerapevta
+                .$(By.xpath("../tr[3]"))
+                .$(By.xpath(".//*[contains(text(),'Без отклонений')]")).click();
+
         Thread.sleep(700);
         MeasureOsmotrTerapevta.hover();
         MeasureOsmotrTerapevta.click();
@@ -245,6 +282,65 @@ public class ServicesPage extends AbstractPage {
     }
 
     public ServicesPage fillZakluchenie() {
+        Zakluchenie
+                .$(By.xpath("../../conclusion"))
+                .hover();
+        Zakluchenie
+                .$(By.xpath("../../conclusion"))
+                .$(By.xpath(".//div[contains(text(),'низкий')]")).click();
+//        Zakluchenie
+//                .$(By.xpath("../../conclusion"))
+//                .$(By.xpath(".//div[3][contains(text(),'I группа')]")).click();
+//        Zakluchenie
+//                .$(By.xpath("../../conclusion"))
+//                .$(By.xpath(".//div[4][contains(text(),'да')]")).click();
+//        Zakluchenie
+//                .$(By.xpath("../../conclusion"))
+//                .$(By.xpath(".//div[5][contains(text(),'да')]")).click();
+//        Zakluchenie
+//                .$(By.xpath("../../conclusion"))
+//                .$(By.xpath(".//div[6][contains(text(),'да')]")).click();
+//        Zakluchenie
+//                .$(By.xpath("../../conclusion"))
+//                .$(By.xpath(".//div[7][contains(text(),'да')]")).click();
+//        Zakluchenie
+//                .$(By.xpath("../../conclusion"))
+//                .$(By.xpath(".//div[8][contains(text(),'да')]")).click();
+//        Zakluchenie
+//                .$(By.xpath("../../conclusion"))
+//                .$(By.xpath(".//div[9][contains(text(),'да')]")).click();
+
+        VrachPishetZakluchenie.hover();
+        VidOplati
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
+        VidOplati
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'ОМС')]")).click();
+        CelPosesheniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
+        CelPosesheniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'1 - Заболевание')]")).click();
+        MestoObsluzhivaniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
+        MestoObsluzhivaniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'1 - Поликлиника')]")).click();
+        ResultatObrasheniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
+        ResultatObrasheniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'01 - Выписан')]")).click();
+        ResultatObrasheniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
+        ResultatObrasheniya
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[contains(text(),'01 - Выписан')]")).click();
         return this;
     }
 

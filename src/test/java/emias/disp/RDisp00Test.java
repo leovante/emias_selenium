@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class RDisp00Test extends AbstractTest {
     private String nameGen;
 
-    @Test(groups = "disp", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
         open(curUrlCalldoctor);
