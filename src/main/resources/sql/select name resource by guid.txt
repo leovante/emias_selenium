@@ -1,0 +1,3 @@
+select FAM_V, IM_V, OT_V  from hlt_DocPRVD dp
+inner join hlt_LPUDoctor ldoc on dp.rf_LPUDoctorID=ldoc.LPUDoctorID
+where GUID = '12A19BFC-4FA4-4028-A783-888B4026018E'

@@ -1,5 +1,6 @@
 package pages.disp;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
@@ -9,17 +10,16 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class ServicesPage extends AbstractPage {
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
-    SelenideElement MeasureArtPressure = $(By.id("be884e59-2883-40a4-8033-4508a0ccb3ac"));
-    SelenideElement MeasureOpros_Anketirovanie = $(By.id("beccc8c1-33b3-4ed0-8c0b-22f78b792769"));
-    SelenideElement MeasureAntropometriya = $(By.id("25f46d44-4c68-4c4f-a335-44598a650311"));
-    SelenideElement MeasureIndividualnoeProfConsulting = $(By.id("a8025542-603e-41b2-aa0d-0eb21c5d2a79"));
-    SelenideElement IFrameIndividualnoeProfConsulting = $(By.xpath("//*[contains(text(),'/test/disp/disp_ui/webmis/api/ehr/medicalrecords/3eee9c96-13b0-48aa-966b-ee9abe4a6092/editview')]"));
+    SelenideElement MeasureArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
+    SelenideElement MeasureOpros_Anketirovanie = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]")).$(By.xpath("../../."));
+    SelenideElement MeasureAntropometriya = $(By.xpath("//*[contains(text(),'Антропометрия (измерение роста стоя, массы тела, окружности талии), расчет индекса массы тела')]")).$(By.xpath("../../."));
+    SelenideElement MeasureIndividualnoeProfConsulting = $(By.xpath("//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).$(By.xpath("../../."));
 
-    SelenideElement MeasureOpredelenieLvlGlukozi = $(By.id("943965b9-7193-465f-9d8f-8a8be0d4c1f6"));
-    SelenideElement MeasureOpredelenieLvlHolesterina = $(By.id("060c0f05-72d1-45b7-ba3c-a05cb4681dc5"));
-    SelenideElement MeasureFlura = $(By.id("b4a9f405-b61a-45eb-a2bb-2421ce2dbf23"));
-    SelenideElement MeasureOpredelenieOtnositelnogoSSR = $(By.id("0356c7d1-bd48-48dd-ae8f-cbb8db035a5e"));
-    SelenideElement MeasureOsmotrTerapevta = $(By.id("bf064816-995c-4720-a2e6-c6b016faa9dd"));
+    SelenideElement MeasureOpredelenieLvlGlukozi = $(By.xpath("//*[contains(text(),'Определение уровня глюкозы в крови экспресс-методом (допускается лабораторный метод)')]")).$(By.xpath("../../."));
+    SelenideElement MeasureOpredelenieLvlHolesterina = $(By.xpath("//*[contains(text(),'Определение уровня общего холестерина в крови (допускается экспресс-метод)')]")).$(By.xpath("../../."));
+    SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
+    SelenideElement MeasureOpredelenieOtnositelnogoSSR = $(By.xpath("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")).$(By.xpath("../../."));
+    SelenideElement MeasureOsmotrTerapevta = $(By.xpath("//*[contains(text(),'Прием (осмотр) врача-терапевта')]")).$(By.xpath("../../."));
     SelenideElement Zakluchenie = $(By.xpath("//*[contains(text(),'Заключение')]"));
     SelenideElement VidOplati = $(By.xpath("//*[@placeholder='Вид оплаты']"));
     SelenideElement CelPosesheniya = $(By.xpath("//*[@placeholder='Цель посещения']"));
@@ -27,12 +27,17 @@ public class ServicesPage extends AbstractPage {
     SelenideElement ResultatObrasheniya = $(By.xpath("//*[@placeholder='Результат обращения']"));
     SelenideElement IshodObrashenia = $(By.xpath("//*[@placeholder='Исход обращения']"));
     SelenideElement VrachPishetZakluchenie = $(By.xpath("//*[@placeholder='Врач, который пишет заключение']"));
+    SelenideElement PodvalSaveBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Сохранить')]"));
+    SelenideElement PodvalPodpisatBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Подписать')]"));
+
+    SelenideElement Alarma_MedZapisUspeshnoSohranena = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно сохранена.')]"));
+    SelenideElement Alarma_MedZapisUspeshnoPodpisana = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
 
     public ServicesPage() {
 
     }
 
-    public void fillProfile1() throws InterruptedException {
+    public void zapolnenieProfile1() throws InterruptedException {
         switchAllServicesTap()
                 .fillMeasureArtPressure()
                 .fillMeasureOpros_Anketirovanie()
@@ -43,8 +48,7 @@ public class ServicesPage extends AbstractPage {
                 .fillFlurography()
                 .fillOpredelenieOtnositSummSSR()
                 .fillPriem_OsmotrTerapevta()
-                .fillZakluchenie()
-                .saveBtn();
+                .fillZakluchenie();
     }
 
     public ServicesPage switchAllServicesTap() {
@@ -54,26 +58,22 @@ public class ServicesPage extends AbstractPage {
 
     public ServicesPage fillMeasureArtPressure() throws InterruptedException {
         Thread.sleep(700);
-        MeasureArtPressure.click();
+        MeasureArtPressure.hover().click();
         Thread.sleep(700);
-        MeasureArtPressure.$(By.xpath("td[4]/mat-checkbox")).click();
+        MeasureArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
+        MeasureArtPressure.$(By.xpath("td[4]/mat-checkbox")).hover().click();
         Thread.sleep(700);
-        MeasureArtPressure.click();
+        MeasureArtPressure.hover().click();
         return this;
     }
 
     public ServicesPage fillMeasureOpros_Anketirovanie() throws InterruptedException {
         Thread.sleep(700);
-        MeasureOpros_Anketirovanie.hover();
-        MeasureOpros_Anketirovanie.click();
+        MeasureOpros_Anketirovanie.hover().click();
         Thread.sleep(700);
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).click();
+        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover().click();
         Thread.sleep(700);
-        // TODO: 17.08.2018 сделать переключение на iframe пока не удалось
-        //        SelenideElement frame = $(By.xpath("//iframe[@src='/test/disp/disp_ui/webmis/api/ehr/medicalrecords/95a0f83b-36d4-498e-bd10-e9d3fc3e8916/editview']"));
-        //        switchTo().frame(frame);
-        //        $(By.xpath("//*[contains(text(),'1. Говорил ли Вам врач когда-либо, что у Вас имеется')]")).hover();
+
         MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//tr[@id='84900']"));
         Thread.sleep(1500);
         MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//div[@class='cursorPointer hide-med-record']")).hover();
@@ -81,69 +81,63 @@ public class ServicesPage extends AbstractPage {
         Thread.sleep(3000);
         MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
         MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
+        Thread.sleep(1000);
+        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
+        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
         Thread.sleep(700);
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).click();
+        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
+        MeasureOpros_Anketirovanie.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
         Thread.sleep(700);
-        MeasureOpros_Anketirovanie.$(By.xpath("./td[4]/mat-checkbox")).hover();
-        MeasureOpros_Anketirovanie.$(By.xpath("./td[4]/mat-checkbox")).click();
-        Thread.sleep(700);
-        MeasureOpros_Anketirovanie.hover();
-        MeasureOpros_Anketirovanie.click();
+        MeasureOpros_Anketirovanie.hover().click();
         return this;
     }
 
     public ServicesPage fillAntropometriya() throws InterruptedException {
         Thread.sleep(700);
-        MeasureAntropometriya.hover();
-        MeasureAntropometriya.click();
+        MeasureAntropometriya.hover().click();
         Thread.sleep(700);
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).click();
+        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover().click();
         Thread.sleep(700);
         MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
         Thread.sleep(3000);
         MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
         Thread.sleep(700);
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
+        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
+        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
         Thread.sleep(700);
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover();
+        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
+        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
         Thread.sleep(700);
-        MeasureAntropometriya.$(By.xpath("./td[4]/mat-checkbox")).hover();
-        MeasureAntropometriya.$(By.xpath("./td[4]/mat-checkbox")).click();
+        MeasureAntropometriya.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
         Thread.sleep(700);
-        MeasureAntropometriya.hover();
-        MeasureAntropometriya.click();
+        MeasureAntropometriya.hover().click();
         return this;
     }
 
     public ServicesPage fillIndividProfConsulting() throws InterruptedException {
         Thread.sleep(700);
-        MeasureIndividualnoeProfConsulting.hover();
-        MeasureIndividualnoeProfConsulting.click();
+        MeasureIndividualnoeProfConsulting.hover().click();
         Thread.sleep(700);
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).click();
+        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover().click();
         Thread.sleep(700);
 
         switchTo().frame(MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
         $(By.id("multiLineTextTextarea1")).sendKeys("Автотестовая рекомендация");
         switchTo().defaultContent();
 
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).hover();
+        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).hover();
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
         Thread.sleep(3000);
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
         MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
+        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
         Thread.sleep(700);
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).click();
+        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
+        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
         Thread.sleep(700);
-        MeasureIndividualnoeProfConsulting.$(By.xpath("./td[4]/mat-checkbox")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("./td[4]/mat-checkbox")).click();
+        MeasureIndividualnoeProfConsulting.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
         Thread.sleep(700);
-        MeasureIndividualnoeProfConsulting.hover();
-        MeasureIndividualnoeProfConsulting.click();
+        MeasureIndividualnoeProfConsulting.hover().click();
         return this;
     }
 
@@ -185,7 +179,10 @@ public class ServicesPage extends AbstractPage {
         MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
         Thread.sleep(700);
         MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
+        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
+        Thread.sleep(700);
         MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
+        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
         Thread.sleep(700);
         MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
         Thread.sleep(700);
@@ -226,8 +223,10 @@ public class ServicesPage extends AbstractPage {
         Thread.sleep(3000);
         MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//table")).$(By.xpath("../div")).hover();
         MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
+        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
         Thread.sleep(700);
         MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
+        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
         Thread.sleep(700);
         MeasureOsmotrTerapevta
                 .$(By.xpath("../tr[3]"))
@@ -288,27 +287,6 @@ public class ServicesPage extends AbstractPage {
         Zakluchenie
                 .$(By.xpath("../../conclusion"))
                 .$(By.xpath(".//div[contains(text(),'низкий')]")).click();
-//        Zakluchenie
-//                .$(By.xpath("../../conclusion"))
-//                .$(By.xpath(".//div[3][contains(text(),'I группа')]")).click();
-//        Zakluchenie
-//                .$(By.xpath("../../conclusion"))
-//                .$(By.xpath(".//div[4][contains(text(),'да')]")).click();
-//        Zakluchenie
-//                .$(By.xpath("../../conclusion"))
-//                .$(By.xpath(".//div[5][contains(text(),'да')]")).click();
-//        Zakluchenie
-//                .$(By.xpath("../../conclusion"))
-//                .$(By.xpath(".//div[6][contains(text(),'да')]")).click();
-//        Zakluchenie
-//                .$(By.xpath("../../conclusion"))
-//                .$(By.xpath(".//div[7][contains(text(),'да')]")).click();
-//        Zakluchenie
-//                .$(By.xpath("../../conclusion"))
-//                .$(By.xpath(".//div[8][contains(text(),'да')]")).click();
-//        Zakluchenie
-//                .$(By.xpath("../../conclusion"))
-//                .$(By.xpath(".//div[9][contains(text(),'да')]")).click();
 
         VrachPishetZakluchenie.hover();
         VidOplati
@@ -345,10 +323,12 @@ public class ServicesPage extends AbstractPage {
     }
 
     public ServicesPage saveBtn() {
+        PodvalSaveBtn.click();
         return this;
     }
 
     public ServicesPage podpisatBtn() {
+        PodvalPodpisatBtn.click();
         return this;
     }
 }
