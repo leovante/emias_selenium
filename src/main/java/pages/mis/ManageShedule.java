@@ -174,10 +174,11 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("проверка создания распсиания")
-    public ManageShedule verifyCreatedShedule() throws InterruptedException {
+    public ManageShedule verifyCreatedShedule(String nameDoctor) throws InterruptedException {
         Thread.sleep(2000);
         $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .$(By.xpath("//*[contains(text(),'23:44 ')]"));
+        System.out.println("Проверил что для доктора " + nameDoctor + " создано расписание!");
         return this;
     }
 

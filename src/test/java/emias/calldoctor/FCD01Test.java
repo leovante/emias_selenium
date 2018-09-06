@@ -1,10 +1,13 @@
+/**
+ * проверяем что список врачей корректно отображается
+ */
+
 package emias.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +17,8 @@ import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class FCD01Test extends AbstractTest {
     String nameGen;
@@ -140,67 +144,6 @@ public class FCD01Test extends AbstractTest {
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-    }
-
-    @Flaky
-    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
-            "что участок определился по адресу вызова, а не мкаб")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testUchastokWithCallAdress() throws IOException {
-        open(curUrlCalldoctor);
-        SQLDemonstration.finalizePacientNumberPol("ProfileDetkinaVGostyah");
-        page.createCallPage().createCallProfileDetkinaVGostah();
-        page.dashboardPage()
-                .searchFilterFio_Fam("ProfileDetkinaVGostyah")
-                .openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfileDetkina("ProfileDetkinaVGostyah");
-    }
-
-    @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testMkab_TapIconGrey() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
-        page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile1");
-        page.fullCardPage()
-                .completeServiceBtn()
-                .verifyDoneDocGroup("Profile1", nameGen)
-                .verifyMkabIconDisable()
-                .verifyTapIconDisable()
-                .closeCardBtn();
-    }
-
-    @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
-        page.createCallPage().createNewCall("Profile2", nameGen, "y");
-        page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile2");
-        page.fullCardPage()
-                .completeServiceBtn()
-                .verifyDoneDocGroup("Profile2")
-                .verifyMkabIconEnable()
-                .verifyTapIconDisable()
-                .closeCardBtn();
-    }
-
-    @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testRelogingAnotherOperator() {
-        open(curUrlCalldoctor);
-        driver.close();
-        switchTo().window(0);
-        page.homePage().exitBtn();
-        page.loginPage().login("Admin", "RChS2014");
-        page.homePage().callDoctorBtn();
-        switchTo().window(1);
-        $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначит врача")

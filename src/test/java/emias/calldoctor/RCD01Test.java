@@ -106,6 +106,8 @@ public class RCD01Test extends AbstractTest {
     public void testCallPortal() throws IOException {
         open("https://uslugi.mosreg.ru/zdrav/");
         driver.manage().deleteAllCookies();
+        System.out.println("Куки должны отсутствовать: " + driver.manage().getCookies());
+        
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         page.portalDashboard()

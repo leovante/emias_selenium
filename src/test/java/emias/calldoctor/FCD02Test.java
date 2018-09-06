@@ -1,8 +1,13 @@
+/**
+ * проверяем участки и адреса
+ */
+
 package emias.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
@@ -95,5 +100,20 @@ public class FCD02Test extends AbstractTest {
         $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#4 Терапевтический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
+    }
+
+    @Flaky
+    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
+            "что участок определился по адресу вызова, а не мкаб")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testUchastokWithCallAdress() throws IOException {
+        open(curUrlCalldoctor);
+        SQLDemonstration.finalizePacientNumberPol("ProfileDetkinaVGostyah");
+        page.createCallPage().createCallProfileDetkinaVGostah();
+        page.dashboardPage()
+                .searchFilterFio_Fam("ProfileDetkinaVGostyah")
+                .openNewCallProgressFrame();
+        page.fullCardPage().verifyCallProfileDetkina("ProfileDetkinaVGostyah");
     }
 }

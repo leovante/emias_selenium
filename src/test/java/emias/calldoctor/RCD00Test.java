@@ -37,7 +37,7 @@ public class RCD00Test extends AbstractTest {
         for (String doctor_num : doctors) {
             page.doctorMethods().selectDoctor(doctor_num);
             page.beforeWork().createShedule();
-            page.manageShedule().verifyCreatedShedule();
+            page.manageShedule().verifyCreatedShedule(doctor_num);
             page.doctorMethods().selectDoctor(doctor_num);
         }
     }
