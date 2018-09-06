@@ -27,6 +27,7 @@ public class RCD01Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod() {
+        // TODO: 06.09.2018 сделать условие если тест упал, то удалять этот вызов
 //        SQLDemonstration.finalizeAllTestCalls();
     }
 
@@ -117,10 +118,10 @@ public class RCD01Test extends AbstractTest {
                 .verifyCallNewCallGroup("Profile4", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов из Портала по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallPortalChildMkab() throws IOException {
+    public void testCallCallCenterChildMkab() throws IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile14();
         page.dashboardPage().openNewCallProgressFrame();
