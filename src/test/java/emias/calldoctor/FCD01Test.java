@@ -146,7 +146,7 @@ public class FCD01Test extends AbstractTest {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначит врача")
+    @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначить врача")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() {
