@@ -117,7 +117,7 @@ public class CreateCallPage extends AbstractPage {
         while (old.equals(driver.getCurrentUrl()) && i >= 1);
         if (!old.equals(driver.getCurrentUrl()))
         System.out.println("Вызов создан! " + driver.getCurrentUrl());
-        else System.out.println("Вызов не создан!");
+        else System.out.println("Вызов НЕ создан!");
     }
 
     @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")

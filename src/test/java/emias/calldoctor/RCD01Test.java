@@ -107,9 +107,9 @@ public class RCD01Test extends AbstractTest {
         open("https://uslugi.mosreg.ru/zdrav/");
         driver.manage().deleteAllCookies();
         System.out.println("Куки должны отсутствовать: " + driver.manage().getCookies());
-        
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
+
         page.portalDashboard()
                 .createCall("Profile4", nameGen);
         open(curUrlCalldoctor);
@@ -123,7 +123,9 @@ public class RCD01Test extends AbstractTest {
     @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
-    public void testCallCallCenterChildMkab() throws IOException {
+    public void testCallCenterChildMkab() throws IOException {
+        SQLDemonstration.finalizePacientNumberPol("Profile14");
+
         open(curUrlCalldoctor);
         page.createCallPage().createCallProfile14();
         page.dashboardPage().openNewCallProgressFrame();

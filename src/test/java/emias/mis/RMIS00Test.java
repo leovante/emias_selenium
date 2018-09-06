@@ -30,7 +30,7 @@ public class RMIS00Test extends AbstractTest {
 
             page.doctorMethods().selectDoctor(doctor_num);
             page.beforeWork().createShedule();
-            page.manageShedule().verifyCreatedShedule();
+            page.manageShedule().verifyCreatedShedule(doctor_num_fam);
             page.doctorMethods().selectDoctor(doctor_num);
 
             n++;

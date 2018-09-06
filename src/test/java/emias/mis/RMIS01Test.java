@@ -28,7 +28,7 @@ public class RMIS01Test extends AbstractTest {
         page.doctorMethods().selectDoctor(docFullName);
         page.manageShedule().createShedule();
 
-        page.manageShedule().verifyCreatedShedule();
+        page.manageShedule().verifyCreatedShedule(secondName);
     }
 
     @Test(groups = "mis", description = "Копировать расписание", enabled = false)
@@ -47,7 +47,7 @@ public class RMIS01Test extends AbstractTest {
         page.manageShedule().copyShedule(firstDoctor);
         page.doctorMethods().selectDoctor(firstDoctor);
 
-        page.manageShedule().verifyCreatedShedule();
+        page.manageShedule().verifyCreatedShedule(second_doctor_fam);
     }
 
     @Test(groups = "mis", description = "Указать неприемные дни", enabled = false)
@@ -81,7 +81,7 @@ public class RMIS01Test extends AbstractTest {
         page.manageShedule().createShedule();
 
         page.manageShedule()
-                .verifyCreatedShedule()
+                .verifyCreatedShedule(second_doctor_fam)
                 .deleteShedule()
                 .verifyDeletedShedle();
     }
