@@ -8,12 +8,15 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import org.openqa.selenium.By;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class RDisp02Test extends AbstractTest {
+
+    @Ignore
     @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24г")
     @RetryCountIfFailed(0)
     public void testZapolnenieMeropriyatii() throws InterruptedException {

@@ -14,7 +14,7 @@
     <test verbose="1" name="cleanBeforeTest">
         <groups>
             <run>
-                <include name="mis"/>
+                <include name="CD"/>
             </run>
         </groups>
         <classes>
@@ -22,17 +22,17 @@
         </classes>
     </test>
 
-    <test verbose="1" name="CallDoctor">
-        <groups>
-            <run>
-                <include name="CD"/>
-            </run>
-        </groups>
+    <!--<test verbose="1" name="CallDoctor">-->
+    <!--<groups>-->
+    <!--<run>-->
+    <!--<include name="CD"/>-->
+    <!--</run>-->
+    <!--</groups>-->
         <!--<classes>-->
-        <!--<class name="emias.calldoctor.RCD02Test"/>-->
+    <!--<class name="emias.calldoctor.RCD01Test"/>-->
         <!--</classes>-->
-        <packages>
-            <package name="emias.calldoctor"/>
-        </packages>
-    </test>
+    <!--<packages>-->
+    <!--<package name="emias.calldoctor"/>-->
+    <!--</packages>-->
+    <!--</test>-->
 </suite>

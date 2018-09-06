@@ -9,14 +9,14 @@ import pages.utilities.SQLDemonstration;
 
 import java.util.ArrayList;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class RCD00Test extends AbstractTest {
 
-    @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(groups = "CD", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
-        open(curUrlCalldoctor);
+        switchTo().window(0);
         page.homePage().manageSheduleBtn();
         createDoctorShedule();
     }

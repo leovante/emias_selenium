@@ -5,7 +5,6 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -27,8 +26,8 @@ public class RCD01Test extends AbstractTest {
     }
 
     @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod(ITestResult result) {
-        SQLDemonstration.finalizeAllTestCalls();
+    public void afterMethod() {
+//        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @DataProvider(name = "ProfileRegistr")

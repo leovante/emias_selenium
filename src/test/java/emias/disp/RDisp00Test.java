@@ -9,15 +9,11 @@ import pages.utilities.SQLDemonstration;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class RDisp00Test extends AbstractTest {
 
-    @Test(groups = "mis", description = "Обнуляю карты диспансеризации")
+    @Test(groups = "disp", description = "Обнуляю карты диспансеризации")
     @RetryCountIfFailed(2)
     public void cleanBeforeDisp() throws FileNotFoundException {
-        open(curUrlCalldoctor);
-        page.homePage().manageSheduleBtn();
         setDefaultCard();
         setTestServices();
         createShedule();
@@ -35,7 +31,7 @@ public class RDisp00Test extends AbstractTest {
 
     @Step("Подготовка мероприятий")
     public void setTestServices() throws FileNotFoundException {
-        SQLDemonstration.runSqlScript("delete default hlt_disp_ServiceDocPrvd.txt");
+        SQLDemonstration.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
         SQLDemonstration.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
     }
 

@@ -70,7 +70,7 @@ public abstract class AbstractTest {
 
     @AfterGroups(groups = "disp")
     public void AfterGroupsDisp() throws FileNotFoundException {
-        SQLDemonstration.runSqlScript("delete default hlt_disp_ServiceDocPrvd.txt");
+        SQLDemonstration.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
         SQLDemonstration.runSqlScript("insert default hlt_disp_ServiceDocPrvd.txt");
     }
 
