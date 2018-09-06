@@ -53,7 +53,7 @@ public class DriverManager {
                     .build();
             this.chromeOptions = new ChromeOptions();
             this.chromeOptions.setHeadless(headless);
-            this.chromeOptions.addArguments("window-size=1900,1020");
+            this.chromeOptions.addArguments("window-size=1919,1079");
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
