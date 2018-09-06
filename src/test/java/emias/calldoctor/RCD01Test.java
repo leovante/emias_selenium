@@ -27,7 +27,6 @@ public class RCD01Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod() {
-        // TODO: 06.09.2018 сделать условие если тест упал, то удалять этот вызов
 //        SQLDemonstration.finalizeAllTestCalls();
     }
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class RDisp00Test extends AbstractTest {
 
-    @Test(groups = "disp", description = "Обнуляю карты диспансеризации")
+    @Test(description = "Обнуляю карты диспансеризации")
     @RetryCountIfFailed(2)
     public void cleanBeforeDisp() throws FileNotFoundException {
         setDefaultCard();

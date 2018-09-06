@@ -32,7 +32,7 @@ public class FCD01Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod() {
-        SQLDemonstration.finalizeAllTestCalls();
+//        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов ребенка М")

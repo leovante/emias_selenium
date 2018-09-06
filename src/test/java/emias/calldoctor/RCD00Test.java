@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class RCD00Test extends AbstractTest {
 
-    @Test(groups = "CD", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
         switchTo().window(0);

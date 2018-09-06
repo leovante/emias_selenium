@@ -34,7 +34,7 @@ public class FCD02Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod() {
-        SQLDemonstration.finalizeAllTestCalls();
+//        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Flaky

@@ -8,7 +8,6 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.utilities.SQLDemonstration;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class RCD09Test extends AbstractTest {
 
     @AfterMethod(groups = {"CD", "test"})
     public void afterMethod(ITestResult result) {
-        SQLDemonstration.finalizeAllTestCalls();
+//        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")

@@ -49,9 +49,9 @@ public abstract class AbstractTest {
     }
 
     @RetryCountIfFailed(2)
-    @BeforeGroups(groups = "CD")
+    @AfterGroups(groups = "CD")
     public void afterGroupsCD() {
-//        SQLDemonstration.finalizeAllCalls();
+//        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Parameters(value = {"site", "login", "pass"})
