@@ -34,7 +34,7 @@ public class FCD03Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
-    @Epic("Создание вызова")
+    @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -50,7 +50,7 @@ public class FCD03Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
-    @Epic("Создание вызова")
+    @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -66,7 +66,7 @@ public class FCD03Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
-    @Epic("Создание вызова")
+    @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
         open(curUrlCalldoctor);

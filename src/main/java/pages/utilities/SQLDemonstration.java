@@ -222,7 +222,7 @@ public class SQLDemonstration extends AbstractPage {
                 String sql2 = br.readLine();
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql2);
-                    System.out.println("Complete!");
+                    System.out.println("SQL scripst " + sql + " Complete!");
                 }
             }
         } catch (Exception e) {

@@ -2,9 +2,8 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
-import io.qameta.allure.Issue;
-import io.qameta.allure.TmsLink;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -39,8 +38,7 @@ public class RCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "пустой вызов")
-    @Issue("EMIAS-90")
-    @TmsLink("EMIAS-90")
+    @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
@@ -51,7 +49,7 @@ public class RCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
-    @Issue("EMIAS-90")
+    @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         open(curUrlCalldoctor);
@@ -66,7 +64,7 @@ public class RCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
-    @Issue("EMIAS-90")
+    @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         open(curUrlCalldoctor);
@@ -79,7 +77,7 @@ public class RCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
-    @Issue("EMIAS-90")
+    @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException {
         open(curUrlCalldoctor);
@@ -89,7 +87,7 @@ public class RCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
-    @Issue("EMIAS-90")
+    @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException {
         open(curUrlCalldoctor);
@@ -100,7 +98,7 @@ public class RCD01Test extends AbstractTest {
 
     @Flaky
     @Test(groups = "CD", description = "вызов ребенка с Портала")
-    @Issue("EMIAS-90")
+    @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
         open("https://uslugi.mosreg.ru/zdrav/");
@@ -120,7 +118,7 @@ public class RCD01Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
-    @Issue("EMIAS-90")
+    @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException {
         SQLDemonstration.finalizePacientNumberPol("Profile14");

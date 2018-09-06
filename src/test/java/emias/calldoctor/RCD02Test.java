@@ -2,7 +2,7 @@ package emias.calldoctor;
 
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
-import io.qameta.allure.Issue;
+import io.qameta.allure.Epic;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -26,7 +26,7 @@ public class RCD02Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
-    @Issue("EMIAS-90")
+    @Epic("редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPageProfile1() throws Exception {
         open(curUrlCalldoctor);
@@ -37,7 +37,7 @@ public class RCD02Test extends AbstractTest {
     }
 
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
-    @Issue("EMIAS-90")
+    @Epic("редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCallProfile1() throws Exception {
         open(curUrlCalldoctor);
