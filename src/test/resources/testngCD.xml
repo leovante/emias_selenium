@@ -11,11 +11,11 @@
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <test verbose="1" name="cleanBeforeTest">
-        <classes>
-            <class name="emias.calldoctor.RCD00Test"/>
-        </classes>
-    </test>
+    <!--<test verbose="1" name="cleanBeforeTest">-->
+    <!--<classes>-->
+    <!--<class name="emias.calldoctor.RCD00Test"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <!--<test verbose="1" name="CallDoctor">-->
     <!--<classes>-->
