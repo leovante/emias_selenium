@@ -19,6 +19,7 @@ public abstract class AbstractTest {
     public static WebDriver driver;
     public static Pages page;
     public static String curUrlCalldoctor = null;
+    public String site;
 
     @Parameters(value = {"browser", "platform", "headless"})
     @BeforeSuite(alwaysRun = true)
@@ -40,6 +41,7 @@ public abstract class AbstractTest {
     @RetryCountIfFailed(2)
     @BeforeGroups(groups = "CD", alwaysRun = true)
     public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
+        this.site = site;
         System.out.println("Site: " + site);
         page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();

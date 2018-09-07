@@ -13,15 +13,8 @@
     </listeners>
 
     <test verbose="1" name="CallDoctor">
-        <groups>
-            <run>
-                <include name="CD"/>
-            </run>
-        </groups>
-
         <packages>
             <package name="emias.calldoctor"/>
         </packages>
-
     </test>
 </suite>

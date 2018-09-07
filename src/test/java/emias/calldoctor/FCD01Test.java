@@ -8,6 +8,7 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -156,5 +157,23 @@ public class FCD01Test extends AbstractTest {
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
+    }
+
+    @Flaky
+    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException {
+        page.loginPage().loginDefault(site, "admin", "RChS2014");
+        page.homePage().callDoctorBtn();
+        page.createCallPage().createNewCall("Profile13", nameGen, "n");
+        page.fullCardPage().chooseDoctorBtn();
+
+        $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Моков')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Серова')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Немцова')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldNotBe(Condition.visible);
     }
 }
