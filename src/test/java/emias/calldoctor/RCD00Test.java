@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class RCD00Test extends AbstractTest {
 
-    @Test(description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
         switchTo().window(0);
@@ -29,7 +29,7 @@ public class RCD00Test extends AbstractTest {
         doctors.add("Серова Нина Кузьминична");
         doctors.add("Немцова Татьяна Андреевна");
         doctors.add("Юдина Татьяна Борисовна");//взрослая поликлиника
-        doctors.add("Зайцева Татьяна Михайловна");
+        doctors.add("Зайцева Татьяна Михайловна");//детская поликлиника
         for (String doctor_num : doctors) {
             String doctor_fam = ManageShedule.getSecondName(doctor_num);
             SQLDemonstration.finalizeCallLpuDoctor(doctor_fam);
