@@ -29,7 +29,7 @@
             </run>
         </groups>
         <!--<classes>-->
-        <!--<class name="emias.calldoctor.RCD02Test"/>-->
+        <!--<class name="emias.calldoctor.regress.EditPageTest"/>-->
         <!--</classes>-->
         <packages>
             <package name="emias.disp"/>

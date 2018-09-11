@@ -1,4 +1,4 @@
-package emias.calldoctor;
+package emias.calldoctor.regress;
 
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class RCD06Test extends AbstractTest {
+public class ChangeDepartmentTest extends AbstractTest {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -96,4 +96,5 @@ public class RCD06Test extends AbstractTest {
     }
 
     // TODO: 13.08.2018 передать вызов из первого ЛПУ в др. ЛПУ
+    // TODO: 11.09.2018 проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот
 }

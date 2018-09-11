@@ -2,7 +2,7 @@
  * проверяем что список врачей корректно отображается
  */
 
-package emias.calldoctor;
+package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
@@ -21,7 +21,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class FCD01Test extends AbstractTest {
+public class DoctorsListTest extends AbstractTest {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})

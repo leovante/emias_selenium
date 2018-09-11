@@ -2,7 +2,7 @@
  * тут проверяем всякую мелочь
  */
 
-package emias.calldoctor;
+package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
@@ -18,7 +18,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class FCD03Test extends AbstractTest {
+public class PerehodyServisovTest extends AbstractTest {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})

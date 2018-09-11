@@ -1,4 +1,4 @@
-package emias.calldoctor;
+package emias.calldoctor.regress;
 
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class RCD05Test extends AbstractTest {
+public class CancelCallTest extends AbstractTest {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -33,7 +33,7 @@ public class RCD05Test extends AbstractTest {
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
-        page.fullCardPage().cancelRecordOnFullCardPage();
+        page.fullCardPage().cancelCallOnFullCardPage();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .verifyRecordIsCancelFromDashboard();

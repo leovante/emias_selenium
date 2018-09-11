@@ -305,7 +305,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("отменить вызов")
-    public FullCardPage cancelRecordOnFullCardPage() {
+    public FullCardPage cancelCallOnFullCardPage() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         cancelBtn.click();
         cancelField.setValue("отмена автотестом");

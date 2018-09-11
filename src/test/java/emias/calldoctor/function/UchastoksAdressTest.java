@@ -2,7 +2,7 @@
  * проверяем участки и адреса
  */
 
-package emias.calldoctor;
+package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class FCD02Test extends AbstractTest {
+public class UchastoksAdressTest extends AbstractTest {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})

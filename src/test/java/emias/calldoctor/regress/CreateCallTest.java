@@ -1,4 +1,4 @@
-package emias.calldoctor;
+package emias.calldoctor.regress;
 
 import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class RCD01Test extends AbstractTest {
+public class CreateCallTest extends AbstractTest {
     private String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})

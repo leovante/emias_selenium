@@ -11,18 +11,19 @@
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <!--<test verbose="1" name="cleanBeforeTest">-->
-    <!--<classes>-->
-    <!--<class name="emias.calldoctor.RCD00Test"/>-->
-    <!--</classes>-->
-    <!--</test>-->
+    <test verbose="1" name="cleanBeforeTest">
+        <classes>
+            <class name="emias.calldoctor.regress.BeforeTest"/>
+        </classes>
+    </test>
 
-    <!--<test verbose="1" name="CallDoctor">-->
-    <!--<classes>-->
-    <!--<class name="emias.calldoctor.RCD01Test"/>-->
-    <!--</classes>-->
-    <!--<packages>-->
-    <!--<package name="emias.calldoctor"/>-->
-    <!--</packages>-->
-    <!--</test>-->
+    <test verbose="1" name="CallDoctor">
+        <!--<classes>-->
+        <!--<class name="emias.calldoctor.regress.CreateCallTest"/>-->
+        <!--</classes>-->
+
+        <packages>
+            <package name="emias.calldoctor"/>
+        </packages>
+    </test>
 </suite>
