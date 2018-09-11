@@ -71,7 +71,7 @@ public abstract class AbstractTest {
         page.homePage().callDoctorBtn();
         switchTo().window(1);
 //        curUrlCalldoctor = driver.getCurrentUrl();
-        curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=HOtAmcLuy0mM1OIXdsHa7Bd%2FihvJXhgrx8Y%2BK%2BTIiZ5vHmuZ2b9bOW1kdeTWUWr9OwCLOBR4bVJC4JicymQbe9rJFsoi8cQ9BlXrPn4PbFsFmd43RsJcIL4z5v2CyFzu7oF4biRLTo1qId5NK29i0kUmIPBMYMFEuYyr%2BJQV7%2FUUVLoOxPCC5%2BIu00h3q8mOwmI5IOXeOJv06W2XhaR4MkoSdcsz9A7vhjSfEcEW9gkNX5XN3%2BV7RlspQtY21Twl3yfYur40DRpL35HSEmlKxOgjcymNWBOZ2xPW78p%2BHUaaG3GN&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
+        curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=m8umyRMtXVs5RwAxhY1s%2FQ5WM339QvUFYTsiy5OX6fzcTaqsWidCV%2BSA2zcoRC5s2R%2FQTH2LYCrIbOhNHSdxvA3FscSUp6fEiI%2BO8HTpwU8HHGslTzLce2NzvfD3seROL8MDFritjfuo7sz90KJtRYG7UfetGIJ0yqlbf6W3Z9ty73hw6sRVsDfT9sNymoA0djc8D9dvo0rVxk1D%2BZnTrmud3UZPFuU6q%2Fgf%2BQcrXo5kkxENeeKzFUp9R%2FpXNVbDqP4HgKMHUgmsDI8%2BEiCGBZPHEZnOIroFtBr2SZpiFWLz5lRu&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration2%2FMain%2FDefault";
     }
 
 

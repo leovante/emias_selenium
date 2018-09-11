@@ -25,10 +25,10 @@ public class EditPageTest extends AbstractTest {
 //        SQLDemonstration.finalizeAllTestCalls();
     }
 
-    @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
+    @Test(groups = "test", description = "проверка страницы редактирвоания карты вызова")
     @Epic("редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testVerifyEditPageProfile1() throws Exception {
+    public void testVerifyEditPageRegistr() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.createCallPage()
@@ -39,7 +39,7 @@ public class EditPageTest extends AbstractTest {
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
     @Epic("редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testEditCallProfile1() throws Exception {
+    public void testEditCallRegistr_Smp() throws Exception {
         open(curUrlCalldoctor);
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.createCallPage()
