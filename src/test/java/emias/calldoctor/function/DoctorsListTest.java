@@ -61,7 +61,7 @@ public class DoctorsListTest extends AbstractTest {
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "test", description = "создаю пустой вызов ребенка Без Пола")
+    @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall3() throws IOException, InterruptedException {

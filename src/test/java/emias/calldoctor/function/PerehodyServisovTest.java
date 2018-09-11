@@ -11,6 +11,7 @@ import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
@@ -54,17 +55,18 @@ public class PerehodyServisovTest extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
         open(curUrlCalldoctor);
-        page.createCallPage().createNewCall("Profile2", nameGen, "y");
+        page.createCallPage().createNewCall("Profile1", nameGen, "y");
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile2");
+        page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup("Profile2")
+                .verifyDoneDocGroup("Profile1")
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
     }
 
+    @Ignore
     @Test(groups = "test", description = "проверка учетки врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
