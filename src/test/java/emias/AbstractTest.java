@@ -1,9 +1,9 @@
 package emias;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 import pages.Pages;
+import pages.utilities.DriverManager;
 import pages.utilities.StringGenerator;
 import ru.stqa.selenium.factory.WebDriverPool;
 
@@ -32,9 +32,9 @@ public class AbstractTest {
         System.out.println("Бефор метод " + Thread.currentThread().getId());
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-        driver = WebDriverPool.DEFAULT.getDriver(new ChromeOptions());
+//        driver = WebDriverPool.DEFAULT.getDriver(new ChromeOptions());
 
-//        driver = new DriverManager(browser).createDriver();
+        driver = new DriverManager(browser).createDriver();
 
         page = new Pages();
         System.out.println("Site: " + site);

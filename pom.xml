@@ -7,6 +7,19 @@
     <artifactId>regress_tests</artifactId>
     <version>1.0</version>
 
+    <name>Selenium Maven Template</name>
+    <description>A Maven Template For Selenium</description>
+    <url>http://www.lazerycode.com</url>
+
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
+        </license>
+    </licenses>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.1</aspectj.version>
@@ -124,7 +137,6 @@
             <artifactId>selenium-server</artifactId>
             <version>3.14.0</version>
         </dependency>
-
     </dependencies>
 
     <build>
