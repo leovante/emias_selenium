@@ -2,6 +2,8 @@ package pages.utilities;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import org.apache.xpath.operations.String;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -43,7 +45,7 @@ public class DriverManager {
                 driver = new FirefoxDriver(geckoDriverService, firefoxOptions);
                 WebDriverRunner.setWebDriver(driver);
                 Configuration.timeout = 20000;
-                Dimension screenSizeFF = Toolkit.getDefaultToolkit().getScreenSize();
+                java.awt.Dimension screenSizeFF = Toolkit.getDefaultToolkit().getScreenSize();
                 System.out.println("Monitor resolution: " + (int) screenSizeFF.getWidth() + "x" + (int) screenSizeFF.getHeight());
                 System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
                 break;
@@ -79,7 +81,7 @@ public class DriverManager {
                 Configuration.timeout = 20000;
 
                 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-                System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
+                System.out.println("Monitor resolution: " + screenSize.getWidth() + "x" + screenSize.getHeight());
                 System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
                 break;
         }
