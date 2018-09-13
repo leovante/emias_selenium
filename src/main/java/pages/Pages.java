@@ -9,6 +9,8 @@ import pages.disp.ServicesPage;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class Pages extends AbstractPage {
 
     public Pages() {
@@ -45,18 +47,15 @@ public class Pages extends AbstractPage {
     }
 
     public TransferRecords transferRecords() {
-        TransferRecords transferRecords = new TransferRecords(); //PageFactory.initElements(driver, TransferRecords.class);
-        return transferRecords;
+        return page(TransferRecords.class);
     }
 
     public DoctorMethods doctorMethods() {
-        DoctorMethods doctorMethods = new DoctorMethods(); //PageFactory.initElements(driver, DoctorMethods.class);
-        return doctorMethods;
+        return page(DoctorMethods.class);
     }
 
     public CreateCallPage createCallPage() {
-        CreateCallPage createCallPage = new CreateCallPage(); //PageFactory.initElements(driver, CreateCallPage.class);
-        return createCallPage;
+        return page(CreateCallPage.class);
     }
 
     public SetDoctorPage setDoctorPage() {
@@ -65,8 +64,7 @@ public class Pages extends AbstractPage {
     }
 
     public FullCardPage fullCardPage() {
-        FullCardPage fullCardPage = new FullCardPage(); //PageFactory.initElements(driver, FullCardPage.class);
-        return fullCardPage;
+        return page(FullCardPage.class);
     }
 
     public DashboardPage dashboardPage() {

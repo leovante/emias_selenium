@@ -6,7 +6,7 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
-import emias.testngRetryCount2.RetryCountIfFailed;
+import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;

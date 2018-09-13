@@ -1,7 +1,7 @@
 package emias;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import emias.testngRetryCount2.RetryCountIfFailed;
+import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;

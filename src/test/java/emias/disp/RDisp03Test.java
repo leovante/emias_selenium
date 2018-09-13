@@ -6,7 +6,7 @@ package emias.disp;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTest;
-import emias.testngRetryCount2.RetryCountIfFailed;
+import emias.testngRetryCount.RetryCountIfFailed;
 import org.openqa.selenium.By;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;

@@ -1,4 +1,4 @@
-package emias.retry2;
+package emias.retry;
 
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;

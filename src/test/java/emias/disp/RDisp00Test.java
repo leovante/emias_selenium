@@ -1,7 +1,7 @@
 package emias.disp;
 
 import emias.AbstractTest;
-import emias.testngRetryCount2.RetryCountIfFailed;
+import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
