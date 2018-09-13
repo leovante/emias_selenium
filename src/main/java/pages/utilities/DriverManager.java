@@ -39,12 +39,13 @@ public class DriverManager {
                 this.firefoxOptions = new FirefoxOptions();
                 this.firefoxOptions.setHeadless(true);
                 this.chromeOptions.addArguments("window-size=1900,1020");
+
                 driver = new FirefoxDriver(geckoDriverService, firefoxOptions);
                 WebDriverRunner.setWebDriver(driver);
                 Configuration.timeout = 20000;
-                java.awt.Dimension screenSizeFF = Toolkit.getDefaultToolkit().getScreenSize();
-                System.out.println("Monitor resolution: " + (int) screenSizeFF.getWidth() + "x" + (int) screenSizeFF.getHeight());
-                System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
+//                java.awt.Dimension screenSizeFF = Toolkit.getDefaultToolkit().getScreenSize();
+//                System.out.println("Monitor resolution: " + (int) screenSizeFF.getWidth() + "x" + (int) screenSizeFF.getHeight());
+//                System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
                 break;
             case "chrome":
 //                ChromeDriverManager.getInstance().setup();
