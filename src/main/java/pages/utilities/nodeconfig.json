@@ -5,7 +5,7 @@
   "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
   "role": "node",
   "host": "127.0.0.1",
-  "port": 5555,
+  "port": 5558,
   "maxSession": 5,
   "cleanUpCycle": 2000,
   "registerCycle": 5000,

@@ -5,7 +5,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 import pages.AbstractPage;
 
 import java.io.File;
@@ -177,10 +176,10 @@ public class DashboardPage extends AbstractPage {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
-        Actions actions = new Actions(driver);
-        actions.moveToElement($(By.xpath("//*[contains(.,'" + proData.get("adressDashboard") + "')]/mat-expansion-panel/div"))).perform();
+//        Actions actions = new Actions(driver);
+        $(By.xpath("//*[contains(.,'" + proData.get("adressDashboard") + "')]/mat-expansion-panel/div")).hover();
 //        actions.moveToElement(matExpansionPanel).perform();
-        actions.moveToElement(smallMenu).perform();
+        smallMenu.hover();
         openCard.click();
     }
 }

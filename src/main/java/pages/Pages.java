@@ -3,6 +3,8 @@ package pages;
 import pages.calldoctor.CreateCallPage;
 import pages.calldoctor.FullCardPage;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class Pages extends AbstractPage {
 
     public Pages() {
@@ -10,12 +12,10 @@ public class Pages extends AbstractPage {
 
 
     public CreateCallPage createCallPage() {
-        CreateCallPage createCallPage = new CreateCallPage();
-        return createCallPage;
+        return page(CreateCallPage.class);
     }
 
     public FullCardPage fullCardPage() {
-        FullCardPage fullCardPage = new FullCardPage();
-        return fullCardPage;
+        return page(FullCardPage.class);
     }
 }

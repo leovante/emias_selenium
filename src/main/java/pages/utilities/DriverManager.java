@@ -30,8 +30,6 @@ public class DriverManager {
     }
 
     public WebDriver createDriver() {
-
-
         switch (browser) {
             case "firefox":
                 this.geckoDriverService = new GeckoDriverService.Builder()

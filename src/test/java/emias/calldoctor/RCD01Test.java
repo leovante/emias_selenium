@@ -1,6 +1,6 @@
 package emias.calldoctor;
 
-import emias.BaseTestGrid;
+import emias.AbstractTestGrid;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class RCD01Test extends BaseTestGrid {
+public class RCD01Test extends AbstractTestGrid {
 
     @Test(description = "пустой вызов")
     public void testCallRegistrEmpy() throws IOException {

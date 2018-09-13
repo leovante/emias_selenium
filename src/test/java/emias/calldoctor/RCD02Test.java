@@ -1,12 +1,12 @@
 package emias.calldoctor;
 
-import emias.BaseTestGrid;
+import emias.AbstractTestGrid;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class RCD02Test extends BaseTestGrid {
+public class RCD02Test extends AbstractTestGrid {
 
     @Test(description = "проверка страницы редактирвоания карты вызова")
     public void testVerifyEditPageProfile1() throws Exception {

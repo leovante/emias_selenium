@@ -2,44 +2,63 @@ package pages.utilities;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.awt.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 public class WebDriverInstansiator {
-    public static RemoteWebDriver driver;
-    public static ChromeOptions chromeOptions;
+    public RemoteWebDriver driver;
+    public FirefoxOptions firefoxOptions;
+    public ChromeOptions chromeOptions;
+    public String browser;
 
-//    private static InheritableThreadLocal<WebDriver> webDriver = new InheritableThreadLocal<WebDriver>();
-//    private static WebDriverFactory factory;
-
-    public static void setDriver(String browser, String browserVersion) throws MalformedURLException {
-//        ChromeDriverManager.getInstance().setup();
-        WebDriverManager.chromedriver().setup();
-        Configuration.browser = browser;
-
-        chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(false);
-        chromeOptions.addArguments("window-size=1919,1079");
-
-        DesiredCapabilities dc = DesiredCapabilities.chrome();
-        dc.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-
-        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
-        WebDriverRunner.setWebDriver(driver);
-
-//        factory = new WebDriverFactory();
-//        webDriver.set(factory.createWebDriver();
-//        webDriver.set(factory.getWebDriver(browser, browserVersion));
+    public WebDriverInstansiator(String browser) {
+        this.browser = browser;
     }
 
-//    public static WebDriver getDriver() {
-//        return webDriver.get();
-//    }
 
+    public void setDriver(Boolean headless) throws MalformedURLException {
+        if (browser.equals("firefox")) {
+            FirefoxDriverManager.getInstance().setup();
+            Configuration.timeout = 20000;
 
+            firefoxOptions = new FirefoxOptions();
+            firefoxOptions.setHeadless(headless);
+            firefoxOptions.addArguments("window-size=1919,1079");
+
+            DesiredCapabilities dc = DesiredCapabilities.firefox();
+            dc.setCapability("marionette", true);
+            dc.setBrowserName("firefox");
+
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+            WebDriverRunner.setWebDriver(driver);
+        }
+        if (browser.equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            Configuration.browser = browser;
+            Configuration.timeout = 20000;
+
+            chromeOptions = new ChromeOptions();
+            chromeOptions.setHeadless(headless);
+            chromeOptions.addArguments("window-size=1919,1079");
+
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+            WebDriverRunner.setWebDriver(driver);
+        }
+
+        System.out.println("DriverManager - " + getWebDriver());
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        System.out.println("Monitor resolution: " + (int)
+                screenSize.getWidth() + "x" + (int) screenSize.getHeight());
+        System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
+    }
 }
