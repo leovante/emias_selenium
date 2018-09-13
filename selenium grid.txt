@@ -11,6 +11,7 @@ java -jar selenium-server-standalone-3.14.0.jar -role hub
 --с конфигом: java -jar selenium-server-standalone.jar -role hub -hubConfig hubconfig.json
 java -Dwebdriver.chrome.driver=chromedriver.exe -jar selenium-server-standalone-3.14.0.jar -role webdriver -hub http://localhost:4444/grid/register -port 5558 -browser browserName=chrome
 java -Dwebdriver.chrome.driver=chromedriver.exe -jar selenium-server-standalone-3.14.0.jar -role node -hub http://192.168.7.91:4444/grid/register -port 5558 -browser browserName=chrome
+java -Dwebdriver.chrome.driver=chromedriver.exe -jar selenium-server-standalone-3.14.0.jar -role node -hub http://localhost:4444/grid/register -port 5558
 --с конфигом: java -jar selenium-server-standalone.jar -role node -nodeConfig nodeconfig.json
 
 mvn clean test site -Dremote=http://172.16.101.70:4444/
