@@ -1,9 +1,9 @@
 package pages;
 
 import org.openqa.selenium.support.PageFactory;
-import pages.callcenter.CallDoctorPage;
-import pages.callcenter.FindPatientPage;
-import pages.callcenter.LoginPageCC;
+import pages.callcenter2.CallDoctorPage;
+import pages.callcenter2.FindPatientPage;
+import pages.callcenter2.LoginPageCC;
 import pages.calldoctor.*;
 import pages.disp.ServicesPage;
 import pages.mis2.*;
