@@ -1,7 +1,6 @@
 package emias.calldoctor;
 
 import emias.AbstractTest;
-import emias.retry.RetryAnalyzer;
 import io.qameta.allure.Issue;
 import io.qameta.allure.TmsLink;
 import org.testng.annotations.Test;
@@ -12,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RCD01Test extends AbstractTest {
 
-    @Test(description = "пустой вызов", retryAnalyzer = RetryAnalyzer.class)
+    @Test(description = "пустой вызов")
     @Issue("EMIAS-90")
     @TmsLink("EMIAS-90")
     public void testCallRegistrEmpy() throws IOException {

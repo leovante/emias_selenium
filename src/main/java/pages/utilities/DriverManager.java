@@ -2,8 +2,6 @@ package pages.utilities;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import org.apache.xpath.operations.String;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,6 +15,7 @@ import java.awt.*;
 import java.io.File;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 
 public class DriverManager {
     public ChromeOptions chromeOptions;
