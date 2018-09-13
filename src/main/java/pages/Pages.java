@@ -17,33 +17,27 @@ public class Pages extends AbstractPage {
     }
 
     public HomePage homePage() {
-        HomePage homePage = new HomePage(); //PageFactory.initElements(driver, HomePage.class);
-        return homePage;
+        return page(AdmissionSchedule.class);
     }
 
     public LoginPage loginPage() {
-        LoginPage loginPage = new LoginPage();// = PageFactory.initElements(driver, LoginPage.class);
-        return loginPage;
+        return page(LoginPage.class);
     }
 
     public NapravlenieNaIssledovanie napravlenieNaIssledovanie() {
-        NapravlenieNaIssledovanie napravlenieNaIssledovanie = new NapravlenieNaIssledovanie();// = PageFactory.initElements(driver, LoginPage.class);
-        return napravlenieNaIssledovanie;
+        return page(NapravlenieNaIssledovanie.class);
     }
 
     public ManageShedule manageShedule() {
-        ManageShedule manageShedule = new ManageShedule(); //PageFactory.initElements(driver, ManageShedule.class);
-        return manageShedule;
+        return page(ManageShedule.class);
     }
 
     public CreateMedicalCard medicalCard() {
-        CreateMedicalCard medicalCard = new CreateMedicalCard();//PageFactory.initElements(driver, CreateMedicalCard.class);
-        return medicalCard;
+        return page(CreateMedicalCard.class);
     }
 
     public AdmissionSchedule admissionSchedule() {
-        AdmissionSchedule admissionSchedule = new AdmissionSchedule(); //PageFactory.initElements(driver, AdmissionSchedule.class);
-        return admissionSchedule;
+        return page(AdmissionSchedule.class);
     }
 
     public TransferRecords transferRecords() {
@@ -59,8 +53,7 @@ public class Pages extends AbstractPage {
     }
 
     public SetDoctorPage setDoctorPage() {
-        SetDoctorPage setDoctorPage = new SetDoctorPage(); //PageFactory.initElements(driver, SetDoctorPage.class);
-        return setDoctorPage;
+        return page(SetDoctorPage.class);
     }
 
     public FullCardPage fullCardPage() {
@@ -68,18 +61,15 @@ public class Pages extends AbstractPage {
     }
 
     public DashboardPage dashboardPage() {
-        DashboardPage dashboardPage = new DashboardPage();// = PageFactory.initElements(driver, DashboardPage.class);
-        return dashboardPage;
+        return page(DashboardPage.class);
     }
 
     public SetLpuPage setLpuPage() {
-        SetLpuPage setLpuPage = new SetLpuPage();// = PageFactory.initElements(driver, DashboardPage.class);
-        return setLpuPage;
+        return page(SetLpuPage.class);
     }
 
     public BeforeWork beforeWork() {
-        BeforeWork beforeWork = new BeforeWork(); //PageFactory.initElements(driver, BeforeWork.class);
-        return beforeWork;
+        return page(BeforeWork.class);
     }
 
     /**
@@ -104,14 +94,10 @@ public class Pages extends AbstractPage {
      * PORTAL
      */
     public PortalDashboard portalDashboard() {
-        PortalDashboard portalDashboard = new PortalDashboard();// PageFactory.initElements(driver, PortalDashboard.class);
-        return portalDashboard;
+        return page(PortalDashboard.class);
     }
 
     public ServicesPage servicesPage() {
-        ServicesPage servicesPage = new ServicesPage();// PageFactory.initElements(driver, PortalDashboard.class);
-        return servicesPage;
+        return page(ServicesPage.class);
     }
-
-
 }
