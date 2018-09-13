@@ -52,4 +52,9 @@ public class HomePage extends AbstractPage {
     public void callDoctorBtn(){
         $(By.xpath("//span[contains(.,'Диспетчер')]")).click();
     }
+
+    @Step("выход из МИС")
+    public void exitBtn() {
+        $(By.xpath("//span[contains(.,'Выход')]")).click();
+    }
 }

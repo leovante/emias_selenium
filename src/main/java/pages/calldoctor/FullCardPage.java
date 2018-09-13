@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 
@@ -17,8 +18,6 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-//import io.qameta.allure.Step;
-
 public class FullCardPage extends AbstractPage {
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header = $(By.xpath("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"));
@@ -26,6 +25,7 @@ public class FullCardPage extends AbstractPage {
     SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
     SelenideElement completeServiceBtn = $(By.id("toDone"));
     SelenideElement cancelBtn = $(By.id("cancel"));
+    SelenideElement toLpu = $(By.id("toLpu"));
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
     SelenideElement change = $(By.id("change"));
@@ -88,7 +88,7 @@ public class FullCardPage extends AbstractPage {
         }
     }
 
-    //    @Step("проверяю новый вызов")
+    @Step("проверяю новый вызов {profile}")
     public FullCardPage verifyCallProfile0(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -96,11 +96,11 @@ public class FullCardPage extends AbstractPage {
 
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
-//        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
-    //    @Step("проверяю новый вызов")
+    @Step("проверяю новый вызов {profile}")
     public FullCardPage verifyCallProfileDetkina(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -109,9 +109,10 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).should(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Неотложный" + "')]")).should(Condition.visible);
 //        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible); это есть в baseElements
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
@@ -126,11 +127,12 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        $(By.xpath("//*[contains(.,'" + proData.get("uchastocs") + "')]")).shouldNotBe(Condition.visible);
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
-    //    @Step("проверяю новый вызов")
+    @Step("проверяю новый вызов {profile}")
     public FullCardPage verifyCallNewCallGroup(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -139,10 +141,10 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
 //        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
 //        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible); это есть в baseElements
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).should(Condition.visible);
@@ -158,11 +160,11 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
-    //    @Step("проверяю активный вызов")
+    @Step("проверяю активный вызов {profile}")
     public FullCardPage verifyCallActivityGroup(String nameGen, String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -190,11 +192,12 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        $(By.xpath("//*[contains(.,'" + proData.get("uchastocs") + "')]")).shouldNotBe(Condition.visible);
+        System.out.println("Подробная карта проверена!");
         return this;
     }
 
-    //    @Step("проверяю активный вызов")
+    @Step("проверяю активный вызов {profile} {profile2}")
     public FullCardPage verifyCallActivityGroup(String nameGen, String profile, String profile2) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -226,16 +229,16 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData2.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
-    //    @Step("проверяю обслуженный вызов")
+    @Step("проверяю обслуженный вызов {profile}")
     public FullCardPage verifyDoneDocGroup(String profile, String nameGen) throws IOException {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         Selenide.refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         baseElements();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).should(Condition.visible);
@@ -259,14 +262,14 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("years") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
-    //    @Step("проверяю обслуженный вызов")
+    @Step("проверяю обслуженный вызов {profile}")
     public FullCardPage verifyDoneDocGroup(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -294,15 +297,15 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + proData.get("years") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        System.out.println("Подробная карта вызова проверена! " + driver.getCurrentUrl());
+        System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
-    //    @Step("отменить вызов")
-    public FullCardPage cancelRecordOnFullCardPage() {
+    @Step("отменить вызов")
+    public FullCardPage cancelCallOnFullCardPage() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         cancelBtn.click();
         cancelField.setValue("отмена автотестом");
@@ -310,7 +313,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    //    @Step("отмена вызов на странице редактирвоания")
+    @Step("отмена вызов на странице редактирвоания")
     public FullCardPage cancelRecordOnChangePage() {
         $(By.xpath("//*[contains(.,'" + "Редактирование вызова" + "')]")).should(Condition.visible);
         cancelCall.click();
@@ -320,13 +323,13 @@ public class FullCardPage extends AbstractPage {
     }
 
 
-    //    @Step("передать другому врачу")
+    @Step("передать другому врачу")
     public FullCardPage changeDoctorBtn() {
         setAnotherDoctor.click();
         return this;
     }
 
-    //    @Step("назначить врача")
+    @Step("назначить врача")
     public FullCardPage chooseDoctorBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).should(Condition.visible);
@@ -334,7 +337,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    //    @Step("завершить обслуживание")
+    @Step("завершить обслуживание")
     public FullCardPage completeServiceBtn() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         completeServiceBtn.click();
@@ -346,14 +349,14 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    //    @Step("отмена вызов на странице редактирвоания")
+    @Step("отмена вызов на странице редактирвоания")
     public FullCardPage editCallBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         change.click();
         return this;
     }
 
-    //    @Step("закрыть подробную карту")
+    @Step("закрыть подробную карту")
     public FullCardPage closeCardBtn() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -362,9 +365,16 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
+    @Step("сохранить распознанный адрес")
+    public FullCardPage saveAdressAsKladr() {
+        $(By.xpath("//*[contains(text(),'Адрес успешно распознан.')]")).click();
+        $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
+        return this;
+    }
+
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-//    @Step("проверяем что кнопка МКАБ не активна")
+    @Step("проверяем что кнопка МКАБ не активна")
     public FullCardPage verifyMkabIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -373,7 +383,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-//    @Step("проверяем что кнопка МКАБ активна")
+    @Step("проверяем что кнопка МКАБ активна")
     public FullCardPage verifyMkabIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -382,7 +392,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-//    @Step("проверяем что кнопка ТАП не активна")
+    @Step("проверяем что кнопка ТАП не активна")
     public FullCardPage verifyTapIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -391,11 +401,24 @@ public class FullCardPage extends AbstractPage {
     }
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-//    @Step("проверяем что кнопка ТАП активна")
+    @Step("проверяем что кнопка ТАП активна")
     public FullCardPage verifyTapIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//*[@class='mat-icon call-doctor-red-text material-icons']")).click();
+        return this;
+    }
+
+    @Step("передать в другое ЛПУ через подробную карту вызова")
+    public void transferToDepartBtn() {
+        toLpu.click();
+    }
+
+    @Step("Проверка текущего подразделения у карты вызова")
+    public FullCardPage verifyDepart(String profile, String currDepart) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'" + proData.get(currDepart) + "')]")).shouldBe(Condition.visible);
         return this;
     }
 }

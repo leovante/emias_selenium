@@ -21,7 +21,8 @@
   "otchestvo": "Петровна",
   "gender": "Ж",
   "sex": "sex2",
-  "age": "2 года",
+  "age": "2",
+  "years": "2 года",
   "vKat": "Дети",
   "zhaloba": "автотест создание вызова по МКАБ через ВД",
   "whoIsCall": "СМП",
@@ -33,5 +34,6 @@
   "department": "Стенд ЕМИАС МО",
   "doctorName": "Инна",
   "doctorFam": "Серова",
-  "doctorOt": "Кузьминична"
+  "doctorOt": "Кузьминична",
+  "uchastocs": ""
 }

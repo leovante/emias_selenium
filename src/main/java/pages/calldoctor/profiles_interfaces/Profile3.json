@@ -22,7 +22,8 @@
   "otchestvo": "СМП",
   "gender": "Ж",
   "sex": "",
-  "age": "16 лет",
+  "age": "16",
+  "years": "16 лет",
   "vKat": "Дети",
   "zhaloba": "тестовый вызов",
   "whoIsCall": "СМП",
@@ -33,5 +34,6 @@
   "department": "Стенд ЕМИАС МО",
   "doctorName": "",
   "doctorFam": "",
-  "doctorOt": ""
+  "doctorOt": "",
+  "uchastocs": ""
 }

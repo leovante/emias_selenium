@@ -21,6 +21,7 @@
   "gender": "",
   "sex": "",
   "age": "",
+  "years": "",
   "vKat": "",
   "zhaloba": "автотест создал пустой вызов",
   "whoIsCall": "СМП",
@@ -32,5 +33,6 @@
   "department": "",
   "doctorName": "",
   "doctorFam": "",
-  "doctorOt": ""
+  "doctorOt": "",
+  "uchastocs": ""
 }

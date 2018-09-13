@@ -1,16 +1,14 @@
 package pages.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import pages.AbstractPage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Map;
-
-//import io.qameta.allure.Step;
 
 public class SQLDemonstration extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
@@ -18,14 +16,14 @@ public class SQLDemonstration extends AbstractPage {
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";
 
-    //    @Step("удаляю расписание этого врача")
+    @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -35,7 +33,7 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Doctor Time Table clean is done.");
+                    System.out.println("Table DTT is clean.");
                     statement.close();
                 }
             }
@@ -45,14 +43,14 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    //    @Step("завершаю все существующие вызовы")
+    @Step("завершаю все существующие вызовы")
     public static void finalizeAllCalls() {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor set rf_calldoctorstatusid = 3";
@@ -68,14 +66,40 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    //    @Step("завершаю вызовы этого врача")
+    @Step("завершаю все существующие вызовы")
+    public static void finalizeAllTestCalls() {
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_calldoctor " +
+                                "set rf_CallDoctorStatusID = 3 " +
+                                "where rf_CallDoctorStatusID != 3 " +
+                                "and Complaint like '%тест%'";
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Finalize is done.");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+    }
+
+    @Step("завершаю вызовы этого врача")
     public static void finalizeCallLpuDoctor(String doctorName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
 //                        "update hlt_CallDoctor " +
@@ -94,23 +118,22 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Doctor - " + doctorName + " finalize is done.");
+                    System.out.println("Doctor: " + doctorName + " is finalize.");
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }
 
-    //    @Step("завершаю вызовы пациента по имени")
+    @Step("завершаю вызовы пациента по имени")
     public static void finalizePacientName(String pacientName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_CallDoctor " +
@@ -128,8 +151,8 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    //    @Step("завершаю вызовы пациента по полису")
-    public static void finalizePacientProfile(String profile) throws IOException {
+    @Step("завершаю вызовы пациента по полису")
+    public static void finalizePacientNumberPol(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 
@@ -138,7 +161,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.println("Connecting to SQL Server ... ");
+            System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_CallDoctor " +
@@ -156,5 +179,103 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
+    @Step("Сбросить мероприятия у карты вызова")
+    public static void setDefaultServices(String cardID) { // TODO: 04.09.2018 доделать обнуление заключения
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_disp_Exam" +
+                                " set IsDeviation = 0," +
+                                " IsOtkaz = 0," +
+                                " IsSigned = 0" +
+                                " from hlt_disp_Card dc" +
+                                " inner join hlt_disp_Exam de on dc.Guid = de.rf_CardGuid" +
+                                " where dc.disp_CardID = '" + cardID + "'";
 
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Card: " + cardID + " is default!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Step("Запуск скрипта на демонстрейшн")
+    public static void runSqlScript(String sql) throws FileNotFoundException {
+        FileInputStream fstream = new FileInputStream("src/main/resources/sql/" + sql);
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql2 = br.readLine();
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql2);
+                    System.out.println("SQL scripst " + sql + " Complete!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
+    public static void createShedule(String docprvdid) throws FileNotFoundException {
+        //сгенерировать одну ячейку на сегодня
+        FileInputStream fstream = new FileInputStream("src/main/resources/sql/" + "select_top_10000___from_hlt_DoctorTimeTa.tsv");
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+
+                String sql2 = br.readLine();
+
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql2);
+                    System.out.println("Complete!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Step("Удаляю расписание врача {docprvdid} (Ай Бо Лит АвтоТест)")
+    public static void deleteSheduleByPrvdid(String docprvdid) {
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable where rf_DocPRVDID = '1285'";
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Table DTT is clean.");
+                    statement.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+    }
 }

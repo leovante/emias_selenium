@@ -21,7 +21,8 @@
   "birthDay": "18.07.1993",
   "gender": "М",
   "sex": "sex1",
-  "age": "25 лет",
+  "age": "25",
+  "years": "25 лет",
   "vKat": "Взрослые",
 
   "zhaloba": "автотест создание вызова без МКАБ через ВД",
@@ -34,5 +35,6 @@
   "department": "Стенд ЕМИАС МО",
   "doctorName": "Нина",
   "doctorFam": "Серова",
-  "doctorOt": ""
+  "doctorOt": "",
+  "uchastocs": ""
 }

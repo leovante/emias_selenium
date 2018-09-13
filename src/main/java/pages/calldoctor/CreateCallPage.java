@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEscape;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.qameta.allure.Step;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -27,8 +28,6 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertTrue;
-
-//import io.qameta.allure.Step;
 
 
 public class CreateCallPage extends AbstractPage {
@@ -76,10 +75,9 @@ public class CreateCallPage extends AbstractPage {
 
 
     public CreateCallPage() {
-
     }
 
-    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException {
+    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException, InterruptedException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         if (searchPolis.equals("n")) {
@@ -108,12 +106,23 @@ public class CreateCallPage extends AbstractPage {
                     .saveBtn()
                     .adressAlarma(proData);
         }
-//        System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        String old = driver.getCurrentUrl();
+
+        int i = 11;
+        do {
+            Thread.sleep(1000);
+            i--;
+            System.out.println("Жду ссылку на новый вызов. i = " + i);
+        }
+        while (old.equals(driver.getCurrentUrl()) && i >= 1);
+        if (!old.equals(driver.getCurrentUrl()))
+        System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов НЕ создан!");
     }
 
-    //    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
+    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfile3(String nameGen) {
-        HttpClient httpClient = HttpClients.createDefault(); // TODO: 7/28/2018 добавить номер дома и т.п.
+        HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
         json.put("name", nameGen);
         json.put("family", "Тестовый");
@@ -152,13 +161,56 @@ public class CreateCallPage extends AbstractPage {
         } catch (Exception ex) {
             ex.printStackTrace();
             System.out.println("Error, " + "Cannot Estabilish Connection");
-        } finally {
-//            driver.close();
         }
         System.out.println("Карта вызова создана!");
     }
 
-    //    @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
+    @Step("создаю вызов от СМП по api проверка что нельзя назначит неформализованный адрес на врача. Есть два педиатрических участка с таким адресом")
+    public void createCallProfile19(String nameGen) {
+        HttpClient httpClient = HttpClients.createDefault();
+        JSONObject json = new JSONObject();
+        json.put("name", nameGen);
+        json.put("family", "Тестовый");
+        json.put("ot", "СМП");
+        json.put("birthdate", "2017-01-10");
+        json.put("seriespol", "");
+        json.put("numberpol", "5098799789000154");//реальный мкаб
+        json.put("gender", "2");
+        json.put("address", "Московская обл., Щелковский р-н., г. Щелково, ул. Заводская, д.7");
+        json.put("complaint", "тестовый вызов");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+79606223551");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "12");
+        json.put("floor", "5");
+
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
+
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        }
+        System.out.println("Карта вызова создана!");
+    }
+
+    @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
     public void createCallProfile6(String nameGen) {
         HttpClient httpClient = HttpClients.createDefault();
 
@@ -214,10 +266,10 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-    //    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
+    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfileDetkina() {
         Tokenizer tokenizer = new Tokenizer();
-        String token = tokenizer.getToken();
+        String token = tokenizer.getToken("FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
         HttpClient httpClient = HttpClients.createDefault();
         JSONObject json = new JSONObject();
         json.put("name", "Лариса");
@@ -242,6 +294,7 @@ public class CreateCallPage extends AbstractPage {
             HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + token);
+            request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
 
             StringEntity params = new StringEntity(json.toString(), "UTF-8");
             request.setEntity(params);
@@ -261,7 +314,104 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-    //    @Step("редактирую вызов с МКАБ + СМП")
+    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
+    public void createCallProfileDetkinaVGostah() {
+        Tokenizer tokenizer = new Tokenizer();
+        String token = tokenizer.getToken("FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
+        HttpClient httpClient = HttpClients.createDefault();
+        JSONObject json = new JSONObject();
+        json.put("name", "Лариса");
+        json.put("family", "Деткина");
+        json.put("ot", "Львовна");
+        json.put("birthdate", "2018-01-01");
+        json.put("seriespol", "1111");
+        json.put("numberpol", "11111111");//реальный мкаб
+        json.put("gender", "1");
+        json.put("address", "Белгородская обл., г. Белгород, ул. Есенина, д.45, кв.3");
+        json.put("complaint", "автотест проверка что участок - #6 Педиатрический");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+71111111111");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "");
+        json.put("floor", "");
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + token);
+            request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
+
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        } finally {
+//            driver.close();
+        }
+    }
+
+    @Step("создаю вызов от КЦ по api Ребёнок без КЛАДР по МКАБ")
+    public void createCallProfile14() {
+        Tokenizer tokenizer = new Tokenizer();
+        String token = tokenizer.getToken("CB174067-702F-42D0-B0EB-1D84A514515D");
+        HttpClient httpClient = HttpClients.createDefault();
+        JSONObject json = new JSONObject();
+        json.put("name", "Лариса");
+        json.put("family", "Деткина");
+        json.put("ot", "Львовна");
+        json.put("birthdate", "2018-01-01");
+        json.put("seriespol", "1111");
+        json.put("numberpol", "11111111");//реальный мкаб
+        json.put("gender", "2");
+        json.put("address", "Московская обл., Щелковский р-н, г Щелково, ул Заводская, дом 7, кв. 3");
+        json.put("complaint", "автотест проверка блока участкового врача при формализованном адресе");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+71111111111");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "");
+        json.put("floor", "");
+
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + token);
+            request.addHeader("ClientApplication", "CB174067-702F-42D0-B0EB-1D84A514515D");
+
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        }
+        System.out.println("Карта вызова создана!");
+    }
+
+
+    @Step("редактирую вызов с МКАБ + СМП")
     public void editCallProfile2(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
@@ -451,7 +601,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    //    @Step("проверяю на странице редактирования корректность данных")
+    @Step("проверяю на странице редактирования корректность данных")
     public CreateCallPage verifyCallProfile1(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);

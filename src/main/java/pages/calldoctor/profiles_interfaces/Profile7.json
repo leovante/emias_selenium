@@ -21,6 +21,7 @@
   "gender": "",
   "sex": "sex1",
   "age": "",
+  "years": "",
   "vKat": "Дети",
   "zhaloba": "автотест создал пустой вызов",
   "whoIsCall": "",
@@ -31,5 +32,6 @@
   "department": "",
   "doctorName": "",
   "doctorFam": "",
-  "doctorOt": ""
+  "doctorOt": "",
+  "uchastocs": ""
 }

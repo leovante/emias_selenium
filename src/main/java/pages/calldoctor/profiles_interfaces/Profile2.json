@@ -21,19 +21,19 @@
   "otchestvo": "Петровна",
   "gender": "Ж",
   "sex": "sex2",
-  "age": "2 года",
+  "age": "2",
+  "years": "2 года",
   "vKat": "Дети",
   "zhaloba": "автотест создание вызова по МКАБ через ВД",
   "whoIsCall": "СМП",
-  "sourceSMP": "Суперстанция",
   "sourceSmp": "Суперстанция",
   "callFamily": "Автотемников",
   "callName": "",
   "callPatronymic": "Автоолегович",
   "telephone": "+7 (951) 158-27-14",
-
   "department": "Стенд ЕМИАС МО",
   "doctorName": "Татьяна",
   "doctorFam": "Немцова",
-  "doctorOt": "Андреевна"
+  "doctorOt": "Андреевна",
+  "uchastocs": "#4 Терапевтический"
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Name Suite - Home">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="platform" value="WINDOWS"/>
+    <parameter name="login" value="admin"/>
+    <parameter name="pass" value="11"/>
+    <listeners>
+        <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
+    </listeners>
+    <test verbose="1" name="CallDoctor">
+        <groups>
+            <run>
+                <include name="test"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="emias.calldoctor.regress.FilterTest"/>
+        </classes>
+        <!--<packages>-->
+            <!--<package name="emias.calldoctor"/>-->
+        <!--</packages>-->
+    </test>
+</suite>
+        <!--mvn clean test-->
+        <!--allure serve target/allure-results-->
