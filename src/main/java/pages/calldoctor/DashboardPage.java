@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import pages.AbstractPage;
@@ -16,6 +15,8 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertFalse;
+
+//import io.qameta.allure.Step;
 
 public class DashboardPage extends AbstractPage {
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
@@ -34,20 +35,20 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage() {
     }
 
-    @Step("вышел в мис")
+    //    @Step("вышел в мис")
     public void exitToMis() {
         exitToMis.click();
         exitBtn.click();
     }
 
-    @Step("поиск в фильтре ФИО")
+    //    @Step("поиск в фильтре ФИО")
     public DashboardPage searchFilterFio(String nameGen) {
         fioFilter.click();
         fioFilter.setValue(nameGen);
         return this;
     }
 
-    @Step("поиск в фильтре ФИО")
+    //    @Step("поиск в фильтре ФИО")
     public DashboardPage searchFilterFio_Fam(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
@@ -56,7 +57,7 @@ public class DashboardPage extends AbstractPage {
         return this;
     }
 
-    @Step("поиск в фильтре врача")
+    //    @Step("поиск в фильтре врача")
     public DashboardPage searchFilterDoctor(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
@@ -67,14 +68,14 @@ public class DashboardPage extends AbstractPage {
         return this;
     }
 
-    @Step("поиск в фильтре врача")
+    //    @Step("поиск в фильтре врача")
     public DashboardPage searchFilterTypeCallNeotlozhniy() {
         typeCall.click();
         typeCallFilterNeotlozhniy.click();
         return this;
     }
 
-    @Step("очистить фильтр подразделение")
+    //    @Step("очистить фильтр подразделение")
     public DashboardPage clearFilterDepart() {
         ElementsCollection closeList = $$(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (SelenideElement closeBtn : closeList) {
@@ -83,7 +84,7 @@ public class DashboardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю на дашборде запись в группе новые")
+    //    @Step("проверяю на дашборде запись в группе новые")
     public void verifyNewCallGroup(String profile, String nameGen) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -103,7 +104,7 @@ public class DashboardPage extends AbstractPage {
         System.out.println("Краткая карта вызова проверена!");
     }
 
-    @Step("проверяю на дашборде запись в группе новые")
+    //    @Step("проверяю на дашборде запись в группе новые")
     public void verifyNewCallGroup(String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -116,7 +117,7 @@ public class DashboardPage extends AbstractPage {
         System.out.println("Краткая карта вызова проверена!");
     }
 
-    @Step("проверяю на дашборде запись у врача в группе активные")
+    //    @Step("проверяю на дашборде запись у врача в группе активные")
     public void verifyActiveDocGroup(String nameGen, String profile, String profile2) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -132,7 +133,7 @@ public class DashboardPage extends AbstractPage {
         System.out.println("Краткая карта вызова проверена!");
     }
 
-    @Step("проверяю на дашборде запись у врача в группе активные")
+    //    @Step("проверяю на дашборде запись у врача в группе активные")
     public void verifyActiveDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -146,7 +147,7 @@ public class DashboardPage extends AbstractPage {
         System.out.println("Краткая карта вызова проверена!");
     }
 
-    @Step("проверка в группе обслуженные")
+    //    @Step("проверка в группе обслуженные")
     public void verifyDoneDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -160,14 +161,14 @@ public class DashboardPage extends AbstractPage {
         System.out.println("Краткая карта вызова проверена!");
     }
 
-    @Step("Проверка что запись удалена с дашборда")
+    //    @Step("Проверка что запись удалена с дашборда")
     public void verifyRecordIsCancelFromDashboard() throws InterruptedException {
         Thread.sleep(4000);
         assertFalse(newCallProgressFrame.findElement(By.id("order")).isDisplayed());
         newCallProgressFrame.$(By.id("order")).shouldBe(Condition.not(Condition.visible));
     }
 
-    @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
+    //    @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
     public void openNewCallProgressFrame(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);

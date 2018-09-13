@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="CalldoctorTest" thread-count="2" parallel="tests">
+
     <test name="ChromeTest" verbose="1" parallel="true">
         <parameter name="config" value="local.conf.json"/>
         <parameter name="environment" value="chrome"/>

@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEscape;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.qameta.allure.Step;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -28,6 +27,8 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertTrue;
+
+//import io.qameta.allure.Step;
 
 
 public class CreateCallPage extends AbstractPage {
@@ -110,7 +111,7 @@ public class CreateCallPage extends AbstractPage {
 //        System.out.println("Вызов создан! " + driver.getCurrentUrl());
     }
 
-    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
+    //    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfile3(String nameGen) {
         HttpClient httpClient = HttpClients.createDefault(); // TODO: 7/28/2018 добавить номер дома и т.п.
         JSONObject json = new JSONObject();
@@ -157,7 +158,7 @@ public class CreateCallPage extends AbstractPage {
         System.out.println("Карта вызова создана!");
     }
 
-    @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
+    //    @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
     public void createCallProfile6(String nameGen) {
         HttpClient httpClient = HttpClients.createDefault();
 
@@ -213,7 +214,7 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
+    //    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
     public void createCallProfileDetkina() {
         Tokenizer tokenizer = new Tokenizer();
         String token = tokenizer.getToken();
@@ -260,7 +261,7 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-    @Step("редактирую вызов с МКАБ + СМП")
+    //    @Step("редактирую вызов с МКАБ + СМП")
     public void editCallProfile2(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
@@ -450,7 +451,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю на странице редактирования корректность данных")
+    //    @Step("проверяю на странице редактирования корректность данных")
     public CreateCallPage verifyCallProfile1(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);

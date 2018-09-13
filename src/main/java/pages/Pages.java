@@ -10,12 +10,12 @@ public class Pages extends AbstractPage {
 
 
     public CreateCallPage createCallPage() {
-        CreateCallPage createCallPage = new CreateCallPage(); //PageFactory.initElements(driver, CreateCallPage.class);
+        CreateCallPage createCallPage = new CreateCallPage();
         return createCallPage;
     }
 
     public FullCardPage fullCardPage() {
-        FullCardPage fullCardPage = new FullCardPage(); //PageFactory.initElements(driver, FullCardPage.class);
+        FullCardPage fullCardPage = new FullCardPage();
         return fullCardPage;
     }
 }

@@ -10,15 +10,13 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RCD01Test extends BaseTestGrid {
 
-    public String nameGen() {
-        return String.valueOf(new StringGenerator().generator());
-    }
-
     @Test(description = "пустой вызов")
     public void testCallRegistrEmpy() throws IOException {
+        String nameGen = StringGenerator.nameGen();
         open(curUrlCalldoctor);
         System.out.println("тест RegistrEmpy " + Thread.currentThread().getId());
-        page.createCallPage().createNewCall("Profile0", nameGen(), "n");
+
+        page.createCallPage().createNewCall("Profile0", nameGen, "n");
         page.fullCardPage()
                 .verifyCallProfile0("Profile0")
                 .closeCardBtn();

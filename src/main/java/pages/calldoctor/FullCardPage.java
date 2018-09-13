@@ -5,7 +5,6 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 
@@ -17,6 +16,8 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+//import io.qameta.allure.Step;
 
 public class FullCardPage extends AbstractPage {
     SelenideElement doneCall = $(By.id("doneCall"));
@@ -87,7 +88,7 @@ public class FullCardPage extends AbstractPage {
         }
     }
 
-    @Step("проверяю новый вызов")
+    //    @Step("проверяю новый вызов")
     public FullCardPage verifyCallProfile0(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -99,7 +100,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю новый вызов")
+    //    @Step("проверяю новый вызов")
     public FullCardPage verifyCallProfileDetkina(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -129,7 +130,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю новый вызов")
+    //    @Step("проверяю новый вызов")
     public FullCardPage verifyCallNewCallGroup(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -161,7 +162,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю активный вызов")
+    //    @Step("проверяю активный вызов")
     public FullCardPage verifyCallActivityGroup(String nameGen, String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -193,7 +194,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю активный вызов")
+    //    @Step("проверяю активный вызов")
     public FullCardPage verifyCallActivityGroup(String nameGen, String profile, String profile2) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -229,7 +230,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю обслуженный вызов")
+    //    @Step("проверяю обслуженный вызов")
     public FullCardPage verifyDoneDocGroup(String profile, String nameGen) throws IOException {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         Selenide.refresh();
@@ -265,7 +266,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю обслуженный вызов")
+    //    @Step("проверяю обслуженный вызов")
     public FullCardPage verifyDoneDocGroup(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
@@ -300,7 +301,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("отменить вызов")
+    //    @Step("отменить вызов")
     public FullCardPage cancelRecordOnFullCardPage() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         cancelBtn.click();
@@ -309,7 +310,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("отмена вызов на странице редактирвоания")
+    //    @Step("отмена вызов на странице редактирвоания")
     public FullCardPage cancelRecordOnChangePage() {
         $(By.xpath("//*[contains(.,'" + "Редактирование вызова" + "')]")).should(Condition.visible);
         cancelCall.click();
@@ -319,13 +320,13 @@ public class FullCardPage extends AbstractPage {
     }
 
 
-    @Step("передать другому врачу")
+    //    @Step("передать другому врачу")
     public FullCardPage changeDoctorBtn() {
         setAnotherDoctor.click();
         return this;
     }
 
-    @Step("назначить врача")
+    //    @Step("назначить врача")
     public FullCardPage chooseDoctorBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).should(Condition.visible);
@@ -333,7 +334,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("завершить обслуживание")
+    //    @Step("завершить обслуживание")
     public FullCardPage completeServiceBtn() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         completeServiceBtn.click();
@@ -345,14 +346,14 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("отмена вызов на странице редактирвоания")
+    //    @Step("отмена вызов на странице редактирвоания")
     public FullCardPage editCallBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         change.click();
         return this;
     }
 
-    @Step("закрыть подробную карту")
+    //    @Step("закрыть подробную карту")
     public FullCardPage closeCardBtn() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -363,7 +364,7 @@ public class FullCardPage extends AbstractPage {
 
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-    @Step("проверяем что кнопка МКАБ не активна")
+//    @Step("проверяем что кнопка МКАБ не активна")
     public FullCardPage verifyMkabIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -372,7 +373,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-    @Step("проверяем что кнопка МКАБ активна")
+//    @Step("проверяем что кнопка МКАБ активна")
     public FullCardPage verifyMkabIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -381,7 +382,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-    @Step("проверяем что кнопка ТАП не активна")
+//    @Step("проверяем что кнопка ТАП не активна")
     public FullCardPage verifyTapIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
@@ -390,7 +391,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
-    @Step("проверяем что кнопка ТАП активна")
+//    @Step("проверяем что кнопка ТАП активна")
     public FullCardPage verifyTapIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).should(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));

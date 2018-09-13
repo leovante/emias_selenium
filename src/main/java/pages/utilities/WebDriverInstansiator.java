@@ -2,7 +2,7 @@ package pages.utilities;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -18,17 +18,18 @@ public class WebDriverInstansiator {
 //    private static WebDriverFactory factory;
 
     public static void setDriver(String browser, String browserVersion) throws MalformedURLException {
-        ChromeDriverManager.getInstance().setup();
+//        ChromeDriverManager.getInstance().setup();
+        WebDriverManager.chromedriver().setup();
         Configuration.browser = browser;
 
         chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(true);
+        chromeOptions.setHeadless(false);
         chromeOptions.addArguments("window-size=1919,1079");
 
         DesiredCapabilities dc = DesiredCapabilities.chrome();
         dc.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
-        driver = new RemoteWebDriver(new URL("http://172.16.101.70:4444/wd/hub"), dc);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
         WebDriverRunner.setWebDriver(driver);
 
 //        factory = new WebDriverFactory();

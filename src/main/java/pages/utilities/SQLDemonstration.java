@@ -1,7 +1,6 @@
 package pages.utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.qameta.allure.Step;
 import pages.AbstractPage;
 
 import java.io.File;
@@ -11,13 +10,15 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.Map;
 
+//import io.qameta.allure.Step;
+
 public class SQLDemonstration extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";
 
-    @Step("удаляю расписание этого врача")
+    //    @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -44,7 +45,7 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    @Step("завершаю все существующие вызовы")
+    //    @Step("завершаю все существующие вызовы")
     public static void finalizeAllCalls() {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -67,7 +68,7 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    @Step("завершаю вызовы этого врача")
+    //    @Step("завершаю вызовы этого врача")
     public static void finalizeCallLpuDoctor(String doctorName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -102,7 +103,7 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    @Step("завершаю вызовы пациента по имени")
+    //    @Step("завершаю вызовы пациента по имени")
     public static void finalizePacientName(String pacientName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -127,7 +128,7 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    @Step("завершаю вызовы пациента по полису")
+    //    @Step("завершаю вызовы пациента по полису")
     public static void finalizePacientProfile(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
