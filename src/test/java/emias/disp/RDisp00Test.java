@@ -1,6 +1,6 @@
 package emias.disp;
 
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
@@ -9,7 +9,7 @@ import pages.utilities.SQLDemonstration;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class RDisp00Test extends AbstractTest {
+public class RDisp00Test extends AbstractTestGrid {
 
     @Test(description = "Обнуляю карты диспансеризации")
     @RetryCountIfFailed(2)

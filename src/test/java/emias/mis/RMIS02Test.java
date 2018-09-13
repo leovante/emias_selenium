@@ -1,10 +1,10 @@
 package emias.mis;
 
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
-public class RMIS02Test extends AbstractTest {
+public class RMIS02Test extends AbstractTestGrid {
 
     @BeforeTest(groups = {"mis", "test"})
     public void beforeTest() {

@@ -1,4 +1,4 @@
-package pages.mis2;
+package pages.mis;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -24,7 +24,6 @@ public class TransferRecords extends AbstractPage {
     SelenideElement recordElement = $(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
 
     public TransferRecords() {
-
     }
 
     @Step("перенести запись")

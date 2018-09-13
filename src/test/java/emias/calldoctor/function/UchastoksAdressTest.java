@@ -5,7 +5,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class UchastoksAdressTest extends AbstractTest {
+public class UchastoksAdressTest extends AbstractTestGrid {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})

@@ -1,12 +1,8 @@
 package pages;
 
-import org.openqa.selenium.support.PageFactory;
-import pages.callcenter2.CallDoctorPage;
-import pages.callcenter2.FindPatientPage;
-import pages.callcenter2.LoginPageCC;
 import pages.calldoctor.*;
 import pages.disp.ServicesPage;
-import pages.mis2.*;
+import pages.mis.*;
 import pages.portal.PortalDashboard;
 
 import static com.codeborne.selenide.Selenide.page;
@@ -17,7 +13,7 @@ public class Pages extends AbstractPage {
     }
 
     public HomePage homePage() {
-        return page(AdmissionSchedule.class);
+        return page(HomePage.class);
     }
 
     public LoginPage loginPage() {
@@ -71,28 +67,7 @@ public class Pages extends AbstractPage {
     public BeforeWork beforeWork() {
         return page(BeforeWork.class);
     }
-
-    /**
-     * CALL CENTER
-     */
-    public LoginPageCC loginPageCC() {
-        LoginPageCC loginPageCC = PageFactory.initElements(driver, LoginPageCC.class);
-        return loginPageCC;
-    }
-
-    public FindPatientPage findPatientPage() {
-        FindPatientPage findPatientPage = PageFactory.initElements(driver, FindPatientPage.class);
-        return findPatientPage;
-    }
-
-    public CallDoctorPage callDoctorPage() {
-        CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
-        return callDoctorPage;
-    }
-
-    /**
-     * PORTAL
-     */
+    // PORTAL
     public PortalDashboard portalDashboard() {
         return page(PortalDashboard.class);
     }

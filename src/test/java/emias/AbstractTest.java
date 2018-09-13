@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.switchTo;
 
+@Deprecated
 public abstract class AbstractTest {
     public static WebDriver driver;
     public static Pages page;

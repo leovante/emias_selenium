@@ -104,6 +104,7 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testngCDBefore.xml</suiteXmlFile>
                         <suiteXmlFile>src/test/resources/${testngXML}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>

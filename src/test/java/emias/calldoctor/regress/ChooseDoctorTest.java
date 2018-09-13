@@ -1,6 +1,6 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
@@ -12,7 +12,7 @@ import pages.utilities.StringGenerator;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class ChooseDoctorTest extends AbstractTest {
+public class ChooseDoctorTest extends AbstractTestGrid {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -69,7 +69,7 @@ public class ChooseDoctorTest extends AbstractTest {
     public void testAppendDoctorToCall_Portal() throws Exception {
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
-        driver.manage().deleteAllCookies();
+//        driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard().createCall("Profile4", nameGen);
         open(curUrlCalldoctor);

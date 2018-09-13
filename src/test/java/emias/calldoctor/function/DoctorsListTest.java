@@ -5,7 +5,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
@@ -21,7 +21,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class DoctorsListTest extends AbstractTest {
+public class DoctorsListTest extends AbstractTestGrid {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -164,7 +164,7 @@ public class DoctorsListTest extends AbstractTest {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException {
-        page.loginPage().loginDefault(site, "admin", "RChS2014");
+        page.loginPage().loginDefault("http://emias.mosreg.ru/demonstration/", "admin", "RChS2014");
         page.homePage().callDoctorBtn();
         page.createCallPage().createNewCall("Profile13", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();

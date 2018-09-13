@@ -1,6 +1,6 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class CreateCallTest extends AbstractTest {
+public class CreateCallTest extends AbstractTestGrid {
     private String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -102,8 +102,8 @@ public class CreateCallTest extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
         open("https://uslugi.mosreg.ru/zdrav/");
-        driver.manage().deleteAllCookies();
-        System.out.println("Куки должны отсутствовать: " + driver.manage().getCookies());
+//        driver.manage().deleteAllCookies();
+//        System.out.println("Куки должны отсутствовать: " + driver.manage().getCookies());
         open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
 

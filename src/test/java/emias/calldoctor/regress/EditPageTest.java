@@ -1,6 +1,6 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.AfterMethod;
@@ -10,7 +10,7 @@ import pages.utilities.StringGenerator;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class EditPageTest extends AbstractTest {
+public class EditPageTest extends AbstractTestGrid {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})

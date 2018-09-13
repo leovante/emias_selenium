@@ -1,13 +1,13 @@
 package emias.mis;
 
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
 
-public class RMIS01Test extends AbstractTest {
+public class RMIS01Test extends AbstractTestGrid {
 
     @BeforeTest(groups = {"mis", "test"})
     public void beforeTest() {

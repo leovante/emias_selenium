@@ -1,6 +1,6 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.testng.Assert.assertTrue;
 
-public class FilterTest extends AbstractTest {
+public class FilterTest extends AbstractTestGrid {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})

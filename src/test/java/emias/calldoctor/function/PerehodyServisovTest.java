@@ -5,7 +5,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
@@ -18,7 +18,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class PerehodyServisovTest extends AbstractTest {
+public class PerehodyServisovTest extends AbstractTestGrid {
     String nameGen;
 
     @BeforeMethod(groups = {"CD", "test"})
@@ -70,7 +70,7 @@ public class PerehodyServisovTest extends AbstractTest {
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
         open(curUrlCalldoctor);
-        driver.close();
+//        driver.close();
         switchTo().window(0);
         page.homePage().exitBtn();
         page.loginPage().login("Admin", "RChS2014");

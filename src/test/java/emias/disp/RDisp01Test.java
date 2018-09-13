@@ -1,7 +1,7 @@
 package emias.disp;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTest;
+import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import org.openqa.selenium.By;
 import org.testng.annotations.Ignore;
@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class RDisp01Test extends AbstractTest {
+public class RDisp01Test extends AbstractTestGrid {
 
     @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года")
     @RetryCountIfFailed(0)

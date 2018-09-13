@@ -1,4 +1,4 @@
-package pages.mis2;
+package pages.mis;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
@@ -24,7 +24,6 @@ public class BeforeWork extends AbstractPage {
     SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
 
     public BeforeWork() {
-
     }
 
     @Step("установить время календаря")

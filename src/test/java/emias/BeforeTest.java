@@ -1,19 +1,18 @@
-package emias.calldoctor.regress;
+package emias;
 
-import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
-import pages.mis2.ManageShedule;
+import pages.mis.ManageShedule;
 import pages.utilities.SQLDemonstration;
 
 import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class BeforeTest extends AbstractTest {
+public class BeforeTest extends AbstractTestGrid {
 
-    @Test(groups = "mis", description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
         switchTo().window(0);
