@@ -1,7 +1,7 @@
 package emias.mis;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
+import emias.testngRetryCount2.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;

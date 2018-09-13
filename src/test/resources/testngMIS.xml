@@ -8,7 +8,7 @@
     <parameter name="pass" value="1214"/>
     <parameter name="headless" value="false"/>
     <listeners>
-        <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="emias.testngRetryCount2.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
     <test verbose="1" name="MIS">
