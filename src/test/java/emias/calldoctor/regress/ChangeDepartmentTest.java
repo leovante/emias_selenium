@@ -1,7 +1,7 @@
 package emias.calldoctor.regress;
 
 import emias.AbstractTest;
-import emias.testngRetryCount.RetryCountIfFailed;
+import emias.testngRetryCount2.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
