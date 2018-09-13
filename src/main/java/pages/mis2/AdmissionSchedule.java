@@ -1,4 +1,4 @@
-package pages.mis;
+package pages.mis2;
 
 
 import com.codeborne.selenide.Condition;

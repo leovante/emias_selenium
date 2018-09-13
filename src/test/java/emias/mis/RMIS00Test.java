@@ -4,7 +4,7 @@ import emias.AbstractTest;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
-import pages.mis.ManageShedule;
+import pages.mis2.ManageShedule;
 import pages.utilities.SQLDemonstration;
 
 public class RMIS00Test extends AbstractTest {

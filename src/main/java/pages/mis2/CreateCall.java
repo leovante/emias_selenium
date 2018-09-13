@@ -1,4 +1,4 @@
-package pages.mis;
+package pages.mis2;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

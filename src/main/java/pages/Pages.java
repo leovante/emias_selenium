@@ -6,7 +6,7 @@ import pages.callcenter.FindPatientPage;
 import pages.callcenter.LoginPageCC;
 import pages.calldoctor.*;
 import pages.disp.ServicesPage;
-import pages.mis.*;
+import pages.mis2.*;
 import pages.portal.PortalDashboard;
 
 public class Pages extends AbstractPage {
