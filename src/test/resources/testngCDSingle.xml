@@ -3,8 +3,11 @@
 
 <suite name="CalldoctorTest" thread-count="2" parallel="tests">
     <test name="ChromeTest" verbose="1" parallel="true">
-        <parameter name="config" value="local.conf.json"/>
+        <parameter name="config" value="single.conf.json"/>
         <parameter name="environment" value="chrome"/>
+        <parameter name="site" value="http://emias.mosreg.ru/demonstration2/"/>
+        <parameter name="login" value="temnikov"/>
+        <parameter name="pass" value="1214"/>
         <classes>
             <class name="emias.calldoctor.RCD01Test"/>
             <class name="emias.calldoctor.RCD02Test"/>

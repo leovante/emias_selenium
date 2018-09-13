@@ -75,6 +75,7 @@ public class CreateCallPage extends AbstractPage {
 
 
     public CreateCallPage() {
+
     }
 
     public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException {
