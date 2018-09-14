@@ -32,10 +32,10 @@ public class DriverManager {
 //                    .usingDriverExecutable(new File("src/main/resources/geckodriver.exe"))
 //                    .usingAnyFreePort()
 //                    .build();
-//            this.firefoxOptions = new FirefoxOptions();
-//            this.firefoxOptions.setHeadless(false);
-//            this.firefoxOptions.addArguments("window-size=1300,1020");
-//            driver = new FirefoxDriver(geckoDriverService, firefoxOptions);
+//            this.options = new FirefoxOptions();
+//            this.options.setHeadless(false);
+//            this.options.addArguments("window-size=1300,1020");
+//            driver = new FirefoxDriver(geckoDriverService, options);
         }
         if (browser.equals("chrome")) {
 //            ChromeDriverManager.getInstance().setup();

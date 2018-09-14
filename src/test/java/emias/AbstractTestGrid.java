@@ -38,5 +38,6 @@ public abstract class AbstractTestGrid {
     @AfterMethod(groups = "CD", alwaysRun = true)
     public void afterMethod() {
         WebDriverRunner.closeWebDriver();
+//        close();
     }
 }

@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="CalldoctorTest" thread-count="2" parallel="tests">
-    <parameter name="config" value="local.conf.json"/>
-    <parameter name="environment" value="chrome"/>
+    <!--<parameter name="config" value="local.conf.json"/>-->
+    <!--<parameter name="environment" value="chrome"/>-->
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
-    <parameter name="headless" value="true"/>
+    <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
+    <parameter name="headless" value="false"/>
 
     <listeners>
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <test name="ChromeTest" verbose="1" parallel="true">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="emias.calldoctor.regress.CreateCallTest"/>
-            <class name="emias.calldoctor.regress.EditPageTest"/>
-        </classes>
-    </test>
+    <!--<test name="ChromeTest" verbose="1" parallel="true">-->
+    <!--<parameter name="browser" value="chrome"/>-->
+    <!--<classes>-->
+    <!--<class name="emias.calldoctor.regress.CreateCallTest"/>-->
+    <!--<class name="emias.calldoctor.regress.EditPageTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 
     <test name="FirefoxTest" verbose="1" parallel="true">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="emias.calldoctor.regress.CreateCallTest"/>
-            <class name="emias.calldoctor.regress.EditPageTest"/>
+            <!--<class name="emias.calldoctor.regress.CreateCallTest"/>-->
+            <!--<class name="emias.calldoctor.regress.EditPageTest"/>-->
+            <class name="emias.calldoctor.regress.CancelCallTest"/>
         </classes>
     </test>
 
