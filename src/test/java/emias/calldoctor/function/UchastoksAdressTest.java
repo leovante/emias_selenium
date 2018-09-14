@@ -20,7 +20,6 @@ import pages.utilities.StringGenerator;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class UchastoksAdressTest extends AbstractTestGrid {
     String nameGen;
@@ -28,7 +27,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @BeforeMethod(groups = {"CD", "test"})
     public void beforeMethod() {
         StringGenerator nameGen = new StringGenerator();
-        String name = String.valueOf(nameGen.generator());
+        String name = String.valueOf(StringGenerator.generator());
         this.nameGen = name;
     }
 
@@ -42,7 +41,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile15", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
@@ -59,7 +58,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile16", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
@@ -76,7 +75,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile17", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
@@ -92,7 +91,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile18", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
@@ -108,7 +107,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testUchastokWithCallAdress() throws IOException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         SQLDemonstration.finalizePacientNumberPol("ProfileDetkinaVGostyah");
         page.createCallPage().createCallProfileDetkinaVGostah();
         page.dashboardPage()

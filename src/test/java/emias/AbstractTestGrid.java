@@ -16,22 +16,26 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class AbstractTestGrid {
-    public RemoteWebDriver driver;
-    public Pages page;
+    public static RemoteWebDriver driver;
+    public static Pages page;
     public BeforeCalldoctor beforecdCD;
-    public String curUrlCalldoctor = null;
     public String nameGen;
-    public String site;
-    public String login;
-    public String pass;
+    public static String site;
+    public static String login;
+    public static String pass;
 
-    @Parameters({"site", "loginMis", "pass"})
+    @Parameters({"site", "login", "pass"})
     @BeforeSuite
     public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass) throws IOException {
-        this.site = site;
-        this.login = login;
-        this.pass = pass;
+        AbstractTestGrid.site = site;
+        AbstractTestGrid.login = login;
+        AbstractTestGrid.pass = pass;
         RunSeleniumGrid.run();
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        //тут закрываем процессы батника селениум грид
     }
 
     @Parameters({"browser", "headless"})
@@ -49,8 +53,8 @@ public class AbstractTestGrid {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         WebDriverRunner.closeWebDriver();
-        driver.close();
-        driver.quit();
+//        driver.quit();
+//        driver.close();
 //        SQLDemonstration.finalizeAllTestCalls();
 //        close();
     }

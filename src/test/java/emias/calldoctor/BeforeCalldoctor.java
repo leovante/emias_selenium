@@ -10,7 +10,6 @@ public class BeforeCalldoctor extends AbstractTestGrid {
         page.loginPage().login(site, login, pass);
         page.homePage().callDoctorBtn();
         switchTo().window(1);
-        curUrlCalldoctor = driver.getCurrentUrl();
         return this;
     }
 }

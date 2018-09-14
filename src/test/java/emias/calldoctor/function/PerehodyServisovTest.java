@@ -9,35 +9,20 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyServisovTest extends AbstractTestGrid {
-    String nameGen;
-
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
-        StringGenerator nameGen = new StringGenerator();
-        String name = String.valueOf(nameGen.generator());
-        this.nameGen = name;
-    }
-
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod() {
-//        SQLDemonstration.finalizeAllTestCalls();
-    }
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
@@ -53,7 +38,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile2");
@@ -69,7 +54,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
 //        driver.close();
         switchTo().window(0);
         page.homePage().exitBtn();
@@ -78,5 +63,4 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         switchTo().window(1);
         $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
     }
-
 }
