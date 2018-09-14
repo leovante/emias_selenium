@@ -4,56 +4,31 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
-import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
 public class CreateCallTest extends AbstractTestGrid {
-    private String nameGen;
 
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
-        StringGenerator nameGen = new StringGenerator();
-        this.nameGen = String.valueOf(nameGen.generator());
-    }
-
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod() {
-//        SQLDemonstration.finalizeAllTestCalls();
-    }
-
-    @DataProvider(name = "ProfileRegistr")
-    public static Object[][] credentials() {
-        return new Object[][]{
-                {"Profile1", "n"},
-                {"Profile2", "y"},
-        };
-    }
-
-    @Test(groups = "CD", description = "пустой вызов")
+    @Test(description = "пустой вызов")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile0", nameGen, "n");
         page.fullCardPage()
                 .verifyCallProfile0("Profile0")
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
+    @Test(description = "вызов с иточником Регистратура без МКАБ")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
-        open(curUrlCalldoctor);
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage()
                 .createNewCall("Profile1", nameGen, "n");
         page.fullCardPage()
@@ -63,11 +38,11 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile1", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile2", nameGen)
@@ -76,28 +51,28 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile2");
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile3(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile6(nameGen);
         page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
     @Flaky
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Test(description = "вызов ребенка с Портала")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
@@ -109,7 +84,7 @@ public class CreateCallTest extends AbstractTestGrid {
 
         page.portalDashboard()
                 .createCall("Profile4", nameGen);
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallProgressFrame();
@@ -117,18 +92,27 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyCallNewCallGroup("Profile4", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
+    @Test(description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException {
         SQLDemonstration.finalizePacientNumberPol("Profile14");
 
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile14();
         page.dashboardPage().openNewCallProgressFrame();
         page.fullCardPage().verifyCallProfileDetkina("Profile14");//почему-то 2 педиатрический сразу. С Таким адресом два участка
     }
+
+
+//    @DataProvider(name = "ProfileRegistr")
+//    public static Object[][] credentials() {
+//        return new Object[][]{
+//                {"Profile1", "n"},
+//                {"Profile2", "y"},
+//        };
 }
+
 
 // TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
 // TODO: 19.08.2018 на странице выбора врача в поле формализации адреса ввести другой адрес. Проверить что в хедере данный адрес изменился

@@ -38,7 +38,7 @@ public abstract class AbstractTest {
         driver.quit();
     }
 
-    @Parameters(value = {"site", "login", "pass"})
+    @Parameters(value = {"site", "loginMis", "pass"})
     @RetryCountIfFailed(2)
     @BeforeGroups(groups = "CD", alwaysRun = true)
     public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
@@ -57,7 +57,7 @@ public abstract class AbstractTest {
 //        SQLDemonstration.finalizeAllTestCalls();
     }
 
-    @Parameters(value = {"site", "login", "pass"})
+    @Parameters(value = {"site", "loginMis", "pass"})
     @BeforeGroups(groups = "mis", alwaysRun = true)
     public void beforeGroupsMIS(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
@@ -65,7 +65,7 @@ public abstract class AbstractTest {
         curUrlCalldoctor = driver.getCurrentUrl();
     }
 
-    @Parameters(value = {"site", "login", "pass"})
+    @Parameters(value = {"site", "loginMis", "pass"})
     @BeforeGroups(groups = "test", alwaysRun = true)
     public void beforeGroupsTest(@Optional String site, @Optional String login, @Optional String pass) {
         page.loginPage().login(site, login, pass);

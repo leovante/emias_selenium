@@ -6,7 +6,7 @@
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
     <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
-    <parameter name="headless" value="true"/>
+    <parameter name="headless" value="false"/>
 
     <listeners>
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
@@ -15,34 +15,34 @@
     <test name="ChromeTest" verbose="1" parallel="true">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="emias.calldoctor.regress.CancelCallTest"/>
-            <class name="emias.calldoctor.regress.ChangeDepartmentTest"/>
-            <class name="emias.calldoctor.regress.ChangeDoctorTest"/>
-            <class name="emias.calldoctor.regress.ChooseDoctorTest"/>
-            <class name="emias.calldoctor.regress.CompleteServiceTest"/>
+            <!--<class name="emias.calldoctor.regress.CancelCallTest"/>-->
+            <!--<class name="emias.calldoctor.regress.ChangeDepartmentTest"/>-->
+            <!--<class name="emias.calldoctor.regress.ChangeDoctorTest"/>-->
+            <!--<class name="emias.calldoctor.regress.ChooseDoctorTest"/>-->
+            <!--<class name="emias.calldoctor.regress.CompleteServiceTest"/>-->
             <class name="emias.calldoctor.regress.CreateCallTest"/>
-            <class name="emias.calldoctor.regress.EditPageTest"/>
-            <class name="emias.calldoctor.regress.FilterTest"/>
-            <class name="emias.calldoctor.function.DoctorsListTest"/>
-            <class name="emias.calldoctor.function.PerehodyServisovTest"/>
-            <class name="emias.calldoctor.function.UchastoksAdressTest"/>
+            <!--<class name="emias.calldoctor.regress.EditPageTest"/>-->
+            <!--<class name="emias.calldoctor.regress.FilterTest"/>-->
+            <!--<class name="emias.calldoctor.function.DoctorsListTest"/>-->
+            <!--<class name="emias.calldoctor.function.PerehodyServisovTest"/>-->
+            <!--<class name="emias.calldoctor.function.UchastoksAdressTest"/>-->
         </classes>
     </test>
 
     <test name="FirefoxTest" verbose="1" parallel="true">
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="emias.calldoctor.regress.CancelCallTest"/>
-            <class name="emias.calldoctor.regress.ChangeDepartmentTest"/>
-            <class name="emias.calldoctor.regress.ChangeDoctorTest"/>
-            <class name="emias.calldoctor.regress.ChooseDoctorTest"/>
-            <class name="emias.calldoctor.regress.CompleteServiceTest"/>
+            <!--<class name="emias.calldoctor.regress.CancelCallTest"/>-->
+            <!--<class name="emias.calldoctor.regress.ChangeDepartmentTest"/>-->
+            <!--<class name="emias.calldoctor.regress.ChangeDoctorTest"/>-->
+            <!--<class name="emias.calldoctor.regress.ChooseDoctorTest"/>-->
+            <!--<class name="emias.calldoctor.regress.CompleteServiceTest"/>-->
             <class name="emias.calldoctor.regress.CreateCallTest"/>
-            <class name="emias.calldoctor.regress.EditPageTest"/>
-            <class name="emias.calldoctor.regress.FilterTest"/>
-            <class name="emias.calldoctor.function.DoctorsListTest"/>
-            <class name="emias.calldoctor.function.PerehodyServisovTest"/>
-            <class name="emias.calldoctor.function.UchastoksAdressTest"/>
+            <!--<class name="emias.calldoctor.regress.EditPageTest"/>-->
+            <!--<class name="emias.calldoctor.regress.FilterTest"/>-->
+            <!--<class name="emias.calldoctor.function.DoctorsListTest"/>-->
+            <!--<class name="emias.calldoctor.function.PerehodyServisovTest"/>-->
+            <!--<class name="emias.calldoctor.function.UchastoksAdressTest"/>-->
         </classes>
     </test>
 

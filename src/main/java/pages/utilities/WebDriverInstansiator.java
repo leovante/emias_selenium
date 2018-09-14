@@ -14,12 +14,13 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class WebDriverInstansiator {
     public String browser;
+    public RemoteWebDriver driver;
 
     public WebDriverInstansiator(String browser) {
         this.browser = browser;
     }
 
-    public void setDriver(Boolean headless) throws MalformedURLException {
+    public RemoteWebDriver setDriver(Boolean headless) throws MalformedURLException {
         switch (browser) {
             case "firefox":
 //                FirefoxOptions options = new FirefoxOptions();
@@ -31,8 +32,8 @@ public class WebDriverInstansiator {
                 dcff.setBrowserName("firefox");
                 dcff.setCapability("marionette", true);
 
-                RemoteWebDriver driverff = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcff);
-                WebDriverRunner.setWebDriver(driverff);
+                driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), dcff);
+                WebDriverRunner.setWebDriver(driver);
                 Configuration.timeout = 20000;
                 break;
             case "chrome":
@@ -43,8 +44,8 @@ public class WebDriverInstansiator {
                 DesiredCapabilities dcch = DesiredCapabilities.chrome();
                 dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
-                RemoteWebDriver driverch = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
-                WebDriverRunner.setWebDriver(driverch);
+                driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), dcch);
+                WebDriverRunner.setWebDriver(driver);
                 Configuration.timeout = 20000;
                 break;
         }
@@ -53,5 +54,6 @@ public class WebDriverInstansiator {
         System.out.println("Monitor resolution: " + (int)
                 screenSize.getWidth() + "x" + (int) screenSize.getHeight());
         System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
+        return driver;
     }
 }

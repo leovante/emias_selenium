@@ -4,13 +4,13 @@
   "port": 4445,
   "cleanupCycle": 5000,
   "maxSessions": 5,
-  "timeout": 20000,
-  "newSessionWaitTimeout": -1,
+    "newSessionWaitTimeout": -1,
   "prioritizer": null,
   "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
   "nodePolling": 180000,
   "registry": "org.openqa.grid.internal.DefaultGridRegistry",
   "role": "hub",
-  "debug": false,
-  "browserTimeout": 0
+  "debug": true,
+  "timeout": 20,
+  "browserTimeout": 20
 }
