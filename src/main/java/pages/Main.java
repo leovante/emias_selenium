@@ -1,8 +1,14 @@
 package pages;
 
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        Runtime.
+                getRuntime().
+                exec("src/main/resources/run_grid.bat");
+
+
         // TODO Auto-generated method stub
 //        GridHubConfiguration configHub = new GridHubConfiguration();
 //        configHub.host = "localhost";
@@ -17,7 +23,6 @@ public class Main {
 //        hub.start();
         //System.out.println(configNode.getRemoteHost());
         //hub.stop();
-
 
 
 //        TestListenerAdapter tla = new TestListenerAdapter();

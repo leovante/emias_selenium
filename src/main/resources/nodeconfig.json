@@ -1,7 +1,4 @@
 {
-  "capabilities": [
-    "..."
-  ],
   "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
   "role": "node",
   "host": "127.0.0.1",
@@ -15,8 +12,5 @@
   "downPollingLimit": 2,
   "debug": false,
   "register": true,
-  "hub": "http://localhost:4444",
-  "servlets": [],
-  "withoutServlets": [],
-  "custom": {}
+  "hub": "http://127.0.0.1:4445"
 }
