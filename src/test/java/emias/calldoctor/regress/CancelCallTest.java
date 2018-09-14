@@ -8,28 +8,13 @@ import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class CancelCallTest extends AbstractTestGrid {
-//    String nameGen;
-
-//    @BeforeMethod(groups = {"CD", "test"})
-//    public void beforeMethod() {
-//        StringGenerator nameGen = new StringGenerator();
-//        String name = String.valueOf(nameGen.generator());
-//        this.nameGen = name;
-//    }
-
-//    @AfterMethod(groups = {"CD", "test"})
-//    public void afterMethod() {
-////        SQLDemonstration.finalizeAllTestCalls();
-//    }
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         String nameGen = String.valueOf(new StringGenerator().generator());
 
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
@@ -43,7 +28,7 @@ public class CancelCallTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         String nameGen = String.valueOf(new StringGenerator().generator());
 
         page.createCallPage().createNewCall("Profile1", nameGen, "n");

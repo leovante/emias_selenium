@@ -104,7 +104,6 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyCallProfileDetkina("Profile14");//почему-то 2 педиатрический сразу. С Таким адресом два участка
     }
 
-
 //    @DataProvider(name = "ProfileRegistr")
 //    public static Object[][] credentials() {
 //        return new Object[][]{
@@ -112,7 +111,6 @@ public class CreateCallTest extends AbstractTestGrid {
 //                {"Profile2", "y"},
 //        };
 }
-
 
 // TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
 // TODO: 19.08.2018 на странице выбора врача в поле формализации адреса ввести другой адрес. Проверить что в хедере данный адрес изменился

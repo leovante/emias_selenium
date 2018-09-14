@@ -4,34 +4,18 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.utilities.SQLDemonstration;
-import pages.utilities.StringGenerator;
 
 import static com.codeborne.selenide.Selenide.open;
 
 public class ChooseDoctorTest extends AbstractTestGrid {
-    String nameGen;
-
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
-        StringGenerator nameGen = new StringGenerator();
-        String name = String.valueOf(nameGen.generator());
-        this.nameGen = name;
-    }
-
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod() {
-//        SQLDemonstration.finalizeAllTestCalls();
-    }
 
     @Test(groups = "CD", description = "назначить вызову из регистратуры врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
@@ -49,7 +33,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile2");
@@ -72,7 +56,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
 //        driver.manage().deleteAllCookies();
         open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard().createCall("Profile4", nameGen);
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallProgressFrame();

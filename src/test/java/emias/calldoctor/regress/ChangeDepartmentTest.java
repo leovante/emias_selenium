@@ -3,35 +3,19 @@ package emias.calldoctor.regress;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 
 public class ChangeDepartmentTest extends AbstractTestGrid {
-    String nameGen;
-
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
-        StringGenerator nameGen = new StringGenerator();
-        String name = String.valueOf(nameGen.generator());
-        this.nameGen = name;
-    }
-
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod() {
-//        SQLDemonstration.finalizeAllTestCalls();
-    }
 
     @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Depart() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage()
                 .createNewCall("ProfileTransferLpu-Dep", nameGen, "n");
         page.fullCardPage()
@@ -45,7 +29,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage()
                 .createNewCall("ProfileTransferDep-Dep", nameGen, "n");
         page.fullCardPage()
@@ -63,7 +47,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException {
-        open(curUrlCalldoctor);
+        beforecdCD.loginMis_Calldoctor();
         page.createCallPage()
                 .createNewCall("ProfileTransferDep-Lpu", nameGen, "n");
         page.fullCardPage()
