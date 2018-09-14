@@ -3,9 +3,6 @@ package pages.utilities;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -16,9 +13,6 @@ import java.net.URL;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class WebDriverInstansiator {
-    private FirefoxProfile profile;
-    public FirefoxOptions options;
-    public ChromeOptions chromeOptions;
     public String browser;
 
     public WebDriverInstansiator(String browser) {
@@ -28,7 +22,7 @@ public class WebDriverInstansiator {
     public void setDriver(Boolean headless) throws MalformedURLException {
         switch (browser) {
             case "firefox":
-//                options = new FirefoxOptions();
+//                FirefoxOptions options = new FirefoxOptions();
 //                options.setHeadless(headless);
 //                options.setLegacy(true);
 //                options.addArguments("window-size=1919,1079");
@@ -36,14 +30,13 @@ public class WebDriverInstansiator {
                 DesiredCapabilities dcff = new DesiredCapabilities();
                 dcff.setBrowserName("firefox");
                 dcff.setCapability("marionette", true);
-                dcff.setCapability(FirefoxDriver.PROFILE, profile);
 
                 RemoteWebDriver driverff = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcff);
                 WebDriverRunner.setWebDriver(driverff);
                 Configuration.timeout = 20000;
                 break;
             case "chrome":
-                chromeOptions = new ChromeOptions();
+                ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setHeadless(headless);
                 chromeOptions.addArguments("window-size=1919,1079");
 
