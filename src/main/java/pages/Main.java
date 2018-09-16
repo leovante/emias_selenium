@@ -4,11 +4,9 @@ import org.hibernate.Session;
 import pages.sql.HltCallDoctorEntity;
 import pages.utilities.HibernateSessionFactory;
 
-import java.io.IOException;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Runtime.getRuntime().exec("src/main/resources/run_grid.bat");
+    public static void main(String[] args) {
+//        Runtime.getRuntime().exec("src/main/resources/run_grid.bat");
 
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
