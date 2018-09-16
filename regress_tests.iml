@@ -4,10 +4,20 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="hibernate.cfg.xml" value="746674ce-b2f9-4fad-9cc9-adc5a0845d18" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
+      </configuration>
+    </facet>
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <setting name="provider-name" value="" />
+        <datasource-mapping>
+          <factory-entry name="NewPersistenceUnit" />
+        </datasource-mapping>
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/java/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>
@@ -112,5 +122,6 @@
     <orderEntry type="library" name="Maven: org.hibernate.common:hibernate-commons-annotations:5.0.4.Final" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Maven: javax.persistence:javax.persistence-api:2.2" level="project" />
   </component>
 </module>

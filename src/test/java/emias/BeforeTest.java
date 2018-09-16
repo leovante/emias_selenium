@@ -4,7 +4,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
-import pages.utilities.SQLDemonstration;
+import pages.sql.SQLDemonstration;
 
 import java.util.ArrayList;
 

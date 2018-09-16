@@ -7,8 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
+import pages.sql.SQLDemonstration;
 import pages.utilities.DriverManager;
-import pages.utilities.SQLDemonstration;
 
 import java.io.FileNotFoundException;
 

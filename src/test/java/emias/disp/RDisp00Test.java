@@ -4,7 +4,7 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
-import pages.utilities.SQLDemonstration;
+import pages.sql.SQLDemonstration;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;

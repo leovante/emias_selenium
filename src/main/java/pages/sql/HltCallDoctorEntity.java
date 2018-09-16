@@ -1,7 +1,7 @@
-package pages.calldoctor;
+package pages.sql;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -14,10 +14,10 @@ public class HltCallDoctorEntity {
     private int rfMkabid;
     private String address;
     private String complaint;
-    private Timestamp dateCall;
+    private Date dateCall;
     private int rfCallDoctorStatusId;
     private boolean isFinalize;
-    private Timestamp dateFinalize;
+    private Date dateFinalize;
     private int rfTapid;
     private String codeDomophon;
     private String phone;
@@ -28,12 +28,12 @@ public class HltCallDoctorEntity {
     private int rfAddressId;
     private int rfDocPrvdid;
     private int rfFinalizeDocPrvdid;
-    private Timestamp dateVisit;
+    private Date dateVisit;
     private int flags;
     private Object guid;
     private int rfLpuid;
     private int sourceDvt;
-    private Timestamp birthDate;
+    private Date birthDate;
     private String family;
     private String name;
     private String numberPol;
@@ -41,7 +41,7 @@ public class HltCallDoctorEntity {
     private int rfKlSexId;
     private String seriesPol;
     private int rfMkbid;
-    private Timestamp dateStatus;
+    private Date dateStatus;
     private String causeCancel;
     private String sourceSmp;
     private String callFamily;
@@ -50,8 +50,8 @@ public class HltCallDoctorEntity {
     private int rfCallPersonTypeId;
     private int age;
     private int ageTitle;
-    private Timestamp dateActive;
-    private Timestamp dateResolved;
+    private Date dateActive;
+    private Date dateResolved;
     private boolean isChild;
     private boolean isNotification;
     private int rfUchastokId;
@@ -127,17 +127,19 @@ public class HltCallDoctorEntity {
         this.complaint = complaint;
     }
 
-    @Basic
+    //NOTE THIS!
+    @Temporal(TemporalType.DATE)
     @Column(name = "DateCall", nullable = false)
-    public Timestamp getDateCall() {
+    public Date getDateCall() {
         return dateCall;
     }
 
-    public void setDateCall(Timestamp dateCall) {
+    public void setDateCall(Date dateCall) {
         this.dateCall = dateCall;
     }
 
-    @Basic
+    //NOTE THIS!
+    @Temporal(TemporalType.DATE)
     @Column(name = "rf_CallDoctorStatusID", nullable = false)
     public int getRfCallDoctorStatusId() {
         return rfCallDoctorStatusId;
@@ -157,13 +159,13 @@ public class HltCallDoctorEntity {
         isFinalize = finalize;
     }
 
-    @Basic
+    @Temporal(TemporalType.DATE)
     @Column(name = "DateFinalize", nullable = false)
-    public Timestamp getDateFinalize() {
+    public Date getDateFinalize() {
         return dateFinalize;
     }
 
-    public void setDateFinalize(Timestamp dateFinalize) {
+    public void setDateFinalize(Date dateFinalize) {
         this.dateFinalize = dateFinalize;
     }
 
@@ -267,13 +269,14 @@ public class HltCallDoctorEntity {
         this.rfFinalizeDocPrvdid = rfFinalizeDocPrvdid;
     }
 
-    @Basic
+    //NOTE THIS!
+    @Temporal(TemporalType.DATE)
     @Column(name = "DateVisit", nullable = false)
-    public Timestamp getDateVisit() {
+    public Date getDateVisit() {
         return dateVisit;
     }
 
-    public void setDateVisit(Timestamp dateVisit) {
+    public void setDateVisit(Date dateVisit) {
         this.dateVisit = dateVisit;
     }
 
@@ -317,13 +320,14 @@ public class HltCallDoctorEntity {
         this.sourceDvt = sourceDvt;
     }
 
-    @Basic
+    //NOTE THIS!
+    @Temporal(TemporalType.DATE)
     @Column(name = "BirthDate", nullable = false)
-    public Timestamp getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Timestamp birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -397,13 +401,14 @@ public class HltCallDoctorEntity {
         this.rfMkbid = rfMkbid;
     }
 
-    @Basic
+    //NOTE THIS!
+    @Temporal(TemporalType.DATE)
     @Column(name = "DateStatus", nullable = false)
-    public Timestamp getDateStatus() {
+    public Date getDateStatus() {
         return dateStatus;
     }
 
-    public void setDateStatus(Timestamp dateStatus) {
+    public void setDateStatus(Date dateStatus) {
         this.dateStatus = dateStatus;
     }
 
@@ -487,23 +492,25 @@ public class HltCallDoctorEntity {
         this.ageTitle = ageTitle;
     }
 
-    @Basic
+    //NOTE THIS!
+    @Temporal(TemporalType.DATE)
     @Column(name = "DateActive", nullable = false)
-    public Timestamp getDateActive() {
+    public Date getDateActive() {
         return dateActive;
     }
 
-    public void setDateActive(Timestamp dateActive) {
+    public void setDateActive(Date dateActive) {
         this.dateActive = dateActive;
     }
 
-    @Basic
+    //NOTE THIS!
+    @Temporal(TemporalType.DATE)
     @Column(name = "DateResolved", nullable = false)
-    public Timestamp getDateResolved() {
+    public Date getDateResolved() {
         return dateResolved;
     }
 
-    public void setDateResolved(Timestamp dateResolved) {
+    public void setDateResolved(Date dateResolved) {
         this.dateResolved = dateResolved;
     }
 

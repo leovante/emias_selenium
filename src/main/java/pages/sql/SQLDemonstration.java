@@ -1,4 +1,4 @@
-package pages.utilities;
+package pages.sql;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;

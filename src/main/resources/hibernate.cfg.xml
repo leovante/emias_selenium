@@ -6,10 +6,7 @@
     <session-factory>
         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="connection.url">
-            jdbc:sqlserver://12.8.1.66\ServerInstanceOrServerName:80;databaseName=hlt_demonstration
-        </property>
-        <property name="connection.username">sa</property>
-        <property name="connection.password">sagfhjkzYES!</property>
+        <property name="connection.url">jdbc:sqlserver://12.8.1.66;databaseName=hlt_demonstration</property>
+        <mapping class="pages.sql.HltCallDoctorEntity"/>
     </session-factory>
 </hibernate-configuration>

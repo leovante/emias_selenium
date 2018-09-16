@@ -5,7 +5,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import org.testng.annotations.Test;
-import pages.utilities.SQLDemonstration;
+import pages.sql.SQLDemonstration;
 
 import static com.codeborne.selenide.Selenide.open;
 

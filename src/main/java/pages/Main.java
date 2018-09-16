@@ -1,15 +1,24 @@
 package pages;
 
+import org.hibernate.Session;
+import pages.sql.HltCallDoctorEntity;
+import pages.utilities.HibernateSessionFactory;
+
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Runtime.
-                getRuntime().
-                exec("src/main/resources/run_grid.bat");
+        Runtime.getRuntime().exec("src/main/resources/run_grid.bat");
 
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        session.beginTransaction();
+        HltCallDoctorEntity hltCallDoctorEntity = new HltCallDoctorEntity();
+        hltCallDoctorEntity.setBirthDate(new java.util.Date());
+        session.save(hltCallDoctorEntity);
+        session.getTransaction().commit();
+        session.close();
 
-        // TODO Auto-generated method stub
+//        TODO Auto-generated method stub
 //        GridHubConfiguration configHub = new GridHubConfiguration();
 //        configHub.host = "localhost";
 //        configHub.port = 8060;

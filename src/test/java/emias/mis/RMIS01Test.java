@@ -5,7 +5,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.utilities.SQLDemonstration;
+import pages.sql.SQLDemonstration;
 
 public class RMIS01Test extends AbstractTestGrid {
 
