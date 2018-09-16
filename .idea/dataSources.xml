@@ -68,5 +68,18 @@
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="15a89fea-c70a-462f-84ed-d2eea11a6a30">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://12.8.1.66;databaseName=hlt_demonstration</jdbc-url>
+      <driver-properties>
+        <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>
