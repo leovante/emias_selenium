@@ -1,2 +1,2 @@
 delete from hlt_disp_ServiceDocPrvd
-where disp_ServiceDocPrvdID != 0
+where disp_ServiceDocPrvdID > 0
