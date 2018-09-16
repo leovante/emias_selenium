@@ -7,7 +7,7 @@
   "cleanUpCycle": 2000,
   "registerCycle": 5000,
   "nodePolling": 5000,
-  "nodeStatusCheckTimeout": 5000,
+  "nodeStatusCheckTimeout": 1,
   "unregisterIfStillDownAfter": 60000,
   "downPollingLimit": 2,
   "debug": true,

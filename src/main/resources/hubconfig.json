@@ -11,6 +11,6 @@
   "registry": "org.openqa.grid.internal.DefaultGridRegistry",
   "role": "hub",
   "debug": true,
-  "timeout": 20,
-  "browserTimeout": 20
+  "timeout": 10,
+  "browserTimeout": 10
 }
