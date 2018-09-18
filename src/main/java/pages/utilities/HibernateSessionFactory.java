@@ -10,7 +10,8 @@ public class HibernateSessionFactory {
         // A SessionFactory is set up once for an application!
         try {
             // load from different directory
-            SessionFactory sessionFactory = new Configuration().configure()
+            SessionFactory sessionFactory = new Configuration()
+                    .configure()
                     .buildSessionFactory();
             return sessionFactory;
 

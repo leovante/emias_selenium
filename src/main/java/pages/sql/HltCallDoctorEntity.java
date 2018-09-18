@@ -9,7 +9,7 @@ import java.util.Objects;
 public class HltCallDoctorEntity {
     private int callDoctorId;
     private int xEdition;
-    private byte xStatus;
+    private int xStatus;
     private int rfLpuDoctorId;
     private int rfMkabid;
     private String address;
@@ -30,7 +30,7 @@ public class HltCallDoctorEntity {
     private int rfFinalizeDocPrvdid;
     private Date dateVisit;
     private int flags;
-    private Object guid;
+    private String guid;
     private int rfLpuid;
     private int sourceDvt;
     private Date birthDate;
@@ -79,11 +79,11 @@ public class HltCallDoctorEntity {
 
     @Basic
     @Column(name = "x_Status", nullable = false)
-    public byte getxStatus() {
+    public int getxStatus() {
         return xStatus;
     }
 
-    public void setxStatus(byte xStatus) {
+    public void setxStatus(int xStatus) {
         this.xStatus = xStatus;
     }
 
@@ -138,8 +138,7 @@ public class HltCallDoctorEntity {
         this.dateCall = dateCall;
     }
 
-    //NOTE THIS!
-    @Temporal(TemporalType.DATE)
+    @Basic
     @Column(name = "rf_CallDoctorStatusID", nullable = false)
     public int getRfCallDoctorStatusId() {
         return rfCallDoctorStatusId;
@@ -292,11 +291,11 @@ public class HltCallDoctorEntity {
 
     @Basic
     @Column(name = "GUID", nullable = false)
-    public Object getGuid() {
+    public String getGuid() {
         return guid;
     }
 
-    public void setGuid(Object guid) {
+    public void setGuid(String guid) {
         this.guid = guid;
     }
 
