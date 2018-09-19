@@ -7,7 +7,6 @@
     <parameter name="pass" value="1215"/>
     <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
     <parameter name="headless" value="true"/>
-
     <listeners>
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>

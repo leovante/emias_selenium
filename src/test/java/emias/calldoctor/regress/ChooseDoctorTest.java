@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ChooseDoctorTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "назначить вызову из регистратуры врача на сегодня")
+    @Test(groups = "test", description = "назначить вызову из регистратуры врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
@@ -29,7 +29,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "назначить врача вызову из СМП на сегодня")
+    @Test(groups = "test", description = "назначить врача вызову из СМП на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {
@@ -47,7 +47,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "назначить врача вызову с Портала на сегодня")
+    @Test(groups = "test", description = "назначить врача вызову с Портала на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {

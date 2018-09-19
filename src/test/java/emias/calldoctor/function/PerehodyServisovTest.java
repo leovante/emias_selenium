@@ -9,12 +9,14 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
+
 
 public class PerehodyServisovTest extends AbstractTestGrid {
 
@@ -34,23 +36,24 @@ public class PerehodyServisovTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
+    @Test(groups = "test", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile2");
+        page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup("Profile2")
+                .verifyDoneDocGroup("Profile1")
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
+    @Ignore
+    @Test(groups = "test", description = "проверка учетки врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {

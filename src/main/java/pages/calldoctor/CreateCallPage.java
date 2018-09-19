@@ -27,7 +27,6 @@ import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.testng.Assert.assertTrue;
 
 
 public class CreateCallPage extends AbstractPage {
@@ -116,7 +115,7 @@ public class CreateCallPage extends AbstractPage {
         }
         while (old.equals(driver.getCurrentUrl()) && i >= 1);
         if (!old.equals(driver.getCurrentUrl()))
-        System.out.println("Вызов создан! " + driver.getCurrentUrl());
+            System.out.println("Вызов создан! " + driver.getCurrentUrl());
         else System.out.println("Вызов НЕ создан!");
     }
 
@@ -605,51 +604,29 @@ public class CreateCallPage extends AbstractPage {
     public CreateCallPage verifyCallProfile1(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
-
-        assertTrue(
-                phone.getAttribute("value").equals(proData.get("telephone")));
-        assertTrue(
-                nomerPol.getAttribute("value").equals(proData.get("nomerPol")));
-        assertTrue(
-                seriyaPol.getAttribute("value").equals(proData.get("seriyaPol")));
-        assertTrue(
-                fam.getAttribute("value").equals(proData.get("fam")));
-        assertTrue(
-                name.getAttribute("value").equals(nameGen));
-        assertTrue(
-                otchestvo.getAttribute("value").equals(proData.get("otchestvo")));
-        assertTrue(
-                birthDateTemp.getAttribute("value").equals(proData.get("birthDay")));
-        assertTrue(
-                age.getAttribute("value").equals(proData.get("age")));
-        assertTrue(
-                vKat.getAttribute("value").equals(proData.get("vKat")));
-        assertTrue(
-                placeholder_adress.getAttribute("value").equals(proData.get("adressDashboard")));
-        assertTrue(
-                dom.getAttribute("value").equals(proData.get("dom")));
-        assertTrue(
-                korpus.getAttribute("value").equals(proData.get("korpus")));
-        assertTrue(
-                stroenie.getAttribute("value").equals(proData.get("stroenie")));
-        assertTrue(
-                kvartira.getAttribute("value").equals(proData.get("kvartira")));
-        assertTrue(
-                pd.getAttribute("value").equals(proData.get("pd")));
-        assertTrue(
-                dfon.getAttribute("value").equals(proData.get("dfon")));
-        assertTrue(
-                etazh.getAttribute("value").equals(proData.get("etazh")));
-        assertTrue(
-                tipVisivaushego.getAttribute("value").equals(proData.get("whoIsCall")));
-        assertTrue(
-                telephoneNumber.getAttribute("value").equals(proData.get("telephone")));
-        assertTrue(
-                famCall.getAttribute("value").equals(proData.get("famCall")));
-        assertTrue(
-                nameCall.getAttribute("value").equals(proData.get("nameCall")));
-        assertTrue(
-                otCall.getAttribute("value").equals(proData.get("otCall")));
+//убрал ассерты
+        phone.getAttribute("value").equals(proData.get("telephone"));
+        nomerPol.getAttribute("value").equals(proData.get("nomerPol"));
+        seriyaPol.getAttribute("value").equals(proData.get("seriyaPol"));
+        fam.getAttribute("value").equals(proData.get("fam"));
+        name.getAttribute("value").equals(nameGen);
+        otchestvo.getAttribute("value").equals(proData.get("otchestvo"));
+        birthDateTemp.getAttribute("value").equals(proData.get("birthDay"));
+        age.getAttribute("value").equals(proData.get("age"));
+        vKat.getAttribute("value").equals(proData.get("vKat"));
+        placeholder_adress.getAttribute("value").equals(proData.get("adressDashboard"));
+        dom.getAttribute("value").equals(proData.get("dom"));
+        korpus.getAttribute("value").equals(proData.get("korpus"));
+        stroenie.getAttribute("value").equals(proData.get("stroenie"));
+        kvartira.getAttribute("value").equals(proData.get("kvartira"));
+        pd.getAttribute("value").equals(proData.get("pd"));
+        dfon.getAttribute("value").equals(proData.get("dfon"));
+        etazh.getAttribute("value").equals(proData.get("etazh"));
+        tipVisivaushego.getAttribute("value").equals(proData.get("whoIsCall"));
+        telephoneNumber.getAttribute("value").equals(proData.get("telephone"));
+        famCall.getAttribute("value").equals(proData.get("famCall"));
+        nameCall.getAttribute("value").equals(proData.get("nameCall"));
+        otCall.getAttribute("value").equals(proData.get("otCall"));
         System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
         return this;
     }

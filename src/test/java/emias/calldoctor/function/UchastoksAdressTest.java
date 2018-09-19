@@ -37,7 +37,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException {
@@ -102,7 +102,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
+    @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
