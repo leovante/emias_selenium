@@ -42,10 +42,10 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile1");
+        page.setDoctorPage().chooseDoctor("Profile2");
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup("Profile1")
+                .verifyDoneDocGroup("Profile2")
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
@@ -56,7 +56,6 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
         beforecdCD.loginMis_Calldoctor();
-//        driver.close();
         switchTo().window(0);
         page.homePage().exitBtn();
         page.loginPage().login("Admin", "RChS2014");

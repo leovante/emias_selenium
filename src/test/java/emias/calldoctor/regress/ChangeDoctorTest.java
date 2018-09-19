@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class ChangeDoctorTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "передать вызов другому врачу")
+    @Test(groups = "CD", description = "передать вызов другому врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() throws Exception {

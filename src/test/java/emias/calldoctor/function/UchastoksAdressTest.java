@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class UchastoksAdressTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
+    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException {
@@ -42,7 +42,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile16", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Участок')]")).click();
+        $(By.xpath("//mat-label[contains(text(),'Участок')]")).click();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
 
@@ -59,7 +59,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile17", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Участок')]")).click();
+        $(By.xpath("//mat-label[contains(text(),'Участок')]")).click();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
 
@@ -83,7 +83,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
+    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)

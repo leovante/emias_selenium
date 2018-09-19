@@ -57,7 +57,7 @@ public class FullCardPage extends AbstractPage {
         elements.add("Новый");
         elements.add("Карта создана");
         for (String element : elements) {
-            $(By.xpath("//*[contains(.,'" + element + "')]")).should(Condition.visible);
+            $(By.xpath("//*[contains(text(),'" + element + "')]")).should(Condition.visible);
         }
     }
 

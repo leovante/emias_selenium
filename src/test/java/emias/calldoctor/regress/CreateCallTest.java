@@ -40,7 +40,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile1", nameGen);
     }
 
-    @Test(groups = "test", description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
@@ -63,7 +63,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException {
@@ -85,7 +85,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallProgressFrame();
-        $(By.xpath("//*[contains(text(),'Портал')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile4", nameGen);
     }
