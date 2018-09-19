@@ -1,14 +1,16 @@
 package emias.calldoctor.regress;
 
+import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 
 import java.io.IOException;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class CreateCallTest extends AbstractTestGrid {
@@ -24,7 +26,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(description = "вызов с иточником Регистратура без МКАБ")
+    @Test(groups = "test", description = "вызов с иточником Регистратура без МКАБ")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
@@ -38,7 +40,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile1", nameGen);
     }
 
-    @Test(description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
@@ -51,7 +53,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile2");
     }
 
-    @Test(description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException {
@@ -61,7 +63,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException {
@@ -71,37 +73,47 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
-    @Flaky
-    @Test(description = "вызов ребенка с Портала")
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
-        open("https://uslugi.mosreg.ru/zdrav/");
-//        driver.manage().deleteAllCookies();
-//        System.out.println("Куки должны отсутствовать: " + driver.manage().getCookies());
-        open("https://uslugi.mosreg.ru/zdrav/");
         SQLDemonstration.finalizePacientNumberPol("Profile4");
-
+        open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard()
                 .createCall("Profile4", nameGen);
         beforecdCD.loginMis_Calldoctor();
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallProgressFrame();
+        $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile4", nameGen);
+    }
+
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Epic("создание вызова")
+    @RetryCountIfFailed(2)
+    public void testCallCenterChildMkab() throws IOException {
+        SQLDemonstration.finalizePacientNumberPol("Profile14");
+        beforecdCD.loginMis_Calldoctor();
+        page.createCallPage().createCallProfile14();
+        page.dashboardPage().openNewCallProgressFrame();
+        page.fullCardPage().verifyCallProfileDetkina("Profile14");//почему-то 2 педиатрический сразу. С Таким адресом два участка
+        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
     @Test(description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallCenterChildMkab() throws IOException {
-        SQLDemonstration.finalizePacientNumberPol("Profile14");
-
+    public void testCallCenterChild2Mkab() throws IOException {
+        SQLDemonstration.finalizePacientNumberPol("Profile20");
         beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createCallProfile14();
+        page.createCallPage().createCallProfile20();
         page.dashboardPage().openNewCallProgressFrame();
-        page.fullCardPage().verifyCallProfileDetkina("Profile14");//почему-то 2 педиатрический сразу. С Таким адресом два участка
+        page.fullCardPage().verifyCallNewCallGroup("Profile20");
+        $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
 //    @DataProvider(name = "ProfileRegistr")

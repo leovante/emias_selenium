@@ -1,5 +1,6 @@
 package emias.calldoctor.regress;
 
+import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
@@ -9,12 +10,11 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
-import static org.testng.Assert.assertTrue;
+
 
 public class FilterTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "фильтр поиск по ФИО")
+    @Test(groups = "test", description = "фильтр поиск по ФИО")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
@@ -56,13 +56,13 @@ public class FilterTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Test(groups = "test", description = "проверка кнопки выход")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testExitToMis() {
         beforecdCD.loginMis_Calldoctor();
         page.dashboardPage().exitToMis();
-        assertTrue($(By.xpath("//span[contains(text(),'Расписание приёма')]")).isDisplayed());
+        $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
     }
 
     // TODO: 13.08.2018 сделать тест отображение вызовов в различных подразделениях и группах

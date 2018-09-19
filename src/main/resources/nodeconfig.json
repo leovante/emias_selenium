@@ -1,16 +1,29 @@
 {
+  "capabilities": [
+    {
+      "browserName": "chrome",
+      "maxInstances": "10"
+    },
+    {
+      "browserName": "firefox",
+      "maxInstances": "10"
+    }
+  ],
+  "_comment": "Configuration for Node - nodeconfig.json",
   "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
   "role": "node",
-  "host": "127.0.0.1",
+  "host": "localhost",
   "port": 5558,
-  "maxSession": 5,
-  "cleanUpCycle": 2000,
+  "maxSession": 10,
+  "cleanUpCycle": 5,
   "registerCycle": 5000,
   "nodePolling": 5000,
-  "nodeStatusCheckTimeout": 1,
+  "nodeStatusCheckTimeout": 5000,
   "unregisterIfStillDownAfter": 60000,
   "downPollingLimit": 2,
-  "debug": true,
+  "debug": false,
   "register": true,
-  "hub": "http://127.0.0.1:4445"
+  "timeout": 10,
+  "log": "logNode.txt",
+  "hub": "http://localhost:4444"
 }

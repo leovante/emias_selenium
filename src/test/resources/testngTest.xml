@@ -1,26 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Name suite - test">
-    <parameter name="browser" value="chrome"/>
-    <parameter name="platform" value="WINDOWS"/>
-    <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
+<suite name="CalldoctorTest" thread-count="5" parallel="classes">
+    <!--<parameter name="config" value="local.conf.json"/>-->
+    <!--<parameter name="environment" value="chrome"/>-->
     <parameter name="login" value="temnikov"/>
-    <parameter name="pass" value="1214"/>
+    <parameter name="pass" value="1215"/>
+    <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
     <parameter name="headless" value="true"/>
     <listeners>
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
-    <test verbose="1" name="CallDoctor">
+    <test name="ChromeTest" verbose="1" parallel="true">
+        <parameter name="browser" value="chrome"/>
         <groups>
             <run>
                 <include name="test"/>
             </run>
         </groups>
-        <!--<classes>-->
-        <!--<class name="emias.calldoctor.regress.FilterTest"/>-->
-        <!--</classes>-->
-        <packages>
-            <package name="emias.calldoctor"/>
-        </packages>
+        <classes>
+            <class name="emias.calldoctor.regress.CancelCallTest"/>
+            <class name="emias.calldoctor.regress.ChangeDepartmentTest"/>
+            <class name="emias.calldoctor.regress.ChangeDoctorTest"/>
+            <class name="emias.calldoctor.regress.ChooseDoctorTest"/>
+            <class name="emias.calldoctor.regress.CompleteServiceTest"/>
+            <class name="emias.calldoctor.regress.CreateCallTest"/>
+            <class name="emias.calldoctor.regress.EditPageTest"/>
+            <class name="emias.calldoctor.regress.FilterTest"/>
+            <class name="emias.calldoctor.function.DoctorsListTest"/>
+            <class name="emias.calldoctor.function.PerehodyServisovTest"/>
+            <class name="emias.calldoctor.function.UchastoksAdressTest"/>
+        </classes>
     </test>
 </suite>
