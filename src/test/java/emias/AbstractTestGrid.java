@@ -41,8 +41,9 @@ public class AbstractTestGrid {
 
     @Parameters({"browser", "headless"})
     @RetryCountIfFailed(2)
-    @BeforeMethod(alwaysRun = true)
+    @BeforeMethod(groups = {"test", "CD"}, alwaysRun = true)
     public void setUp(@Optional String browser, @Optional Boolean headless) throws MalformedURLException {
+        driver = new WebDriverInstansiator(browser).setDriver(headless);
         driver = new WebDriverInstansiator(browser).setDriver(headless);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
