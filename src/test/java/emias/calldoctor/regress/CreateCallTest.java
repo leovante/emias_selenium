@@ -3,7 +3,6 @@ package emias.calldoctor.regress;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 
@@ -71,7 +70,6 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
-    @Flaky
     @Test(description = "вызов ребенка с Портала")
     @Epic("создание вызова")
     @RetryCountIfFailed(2)

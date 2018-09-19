@@ -8,7 +8,6 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
@@ -142,7 +141,6 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
     }
 
-    @Flaky
     @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)

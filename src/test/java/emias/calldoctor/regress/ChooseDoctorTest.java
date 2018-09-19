@@ -3,7 +3,6 @@ package emias.calldoctor.regress;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 
@@ -28,7 +27,6 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }
 
-    @Flaky
     @Test(groups = "test", description = "назначить врача вызову из СМП на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
@@ -46,7 +44,6 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup("Profile2");
     }
 
-    @Flaky
     @Test(groups = "test", description = "назначить врача вызову с Портала на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)

@@ -9,7 +9,6 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -52,7 +51,6 @@ public class PerehodyServisovTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Ignore
     @Test(groups = "test", description = "проверка учетки врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)

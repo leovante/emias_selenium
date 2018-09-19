@@ -32,7 +32,7 @@ public class WebDriverInstansiator {
                 dcff.setBrowserName("firefox");
                 dcff.setCapability("marionette", true);
 
-                driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), dcff);
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcff);
                 WebDriverRunner.setWebDriver(driver);
                 Configuration.timeout = 20000;
                 break;
@@ -44,7 +44,7 @@ public class WebDriverInstansiator {
                 DesiredCapabilities dcch = DesiredCapabilities.chrome();
                 dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
-                driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), dcch);
+                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
                 WebDriverRunner.setWebDriver(driver);
                 Configuration.timeout = 20000;
                 break;

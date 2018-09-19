@@ -11,30 +11,14 @@ import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
-import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class UchastoksAdressTest extends AbstractTestGrid {
-    String nameGen;
-
-    @BeforeMethod(groups = {"CD", "test"})
-    public void beforeMethod() {
-        StringGenerator nameGen = new StringGenerator();
-        String name = String.valueOf(StringGenerator.generator());
-        this.nameGen = name;
-    }
-
-    @AfterMethod(groups = {"CD", "test"})
-    public void afterMethod() {
-//        SQLDemonstration.finalizeAllTestCalls();
-    }
 
     @Flaky
     @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")

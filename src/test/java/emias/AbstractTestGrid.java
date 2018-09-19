@@ -1,5 +1,6 @@
 package emias;
 
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import emias.calldoctor.BeforeCalldoctor;
 import emias.testngRetryCount.RetryCountIfFailed;
@@ -52,8 +53,8 @@ public class AbstractTestGrid {
     @RetryCountIfFailed(2)
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-//        WebDriverRunner.closeWebDriver();
-        driver.quit();
+        WebDriverRunner.closeWebDriver();
+//        driver.quit();
 //        driver.close();
 //        SQLDemonstration.finalizeAllTestCalls();
 //        close();
