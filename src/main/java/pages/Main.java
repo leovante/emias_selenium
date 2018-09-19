@@ -1,19 +1,21 @@
 package pages;
 
-import org.hibernate.Session;
-import pages.sql.HltDoctorTimeTableEntity;
-import pages.utilities.HibernateSessionFactory;
-
-import java.util.Date;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-//        Runtime.getRuntime().exec("src/main/resources/run_grid.bat");
+    public static void main(String[] args) throws IOException, InterruptedException {
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources && start run_grid.bat && exit\"");
+        Thread.sleep(5000);
+        Runtime.getRuntime().exec("curl http://localhost:4445/lifecycle-manager?action=shutdown");
+//        http://localhost:5558/selenium-server/driver/?cmd=shutDownSeleniumServer
+//        http://localhost:4445/lifecycle-manager/LifecycleServlet?action=shutdown
+//        http://localhost:4445/lifecycle-manager?action=shutdown
+//        http://localhost:4445/extra/LifecycleServlet?action=shutdown
 
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
+//        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+//        session.beginTransaction();
 //        HltCallDoctorEntity hltCallDoctorEntity = new HltCallDoctorEntity();
-        HltDoctorTimeTableEntity hltDoctorTimeTableEntity = new HltDoctorTimeTableEntity();
+//        HltDoctorTimeTableEntity hltDoctorTimeTableEntity = new HltDoctorTimeTableEntity();
 
 //        hltCallDoctorEntity.setxEdition(1);
 //        hltCallDoctorEntity.setxStatus(1);
@@ -64,15 +66,15 @@ public class Main {
 //        hltCallDoctorEntity.isNotification();
 //        hltCallDoctorEntity.setRfUchastokId(0);
 //        hltCallDoctorEntity.setRfKlAgeGroupId(3);
-        hltDoctorTimeTableEntity.setRfLpuDoctorId(777);
-        hltDoctorTimeTableEntity.setBeginTime(new Date());
-        hltDoctorTimeTableEntity.setEndTime(new Date());
-        hltDoctorTimeTableEntity.setDate(new Date());
-        hltDoctorTimeTableEntity.setUguid("привет");
-
-        session.save(hltDoctorTimeTableEntity);
-        session.getTransaction().commit();
-        session.close();
+//        hltDoctorTimeTableEntity.setRfLpuDoctorId(777);
+//        hltDoctorTimeTableEntity.setBeginTime(new Date());
+//        hltDoctorTimeTableEntity.setEndTime(new Date());
+//        hltDoctorTimeTableEntity.setDate(new Date());
+//        hltDoctorTimeTableEntity.setUguid("привет");
+//
+//        session.save(hltDoctorTimeTableEntity);
+//        session.getTransaction().commit();
+//        session.close();
 
 //        TODO Auto-generated method stub
 //        GridHubConfiguration configHub = new GridHubConfiguration();

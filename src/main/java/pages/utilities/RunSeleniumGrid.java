@@ -4,16 +4,15 @@ import java.io.IOException;
 
 public class RunSeleniumGrid {
 
-    public static void run() throws IOException {
-//        Runtime.
-//                getRuntime().
-//                exec("src/main/resources/run_grid.bat");
+    public static void run() throws IOException, InterruptedException {
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources && start run_grid.bat && exit\"");
+        Thread.sleep(5000);
+        System.out.println("Запустил Selenium grid");
+    }
 
-        ProcessBuilder pb = new ProcessBuilder();
-        pb.command("java ", "-jar ", "src/main/resources/selenium-server-standalone-3.14.0.jar ", "-role hub", "-hubConfig src/main/resources/hubconfig.json");
-//        pb.command("java", "-jar", "src/main/resources/selenium-server-standalone-3.14.0.jar", "-role node", "-nodeConfig nodeconfig.json");
-        Process p = pb.start();
-
-        System.out.println("Запустил Selenium Grid");
+    public static void stop() throws IOException {
+        // TODO: 9/19/2018 ноду не останавливает. Нужно доделать
+        Runtime.getRuntime().exec("curl http://localhost:4445/lifecycle-manager?action=shutdown");
+        System.out.println("Остановил хаб Selenium grid");
     }
 }

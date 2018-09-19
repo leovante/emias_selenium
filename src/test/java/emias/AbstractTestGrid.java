@@ -7,9 +7,11 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import pages.Pages;
+import pages.utilities.RunSeleniumGrid;
 import pages.utilities.StringGenerator;
 import pages.utilities.WebDriverInstansiator;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 
 public class AbstractTestGrid {
@@ -23,17 +25,17 @@ public class AbstractTestGrid {
 
     @Parameters({"site", "login", "pass"})
     @BeforeSuite
-    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass) {
+    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass) throws IOException, InterruptedException {
         AbstractTestGrid.site = site;
         AbstractTestGrid.login = login;
         AbstractTestGrid.pass = pass;
-//        RunSeleniumGrid.run();
+        RunSeleniumGrid.run();
 //        HibernateSession.run();
     }
 
     @AfterSuite
-    public void afterSuite() {
-        //тут закрываем процессы батника селениум грид
+    public void afterSuite() throws IOException {
+        RunSeleniumGrid.stop();
     }
 
     @Parameters({"browser", "headless"})

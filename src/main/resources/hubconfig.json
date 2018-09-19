@@ -2,7 +2,7 @@
   "_comment": "Configuration for Hub - hubconfig.json",
   "host": "127.0.0.1",
   "port": 4445,
-  "cleanupCycle": 5000,
+  "cleanupCycle": 5,
   "maxSessions": 5,
     "newSessionWaitTimeout": -1,
   "prioritizer": null,
@@ -10,7 +10,7 @@
   "nodePolling": 180000,
   "registry": "org.openqa.grid.internal.DefaultGridRegistry",
   "role": "hub",
-  "debug": true,
-  "timeout": 10,
-  "browserTimeout": 10
+  "debug": false,
+  "timeout": 5,
+  "browserTimeout": 5
 }
