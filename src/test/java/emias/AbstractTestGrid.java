@@ -25,7 +25,7 @@ public class AbstractTestGrid {
     public static String pass;
 
     @Parameters({"site", "login", "pass"})
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass) throws IOException, InterruptedException {
         AbstractTestGrid.site = site;
         AbstractTestGrid.login = login;
@@ -34,16 +34,15 @@ public class AbstractTestGrid {
 //        HibernateSession.run();
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void afterSuite() throws IOException {
         RunSeleniumGrid.stop();
     }
 
     @Parameters({"browser", "headless"})
     @RetryCountIfFailed(2)
-    @BeforeMethod(groups = {"test", "CD"}, alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional String browser, @Optional Boolean headless) throws MalformedURLException {
-        driver = new WebDriverInstansiator(browser).setDriver(headless);
         driver = new WebDriverInstansiator(browser).setDriver(headless);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
