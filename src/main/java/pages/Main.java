@@ -1,20 +1,21 @@
 package pages;
 
-import org.hibernate.Session;
-import pages.sql.HltCallDoctorEntity;
-import pages.utilities.HibernateSessionFactory;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-//        Runtime.getRuntime().exec("src/main/resources/run_grid.bat");
+    public static void main(String[] args) throws IOException {
+        Runtime.getRuntime().exec(new String[]{"cmd /c start cmd.exe /K  \"java -jar selenium-server-standalone-3.14.0.jar -role hub -hubConfig hubconfig.json\""});
 
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        session.beginTransaction();
-        HltCallDoctorEntity hltCallDoctorEntity = new HltCallDoctorEntity();
-        hltCallDoctorEntity.setBirthDate(new java.util.Date());
-        session.save(hltCallDoctorEntity);
-        session.getTransaction().commit();
-        session.close();
+
+
+
+//        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+//        session.beginTransaction();
+//        HltCallDoctorEntity hltCallDoctorEntity = new HltCallDoctorEntity();
+//        hltCallDoctorEntity.setBirthDate(new java.util.Date());
+//        session.save(hltCallDoctorEntity);
+//        session.getTransaction().commit();
+//        session.close();
 
 //        TODO Auto-generated method stub
 //        GridHubConfiguration configHub = new GridHubConfiguration();
