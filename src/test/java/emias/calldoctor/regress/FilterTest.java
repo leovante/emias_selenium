@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class FilterTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "фильтр поиск по ФИО")
+    @Test(groups = "test", description = "фильтр поиск по ФИО")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
@@ -27,7 +27,7 @@ public class FilterTest extends AbstractTestGrid {
     }
 
     //    @Attachment(value = "Console error", type = "text/plain")
-    @Test(groups = "CD", description = "фильтр поиск по врачу")
+    @Test(groups = "test", description = "фильтр поиск по врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException {

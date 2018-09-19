@@ -19,7 +19,7 @@ public class AbstractTestGrid {
     public static RemoteWebDriver driver;
     public static Pages page;
     public BeforeCalldoctor beforecdCD;
-    public String nameGen;
+    public static String nameGen;
     public static String site;
     public static String login;
     public static String pass;

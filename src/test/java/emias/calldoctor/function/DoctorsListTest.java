@@ -141,7 +141,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Test(groups = "test", description = "проверяю что оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException {

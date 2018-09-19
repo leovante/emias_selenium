@@ -5,11 +5,9 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class CompleteServiceTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "завершить обслуживание вызова")
+    @Test(groups = "test", description = "завершить обслуживание вызова")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCompleteCallRegistr() throws Exception {

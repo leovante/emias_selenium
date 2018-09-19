@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyServisovTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
+    @Test(groups = "test", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException {

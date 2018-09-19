@@ -5,11 +5,9 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class ChangeDoctorTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "передать вызов другому врачу")
+    @Test(groups = "test", description = "передать вызов другому врачу")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() throws Exception {

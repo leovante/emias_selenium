@@ -385,7 +385,53 @@ public class CreateCallPage extends AbstractPage {
         json.put("sourceCode", "2");
         json.put("entrance", "");
         json.put("floor", "");
+        try {
+            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            request.addHeader("content-type", "application/json");
+            request.addHeader("Authorization", "Bearer " + token);
+            request.addHeader("ClientApplication", "CB174067-702F-42D0-B0EB-1D84A514515D");
 
+            StringEntity params = new StringEntity(json.toString(), "UTF-8");
+            request.setEntity(params);
+            HttpResponse response = httpClient.execute(request);
+            HttpEntity entity = response.getEntity();
+
+            if (response != null) {
+                InputStream in = response.getEntity().getContent();
+                System.out.println(in);
+            }
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            System.out.println("Error, " + "Cannot Estabilish Connection");
+        }
+        System.out.println("Карта вызова создана!");
+    }
+
+    @Step("создаю вызов от КЦ по api Ребёнок без КЛАДР по МКАБ")
+    public void createCallProfile20() {
+        Tokenizer tokenizer = new Tokenizer();
+        String token = tokenizer.getToken("CB174067-702F-42D0-B0EB-1D84A514515D");
+        HttpClient httpClient = HttpClients.createDefault();
+        JSONObject json = new JSONObject();
+        json.put("name", "Елена");
+        json.put("family", "Владимирова");
+        json.put("ot", "Викторовна");
+        json.put("birthdate", "2001-07-28");
+        json.put("seriespol", "");
+        json.put("numberpol", "777");//реальный мкаб
+        json.put("gender", "2");
+        json.put("address", "Белгород г.,Есенина ул.,45");
+        json.put("complaint", "автотест проверка создания вызов через метод с авторизацией");
+        json.put("diagnosis", "j20");
+        json.put("type", "4");
+        json.put("codedomophone", "12№#!@-тут символы");
+        json.put("phone", "+71111111111");
+        json.put("source", "2");
+        json.put("sourceName", "СМП");
+        json.put("sourceCode", "2");
+        json.put("entrance", "");
+        json.put("floor", "");
         try {
             HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");

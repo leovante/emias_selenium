@@ -1,11 +1,14 @@
 package emias.calldoctor.regress;
 
+import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ChooseDoctorTest extends AbstractTestGrid {
@@ -50,13 +53,12 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     public void testAppendDoctorToCall_Portal() throws Exception {
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
-//        driver.manage().deleteAllCookies();
-        open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard().createCall("Profile4", nameGen);
         beforecdCD.loginMis_Calldoctor();
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallProgressFrame();
+        $(By.xpath("//*[contains(text(),'Портал')]")).shouldBe(Condition.visible);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile4");
         page.fullCardPage()

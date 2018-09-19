@@ -8,7 +8,6 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -20,15 +19,14 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class UchastoksAdressTest extends AbstractTestGrid {
 
-    @Flaky
     @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile15", nameGen, "n");
-        $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
+//        $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
+//        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
 
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
@@ -37,14 +35,14 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Flaky
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile16", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Участок')]")).click();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
 
@@ -54,7 +52,6 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Flaky
     @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
@@ -62,6 +59,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile17", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Участок')]")).click();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
 
@@ -85,7 +83,6 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Flaky
     @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Создание вызова")
