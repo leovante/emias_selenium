@@ -11,7 +11,7 @@
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <test name="ChromeTest" verbose="1">
+    <test name="CreateShedule" verbose="1">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="emias.BeforeTest"/>
