@@ -15,6 +15,7 @@ public class BeforeTest extends AbstractTestGrid {
     @Test(description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException {
+        page.loginPage().login(site, login, pass);
         switchTo().window(0);
         page.homePage().manageSheduleBtn();
         createDoctorShedule();

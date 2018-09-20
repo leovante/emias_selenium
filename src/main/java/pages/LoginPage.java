@@ -19,7 +19,7 @@ public class LoginPage extends AbstractPage {
         $(By.id("loginBtn")).click();
     }
 
-    public void loginDefault(String site, String login, String pass) {
+    public void loginAdmin(String site, String login, String pass) {
         open(site);
         $(By.id("Login")).setValue(login);
         $(By.id("Password")).setValue(pass);

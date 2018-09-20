@@ -4,13 +4,15 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
+import pages.utilities.StringGenerator;
 
 public class CompleteServiceTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "завершить обслуживание вызова")
+    @Test(groups = "CD", description = "завершить обслуживание вызова")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testCompleteCallRegistr() throws Exception {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();

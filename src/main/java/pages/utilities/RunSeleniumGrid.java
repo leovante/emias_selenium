@@ -12,7 +12,7 @@ public class RunSeleniumGrid {
 
     public static void stop() throws IOException {
         // TODO: 9/19/2018 ноду не останавливает. Нужно доделать
-        Runtime.getRuntime().exec("curl http://localhost:4445/lifecycle-manager?action=shutdown");
+        Runtime.getRuntime().exec("curl http://localhost:4444/lifecycle-manager?action=shutdown");
         System.out.println("Остановил хаб Selenium grid");
     }
 }

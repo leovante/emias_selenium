@@ -8,7 +8,6 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
@@ -20,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class UchastoksAdressTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
-    @Issue("EMIAS-90")
+    @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
@@ -35,14 +34,17 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
+    // TODO: 9/20/2018 не нажимает на участок зараза!
     @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
-    @Issue("EMIAS-90")
+    @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile16", nameGen, "n");
         $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
-        $(By.xpath("//mat-label[contains(text(),'Участок')]")).click();
+        $(By.xpath("//*[contains(.,'Участок')]")).click();
+//        $(By.xpath("//html/body/app-root/app-call-doctor/main/app-call-doctor-other/app-call-doctor-other-doctor/app-add-address-to-uchastok/mat-form-field/div/div[1]/div/span/label/mat-label")).click();
+
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
 
@@ -53,7 +55,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     }
 
     @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
-    @Issue("EMIAS-90")
+    @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
@@ -70,7 +72,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
-    @Issue("EMIAS-90")
+    @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
@@ -85,7 +87,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
-    @Epic("Создание вызова")
+    @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokWithCallAdress() throws IOException {
         beforecdCD.loginMis_Calldoctor();

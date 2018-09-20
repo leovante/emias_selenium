@@ -7,16 +7,18 @@ import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
+import pages.utilities.StringGenerator;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class ChooseDoctorTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "назначить вызову из регистратуры врача на сегодня")
+    @Test(groups = "CD", description = "назначить вызову из регистратуры врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -30,10 +32,11 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }
 
-    @Test(groups = "test", description = "назначить врача вызову из СМП на сегодня")
+    @Test(groups = "CD", description = "назначить врача вызову из СМП на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile2", nameGen, "y");
         page.fullCardPage().chooseDoctorBtn();
@@ -47,10 +50,11 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup("Profile2");
     }
 
-    @Test(groups = "test", description = "назначить врача вызову с Портала на сегодня")
+    @Test(groups = "test", description = "назначить врача на сегодня вызову из Интернета")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {
+        String nameGen = new StringGenerator().generator();
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard().createCall("Profile4", nameGen);
@@ -58,7 +62,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallProgressFrame();
-        $(By.xpath("//*[contains(text(),'Портал')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile4");
         page.fullCardPage()

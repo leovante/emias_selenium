@@ -10,6 +10,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
@@ -19,10 +20,11 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyServisovTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "проверка что индикатор МКАБ и ТАП серый")
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -35,7 +37,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(groups = "test", description = "проверка что индикатор МКАБ красный, а ТАП серый")
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
@@ -51,7 +53,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(groups = "test", description = "проверка учетки врача при перезаходе под другим логином и паролем")
+    @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
@@ -60,7 +62,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         page.homePage().exitBtn();
         page.loginPage().login("Admin", "RChS2014");
         page.homePage().callDoctorBtn();
-        switchTo().window(1);
+        switchTo().window(2);
         $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
     }
 }

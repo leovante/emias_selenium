@@ -4,6 +4,7 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
+import pages.utilities.StringGenerator;
 
 public class ChangeDoctorTest extends AbstractTestGrid {
 
@@ -11,6 +12,7 @@ public class ChangeDoctorTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() throws Exception {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();

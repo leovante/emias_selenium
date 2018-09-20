@@ -3,9 +3,11 @@ package emias.calldoctor.regress;
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.utilities.StringGenerator;
 
 import java.io.IOException;
 
@@ -14,10 +16,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class FilterTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "фильтр поиск по ФИО")
+    @Test(groups = "CD", description = "фильтр поиск по ФИО")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().closeCardBtn();
@@ -31,6 +34,7 @@ public class FilterTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
@@ -46,6 +50,7 @@ public class FilterTest extends AbstractTestGrid {
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException {
+        String nameGen = new StringGenerator().generator();
         page.createCallPage().createCallProfile3(nameGen);
         beforecdCD.loginMis_Calldoctor();
         page.dashboardPage().openNewCallProgressFrame();
@@ -56,7 +61,8 @@ public class FilterTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "test", description = "проверка кнопки выход")
+    @Flaky
+    @Test(groups = "CD", description = "проверка кнопки выход")
     @Issue("EMIAS-90")
     @RetryCountIfFailed(2)
     public void testExitToMis() {

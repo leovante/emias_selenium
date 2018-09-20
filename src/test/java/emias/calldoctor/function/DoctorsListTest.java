@@ -8,6 +8,8 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
@@ -15,6 +17,7 @@ import pages.sql.SQLDemonstration;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class DoctorsListTest extends AbstractTestGrid {
 
@@ -141,15 +144,17 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Flaky
+    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
+    @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException {
-        page.loginPage().loginDefault("http://emias.mosreg.ru/demonstration/", "admin", "RChS2014");
+        page.loginPage().loginAdmin("http://emias.mosreg.ru/demonstration/", "admin", "RChS2014");
         page.homePage().callDoctorBtn();
+        switchTo().window(1);
         page.createCallPage().createNewCall("Profile13", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
-
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Моков')]")).shouldNotBe(Condition.visible);

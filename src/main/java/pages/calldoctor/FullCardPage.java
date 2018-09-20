@@ -175,6 +175,7 @@ public class FullCardPage extends AbstractPage {
 //        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).should(Condition.visible);
 //        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).should(Condition.visible); это есть в baseElements
         $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).should(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + "Плановое время обхода" + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).should(Condition.visible);
@@ -222,7 +223,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).should(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).should(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + proData.get("uchastocs") + "')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//div/span[2][contains(text(),'" + proData.get("uchastocs") + "')]")).shouldBe(Condition.visible);
         System.out.println("Подробная карта проверена!");
         return this;
     }

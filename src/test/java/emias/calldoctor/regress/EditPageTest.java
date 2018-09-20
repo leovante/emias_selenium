@@ -4,8 +4,7 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.open;
+import pages.utilities.StringGenerator;
 
 public class EditPageTest extends AbstractTestGrid {
 
@@ -13,6 +12,7 @@ public class EditPageTest extends AbstractTestGrid {
     @Epic("редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPageProfile1() throws Exception {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.createCallPage()
@@ -24,6 +24,7 @@ public class EditPageTest extends AbstractTestGrid {
     @Epic("редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCallProfile1() throws Exception {
+        String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.createCallPage()
