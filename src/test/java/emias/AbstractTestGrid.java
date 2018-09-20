@@ -14,6 +14,7 @@ import pages.utilities.WebDriverInstansiator;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.SQLException;
 
 public class AbstractTestGrid {
     public static RemoteWebDriver driver;
@@ -35,7 +36,7 @@ public class AbstractTestGrid {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void afterSuite() throws IOException, InterruptedException {
+    public void afterSuite() throws IOException, InterruptedException, SQLException {
         RunSeleniumGrid.stop();
     }
 
