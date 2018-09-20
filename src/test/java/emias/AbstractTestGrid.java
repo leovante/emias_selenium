@@ -2,7 +2,7 @@ package emias;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import emias.calldoctor.BeforeCalldoctor;
+import emias.calldoctor.EnterCalldoctor;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -18,7 +18,7 @@ import java.net.MalformedURLException;
 public class AbstractTestGrid {
     public static RemoteWebDriver driver;
     public static Pages page;
-    public BeforeCalldoctor beforecdCD;
+    public EnterCalldoctor beforecdCD;
     public volatile String nameGen;
     public static String site;
     public static String login;
@@ -46,7 +46,7 @@ public class AbstractTestGrid {
         driver = new WebDriverInstansiator(browser).setDriver(headless);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
-        beforecdCD = new BeforeCalldoctor();
+        beforecdCD = new EnterCalldoctor();
         nameGen = new StringGenerator().generator();
     }
 
