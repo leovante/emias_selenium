@@ -10,6 +10,5 @@
   "role": "hub",
   "debug": false,
   "timeout": 10,
-  "log": "logHub.txt",
   "browserTimeout": 10
 }

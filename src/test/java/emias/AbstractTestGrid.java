@@ -35,7 +35,7 @@ public class AbstractTestGrid {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void afterSuite() throws IOException {
+    public void afterSuite() throws IOException, InterruptedException {
         RunSeleniumGrid.stop();
     }
 

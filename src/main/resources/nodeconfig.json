@@ -24,6 +24,5 @@
   "debug": false,
   "register": true,
   "timeout": 10,
-  "log": "logNode.txt",
   "hub": "http://localhost:4444"
 }
