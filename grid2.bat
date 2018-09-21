@@ -1,2 +1,0 @@
-java -jar selenium-server-standalone-3.14.0.jar -role hub
-java -jar selenium-server-standalone-3.14.0.jar -role node -port 5599 -hub http://localhost:4444/grid/register -Dwebdriver.chrome.driver=chromedriver.exe -Dwebdriver.firefox.driver=geckodriver.exe
