@@ -10,7 +10,7 @@ public class CompleteServiceTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "завершить обслуживание вызова")
     @Issue("EMIAS-90")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(3)
     public void testCompleteCallRegistr() throws Exception {
         String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();

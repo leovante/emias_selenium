@@ -19,7 +19,7 @@
   "registerCycle": 5000,
   "nodePolling": 5000,
   "nodeStatusCheckTimeout": 5000,
-  "unregisterIfStillDownAfter": 60000,
+  "unregisterIfStillDownAfter": 30000,
   "downPollingLimit": 2,
   "debug": false,
   "register": true,
