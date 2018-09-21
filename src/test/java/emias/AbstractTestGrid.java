@@ -8,13 +8,13 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import pages.Pages;
+import pages.sql.SQLDemonstration;
 import pages.utilities.RunSeleniumGrid;
 import pages.utilities.StringGenerator;
 import pages.utilities.WebDriverInstansiator;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.sql.SQLException;
 
 public class AbstractTestGrid {
     public static RemoteWebDriver driver;
@@ -36,8 +36,9 @@ public class AbstractTestGrid {
     }
 
     @AfterSuite(alwaysRun = true)
-    public void afterSuite() throws IOException, InterruptedException, SQLException {
+    public void afterSuite() throws IOException {
         RunSeleniumGrid.stop();
+        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Parameters({"browser", "headless"})
@@ -55,9 +56,5 @@ public class AbstractTestGrid {
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         WebDriverRunner.closeWebDriver();
-//        driver.quit();
-//        driver.close();
-//        SQLDemonstration.finalizeAllTestCalls();
-//        close();
     }
 }
