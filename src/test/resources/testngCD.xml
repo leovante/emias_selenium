@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="CalldoctorTest" thread-count="5" parallel="classes">
+<suite name="CalldoctorTest" thread-count="8" parallel="classes">
     <!--<parameter name="config" value="local.conf.json"/>-->
     <!--<parameter name="environment" value="chrome"/>-->
     <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>

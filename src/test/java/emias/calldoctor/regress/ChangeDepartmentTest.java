@@ -1,11 +1,16 @@
 package emias.calldoctor.regress;
 
+import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.utilities.StringGenerator;
 
 import java.io.IOException;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class ChangeDepartmentTest extends AbstractTestGrid {
 
@@ -77,6 +82,29 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        page.fullCardPage().verifyDepart("firstDepart");
     }
 
+    @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
+    @Epic("Передача вызова")
+    @RetryCountIfFailed(2)
+    public void testshowMeYourAdultPoliklinika() throws Exception {
+        String nameGen = new StringGenerator().generator();
+        beforecdCD.loginMis_Calldoctor();
+        page.createCallPage()
+                .createNewCall("Profile1", nameGen, "n");
+        page.fullCardPage().transferToDepartBtn();
+        $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у детского вызова не отображается взрослая поликлиника и наоборот")
+    @Epic("Передача вызова")
+    @RetryCountIfFailed(2)
+    public void testshowMeYourKidPoliklinika() throws Exception {
+        String nameGen = new StringGenerator().generator();
+        beforecdCD.loginMis_Calldoctor();
+        page.createCallPage()
+                .createNewCall("Profile2", nameGen, "y");
+        page.fullCardPage().transferToDepartBtn();
+        $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
+    }
+
     // TODO: 13.08.2018 передать вызов из первого ЛПУ в др. ЛПУ
-    // TODO: 11.09.2018 проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот
 }

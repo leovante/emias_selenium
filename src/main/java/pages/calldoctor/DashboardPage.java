@@ -188,7 +188,6 @@ public class DashboardPage extends AbstractPage {
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
         SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + proData.get("adressDashboard") + "')]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(adress).perform();
@@ -197,6 +196,23 @@ public class DashboardPage extends AbstractPage {
         actions.moveToElement(smallMenu).perform();
 
         SelenideElement openCard = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Открыть карту вызова']"));
+        openCard.click();
+    }
+
+    @Step("удаляю карту вызова в группе 'Ожидают обработки' через дашбоард")
+    public void deleteNewCallProgressFrame(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        newCallProgressFrame.$(By.id("order")).click();
+        newCallProgressFrame.click();
+        SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + proData.get("adressDashboard") + "')]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(adress).perform();
+
+        SelenideElement smallMenu = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
+        actions.moveToElement(smallMenu).perform();
+
+        SelenideElement openCard = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Отменить вызов']"));
         openCard.click();
     }
 }

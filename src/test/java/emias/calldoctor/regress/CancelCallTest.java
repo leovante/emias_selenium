@@ -40,6 +40,18 @@ public class CancelCallTest extends AbstractTestGrid {
                 .verifyRecordIsCancelFromDashboard();
     }
 
-    // TODO: 13.08.2018 отмена вызова на дашборде
+    @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
+    @Epic("Отмена вызова")
+    @RetryCountIfFailed(2)
+    public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException {
+        String nameGen = new StringGenerator().generator();
+        beforecdCD.loginMis_Calldoctor();
+        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+        page.fullCardPage().closeCardBtn();
+        page.dashboardPage().deleteNewCallProgressFrame("Profile1");
+        page.dashboardPage()
+                .searchFilterFio(nameGen)
+                .verifyRecordIsCancelFromDashboard();
+    }
     // TODO: 13.08.2018 отмена вызова в мис
 }

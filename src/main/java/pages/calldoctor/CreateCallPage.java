@@ -676,4 +676,11 @@ public class CreateCallPage extends AbstractPage {
         System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
         return this;
     }
+
+    @Step("нажимаю на выпадающий список участков")
+    public CreateCallPage selectUchastokFromNeUdalosOpredelit() {
+        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]")).shouldBe(Condition.visible);
+        se.$(By.xpath("../.")).$(By.xpath(".//mat-form-field")).click();
+        return this;
+    }
 }

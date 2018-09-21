@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
@@ -51,8 +50,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup("Profile2");
     }
 
-    @Flaky
-    @Test(groups = "CD", description = "назначить врача на сегодня вызову из Интернета")
+    @Test(groups = "test", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {
@@ -66,17 +64,16 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .openNewCallProgressFrame("Profile4");
         $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
         page.fullCardPage().chooseDoctorBtn();
+        $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
         page.setDoctorPage().chooseDoctor("Profile4");
         page.fullCardPage()
                 .verifyCallActivityGroup(nameGen, "Profile4")
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterDoctor("Profile4")
                 .verifyActiveDocGroup(nameGen, "Profile4");
     }
 
     // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра
     // TODO: 13.08.2018 тест назначить врача вызову из КЦ
-    // TODO: 07.09.2018 добавить проверку на "плановое время обхода"
 }
