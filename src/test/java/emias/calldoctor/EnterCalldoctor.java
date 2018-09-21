@@ -4,7 +4,7 @@ import emias.AbstractTestGrid;
 
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public abstract class EnterCalldoctor extends AbstractTestGrid {
+public class EnterCalldoctor extends AbstractTestGrid {
 
     public EnterCalldoctor loginMis_Calldoctor() {
         page.loginPage().login(site, login, pass);
