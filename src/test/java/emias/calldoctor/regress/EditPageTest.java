@@ -9,7 +9,7 @@ import pages.utilities.StringGenerator;
 public class EditPageTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
-    @Epic("редактирование вызова")
+    @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPageProfile1() throws Exception {
         String nameGen = new StringGenerator().generator();
@@ -21,7 +21,7 @@ public class EditPageTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
-    @Epic("редактирование вызова")
+    @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCallProfile1() throws Exception {
         String nameGen = new StringGenerator().generator();

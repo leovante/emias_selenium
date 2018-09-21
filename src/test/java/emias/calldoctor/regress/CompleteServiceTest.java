@@ -2,14 +2,14 @@ package emias.calldoctor.regress;
 
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
-import io.qameta.allure.Issue;
+import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
 public class CompleteServiceTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "завершить обслуживание вызова")
-    @Issue("EMIAS-90")
+    @Epic("Завершить обслуживание")
     @RetryCountIfFailed(3)
     public void testCompleteCallRegistr() throws Exception {
         String nameGen = new StringGenerator().generator();

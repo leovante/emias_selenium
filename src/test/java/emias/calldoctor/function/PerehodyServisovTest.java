@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 public class PerehodyServisovTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
-    @Epic("проверка иконок МКАБ и ТАП")
+    @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException {
         String nameGen = new StringGenerator().generator();
@@ -38,7 +38,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
-    @Epic("проверка иконок МКАБ и ТАП")
+    @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();

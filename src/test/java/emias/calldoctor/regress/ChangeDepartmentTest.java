@@ -2,17 +2,15 @@ package emias.calldoctor.regress;
 
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
-import io.qameta.allure.Issue;
+import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class ChangeDepartmentTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
-    @Issue("EMIAS-90")
+    @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Depart() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
@@ -26,7 +24,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
-    @Issue("EMIAS-90")
+    @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
@@ -44,7 +42,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
-    @Issue("EMIAS-90")
+    @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
@@ -62,7 +60,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "передача вызова из ЛПУ в ЛПУ")
-    @Issue("EMIAS-90")
+    @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Lpu() {
 //        open(curUrlCalldoctor);

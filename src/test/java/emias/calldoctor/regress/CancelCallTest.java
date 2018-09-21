@@ -2,7 +2,7 @@ package emias.calldoctor.regress;
 
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
-import io.qameta.allure.Issue;
+import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class CancelCallTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
-    @Issue("EMIAS-90")
+    @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
@@ -25,7 +25,7 @@ public class CancelCallTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
-    @Issue("EMIAS-90")
+    @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();

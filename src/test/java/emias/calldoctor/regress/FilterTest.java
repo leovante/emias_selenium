@@ -3,8 +3,8 @@ package emias.calldoctor.regress;
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
-import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class FilterTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
-    @Issue("EMIAS-90")
+    @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
@@ -31,7 +31,7 @@ public class FilterTest extends AbstractTestGrid {
 
     //    @Attachment(value = "Console error", type = "text/plain")
     @Test(groups = "CD", description = "фильтр поиск по врачу")
-    @Issue("EMIAS-90")
+    @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
@@ -47,7 +47,7 @@ public class FilterTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
-    @Issue("EMIAS-90")
+    @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
@@ -63,7 +63,7 @@ public class FilterTest extends AbstractTestGrid {
 
     @Flaky
     @Test(groups = "CD", description = "проверка кнопки выход")
-    @Issue("EMIAS-90")
+    @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testExitToMis() {
         beforecdCD.loginMis_Calldoctor();
