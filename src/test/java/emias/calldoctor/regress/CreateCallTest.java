@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class CreateCallTest extends AbstractTestGrid {
 
     @Test(description = "пустой вызов")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
@@ -30,7 +30,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         String nameGen = new StringGenerator().generator();
@@ -45,7 +45,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         String nameGen = new StringGenerator().generator();
@@ -59,7 +59,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException {
         String nameGen = new StringGenerator().generator();
@@ -70,7 +70,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException {
         String nameGen = new StringGenerator().generator();
@@ -81,7 +81,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Test(groups = "CD", description = "вызов ребенка с Портала")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException {
         String nameGen = new StringGenerator().generator();
@@ -100,7 +100,7 @@ public class CreateCallTest extends AbstractTestGrid {
 
     @Flaky
     @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException {
@@ -114,7 +114,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Test(description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
-    @Epic("создание вызова")
+    @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChild2Mkab() throws IOException {
         SQLDemonstration.finalizePacientNumberPol("Profile20");

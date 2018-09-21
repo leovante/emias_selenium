@@ -11,11 +11,11 @@
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <test name="CreateShedule" verbose="1">
+    <test name="BeforeTest-CreateShedule" verbose="1">
         <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="emias.BeforeTest"/>
-        </classes>
+        <packages>
+            <package name="emias.calldoctor.before"/>
+        </packages>
     </test>
 
     <test name="ChromeTest" verbose="1" parallel="true">
@@ -25,19 +25,10 @@
                 <include name="CD"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.calldoctor.regress.CancelCallTest"/>
-            <class name="emias.calldoctor.regress.ChangeDepartmentTest"/>
-            <class name="emias.calldoctor.regress.ChangeDoctorTest"/>
-            <class name="emias.calldoctor.regress.ChooseDoctorTest"/>
-            <class name="emias.calldoctor.regress.CompleteServiceTest"/>
-            <class name="emias.calldoctor.regress.CreateCallTest"/>
-            <class name="emias.calldoctor.regress.EditPageTest"/>
-            <class name="emias.calldoctor.regress.FilterTest"/>
-            <class name="emias.calldoctor.function.DoctorsListTest"/>
-            <class name="emias.calldoctor.function.PerehodyServisovTest"/>
-            <class name="emias.calldoctor.function.UchastoksAdressTest"/>
-        </classes>
+        <packages>
+            <package name="emias.calldoctor.function"/>
+            <package name="emias.calldoctor.regress"/>
+        </packages>
     </test>
 
     <test name="FirefoxTest" verbose="1" parallel="true">
@@ -47,18 +38,9 @@
                 <include name="CD"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.calldoctor.regress.CancelCallTest"/>
-            <class name="emias.calldoctor.regress.ChangeDepartmentTest"/>
-            <class name="emias.calldoctor.regress.ChangeDoctorTest"/>
-            <class name="emias.calldoctor.regress.ChooseDoctorTest"/>
-            <class name="emias.calldoctor.regress.CompleteServiceTest"/>
-            <class name="emias.calldoctor.regress.CreateCallTest"/>
-            <class name="emias.calldoctor.regress.EditPageTest"/>
-            <class name="emias.calldoctor.regress.FilterTest"/>
-            <class name="emias.calldoctor.function.DoctorsListTest"/>
-            <class name="emias.calldoctor.function.PerehodyServisovTest"/>
-            <class name="emias.calldoctor.function.UchastoksAdressTest"/>
-        </classes>
+        <packages>
+            <package name="emias.calldoctor.function"/>
+            <package name="emias.calldoctor.regress"/>
+        </packages>
     </test>
 </suite>
