@@ -13,8 +13,6 @@ public class RMIS02Test extends AbstractTestGrid {
     @AfterTest(groups = {"mis", "test"})
     public void afterTest() {
     }
-
-
 }
 // TODO: 8/24/2018 сделать тест переходов на различные сервисы
 // TODO: 8/24/2018 сделать тест переходов на различные сервисы

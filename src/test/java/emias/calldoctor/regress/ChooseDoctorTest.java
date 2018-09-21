@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
@@ -50,7 +51,8 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup("Profile2");
     }
 
-    @Test(groups = "test", description = "назначить врача на сегодня вызову из Интернета")
+    @Flaky
+    @Test(groups = "CD", description = "назначить врача на сегодня вызову из Интернета")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {

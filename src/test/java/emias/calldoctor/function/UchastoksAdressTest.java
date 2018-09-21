@@ -8,6 +8,7 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
@@ -35,7 +36,8 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     }
 
     // TODO: 9/20/2018 не нажимает на участок зараза!
-    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
+    @Flaky
+    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException {
@@ -54,7 +56,8 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
+    @Flaky
+    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException {

@@ -38,6 +38,10 @@ public class AbstractTestGrid {
     @AfterSuite(alwaysRun = true)
     public void afterSuite() throws IOException {
         RunSeleniumGrid.stop();
+    }
+
+    @AfterTest(alwaysRun = true)
+    public void afterTest() {
         SQLDemonstration.finalizeAllTestCalls();
     }
 
