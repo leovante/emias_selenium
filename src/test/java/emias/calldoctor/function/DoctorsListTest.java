@@ -124,7 +124,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         page.createCallPage().createCallProfileDetkina();
         page.dashboardPage()
                 .searchFilterFio_Fam("ProfileDetkina")
-                .openNewCallProgressFrame();
+                .openNewCallProgressFrame("ProfileDetkina");
         page.fullCardPage()
                 .verifyCallProfileDetkina("ProfileDetkina")
                 .chooseDoctorBtn()
@@ -135,10 +135,10 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначить врача")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() {
+    public void testCallSmpChildMkab() throws IOException {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile19(nameGen);
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile19");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);

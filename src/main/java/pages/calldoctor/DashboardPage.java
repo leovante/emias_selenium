@@ -25,8 +25,6 @@ public class DashboardPage extends AbstractPage {
     private SelenideElement typeCall = $(By.xpath("//*[@placeholder='Вид вызова']"));
     private SelenideElement newCallProgressFrame = $(By.id("newCallProgressFrame"));
     private SelenideElement matExpansionPanel = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"));
-    private SelenideElement smallMenu = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div/div/div/app-call-doctor-short-card/div/div/div[3]"));
-    private SelenideElement openCard = $(By.xpath("//a[@title='Открыть карту вызова']"));
     private SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
     private SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
     private SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
@@ -185,13 +183,20 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public void openNewCallProgressFrame() {
+    public void openNewCallProgressFrame(String profile) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         // TODO: 23.07.2018 повысить стабильность hover, сейчас часто релодит и фокус сбивается
+        SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + proData.get("adressDashboard") + "')]"));
         Actions actions = new Actions(driver);
-        actions.moveToElement(matExpansionPanel).perform();
+        actions.moveToElement(adress).perform();
+
+        SelenideElement smallMenu = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
         actions.moveToElement(smallMenu).perform();
+
+        SelenideElement openCard = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Открыть карту вызова']"));
         openCard.click();
     }
 }

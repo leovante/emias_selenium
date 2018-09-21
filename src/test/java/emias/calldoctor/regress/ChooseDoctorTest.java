@@ -61,7 +61,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         beforecdCD.loginMis_Calldoctor();
         page.dashboardPage()
                 .clearAllFilters()
-                .openNewCallProgressFrame();
+                .openNewCallProgressFrame("Profile4");
         $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile4");

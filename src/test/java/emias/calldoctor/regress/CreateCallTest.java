@@ -65,7 +65,7 @@ public class CreateCallTest extends AbstractTestGrid {
         String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile3(nameGen);
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile3");
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
@@ -76,7 +76,7 @@ public class CreateCallTest extends AbstractTestGrid {
         String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile6(nameGen);
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile6");
         page.fullCardPage().verifyCallNewCallGroup("Profile6", nameGen);
     }
 
@@ -92,7 +92,7 @@ public class CreateCallTest extends AbstractTestGrid {
         beforecdCD.loginMis_Calldoctor();
         page.dashboardPage()
                 .clearAllFilters()
-                .openNewCallProgressFrame();
+                .openNewCallProgressFrame("Profile4");
         $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
         page.fullCardPage()
                 .verifyCallNewCallGroup("Profile4", nameGen);
@@ -107,7 +107,7 @@ public class CreateCallTest extends AbstractTestGrid {
         SQLDemonstration.finalizePacientNumberPol("Profile14");
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile14();
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile14");
         page.fullCardPage().verifyCallProfileDetkina("Profile14");//почему-то 2 педиатрический сразу. С Таким адресом два участка
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
@@ -120,7 +120,7 @@ public class CreateCallTest extends AbstractTestGrid {
         SQLDemonstration.finalizePacientNumberPol("Profile20");
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile20();
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile20");
         page.fullCardPage().verifyCallNewCallGroup("Profile20");
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);

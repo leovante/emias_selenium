@@ -95,7 +95,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         page.createCallPage().createCallProfileDetkinaVGostah();
         page.dashboardPage()
                 .searchFilterFio_Fam("ProfileDetkinaVGostyah")
-                .openNewCallProgressFrame();
+                .openNewCallProgressFrame("ProfileDetkinaVGostyah");
         page.fullCardPage().verifyCallProfileDetkina("ProfileDetkinaVGostyah");
     }
 }

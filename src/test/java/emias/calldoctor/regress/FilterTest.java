@@ -53,7 +53,7 @@ public class FilterTest extends AbstractTestGrid {
         String nameGen = new StringGenerator().generator();
         page.createCallPage().createCallProfile3(nameGen);
         beforecdCD.loginMis_Calldoctor();
-        page.dashboardPage().openNewCallProgressFrame();
+        page.dashboardPage().openNewCallProgressFrame("Profile3");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
