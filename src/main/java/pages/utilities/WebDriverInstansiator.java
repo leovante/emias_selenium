@@ -42,7 +42,7 @@ public class WebDriverInstansiator {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setHeadless(headless);
-//                chromeOptions.addArguments("window-size=1919,1079");
+                chromeOptions.addArguments("window-size=1919,1079");
 
                 DesiredCapabilities dcch = DesiredCapabilities.chrome();
                 dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
