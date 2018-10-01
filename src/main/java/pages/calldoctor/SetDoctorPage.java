@@ -1,5 +1,6 @@
 package pages.calldoctor;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
@@ -19,11 +20,19 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("назначиь врача")
-    public void chooseDoctor(String profile) throws IOException {
+    public SetDoctorPage chooseDoctor(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         $(By.xpath("//div[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         appenOnThisDay.click();
         System.out.println("Врач выбран!");
+        return this;
+    }
+
+    @Step("назначиь врача")
+    public SetDoctorPage saveAddress() {
+        $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
+        return this;
     }
 }

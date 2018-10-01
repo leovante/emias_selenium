@@ -80,7 +80,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokWithCallAdress() throws IOException {
+    public void testUchastokWithCallAdress() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
         SQLDemonstration.finalizePacientNumberPol("ProfileDetkinaVGostyah");
         page.createCallPage().createCallProfileDetkinaVGostah();

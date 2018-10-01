@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class CreateCallTest extends AbstractTestGrid {
 
-    @Test(description = "пустой вызов")
+    @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException {
@@ -58,10 +58,10 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile2");
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException {
+    public void testCallSmpChildMkab() throws IOException, InterruptedException {
         String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile3(nameGen);
@@ -69,10 +69,10 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpAdultKladr() throws IOException {
+    public void testCallSmpAdultKladr() throws IOException, InterruptedException {
         String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile6(nameGen);
@@ -83,7 +83,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallPortal() throws IOException {
+    public void testCallPortal() throws IOException, InterruptedException {
         String nameGen = new StringGenerator().generator();
         SQLDemonstration.finalizePacientNumberPol("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
@@ -99,11 +99,11 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
-    public void testCallCenterChildMkab() throws IOException {
+    public void testCallCenterChildMkab() throws IOException, InterruptedException {
         SQLDemonstration.finalizePacientNumberPol("Profile14");
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile14();
@@ -113,10 +113,10 @@ public class CreateCallTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallCenterChild2Mkab() throws IOException {
+    public void testCallCenterChild2Mkab() throws IOException, InterruptedException {
         SQLDemonstration.finalizePacientNumberPol("Profile20");
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile20();

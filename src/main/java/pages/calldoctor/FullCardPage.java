@@ -372,7 +372,7 @@ public class FullCardPage extends AbstractPage {
     public FullCardPage chooseDoctorBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).shouldBe(Condition.visible);
-        appoindDoctorBtn.click();
+        appoindDoctorBtn.hover().click();
         return this;
     }
 

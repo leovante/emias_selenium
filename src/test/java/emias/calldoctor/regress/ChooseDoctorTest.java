@@ -52,7 +52,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
 
     @Test(groups = "test", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(0)
     public void testAppendDoctorToCall_Portal() throws Exception {
         String nameGen = new StringGenerator().generator();
         SQLDemonstration.finalizePacientNumberPol("Profile4");
@@ -64,14 +64,15 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .openNewCallProgressFrame("Profile4");
         $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
         page.fullCardPage().chooseDoctorBtn();
-        $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
-        page.setDoctorPage().chooseDoctor("Profile4");
+        page.setDoctorPage()
+                .saveAddress()
+                .chooseDoctor("Profile4");
         page.fullCardPage()
                 .verifyCallActivityGroup(nameGen, "Profile4")
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyActiveDocGroup(nameGen, "Profile4");
+                .verifyActiveDocGroup("Profile4");
     }
 
     // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра

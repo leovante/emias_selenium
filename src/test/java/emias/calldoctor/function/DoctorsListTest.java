@@ -118,7 +118,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что отобразился участковый")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testPreviewUchDoctorWithoutKladr() throws IOException {
+    public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
         SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
         page.createCallPage().createCallProfileDetkina();
@@ -135,7 +135,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначить врача")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException {
+    public void testCallSmpChildMkab() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile19(nameGen);
         page.dashboardPage().openNewCallProgressFrame("Profile19");

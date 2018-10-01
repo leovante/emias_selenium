@@ -3,13 +3,15 @@
 <suite name="CalldoctorTest" thread-count="8" parallel="classes">
     <!--<parameter name="config" value="local.conf.json"/>-->
     <!--<parameter name="environment" value="chrome"/>-->
+    <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1215"/>
-    <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
     <parameter name="headless" value="false"/>
+
     <listeners>
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
+
     <test name="ChromeTest" verbose="1" parallel="true">
         <parameter name="browser" value="chrome"/>
         <groups>

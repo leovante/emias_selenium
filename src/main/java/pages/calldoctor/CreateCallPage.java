@@ -143,7 +143,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("floor", "5");
 
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
 
@@ -188,7 +188,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("floor", "5");
 
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
 
@@ -243,7 +243,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("kladraddress", kladraddress);
 
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
 
@@ -290,7 +290,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("entrance", "");
         json.put("floor", "");
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + token);
             request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
@@ -338,7 +338,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("entrance", "");
         json.put("floor", "");
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + token);
             request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
@@ -386,7 +386,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("entrance", "");
         json.put("floor", "");
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + token);
             request.addHeader("ClientApplication", "CB174067-702F-42D0-B0EB-1D84A514515D");
@@ -433,7 +433,7 @@ public class CreateCallPage extends AbstractPage {
         json.put("entrance", "");
         json.put("floor", "");
         try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
+            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
             request.addHeader("content-type", "application/json");
             request.addHeader("Authorization", "Bearer " + token);
             request.addHeader("ClientApplication", "CB174067-702F-42D0-B0EB-1D84A514515D");
