@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
 import pages.sql.SQLDemonstration;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -15,7 +16,8 @@ public class BeforeTest extends AbstractTestGrid {
 
     @Test(description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
-    public void cleanBeforeCallDoctorTests() throws InterruptedException {
+    public void cleanBeforeCallDoctorTests() throws InterruptedException, FileNotFoundException {
+        updateDB();
         page.loginPage().login(site, login, pass);
         switchTo().window(0);
         page.homePage().manageSheduleBtn();
@@ -42,5 +44,10 @@ public class BeforeTest extends AbstractTestGrid {
             page.manageShedule().verifyCreatedShedule(doctor_num);
             page.doctorMethods().selectDoctor(doctor_num);
         }
+    }
+
+    @Step("Обновляю БД для тестов на случай её изменения")
+    public void updateDB() throws FileNotFoundException {
+        SQLDemonstration.getScripts();
     }
 }

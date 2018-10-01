@@ -8,6 +8,7 @@ import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Map;
 
 public class SQLDemonstration extends AbstractPage {
@@ -15,6 +16,8 @@ public class SQLDemonstration extends AbstractPage {
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";
+    private static List<File> lst;
+
 
     @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
@@ -228,6 +231,39 @@ public class SQLDemonstration extends AbstractPage {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Step("Запуск скрипта на демонстрейшн")
+    public static void runSqlScriptCD(String path) throws FileNotFoundException {
+        FileInputStream fstream = new FileInputStream(path);
+        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql2 = br.readLine();
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql2);
+                    System.out.println("SQL scripst Complete!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void getScripts() throws FileNotFoundException {
+        File dir = new File("src/main/resources/sql/calldoctor");
+//        File dir = new File(SQLDemonstration.class.getClassLoader().getResource("sql/calldoctor").getFile());
+        File[] files = dir.listFiles();
+        File[] scriptList = files;
+        for (File script : scriptList) {
+            runSqlScriptCD(script.toString());
         }
     }
 
