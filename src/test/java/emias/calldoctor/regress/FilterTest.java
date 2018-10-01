@@ -5,6 +5,7 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
+import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.utilities.StringGenerator;
@@ -64,6 +65,7 @@ public class FilterTest extends AbstractTestGrid {
     @Flaky
     @Test(groups = "CD", description = "проверка кнопки выход")
     @Epic("Проверка фильтра")
+    @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
     public void testExitToMis() {
         beforecdCD.loginMis_Calldoctor();

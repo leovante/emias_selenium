@@ -104,6 +104,7 @@ public class FullCardPage extends AbstractPage {
     public FullCardPage verifyCallProfileDetkina(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
         baseElementsEditPage();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
@@ -135,6 +136,7 @@ public class FullCardPage extends AbstractPage {
     public FullCardPage verifyCallNewCallGroup(String profile, String nameGen) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
         baseElementsEditPage();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
@@ -167,6 +169,7 @@ public class FullCardPage extends AbstractPage {
     public FullCardPage verifyCallNewCallGroup(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
         baseElementsEditPage();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
@@ -198,6 +201,7 @@ public class FullCardPage extends AbstractPage {
     public FullCardPage verifyCallActivityGroup(String nameGen, String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
         baseElements();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
@@ -234,6 +238,7 @@ public class FullCardPage extends AbstractPage {
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         File reader2 = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile2 + ".json");
         Map proData2 = new ObjectMapper().readValue(reader2, Map.class);
+        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
         baseElements();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
@@ -271,6 +276,7 @@ public class FullCardPage extends AbstractPage {
         Selenide.refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
         baseElements();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
@@ -307,6 +313,7 @@ public class FullCardPage extends AbstractPage {
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         Selenide.refresh();
+        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
         baseElements();
         $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
