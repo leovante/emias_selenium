@@ -17,6 +17,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.sql.SQL;
 import pages.utilities.Tokenizer;
 
@@ -35,7 +36,8 @@ import static com.codeborne.selenide.Selenide.$$;
 public class CreateCallPage extends AbstractPage {
     String clientApplication = "CB174067-702F-42D0-B0EB-1D84A514515D";
     String requestSmp = "http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233";
-    Map<String, String> proData;
+//    Map<String, String> proData;
+    Pacient pacient;
 
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
@@ -67,8 +69,9 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement sourceReg = $(By.id("source1"));
 
     public void createCall(String profile) throws IOException, InterruptedException, ParseException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
+        this.pacient = new Pacient(profile);
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        this.proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .sourceCall()
                 .address()
@@ -209,7 +212,8 @@ public class CreateCallPage extends AbstractPage {
         try {
             if (proData.get("source").equals("Регистратура")) {
                 sourceReg.click();
-            } else if (proData.get("source").equals("СМП")) {
+            }
+            if (proData.get("source").equals("СМП")) {
                 sourceSmp.click();
             }
         } catch (Exception e) {

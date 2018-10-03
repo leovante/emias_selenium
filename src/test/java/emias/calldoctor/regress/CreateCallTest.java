@@ -61,7 +61,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyNewCall("Profile3");
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException {

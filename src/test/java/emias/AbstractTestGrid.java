@@ -20,7 +20,6 @@ public class AbstractTestGrid {
     public static RemoteWebDriver driver;
     public static Pages page;
     public EnterSite enterSite;
-    public volatile String nameGen;
     public static String site;
     public static String login;
     public static String pass;
@@ -53,7 +52,6 @@ public class AbstractTestGrid {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
         enterSite = new EnterSite();
-        nameGen = new StringGenerator().generator();
     }
 
     @RetryCountIfFailed(2)

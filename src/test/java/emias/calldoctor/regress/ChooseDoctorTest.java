@@ -20,7 +20,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyActiveDocGroup(nameGen, "Profile1");
+                .verifyActiveDocGroup("Profile1");
     }
 
     @Test(groups = "CD", description = "назначить врача вызову из СМП на сегодня")

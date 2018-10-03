@@ -16,7 +16,7 @@ import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class UchastoksAdressTest extends AbstractTestGrid {
+public class UchastoksAddressTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
