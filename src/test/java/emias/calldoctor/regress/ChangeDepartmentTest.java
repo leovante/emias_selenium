@@ -18,9 +18,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Depart() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         page.createCallPage()
-                .createNewCall("ProfileTransferLpu-Dep", nameGen, "n");
+                .createCall("ProfileTransferLpu-Dep", nameGen, "n");
         page.fullCardPage()
                 .verifyDepart("ProfileTransferLpu-Dep", "firstDepart")
                 .transferToDepartBtn();
@@ -32,9 +32,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         page.createCallPage()
-                .createNewCall("ProfileTransferDep-Dep", nameGen, "n");
+                .createCall("ProfileTransferDep-Dep", nameGen, "n");
         page.fullCardPage()
                 .verifyDepart("ProfileTransferDep-Dep", "firstDepart")
                 .transferToDepartBtn();
@@ -50,9 +50,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         page.createCallPage()
-                .createNewCall("ProfileTransferDep-Lpu", nameGen, "n");
+                .createCall("ProfileTransferDep-Lpu", nameGen, "n");
         page.fullCardPage()
                 .verifyDepart("ProfileTransferDep-Lpu", "firstDepart")
                 .transferToDepartBtn();
@@ -70,7 +70,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     public void testTransferCallLpu_Lpu() {
 //        open(curUrlCalldoctor);
 //        page.createCallPage()
-//                .createNewCall("ProfileTransferDep-Dep", nameGen, "n");
+//                .createCall("ProfileTransferDep-Dep", nameGen, "n");
 //        page.fullCardPage()
 //                .verifyDepart("firstDepart")
 //                .transferToDepartBtn();
@@ -87,9 +87,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
         String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         page.createCallPage()
-                .createNewCall("Profile1", nameGen, "n");
+                .createCall("Profile1", nameGen, "n");
         page.fullCardPage().transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
     }
@@ -99,9 +99,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() throws Exception {
         String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         page.createCallPage()
-                .createNewCall("Profile2", nameGen, "y");
+                .createCall("Profile2", nameGen, "y");
         page.fullCardPage().transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
     }

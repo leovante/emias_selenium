@@ -1,39 +1,7 @@
 {
   "source": "Регистратура",
-  "adressFull": "",
-  "adressDashboard": "Московская обл., д.1",
-  "adress_1": "",
-  "adress_2": "",
-  "adress_3": "",
+  "addressDashboard": "Московская обл., д.1",
   "dom": "101а",
-  "korpus": "",
-  "stroenie": "",
-  "kvartira": "",
-  "pd": "",
-  "dfon": "",
-  "etazh": "",
-
-  "seriyaPol": "",
-  "nomerPol": "",
-  "fam": "",
-  "name": "",
-  "otchestvo": "",
-  "birthDay": "",
-  "gender": "",
-  "sex": "",
-  "age": "",
-  "years": "",
   "vKat": "Взрослые",
-
-  "zhaloba": "автотест создал пустой вызов",
-  "whoIsCall": "Пациент",
-  "famCall": "",
-  "nameCall": "",
-  "otCall": "",
-  "telephone": "",
-
-  "department": "",
-  "doctorName": "",
-  "doctorFam": "Серова",
-  "doctorOt": ""
+  "zhaloba": "автотест создал пустой вызов"
 }

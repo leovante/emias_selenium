@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
+import pages.sql.SQL;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,9 +36,10 @@ public class PortalDashboard extends AbstractPage {
     }
 
     @Step("создаю вызов через портал")
-    public void createCall(String profile, String nameGen) throws IOException {
+    public void createCall(String profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        SQL.finalizeCall_NPol(proData);
 
         nPolField.sendKeys(proData.get("nomerPol"));
         birthdayField.sendKeys(proData.get("birthDay"));
@@ -51,7 +53,7 @@ public class PortalDashboard extends AbstractPage {
         stage.setValue(proData.get("etazh"));
         doorphone.setValue(proData.get("dfon"));
         phone.setValue(proData.get("telephone"));
-        description.setValue(proData.get("zhaloba") + ", " + nameGen);
+        description.setValue(proData.get("zhaloba"));
 
         podtvVizovVracha.click();
 

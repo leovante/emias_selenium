@@ -22,8 +22,8 @@ public class FilterTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile1", nameGen, "n");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
@@ -36,8 +36,8 @@ public class FilterTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile1", nameGen, "n");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage().closeCardBtn();
@@ -52,9 +52,9 @@ public class FilterTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
-        page.createCallPage().createCallProfile3(nameGen);
-        beforecdCD.loginMis_Calldoctor();
-        page.dashboardPage().openNewCallProgressFrame("Profile3");
+        page.createCallPage().createCall_Api("Profile3");
+        enterSite.enterCalldoctor();
+        page.dashboardPage().openNewCallDash("Profile3");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
@@ -68,7 +68,7 @@ public class FilterTest extends AbstractTestGrid {
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
     public void testExitToMis() {
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         page.dashboardPage().exitToMis();
         $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
     }

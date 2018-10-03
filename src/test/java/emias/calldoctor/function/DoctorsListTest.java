@@ -12,9 +12,9 @@ import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -24,9 +24,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile7", nameGen, "n");
+    public void testChildCall() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile7");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -36,9 +36,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall2() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile8", nameGen, "n");
+    public void testChildCall2() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile8");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -48,9 +48,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall3() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile9", nameGen, "n");
+    public void testChildCall3() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile9");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -60,9 +60,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall4() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile10", nameGen, "n");
+    public void testChildCall4() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile10");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -72,9 +72,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall5() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile11", nameGen, "n");
+    public void testChildCall5() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile11");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -84,9 +84,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall6() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile12", nameGen, "n");
+    public void testChildCall6() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile12");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -96,9 +96,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall7() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile13", nameGen, "n");
+    public void testChildCall7() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile13");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
@@ -109,8 +109,8 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithKladr() throws Exception {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile2", nameGen, "y");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile2");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
@@ -119,14 +119,13 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
-        page.createCallPage().createCallProfileDetkina();
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall_Api("ProfileDetkina");
         page.dashboardPage()
                 .searchFilterFio_Fam("ProfileDetkina")
-                .openNewCallProgressFrame("ProfileDetkina");
+                .openNewCallDash("ProfileDetkina");
         page.fullCardPage()
-                .verifyCallProfileDetkina("ProfileDetkina")
+                .verifyNewCall("ProfileDetkina")
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
@@ -136,9 +135,9 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createCallProfile19(nameGen);
-        page.dashboardPage().openNewCallProgressFrame("Profile19");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall_Api("Profile19");
+        page.dashboardPage().openNewCallDash("Profile19");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
@@ -149,11 +148,11 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException {
+    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException {
         page.loginPage().loginAdmin("http://emias.mosreg.ru/demonstration/", "admin", "RChS2014");
         page.homePage().callDoctorBtn();
         switchTo().window(1);
-        page.createCallPage().createNewCall("Profile13", nameGen, "n");
+        page.createCallPage().createCall("Profile13");
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);

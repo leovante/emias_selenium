@@ -15,10 +15,10 @@ public class CancelCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
 
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
-        page.fullCardPage().cancelCallOnFullCardPage();
+        page.createCallPage().createCall("Profile1", nameGen, "n");
+        page.fullCardPage().cancelOnFullCardBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .verifyRecordIsCancelFromDashboard();
@@ -29,12 +29,12 @@ public class CancelCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
 
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+        page.createCallPage().createCall("Profile1", nameGen, "n");
         page.fullCardPage()
                 .editCallBtn()
-                .cancelRecordOnChangePage();
+                .cancelOnChangePageBtn();
         page.dashboardPage()
                 .searchFilterFio(nameGen)
                 .verifyRecordIsCancelFromDashboard();
@@ -45,8 +45,8 @@ public class CancelCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile1", nameGen, "n");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage().deleteNewCallProgressFrame("Profile1");
         page.dashboardPage()

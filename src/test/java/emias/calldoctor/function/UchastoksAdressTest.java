@@ -10,7 +10,6 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
 
 import java.io.IOException;
 
@@ -22,8 +21,8 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile15", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile15", nameGen, "n");
 //        $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
 //        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -37,8 +36,8 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile16", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile16", nameGen, "n");
         page.createCallPage().selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -52,8 +51,8 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile17", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile17", nameGen, "n");
         page.createCallPage().selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -67,8 +66,8 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile18", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile18", nameGen, "n");
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
@@ -76,17 +75,16 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
+    @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokWithCallAdress() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        SQLDemonstration.finalizePacientNumberPol("ProfileDetkinaVGostyah");
-        page.createCallPage().createCallProfileDetkinaVGostah();
+    public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException {
+        page.createCallPage().createCall_Api("ProfileAdressNeIzMkab");
+        enterSite.enterCalldoctor();
         page.dashboardPage()
-                .searchFilterFio_Fam("ProfileDetkinaVGostyah")
-                .openNewCallProgressFrame("ProfileDetkinaVGostyah");
-        page.fullCardPage().verifyCallProfileDetkina("ProfileDetkinaVGostyah");
+                .searchFilterFio_Fam("ProfileAdressNeIzMkab")
+                .openNewCallDash("ProfileAdressNeIzMkab");
+        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
     }
 }

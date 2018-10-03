@@ -1,16 +1,9 @@
 package emias.calldoctor.regress;
 
-import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
-import pages.utilities.StringGenerator;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class ChooseDoctorTest extends AbstractTestGrid {
 
@@ -18,17 +11,15 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile1");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
-                .verifyCallActivityGroup(nameGen, "Profile1")
+                .verifyActivCall("Profile1")
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterFio(nameGen)
                 .verifyActiveDocGroup(nameGen, "Profile1");
     }
 
@@ -36,13 +27,12 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile2", nameGen, "y");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile2");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile2");
         page.fullCardPage()
-                .verifyCallActivityGroup(nameGen, "Profile2")
+                .verifyActivCall("Profile2")
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
@@ -50,25 +40,23 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup("Profile2");
     }
 
-    @Test(groups = "test", description = "назначить врача вызову из Интернета на сегодня")
+    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {
-        String nameGen = new StringGenerator().generator();
-        SQLDemonstration.finalizePacientNumberPol("Profile4");
-        open("https://uslugi.mosreg.ru/zdrav/");
-        page.portalDashboard().createCall("Profile4", nameGen);
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterPortal();
+        page.portalDashboard().createCall("Profile4");
+        enterSite.enterCalldoctor();
         page.dashboardPage()
                 .clearAllFilters()
-                .openNewCallProgressFrame("Profile4");
-        $(By.xpath("//*[contains(text(),'Интернет')]")).shouldBe(Condition.visible);
+                .openNewCallDash("Profile4");
+        page.fullCardPage().verifyNewCall("Profile4");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage()
                 .saveAddress()
                 .chooseDoctor("Profile4");
         page.fullCardPage()
-                .verifyCallActivityGroup(nameGen, "Profile4")
+                .verifyActivCall("Profile4")
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()

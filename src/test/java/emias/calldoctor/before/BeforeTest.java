@@ -5,7 +5,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
-import pages.sql.SQLDemonstration;
+import pages.sql.SQL;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -35,8 +35,8 @@ public class BeforeTest extends AbstractTestGrid {
         doctors.add("Зайцева Татьяна Михайловна");//детская поликлиника
         for (String doctor_num : doctors) {
             String doctor_fam = ManageShedule.getSecondName(doctor_num);
-            SQLDemonstration.finalizeCallLpuDoctor(doctor_fam);
-            SQLDemonstration.deleteShedule(doctor_fam);
+            SQL.finalizeCallLpuDoctor(doctor_fam);
+            SQL.deleteShedule(doctor_fam);
         }
         for (String doctor_num : doctors) {
             page.doctorMethods().selectDoctor(doctor_num);
@@ -48,6 +48,6 @@ public class BeforeTest extends AbstractTestGrid {
 
     @Step("Обновляю БД для тестов на случай её изменения")
     public void updateDB() throws FileNotFoundException {
-        SQLDemonstration.getScripts();
+        SQL.getScripts();
     }
 }

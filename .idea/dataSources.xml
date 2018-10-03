@@ -50,11 +50,11 @@
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="hlt_Kashira_CRB_160101@12.8.1.58" uuid="6f50136e-6bfe-400c-9294-e14b1b494dff">
+    <data-source source="LOCAL" name="hlt_Kashira_CRB_160101@192.168.7.48" uuid="6f50136e-6bfe-400c-9294-e14b1b494dff">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://12.8.1.58;database=hlt_Kashira_CRB_160101</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:14331;database=hlt_Kashira_CRB_160101</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
       </driver-properties>

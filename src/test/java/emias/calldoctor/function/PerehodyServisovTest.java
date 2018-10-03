@@ -10,9 +10,9 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -23,15 +23,14 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkab_TapIconGrey() throws IOException, InterruptedException {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+    public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile1");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup("Profile1", nameGen)
+                .verifyDoneCall("Profile1")
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
@@ -40,14 +39,14 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile2", nameGen, "y");
+    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException {
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall("Profile2");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile2");
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup("Profile2")
+                .verifyDoneCall("Profile2")
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
@@ -57,7 +56,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         switchTo().window(0);
         page.homePage().exitBtn();
         page.loginPage().login("Admin", "RChS2014");

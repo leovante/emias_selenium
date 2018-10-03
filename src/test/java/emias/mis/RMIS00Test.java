@@ -5,7 +5,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
-import pages.sql.SQLDemonstration;
+import pages.sql.SQL;
 
 public class RMIS00Test extends AbstractTestGrid {
 
@@ -13,7 +13,7 @@ public class RMIS00Test extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void cleanBeforeWork() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
-        SQLDemonstration.finalizeAllCalls();
+        SQL.finalizeAllCalls();
         page.homePage().manageSheduleBtn();
         createSomeRecords(15);
         page.homePage().logoHomeBtn();
@@ -26,7 +26,7 @@ public class RMIS00Test extends AbstractTestGrid {
             System.out.println("Обрабатываю врача №: " + n);
             String doctor_num = page.doctorMethods().getUnicalDoctor3(n);
             String doctor_num_fam = ManageShedule.getSecondName(doctor_num);
-            SQLDemonstration.deleteShedule(doctor_num_fam);
+            SQL.deleteShedule(doctor_num_fam);
 
             page.doctorMethods().selectDoctor(doctor_num);
             page.beforeWork().createShedule();

@@ -1,6 +1,5 @@
 package pages.sql;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import pages.AbstractPage;
 
@@ -11,7 +10,7 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
-public class SQLDemonstration extends AbstractPage {
+public class SQL extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";
@@ -155,9 +154,9 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("завершаю вызовы пациента по полису")
-    public static void finalizePacientNumberPol(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+    public static void finalizeCall_NPol(Map proData) {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -169,7 +168,7 @@ public class SQLDemonstration extends AbstractPage {
                 String sql =
                         "update hlt_CallDoctor " +
                                 "set rf_CallDoctorStatusID = 3 " +
-                                "where NumberPol = '" + proData.get("nomerPol") + "'";
+                                "where numberPol = '" + proData.get("numberpol") + "'";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);

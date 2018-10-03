@@ -13,8 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertFalse;
 
 public class DashboardPage extends AbstractPage {
@@ -134,7 +133,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public void verifyActiveDocGroup(String nameGen, String profile) throws IOException {
+    public void verifyActiveDocGroup(String profile, String doctor) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
 //        Thread.sleep(4000);
@@ -149,7 +148,6 @@ public class DashboardPage extends AbstractPage {
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
 
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         System.out.println("Краткая карта вызова проверена!");
     }
@@ -176,7 +174,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(String nameGen, String profile) throws InterruptedException, IOException {
+    public void verifyDoneDocGroup(String profile) throws InterruptedException, IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
@@ -184,7 +182,7 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//span[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
         doneCallProgressFrame.click();
         $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
+//        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
         System.out.println("Краткая карта вызова проверена!");
     }
@@ -197,19 +195,20 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public void openNewCallProgressFrame(String profile) throws IOException, InterruptedException {
+    public void openNewCallDash(String profile) throws IOException, InterruptedException {
+        refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + proData.get("adressDashboard") + "')]"));
+        SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + proData.get("address") + "')]"));
         Actions actions = new Actions(driver);
-        actions.moveToElement(adress).perform();
+        actions.moveToElement(address).perform();
 
-        SelenideElement smallMenu = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
+        SelenideElement smallMenu = address.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
         actions.moveToElement(smallMenu).perform();
 
-        SelenideElement openCard = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Открыть карту вызова']"));
+        SelenideElement openCard = address.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Открыть карту вызова']"));
         Thread.sleep(700);
         openCard.click();
     }
@@ -220,7 +219,7 @@ public class DashboardPage extends AbstractPage {
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + proData.get("adressDashboard") + "')]"));
+        SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + proData.get("address") + "')]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(adress).perform();
 

@@ -54,10 +54,16 @@ public class WebDriverInstansiator {
         }
 //        System.out.println("DriverManager - " + getWebDriver());
         java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        System.out.println(
-                "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
-                        "Browser resolution: " + getWebDriver().manage().window().getSize() + "; " +
-                        "Headless: " + headless + "; ");
+        Dimension dimension = getWebDriver().manage().window().getSize();
+
+        if (!String.valueOf(dimension).equals("(1919, 1079)")) {
+            throw new IllegalArgumentException("Ошибка. Размер окна браузера некорректный!" + dimension);
+        } else {
+            System.out.println(
+                    "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
+                            "Browser resolution: " + dimension + "; " +
+                            "Headless: " + headless + "; ");
+        }
         return driver;
     }
 }
