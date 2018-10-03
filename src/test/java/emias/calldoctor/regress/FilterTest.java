@@ -8,9 +8,9 @@ import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -20,46 +20,43 @@ public class FilterTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterFIO() throws InterruptedException, IOException {
-        String nameGen = new StringGenerator().generator();
+    public void testFilterFIO() throws InterruptedException, IOException, ParseException {
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1", nameGen, "n");
+        page.createCallPage().createCall("Profile1");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen)
-                .verifyNewCallGroup("Profile1", nameGen);
+//                .searchFilterFio()
+                .verifyNewCallGroup("Profile1");
     }
 
     //    @Attachment(value = "Console error", type = "text/plain")
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterDoctor() throws InterruptedException, IOException {
-        String nameGen = new StringGenerator().generator();
+    public void testFilterDoctor() throws InterruptedException, IOException, ParseException {
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1", nameGen, "n");
+        page.createCallPage().createCall("Profile1");
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor("Profile1");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
                 .searchFilterDoctor("Profile1")
-                .verifyActiveDocGroup(nameGen, "Profile1");
+                .verifyActiveDocGroup("Profile1");
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException {
-        String nameGen = new StringGenerator().generator();
         page.createCallPage().createCall_Api("Profile3");
         enterSite.enterCalldoctor();
         page.dashboardPage().openNewCallDash("Profile3");
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen)
+//                .searchFilterFio()
                 .searchFilterTypeCallNeotlozhniy()
-                .verifyNewCallGroup("Profile3", nameGen);
+                .verifyNewCallGroup("Profile3");
     }
 
     @Flaky

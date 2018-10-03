@@ -6,9 +6,9 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -17,10 +17,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallLpu_Depart() throws IOException, InterruptedException {
+    public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException {
         enterSite.enterCalldoctor();
-        page.createCallPage()
-                .createCall("ProfileTransferLpu-Dep", nameGen, "n");
+        page.createCallPage().createCall("ProfileTransferLpu-Dep");
         page.fullCardPage()
                 .verifyDepart("ProfileTransferLpu-Dep", "firstDepart")
                 .transferToDepartBtn();
@@ -31,10 +30,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallDepart_Depart() throws IOException, InterruptedException {
+    public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException {
         enterSite.enterCalldoctor();
-        page.createCallPage()
-                .createCall("ProfileTransferDep-Dep", nameGen, "n");
+        page.createCallPage().createCall("ProfileTransferDep-Dep");
         page.fullCardPage()
                 .verifyDepart("ProfileTransferDep-Dep", "firstDepart")
                 .transferToDepartBtn();
@@ -49,10 +47,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallDepart_Lpu() throws IOException, InterruptedException {
+    public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException {
         enterSite.enterCalldoctor();
-        page.createCallPage()
-                .createCall("ProfileTransferDep-Lpu", nameGen, "n");
+        page.createCallPage().createCall("ProfileTransferDep-Lpu");
         page.fullCardPage()
                 .verifyDepart("ProfileTransferDep-Lpu", "firstDepart")
                 .transferToDepartBtn();
@@ -86,10 +83,8 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
-        String nameGen = new StringGenerator().generator();
         enterSite.enterCalldoctor();
-        page.createCallPage()
-                .createCall("Profile1", nameGen, "n");
+        page.createCallPage().createCall("Profile1");
         page.fullCardPage().transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
     }
@@ -98,13 +93,10 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() throws Exception {
-        String nameGen = new StringGenerator().generator();
         enterSite.enterCalldoctor();
-        page.createCallPage()
-                .createCall("Profile2", nameGen, "y");
+        page.createCallPage().createCall_Mkab("Profile2");
         page.fullCardPage().transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
     }
-
     // TODO: 13.08.2018 передать вызов из первого ЛПУ в др. ЛПУ
 }

@@ -226,16 +226,16 @@ public class CreateCallPage extends AbstractPage {
 
     private CreateCallPage address() {
         cancelAdress.shouldBe(Condition.visible);
-        if (!proData.get("adress_1").isEmpty()) {
+        if (proData.containsKey("adress_1")) {
             cancelAdress.click();
             placeholder_adress.setValue(proData.get("adress_1"));
             list_first_container.click();
         }
-        if (!proData.get("adress_2").isEmpty()) {
+        if (proData.containsKey("adress_2")) {
             placeholder_adress.setValue(proData.get("adress_2"));
             list_first_container.click();
         }
-        if (!proData.get("adress_3").isEmpty()) {
+        if (proData.containsKey("adress_3")) {
             placeholder_adress.setValue(proData.get("adress_3"));
             list_first_container.click();
         }
@@ -281,8 +281,14 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage sex() {
-        if (!proData.get("sex").equals(""))
-            $(By.id(proData.get("sex"))).click();
+        if (proData.containsKey("gender")) {
+            if (proData.get("gender").equals("1")) {
+                $(By.id("sex1")).click();
+            }
+            if (proData.get("gender").equals("2")) {
+                $(By.id("sex2")).click();
+            }
+        }
         return this;
     }
 
@@ -319,8 +325,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage caller() throws IOException, ParseException {
-        Date da = new SimpleDateFormat("dd/MM/yyyy").parse(proData.get("birthdate"));
-        Date du = new SimpleDateFormat("dd/MM/yyyy").parse(proData.get("birthdate"));
+        Date da = new SimpleDateFormat("yyyy/MM/dd").parse(proData.get("birthdate"));
+        Date du = new SimpleDateFormat("yyyy/MM/dd").parse(proData.get("birthdate"));
         if (proData.get("source").equals("2")) {
             File reader = new File("src\\main\\java\\pages\\calldoctor\\whoIsCall_interfaces\\" + proData.get("whoIsCall") + ".json");
             Map<String, String> callerData = new ObjectMapper().readValue(reader, Map.class);
