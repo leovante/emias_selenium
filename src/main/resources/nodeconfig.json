@@ -2,11 +2,13 @@
   "capabilities": [
     {
       "browserName": "chrome",
-      "maxInstances": "8"
+      "maxInstances": "8",
+      "seleniumProtocol": "WebDriver"
     },
     {
       "browserName": "firefox",
-      "maxInstances": "8"
+      "maxInstances": "8",
+      "seleniumProtocol": "WebDriver"
     }
   ],
   "_comment": "Configuration for Node - nodeconfig.json",

@@ -50,7 +50,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup("Profile2");
     }
 
-    @Test(groups = "test", description = "назначить врача вызову из Интернета на сегодня")
+    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(0)
     public void testAppendDoctorToCall_Portal() throws Exception {

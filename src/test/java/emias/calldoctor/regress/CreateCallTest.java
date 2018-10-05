@@ -58,7 +58,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .verifyNewCallGroup("Profile2");
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException {
@@ -69,7 +69,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyCallNewCallGroup("Profile3", nameGen);
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, Взрослый без МКАБ по КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException {
@@ -99,7 +99,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
@@ -113,7 +113,7 @@ public class CreateCallTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChild2Mkab() throws IOException, InterruptedException {
