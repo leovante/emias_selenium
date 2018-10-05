@@ -16,7 +16,6 @@ public class CancelCallTest extends AbstractTestGrid {
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
-
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage().cancelCallOnFullCardPage();
         page.dashboardPage()
@@ -30,7 +29,6 @@ public class CancelCallTest extends AbstractTestGrid {
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
         String nameGen = new StringGenerator().generator();
         beforecdCD.loginMis_Calldoctor();
-
         page.createCallPage().createNewCall("Profile1", nameGen, "n");
         page.fullCardPage()
                 .editCallBtn()
