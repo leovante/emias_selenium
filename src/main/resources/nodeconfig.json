@@ -2,11 +2,11 @@
   "capabilities": [
     {
       "browserName": "chrome",
-      "maxInstances": "10"
+      "maxInstances": "8"
     },
     {
       "browserName": "firefox",
-      "maxInstances": "10"
+      "maxInstances": "8"
     }
   ],
   "_comment": "Configuration for Node - nodeconfig.json",

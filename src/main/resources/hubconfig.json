@@ -10,5 +10,5 @@
   "role": "hub",
   "debug": false,
   "timeout": 10,
-  "browserTimeout": 10
+  "browserTimeout": 30
 }
