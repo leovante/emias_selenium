@@ -52,7 +52,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(3)
     public void testAppendDoctorToCall_Portal() throws Exception {
         String nameGen = new StringGenerator().generator();
         SQLDemonstration.finalizePacientNumberPol("Profile4");

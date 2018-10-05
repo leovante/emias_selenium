@@ -227,7 +227,11 @@ public class DashboardPage extends AbstractPage {
         SelenideElement smallMenu = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
         actions.moveToElement(smallMenu).perform();
 
-        SelenideElement openCard = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Отменить вызов']"));
-        openCard.click();
+        SelenideElement cancelCall = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Отменить вызов']"));
+        cancelCall.click();
+        SelenideElement prichinaOtmeni = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@placeholder='Причина отмены вызова']"));
+        prichinaOtmeni.val("автотест");
+        SelenideElement cancelCall2 = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Отменить вызов']"));
+        cancelCall2.click();
     }
 }
