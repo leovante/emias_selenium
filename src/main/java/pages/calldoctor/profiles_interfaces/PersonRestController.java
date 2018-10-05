@@ -15,6 +15,7 @@ import java.util.List;
 public class PersonRestController {
     @Autowired
     private ObjectMapper objectMapper;
+
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @RequestMapping("/getPersonDTO")

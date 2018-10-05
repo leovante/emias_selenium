@@ -17,6 +17,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.calldoctor.profiles_interfaces.PersonDTO;
 import pages.sql.SQL;
 import pages.utilities.Tokenizer;
@@ -68,8 +69,8 @@ PersonDTO personDTO;
     SelenideElement sourceSmp = $(By.id("source0"));
     SelenideElement sourceReg = $(By.id("source1"));
 
-    public void createCall(String profile) throws IOException, InterruptedException, ParseException {
-        this.personDTO = new PersonDTO(profile);
+    public void createCall(Pacient profile) throws IOException, InterruptedException, ParseException {
+//        this.personDTO = new PersonDTO(profile);
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
 //        this.proData = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()

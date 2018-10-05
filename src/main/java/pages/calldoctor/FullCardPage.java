@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.File;
 import java.io.IOException;
@@ -106,7 +107,7 @@ public class FullCardPage extends AbstractPage {
 //    }
 
     @Step("проверяю новый вызов {profile}")
-    public FullCardPage verifyNewCall(String profile) throws IOException {
+    public FullCardPage verifyNewCall(Pacient profile) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);

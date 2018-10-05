@@ -16,4 +16,6 @@ public class PersonRestControllerTest extends AbstractTestNGSpringContextTests {
     public void controllerInitializedCorrectly() {
         assertThat(controller).isNotNull();
     }
+
+
 }
