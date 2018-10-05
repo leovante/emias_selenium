@@ -5,6 +5,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pages.calldoctor.profiles_interfaces.PersonDTO;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -30,11 +31,12 @@ public class CreateCallTestRandom extends AbstractTestGrid {
     @Test(groups = "test", description = "пустой вызов")
     @Epic("Создание рандомного вызова")
     @RetryCountIfFailed(0)
-    public void testCall(String patient) throws IOException, InterruptedException, ParseException {
+    public void testCall(String pacient) throws IOException, InterruptedException, ParseException {
+        new PersonDTO();
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall(patient);
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
-                .verifyNewCall(patient)
+                .verifyNewCall(pacient)
                 .closeCardBtn();
     }
 }
