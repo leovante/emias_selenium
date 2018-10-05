@@ -16,7 +16,7 @@
   "role": "node",
   "host": "localhost",
   "port": 5558,
-  "maxSession": 10,
+  "maxSession": 8,
   "cleanUpCycle": 5,
   "registerCycle": 5000,
   "nodePolling": 5000,
