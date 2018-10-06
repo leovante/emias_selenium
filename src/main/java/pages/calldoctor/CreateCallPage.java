@@ -78,15 +78,15 @@ public class CreateCallPage extends AbstractPage {
                 .address()
                 .vozrastKat()
                 .birthDay()
-                .adressAddition()
-                .sex()
+//                .adressAddition()
+                .gender()
                 .complaint()
                 .polis()
                 .FIO()
                 .caller()
                 .telephone()
-                .saveBtn()
-                .adressAlarma();
+                .saveBtn();
+//                .adressAlarma();
         waitCreating();
     }
 
@@ -96,18 +96,18 @@ public class CreateCallPage extends AbstractPage {
         addNewCall()
                 .sourceCall()
                 .searchField()
-                .adressAddition()
+//                .adressAddition()
                 .complaint()
                 .caller()
                 .telephone()
-                .saveBtn()
-                .adressAlarma();
+                .saveBtn();
+//                .adressAlarma();
         waitCreating();
     }
 
     @Step("Создаю вызов через api")
-    public void createCall_Api(String profile) throws IOException {
-        File file = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+    public void createCall_Api(Pacient pacient) throws IOException {
+        File file = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json");
         Map jMapProfile = new ObjectMapper().readValue(file, Map.class);
         String gson = new Gson().toJson(jMapProfile);
 
@@ -163,7 +163,7 @@ public class CreateCallPage extends AbstractPage {
         this.pacient = pacient;
         sourceCall()
                 .searchField()
-                .adressAddition()
+//                .adressAddition()
                 .telephone()
                 .complaint()
                 .caller()
@@ -287,61 +287,51 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-        long diffInMillies = date2.getTime() - date1.getTime();
-        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
-    }
-
-    private CreateCallPage sex() {
-        if (pacient.containsKey("gender")) {
-            if (pacient.get("gender").equals("1")) {
-                $(By.id("sex1")).click();
-            }
-            if (pacient.get("gender").equals("2")) {
-                $(By.id("sex2")).click();
-            }
+    private CreateCallPage gender() {
+        if (pacient.getGender() == 1) {
+            $(By.id("sex1")).click();
+        }
+        if (pacient.getGender() == 2) {
+            $(By.id("sex2")).click();
         }
         return this;
     }
 
     private CreateCallPage complaint() {
-        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
+        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + pacient.get("zhaloba") + "';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
+        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
+        complaint.sendKeys(Keys.SPACE);
         return this;
     }
 
     private CreateCallPage polis() {
-        $(By.xpath("//input[@placeholder='Серия']")).setValue(pacient.get("seriyaPol"));
-        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(pacient.get("nomerPol"));
+        $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
+        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacient.getNumberpol()));
         return this;
     }
 
     private CreateCallPage FIO() {
-        if (pacient.containsKey("fam")) {
-            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.get("fam"));
+        if (pacient.getFamily() != null) {
+            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
         }
-        if (pacient.containsKey("name")) {
-            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacient.get("name"));
+        if (pacient.getName() != null) {
+            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacient.getName());
         }
-        if (pacient.containsKey("ot")) {
-            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacient.get("ot"));
+        if (pacient.getOt() != null) {
+            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacient.getOt());
         }
         return this;
     }
 
     private CreateCallPage birthDay() {
-        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.get("birthDay"));
+        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(String.valueOf(pacient.getBirthdate()));
         return this;
     }
 
     private CreateCallPage caller() throws IOException, ParseException {
-        Date da = new SimpleDateFormat("yyyy/MM/dd").parse(pacient.get("birthdate"));
-        Date du = new SimpleDateFormat("yyyy/MM/dd").parse(pacient.get("birthdate"));
-        if (pacient.get("source").equals("2")) {
-            File reader = new File("src\\main\\java\\pages\\calldoctor\\whoIsCall_interfaces\\" + pacient.get("whoIsCall") + ".json");
-            Map<String, String> callerData = new ObjectMapper().readValue(reader, Map.class);
+        if (pacient.getSource() == 2) {
+
             $(By.id("sourceSmp")).setValue(callerData.get("station"));
             $(By.id("callFamily")).setValue(pacient.get("fam"));
             $(By.id("callName")).setValue("name");
@@ -424,5 +414,10 @@ public class CreateCallPage extends AbstractPage {
             System.out.println("Вызов создан! " + driver.getCurrentUrl());
         else System.out.println("Вызов НЕ создан!");
 
+    }
+
+    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+        long diffInMillies = date2.getTime() - date1.getTime();
+        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 }

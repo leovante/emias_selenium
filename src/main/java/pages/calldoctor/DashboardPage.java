@@ -8,6 +8,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.File;
 import java.io.IOException;
@@ -195,7 +196,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public void openNewCallDash(String profile) throws IOException, InterruptedException {
+    public void openNewCallDash(Pacient pacient) throws IOException, InterruptedException {
         refresh();
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);

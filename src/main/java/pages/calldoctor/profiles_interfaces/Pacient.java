@@ -13,10 +13,15 @@ import java.util.Date;
 import java.util.Map;
 
 public class Pacient extends AbstractTestNGSpringContextTests {
+
+    @Autowired
+    private JacksonTester<Pacient> json;
+
     private static int source;
     private static int type;
     private static int seriespol;
     private static int numberpol;
+    private static int gender;
     private static String name;
     private static String address;
     private static String address1;
@@ -29,16 +34,21 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private static Date birthdate = parseDate(birthdate_string);
     private static String family;
     private static String ot;
-
-
     private static String number;//номер дома
     private static String building;//корпус
     private static String construction;//строение
     private static String appartment;//квартира
-
     private static String entrance;//подьезд
     private static String floor;//этаж
     private static String codedomophone;//домофон
+
+    public static int getGender() {
+        return gender;
+    }
+
+    public static void setGender(int gender) {
+        Pacient.gender = gender;
+    }
 
     public static String getNumber() {
         return number;
@@ -80,7 +90,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         Pacient.appartment = appartment;
     }
 
-
     public static String getConstruction() {
         return construction;
     }
@@ -89,7 +98,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         Pacient.construction = construction;
     }
 
-
     public static String getBuilding() {
         return building;
     }
@@ -97,7 +105,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     public static void setBuilding(String building) {
         Pacient.building = building;
     }
-
 
     public static String getAddress1() {
         return address1;
@@ -146,9 +153,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     public static void setOt(String ot) {
         Pacient.ot = ot;
     }
-
-    @Autowired
-    private JacksonTester<Pacient> json;
 
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
