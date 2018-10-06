@@ -155,7 +155,7 @@ PersonDTO personDTO;
             System.out.println("Карта вызова создана!");
         }
     }
-
+//
     @Step("редактирую вызов с МКАБ + СМП")
     public void editCallProfile2(String profile) throws IOException, ParseException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");

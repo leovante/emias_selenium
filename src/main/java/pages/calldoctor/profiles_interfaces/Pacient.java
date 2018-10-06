@@ -23,7 +23,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private static Date birthdate = parseDate(birthdate_string);
     private static int seriespol;
     private static int numberpol;
-
+//
     @Autowired
     private JacksonTester<Pacient> json;
 

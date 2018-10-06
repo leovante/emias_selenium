@@ -24,7 +24,7 @@ public class PersonDTO {
         this.profession = profession;
         this.salary = salary;
     }
-
+//
     public PersonDTO() {
     }
 
