@@ -1,10 +1,11 @@
-package pages.calldoctor.profiles_interfaces;
+package pages.calldoctor.profiles_interfaces.musor;
 
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
+import pages.calldoctor.profiles_interfaces.musor.PersonDTO;
 
 import java.io.IOException;
 import java.math.BigDecimal;
