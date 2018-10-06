@@ -5,6 +5,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @SpringBootTest
 //@RunWith(SpringRunner.class)
 public class PersonRestControllerTest extends AbstractTestNGSpringContextTests {

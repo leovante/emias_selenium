@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -53,7 +53,7 @@ public class PersonDTOJsonTest extends AbstractTestNGSpringContextTests {
 
     @Before
     public void setup() throws ParseException {
-        personDTO = new PersonDTO(FIRST_NAME, SECOND_NAME, DATE_OF_BIRTH, PROFESSION, SALARY);
+        personDTO = new PersonDTO(FIRST_NAME, SECOND_NAME, (java.sql.Date) DATE_OF_BIRTH, PROFESSION, SALARY);
     }
 
     @Test

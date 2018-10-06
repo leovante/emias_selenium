@@ -14,6 +14,9 @@ import java.util.Map;
 
 public class Pacient extends AbstractTestNGSpringContextTests {
     private static String address;
+    private static String address1;
+    private static String address2;
+    private static String address3;
     private static String complaint;
     private static String diagnosis;
     private static int type;
@@ -23,7 +26,68 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private static Date birthdate = parseDate(birthdate_string);
     private static int seriespol;
     private static int numberpol;
-//
+    private static String name;
+    private static String family;
+    private static String ot;
+
+    public static String getBuilding() {
+        return building;
+    }
+
+    public static void setBuilding(String building) {
+        Pacient.building = building;
+    }
+
+    private static String building;
+
+    public static String getAddress1() {
+        return address1;
+    }
+
+    public static void setAddress1(String address1) {
+        Pacient.address1 = address1;
+    }
+
+    public static String getAddress2() {
+        return address2;
+    }
+
+    public static void setAddress2(String address2) {
+        Pacient.address2 = address2;
+    }
+
+    public static String getAddress3() {
+        return address3;
+    }
+
+    public static void setAddress3(String address3) {
+        Pacient.address3 = address3;
+    }
+
+    public static String getName() {
+        return name;
+    }
+
+    public static void setName(String name) {
+        Pacient.name = name;
+    }
+
+    public static String getFamily() {
+        return family;
+    }
+
+    public static void setFamily(String family) {
+        Pacient.family = family;
+    }
+
+    public static String getOt() {
+        return ot;
+    }
+
+    public static void setOt(String ot) {
+        Pacient.ot = ot;
+    }
+
     @Autowired
     private JacksonTester<Pacient> json;
 
