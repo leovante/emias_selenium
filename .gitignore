@@ -2,6 +2,7 @@
 .gitignore
 .allure
 .idea
+build
 out
 target
 роли.PNG
