@@ -14,10 +14,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class PortalDashboard extends AbstractPage {
 
-    SelenideElement pereytiVElectrRegistr = $(By.xpath("//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']"));
-    SelenideElement nPolField = $(By.xpath("//input[@name='nPol']"));
-    SelenideElement birthdayField = $(By.xpath("//input[@name='birthday']"));
-    SelenideElement uspeshnoVizvaliVracha = $(By.xpath("//*[contains(.,'Вы успешно вызвали врача на адрес:')]"));
+    SelenideElement enterRegister = $(By.xpath("//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']"));
+    SelenideElement numberPolise = $(By.xpath("//input[@name='nPol']"));
+    SelenideElement birthdate = $(By.xpath("//input[@name='birthday']"));
     SelenideElement closeWindow = $(By.id("create-home-visit-popup-success")).$(By.xpath(".//*[contains(.,'Закрыть окно')]"));
     SelenideElement entrance = $(By.id("call_entrance"));
     SelenideElement doorphone = $(By.id("call_doorphone"));
@@ -25,9 +24,9 @@ public class PortalDashboard extends AbstractPage {
     SelenideElement description = $(By.id("call_description"));
     SelenideElement address = $(By.id("call_address"));
     SelenideElement stage = $(By.id("call_stage"));
-    SelenideElement vizvatVrachaNaDom = $(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"));
-    SelenideElement podtvVizovVracha = $(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"));
-    SelenideElement adresVizova = $(By.xpath("//*[contains(text(),'Адрес вызова')]"));
+    SelenideElement callDoctor = $(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"));
+    SelenideElement confirmCall = $(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"));
+    SelenideElement waitHeader = $(By.xpath("//*[contains(text(),'Адрес вызова')]"));
     SelenideElement standEMIAS = $(By.xpath("//*[contains(text(),'Стенд ЕМИАС МО')]"));
 
     public PortalDashboard() {
@@ -35,16 +34,13 @@ public class PortalDashboard extends AbstractPage {
 
     @Step("создаю вызов через портал")
     public void createCall(Pacient pacient) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         SQL.finalizeCall_NPol(pacient.getNumberpol());
-
-        nPolField.sendKeys(String.valueOf(pacient.getNumberpol()));
-        birthdayField.sendKeys(pacient.getBirthdate());
-        pereytiVElectrRegistr.click();
+        numberPolise.sendKeys(String.valueOf(pacient.getNumberpol()));
+        birthdate.sendKeys(String.valueOf(pacient.getBirthdate()));
+        enterRegister.click();
         standEMIAS.shouldBe(Condition.visible);
-        vizvatVrachaNaDom.click();
-        adresVizova.shouldBe(Condition.visible);
+        callDoctor.click();
+        waitHeader.shouldBe(Condition.visible);
 
         address.setValue(pacient.getAddress());
         entrance.setValue(pacient.getEntrance());
@@ -52,10 +48,8 @@ public class PortalDashboard extends AbstractPage {
         doorphone.setValue(pacient.getCodedomophone());
         phone.setValue(pacient.getPhone());
         description.setValue(pacient.getComplaint());
+        confirmCall.click();
 
-        podtvVizovVracha.click();
-
-        closeWindow.shouldBe(Condition.visible);
-        closeWindow.click();
+        closeWindow.shouldBe(Condition.visible).click();
     }
 }

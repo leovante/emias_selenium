@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class CreateCallTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "пустой вызов")
+    @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException {
@@ -77,7 +77,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyNewCall(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException {

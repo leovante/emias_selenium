@@ -4,13 +4,13 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEscape;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
+import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -33,7 +33,6 @@ import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class CreateCallPage extends AbstractPage {
@@ -112,29 +111,37 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("Создаю вызов через api")
     public void createCall_Api(Pacient pacient) throws IOException {
-//        File file = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json");
-//        Map jMapProfile = new ObjectMapper().readValue(file, Map.class);
         this.pacient = pacient;
-
-        String gson = new Gson().toJson(jMapProfile);
-
         SQL.finalizeCall_NPol(pacient.getNumberpol());
-
-
         HttpClient httpClient = HttpClients.createDefault();
-
-        assertThat(this.json.write(pacient))
-                .extractingJsonPathStringValue("@.profession")
-                .isEqualTo("");
-
         //вызов создается по авторизованному методу если в json нет имени пациента
         if (!pacient.getName().equals(null)) {
             try {
+                JSONObject json = new JSONObject();
+                json.put("name", pacient.getName());
+                json.put("family", pacient.getFamily());
+                json.put("ot", pacient.getOt());
+                json.put("birthdate", pacient.getBirthdate());
+                json.put("seriespol", pacient.getSeriespol());
+                json.put("numberpol", pacient.getNumberpol());//реальный мкаб
+                json.put("gender", pacient.getGender());
+                json.put("address", pacient.getAddress());
+                json.put("complaint", pacient.getComplaint());
+                json.put("diagnosis", pacient.getDiagnosis());
+                json.put("type", pacient.getType());
+                json.put("codedomophone", pacient.getCodedomophone());
+                json.put("phone", pacient.getPhone());
+                json.put("source", pacient.getSource());
+                json.put("sourceName", pacient.getSourceName());
+                json.put("sourceCode", pacient.getSourceCode());
+                json.put("entrance", pacient.getEntrance());
+                json.put("floor", pacient.getFloor());
+
                 HttpPost request = new HttpPost(requestSmp);
                 request.addHeader("content-type", "application/json");
                 request.addHeader("ClientApplication", clientApplication);
 
-                StringEntity params = new StringEntity(gson, "UTF-8");
+                StringEntity params = new StringEntity(json.toString(), "UTF-8");
                 request.setEntity(params);
                 HttpResponse response = httpClient.execute(request);
 
@@ -149,13 +156,33 @@ public class CreateCallPage extends AbstractPage {
         }
         if (pacient.getName().equals(null)) {
             try {
-                String token = new Tokenizer().getToken(jMapProfile, clientApplication);
+                String token = new Tokenizer().getToken(pacient, clientApplication);
+                JSONObject json = new JSONObject();
+                json.put("name", pacient.getName());
+                json.put("family", pacient.getFamily());
+                json.put("ot", pacient.getOt());
+                json.put("birthdate", pacient.getBirthdate());
+                json.put("seriespol", pacient.getSeriespol());
+                json.put("numberpol", pacient.getNumberpol());//реальный мкаб
+                json.put("gender", pacient.getGender());
+                json.put("address", pacient.getAddress());
+                json.put("complaint", pacient.getComplaint());
+                json.put("diagnosis", pacient.getDiagnosis());
+                json.put("type", pacient.getType());
+                json.put("codedomophone", pacient.getCodedomophone());
+                json.put("phone", pacient.getPhone());
+                json.put("source", pacient.getSource());
+                json.put("sourceName", pacient.getSourceName());
+                json.put("sourceCode", pacient.getSourceCode());
+                json.put("entrance", pacient.getEntrance());
+                json.put("floor", pacient.getFloor());
+
                 HttpPost request = new HttpPost(requestSmp);
                 request.addHeader("Content-type", "application/json");
                 request.addHeader("Authorization", "Bearer " + token);
                 request.addHeader("ClientApplication", clientApplication);
 
-                StringEntity params = new StringEntity(gson, "UTF-8");
+                StringEntity params = new StringEntity(json.toString(), "UTF-8");
                 request.setEntity(params);
                 HttpResponse response = httpClient.execute(request);
 

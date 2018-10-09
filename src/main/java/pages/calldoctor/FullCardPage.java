@@ -68,7 +68,7 @@ public class FullCardPage extends AbstractPage {
         ShouldBeVisible(pacient.getName());
         ShouldBeVisible(pacient.getFamily());
         ShouldBeVisible(pacient.getOt());
-        ShouldBeVisible(pacient.getBirthdate());
+        ShouldBeVisible(String.valueOf(pacient.getBirthdate()));
         ShouldBeVisible(String.valueOf(pacient.getSeriespol()));
         ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
         ShouldBeVisible(pacient.getAppartment());

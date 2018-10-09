@@ -41,6 +41,25 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String entrance;//подьезд
     private String floor;//этаж
     private String codedomophone;//домофон
+    private String sourceName;//
+    private String sourceCode;//
+
+    public String getSourceCode() {
+        return sourceCode;
+    }
+
+    public void setSourceCode(String sourceCode) {
+        this.sourceCode = sourceCode;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
+    }
+
 
     public Pacient(String name) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
