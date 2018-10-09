@@ -1,0 +1,28 @@
+{
+  "source": "2",
+  "seriespol": "14-59",
+  "numberpol": "951852648",
+  "name": "Тест1",
+  "family": "Тестов2",
+  "ot": "Тестович3",
+  "birthdate": "2000-01-01",
+  "gender": "2",
+  "complaint": "автотест, создание вызова от СМП по КЛАДР",
+  "diagnosis": "j20",
+  "type": "1",
+  "codedomophone": "*15#",
+  "phone": "+7 (960) 622-35-51",
+  "entrance": "12",
+  "floor": "5",
+  "kladraddress": {
+    "addressString": "Белгородская обл., г. Белгород, ул. Есенина, д.11а, стр.2, корп.3, кв.4",
+    "addressStringMin": "Белгородская обл., г. Белгород, ул. Есенина",
+    "appartment": "4",
+    "building": "3",
+    "code": "31000001000007700",
+    "construction": "2",
+    "number": "11а"
+  }
+}
+
+

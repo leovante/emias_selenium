@@ -18,7 +18,7 @@ public class CreateCallTest extends AbstractTestGrid {
 
     @Test(groups = "test", description = "пустой вызов")
     @Epic("Создание вызова")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException {
         enterSite.enterCalldoctor();
         page.createCallPage().createCall("Profile0");

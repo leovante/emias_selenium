@@ -13,22 +13,90 @@ import java.util.Date;
 import java.util.Map;
 
 public class Pacient extends AbstractTestNGSpringContextTests {
+
+    @Autowired
+    private JacksonTester<Pacient> json;
+
+    private static int source;
+    private static int type;
+    private static int seriespol;
+    private static int numberpol;
+    private static int gender;
+    private static String name;
     private static String address;
     private static String address1;
     private static String address2;
     private static String address3;
     private static String complaint;
     private static String diagnosis;
-    private static int type;
     private static String phone;
-    private static int source;
     private static String birthdate_string;
     private static Date birthdate = parseDate(birthdate_string);
-    private static int seriespol;
-    private static int numberpol;
-    private static String name;
     private static String family;
     private static String ot;
+    private static String number;//номер дома
+    private static String building;//корпус
+    private static String construction;//строение
+    private static String appartment;//квартира
+    private static String entrance;//подьезд
+    private static String floor;//этаж
+    private static String codedomophone;//домофон
+
+    public static int getGender() {
+        return gender;
+    }
+
+    public static void setGender(int gender) {
+        Pacient.gender = gender;
+    }
+
+    public static String getNumber() {
+        return number;
+    }
+
+    public static void setNumber(String number) {
+        Pacient.number = number;
+    }
+
+    public static String getEntrance() {
+        return entrance;
+    }
+
+    public static void setEntrance(String entrance) {
+        Pacient.entrance = entrance;
+    }
+
+    public static String getFloor() {
+        return floor;
+    }
+
+    public static void setFloor(String floor) {
+        Pacient.floor = floor;
+    }
+
+    public static String getCodedomophone() {
+        return codedomophone;
+    }
+
+    public static void setCodedomophone(String codedomophone) {
+        Pacient.codedomophone = codedomophone;
+    }
+
+    public static String getAppartment() {
+        return appartment;
+    }
+
+    public static void setAppartment(String appartment) {
+        Pacient.appartment = appartment;
+    }
+
+    public static String getConstruction() {
+        return construction;
+    }
+
+    public static void setConstruction(String construction) {
+        Pacient.construction = construction;
+    }
 
     public static String getBuilding() {
         return building;
@@ -37,8 +105,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     public static void setBuilding(String building) {
         Pacient.building = building;
     }
-
-    private static String building;
 
     public static String getAddress1() {
         return address1;
@@ -87,9 +153,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     public static void setOt(String ot) {
         Pacient.ot = ot;
     }
-
-    @Autowired
-    private JacksonTester<Pacient> json;
 
     private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 

@@ -1,4 +1,4 @@
-package pages.calldoctor.profiles_interfaces;
+package pages.calldoctor.profiles_interfaces.musor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
