@@ -1,7 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
 .gitignore
 .allure
-.idea/workspace.xml
+.idea
+build
 out
 target
-роли.PNG
+роли

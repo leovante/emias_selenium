@@ -5,7 +5,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import pages.sql.DemonstrationDB;
 
 public class RMIS01Test extends AbstractTestGrid {
 
@@ -24,7 +24,7 @@ public class RMIS01Test extends AbstractTestGrid {
         page.homePage().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
-        SQLDemonstration.deleteShedule(secondName);
+        DemonstrationDB.deleteShedule(secondName);
         page.doctorMethods().selectDoctor(docFullName);
         page.manageShedule().createShedule();
 
@@ -39,7 +39,7 @@ public class RMIS01Test extends AbstractTestGrid {
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
         String second_doctor_fam = page.manageShedule().getSecondName(secondDoctor);
-        SQLDemonstration.deleteShedule(second_doctor_fam);
+        DemonstrationDB.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(firstDoctor);
         page.manageShedule().createShedule();
@@ -70,8 +70,8 @@ public class RMIS01Test extends AbstractTestGrid {
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         String second_doctor_fam = page.manageShedule().getSecondName(second_doctor_fullname);
-        SQLDemonstration.deleteShedule(first_doctor_fam);
-        SQLDemonstration.deleteShedule(second_doctor_fam);
+        DemonstrationDB.deleteShedule(first_doctor_fam);
+        DemonstrationDB.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();
@@ -95,8 +95,8 @@ public class RMIS01Test extends AbstractTestGrid {
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         String second_doctor_fam = page.manageShedule().getSecondName(second_doctor_fullname);
-        SQLDemonstration.deleteShedule(first_doctor_fam);
-        SQLDemonstration.deleteShedule(second_doctor_fam);
+        DemonstrationDB.deleteShedule(first_doctor_fam);
+        DemonstrationDB.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();

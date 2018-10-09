@@ -8,7 +8,7 @@ import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import pages.sql.DemonstrationDB;
 import pages.utilities.StringGenerator;
 
 import java.io.IOException;
@@ -85,7 +85,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException {
         String nameGen = new StringGenerator().generator();
-        SQLDemonstration.finalizePacientNumberPol("Profile4");
+        DemonstrationDB.finalizePacientNumberPol("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard()
                 .createCall("Profile4", nameGen);
@@ -104,7 +104,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException, InterruptedException {
-        SQLDemonstration.finalizePacientNumberPol("Profile14");
+        DemonstrationDB.finalizePacientNumberPol("Profile14");
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile14();
         page.dashboardPage().openNewCallProgressFrame("Profile14");
@@ -117,7 +117,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChild2Mkab() throws IOException, InterruptedException {
-        SQLDemonstration.finalizePacientNumberPol("Profile20");
+        DemonstrationDB.finalizePacientNumberPol("Profile20");
         beforecdCD.loginMis_Calldoctor();
         page.createCallPage().createCallProfile20();
         page.dashboardPage().openNewCallProgressFrame("Profile20");

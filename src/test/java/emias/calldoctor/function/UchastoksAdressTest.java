@@ -10,7 +10,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import pages.sql.DemonstrationDB;
 
 import java.io.IOException;
 
@@ -82,7 +82,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testUchastokWithCallAdress() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
-        SQLDemonstration.finalizePacientNumberPol("ProfileDetkinaVGostyah");
+        DemonstrationDB.finalizePacientNumberPol("ProfileDetkinaVGostyah");
         page.createCallPage().createCallProfileDetkinaVGostah();
         page.dashboardPage()
                 .searchFilterFio_Fam("ProfileDetkinaVGostyah")

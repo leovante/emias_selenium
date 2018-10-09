@@ -6,7 +6,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import pages.sql.DemonstrationDB;
 import pages.utilities.StringGenerator;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -55,7 +55,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     @RetryCountIfFailed(3)
     public void testAppendDoctorToCall_Portal() throws Exception {
         String nameGen = new StringGenerator().generator();
-        SQLDemonstration.finalizePacientNumberPol("Profile4");
+        DemonstrationDB.finalizePacientNumberPol("Profile4");
         open("https://uslugi.mosreg.ru/zdrav/");
         page.portalDashboard().createCall("Profile4", nameGen);
         beforecdCD.loginMis_Calldoctor();

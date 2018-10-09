@@ -11,13 +11,12 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 
-public class SQLDemonstration extends AbstractPage {
+public class DemonstrationDB extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";
     private static List<File> lst;
-
 
     @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
@@ -308,6 +307,29 @@ public class SQLDemonstration extends AbstractPage {
                     statement.executeUpdate(sql);
                     System.out.println("Table DTT is clean.");
                     statement.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+    }
+
+    @Step("Проверяю соединение с БД")
+    public static void verifyConnection() {
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql = "select * from hlt_calldoctorstatus";
+                try (Statement statement = connection.createStatement()) {
+                    int result = statement.executeUpdate(sql);
+                    if (result == 0) {
+                        throw new Exception("Ошибка. Не могу подключиться к БД демо!");
+                    }
                 }
             }
         } catch (Exception e) {

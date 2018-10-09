@@ -12,7 +12,7 @@ import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import pages.sql.DemonstrationDB;
 
 import java.io.IOException;
 
@@ -120,7 +120,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException {
         beforecdCD.loginMis_Calldoctor();
-        SQLDemonstration.finalizePacientNumberPol("ProfileDetkina");
+        DemonstrationDB.finalizePacientNumberPol("ProfileDetkina");
         page.createCallPage().createCallProfileDetkina();
         page.dashboardPage()
                 .searchFilterFio_Fam("ProfileDetkina")
