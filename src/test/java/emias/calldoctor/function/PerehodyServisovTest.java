@@ -10,6 +10,8 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.calldoctor.doctors_interfaces.Doctor;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,13 +26,15 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("Profile1");
+        Doctor doctor = new Doctor("SerovaStendTestovoe");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile1");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneCall("Profile1")
+                .verifyDoneCall(pacient, doctor)
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
@@ -40,13 +44,15 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("Profile2");
+        Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile2");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile2");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneCall("Profile2")
+                .verifyDoneCall(pacient, doctor)
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
                 .closeCardBtn();

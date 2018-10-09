@@ -4,6 +4,7 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -14,8 +15,9 @@ public class CancelCallTest extends AbstractTestGrid {
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException {
+        Pacient pacient = new Pacient("Profile1");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().cancelOnFullCardBtn();
         page.dashboardPage()
 //                .searchFilterFio()
@@ -26,8 +28,9 @@ public class CancelCallTest extends AbstractTestGrid {
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException {
+        Pacient pacient = new Pacient("Profile1");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
                 .editCallBtn()
                 .cancelOnChangePageBtn();
@@ -40,10 +43,11 @@ public class CancelCallTest extends AbstractTestGrid {
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException {
+        Pacient pacient = new Pacient("Profile1");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().closeCardBtn();
-        page.dashboardPage().deleteNewCallProgressFrame("Profile1");
+        page.dashboardPage().deleteNewCallProgressFrame(pacient);
         page.dashboardPage()
 //                .searchFilterFio()
                 .verifyRecordIsCancelFromDashboard();

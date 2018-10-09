@@ -4,6 +4,7 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 public class EditPageTest extends AbstractTestGrid {
 
@@ -11,8 +12,9 @@ public class EditPageTest extends AbstractTestGrid {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPageProfile1() throws Exception {
+        Pacient pacient = new Pacient("Profile1");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.createCallPage()
                 .editCallBtn()
                 .verifyCallProfile1("Profile1");
@@ -22,17 +24,19 @@ public class EditPageTest extends AbstractTestGrid {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCallProfile1() throws Exception {
+        Pacient pacient = new Pacient("Profile1");
+        Pacient pacient2 = new Pacient("Profile2");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.createCallPage()
                 .editCallBtn()
                 .setDeafult()
-                .editCallProfile2("Profile2");
+                .editCallProfile2(pacient2);
         page.fullCardPage()
-                .verifyNewCall("Profile2")
+                .verifyNewCall(pacient2)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyNewCallGroup("Profile2");
+                .verifyNewCallGroup(pacient2);
     }
 }

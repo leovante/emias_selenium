@@ -17,147 +17,33 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     @Autowired
     private JacksonTester<Pacient> json;
 
-    private static int source;
-    private static int type;
-    private static int seriespol;
-    private static int numberpol;
-    private static int gender;
-    private static String name;
-    private static String address;
-    private static String address1;
-    private static String address2;
-    private static String address3;
-    private static String complaint;
-    private static String diagnosis;
-    private static String phone;
-    private static String birthdate_string;
-    private static Date birthdate = parseDate(birthdate_string);
-    private static String family;
-    private static String ot;
-    private static String number;//номер дома
-    private static String building;//корпус
-    private static String construction;//строение
-    private static String appartment;//квартира
-    private static String entrance;//подьезд
-    private static String floor;//этаж
-    private static String codedomophone;//домофон
+    private int source;
+    private int type;
+    private int seriespol;
+    private int numberpol;
+    private int gender;
+    private String name;
+    private String address;
+    private String address1;
+    private String address2;
+    private String address3;
+    private String complaint;
+    private String diagnosis;
+    private String phone;
+    private String birthdate_string;
+    private Date birthdate = parseDate(birthdate_string);
+    private String family;
+    private String ot;
+    private String number;//номер дома
+    private String building;//корпус
+    private String construction;//строение
+    private String appartment;//квартира
+    private String entrance;//подьезд
+    private String floor;//этаж
+    private String codedomophone;//домофон
 
-    public static int getGender() {
-        return gender;
-    }
-
-    public static void setGender(int gender) {
-        Pacient.gender = gender;
-    }
-
-    public static String getNumber() {
-        return number;
-    }
-
-    public static void setNumber(String number) {
-        Pacient.number = number;
-    }
-
-    public static String getEntrance() {
-        return entrance;
-    }
-
-    public static void setEntrance(String entrance) {
-        Pacient.entrance = entrance;
-    }
-
-    public static String getFloor() {
-        return floor;
-    }
-
-    public static void setFloor(String floor) {
-        Pacient.floor = floor;
-    }
-
-    public static String getCodedomophone() {
-        return codedomophone;
-    }
-
-    public static void setCodedomophone(String codedomophone) {
-        Pacient.codedomophone = codedomophone;
-    }
-
-    public static String getAppartment() {
-        return appartment;
-    }
-
-    public static void setAppartment(String appartment) {
-        Pacient.appartment = appartment;
-    }
-
-    public static String getConstruction() {
-        return construction;
-    }
-
-    public static void setConstruction(String construction) {
-        Pacient.construction = construction;
-    }
-
-    public static String getBuilding() {
-        return building;
-    }
-
-    public static void setBuilding(String building) {
-        Pacient.building = building;
-    }
-
-    public static String getAddress1() {
-        return address1;
-    }
-
-    public static void setAddress1(String address1) {
-        Pacient.address1 = address1;
-    }
-
-    public static String getAddress2() {
-        return address2;
-    }
-
-    public static void setAddress2(String address2) {
-        Pacient.address2 = address2;
-    }
-
-    public static String getAddress3() {
-        return address3;
-    }
-
-    public static void setAddress3(String address3) {
-        Pacient.address3 = address3;
-    }
-
-    public static String getName() {
-        return name;
-    }
-
-    public static void setName(String name) {
-        Pacient.name = name;
-    }
-
-    public static String getFamily() {
-        return family;
-    }
-
-    public static void setFamily(String family) {
-        Pacient.family = family;
-    }
-
-    public static String getOt() {
-        return ot;
-    }
-
-    public static void setOt(String ot) {
-        Pacient.ot = ot;
-    }
-
-    private static final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-    public Pacient(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+    public Pacient(String name) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         this.address = this.json.parseObject(String.valueOf(proData)).getAddress();
         this.complaint = this.json.parseObject(String.valueOf(proData)).getComplaint();
@@ -170,7 +56,122 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         this.numberpol = this.json.parseObject(String.valueOf(proData)).getNumberpol();
     }
 
-    private static java.util.Date parseDate(final String dateString) {
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getEntrance() {
+        return entrance;
+    }
+
+    public void setEntrance(String entrance) {
+        this.entrance = entrance;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public String getCodedomophone() {
+        return codedomophone;
+    }
+
+    public void setCodedomophone(String codedomophone) {
+        this.codedomophone = codedomophone;
+    }
+
+    public String getAppartment() {
+        return appartment;
+    }
+
+    public void setAppartment(String appartment) {
+        this.appartment = appartment;
+    }
+
+    public String getConstruction() {
+        return construction;
+    }
+
+    public void setConstruction(String construction) {
+        this.construction = construction;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public void setBuilding(String building) {
+        this.building = building;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getOt() {
+        return ot;
+    }
+
+    public void setOt(String ot) {
+        this.ot = ot;
+    }
+
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+
+    private java.util.Date parseDate(final String dateString) {
         try {
             return simpleDateFormat.parse(dateString);
         } catch (final ParseException e) {
@@ -226,7 +227,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         this.source = source;
     }
 
-    public java.util.Date getBirthdate() {
+    public Date getBirthdate() {
         return birthdate;
     }
 

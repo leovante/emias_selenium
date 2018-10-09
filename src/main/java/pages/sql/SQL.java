@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
 
 public class SQL extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
@@ -154,7 +153,7 @@ public class SQL extends AbstractPage {
     }
 
     @Step("завершаю вызовы пациента по полису")
-    public static void finalizeCall_NPol(Map proData) {
+    public static void finalizeCall_NPol(int number) {
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
 //        Map proData = new ObjectMapper().readValue(reader, Map.class);
 
@@ -168,11 +167,11 @@ public class SQL extends AbstractPage {
                 String sql =
                         "update hlt_CallDoctor " +
                                 "set rf_CallDoctorStatusID = 3 " +
-                                "where numberPol = '" + proData.get("numberpol") + "'";
+                                "where numberPol = '" + number + "'";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Pacient - " + proData.get("nomerPol") + " finalize is done.");
+                    System.out.println("Pacient - " + number + " finalize is done.");
                 }
             }
         } catch (Exception e) {

@@ -2,15 +2,13 @@ package pages.portal;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.sql.SQL;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -36,24 +34,24 @@ public class PortalDashboard extends AbstractPage {
     }
 
     @Step("создаю вызов через портал")
-    public void createCall(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        SQL.finalizeCall_NPol(proData);
+    public void createCall(Pacient pacient) throws IOException {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map <String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        SQL.finalizeCall_NPol(pacient.getNumberpol());
 
-        nPolField.sendKeys(proData.get("nomerPol"));
-        birthdayField.sendKeys(proData.get("birthDay"));
+        nPolField.sendKeys(String.valueOf(pacient.getNumberpol()));
+        birthdayField.sendKeys(pacient.getBirthdate());
         pereytiVElectrRegistr.click();
         standEMIAS.shouldBe(Condition.visible);
         vizvatVrachaNaDom.click();
         adresVizova.shouldBe(Condition.visible);
 
-        address.setValue(proData.get("adressFull"));
-        entrance.setValue(proData.get("pd"));
-        stage.setValue(proData.get("etazh"));
-        doorphone.setValue(proData.get("dfon"));
-        phone.setValue(proData.get("telephone"));
-        description.setValue(proData.get("zhaloba"));
+        address.setValue(pacient.getAddress());
+        entrance.setValue(pacient.getEntrance());
+        stage.setValue(pacient.getFloor());
+        doorphone.setValue(pacient.getCodedomophone());
+        phone.setValue(pacient.getPhone());
+        description.setValue(pacient.getComplaint());
 
         podtvVizovVracha.click();
 

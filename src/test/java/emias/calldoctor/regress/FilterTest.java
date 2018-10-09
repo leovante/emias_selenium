@@ -8,6 +8,8 @@ import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.calldoctor.doctors_interfaces.Doctor;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -21,12 +23,13 @@ public class FilterTest extends AbstractTestGrid {
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException, ParseException {
+        Pacient pacient = new Pacient("Profile1");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
 //                .searchFilterFio()
-                .verifyNewCallGroup("Profile1");
+                .verifyNewCallGroup(pacient);
     }
 
     //    @Attachment(value = "Console error", type = "text/plain")
@@ -34,29 +37,32 @@ public class FilterTest extends AbstractTestGrid {
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException, ParseException {
+        Pacient pacient = new Pacient("Profile1");
+        Doctor doctor = new Doctor("SerovaStendTestovoe");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile1");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterDoctor("Profile1")
-                .verifyActiveDocGroup("Profile1");
+                .searchFilterDoctor(pacient)
+                .verifyActiveDocGroup(pacient);
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException {
-        page.createCallPage().createCall_Api("Profile3");
+        Pacient pacient = new Pacient("Profile3");
+        page.createCallPage().createCall_Api(pacient);
         enterSite.enterCalldoctor();
-        page.dashboardPage().openNewCallDash("Profile3");
+        page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
 //                .searchFilterFio()
                 .searchFilterTypeCallNeotlozhniy()
-                .verifyNewCallGroup("Profile3");
+                .verifyNewCallGroup(pacient);
     }
 
     @Flaky

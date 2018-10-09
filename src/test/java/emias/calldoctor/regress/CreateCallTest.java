@@ -8,6 +8,7 @@ import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,10 +21,11 @@ public class CreateCallTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("Profile0");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile0");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
-                .verifyNewCall("Profile0")
+                .verifyNewCall(pacient)
                 .closeCardBtn();
     }
 
@@ -31,57 +33,62 @@ public class CreateCallTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
+        Pacient pacient = new Pacient("Profile1");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
-                .verifyNewCall("Profile1")
+                .verifyNewCall(pacient)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallGroup("Profile1");
+        page.dashboardPage().verifyNewCallGroup(pacient);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
+        Pacient pacient = new Pacient("Profile2");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile2");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
-                .verifyNewCall("Profile2")
+                .verifyNewCall(pacient)
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallGroup("Profile2");
+        page.dashboardPage().verifyNewCallGroup(pacient);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException {
+        Pacient pacient = new Pacient("Profile3");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall_Api("Profile3");
-        page.dashboardPage().openNewCallDash("Profile3");
-        page.fullCardPage().verifyNewCall("Profile3");
+        page.createCallPage().createCall_Api(pacient);
+        page.dashboardPage().openNewCallDash(pacient);
+        page.fullCardPage().verifyNewCall(pacient);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException {
+        Pacient pacient = new Pacient("Profile6");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall_Api("Profile6");
-        page.dashboardPage().openNewCallDash("Profile6");
-        page.fullCardPage().verifyNewCall("Profile6");
+        page.createCallPage().createCall_Api(pacient);
+        page.dashboardPage().openNewCallDash(pacient);
+        page.fullCardPage().verifyNewCall(pacient);
     }
 
     @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException {
+        Pacient pacient = new Pacient("Profile4");
         enterSite.enterPortal();
-        page.portalDashboard().createCall("Profile4");
+        page.portalDashboard().createCall(pacient);
         enterSite.enterCalldoctor();
         page.dashboardPage()
                 .clearAllFilters()
-                .openNewCallDash("Profile4");
-        page.fullCardPage().verifyNewCall("Profile4");
+                .openNewCallDash(pacient);
+        page.fullCardPage().verifyNewCall(pacient);
     }
 
     @Flaky
@@ -90,10 +97,11 @@ public class CreateCallTest extends AbstractTestGrid {
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException, InterruptedException {
+        Pacient pacient = new Pacient("Profile14");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall_Api("Profile14");
-        page.dashboardPage().openNewCallDash("Profile14");
-        page.fullCardPage().verifyNewCall("Profile14");//почему-то 2 педиатрический сразу. С Таким адресом два участка
+        page.createCallPage().createCall_Api(pacient);
+        page.dashboardPage().openNewCallDash(pacient);
+        page.fullCardPage().verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
@@ -102,10 +110,11 @@ public class CreateCallTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab2() throws IOException, InterruptedException {
+        Pacient pacient = new Pacient("Profile20_2");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall_Api("Profile20_2");
-        page.dashboardPage().openNewCallDash("Profile20_2");
-        page.fullCardPage().verifyNewCall("Profile20_2");
+        page.createCallPage().createCall_Api(pacient);
+        page.dashboardPage().openNewCallDash(pacient);
+        page.fullCardPage().verifyNewCall(pacient);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
     }

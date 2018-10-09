@@ -6,6 +6,8 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.calldoctor.doctors_interfaces.Doctor;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -18,47 +20,57 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("ProfileTransferLpu-Dep");
+        Doctor doctor = new Doctor("TemnikovStend");
+        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("ProfileTransferLpu-Dep");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
-                .verifyDepart("ProfileTransferLpu-Dep", "firstDepart")
+                .verifyDepartment(doctor)
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferLpu-Dep", "detskayaPol");
-        page.fullCardPage().verifyDepart("ProfileTransferLpu-Dep", "detskayaPol");
+        page.setLpuPage().transfer(doctor2);
+        page.fullCardPage().verifyDepartment(doctor2);
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("ProfileTransferDep-Dep");
+        Doctor doctor = new Doctor("TemnikovStend");
+        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
+        Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("ProfileTransferDep-Dep");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
-                .verifyDepart("ProfileTransferDep-Dep", "firstDepart")
+                .verifyDepartment(doctor)
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferDep-Dep", "detskayaPol");
+        page.setLpuPage().transfer(doctor2);
         page.fullCardPage()
-                .verifyDepart("ProfileTransferDep-Dep", "detskayaPol")
+                .verifyDepartment(doctor2)
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferDep-Dep", "vzroslayaPol");
-        page.fullCardPage().verifyDepart("ProfileTransferDep-Dep", "vzroslayaPol");
+        page.setLpuPage().transfer(doctor3);
+        page.fullCardPage().verifyDepartment(doctor3);
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
+        Doctor doctor = new Doctor("TemnikovStend");
+        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("ProfileTransferDep-Lpu");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
-                .verifyDepart("ProfileTransferDep-Lpu", "firstDepart")
+                .verifyDepartment(doctor)
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferDep-Lpu", "detskayaPol");
+        page.setLpuPage().transfer(doctor2);
         page.fullCardPage()
-                .verifyDepart("ProfileTransferDep-Lpu", "detskayaPol")
+                .verifyDepartment(doctor2)
                 .transferToDepartBtn();
-        page.setLpuPage().transfer("ProfileTransferDep-Lpu", "firstDepart");
-        page.fullCardPage().verifyDepart("ProfileTransferDep-Lpu", "firstDepart");
+        page.setLpuPage().transfer(doctor);
+        page.fullCardPage().verifyDepartment(doctor);
     }
 
     @Test(groups = "CD", description = "передача вызова из ЛПУ в ЛПУ")
@@ -69,22 +81,22 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        page.createCallPage()
 //                .createCall("ProfileTransferDep-Dep", nameGen, "n");
 //        page.fullCardPage()
-//                .verifyDepart("firstDepart")
+//                .verifyDepartment("firstDepart")
 //                .transferToDepartBtn();
 //        page.setLpuPage().transfer("ProfileTransferLpu-Dep", "detskayaPol");
 //        page.fullCardPage()
-//                .verifyDepart("detskayaPol")
+//                .verifyDepartment("detskayaPol")
 //                .transferToDepartBtn();
 //        page.setLpuPage().transfer("ProfileTransferDep-Dep", "firstDepart");
-//        page.fullCardPage().verifyDepart("firstDepart");
+//        page.fullCardPage().verifyDepartment("firstDepart");
     }
 
     @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
-        enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
     }

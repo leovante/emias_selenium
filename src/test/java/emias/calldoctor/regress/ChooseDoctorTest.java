@@ -4,6 +4,8 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
+import pages.calldoctor.doctors_interfaces.Doctor;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 public class ChooseDoctorTest extends AbstractTestGrid {
 
@@ -11,56 +13,62 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
+        Pacient pacient = new Pacient("Profile1");
+        Doctor doctor = new Doctor("SerovaStendTestovoe");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile1");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile1");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage()
-                .verifyActivCall("Profile1")
+                .verifyActivCall(pacient)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyActiveDocGroup("Profile1");
+                .verifyActiveDocGroup(pacient);
     }
 
     @Test(groups = "CD", description = "назначить врача вызову из СМП на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {
+        Pacient pacient = new Pacient("Profile2");
+        Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile2");
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile2");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage()
-                .verifyActivCall("Profile2")
+                .verifyActivCall(pacient)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterDoctor("Profile2")
-                .verifyActiveDocGroup("Profile2");
+                .searchFilterDoctor(pacient)
+                .verifyActiveDocGroup(pacient);
     }
 
     @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {
+        Pacient pacient = new Pacient("Profile4");
+        Doctor doctor = new Doctor("MokovStendTestovoe");
         enterSite.enterPortal();
-        page.portalDashboard().createCall("Profile4");
+        page.portalDashboard().createCall(pacient);
         enterSite.enterCalldoctor();
         page.dashboardPage()
                 .clearAllFilters()
-                .openNewCallDash("Profile4");
-        page.fullCardPage().verifyNewCall("Profile4");
+                .openNewCallDash(pacient);
+        page.fullCardPage().verifyNewCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage()
                 .saveAddress()
-                .chooseDoctor("Profile4");
+                .chooseDoctor(doctor);
         page.fullCardPage()
-                .verifyActivCall("Profile4")
+                .verifyActivCall(pacient)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyActiveDocGroup("Profile4");
+                .verifyActiveDocGroup(pacient);
     }
 
     // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра

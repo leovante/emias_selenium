@@ -10,6 +10,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -22,8 +23,9 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("Profile15");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile15");
+        page.createCallPage().createCall(pacient);
 //        $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
 //        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -37,8 +39,9 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("Profile16");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile16");
+        page.createCallPage().createCall(pacient);
         page.createCallPage().selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -52,8 +55,9 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("Profile17");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile17");
+        page.createCallPage().createCall(pacient);
         page.createCallPage().selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -67,8 +71,9 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException {
+        Pacient pacient = new Pacient("Profile18");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall("Profile18");
+        page.createCallPage().createCall(pacient);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
@@ -81,11 +86,12 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException {
-        page.createCallPage().createCall_Api("ProfileAdressNeIzMkab");
+        Pacient pacient = new Pacient("ProfileAdressNeIzMkab");
+        page.createCallPage().createCall_Api(pacient);
         enterSite.enterCalldoctor();
         page.dashboardPage()
-                .searchFilterFio_Fam("ProfileAdressNeIzMkab")
-                .openNewCallDash("ProfileAdressNeIzMkab");
+                .searchFilterFio_Fam(pacient)
+                .openNewCallDash(pacient);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
     }
 }

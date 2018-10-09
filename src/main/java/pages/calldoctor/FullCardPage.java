@@ -3,17 +3,15 @@ package pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
+import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -60,38 +58,31 @@ public class FullCardPage extends AbstractPage {
         }
     }
 
-    public void baseField(Map proData) {
-        ArrayList<String> elements = new ArrayList<>();
-        elements.add("address");
-        elements.add("complaint");
-        elements.add("diagnosis");
-        elements.add("type");
-        elements.add("codedomophone");
-        elements.add("phone");
-        elements.add("source");
-        elements.add("sourceName");
-        elements.add("sourceCode");
-        elements.add("entrance");
-        elements.add("floor");
+    public void basePacient(Pacient pacient) {
+        ShouldBeVisible(pacient.getAddress());
+        ShouldBeVisible(pacient.getComplaint());
+        ShouldBeVisible(pacient.getCodedomophone());
+        ShouldBeVisible(pacient.getPhone());
+        ShouldBeVisible(pacient.getEntrance());
+        ShouldBeVisible(pacient.getFloor());
+        ShouldBeVisible(pacient.getName());
+        ShouldBeVisible(pacient.getFamily());
+        ShouldBeVisible(pacient.getOt());
+        ShouldBeVisible(pacient.getBirthdate());
+        ShouldBeVisible(String.valueOf(pacient.getSeriespol()));
+        ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
+        ShouldBeVisible(pacient.getAppartment());
+        ShouldBeVisible(pacient.getBuilding());
+        ShouldBeVisible(pacient.getConstruction());
+        ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
+    }
 
-        elements.add("name");
-        elements.add("family");
-        elements.add("ot");
-        elements.add("birthdate");
-        elements.add("seriespol");
-        elements.add("numberpol");
-        elements.add("numberpol");
-        elements.add("gender");
-
-        elements.add("addressString");
-        elements.add("appartment");
-        elements.add("building");
-        elements.add("construction");
-        elements.add("number");
-        for (String element : elements) {
-            if (proData.containsKey(element))
-                $(By.xpath("//*[contains(text(),'" + proData.get(element) + "')]")).shouldBe(Condition.visible);
-        }
+    public void baseDoctor(Doctor doctor) {
+        ShouldBeVisible(doctor.getName());
+        ShouldBeVisible(doctor.getFamily());
+        ShouldBeVisible(doctor.getOt());
+        ShouldBeVisible(doctor.getDepartment());
+        ShouldBeVisible(doctor.getUchastocs());
     }
 
 //    @Step("проверяю новый вызов {profile}")
@@ -107,34 +98,29 @@ public class FullCardPage extends AbstractPage {
 //    }
 
     @Step("проверяю новый вызов {profile}")
-    public FullCardPage verifyNewCall(Pacient profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+    public FullCardPage verifyNewCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
-        baseField(proData);
+        basePacient(pacient);
         System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
     @Step("проверяю новый вызов {profile}")
-    public FullCardPage verifyActivCall(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+    public FullCardPage verifyActivCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
-        baseField(proData);
+        basePacient(pacient);
         System.out.println("Подробная карта вызова проверена!");
         return this;
     }
 
     @Step("проверяю новый вызов {profile}")
-    public FullCardPage verifyDoneCall(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
+    public FullCardPage verifyDoneCall(Pacient pacient, Doctor doctor) throws IOException {
         $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
         baseElements();
-        baseField(proData);
+        basePacient(pacient);
+        baseDoctor(doctor);
         System.out.println("Подробная карта вызова проверена!");
         return this;
     }
@@ -453,11 +439,12 @@ public class FullCardPage extends AbstractPage {
         toLpu.click();
     }
 
+    // TODO: 10/9/2018 добавить проверку профиля пациента
     @Step("Проверка текущего подразделения у карты вызова")
-    public FullCardPage verifyDepart(String profile, String currDepart) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        $(By.xpath("//*[contains(.,'" + proData.get(currDepart) + "')]")).shouldBe(Condition.visible);
+    public FullCardPage verifyDepartment(Doctor doctor) throws IOException {
+//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
+//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
+        $(By.xpath("//*[contains(.,'" + doctor.getDepartment() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -468,8 +455,9 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
+    // TODO: 10/9/2018 доработать
     @Step("проверить врача")
-    public FullCardPage verifyDoctor(String doctor) {
+    public FullCardPage verifyDoctor(Doctor doctor) {
         //        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Адрес успешно распознан.')]")).click();
         $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
