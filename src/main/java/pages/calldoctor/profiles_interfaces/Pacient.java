@@ -17,6 +17,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     @Autowired
     private JacksonTester<Pacient> json;
 
+    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int source;
     private int type;
     private int seriespol;
@@ -44,152 +45,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String sourceName;//
     private String sourceCode;//
 
-    public String getSourceCode() {
-        return sourceCode;
-    }
-
-    public void setSourceCode(String sourceCode) {
-        this.sourceCode = sourceCode;
-    }
-
-    public String getSourceName() {
-        return sourceName;
-    }
-
-    public void setSourceName(String sourceName) {
-        this.sourceName = sourceName;
-    }
-
-
-    public Pacient(String name) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
-        this.address = this.json.parseObject(String.valueOf(proData)).getAddress();
-        this.complaint = this.json.parseObject(String.valueOf(proData)).getComplaint();
-        this.diagnosis = this.json.parseObject(String.valueOf(proData)).getDiagnosis();
-        this.type = this.json.parseObject(String.valueOf(proData)).getType();
-        this.phone = this.json.parseObject(String.valueOf(proData)).getPhone();
-        this.source = this.json.parseObject(String.valueOf(proData)).getSource();
-        this.birthdate = this.json.parseObject(String.valueOf(proData)).getBirthdate();
-        this.seriespol = this.json.parseObject(String.valueOf(proData)).getSeriespol();
-        this.numberpol = this.json.parseObject(String.valueOf(proData)).getNumberpol();
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public String getEntrance() {
-        return entrance;
-    }
-
-    public void setEntrance(String entrance) {
-        this.entrance = entrance;
-    }
-
-    public String getFloor() {
-        return floor;
-    }
-
-    public void setFloor(String floor) {
-        this.floor = floor;
-    }
-
-    public String getCodedomophone() {
-        return codedomophone;
-    }
-
-    public void setCodedomophone(String codedomophone) {
-        this.codedomophone = codedomophone;
-    }
-
-    public String getAppartment() {
-        return appartment;
-    }
-
-    public void setAppartment(String appartment) {
-        this.appartment = appartment;
-    }
-
-    public String getConstruction() {
-        return construction;
-    }
-
-    public void setConstruction(String construction) {
-        this.construction = construction;
-    }
-
-    public String getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
-    }
-
-    public String getAddress1() {
-        return address1;
-    }
-
-    public void setAddress1(String address1) {
-        this.address1 = address1;
-    }
-
-    public String getAddress2() {
-        return address2;
-    }
-
-    public void setAddress2(String address2) {
-        this.address2 = address2;
-    }
-
-    public String getAddress3() {
-        return address3;
-    }
-
-    public void setAddress3(String address3) {
-        this.address3 = address3;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFamily() {
-        return family;
-    }
-
-    public void setFamily(String family) {
-        this.family = family;
-    }
-
-    public String getOt() {
-        return ot;
-    }
-
-    public void setOt(String ot) {
-        this.ot = ot;
-    }
-
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-
     private java.util.Date parseDate(final String dateString) {
         try {
             return simpleDateFormat.parse(dateString);
@@ -198,75 +53,133 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         }
     }
 
-    public String getAddress() {
-        return address;
+    public String getSourceCode() {
+        return sourceCode;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public String getEntrance() {
+        return entrance;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public String getCodedomophone() {
+        return codedomophone;
+    }
+
+    public String getAppartment() {
+        return appartment;
+    }
+
+    public String getConstruction() {
+        return construction;
+    }
+
+    public String getBuilding() {
+        return building;
+    }
+
+    public String getAddress1() {
+        return address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public String getOt() {
+        return ot;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getComplaint() {
         return complaint;
     }
 
-    public void setComplaint(String complaint) {
-        this.complaint = complaint;
-    }
-
     public String getDiagnosis() {
         return diagnosis;
-    }
-
-    public void setDiagnosis(String diagnosis) {
-        this.diagnosis = diagnosis;
     }
 
     public int getType() {
         return type;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
-
     public String getPhone() {
         return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public int getSource() {
         return source;
     }
 
-    public void setSource(int source) {
-        this.source = source;
-    }
-
     public Date getBirthdate() {
         return birthdate;
-    }
-
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
     }
 
     public int getSeriespol() {
         return seriespol;
     }
 
-    public void setSeriespol(int seriespol) {
-        this.seriespol = seriespol;
-    }
-
     public int getNumberpol() {
         return numberpol;
     }
 
-    public void setNumberpol(int numberpol) {
-        this.numberpol = numberpol;
+    public Pacient(String name) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
+        Map proData = new ObjectMapper().readValue(reader, Map.class);
+        this.address = this.json.parseObject(String.valueOf(proData)).getAddress();
+        this.address1 = this.json.parseObject(String.valueOf(proData)).getAddress1();
+        this.address2 = this.json.parseObject(String.valueOf(proData)).getAddress2();
+        this.address3 = this.json.parseObject(String.valueOf(proData)).getAddress3();
+        this.complaint = this.json.parseObject(String.valueOf(proData)).getComplaint();
+        this.diagnosis = this.json.parseObject(String.valueOf(proData)).getDiagnosis();
+        this.type = this.json.parseObject(String.valueOf(proData)).getType();
+        this.phone = this.json.parseObject(String.valueOf(proData)).getPhone();
+        this.source = this.json.parseObject(String.valueOf(proData)).getSource();
+        this.birthdate = this.json.parseObject(String.valueOf(proData)).getBirthdate();
+        this.seriespol = this.json.parseObject(String.valueOf(proData)).getSeriespol();
+        this.numberpol = this.json.parseObject(String.valueOf(proData)).getNumberpol();
+        this.gender = this.json.parseObject(String.valueOf(proData)).getGender();
+        this.name = this.json.parseObject(String.valueOf(proData)).getName();
+        this.family = this.json.parseObject(String.valueOf(proData)).getFamily();
+        this.ot = this.json.parseObject(String.valueOf(proData)).getOt();
+        this.number = this.json.parseObject(String.valueOf(proData)).getNumber();
+        this.building = this.json.parseObject(String.valueOf(proData)).getBuilding();
+        this.construction = this.json.parseObject(String.valueOf(proData)).getConstruction();
+        this.appartment = this.json.parseObject(String.valueOf(proData)).getAppartment();
+        this.entrance = this.json.parseObject(String.valueOf(proData)).getEntrance();
+        this.floor = this.json.parseObject(String.valueOf(proData)).getFloor();
+        this.codedomophone = this.json.parseObject(String.valueOf(proData)).getCodedomophone();
+        this.sourceName = this.json.parseObject(String.valueOf(proData)).getSourceName();
+        this.sourceCode = this.json.parseObject(String.valueOf(proData)).getSourceCode();
     }
 }
