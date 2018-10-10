@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class DoctorsListTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
+    @Test(groups = "test", description = "создаю пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall() throws IOException, InterruptedException {
@@ -33,7 +33,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
+    @Test(groups = "test", description = "создаю пустой вызов ребенка Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall2() throws IOException, InterruptedException {
@@ -45,7 +45,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
+    @Test(groups = "test", description = "создаю пустой вызов ребенка Без Пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall3() throws IOException, InterruptedException {
@@ -57,7 +57,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
+    @Test(groups = "test", description = "создаю пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall4() throws IOException, InterruptedException {
@@ -69,7 +69,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
+    @Test(groups = "test", description = "создаю пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall5() throws IOException, InterruptedException {
@@ -81,7 +81,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
+    @Test(groups = "test", description = "создаю пустой вызов взрослого Без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall6() throws IOException, InterruptedException {
@@ -145,7 +145,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Test(groups = "test", description = "проверяю что оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)

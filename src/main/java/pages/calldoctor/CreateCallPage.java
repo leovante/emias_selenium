@@ -612,7 +612,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage birthDay(Map<String, String> proData) {
-        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(proData.get("birthDay"));
+        if (!proData.get("birthDay").equals(""))
+            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(proData.get("birthDay"));
         return this;
     }
 

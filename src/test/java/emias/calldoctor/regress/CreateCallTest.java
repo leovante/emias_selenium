@@ -29,7 +29,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
+    @Test(groups = "test", description = "вызов с иточником Регистратура без МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
@@ -99,7 +99,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
@@ -113,7 +113,7 @@ public class CreateCallTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChild2Mkab() throws IOException, InterruptedException {

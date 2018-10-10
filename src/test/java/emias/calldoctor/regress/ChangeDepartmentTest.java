@@ -28,7 +28,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         page.fullCardPage().verifyDepart("ProfileTransferLpu-Dep", "detskayaPol");
     }
 
-    @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
+    @Test(groups = "test", description = "передача вызова из подразделения в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() throws IOException, InterruptedException {
@@ -46,7 +46,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         page.fullCardPage().verifyDepart("ProfileTransferDep-Dep", "vzroslayaPol");
     }
 
-    @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
+    @Test(groups = "test", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException {

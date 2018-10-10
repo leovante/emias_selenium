@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class UchastoksAdressTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException {
@@ -33,7 +33,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException {
@@ -48,7 +48,7 @@ public class UchastoksAdressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException {
