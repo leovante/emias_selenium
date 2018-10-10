@@ -1,8 +1,10 @@
 package pages.calldoctor.profiles_interfaces;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 import java.io.File;
@@ -16,6 +18,9 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private JacksonTester<Pacient> json;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")// Formats output date when this DTO is passed through JSON
+    @DateTimeFormat(pattern = "yyyy-MM-dd")// Allows dd/MM/yyyy date to be passed into GET request in JSON
 
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int source;
@@ -44,6 +49,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String codedomophone;//домофон
     private String sourceName;//
     private String sourceCode;//
+    private String JSON_TO_DESERIALIZE;//
 
     private java.util.Date parseDate(final String dateString) {
         try {
@@ -153,7 +159,15 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         return numberpol;
     }
 
+    public String getBirthdate_string() {
+        return String.valueOf(birthdate);
+    }
+
+    public Pacient() {
+    }
+
     public Pacient(String name) throws IOException {
+//        File reader = new File("\"C:\\Users\\dtemnikov\\IdeaProjects\\emias_selenium\\src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile4_2.json\"");
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
         this.address = this.json.parseObject(String.valueOf(proData)).getAddress();
@@ -165,7 +179,8 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         this.type = this.json.parseObject(String.valueOf(proData)).getType();
         this.phone = this.json.parseObject(String.valueOf(proData)).getPhone();
         this.source = this.json.parseObject(String.valueOf(proData)).getSource();
-        this.birthdate = this.json.parseObject(String.valueOf(proData)).getBirthdate();
+//        this.birthdate = this.json.parseObject(String.valueOf(proData)).getBirthdate();
+        this.birthdate_string = this.json.parseObject(String.valueOf(proData)).getBirthdate_string();
         this.seriespol = this.json.parseObject(String.valueOf(proData)).getSeriespol();
         this.numberpol = this.json.parseObject(String.valueOf(proData)).getNumberpol();
         this.gender = this.json.parseObject(String.valueOf(proData)).getGender();
