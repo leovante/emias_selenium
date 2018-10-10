@@ -3,17 +3,23 @@ package pages.calldoctor.profiles_interfaces;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+@JsonTest
+@ContextConfiguration(classes = Pacient.class)
 public class Pacient extends AbstractTestNGSpringContextTests {
 
     @Autowired
@@ -49,14 +55,16 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String codedomophone;//домофон
     private String sourceName;//
     private String sourceCode;//
-    private String JSON_TO_DESERIALIZE;//
+    private String JSON_TO_DESERIALIZE = "{\"address\" :  \"Московская обл.,Фрязино г.,Озерная ул.,10\"}";
 
     private java.util.Date parseDate(final String dateString) {
         try {
-            return simpleDateFormat.parse(dateString);
+            if (dateString != null)
+                return simpleDateFormat.parse(dateString);
         } catch (final ParseException e) {
             return new Date();
         }
+        return null;
     }
 
     public String getSourceCode() {
@@ -163,14 +171,27 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         return String.valueOf(birthdate);
     }
 
-    public Pacient() {
+    Pacient(){
+//перегрузить пациента
     }
 
-    public Pacient(String name) throws IOException {
-//        File reader = new File("\"C:\\Users\\dtemnikov\\IdeaProjects\\emias_selenium\\src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile4_2.json\"");
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
+    public Pacient(String pacient) throws IOException {
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json");
+//        Scanner sc = new Scanner(reader);
+//        FileReader reader2 = new FileReader("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json");
         Map proData = new ObjectMapper().readValue(reader, Map.class);
-        this.address = this.json.parseObject(String.valueOf(proData)).getAddress();
+//        this.address = this.json.parseObject(JSON_TO_DESERIALIZE).getAddress();
+//        this.address = this.json.parseObject(String.valueOf(reader2.read())).getAddress();
+
+        DataInputStream reader3 = new DataInputStream(new FileInputStream("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json"));
+        String result = reader3.toString();
+
+
+        Pacient pacient2 = new Pacient();
+        this.json.write(pacient2);
+        this.address = this.json.parseObject(result).getAddress();
+
+
         this.address1 = this.json.parseObject(String.valueOf(proData)).getAddress1();
         this.address2 = this.json.parseObject(String.valueOf(proData)).getAddress2();
         this.address3 = this.json.parseObject(String.valueOf(proData)).getAddress3();
@@ -179,7 +200,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         this.type = this.json.parseObject(String.valueOf(proData)).getType();
         this.phone = this.json.parseObject(String.valueOf(proData)).getPhone();
         this.source = this.json.parseObject(String.valueOf(proData)).getSource();
-//        this.birthdate = this.json.parseObject(String.valueOf(proData)).getBirthdate();
+        this.birthdate = this.json.parseObject(String.valueOf(proData)).getBirthdate();
         this.birthdate_string = this.json.parseObject(String.valueOf(proData)).getBirthdate_string();
         this.seriespol = this.json.parseObject(String.valueOf(proData)).getSeriespol();
         this.numberpol = this.json.parseObject(String.valueOf(proData)).getNumberpol();
