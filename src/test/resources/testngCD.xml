@@ -32,16 +32,16 @@
         </packages>
     </test>
 
-    <test name="FirefoxTest" verbose="1" parallel="true">
-        <parameter name="browser" value="firefox"/>
-        <groups>
-            <run>
-                <include name="CD"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="emias.calldoctor.function"/>
-            <package name="emias.calldoctor.regress"/>
-        </packages>
-    </test>
+    <!--<test name="FirefoxTest" verbose="1" parallel="true">-->
+    <!--<parameter name="browser" value="firefox"/>-->
+    <!--<groups>-->
+    <!--<run>-->
+    <!--<include name="CD"/>-->
+    <!--</run>-->
+    <!--</groups>-->
+    <!--<packages>-->
+    <!--<package name="emias.calldoctor.function"/>-->
+    <!--<package name="emias.calldoctor.regress"/>-->
+    <!--</packages>-->
+    <!--</test>-->
 </suite>
