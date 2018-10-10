@@ -50,7 +50,7 @@
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="hlt_Kashira_CRB_160101@12.8.1.58" uuid="6f50136e-6bfe-400c-9294-e14b1b494dff">
+    <data-source source="LOCAL" name="hlt_Kashira_CRB_160101@192.168.7.48" uuid="6f50136e-6bfe-400c-9294-e14b1b494dff">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
@@ -79,6 +79,15 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate.cfg.
       <jdbc-url>jdbc:sqlserver://12.8.1.66;databaseName=hlt_demonstration</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_OdincovoLuhov_CRB_240101@192.168.7.48" uuid="22deeba5-a16b-4e37-b891-e0548fb1ebe6">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14333/hlt_OdincovoLuhov_CRB_240101</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
   </component>
