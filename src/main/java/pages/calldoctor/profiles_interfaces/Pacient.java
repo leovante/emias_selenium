@@ -56,11 +56,15 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     }
 
     public String getEntrance() {
-        return entrance;
+        if (entrance != null)
+            return entrance;
+        return "";
     }
 
     public String getFloor() {
-        return floor;
+        if (floor != null)
+            return floor;
+        return "";
     }
 
     public int getGender() {
@@ -77,7 +81,9 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     }
 
     public String getSeriespol() {
-        return seriespol;
+        if (seriespol != null)
+            return seriespol;
+        return "";
     }
 
     public long getNumberpol() {
@@ -85,71 +91,105 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     }
 
     public String getAddress() {
-        return address;
+        if (address != null)
+            return address;
+        return "";
     }
 
     public String getAddress1() {
-        return address1;
+        if (address1 != null)
+            return address1;
+        return "";
     }
 
     public String getAddress2() {
-        return address2;
+        if (address2 != null)
+            return address2;
+        return "";
     }
 
     public String getAddress3() {
-        return address3;
+        if (address3 != null)
+            return address3;
+        return "";
     }
 
     public String getComplaint() {
-        return complaint;
+        if (complaint != null)
+            return complaint;
+        return "";
     }
 
     public String getDiagnosis() {
-        return diagnosis;
+        if (diagnosis != null)
+            return diagnosis;
+        return "";
     }
 
     public String getPhone() {
-        return phone;
+        if (phone != null)
+            return phone;
+        return "";
     }
 
     public String getName() {
-        return name;
+        if (name != null)
+            return name;
+        return "";
     }
 
     public String getFamily() {
-        return family;
+        if (family != null)
+            return family;
+        return "";
     }
 
     public String getOt() {
-        return ot;
+        if (ot != null)
+            return ot;
+        return "";
     }
 
     public String getNumber() {
-        return number;
+        if (number != null)
+            return number;
+        return "";
     }
 
     public String getBuilding() {
-        return building;
+        if (building != null)
+            return building;
+        return "";
     }
 
     public String getConstruction() {
-        return construction;
+        if (construction != null)
+            return construction;
+        return "";
     }
 
     public String getAppartment() {
-        return appartment;
+        if (appartment != null)
+            return appartment;
+        return "";
     }
 
     public String getCodedomophone() {
-        return codedomophone;
+        if (codedomophone != null)
+            return codedomophone;
+        return "";
     }
 
     public String getSourceName() {
-        return sourceName;
+        if (sourceName != null)
+            return sourceName;
+        return "";
     }
 
     public String getSourceCode() {
-        return sourceCode;
+        if (sourceCode != null)
+            return sourceCode;
+        return "";
     }
 
     public Pacient(String pacient) throws IOException {
