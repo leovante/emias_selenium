@@ -1,40 +1,24 @@
 package pages.calldoctor.profiles_interfaces;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
-import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
+import java.util.HashMap;
 
-@JsonTest
-@ContextConfiguration(classes = Pacient.class)
 public class Pacient extends AbstractTestNGSpringContextTests {
-
-    @Autowired
-    private JacksonTester<Pacient> json;
-
-    @JsonFormat(pattern = "yyyy-MM-dd")// Formats output date when this DTO is passed through JSON
-    @DateTimeFormat(pattern = "yyyy-MM-dd")// Allows dd/MM/yyyy date to be passed into GET request in JSON
-
-    private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int source;
     private int type;
-    private int seriespol;
-    private int numberpol;
     private int gender;
-    private String name;
+    private long numberpol;
+    private String birthdate_string;
+    private Date birthdate;
+    private String seriespol;
     private String address;
     private String address1;
     private String address2;
@@ -42,45 +26,33 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String complaint;
     private String diagnosis;
     private String phone;
-    private String birthdate_string;
-    private Date birthdate = parseDate(birthdate_string);
+    private String name;
     private String family;
     private String ot;
+    private String entrance;//подьезд
+    private String floor;//этаж
     private String number;//номер дома
     private String building;//корпус
     private String construction;//строение
     private String appartment;//квартира
-    private String entrance;//подьезд
-    private String floor;//этаж
     private String codedomophone;//домофон
     private String sourceName;//
     private String sourceCode;//
-    private String JSON_TO_DESERIALIZE = "{\"address\" :  \"Московская обл.,Фрязино г.,Озерная ул.,10\"}";
 
-    private java.util.Date parseDate(final String dateString) {
+    private Date parseDate(String dateString) {
         try {
-            if (dateString != null)
-                return simpleDateFormat.parse(dateString);
+            return simpleDateFormat.parse(dateString);
         } catch (final ParseException e) {
             return new Date();
         }
-        return null;
     }
 
-    public String getSourceCode() {
-        return sourceCode;
+    public int getSource() {
+        return source;
     }
 
-    public String getSourceName() {
-        return sourceName;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public String getNumber() {
-        return number;
+    public int getType() {
+        return type;
     }
 
     public String getEntrance() {
@@ -91,20 +63,29 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         return floor;
     }
 
-    public String getCodedomophone() {
-        return codedomophone;
+    public int getGender() {
+        return gender;
     }
 
-    public String getAppartment() {
-        return appartment;
+    public Date getBirthdate() {
+        return birthdate = parseDate(birthdate_string);
     }
 
-    public String getConstruction() {
-        return construction;
+    public String getBirthdate(String format) {
+        SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
+        return simpleDateFormatEdit.format(birthdate);
     }
 
-    public String getBuilding() {
-        return building;
+    public String getSeriespol() {
+        return seriespol;
+    }
+
+    public long getNumberpol() {
+        return numberpol;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public String getAddress1() {
@@ -119,6 +100,18 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         return address3;
     }
 
+    public String getComplaint() {
+        return complaint;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
     public String getName() {
         return name;
     }
@@ -131,91 +124,114 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         return ot;
     }
 
-    public String getAddress() {
-        return address;
+    public String getNumber() {
+        return number;
     }
 
-    public String getComplaint() {
-        return complaint;
+    public String getBuilding() {
+        return building;
     }
 
-    public String getDiagnosis() {
-        return diagnosis;
+    public String getConstruction() {
+        return construction;
     }
 
-    public int getType() {
-        return type;
+    public String getAppartment() {
+        return appartment;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getCodedomophone() {
+        return codedomophone;
     }
 
-    public int getSource() {
-        return source;
+    public String getSourceName() {
+        return sourceName;
     }
 
-    public Date getBirthdate() {
-        return birthdate;
-    }
-
-    public int getSeriespol() {
-        return seriespol;
-    }
-
-    public int getNumberpol() {
-        return numberpol;
-    }
-
-    public String getBirthdate_string() {
-        return String.valueOf(birthdate);
-    }
-
-    Pacient(){
-//перегрузить пациента
+    public String getSourceCode() {
+        return sourceCode;
     }
 
     public Pacient(String pacient) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json");
-//        Scanner sc = new Scanner(reader);
-//        FileReader reader2 = new FileReader("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        this.address = this.json.parseObject(JSON_TO_DESERIALIZE).getAddress();
-//        this.address = this.json.parseObject(String.valueOf(reader2.read())).getAddress();
+        HashMap<String, Object> proData = new ObjectMapper().readValue(reader, HashMap.class);
+        if (proData.get("source") != null && proData.get("source") != "")
+            this.source = Integer.valueOf((String) proData.get("source"));
 
-        DataInputStream reader3 = new DataInputStream(new FileInputStream("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json"));
-        String result = reader3.toString();
+        if (proData.get("type") != null && proData.get("type") != "")
+            this.type = Integer.valueOf((String) proData.get("type"));
 
+        if (proData.get("seriespol") != null && proData.get("seriespol") != "")
+            this.seriespol = (String) proData.get("seriespol");
 
-        Pacient pacient2 = new Pacient();
-        this.json.write(pacient2);
-        this.address = this.json.parseObject(result).getAddress();
+        if (proData.get("numberpol") != null && proData.get("numberpol") != "")
+            this.numberpol = Long.valueOf((String) proData.get("numberpol"));
 
+        if (proData.get("gender") != null && proData.get("gender") != "")
+            this.gender = Integer.valueOf((String) proData.get("gender"));
 
-        this.address1 = this.json.parseObject(String.valueOf(proData)).getAddress1();
-        this.address2 = this.json.parseObject(String.valueOf(proData)).getAddress2();
-        this.address3 = this.json.parseObject(String.valueOf(proData)).getAddress3();
-        this.complaint = this.json.parseObject(String.valueOf(proData)).getComplaint();
-        this.diagnosis = this.json.parseObject(String.valueOf(proData)).getDiagnosis();
-        this.type = this.json.parseObject(String.valueOf(proData)).getType();
-        this.phone = this.json.parseObject(String.valueOf(proData)).getPhone();
-        this.source = this.json.parseObject(String.valueOf(proData)).getSource();
-        this.birthdate = this.json.parseObject(String.valueOf(proData)).getBirthdate();
-        this.birthdate_string = this.json.parseObject(String.valueOf(proData)).getBirthdate_string();
-        this.seriespol = this.json.parseObject(String.valueOf(proData)).getSeriespol();
-        this.numberpol = this.json.parseObject(String.valueOf(proData)).getNumberpol();
-        this.gender = this.json.parseObject(String.valueOf(proData)).getGender();
-        this.name = this.json.parseObject(String.valueOf(proData)).getName();
-        this.family = this.json.parseObject(String.valueOf(proData)).getFamily();
-        this.ot = this.json.parseObject(String.valueOf(proData)).getOt();
-        this.number = this.json.parseObject(String.valueOf(proData)).getNumber();
-        this.building = this.json.parseObject(String.valueOf(proData)).getBuilding();
-        this.construction = this.json.parseObject(String.valueOf(proData)).getConstruction();
-        this.appartment = this.json.parseObject(String.valueOf(proData)).getAppartment();
-        this.entrance = this.json.parseObject(String.valueOf(proData)).getEntrance();
-        this.floor = this.json.parseObject(String.valueOf(proData)).getFloor();
-        this.codedomophone = this.json.parseObject(String.valueOf(proData)).getCodedomophone();
-        this.sourceName = this.json.parseObject(String.valueOf(proData)).getSourceName();
-        this.sourceCode = this.json.parseObject(String.valueOf(proData)).getSourceCode();
+        if (proData.get("name") != null && proData.get("name") != "")
+            this.name = (String) proData.get("name");
+
+        if (proData.get("address") != null && proData.get("address") != "")
+            this.address = (String) proData.get("address");
+
+        if (proData.get("address1") != null && proData.get("address1") != "")
+            this.address1 = (String) proData.get("address1");
+
+        if (proData.get("address2") != null && proData.get("address2") != "")
+            this.address2 = (String) proData.get("address2");
+
+        if (proData.get("address3") != null && proData.get("address3") != "")
+            this.address3 = (String) proData.get("address3");
+
+        if (proData.get("complaint") != null && proData.get("complaint") != "")
+            this.complaint = (String) proData.get("complaint");
+
+        if (proData.get("diagnosis") != null && proData.get("diagnosis") != "")
+            this.diagnosis = (String) proData.get("diagnosis");
+
+        if (proData.get("phone") != null && proData.get("phone") != "")
+            this.phone = (String) proData.get("phone");
+
+        if (proData.get("birthdate") != null && proData.get("birthdate") != "")
+            this.birthdate_string = (String) proData.get("birthdate");
+
+        if (proData.get("family") != null && proData.get("family") != "")
+            this.family = (String) proData.get("family");
+
+        if (proData.get("ot") != null && proData.get("ot") != "")
+            this.ot = (String) proData.get("ot");
+
+        if (proData.get("number") != null && proData.get("number") != "")
+            this.number = (String) proData.get("number");
+
+        if (proData.get("building") != null && proData.get("building") != "")
+            this.building = (String) proData.get("building");
+
+        if (proData.get("construction") != null && proData.get("construction") != "")
+            this.construction = (String) proData.get("construction");
+
+        if (proData.get("appartment") != null && proData.get("appartment") != "")
+            this.appartment = (String) proData.get("appartment");
+
+        if (proData.get("entrance") != null && proData.get("entrance") != "")
+            this.entrance = (String) proData.get("entrance");
+
+        if (proData.get("floor") != null && proData.get("floor") != "")
+            this.floor = (String) proData.get("floor");
+
+        if (proData.get("codedomophone") != null && proData.get("codedomophone") != "")
+            this.codedomophone = (String) proData.get("codedomophone");
+
+        if (proData.get("sourceName") != null && proData.get("sourceName") != "")
+            this.sourceName = (String) proData.get("sourceName");
+
+        if (proData.get("sourceCode") != null && proData.get("sourceCode") != "")
+            this.sourceCode = (String) proData.get("sourceCode");
+
+        if (birthdate_string != null && birthdate_string != "")
+            this.birthdate = parseDate(birthdate_string);
+        System.out.println();
     }
 }

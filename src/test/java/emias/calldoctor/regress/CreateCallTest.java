@@ -81,7 +81,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException {
-        Pacient pacient = new Pacient("Profile4_2");
+        Pacient pacient = new Pacient("Profile4");
         enterSite.enterPortal();
         page.portalDashboard().createCall(pacient);
         enterSite.enterCalldoctor();

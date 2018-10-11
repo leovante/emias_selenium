@@ -1,7 +1,6 @@
 {
   "source": "4",
-  "seriyaPol": "",
-  "nomerPol": "7854215965847521",
+  "numberpol": "7854215965847521",
   "name": "Софья",
   "family": "Афанасьева",
   "ot": "Петровна",
@@ -13,13 +12,6 @@
   "address1": "Московская",
   "address2": "Фрязино",
   "address3": "Озерная",
-  "codedomophone": "",
   "phone": "(951) 158-27-14",
-  "entrance": "",
-  "floor": "",
-
-  "number": "10",
-  "building": "",
-  "construction": "",
-  "appartment": ""
+  "number": "10"
 }

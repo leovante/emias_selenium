@@ -153,7 +153,7 @@ public class SQL extends AbstractPage {
     }
 
     @Step("завершаю вызовы пациента по полису")
-    public static void finalizeCall_NPol(int number) {
+    public static void finalizeCall_NPol(long number) {
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
 //        Map proData = new ObjectMapper().readValue(reader, Map.class);
 

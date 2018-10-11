@@ -1,11 +1,13 @@
 package pages.calldoctor.profiles_interfaces.musor;
 
 import org.junit.Before;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.musor.PersonDTO;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -15,8 +17,8 @@ import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-//@JsonTest
-//@RunWith(SpringRunner.class)
+@JsonTest
+@RunWith(SpringRunner.class)
 public class PersonDTOJsonTest extends AbstractTestNGSpringContextTests {
 
     @Autowired

@@ -293,9 +293,9 @@ public class CreateCallPage extends AbstractPage {
         $(By.xpath("//input[@placeholder='Корпус']")).setValue(pacient.getBuilding());
         $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
         $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
-        $(By.xpath("//input[@placeholder='П-д']")).setValue(pacient.getEntrance());
+        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
         $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue(pacient.getFloor());
+        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
         return this;
     }
 

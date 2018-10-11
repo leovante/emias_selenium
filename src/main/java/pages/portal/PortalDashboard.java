@@ -19,11 +19,11 @@ public class PortalDashboard extends AbstractPage {
     SelenideElement birthdate = $(By.xpath("//input[@name='birthday']"));
     SelenideElement closeWindow = $(By.id("create-home-visit-popup-success")).$(By.xpath(".//*[contains(.,'Закрыть окно')]"));
     SelenideElement entrance = $(By.id("call_entrance"));
-    SelenideElement doorphone = $(By.id("call_doorphone"));
+    SelenideElement codeDomophone = $(By.id("call_doorphone"));
     SelenideElement phone = $(By.id("call_phone"));
     SelenideElement description = $(By.id("call_description"));
     SelenideElement address = $(By.id("call_address"));
-    SelenideElement stage = $(By.id("call_stage"));
+    SelenideElement floor = $(By.id("call_stage"));
     SelenideElement callDoctor = $(By.xpath("//a[contains(text(),'Вызвать врача на дом')]"));
     SelenideElement confirmCall = $(By.xpath("//a[contains(text(),'Подтвердить вызов врача')]"));
     SelenideElement waitHeader = $(By.xpath("//*[contains(text(),'Адрес вызова')]"));
@@ -36,16 +36,17 @@ public class PortalDashboard extends AbstractPage {
     public void createCall(Pacient pacient) throws IOException {
         SQL.finalizeCall_NPol(pacient.getNumberpol());
         numberPolise.sendKeys(String.valueOf(pacient.getNumberpol()));
-        birthdate.sendKeys(String.valueOf(pacient.getBirthdate()));
+
+        birthdate.sendKeys(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
         enterRegister.click();
         standEMIAS.shouldBe(Condition.visible);
         callDoctor.click();
         waitHeader.shouldBe(Condition.visible);
 
         address.setValue(pacient.getAddress());
-        entrance.setValue(pacient.getEntrance());
-        stage.setValue(pacient.getFloor());
-        doorphone.setValue(pacient.getCodedomophone());
+        entrance.setValue(String.valueOf(pacient.getEntrance()));
+        floor.setValue(String.valueOf(pacient.getFloor()));
+        codeDomophone.setValue(pacient.getCodedomophone());
         phone.setValue(pacient.getPhone());
         description.setValue(pacient.getComplaint());
         confirmCall.click();

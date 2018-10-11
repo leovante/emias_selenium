@@ -16,6 +16,5 @@ abstract public class AbstractPage {
 
     public void ShouldBeVisible(String text) {
         $(By.xpath("//*[contains(text(),'" + text + "')]")).shouldBe(Condition.visible);
-
     }
 }
