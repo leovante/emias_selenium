@@ -41,6 +41,7 @@ public class CreateCallPage extends AbstractPage {
     private JacksonTester<Pacient> json;
 
     String clientApplication = "CB174067-702F-42D0-B0EB-1D84A514515D";
+    String authorization = "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3";
     String requestSmp = "http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233";
     private Pacient pacient;
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
@@ -73,16 +74,11 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement sourceReg = $(By.id("source1"));
 
     public void createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
-//        this.personDTO = new PersonDTO(profile);
         this.pacient = pacient;
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        this.pacient = new ObjectMapper().readValue(reader, Map.class);
         addNewCall()
                 .sourceCall()
                 .address()
-                .vozrastKat()
                 .birthDay()
-//                .adressAddition()
                 .gender()
                 .complaint()
                 .polis()
@@ -90,23 +86,17 @@ public class CreateCallPage extends AbstractPage {
                 .caller()
                 .telephone()
                 .saveBtn();
-//                .adressAlarma();
-        waitCreating();
     }
 
-    public void createCall_Mkab(String profile) throws IOException, InterruptedException, ParseException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> pacient = new ObjectMapper().readValue(reader, Map.class);
+    public void createCall_Mkab(Pacient pacient) throws IOException, InterruptedException, ParseException {
+        this.pacient = pacient;
         addNewCall()
                 .sourceCall()
                 .searchField()
-//                .adressAddition()
                 .complaint()
                 .caller()
                 .telephone()
                 .saveBtn();
-//                .adressAlarma();
-        waitCreating();
     }
 
     @Step("Создаю вызов через api")
@@ -121,7 +111,7 @@ public class CreateCallPage extends AbstractPage {
                 json.put("name", pacient.getName());
                 json.put("family", pacient.getFamily());
                 json.put("ot", pacient.getOt());
-                json.put("birthdate", pacient.getBirthdate());
+                json.put("birthdate", pacient.getBirthdate("yyyy-MM-dd"));
                 json.put("seriespol", pacient.getSeriespol());
                 json.put("numberpol", pacient.getNumberpol());//реальный мкаб
                 json.put("gender", pacient.getGender());
@@ -139,14 +129,14 @@ public class CreateCallPage extends AbstractPage {
 
                 HttpPost request = new HttpPost(requestSmp);
                 request.addHeader("content-type", "application/json");
+                request.addHeader("Authorization", authorization);
                 request.addHeader("ClientApplication", clientApplication);
 
                 StringEntity params = new StringEntity(json.toString(), "UTF-8");
                 request.setEntity(params);
                 HttpResponse response = httpClient.execute(request);
 
-                int statusCode = response.getStatusLine().getStatusCode();
-                Assert.assertEquals(String.valueOf(statusCode), "200", "Не удаётся создать новый вызов!");
+                Assert.assertEquals(response.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -199,7 +189,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public void editCallProfile2(Pacient pacient) throws IOException, ParseException {
+    public void editCallProfile2(Pacient pacient) throws IOException, ParseException, InterruptedException {
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
 //        this.pacient = new ObjectMapper().readValue(reader, Map.class);
         this.pacient = pacient;
@@ -274,20 +264,20 @@ public class CreateCallPage extends AbstractPage {
 
     private CreateCallPage address() {
         cancelAdress.shouldBe(Condition.visible);
-        if (!pacient.getAddress1().contains(null)) {
+        if (pacient.getAddress1() != null && pacient.getAddress2() != "") {
             cancelAdress.click();
             placeholder_adress.setValue(pacient.getAddress1());
             list_first_container.click();
         }
-        if (!pacient.getAddress2().contains(null)) {
+        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
             placeholder_adress.setValue(pacient.getAddress2());
             list_first_container.click();
         }
-        if (!pacient.getAddress3().contains(null)) {
+        if (pacient.getAddress3() != null && pacient.getAddress2() != "") {
             placeholder_adress.setValue(pacient.getAddress3());
             list_first_container.click();
         }
-        if (pacient.getBuilding().contains(null)) {
+        if (pacient.getNumber() != null && pacient.getNumber() != "") {
             $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
         }
         $(By.xpath("//input[@placeholder='Корпус']")).setValue(pacient.getBuilding());
@@ -333,8 +323,12 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage polis() {
-        $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
-        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacient.getNumberpol()));
+        if (pacient.getSeriespol() != null && pacient.getSeriespol() != "") {
+            $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
+        }
+        if (pacient.getNumberpol() != null && pacient.getNumberpol() != "") {
+            $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacient.getNumberpol()));
+        }
         return this;
     }
 
@@ -352,7 +346,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage birthDay() {
-        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(String.valueOf(pacient.getBirthdate()));
+        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(String.valueOf(pacient.getBirthdate("dd-MM-yyyy")));
         return this;
     }
 
@@ -397,12 +391,25 @@ public class CreateCallPage extends AbstractPage {
         return years;
     }
 
-    private CreateCallPage saveBtn() {
-        SelenideElement se = $(By.xpath("//button[@aria-label='Close dialog']"));
-        if (se.isDisplayed()) {
-            $(By.xpath("//button[@aria-label='Close dialog']")).click();
+    private CreateCallPage saveBtn() throws InterruptedException {
+        SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
+        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
+        SelenideElement save = $(By.id("save"));
+        String old = driver.getCurrentUrl();
+        int i = 11;
+        while (!fullCardPage.isDisplayed() && i > 0) {
+            i--;
+            if (allert.isDisplayed())
+                allert.click();
+            if (save.isDisplayed())
+                save.click();
+            Thread.sleep(1000);
         }
-        $(By.id("save")).click();
+//        String old = driver.getCurrentUrl();
+//        int i = 11;
+        if (!old.equals(driver.getCurrentUrl()))
+            System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов НЕ создан!");
         return this;
     }
 
@@ -449,19 +456,19 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    public void waitCreating() throws InterruptedException {
-        String old = driver.getCurrentUrl();
-        int i = 11;
-        do {
-            Thread.sleep(1000);
-            i--;
-            System.out.println("Жду ссылку на новый вызов. i = " + i);
-        }
-        while (old.equals(driver.getCurrentUrl()) && i >= 1);
-        if (!old.equals(driver.getCurrentUrl()))
-            System.out.println("Вызов создан! " + driver.getCurrentUrl());
-        else System.out.println("Вызов НЕ создан!");
-    }
+//    public void waitCreating() throws InterruptedException {
+//        String old = driver.getCurrentUrl();
+//        int i = 11;
+//        do {
+//            Thread.sleep(1000);
+//            i--;
+//            System.out.println("Жду ссылку на новый вызов. i = " + i);
+//        }
+//        while (old.equals(driver.getCurrentUrl()) && i > 0);
+//        if (!old.equals(driver.getCurrentUrl()))
+//            System.out.println("Вызов создан! " + driver.getCurrentUrl());
+//        else System.out.println("Вызов НЕ создан!");
+//    }
 
     public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
         long diffInMillies = date2.getTime() - date1.getTime();

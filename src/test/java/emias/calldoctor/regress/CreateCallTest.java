@@ -66,9 +66,9 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyNewCall(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
     @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(0)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException {
         Pacient pacient = new Pacient("Profile6");
         enterSite.enterCalldoctor();
@@ -77,7 +77,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyNewCall(pacient);
     }
 
-    @Test(groups = "test", description = "вызов ребенка с Портала")
+    @Test(groups = "CD", description = "вызов ребенка с Портала")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException {

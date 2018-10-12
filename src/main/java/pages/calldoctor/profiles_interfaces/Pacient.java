@@ -15,7 +15,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private int source;
     private int type;
     private int gender;
-    private long numberpol;
+    private String numberpol;
     private String birthdate_string;
     private Date birthdate;
     private String seriespol;
@@ -36,8 +36,13 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String construction;//строение
     private String appartment;//квартира
     private String codedomophone;//домофон
-    private String sourceName;//
-    private String sourceCode;//
+    private String sourceName;
+    private String sourceCode;
+    private Object kladraddress;
+
+    public Object getKladraddress() {
+        return kladraddress;
+    }
 
     private Date parseDate(String dateString) {
         try {
@@ -86,8 +91,10 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         return "";
     }
 
-    public long getNumberpol() {
-        return numberpol;
+    public String getNumberpol() {
+        if (numberpol != null)
+            return numberpol;
+        return "";
     }
 
     public String getAddress() {
@@ -205,7 +212,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
             this.seriespol = (String) proData.get("seriespol");
 
         if (proData.get("numberpol") != null && proData.get("numberpol") != "")
-            this.numberpol = Long.valueOf((String) proData.get("numberpol"));
+            this.numberpol = (String) proData.get("numberpol");
 
         if (proData.get("gender") != null && proData.get("gender") != "")
             this.gender = Integer.valueOf((String) proData.get("gender"));
@@ -272,6 +279,8 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
         if (birthdate_string != null && birthdate_string != "")
             this.birthdate = parseDate(birthdate_string);
-        System.out.println();
+
+        if (proData.get("kladraddress") != null)
+            this.kladraddress = proData.get("kladraddress");
     }
 }

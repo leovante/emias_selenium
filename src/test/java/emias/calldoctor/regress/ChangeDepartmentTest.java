@@ -105,8 +105,9 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() throws Exception {
+        Pacient pacient = new Pacient("Profile2");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall_Mkab("Profile2");
+        page.createCallPage().createCall_Mkab(pacient);
         page.fullCardPage().transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
     }

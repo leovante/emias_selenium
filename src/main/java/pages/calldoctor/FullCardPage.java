@@ -39,7 +39,7 @@ public class FullCardPage extends AbstractPage {
         elements.add("Источник");
         elements.add("КТО ПАЦИЕНТ");
         elements.add("Возраст");
-        elements.add("Пол");
+//        elements.add("Пол");
         elements.add("АДРЕС");
         elements.add("ЖАЛОБЫ");
         elements.add("КТО ПАЦИЕНТ");
@@ -62,19 +62,20 @@ public class FullCardPage extends AbstractPage {
         ShouldBeVisible(pacient.getAddress());
         ShouldBeVisible(pacient.getComplaint());
         ShouldBeVisible(pacient.getCodedomophone());
-        ShouldBeVisible(pacient.getPhone());
+        ShouldBeVisible(parseTelephone(pacient));
         ShouldBeVisible(String.valueOf(pacient.getEntrance()));
         ShouldBeVisible(String.valueOf(pacient.getFloor()));
         ShouldBeVisible(pacient.getName());
         ShouldBeVisible(pacient.getFamily());
         ShouldBeVisible(pacient.getOt());
-        ShouldBeVisible(String.valueOf(pacient.getBirthdate()));
+        ShouldBeVisible(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
         ShouldBeVisible(String.valueOf(pacient.getSeriespol()));
         ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
-        ShouldBeVisible(pacient.getAppartment());
-        ShouldBeVisible(pacient.getBuilding());
-        ShouldBeVisible(pacient.getConstruction());
-        ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
+        if (pacient.getKladraddress() != null) {
+            ShouldBeVisible(pacient.getAppartment());
+            ShouldBeVisible(pacient.getBuilding());
+            ShouldBeVisible(pacient.getConstruction());
+        }
     }
 
     public void baseDoctor(Doctor doctor) {
@@ -85,6 +86,15 @@ public class FullCardPage extends AbstractPage {
         ShouldBeVisible(doctor.getUchastocs());
     }
 
+    public String parseTelephone(Pacient pacient) {
+        String telephone = pacient.getPhone();
+        telephone = telephone.substring(0, 2) + " (" +
+                telephone.substring(2, 5) + ") " +
+                telephone.substring(5, 8) + "-" +
+                telephone.substring(8, 10) + "-" +
+                telephone.substring(10, telephone.length());
+        return telephone;
+    }
 //    @Step("проверяю новый вызов {profile}")
 //    public FullCardPage verifyCallProfile0(String profile) throws IOException {
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");

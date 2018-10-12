@@ -1,24 +1,25 @@
 {
   "source": "2",
-  "nomerPol": "5098799789000154",
+  "type": "2",
+  "numberpol": "5098799789000154",
   "name": "Тест",
-  "fam": "Тестов",
+  "family": "Тестов",
   "ot": "Тестович",
   "birthdate": "2002-01-10",
   "gender": "2",
-  "complaint": "автотест, создание вызова по api от СМП по МКАБ без КЛАДР",
+  "complaint": "автотест. создание вызова по api от СМП по МКАБ без КЛАДР",
 
   "address": "это неформализованный адрес",
-  "korpus": "654б",
-  "stroenie": "321в",
-  "kvartira": "126",
-  "entrance": "12",
-  "floor": "5",
+  "building": "654б",
+  "construction": "321в",
+  "appartment": "126",
+  "entrance": "711",
+  "floor": "511",
   "codedomophone": "12-тут символы",
-  "phone": "+7 (960) 622-35-51",
+  "phone": "+79606223551",
 
   "number": "987а",
-  "building": "202",
-  "construction": "303",
-  "appartment": "404"
+  "building": "212",
+  "construction": "313",
+  "appartment": "414"
 }

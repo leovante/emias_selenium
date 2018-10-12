@@ -109,7 +109,7 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + pacient.getPhone() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
         System.out.println("Краткая карта вызова проверена!");
     }
 
