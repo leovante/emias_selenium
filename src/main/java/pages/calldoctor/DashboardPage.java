@@ -181,7 +181,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("удаляю карту вызова в группе 'Ожидают обработки' через дашбоард")
-    public void deleteNewCallProgressFrame(Pacient pacient) throws IOException {
+    public DashboardPage deleteNewCallProgressFrame(Pacient pacient) throws IOException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
@@ -191,5 +191,6 @@ public class DashboardPage extends AbstractPage {
         actions.moveToElement(smallMenu).perform();
         SelenideElement openCard = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Отменить вызов']"));
         openCard.click();
+        return this;
     }
 }
