@@ -328,10 +328,11 @@ public class CreateCallPage extends AbstractPage {
         SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
         SelenideElement save = $(By.id("save"));
+        String old = driver.getCurrentUrl();
+        save.click();
 
         address.shouldBe(Condition.visible);
         if (!se.isDisplayed()) {
-            String old = driver.getCurrentUrl();
             int i = 11;
             while (!fullCardPage.isDisplayed() && i > 0) {
                 i--;
