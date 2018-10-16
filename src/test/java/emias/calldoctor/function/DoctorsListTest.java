@@ -142,7 +142,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначить врача")
+    @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначить врача")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {

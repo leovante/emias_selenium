@@ -176,7 +176,7 @@ public class DashboardPage extends AbstractPage {
     @Step("Проверка что запись удалена с дашборда")
     public void verifyRecordIsCancelFromDashboard() throws InterruptedException {
         Thread.sleep(4000);
-        assertFalse(newCallProgressFrame.findElement(By.id("order")).isDisplayed());
+        assertFalse(newCallProgressFrame.findElement(By.id("order")).isDisplayed(), "Проверка что группа новые не отображается");
         newCallProgressFrame.$(By.id("order")).shouldBe(Condition.not(Condition.visible));
     }
 

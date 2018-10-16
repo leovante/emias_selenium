@@ -325,27 +325,24 @@ public class CreateCallPage extends AbstractPage {
     private CreateCallPage saveBtn() throws InterruptedException {
         SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
         SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
-        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
         SelenideElement save = $(By.id("save"));
         String old = driver.getCurrentUrl();
-        save.click();
 
-        address.shouldBe(Condition.visible);
-        if (!se.isDisplayed()) {
-            int i = 11;
-            while (!fullCardPage.isDisplayed() && i > 0) {
-                i--;
+        for (int i = 0; i < 10; i++) {
+            if (!fullCardPage.isDisplayed()) {
                 if (allert.isDisplayed())
                     allert.click();
+                if (se.isDisplayed())
+                    se.click();
                 if (save.isDisplayed())
                     save.click();
-                Thread.sleep(1000);
             }
-            if (!old.equals(driver.getCurrentUrl()))
-                System.out.println("Вызов создан! " + driver.getCurrentUrl());
-            else System.out.println("Вызов НЕ создан!");
+            Thread.sleep(1000);
         }
+        if (!old.equals(driver.getCurrentUrl()))
+            System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов НЕ создан!");
         return this;
     }
 

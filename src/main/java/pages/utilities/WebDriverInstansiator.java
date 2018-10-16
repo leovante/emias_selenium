@@ -67,7 +67,6 @@ public class WebDriverInstansiator {
                     break;
             }
         }
-//        System.out.println("DriverManager - " + getWebDriver());
         java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dimension = getWebDriver().manage().window().getSize();
 

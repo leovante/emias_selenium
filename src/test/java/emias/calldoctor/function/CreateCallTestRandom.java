@@ -12,7 +12,7 @@ import java.text.ParseException;
 
 public class CreateCallTestRandom extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "пустой вызов")
+    @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание рандомного вызова")
     @RetryCountIfFailed(0)
     public void testCall() throws IOException, InterruptedException, ParseException, JSONException {

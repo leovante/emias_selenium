@@ -9,7 +9,7 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 
 public class ChangeDoctorTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "передать вызов другому врачу")
+    @Test(groups = "CD", description = "передать вызов другому врачу")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() throws Exception {

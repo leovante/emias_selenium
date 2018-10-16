@@ -12,7 +12,7 @@ import java.text.ParseException;
 
 public class CancelCallTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "отмена вызова на странице подробной карты")
+    @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
@@ -35,7 +35,9 @@ public class CancelCallTest extends AbstractTestGrid {
         page.fullCardPage()
                 .editCallBtn()
                 .cancelOnChangePageBtn();
-        page.dashboardPage().verifyRecordIsCancelFromDashboard();
+        page.dashboardPage()
+                .searchFilterFio_Fam(pacient)
+                .verifyRecordIsCancelFromDashboard();
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")

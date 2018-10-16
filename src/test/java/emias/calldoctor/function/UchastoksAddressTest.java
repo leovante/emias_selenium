@@ -52,7 +52,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
+    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException {
@@ -68,7 +68,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
+    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException {
@@ -82,7 +82,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "создаю вызов через СМП, что бы проверить " +
+    @Test(groups = "CD", description = "создаю вызов через СМП, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)

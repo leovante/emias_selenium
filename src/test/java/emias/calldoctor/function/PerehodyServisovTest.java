@@ -23,7 +23,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyServisovTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "проверка что индикатор МКАБ и ТАП серый")
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {
@@ -40,7 +40,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(groups = "test", description = "проверка что индикатор МКАБ красный, а ТАП серый")
+    @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {

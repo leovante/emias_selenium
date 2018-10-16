@@ -60,7 +60,7 @@ public class FilterTest extends AbstractTestGrid {
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
-//                .searchFilterFio()
+                .searchFilterFio_Fam(pacient)
                 .searchFilterTypeCallNeotlozhniy()
                 .verifyNewCallGroup(pacient);
     }

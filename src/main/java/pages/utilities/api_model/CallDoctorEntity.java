@@ -65,7 +65,7 @@ public class CallDoctorEntity {
         request.addHeader("ClientApplication", clientApplication);
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
-        System.out.println("jsonOb" + jsonOb);
+//        System.out.println("jsonOb" + jsonOb);
 //        System.out.println("params" + params);
         return request;
     }
@@ -78,7 +78,7 @@ public class CallDoctorEntity {
         request.addHeader("ClientApplication", clientApplication);
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
-        System.out.println("jsonOb" + jsonOb);
+//        System.out.println("jsonOb" + jsonOb);
 //        System.out.println("params" + params);
         return request;
 
