@@ -50,7 +50,7 @@ public class FilterTest extends AbstractTestGrid {
                 .verifyActiveDocGroup(pacient, doctor);
     }
 
-    @Test(groups = "test", description = "фильтр поиск по виду вызова")
+    @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException, JSONException {
@@ -66,7 +66,7 @@ public class FilterTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "test", description = "проверка кнопки выход")
+    @Test(groups = "CD", description = "проверка кнопки выход")
     @Epic("Проверка фильтра")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)

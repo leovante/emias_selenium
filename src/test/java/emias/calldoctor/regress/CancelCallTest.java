@@ -40,7 +40,7 @@ public class CancelCallTest extends AbstractTestGrid {
                 .verifyRecordIsCancelFromDashboard();
     }
 
-    @Test(groups = "test", description = "отмена вызова на странице подробной карты")
+    @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException {

@@ -33,7 +33,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         page.fullCardPage().verifyDepartment(doctor2);
     }
 
-    @Test(groups = "test", description = "передача вызова из подразделения в подразделение")
+    @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException, JSONException {
@@ -54,7 +54,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         page.fullCardPage().verifyDepartment(doctor3);
     }
 
-    @Test(groups = "test", description = "передача вызова из подр в ЛПУ")
+    @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException {
@@ -92,7 +92,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        page.fullCardPage().verifyDepartment("firstDepart");
     }
 
-    @Test(groups = "test", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
+    @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {

@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class EditPageTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "проверка страницы редактирвоания карты вызова")
+    @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPage() throws Exception {
@@ -41,7 +41,7 @@ public class EditPageTest extends AbstractTestGrid {
         Assert.assertTrue(se.size() == 1, "Количество записей в истории больше одной!");
     }
 
-    @Test(groups = "test", description = "изменить карту вызова из регистратуры")
+    @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCall() throws Exception {
