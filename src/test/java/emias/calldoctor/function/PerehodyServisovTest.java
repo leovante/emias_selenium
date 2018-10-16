@@ -57,7 +57,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
+    @Test(groups = "test", description = "проверка учетки врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {

@@ -86,11 +86,9 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     public String getBirthdate(String format) {
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
-        String date1;
+        String date1 = null;
         if (birthdate != null) {
             date1 = simpleDateFormatEdit.format(birthdate);
-        } else {
-            throw new NullPointerException("Ошибка! birthdate is null");
         }
         return date1;
     }

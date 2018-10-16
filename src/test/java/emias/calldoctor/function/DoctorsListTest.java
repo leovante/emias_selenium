@@ -101,7 +101,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
+    @Test(groups = "test", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall7() throws IOException, InterruptedException, ParseException, JSONException {
@@ -156,7 +156,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Test(groups = "test", description = "проверяю что оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)

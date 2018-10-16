@@ -92,7 +92,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        page.fullCardPage().verifyDepartment("firstDepart");
     }
 
-    @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
+    @Test(groups = "test", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {

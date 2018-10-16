@@ -56,7 +56,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.dashboardPage().verifyNewCallGroup(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
@@ -93,7 +93,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
