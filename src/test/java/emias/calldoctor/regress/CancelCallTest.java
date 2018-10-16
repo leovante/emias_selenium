@@ -25,7 +25,7 @@ public class CancelCallTest extends AbstractTestGrid {
                 .verifyRecordIsCancelFromDashboard();
     }
 
-    @Test(groups = "test", description = "отмена вызова на странице редактирования")
+    @Test(groups = "CD", description = "отмена вызова на странице редактирования")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {

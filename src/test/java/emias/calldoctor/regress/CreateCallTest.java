@@ -107,7 +107,7 @@ public class CreateCallTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР.")
+    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {

@@ -33,7 +33,7 @@ public class FilterTest extends AbstractTestGrid {
                 .verifyNewCallGroup(pacient);
     }
 
-    @Test(groups = "test", description = "фильтр поиск по врачу")
+    @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() throws InterruptedException, IOException, ParseException, JSONException {
@@ -46,15 +46,15 @@ public class FilterTest extends AbstractTestGrid {
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterDoctor(pacient)
+                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacient, doctor);
     }
 
-    @Test(groups = "test", description = "фильтр поиск по виду вызова")
+    @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException, JSONException {
-        Pacient pacient = new Pacient("Profile3");
+        Pacient pacient = new Pacient("Profile3_1");
         page.createCallPage().createCall_Api(pacient);
         enterSite.enterCalldoctor();
         page.dashboardPage().openNewCallDash(pacient);
@@ -66,7 +66,7 @@ public class FilterTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "test", description = "проверка кнопки выход")
+    @Test(groups = "CD", description = "проверка кнопки выход")
     @Epic("Проверка фильтра")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)

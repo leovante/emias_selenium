@@ -3,7 +3,6 @@ package pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEscape;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -18,16 +17,16 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.sql.SQL;
 import pages.utilities.api_model.CallDoctorEntity;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 
 
 public class CreateCallPage extends AbstractPage {
@@ -37,7 +36,7 @@ public class CreateCallPage extends AbstractPage {
 
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
-    SelenideElement placeholder_adress = $(By.xpath("//input[@placeholder='Адрес']"));
+    SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
     SelenideElement telephoneNumber = $(By.id("phone"));
     SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
@@ -53,9 +52,10 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
     SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
     SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
+    SelenideElement birthDateTemp = $(By.xpath("//input[@placeholder='Дата рождения']"));
 
     SelenideElement tipVisivaushego = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
-    SelenideElement birthDateTemp = $(By.id("birthDateTemp"));
+    //    SelenideElement birthDateTemp = $(By.id("birthDateTemp"));
     SelenideElement phone = $(By.id("phone"));
     SelenideElement age = $(By.id("age"));
     SelenideElement famCall = $(By.id("callFamily"));
@@ -64,7 +64,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement sourceSmp = $(By.id("source0"));
     SelenideElement sourceReg = $(By.id("source1"));
 
-    public void createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
+    public CreateCallPage createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
         this.pacient = pacient;
         addNewCall()
                 .sourceCall()
@@ -77,9 +77,10 @@ public class CreateCallPage extends AbstractPage {
                 .caller()
                 .telephone()
                 .saveBtn();
+        return this;
     }
 
-    public void createCall_Mkab(Pacient pacient) throws IOException, InterruptedException, ParseException {
+    public CreateCallPage createCall_Mkab(Pacient pacient) throws IOException, InterruptedException, ParseException {
         this.pacient = pacient;
         addNewCall()
                 .sourceCall()
@@ -89,6 +90,7 @@ public class CreateCallPage extends AbstractPage {
                 .caller()
                 .telephone()
                 .saveBtn();
+        return this;
     }
 
     @Step("Создаю вызов через api")
@@ -119,13 +121,14 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public void editCallProfile2(Pacient pacient) throws IOException, ParseException, InterruptedException {
+    public void editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .searchField()
-                .telephone()
+                .addressPlus()
                 .complaint()
                 .caller()
+                .telephone()
                 .saveBtn();
         System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
     }
@@ -137,11 +140,13 @@ public class CreateCallPage extends AbstractPage {
         List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
 
         for (SelenideElement element : selenideElements) {
-            element.click();
+            if (element.isDisplayed())
+                element.click();
         }
 
         for (SelenideElement element : selenideElements2) {
-            element.click();
+            if (element.isDisplayed())
+                element.click();
         }
 
         $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
@@ -189,19 +194,22 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage address() {
+    private CreateCallPage address() throws InterruptedException {
         cancelAdress.shouldBe(Condition.visible);
         if (pacient.getAddress1() != null && pacient.getAddress2() != "") {
             cancelAdress.click();
-            placeholder_adress.setValue(pacient.getAddress1());
+            adress.setValue(pacient.getAddress1());
+            Thread.sleep(700);
             list_first_container.click();
         }
         if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
-            placeholder_adress.setValue(pacient.getAddress2());
+            adress.setValue(pacient.getAddress2());
+            Thread.sleep(700);
             list_first_container.click();
         }
         if (pacient.getAddress3() != null && pacient.getAddress2() != "") {
-            placeholder_adress.setValue(pacient.getAddress3());
+            adress.setValue(pacient.getAddress3());
+            Thread.sleep(700);
             list_first_container.click();
         }
         if (pacient.getNumber() != null && pacient.getNumber() != "") {
@@ -322,9 +330,9 @@ public class CreateCallPage extends AbstractPage {
         return years;
     }
 
-    private CreateCallPage saveBtn() throws InterruptedException {
+    public CreateCallPage saveBtn() throws InterruptedException {
         SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
-        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
+//        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
         SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
         SelenideElement save = $(By.id("save"));
         String old = driver.getCurrentUrl();
@@ -333,10 +341,12 @@ public class CreateCallPage extends AbstractPage {
             if (!fullCardPage.isDisplayed()) {
                 if (allert.isDisplayed())
                     allert.click();
-                if (se.isDisplayed())
-                    se.click();
+//                if (se.isDisplayed())
+//                    se.click();
                 if (save.isDisplayed())
                     save.click();
+            } else {
+                break;
             }
             Thread.sleep(1000);
         }
@@ -352,33 +362,31 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPage verifyCallProfile1(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map pacient = new ObjectMapper().readValue(reader, Map.class);
-//убрал ассерты
-        phone.getAttribute("value").equals(pacient.get("telephone"));
-        nomerPol.getAttribute("value").equals(pacient.get("nomerPol"));
-        seriyaPol.getAttribute("value").equals(pacient.get("seriyaPol"));
-        fam.getAttribute("value").equals(pacient.get("fam"));
-        fam.getAttribute("value").equals(pacient.get("name"));
-        otchestvo.getAttribute("value").equals(pacient.get("otchestvo"));
-        birthDateTemp.getAttribute("value").equals(pacient.get("birthDay"));
-        age.getAttribute("value").equals(pacient.get("age"));
-        vKat.getAttribute("value").equals(pacient.get("vKat"));
-        placeholder_adress.getAttribute("value").equals(pacient.get("adressDashboard"));
-        dom.getAttribute("value").equals(pacient.get("dom"));
-        korpus.getAttribute("value").equals(pacient.get("korpus"));
-        stroenie.getAttribute("value").equals(pacient.get("stroenie"));
-        kvartira.getAttribute("value").equals(pacient.get("kvartira"));
-        pd.getAttribute("value").equals(pacient.get("pd"));
-        dfon.getAttribute("value").equals(pacient.get("dfon"));
-        etazh.getAttribute("value").equals(pacient.get("etazh"));
-        tipVisivaushego.getAttribute("value").equals(pacient.get("whoIsCall"));
-        telephoneNumber.getAttribute("value").equals(pacient.get("telephone"));
-        famCall.getAttribute("value").equals(pacient.get("famCall"));
-        nameCall.getAttribute("value").equals(pacient.get("nameCall"));
-        otCall.getAttribute("value").equals(pacient.get("otCall"));
-        System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
+    public CreateCallPage verifyCallProfile1(Pacient pacient) {
+        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
+        Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
+        Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
+        Assert.assertEquals(fam.getAttribute("value"), pacient.getFamily(), "Фамилия некорректная");
+        Assert.assertEquals(name.getAttribute("value"), pacient.getName(), "Имя некорректное");
+        Assert.assertEquals(otchestvo.getAttribute("value"), pacient.getOt(), "Отчество некорректное");
+        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
+//        Assert.assertEquals(age.getAttribute("value"), pacient.getAge(), "Возраст некорректный");
+//        Assert.assertEquals(vKat.getAttribute("value"), pacient.getVkat(), "Возрастная категория некорректная");
+        assertThat("Адрес некорректный", pacient.getAddress(), containsString(adress.getAttribute("value")));
+        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
+        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
+        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
+        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
+        Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
+        Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
+        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
+
+//        tipVisivaushego.getAttribute("value").equals(pacient.get("whoIsCall"));
+//        telephoneNumber.getAttribute("value").equals(pacient.get("telephone"));
+//        famCall.getAttribute("value").equals(pacient.get("famCall"));
+//        nameCall.getAttribute("value").equals(pacient.get("nameCall"));
+//        otCall.getAttribute("value").equals(pacient.get("otCall"));
+        System.out.println("Проверка данных на странице редактирования выполнена!");
         return this;
     }
 

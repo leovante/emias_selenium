@@ -55,14 +55,12 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPage searchFilterDoctor(Pacient pacient) throws IOException, InterruptedException {
+    public DashboardPage searchFilterDoctor(Doctor doctor) throws IOException, InterruptedException {
         docFilter.click();
-        docFilter.setValue((String) pacient.getFamily());
-        $(By.xpath("//ul/li/div[contains(text(),'" + pacient.getFamily() + "')]")).shouldBe(Condition.visible);
+        docFilter.setValue(doctor.getFamily());
+        $(By.xpath("//ul/li/div[contains(text(),'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
-        $(By.xpath("//ul/li[contains(@data-value,'" + pacient.getFamily() + "')]")).click();
-//        new PressEnter();
-//        docFilter.pressEnter();
+        $(By.xpath("//ul/li[contains(@data-value,'" + doctor.getFamily() + "')]")).click();
         return this;
     }
 
@@ -133,6 +131,7 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws IOException {
         SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
+
         SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
                 .$(By.xpath("../."))
@@ -144,32 +143,19 @@ public class DashboardPage extends AbstractPage {
         return this;
     }
 
-//    @Step("проверяю на дашборде запись у врача в группе активные")
-//    public void verifyActiveDocGroup(Pacient pacient) throws IOException {
-////        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-////        Map proData = new ObjectMapper().readValue(reader, Map.class);
-////        Thread.sleep(4000);
-//        SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + pacient.getFamily() + "')]"));
-//        docFamBlock.click();
-//        SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
-//        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
-//                .$(By.xpath("../."))
-//                .$(By.xpath(".//*[@id='order']")).click();
-//        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
-//        $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-//        $(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + pacient.getPhone() + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Краткая карта вызова проверена!");
-//    }
-
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(Pacient pacient) throws InterruptedException, IOException {
-        Thread.sleep(4000);
-        $(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]"));
-        $(By.xpath("//span[contains(text(),'" + pacient.getFamily() + "')]")).click();
-        doneCallProgressFrame.click();
+    public void verifyDoneDocGroup(Pacient pacient, Doctor doctor) throws InterruptedException {
+        SelenideElement doneFrame = $(By.xpath("//*[contains(text(),'Обслуженные')]")).$(By.xpath("../../."));
+        SelenideElement docFamBlock = doneFrame.$(By.xpath(".//span[contains(text(),'" + doctor.getFamily() + "')]"));
+        docFamBlock.click();
+
+        SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
+        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
+                .$(By.xpath("../."))
+                .$(By.xpath(".//*[@id='order']")).click();
+        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacient.getPhone() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
         System.out.println("Краткая карта вызова проверена!");
     }
 

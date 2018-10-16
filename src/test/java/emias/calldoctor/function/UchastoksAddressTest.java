@@ -20,20 +20,17 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class UchastoksAddressTest extends AbstractTestGrid {
 
-    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
+    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile15");
         enterSite.enterCalldoctor();
-        page.createCallPage().createCall(pacient);
-//        $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
+        page.createCallPage()
+                .createCall(pacient)
+                .selectUchastokFromNeUdalosOpredelit();
+        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#4 Терапевтический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")

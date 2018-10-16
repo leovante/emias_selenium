@@ -52,7 +52,7 @@ public class FullCardPage extends AbstractPage {
         elements.add("АВТОР");
         elements.add("ЧТО ИЗМЕНИЛОСЬ");
         elements.add("ИЗМЕНЕНИЕ");
-        elements.add("Карта создана");
+//        elements.add("Карта создана");
         for (String element : elements) {
             $(By.xpath("//*[contains(.,'" + element + "')]")).shouldBe(Condition.visible);
         }

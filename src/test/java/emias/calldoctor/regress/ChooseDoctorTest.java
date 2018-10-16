@@ -42,11 +42,11 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterDoctor(pacient)
+                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacient, doctor);
     }
 
-    @Test(groups = "test", description = "назначить врача вызову из Интернета на сегодня")
+    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {
