@@ -3,53 +3,54 @@ package emias.calldoctor.regress;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import org.json.JSONException;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 public class CancelCallTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
-    public void testCancelCallFrom_Registr() throws InterruptedException, IOException {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
-        page.fullCardPage().cancelCallOnFullCardPage();
+    public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile1");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall(pacient);
+        page.fullCardPage().cancelOnFullCardBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen)
+                .searchFilterFio_Fam(pacient)
                 .verifyRecordIsCancelFromDashboard();
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
-    public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+    public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile1");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall(pacient);
         page.fullCardPage()
                 .editCallBtn()
-                .cancelRecordOnChangePage();
+                .cancelOnChangePageBtn();
         page.dashboardPage()
-                .searchFilterFio(nameGen)
+                .searchFilterFio_Fam(pacient)
                 .verifyRecordIsCancelFromDashboard();
     }
 
-    @Test(groups = "test", description = "отмена вызова на дашборде")
+    @Test(groups = "test", description = "отмена вызова на странице подробной карты")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
-    public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+    public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile1");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().closeCardBtn();
-        page.dashboardPage().deleteNewCallProgressFrame("Profile1");
         page.dashboardPage()
-                .searchFilterFio(nameGen)
+                .searchFilterFio_Fam(pacient)
+                .deleteNewCallProgressFrame(pacient)
                 .verifyRecordIsCancelFromDashboard();
     }
-    // TODO: 13.08.2018 отмена вызова в мис
 }

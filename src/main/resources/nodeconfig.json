@@ -25,6 +25,6 @@
   "downPollingLimit": 2,
   "debug": false,
   "register": true,
-  "timeout": 10,
+  "timeout": 20,
   "hub": "http://localhost:4444"
 }

@@ -3,43 +3,43 @@ package pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEscape;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
-import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.testng.Assert;
 import pages.AbstractPage;
-import pages.utilities.Tokenizer;
+import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.sql.SQL;
+import pages.utilities.api_model.CallDoctorEntity;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 
 
 public class CreateCallPage extends AbstractPage {
+    CallDoctorEntity callDoctorEntity;
+    HttpResponse httpResponse;
+    private Pacient pacient;
 
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
-    SelenideElement placeholder_adress = $(By.xpath("//input[@placeholder='Адрес']"));
+    SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
     SelenideElement telephoneNumber = $(By.id("phone"));
-    SelenideElement chkBoxTelephone = $(By.xpath("//label[@class='mat-checkbox-layout']/div"));
-    SelenideElement hz = $(By.xpath("//button[2]/span/mat-icon"));
     SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
-    SelenideElement hz2 = $(By.xpath("//span[contains(.,'Взрослый')]"));
     SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
     SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
     SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
@@ -47,425 +47,88 @@ public class CreateCallPage extends AbstractPage {
 
     SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
     SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
-    SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Добавить жалобу']"));
     SelenideElement seriyaPol = $(By.xpath("//input[@placeholder='Серия']"));
     SelenideElement nomerPol = $(By.xpath("//input[@placeholder='Номер полиса']"));
     SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
     SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
     SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
+    SelenideElement birthDateTemp = $(By.xpath("//input[@placeholder='Дата рождения']"));
 
     SelenideElement tipVisivaushego = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
-    SelenideElement predstav = $(By.xpath("//span[contains(.,'Представитель')]"));
-    SelenideElement saveBtns = $(By.xpath("//span[contains(text(),'Сохранить')]"));
-    SelenideElement callFamily = $(By.id("callFamily"));
-    SelenideElement callName = $(By.id("callName"));
-    SelenideElement callPatronymic = $(By.id("callPatronymic"));
-    SelenideElement birthDateTemp = $(By.id("birthDateTemp"));
-    SelenideElement source0 = $(By.id("source0"));
+    //    SelenideElement birthDateTemp = $(By.id("birthDateTemp"));
     SelenideElement phone = $(By.id("phone"));
     SelenideElement age = $(By.id("age"));
     SelenideElement famCall = $(By.id("callFamily"));
     SelenideElement nameCall = $(By.id("callName"));
     SelenideElement otCall = $(By.id("callPatronymic"));
-    SelenideElement naidena_mkab = $(By.xpath("//div[contains(.,'Найдена МКАБ пациента Петров')]"));
-    SelenideElement redactirovanieVizova = $(By.xpath("//div[contains(text(),'Редактирование вызова')]"));
     SelenideElement sourceSmp = $(By.id("source0"));
     SelenideElement sourceReg = $(By.id("source1"));
 
-
-    public CreateCallPage() {
+    public CreateCallPage createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
+        this.pacient = pacient;
+        addNewCall()
+                .sourceCall()
+                .address()
+                .birthDay()
+                .gender()
+                .complaint()
+                .polis()
+                .FIO()
+                .caller()
+                .telephone()
+                .saveBtn();
+        return this;
     }
 
-    public void createNewCall(String profile, String nameGen, String searchPolis) throws IOException, InterruptedException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        if (searchPolis.equals("n")) {
-            addNewCall()
-                    .sourceCall(proData)
-                    .adress(proData)
-                    .vozrastKat(proData)
-                    .birthDay(proData)
-                    .adressAddition(proData)
-                    .sex(proData)
-                    .complaint(proData)
-                    .polis(proData)
-                    .FIO(nameGen, proData)
-                    .caller(nameGen, proData)
-                    .telephone(proData)
-                    .saveBtn()
-                    .adressAlarma(proData);
-        } else if (searchPolis.equals("y")) {
-            addNewCall()
-                    .sourceCall(proData)
-                    .searchField(proData)
-                    .adressAddition(proData)
-                    .complaint(proData)
-                    .caller(nameGen, proData)
-                    .telephone(proData)
-                    .saveBtn()
-                    .adressAlarma(proData);
-        }
-        String old = driver.getCurrentUrl();
-
-        int i = 11;
-        do {
-            Thread.sleep(1000);
-            i--;
-            System.out.println("Жду ссылку на новый вызов. i = " + i);
-        }
-        while (old.equals(driver.getCurrentUrl()) && i >= 1);
-        if (!old.equals(driver.getCurrentUrl()))
-            System.out.println("Вызов создан! " + driver.getCurrentUrl());
-        else System.out.println("Вызов НЕ создан!");
+    public CreateCallPage createCall_Mkab(Pacient pacient) throws IOException, InterruptedException, ParseException {
+        this.pacient = pacient;
+        addNewCall()
+                .sourceCall()
+                .searchField()
+                .addressPlus()
+                .complaint()
+                .caller()
+                .telephone()
+                .saveBtn();
+        return this;
     }
 
-    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
-    public void createCallProfile3(String nameGen) {
+    @Step("Создаю вызов через api")
+    public void createCall_Api(Pacient pacient) {
+        SQL.finalizeCall_NPol(pacient.getNumberpol());
         HttpClient httpClient = HttpClients.createDefault();
-        JSONObject json = new JSONObject();
-        json.put("name", nameGen);
-        json.put("family", "Тестовый");
-        json.put("ot", "СМП");
-        json.put("birthdate", "2002-01-10");
-        json.put("seriespol", "");
-        json.put("numberpol", "5098799789000154");//реальный мкаб
-        json.put("gender", "2");
-        json.put("address", "это неформализованный адрес");
-        json.put("complaint", "тестовый вызов");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+79606223551");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "12");
-        json.put("floor", "5");
-
-        try {
-            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
+        if (pacient.getSource() == 2) {
+            try {
+                callDoctorEntity = new CallDoctorEntity(pacient);
+                httpResponse = httpClient.execute(callDoctorEntity.createRequest());
+                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("Error, " + "Cannot Estabilish Connection");
             }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
+        }
+        if (pacient.getSource() == 3) {
+            try {
+                callDoctorEntity = new CallDoctorEntity(pacient);
+                httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
+                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("Error, " + "Cannot Estabilish Connection");
+            }
         }
         System.out.println("Карта вызова создана!");
     }
-
-    @Step("создаю вызов от СМП по api проверка что нельзя назначит неформализованный адрес на врача. Есть два педиатрических участка с таким адресом")
-    public void createCallProfile19(String nameGen) {
-        HttpClient httpClient = HttpClients.createDefault();
-        JSONObject json = new JSONObject();
-        json.put("name", nameGen);
-        json.put("family", "Тестовый");
-        json.put("ot", "СМП");
-        json.put("birthdate", "2017-01-10");
-        json.put("seriespol", "");
-        json.put("numberpol", "5098799789000154");//реальный мкаб
-        json.put("gender", "2");
-        json.put("address", "Московская обл., Щелковский р-н., г. Щелково, ул. Заводская, д.7");
-        json.put("complaint", "тестовый вызов");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+79606223551");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "12");
-        json.put("floor", "5");
-
-        try {
-            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        }
-        System.out.println("Карта вызова создана!");
-    }
-
-    @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
-    public void createCallProfile6(String nameGen) {
-        HttpClient httpClient = HttpClients.createDefault();
-
-        JSONObject kladraddress = new JSONObject();
-        kladraddress.put("addressString", "Белгородская обл., г. Белгород, ул. Есенина, д.11а, стр.2, корп.3, кв.4");
-        kladraddress.put("addressStringMin", "Белгородская обл., г. Белгород, ул. Есенина");
-        kladraddress.put("appartment", "4");
-        kladraddress.put("building", "3");
-        kladraddress.put("construction", "2");
-        kladraddress.put("number", "11а");
-        kladraddress.put("code", "31000001000007700");
-
-        JSONObject json = new JSONObject();
-        json.put("name", nameGen);
-        json.put("family", "Тестов");
-        json.put("ot", "Тестович");
-        json.put("birthdate", "2000-01-01");
-        json.put("seriespol", "404");
-        json.put("numberpol", "501");
-        json.put("gender", "1");
-        json.put("complaint", "тестовый вызов по апи от СМП");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+79606223551");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "12");
-        json.put("floor", "5");
-        json.put("kladraddress", kladraddress);
-
-        try {
-            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        } finally {
-//            driver.close();
-        }
-    }
-
-    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
-    public void createCallProfileDetkina() {
-        Tokenizer tokenizer = new Tokenizer();
-        String token = tokenizer.getToken("FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
-        HttpClient httpClient = HttpClients.createDefault();
-        JSONObject json = new JSONObject();
-        json.put("name", "Лариса");
-        json.put("family", "Деткина");
-        json.put("ot", "Львовна");
-        json.put("birthdate", "2018-01-01");
-        json.put("seriespol", "1111");
-        json.put("numberpol", "11111111");//реальный мкаб
-        json.put("gender", "1");
-        json.put("address", "Московская обл., Щелковский р-н, г Щелково, ул Заводская, дом 7, кв. 3");
-        json.put("complaint", "автотест проверка блока участкового врача при формализованном адресе");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+71111111111");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "");
-        json.put("floor", "");
-        try {
-            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "Bearer " + token);
-            request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        } finally {
-//            driver.close();
-        }
-    }
-
-    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
-    public void createCallProfileDetkinaVGostah() {
-        Tokenizer tokenizer = new Tokenizer();
-        String token = tokenizer.getToken("FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
-        HttpClient httpClient = HttpClients.createDefault();
-        JSONObject json = new JSONObject();
-        json.put("name", "Лариса");
-        json.put("family", "Деткина");
-        json.put("ot", "Львовна");
-        json.put("birthdate", "2018-01-01");
-        json.put("seriespol", "1111");
-        json.put("numberpol", "11111111");//реальный мкаб
-        json.put("gender", "1");
-        json.put("address", "Белгородская обл., г. Белгород, ул. Есенина, д.45, кв.3");
-        json.put("complaint", "автотест проверка что участок - #6 Педиатрический");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+71111111111");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "");
-        json.put("floor", "");
-        try {
-            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "Bearer " + token);
-            request.addHeader("ClientApplication", "FB6E439F-C34F-4EE0-B2BA-38C1BE5116A3");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        } finally {
-//            driver.close();
-        }
-    }
-
-    @Step("создаю вызов от КЦ по api Ребёнок без КЛАДР по МКАБ")
-    public void createCallProfile14() {
-        Tokenizer tokenizer = new Tokenizer();
-        String token = tokenizer.getToken("CB174067-702F-42D0-B0EB-1D84A514515D");
-        HttpClient httpClient = HttpClients.createDefault();
-        JSONObject json = new JSONObject();
-        json.put("name", "Лариса");
-        json.put("family", "Деткина");
-        json.put("ot", "Львовна");
-        json.put("birthdate", "2018-01-01");
-        json.put("seriespol", "1111");
-        json.put("numberpol", "11111111");//реальный мкаб
-        json.put("gender", "2");
-        json.put("address", "Московская обл., Щелковский р-н, г Щелково, ул Заводская, дом 7, кв. 3");
-        json.put("complaint", "автотест проверка блока участкового врача при формализованном адресе");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+71111111111");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "");
-        json.put("floor", "");
-        try {
-            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "Bearer " + token);
-            request.addHeader("ClientApplication", "CB174067-702F-42D0-B0EB-1D84A514515D");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        }
-        System.out.println("Карта вызова создана!");
-    }
-
-    @Step("создаю вызов от КЦ по api Ребёнок без КЛАДР по МКАБ")
-    public void createCallProfile20() {
-        Tokenizer tokenizer = new Tokenizer();
-        String token = tokenizer.getToken("CB174067-702F-42D0-B0EB-1D84A514515D");
-        HttpClient httpClient = HttpClients.createDefault();
-        JSONObject json = new JSONObject();
-        json.put("name", "Елена");
-        json.put("family", "Владимирова");
-        json.put("ot", "Викторовна");
-        json.put("birthdate", "2001-07-28");
-        json.put("seriespol", "");
-        json.put("numberpol", "777");//реальный мкаб
-        json.put("gender", "2");
-        json.put("address", "Белгород г.,Есенина ул.,45");
-        json.put("complaint", "автотест проверка создания вызов через метод с авторизацией");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+71111111111");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "");
-        json.put("floor", "");
-        try {
-            HttpPost request = new HttpPost("http://rpgu.emias.mosreg.ru/api/v2/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "Bearer " + token);
-            request.addHeader("ClientApplication", "CB174067-702F-42D0-B0EB-1D84A514515D");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        }
-        System.out.println("Карта вызова создана!");
-    }
-
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public void editCallProfile2(String profile, String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
-        sourceCall(proData)
-                .searchField(proData)
-                .adressAddition(proData)
-                .telephone(proData)
-                .complaint(proData)
-                .caller(nameGen, proData)
+    public void editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
+        this.pacient = pacient;
+        sourceCall()
+                .searchField()
+                .addressPlus()
+                .complaint()
+                .caller()
+                .telephone()
                 .saveBtn();
         System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
     }
@@ -477,11 +140,13 @@ public class CreateCallPage extends AbstractPage {
         List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
 
         for (SelenideElement element : selenideElements) {
-            element.click();
+            if (element.isDisplayed())
+                element.click();
         }
 
         for (SelenideElement element : selenideElements2) {
-            element.click();
+            if (element.isDisplayed())
+                element.click();
         }
 
         $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
@@ -509,11 +174,12 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage sourceCall(Map<String, String> proData) {
+    private CreateCallPage sourceCall() {
         try {
-            if (proData.get("source").equals("Регистратура")) {
+            if (pacient.getSource() == 1) {
                 sourceReg.click();
-            } else if (proData.get("source").equals("СМП")) {
+            }
+            if (pacient.getSource() == 2) {
                 sourceSmp.click();
             }
         } catch (Exception e) {
@@ -522,43 +188,53 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage searchField(Map<String, String> proData) {
-        $(By.id("findPatientInput")).setValue(proData.get("nomerPol"));
-        $(By.xpath("//mat-option/span[contains(text(),'" + proData.get("fam") + "')]")).click();
+    private CreateCallPage searchField() {
+        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
+        $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
         return this;
     }
 
-    private CreateCallPage adress(Map<String, String> proData) {
+    private CreateCallPage address() throws InterruptedException {
         cancelAdress.shouldBe(Condition.visible);
-        if (!proData.get("adress_1").isEmpty()) {
+        if (pacient.getAddress1() != null && pacient.getAddress2() != "") {
             cancelAdress.click();
-            placeholder_adress.setValue(proData.get("adress_1"));
+            adress.setValue(pacient.getAddress1());
+            Thread.sleep(700);
             list_first_container.click();
         }
-        if (!proData.get("adress_2").isEmpty()) {
-            placeholder_adress.setValue(proData.get("adress_2"));
+        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
+            adress.setValue(pacient.getAddress2());
+            Thread.sleep(700);
             list_first_container.click();
         }
-        if (!proData.get("adress_3").isEmpty()) {
-            placeholder_adress.setValue(proData.get("adress_3"));
+        if (pacient.getAddress3() != null && pacient.getAddress2() != "") {
+            adress.setValue(pacient.getAddress3());
+            Thread.sleep(700);
             list_first_container.click();
         }
-        $(By.xpath("//input[@placeholder='Дом']")).setValue(proData.get("dom"));
+        if (pacient.getNumber() != null && pacient.getNumber() != "") {
+            $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
+        }
+        addressPlus();
         return this;
     }
 
-    private CreateCallPage adressAlarma(Map<String, String> proData) {
-        if (proData.get("adress_3").equals(""))
-            $(By.xpath("//button[@aria-label='Close dialog']")).click();
+    private CreateCallPage addressPlus() {
+        $(By.xpath("//input[@placeholder='Корпус']")).setValue(pacient.getBuilding());
+        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
+        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
+        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
+        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
+        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
         return this;
     }
 
-    private CreateCallPage telephone(Map<String, String> proData) {
+    private CreateCallPage telephone() {
         try {
-            if (!proData.get("telephone").equals("")) {
-                $(By.id("phone")).setValue(proData.get("telephone"));
+            if (!pacient.getPhone().equals(null)) {
+                $(By.id("phone")).setValue(pacient.getPhone());
             }
-            if (proData.get("telephone").equals("")) {
+            if (pacient.getPhone().equals("")) {
                 $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
             }
         } catch (Exception e) {
@@ -567,78 +243,117 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage vozrastKat(Map proData) {
+    private CreateCallPage gender() {
+        if (pacient.getGender() == 1) {
+            $(By.id("sex1")).click();
+        }
+        if (pacient.getGender() == 2) {
+            $(By.id("sex2")).click();
+        }
+        return this;
+    }
+
+    private CreateCallPage complaint() {
+        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
+        complaint.sendKeys(Keys.SPACE);
+        return this;
+    }
+
+    private CreateCallPage polis() {
+        if (pacient.getSeriespol() != null && pacient.getSeriespol() != "") {
+            $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
+        }
+        if (pacient.getNumberpol() != null && pacient.getNumberpol() != "") {
+            $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacient.getNumberpol()));
+        }
+        return this;
+    }
+
+    private CreateCallPage FIO() {
+        if (pacient.getFamily() != null) {
+            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
+        }
+        if (pacient.getName() != null) {
+            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacient.getName());
+        }
+        if (pacient.getOt() != null) {
+            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacient.getOt());
+        }
+        return this;
+    }
+
+    private CreateCallPage birthDay() {
+        if (pacient.getBirthdate() != null)
+            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
+        return this;
+    }
+
+    public CreateCallPage vozrastKat() {
         $(By.xpath("//button[2]/span/mat-icon")).click();
         $(By.xpath("//input[@placeholder='Возр. категория']")).click();
-        $(By.xpath("//span[contains(.,'" + proData.get("vKat") + "')]")).click();
-        return this;
-    }
 
-    private CreateCallPage adressAddition(Map<String, String> proData) {
-        $(By.xpath("//input[@placeholder='Корпус']")).setValue(proData.get("korpus"));
-        $(By.xpath("//input[@placeholder='Строение']")).setValue(proData.get("stroenie"));
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue(proData.get("kvartira"));
-        $(By.xpath("//input[@placeholder='П-д']")).setValue(proData.get("pd"));
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(proData.get("dfon"));
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue(proData.get("etazh"));
-        return this;
-    }
-
-    private CreateCallPage sex(Map<String, String> proData) {
-        if (!proData.get("sex").equals(""))
-            $(By.id(proData.get("sex"))).click();
-        return this;
-    }
-
-    private CreateCallPage complaint(Map proData) {
-        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + proData.get("zhaloba") + "';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
-        return this;
-    }
-
-    private CreateCallPage polis(Map<String, String> proData) {
-        $(By.xpath("//input[@placeholder='Серия']")).setValue(proData.get("seriyaPol"));
-        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(proData.get("nomerPol"));
-        return this;
-    }
-
-    private CreateCallPage FIO(String nameGen, Map<String, String> proData) {
-        $(By.xpath("//input[@placeholder='Фамилия']")).setValue(proData.get("fam"));
-        $(By.xpath("//input[@placeholder='Имя']")).setValue(nameGen);
-        $(By.xpath("//input[@placeholder='Отчество']")).setValue(proData.get("otchestvo"));
-        return this;
-    }
-
-    private CreateCallPage birthDay(Map<String, String> proData) {
-        if (!proData.get("birthDay").equals(""))
-            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(proData.get("birthDay"));
-        return this;
-    }
-
-    private CreateCallPage caller(String nameGen, Map<String, String> proData) {
-        if (proData.get("whoIsCall").equals("Пациент")) {
-            $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
-            $(By.xpath("//span[contains(.,'" + proData.get("whoIsCall") + "')]")).click();
+        Date newData = new Date();
+        Date bd = pacient.getBirthdate();
+        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        if (years > 18) {
+            $(By.xpath("//span[contains(.,'Взрослые')]")).click();
         }
-        if (proData.get("whoIsCall").equals("Представитель")) {
-//            $(By.id("sourceSmp")).setValue(proData.get("sourceCall"));
-            $(By.id("callFamily")).setValue(proData.get("callFamily"));
-            $(By.id("callName")).setValue(nameGen);
-            $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
-        }
-        if (proData.get("whoIsCall").equals("СМП")) {
-            $(By.id("sourceSmp")).setValue(proData.get("sourceSmp"));
-            $(By.id("callFamily")).setValue(proData.get("callFamily"));
-            $(By.id("callName")).setValue(nameGen);
-            $(By.id("callPatronymic")).setValue(proData.get("callPatronymic"));
+        if (years < 18) {
+            $(By.xpath("//span[contains(.,'Дети')]")).click();
         }
         return this;
     }
 
-    private CreateCallPage saveBtn() {
-        $(By.id("save")).click();
+    private CreateCallPage caller() throws IOException, ParseException {
+        if (pacient.getSource() == 2) {
+            $(By.id("sourceSmp")).setValue("Супер станция");
+            $(By.id("callFamily")).setValue("ФамилияВызывающего");
+            $(By.id("callName")).setValue("ИмяВызывающего");
+            $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
+        } else {
+            if (years() > 18) {
+                $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+                $(By.xpath("//span[contains(.,'Пациент')]")).click();
+            } else {
+                $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+                $(By.xpath("//span[contains(.,'Представитель')]")).click();
+            }
+        }
+        return this;
+    }
+
+    public int years() {
+        Date newData = new Date();
+        Date bd = pacient.getBirthdate();
+        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        return years;
+    }
+
+    public CreateCallPage saveBtn() throws InterruptedException {
+        SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
+//        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
+        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
+        SelenideElement save = $(By.id("save"));
+        String old = driver.getCurrentUrl();
+
+        for (int i = 0; i < 10; i++) {
+            if (!fullCardPage.isDisplayed()) {
+                if (allert.isDisplayed())
+                    allert.click();
+//                if (se.isDisplayed())
+//                    se.click();
+                if (save.isDisplayed())
+                    save.click();
+            } else {
+                break;
+            }
+            Thread.sleep(1000);
+        }
+        if (!old.equals(driver.getCurrentUrl()))
+            System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов НЕ создан!");
         return this;
     }
 
@@ -648,33 +363,31 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPage verifyCallProfile1(String profile, String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//убрал ассерты
-        phone.getAttribute("value").equals(proData.get("telephone"));
-        nomerPol.getAttribute("value").equals(proData.get("nomerPol"));
-        seriyaPol.getAttribute("value").equals(proData.get("seriyaPol"));
-        fam.getAttribute("value").equals(proData.get("fam"));
-        name.getAttribute("value").equals(nameGen);
-        otchestvo.getAttribute("value").equals(proData.get("otchestvo"));
-        birthDateTemp.getAttribute("value").equals(proData.get("birthDay"));
-        age.getAttribute("value").equals(proData.get("age"));
-        vKat.getAttribute("value").equals(proData.get("vKat"));
-        placeholder_adress.getAttribute("value").equals(proData.get("adressDashboard"));
-        dom.getAttribute("value").equals(proData.get("dom"));
-        korpus.getAttribute("value").equals(proData.get("korpus"));
-        stroenie.getAttribute("value").equals(proData.get("stroenie"));
-        kvartira.getAttribute("value").equals(proData.get("kvartira"));
-        pd.getAttribute("value").equals(proData.get("pd"));
-        dfon.getAttribute("value").equals(proData.get("dfon"));
-        etazh.getAttribute("value").equals(proData.get("etazh"));
-        tipVisivaushego.getAttribute("value").equals(proData.get("whoIsCall"));
-        telephoneNumber.getAttribute("value").equals(proData.get("telephone"));
-        famCall.getAttribute("value").equals(proData.get("famCall"));
-        nameCall.getAttribute("value").equals(proData.get("nameCall"));
-        otCall.getAttribute("value").equals(proData.get("otCall"));
-        System.out.println("Корректность данных на странице редактирования выполнена! " + driver.getCurrentUrl());
+    public CreateCallPage verifyCallProfile1(Pacient pacient) {
+        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
+        Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
+        Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
+        Assert.assertEquals(fam.getAttribute("value"), pacient.getFamily(), "Фамилия некорректная");
+        Assert.assertEquals(name.getAttribute("value"), pacient.getName(), "Имя некорректное");
+        Assert.assertEquals(otchestvo.getAttribute("value"), pacient.getOt(), "Отчество некорректное");
+        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
+//        Assert.assertEquals(age.getAttribute("value"), pacient.getAge(), "Возраст некорректный");
+//        Assert.assertEquals(vKat.getAttribute("value"), pacient.getVkat(), "Возрастная категория некорректная");
+        assertThat("Адрес некорректный", pacient.getAddress(), containsString(adress.getAttribute("value")));
+        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
+        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
+        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
+        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
+        Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
+        Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
+        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
+
+//        tipVisivaushego.getAttribute("value").equals(pacient.get("whoIsCall"));
+//        telephoneNumber.getAttribute("value").equals(pacient.get("telephone"));
+//        famCall.getAttribute("value").equals(pacient.get("famCall"));
+//        nameCall.getAttribute("value").equals(pacient.get("nameCall"));
+//        otCall.getAttribute("value").equals(pacient.get("otCall"));
+        System.out.println("Проверка данных на странице редактирования выполнена!");
         return this;
     }
 
@@ -683,5 +396,10 @@ public class CreateCallPage extends AbstractPage {
         SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]")).shouldBe(Condition.visible);
         se.$(By.xpath("../.")).$(By.xpath(".//mat-form-field")).click();
         return this;
+    }
+
+    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+        long diffInMillies = date2.getTime() - date1.getTime();
+        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 }

@@ -4,7 +4,7 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
-import pages.sql.DemonstrationDB;
+import pages.sql.SQL;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -25,19 +25,19 @@ public class RDisp00Test extends AbstractTestGrid {
         cardID.add("1837");
         cardID.add("2183");
         for (String cards : cardID) {
-            DemonstrationDB.setDefaultServices(cards);
+            SQL.setDefaultServices(cards);
         }
     }
 
     @Step("Подготовка мероприятий")
     public void setTestServices() throws FileNotFoundException {
-        DemonstrationDB.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
-        DemonstrationDB.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
+        SQL.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
+        SQL.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
     }
 
     @Step("Создание расписания для врачей")
     public void createShedule() throws FileNotFoundException {
-        DemonstrationDB.deleteSheduleByPrvdid("1285");
-        DemonstrationDB.createShedule("1285");
+        SQL.deleteSheduleByPrvdid("1285");
+        SQL.createShedule("1285");
     }
 }

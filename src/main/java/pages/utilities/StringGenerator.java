@@ -1,7 +1,7 @@
 package pages.utilities;
 
 import org.apache.commons.text.RandomStringGenerator;
-
+@Deprecated
 public class StringGenerator {
 
     public static String generator() {

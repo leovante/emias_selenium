@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
-import pages.sql.DemonstrationDB;
+import pages.sql.SQL;
 import pages.utilities.DriverManager;
 
 import java.io.FileNotFoundException;
@@ -78,7 +78,7 @@ public abstract class AbstractTest {
 
     @AfterGroups(groups = "disp")
     public void AfterGroupsDisp() throws FileNotFoundException {
-        DemonstrationDB.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
-        DemonstrationDB.runSqlScript("insert default hlt_disp_ServiceDocPrvd.txt");
+        SQL.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
+        SQL.runSqlScript("insert default hlt_disp_ServiceDocPrvd.txt");
     }
 }

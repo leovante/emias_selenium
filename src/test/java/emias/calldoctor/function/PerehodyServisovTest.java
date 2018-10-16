@@ -8,11 +8,14 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
+import pages.calldoctor.doctors_interfaces.Doctor;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -23,15 +26,15 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkab_TapIconGrey() throws IOException, InterruptedException {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+    public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile1");
+        Doctor doctor = new Doctor("SerovaStendTestovoe");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile1");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup("Profile1", nameGen)
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
@@ -40,24 +43,25 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException {
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile2", nameGen, "y");
+    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile2");
+        Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall_Mkab(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile2");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage()
                 .completeServiceBtn()
-                .verifyDoneDocGroup("Profile2")
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
+    @Test(groups = "test", description = "проверка учетки врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
-        beforecdCD.loginMis_Calldoctor();
+        enterSite.enterCalldoctor();
         switchTo().window(0);
         page.homePage().exitBtn();
         page.loginPage().login("Admin", "RChS2014");

@@ -1,6 +1,5 @@
 package pages.sql;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import pages.AbstractPage;
 
@@ -9,14 +8,14 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.List;
-import java.util.Map;
 
-public class DemonstrationDB extends AbstractPage {
+public class SQL extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";
     private static List<File> lst;
+
 
     @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
@@ -154,10 +153,7 @@ public class DemonstrationDB extends AbstractPage {
     }
 
     @Step("завершаю вызовы пациента по полису")
-    public static void finalizePacientNumberPol(String profile) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-        Map proData = new ObjectMapper().readValue(reader, Map.class);
-
+    public static void finalizeCall_NPol(String number) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -168,11 +164,11 @@ public class DemonstrationDB extends AbstractPage {
                 String sql =
                         "update hlt_CallDoctor " +
                                 "set rf_CallDoctorStatusID = 3 " +
-                                "where NumberPol = '" + proData.get("nomerPol") + "'";
+                                "where numberPol = '" + number + "'";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Pacient - " + proData.get("nomerPol") + " finalize is done.");
+                    System.out.println("Pacient - " + number + " finalize is done.");
                 }
             }
         } catch (Exception e) {
@@ -307,29 +303,6 @@ public class DemonstrationDB extends AbstractPage {
                     statement.executeUpdate(sql);
                     System.out.println("Table DTT is clean.");
                     statement.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println();
-            e.printStackTrace();
-        }
-    }
-
-    @Step("Проверяю соединение с БД")
-    public static void verifyConnection() {
-        String url = connectionUrl +
-                ";databaseName=" + databaseName +
-                ";user=" + userName +
-                ";password=" + password;
-        try {
-            System.out.print("Connecting to SQL Server ... ");
-            try (Connection connection = DriverManager.getConnection(url)) {
-                String sql = "select * from hlt_calldoctorstatus";
-                try (Statement statement = connection.createStatement()) {
-                    int result = statement.executeUpdate(sql);
-                    if (result == 0) {
-                        throw new Exception("Ошибка. Не могу подключиться к БД демо!");
-                    }
                 }
             }
         } catch (Exception e) {

@@ -54,7 +54,7 @@
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://12.8.1.58;database=hlt_Kashira_CRB_160101</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:14331;database=hlt_Kashira_CRB_160101</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
       </driver-properties>

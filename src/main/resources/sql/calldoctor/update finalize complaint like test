@@ -1,0 +1,4 @@
+update hlt_calldoctor
+set rf_calldoctorstatusid = 3
+where Complaint like '%тест%' and rf_calldoctorstatusid !=3
+or numberpol = '12121212'

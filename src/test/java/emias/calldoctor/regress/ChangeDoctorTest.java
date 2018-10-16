@@ -4,7 +4,8 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
-import pages.utilities.StringGenerator;
+import pages.calldoctor.doctors_interfaces.Doctor;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 public class ChangeDoctorTest extends AbstractTestGrid {
 
@@ -12,19 +13,22 @@ public class ChangeDoctorTest extends AbstractTestGrid {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() throws Exception {
-        String nameGen = new StringGenerator().generator();
-        beforecdCD.loginMis_Calldoctor();
-        page.createCallPage().createNewCall("Profile1", nameGen, "n");
+        Pacient pacient = new Pacient("Profile1");
+        Doctor doctor = new Doctor("SerovaStendTestovoe");
+        Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
+        enterSite.enterCalldoctor();
+        page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile1");
+        page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage().changeDoctorBtn();
-        page.setDoctorPage().chooseDoctor("Profile2");
+        page.setDoctorPage().chooseDoctor(doctor2);
         page.fullCardPage()
-                .verifyCallActivityGroup(nameGen, "Profile1", "Profile2")
+                .verifyActivCall(pacient)
+                .verifyDoctor(doctor2)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterFio(nameGen)
-                .verifyActiveDocGroup(nameGen, "Profile2", "Profile1");
+//                .searchFilterFio()
+                .verifyActiveDocGroup(pacient, doctor2);
     }
 }
