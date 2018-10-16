@@ -9,26 +9,26 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 
 public class ChangeDoctorTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "передать вызов другому врачу")
+    @Test(groups = "test", description = "передать вызов другому врачу")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() throws Exception {
-//        String nameGen = new StringGenerator().generator();
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
+        Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor(doctor);
         page.fullCardPage().changeDoctorBtn();
-        page.setDoctorPage().chooseDoctor(doctor);
+        page.setDoctorPage().chooseDoctor(doctor2);
         page.fullCardPage()
                 .verifyActivCall(pacient)
-                .verifyDoctor(doctor)
+                .verifyDoctor(doctor2)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
 //                .searchFilterFio()
-                .verifyActiveDocGroup(pacient);
+                .verifyActiveDocGroup(pacient, doctor2);
     }
 }

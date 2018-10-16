@@ -86,15 +86,24 @@ public class FullCardPage extends AbstractPage {
         ShouldBeVisible(doctor.getUchastocs());
     }
 
-    public String parseTelephone(Pacient pacient) {
-        String telephone = pacient.getPhone();
-        telephone = telephone.substring(0, 2) + " (" +
-                telephone.substring(2, 5) + ") " +
-                telephone.substring(5, 8) + "-" +
-                telephone.substring(8, 10) + "-" +
-                telephone.substring(10, telephone.length());
-        return telephone;
-    }
+//    public String parseTelephone(Pacient pacient) {
+//        String telephone = pacient.getPhone();
+//        if (pacient.getSource() == 4) {
+//            telephone = telephone.substring(0, 1) + "7 (" +
+//                    telephone.substring(1, 4) + ") " +
+//                    telephone.substring(4, 7) + "-" +
+//                    telephone.substring(7, 9) + "-" +
+//                    telephone.substring(9, telephone.length() - 1);
+//        }
+//        if (pacient.getSource() != 4) {
+//            telephone = telephone.substring(0, 2) + " (" +
+//                    telephone.substring(2, 5) + ") " +
+//                    telephone.substring(5, 8) + "-" +
+//                    telephone.substring(8, 10) + "-" +
+//                    telephone.substring(10, telephone.length());
+//        }
+//        return telephone;
+//    }
 //    @Step("проверяю новый вызов {profile}")
 //    public FullCardPage verifyCallProfile0(String profile) throws IOException {
 //        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
@@ -407,40 +416,35 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-
-    // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
     @Step("проверяем что кнопка МКАБ не активна")
     public FullCardPage verifyMkabIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
-        List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
-        $(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']")).click();
+        SelenideElement mkabTxt = $(By.xpath("//div[contains(text(),'МКАБ')]"));
+        mkabTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']"));
         return this;
     }
 
-    // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
     @Step("проверяем что кнопка МКАБ активна")
     public FullCardPage verifyMkabIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
-        List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
-        $(By.xpath("//*[@class='mat-icon call-doctor-red-text material-icons']")).click();
+        SelenideElement mkabTxt = $(By.xpath("//div[contains(text(),'МКАБ')]"));
+        mkabTxt.$(By.xpath("../.")).$(By.xpath(".//*[@class='mat-icon call-doctor-red-text material-icons']"));
         return this;
     }
 
-    // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
     @Step("проверяем что кнопка ТАП не активна")
     public FullCardPage verifyTapIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
-        List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
-        $(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']")).click();
+        SelenideElement tapTxt = $(By.xpath("//div[contains(text(),'ТАП')]"));
+        tapTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']"));
         return this;
     }
 
-    // TODO: 13.08.2018 сделать id для каждой кнопки и проверять наличие вложенного red grey
     @Step("проверяем что кнопка ТАП активна")
     public FullCardPage verifyTapIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
-        List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
-        $(By.xpath("//*[@class='mat-icon call-doctor-red-text material-icons']")).click();
+        SelenideElement tapTxt = $(By.xpath("//div[contains(text(),'ТАП')]"));
+        tapTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-red-text material-icons']")).click();
         return this;
     }
 
@@ -449,11 +453,8 @@ public class FullCardPage extends AbstractPage {
         toLpu.click();
     }
 
-    // TODO: 10/9/2018 добавить проверку профиля пациента
     @Step("Проверка текущего подразделения у карты вызова")
     public FullCardPage verifyDepartment(Doctor doctor) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         $(By.xpath("//*[contains(.,'" + doctor.getDepartment() + "')]")).shouldBe(Condition.visible);
         return this;
     }
@@ -465,12 +466,9 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    // TODO: 10/9/2018 доработать
     @Step("проверить врача")
     public FullCardPage verifyDoctor(Doctor doctor) {
-        //        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Адрес успешно распознан.')]")).click();
-        $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
+        $(By.xpath("//*[contains(.,'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 }

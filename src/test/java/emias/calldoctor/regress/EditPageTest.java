@@ -8,7 +8,7 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 
 public class EditPageTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
+    @Test(groups = "test", description = "проверка страницы редактирвоания карты вызова")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPageProfile1() throws Exception {
@@ -20,7 +20,7 @@ public class EditPageTest extends AbstractTestGrid {
                 .verifyCallProfile1("Profile1");
     }
 
-    @Test(groups = "CD", description = "изменить карту вызова из регистратуры")
+    @Test(groups = "test", description = "изменить карту вызова из регистратуры")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCallProfile1() throws Exception {

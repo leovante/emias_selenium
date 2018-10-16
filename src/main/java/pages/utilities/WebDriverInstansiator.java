@@ -17,40 +17,55 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class WebDriverInstansiator {
     public String browser;
     public RemoteWebDriver driver;
+    public ChromeOptions chromeOptions;
+    public DesiredCapabilities dcch;
 
     public WebDriverInstansiator(String browser) {
         this.browser = browser;
     }
 
     public RemoteWebDriver setDriver(Boolean headless) throws MalformedURLException {
-        switch (browser) {
-            case "firefox":
-                FirefoxOptions options = new FirefoxOptions();
-                options.setHeadless(headless);
+        if (browser == null) {
+            this.chromeOptions = new ChromeOptions();
+            chromeOptions.setHeadless(false);
+            chromeOptions.addArguments("window-size=1919,1079");
 
-                DesiredCapabilities dcff = DesiredCapabilities.firefox();
-                dcff.setBrowserName("firefox");
-                dcff.setCapability("marionette", true);
-                dcff.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
-                dcff.setCapability("headless", headless);
+            this.dcch = DesiredCapabilities.chrome();
+            dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcff);
-                driver.manage().window().setSize(new Dimension(1919, 1079));
-                WebDriverRunner.setWebDriver(driver);
-                Configuration.timeout = 20000;
-                break;
-            case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setHeadless(headless);
-                chromeOptions.addArguments("window-size=1919,1079");
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
+            WebDriverRunner.setWebDriver(driver);
+            Configuration.timeout = 20000;
+        } else {
+            switch (browser) {
+                case "firefox":
+                    FirefoxOptions options = new FirefoxOptions();
+                    options.setHeadless(headless);
 
-                DesiredCapabilities dcch = DesiredCapabilities.chrome();
-                dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+                    DesiredCapabilities dcff = DesiredCapabilities.firefox();
+                    dcff.setBrowserName("firefox");
+                    dcff.setCapability("marionette", true);
+                    dcff.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
+                    dcff.setCapability("headless", headless);
 
-                driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
-                WebDriverRunner.setWebDriver(driver);
-                Configuration.timeout = 20000;
-                break;
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcff);
+                    driver.manage().window().setSize(new Dimension(1919, 1079));
+                    WebDriverRunner.setWebDriver(driver);
+                    Configuration.timeout = 20000;
+                    break;
+                case "chrome":
+                    this.chromeOptions = new ChromeOptions();
+                    chromeOptions.setHeadless(headless);
+                    chromeOptions.addArguments("window-size=1919,1079");
+
+                    this.dcch = DesiredCapabilities.chrome();
+                    dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
+                    WebDriverRunner.setWebDriver(driver);
+                    Configuration.timeout = 20000;
+                    break;
+            }
         }
 //        System.out.println("DriverManager - " + getWebDriver());
         java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

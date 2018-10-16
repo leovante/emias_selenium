@@ -9,7 +9,7 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 
 public class CompleteServiceTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "завершить обслуживание вызова")
+    @Test(groups = "test", description = "завершить обслуживание вызова")
     @Epic("Завершить обслуживание")
     @RetryCountIfFailed(3)
     public void testCompleteCallRegistr() throws Exception {

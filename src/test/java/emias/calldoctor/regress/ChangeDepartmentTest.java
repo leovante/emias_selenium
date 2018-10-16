@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
@@ -19,7 +20,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException {
+    public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
@@ -35,7 +36,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException {
+    public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("ProfileTransferDep-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
@@ -56,7 +57,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException {
+    public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");

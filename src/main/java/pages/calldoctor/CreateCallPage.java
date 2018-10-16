@@ -7,21 +7,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
-import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.json.JacksonTester;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.sql.SQL;
-import pages.utilities.Tokenizer;
+import pages.utilities.api_model.CallDoctorEntity;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,14 +31,10 @@ import static com.codeborne.selenide.Selenide.$$;
 
 
 public class CreateCallPage extends AbstractPage {
-
-    @Autowired
-    private JacksonTester<Pacient> json;
-
-    String clientApplication = "CB174067-702F-42D0-B0EB-1D84A514515D";
-    String authorization = "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3";
-    String requestSmp = "http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233";
+    CallDoctorEntity callDoctorEntity;
+    HttpResponse httpResponse;
     private Pacient pacient;
+
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
     SelenideElement placeholder_adress = $(By.xpath("//input[@placeholder='Адрес']"));
@@ -93,6 +84,7 @@ public class CreateCallPage extends AbstractPage {
         addNewCall()
                 .sourceCall()
                 .searchField()
+                .addressPlus()
                 .complaint()
                 .caller()
                 .telephone()
@@ -100,102 +92,37 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("Создаю вызов через api")
-    public void createCall_Api(Pacient pacient) throws IOException {
-        this.pacient = pacient;
+    public void createCall_Api(Pacient pacient) {
         SQL.finalizeCall_NPol(pacient.getNumberpol());
         HttpClient httpClient = HttpClients.createDefault();
-        //вызов создается по авторизованному методу если в json нет имени пациента
-        if (!pacient.getName().equals(null)) {
+        if (pacient.getSource() == 2) {
             try {
-                JSONObject json = new JSONObject();
-                json.put("name", pacient.getName());
-                json.put("family", pacient.getFamily());
-                json.put("ot", pacient.getOt());
-                json.put("birthdate", pacient.getBirthdate("yyyy-MM-dd"));
-                json.put("seriespol", pacient.getSeriespol());
-                json.put("numberpol", pacient.getNumberpol());//реальный мкаб
-                json.put("gender", pacient.getGender());
-                json.put("address", pacient.getAddress());
-                json.put("complaint", pacient.getComplaint());
-                json.put("diagnosis", pacient.getDiagnosis());
-                json.put("type", pacient.getType());
-                json.put("codedomophone", pacient.getCodedomophone());
-                json.put("phone", pacient.getPhone());
-                json.put("source", pacient.getSource());
-                json.put("sourceName", pacient.getSourceName());
-                json.put("sourceCode", pacient.getSourceCode());
-                json.put("entrance", pacient.getEntrance());
-                json.put("floor", pacient.getFloor());
-
-                HttpPost request = new HttpPost(requestSmp);
-                request.addHeader("content-type", "application/json");
-                request.addHeader("Authorization", authorization);
-                request.addHeader("ClientApplication", clientApplication);
-
-                StringEntity params = new StringEntity(json.toString(), "UTF-8");
-                request.setEntity(params);
-                HttpResponse response = httpClient.execute(request);
-
-                Assert.assertEquals(response.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
-
+                callDoctorEntity = new CallDoctorEntity(pacient);
+                httpResponse = httpClient.execute(callDoctorEntity.createRequest());
+                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
             }
-            System.out.println("Карта вызова создана!");
         }
-        if (pacient.getName().equals(null)) {
+        if (pacient.getSource() == 3) {
             try {
-                String token = new Tokenizer().getToken(pacient, clientApplication);
-                JSONObject json = new JSONObject();
-                json.put("name", pacient.getName());
-                json.put("family", pacient.getFamily());
-                json.put("ot", pacient.getOt());
-                json.put("birthdate", pacient.getBirthdate());
-                json.put("seriespol", pacient.getSeriespol());
-                json.put("numberpol", pacient.getNumberpol());//реальный мкаб
-                json.put("gender", pacient.getGender());
-                json.put("address", pacient.getAddress());
-                json.put("complaint", pacient.getComplaint());
-                json.put("diagnosis", pacient.getDiagnosis());
-                json.put("type", pacient.getType());
-                json.put("codedomophone", pacient.getCodedomophone());
-                json.put("phone", pacient.getPhone());
-                json.put("source", pacient.getSource());
-                json.put("sourceName", pacient.getSourceName());
-                json.put("sourceCode", pacient.getSourceCode());
-                json.put("entrance", pacient.getEntrance());
-                json.put("floor", pacient.getFloor());
-
-                HttpPost request = new HttpPost(requestSmp);
-                request.addHeader("Content-type", "application/json");
-                request.addHeader("Authorization", "Bearer " + token);
-                request.addHeader("ClientApplication", clientApplication);
-
-                StringEntity params = new StringEntity(json.toString(), "UTF-8");
-                request.setEntity(params);
-                HttpResponse response = httpClient.execute(request);
-
-                int statusCode = response.getStatusLine().getStatusCode();
-                Assert.assertEquals(String.valueOf(statusCode), "200", "Не удаётся создать новый вызов!");
-
+                callDoctorEntity = new CallDoctorEntity(pacient);
+                httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
+                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
             }
-            System.out.println("Карта вызова создана!");
-
         }
+        System.out.println("Карта вызова создана!");
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
     public void editCallProfile2(Pacient pacient) throws IOException, ParseException, InterruptedException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        this.pacient = new ObjectMapper().readValue(reader, Map.class);
         this.pacient = pacient;
         sourceCall()
                 .searchField()
-//                .adressAddition()
                 .telephone()
                 .complaint()
                 .caller()
@@ -280,6 +207,11 @@ public class CreateCallPage extends AbstractPage {
         if (pacient.getNumber() != null && pacient.getNumber() != "") {
             $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
         }
+        addressPlus();
+        return this;
+    }
+
+    private CreateCallPage addressPlus() {
         $(By.xpath("//input[@placeholder='Корпус']")).setValue(pacient.getBuilding());
         $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
         $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
@@ -302,7 +234,6 @@ public class CreateCallPage extends AbstractPage {
         }
         return this;
     }
-
 
     private CreateCallPage gender() {
         if (pacient.getGender() == 1) {
@@ -346,7 +277,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage birthDay() {
-        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(String.valueOf(pacient.getBirthdate("dd-MM-yyyy")));
+        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
         return this;
     }
 
@@ -393,23 +324,27 @@ public class CreateCallPage extends AbstractPage {
 
     private CreateCallPage saveBtn() throws InterruptedException {
         SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
+        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
+        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
         SelenideElement save = $(By.id("save"));
-        String old = driver.getCurrentUrl();
-        int i = 11;
-        while (!fullCardPage.isDisplayed() && i > 0) {
-            i--;
-            if (allert.isDisplayed())
-                allert.click();
-            if (save.isDisplayed())
-                save.click();
-            Thread.sleep(1000);
+
+        address.shouldBe(Condition.visible);
+        if (!se.isDisplayed()) {
+            String old = driver.getCurrentUrl();
+            int i = 11;
+            while (!fullCardPage.isDisplayed() && i > 0) {
+                i--;
+                if (allert.isDisplayed())
+                    allert.click();
+                if (save.isDisplayed())
+                    save.click();
+                Thread.sleep(1000);
+            }
+            if (!old.equals(driver.getCurrentUrl()))
+                System.out.println("Вызов создан! " + driver.getCurrentUrl());
+            else System.out.println("Вызов НЕ создан!");
         }
-//        String old = driver.getCurrentUrl();
-//        int i = 11;
-        if (!old.equals(driver.getCurrentUrl()))
-            System.out.println("Вызов создан! " + driver.getCurrentUrl());
-        else System.out.println("Вызов НЕ создан!");
         return this;
     }
 
@@ -455,20 +390,6 @@ public class CreateCallPage extends AbstractPage {
         se.$(By.xpath("../.")).$(By.xpath(".//mat-form-field")).click();
         return this;
     }
-
-//    public void waitCreating() throws InterruptedException {
-//        String old = driver.getCurrentUrl();
-//        int i = 11;
-//        do {
-//            Thread.sleep(1000);
-//            i--;
-//            System.out.println("Жду ссылку на новый вызов. i = " + i);
-//        }
-//        while (old.equals(driver.getCurrentUrl()) && i > 0);
-//        if (!old.equals(driver.getCurrentUrl()))
-//            System.out.println("Вызов создан! " + driver.getCurrentUrl());
-//        else System.out.println("Вызов НЕ создан!");
-//    }
 
     public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
         long diffInMillies = date2.getTime() - date1.getTime();

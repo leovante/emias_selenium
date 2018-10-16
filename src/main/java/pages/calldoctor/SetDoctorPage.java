@@ -19,8 +19,6 @@ public class SetDoctorPage extends AbstractPage {
 
     @Step("назначиь врача")
     public SetDoctorPage chooseDoctor(Doctor doctor) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map<String, String> proData = new ObjectMapper().readValue(reader, Map.class);
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenOnThisDay.click();
         System.out.println("Врач выбран!");

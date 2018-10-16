@@ -6,6 +6,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -20,7 +21,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException {
+    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -29,7 +30,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
+    @Test(groups = "test", description = "вызов с иточником Регистратура без МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
@@ -55,10 +56,10 @@ public class CreateCallTest extends AbstractTestGrid {
         page.dashboardPage().verifyNewCallGroup(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "test", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException, InterruptedException {
+    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile3");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall_Api(pacient);
@@ -66,10 +67,10 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyNewCall(pacient);
     }
 
-    @Test(groups = "test", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
     @Epic("Создание вызова")
-    @RetryCountIfFailed(0)
-    public void testCallSmpAdultKladr() throws IOException, InterruptedException {
+    @RetryCountIfFailed(2)
+    public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile6");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall_Api(pacient);
@@ -77,10 +78,10 @@ public class CreateCallTest extends AbstractTestGrid {
         page.fullCardPage().verifyNewCall(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Test(groups = "test", description = "вызов ребенка с Портала")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallPortal() throws IOException, InterruptedException {
+    public void testCallPortal() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile4");
         enterSite.enterPortal();
         page.portalDashboard().createCall(pacient);
@@ -92,11 +93,11 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
-    public void testCallCenterChildMkab() throws IOException, InterruptedException {
+    public void testCallCenterChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile14");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall_Api(pacient);
@@ -106,10 +107,10 @@ public class CreateCallTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР.")
+    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallCenterChildMkab2() throws IOException, InterruptedException {
+    public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile20_2");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall_Api(pacient);

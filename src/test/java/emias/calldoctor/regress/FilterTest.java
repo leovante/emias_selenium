@@ -6,6 +6,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
@@ -22,7 +23,7 @@ public class FilterTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterFIO() throws InterruptedException, IOException, ParseException {
+    public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -32,11 +33,10 @@ public class FilterTest extends AbstractTestGrid {
                 .verifyNewCallGroup(pacient);
     }
 
-    //    @Attachment(value = "Console error", type = "text/plain")
-    @Test(groups = "CD", description = "фильтр поиск по врачу")
+    @Test(groups = "test", description = "фильтр поиск по врачу")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterDoctor() throws InterruptedException, IOException, ParseException {
+    public void testFilterDoctor() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enterSite.enterCalldoctor();
@@ -47,13 +47,13 @@ public class FilterTest extends AbstractTestGrid {
         page.dashboardPage()
                 .clearAllFilters()
                 .searchFilterDoctor(pacient)
-                .verifyActiveDocGroup(pacient);
+                .verifyActiveDocGroup(pacient, doctor);
     }
 
-    @Test(groups = "CD", description = "фильтр поиск по виду вызова")
+    @Test(groups = "test", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testTypeCall() throws InterruptedException, IOException {
+    public void testTypeCall() throws InterruptedException, IOException, JSONException {
         Pacient pacient = new Pacient("Profile3");
         page.createCallPage().createCall_Api(pacient);
         enterSite.enterCalldoctor();
@@ -66,7 +66,7 @@ public class FilterTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Test(groups = "test", description = "проверка кнопки выход")
     @Epic("Проверка фильтра")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)

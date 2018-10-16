@@ -8,6 +8,7 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -19,10 +20,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class UchastoksAddressTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException {
+    public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile15");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -38,7 +39,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException {
+    public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile16");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -51,10 +52,10 @@ public class UchastoksAddressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException {
+    public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile17");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -67,10 +68,10 @@ public class UchastoksAddressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
+    @Test(groups = "test", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException {
+    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile18");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -81,11 +82,11 @@ public class UchastoksAddressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить " +
+    @Test(groups = "test", description = "создаю вызов через СМП, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException {
+    public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileAdressNeIzMkab");
         page.createCallPage().createCall_Api(pacient);
         enterSite.enterCalldoctor();

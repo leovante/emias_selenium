@@ -19,9 +19,9 @@ public class Tokenizer {
     }
 
     public String getToken(Pacient pacient, String ClientApplication) {
-        String bd = String.valueOf(pacient.getBirthdate());
-        String spol = String.valueOf(pacient.getSeriespol());
-        String npol = String.valueOf(pacient.getNumberpol());
+        String bd = pacient.getBirthdate("yyyy-MM-dd");
+        String spol = pacient.getSeriespol();
+        String npol = pacient.getNumberpol();
         HttpClient httpClient = HttpClients.createDefault();
         try {
             HttpGet request = new HttpGet("http://rpgu.emias.mosreg.ru/api/v2/auth/a7f391d4-d5d8-44d5-a770-f7b527bb1233/token?Birthday=" + bd + "&s_pol=" + spol + "&n_pol=" + npol);

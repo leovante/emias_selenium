@@ -1,14 +1,17 @@
 package pages.calldoctor.profiles_interfaces;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.codehaus.plexus.util.IOUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 
 public class Pacient extends AbstractTestNGSpringContextTests {
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -39,6 +42,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String sourceName;
     private String sourceCode;
     private Object kladraddress;
+
 
     public Object getKladraddress() {
         return kladraddress;
@@ -82,7 +86,13 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     public String getBirthdate(String format) {
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
-        return simpleDateFormatEdit.format(birthdate);
+        String date1;
+        if (birthdate != null) {
+            date1 = simpleDateFormatEdit.format(birthdate);
+        } else {
+            throw new NullPointerException("Ошибка! birthdate is null");
+        }
+        return date1;
     }
 
     public String getSeriespol() {
@@ -199,88 +209,97 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         return "";
     }
 
-    public Pacient(String pacient) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json");
-        HashMap<String, Object> proData = new ObjectMapper().readValue(reader, HashMap.class);
-        if (proData.get("source") != null && proData.get("source") != "")
-            this.source = Integer.valueOf((String) proData.get("source"));
+    public Pacient(String pacient) throws IOException, JSONException {
+        JSONObject jsonOb;
+        String path = "src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json";
+        File reader2 = new File(path);
+        if (reader2.exists()) {
+            InputStream is = new FileInputStream(path);
+            String jsonTxt = IOUtil.toString(is, "UTF-8");
+            jsonOb = new JSONObject(jsonTxt);
+        } else {
+            throw new JSONException("Ошибка! Не найден файл пациента.");
+        }
 
-        if (proData.get("type") != null && proData.get("type") != "")
-            this.type = Integer.valueOf((String) proData.get("type"));
+        if (jsonOb.has("source") && !jsonOb.get("source").equals(""))
+            this.source = jsonOb.getInt("source");
 
-        if (proData.get("seriespol") != null && proData.get("seriespol") != "")
-            this.seriespol = (String) proData.get("seriespol");
+        if (jsonOb.has("type") && !jsonOb.get("type").equals(""))
+            this.type = jsonOb.getInt("type");
 
-        if (proData.get("numberpol") != null && proData.get("numberpol") != "")
-            this.numberpol = (String) proData.get("numberpol");
+        if (jsonOb.has("seriespol") && !jsonOb.get("seriespol").equals(""))
+            this.seriespol = jsonOb.getString("seriespol");
 
-        if (proData.get("gender") != null && proData.get("gender") != "")
-            this.gender = Integer.valueOf((String) proData.get("gender"));
+        if (jsonOb.has("numberpol") && !jsonOb.get("numberpol").equals(""))
+            this.numberpol = jsonOb.getString("numberpol");
 
-        if (proData.get("name") != null && proData.get("name") != "")
-            this.name = (String) proData.get("name");
+        if (jsonOb.has("gender") && !jsonOb.get("gender").equals(""))
+            this.gender = jsonOb.getInt("gender");
 
-        if (proData.get("address") != null && proData.get("address") != "")
-            this.address = (String) proData.get("address");
+        if (jsonOb.has("name") && !jsonOb.get("name").equals(""))
+            this.name = jsonOb.getString("name");
 
-        if (proData.get("address1") != null && proData.get("address1") != "")
-            this.address1 = (String) proData.get("address1");
+        if (jsonOb.has("address") && !jsonOb.get("address").equals(""))
+            this.address = jsonOb.getString("address");
 
-        if (proData.get("address2") != null && proData.get("address2") != "")
-            this.address2 = (String) proData.get("address2");
+        if (jsonOb.has("address1") && !jsonOb.get("address1").equals(""))
+            this.address1 = jsonOb.getString("address1");
 
-        if (proData.get("address3") != null && proData.get("address3") != "")
-            this.address3 = (String) proData.get("address3");
+        if (jsonOb.has("address2") && !jsonOb.get("address2").equals(""))
+            this.address2 = jsonOb.getString("address2");
 
-        if (proData.get("complaint") != null && proData.get("complaint") != "")
-            this.complaint = (String) proData.get("complaint");
+        if (jsonOb.has("address3") && !jsonOb.get("address3").equals(""))
+            this.address3 = jsonOb.getString("address3");
 
-        if (proData.get("diagnosis") != null && proData.get("diagnosis") != "")
-            this.diagnosis = (String) proData.get("diagnosis");
+        if (jsonOb.has("complaint") && !jsonOb.get("complaint").equals(""))
+            this.complaint = jsonOb.getString("complaint");
 
-        if (proData.get("phone") != null && proData.get("phone") != "")
-            this.phone = (String) proData.get("phone");
+        if (jsonOb.has("diagnosis") && !jsonOb.get("diagnosis").equals(""))
+            this.diagnosis = jsonOb.getString("diagnosis");
 
-        if (proData.get("birthdate") != null && proData.get("birthdate") != "")
-            this.birthdate_string = (String) proData.get("birthdate");
+        if (jsonOb.has("phone") && !jsonOb.get("phone").equals(""))
+            this.phone = jsonOb.getString("phone");
 
-        if (proData.get("family") != null && proData.get("family") != "")
-            this.family = (String) proData.get("family");
+        if (jsonOb.has("birthdate") && !jsonOb.get("birthdate").equals(""))
+            this.birthdate_string = jsonOb.getString("birthdate");
 
-        if (proData.get("ot") != null && proData.get("ot") != "")
-            this.ot = (String) proData.get("ot");
+        if (jsonOb.has("family") && !jsonOb.get("family").equals(""))
+            this.family = jsonOb.getString("family");
 
-        if (proData.get("number") != null && proData.get("number") != "")
-            this.number = (String) proData.get("number");
+        if (jsonOb.has("ot") && !jsonOb.get("ot").equals(""))
+            this.ot = jsonOb.getString("ot");
 
-        if (proData.get("building") != null && proData.get("building") != "")
-            this.building = (String) proData.get("building");
+        if (jsonOb.has("number") && !jsonOb.get("number").equals(""))
+            this.number = jsonOb.getString("number");
 
-        if (proData.get("construction") != null && proData.get("construction") != "")
-            this.construction = (String) proData.get("construction");
+        if (jsonOb.has("building") && !jsonOb.get("building").equals(""))
+            this.building = jsonOb.getString("building");
 
-        if (proData.get("appartment") != null && proData.get("appartment") != "")
-            this.appartment = (String) proData.get("appartment");
+        if (jsonOb.has("construction") && !jsonOb.get("construction").equals(""))
+            this.construction = jsonOb.getString("construction");
 
-        if (proData.get("entrance") != null && proData.get("entrance") != "")
-            this.entrance = (String) proData.get("entrance");
+        if (jsonOb.has("appartment") && !jsonOb.get("appartment").equals(""))
+            this.appartment = jsonOb.getString("appartment");
 
-        if (proData.get("floor") != null && proData.get("floor") != "")
-            this.floor = (String) proData.get("floor");
+        if (jsonOb.has("entrance") && !jsonOb.get("entrance").equals(""))
+            this.entrance = jsonOb.getString("entrance");
 
-        if (proData.get("codedomophone") != null && proData.get("codedomophone") != "")
-            this.codedomophone = (String) proData.get("codedomophone");
+        if (jsonOb.has("floor") && !jsonOb.get("floor").equals(""))
+            this.floor = jsonOb.getString("floor");
 
-        if (proData.get("sourceName") != null && proData.get("sourceName") != "")
-            this.sourceName = (String) proData.get("sourceName");
+        if (jsonOb.has("codedomophone") && !jsonOb.get("codedomophone").equals(""))
+            this.codedomophone = jsonOb.getString("codedomophone");
 
-        if (proData.get("sourceCode") != null && proData.get("sourceCode") != "")
-            this.sourceCode = (String) proData.get("sourceCode");
+        if (jsonOb.has("sourceName") && !jsonOb.get("sourceName").equals(""))
+            this.sourceName = jsonOb.getString("sourceName");
+
+        if (jsonOb.has("sourceCode") && !jsonOb.get("sourceCode").equals(""))
+            this.sourceCode = jsonOb.getString("sourceCode");
 
         if (birthdate_string != null && birthdate_string != "")
             this.birthdate = parseDate(birthdate_string);
 
-        if (proData.get("kladraddress") != null)
-            this.kladraddress = proData.get("kladraddress");
+        if (jsonOb.has("kladraddress") && !jsonOb.get("kladraddress").equals(""))
+            this.kladraddress = jsonOb.getJSONObject("kladraddress");
     }
 }

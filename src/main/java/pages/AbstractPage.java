@@ -21,11 +21,20 @@ abstract public class AbstractPage {
 
     public String parseTelephone(Pacient pacient) {
         String telephone = pacient.getPhone();
-        telephone = telephone.substring(0, 2) + " (" +
-                telephone.substring(2, 5) + ") " +
-                telephone.substring(5, 8) + "-" +
-                telephone.substring(8, 10) + "-" +
-                telephone.substring(10, telephone.length());
+        if (pacient.getSource() == 4) {
+            telephone = telephone.substring(0, 1) + "7 (" +
+                    telephone.substring(1, 4) + ") " +
+                    telephone.substring(4, 7) + "-" +
+                    telephone.substring(7, 9) + "-" +
+                    telephone.substring(9, telephone.length() - 1);
+        }
+        if (pacient.getSource() != 4) {
+            telephone = telephone.substring(0, 2) + " (" +
+                    telephone.substring(2, 5) + ") " +
+                    telephone.substring(5, 8) + "-" +
+                    telephone.substring(8, 10) + "-" +
+                    telephone.substring(10, telephone.length());
+        }
         return telephone;
     }
 

@@ -7,11 +7,13 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import pages.AbstractPage;
+import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static org.testng.Assert.assertFalse;
 
 public class DashboardPage extends AbstractPage {
@@ -100,8 +102,6 @@ public class DashboardPage extends AbstractPage {
 
     @Step("проверяю на дашборде запись в группе новые")
     public void verifyNewCallGroup(Pacient pacient) throws InterruptedException, IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
@@ -130,11 +130,8 @@ public class DashboardPage extends AbstractPage {
 //    }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(Pacient pacient) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        Thread.sleep(4000);
-        SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + pacient.getFamily() + "')]"));
+    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws IOException {
+        SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
         SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
@@ -142,7 +139,7 @@ public class DashboardPage extends AbstractPage {
                 .$(By.xpath(".//*[@id='order']")).click();
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacient.getPhone() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
         System.out.println("Краткая карта вызова проверена!");
         return this;
     }
@@ -167,14 +164,11 @@ public class DashboardPage extends AbstractPage {
 
     @Step("проверка в группе обслуженные")
     public void verifyDoneDocGroup(Pacient pacient) throws InterruptedException, IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
         Thread.sleep(4000);
         $(By.xpath("//div[@id='doneCallAllCount'][contains(text(),'1')]"));
         $(By.xpath("//span[contains(text(),'" + pacient.getFamily() + "')]")).click();
         doneCallProgressFrame.click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-//        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + pacient.getPhone() + "')]")).shouldBe(Condition.visible);
         System.out.println("Краткая карта вызова проверена!");
     }
@@ -188,9 +182,6 @@ public class DashboardPage extends AbstractPage {
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
     public void openNewCallDash(Pacient pacient) throws IOException, InterruptedException {
-        refresh();
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
@@ -205,8 +196,6 @@ public class DashboardPage extends AbstractPage {
 
     @Step("удаляю карту вызова в группе 'Ожидают обработки' через дашбоард")
     public void deleteNewCallProgressFrame(Pacient pacient) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));

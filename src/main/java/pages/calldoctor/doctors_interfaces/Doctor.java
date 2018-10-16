@@ -45,7 +45,7 @@ public class Doctor extends AbstractTestNGSpringContextTests {
     }
 
     public Doctor(String name) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + name + ".json");
+        File reader = new File("src\\main\\java\\pages\\calldoctor\\doctors_interfaces\\" + name + ".json");
         HashMap<String, Object> proData = new ObjectMapper().readValue(reader, HashMap.class);
         if (proData.get("name") != null && proData.get("name") != "")
             this.name = (String) proData.get("name");

@@ -12,10 +12,17 @@ public class LoginPage extends AbstractPage {
     }
 
     public void login(String site, String login, String pass) {
-        open(site);
-        setCookieOfDepartment();
-        $(By.id("Login")).setValue(login);
-        $(By.id("Password")).setValue(pass);
+        if (site == null) {
+            open("http://emias.mosreg.ru/demonstration");
+            setCookieOfDepartment();
+            $(By.id("Login")).setValue("temnikov");
+            $(By.id("Password")).setValue("1215");
+        } else {
+            open(site);
+            setCookieOfDepartment();
+            $(By.id("Login")).setValue(login);
+            $(By.id("Password")).setValue(pass);
+        }
         $(By.id("loginBtn")).click();
     }
 

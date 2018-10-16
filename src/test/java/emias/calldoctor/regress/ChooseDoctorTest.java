@@ -24,7 +24,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyActiveDocGroup(pacient);
+                .verifyActiveDocGroup(pacient, doctor);
     }
 
     @Test(groups = "CD", description = "назначить врача вызову из СМП на сегодня")
@@ -43,10 +43,10 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         page.dashboardPage()
                 .clearAllFilters()
                 .searchFilterDoctor(pacient)
-                .verifyActiveDocGroup(pacient);
+                .verifyActiveDocGroup(pacient, doctor);
     }
 
-    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
+    @Test(groups = "test", description = "назначить врача вызову из Интернета на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Portal() throws Exception {
@@ -68,7 +68,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyActiveDocGroup(pacient);
+                .verifyActiveDocGroup(pacient, doctor);
     }
 
     // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра

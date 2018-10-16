@@ -10,6 +10,7 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -25,7 +26,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall() throws IOException, InterruptedException, ParseException {
+    public void testChildCall() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile7");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -38,7 +39,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall2() throws IOException, InterruptedException, ParseException {
+    public void testChildCall2() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile8");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -51,7 +52,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall3() throws IOException, InterruptedException, ParseException {
+    public void testChildCall3() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile9");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -64,7 +65,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall4() throws IOException, InterruptedException, ParseException {
+    public void testChildCall4() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile10");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -77,7 +78,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall5() throws IOException, InterruptedException, ParseException {
+    public void testChildCall5() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile11");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -90,7 +91,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall6() throws IOException, InterruptedException, ParseException {
+    public void testChildCall6() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile12");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -103,7 +104,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall7() throws IOException, InterruptedException, ParseException {
+    public void testChildCall7() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile13");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall(pacient);
@@ -127,7 +128,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что отобразился участковый")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException {
+    public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileDetkina");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall_Api(pacient);
@@ -141,10 +142,10 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначить врача")
+    @Test(groups = "test", description = "вызов от СМП по api, проверка что неформализованному адресу нельзя назначить врача")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException, InterruptedException {
+    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile19");
         enterSite.enterCalldoctor();
         page.createCallPage().createCall_Api(pacient);
@@ -159,7 +160,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException {
+    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile13");
         page.loginPage().loginAdmin();
         page.homePage().callDoctorBtn();

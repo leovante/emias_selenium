@@ -19,12 +19,12 @@
                 <include name="test"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.calldoctor.regress.CreateCallTest"/>
-        </classes>
-        <!--<packages>-->
-        <!--<package name="emias.calldoctor.regress"/>-->
-        <!--<package name="emias.calldoctor.function"/>-->
-        <!--</packages>-->
+        <!--<classes>-->
+        <!--<class name="emias.calldoctor.regress.CreateCallTest"/>-->
+        <!--</classes>-->
+        <packages>
+            <package name="emias.calldoctor.regress"/>
+            <package name="emias.calldoctor.function"/>
+        </packages>
     </test>
 </suite>
