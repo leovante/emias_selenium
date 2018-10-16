@@ -15,7 +15,7 @@ public class CompleteServiceTest extends AbstractTestGrid {
     public void testCompleteCallRegistr() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor(doctor);

@@ -16,7 +16,7 @@ public class ChangeDoctorTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor(doctor);

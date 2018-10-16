@@ -230,7 +230,7 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Запуск скрипта на демонстрейшн")
-    public static void runSqlScriptCD(String path) throws FileNotFoundException {
+    public static void scriptsFromFolder(String path) throws FileNotFoundException {
         FileInputStream fstream = new FileInputStream(path);
         BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
 
@@ -258,7 +258,7 @@ public class SQLDemonstration extends AbstractPage {
         File[] files = dir.listFiles();
         File[] scriptList = files;
         for (File script : scriptList) {
-            runSqlScriptCD(script.toString());
+            scriptsFromFolder(script.toString());
         }
     }
 

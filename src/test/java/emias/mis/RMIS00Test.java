@@ -14,9 +14,9 @@ public class RMIS00Test extends AbstractTestGrid {
     public void cleanBeforeWork() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
         SQLDemonstration.finalizeAllCalls();
-        page.homePage().manageSheduleBtn();
+        page.homePageMis().manageSheduleBtn();
         createSomeRecords(15);
-        page.homePage().logoHomeBtn();
+        page.homePageMis().logoHomeBtn();
     }
 
     @Step("Сделать запись")

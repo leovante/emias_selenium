@@ -20,7 +20,7 @@ public class BeforeTest extends AbstractTestGrid {
         updateDB();
         page.loginPage().login(site, login, pass);
         switchTo().window(0);
-        page.homePage().manageSheduleBtn();
+        page.homePageMis().manageSheduleBtn();
         createDoctorShedule();
     }
 

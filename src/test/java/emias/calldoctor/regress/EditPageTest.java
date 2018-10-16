@@ -20,7 +20,7 @@ public class EditPageTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testVerifyEditPage() throws Exception {
         Pacient pacient = new Pacient("Profile1");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage()
                 .createCall(pacient)
                 .editCallBtn()
@@ -32,7 +32,7 @@ public class EditPageTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testVerifyEditPage_2() throws Exception {
         Pacient pacient = new Pacient("Profile1");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage()
                 .createCall(pacient)
                 .editCallBtn()
@@ -47,7 +47,7 @@ public class EditPageTest extends AbstractTestGrid {
     public void testEditCall() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         Pacient pacient2 = new Pacient("Profile2");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage()
                 .createCall(pacient)
                 .editCallBtn()

@@ -12,7 +12,7 @@ public class Pages extends AbstractPage {
     public Pages() {
     }
 
-    public HomePage homePage() {
+    public HomePage homePageMis() {
         return page(HomePage.class);
     }
 

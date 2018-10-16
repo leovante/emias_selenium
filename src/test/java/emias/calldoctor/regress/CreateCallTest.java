@@ -23,7 +23,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage()
                 .verifyNewCall(pacient)
@@ -35,7 +35,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         Pacient pacient = new Pacient("Profile1");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage()
                 .verifyNewCall(pacient)
@@ -48,7 +48,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         Pacient pacient = new Pacient("Profile2");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage()
                 .verifyNewCall(pacient)
@@ -61,7 +61,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile3");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage().verifyNewCall(pacient);
@@ -72,7 +72,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile6");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage().verifyNewCall(pacient);
@@ -85,7 +85,7 @@ public class CreateCallTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile4");
         enterSite.enterPortal();
         page.portalDashboard().createCall(pacient);
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallDash(pacient);
@@ -99,7 +99,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile14");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage().verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
@@ -112,7 +112,7 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile20");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage().verifyNewCall(pacient);

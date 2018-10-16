@@ -21,7 +21,7 @@ public class RMIS01Test extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
-        page.homePage().manageSheduleBtn();
+        page.homePageMis().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
         SQLDemonstration.deleteShedule(secondName);
@@ -35,7 +35,7 @@ public class RMIS01Test extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
-        page.homePage().manageSheduleBtn();
+        page.homePageMis().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
         String second_doctor_fam = page.manageShedule().getSecondName(secondDoctor);
@@ -54,7 +54,7 @@ public class RMIS01Test extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
         //driver.get(curUrlCalldoctor);
-        page.homePage().manageSheduleBtn();
+        page.homePageMis().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         page.manageShedule()
                 .setNotReceiveDays(firstDoctor)
@@ -65,7 +65,7 @@ public class RMIS01Test extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
-        page.homePage().manageSheduleBtn();
+        page.homePageMis().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
@@ -90,7 +90,7 @@ public class RMIS01Test extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
-        page.homePage().manageSheduleBtn();
+        page.homePageMis().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
@@ -105,14 +105,14 @@ public class RMIS01Test extends AbstractTestGrid {
                 .selectDoctor(second_doctor_fullname);
         page.manageShedule().createShedule();
 
-        page.homePage()
+        page.homePageMis()
                 .logoHomeBtn()
                 .admissionScheduleBtn();
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.admissionSchedule().createRecord(first_doctor_fullname);
 
-        page.homePage()
+        page.homePageMis()
                 .logoHomeBtn()
                 .transferRecordsBtn();
 

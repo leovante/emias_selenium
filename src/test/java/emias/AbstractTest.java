@@ -45,7 +45,7 @@ public abstract class AbstractTest {
         this.site = site;
         System.out.println("Site: " + site);
         page.loginPage().login(site, login, pass);
-        page.homePage().callDoctorBtn();
+        page.homePageMis().callDoctorBtn();
         switchTo().window(1);
 //        curUrlCalldoctor = driver.getCurrentUrl();
         curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=m8umyRMtXVs5RwAxhY1s%2FQ5WM339QvUFYTsiy5OX6fzcTaqsWidCV%2BSA2zcoRC5s2R%2FQTH2LYCrIbOhNHSdxvA3FscSUp6fEiI%2BO8HTpwU8HHGslTzLce2NzvfD3seROL8MDFritjfuo7sz90KJtRYG7UfetGIJ0yqlbf6W3Z9ty73hw6sRVsDfT9sNymoA0djc8D9dvo0rVxk1D%2BZnTrmud3UZPFuU6q%2Fgf%2BQcrXo5kkxENeeKzFUp9R%2FpXNVbDqP4HgKMHUgmsDI8%2BEiCGBZPHEZnOIroFtBr2SZpiFWLz5lRu&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration2%2FMain%2FDefault";
@@ -69,7 +69,7 @@ public abstract class AbstractTest {
     @BeforeGroups(groups = "test", alwaysRun = true)
     public void beforeGroupsTest(@Optional String site, @Optional String login, @Optional String pass) {
         page.loginPage().login(site, login, pass);
-        page.homePage().callDoctorBtn();
+        page.homePageMis().callDoctorBtn();
         switchTo().window(1);
 //        curUrlCalldoctor = driver.getCurrentUrl();
         curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=m8umyRMtXVs5RwAxhY1s%2FQ5WM339QvUFYTsiy5OX6fzcTaqsWidCV%2BSA2zcoRC5s2R%2FQTH2LYCrIbOhNHSdxvA3FscSUp6fEiI%2BO8HTpwU8HHGslTzLce2NzvfD3seROL8MDFritjfuo7sz90KJtRYG7UfetGIJ0yqlbf6W3Z9ty73hw6sRVsDfT9sNymoA0djc8D9dvo0rVxk1D%2BZnTrmud3UZPFuU6q%2Fgf%2BQcrXo5kkxENeeKzFUp9R%2FpXNVbDqP4HgKMHUgmsDI8%2BEiCGBZPHEZnOIroFtBr2SZpiFWLz5lRu&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration2%2FMain%2FDefault";

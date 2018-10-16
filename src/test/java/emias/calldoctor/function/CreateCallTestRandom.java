@@ -17,7 +17,7 @@ public class CreateCallTestRandom extends AbstractTestGrid {
     @RetryCountIfFailed(0)
     public void testCall() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage()
                 .verifyNewCall(pacient)

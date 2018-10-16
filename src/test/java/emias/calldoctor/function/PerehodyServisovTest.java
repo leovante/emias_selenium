@@ -8,6 +8,8 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -29,7 +31,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor(doctor);
@@ -46,7 +48,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall_Mkab(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor(doctor);
@@ -61,12 +63,24 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         switchTo().window(0);
-        page.homePage().exitBtn();
-        page.loginPage().login("Admin", "RChS2014");
-        page.homePage().callDoctorBtn();
+        enterSite.enterCalldoctorFromMisAdmin();
+//        page.homePageMis().exitBtn();
+//        page.loginPage().login("Admin", "RChS2014");
+//        page.homePageMis().callDoctorBtn();
         switchTo().window(2);
         $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
+    }
+
+    @Flaky
+    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Epic("Переходы")
+    @Issue("EMIAS-658")
+    @RetryCountIfFailed(2)
+    public void testExitToMis() {
+        enterSite.enterCalldoctorFromMis();
+        page.dashboardPage().exitToMis();
+        $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
     }
 }

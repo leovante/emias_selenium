@@ -48,9 +48,10 @@ public class DashboardPage extends AbstractPage {
 //    }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio_Fam(Pacient pacient) throws IOException {
+    public DashboardPage searchFilterFio_Fam(Pacient pacient) throws IOException, InterruptedException {
         fioFilter.click();
         fioFilter.setValue(pacient.getFamily());
+        Thread.sleep(2000);
         return this;
     }
 

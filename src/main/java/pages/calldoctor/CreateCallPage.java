@@ -199,16 +199,17 @@ public class CreateCallPage extends AbstractPage {
         if (pacient.getAddress1() != null && pacient.getAddress2() != "") {
             cancelAdress.click();
             adress.setValue(pacient.getAddress1());
-            Thread.sleep(700);
             list_first_container.click();
         }
         if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
             adress.setValue(pacient.getAddress2());
+            list_first_container.isDisplayed();
             Thread.sleep(700);
             list_first_container.click();
         }
         if (pacient.getAddress3() != null && pacient.getAddress2() != "") {
             adress.setValue(pacient.getAddress3());
+            list_first_container.isDisplayed();
             Thread.sleep(700);
             list_first_container.click();
         }

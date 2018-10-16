@@ -17,7 +17,7 @@ public class CancelCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().cancelOnFullCardBtn();
         page.dashboardPage()
@@ -30,7 +30,7 @@ public class CancelCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage()
                 .editCallBtn()
@@ -45,7 +45,7 @@ public class CancelCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()

@@ -15,7 +15,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     public void testAppendDoctorToCall_Registr() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor(doctor);
@@ -33,7 +33,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
     public void testAppendDoctorToCall_SMP() throws Exception {
         Pacient pacient = new Pacient("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().chooseDoctor(doctor);
@@ -54,7 +54,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("MokovStendTestovoe");
         enterSite.enterPortal();
         page.portalDashboard().createCall(pacient);
-        enterSite.enterCalldoctor();
+        enterSite.enterCalldoctorFromMis();
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallDash(pacient);
