@@ -8,9 +8,8 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 import pages.Pages;
-import pages.sql.SQL;
+import pages.sql.SQLDemonstration;
 import pages.utilities.RunSeleniumGrid;
-import pages.utilities.StringGenerator;
 import pages.utilities.WebDriverInstansiator;
 
 import java.io.IOException;
@@ -41,7 +40,7 @@ public class AbstractTestGrid {
 
     @AfterTest(alwaysRun = true)
     public void afterTest() {
-        SQL.finalizeAllTestCalls();
+        SQLDemonstration.finalizeAllTestCalls();
     }
 
     @Parameters({"browser", "headless"})

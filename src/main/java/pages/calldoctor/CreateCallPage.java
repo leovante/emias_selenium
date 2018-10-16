@@ -14,7 +14,7 @@ import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import pages.sql.SQL;
+import pages.sql.SQLDemonstration;
 import pages.utilities.api_model.CallDoctorEntity;
 
 import java.io.IOException;
@@ -95,7 +95,7 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("Создаю вызов через api")
     public void createCall_Api(Pacient pacient) {
-        SQL.finalizeCall_NPol(pacient.getNumberpol());
+        SQLDemonstration.finalizeCall_NPol(pacient.getNumberpol());
         HttpClient httpClient = HttpClients.createDefault();
         if (pacient.getSource() == 2) {
             try {

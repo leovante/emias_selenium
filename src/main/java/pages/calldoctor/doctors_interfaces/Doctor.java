@@ -23,25 +23,25 @@ public class Doctor extends AbstractTestNGSpringContextTests {
     public String getFamily() {
         if (family != null)
             return family;
-            return "";
+        return "";
     }
 
     public String getOt() {
         if (ot != null)
             return ot;
-            return "";
+        return "";
     }
 
     public String getDepartment() {
         if (department != null)
             return department;
-            return "";
+        return "";
     }
 
     public String getUchastocs() {
         if (uchastocs != null)
             return uchastocs;
-            return "";
+        return "";
     }
 
     public Doctor(String name) throws IOException {

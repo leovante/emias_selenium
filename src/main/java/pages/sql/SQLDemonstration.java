@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.List;
 
-public class SQL extends AbstractPage {
+public class SQLDemonstration extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";

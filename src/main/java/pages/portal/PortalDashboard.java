@@ -6,7 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import pages.sql.SQL;
+import pages.sql.SQLDemonstration;
 
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ public class PortalDashboard extends AbstractPage {
 
     @Step("создаю вызов через портал")
     public void createCall(Pacient pacient) throws IOException {
-        SQL.finalizeCall_NPol(pacient.getNumberpol());
+        SQLDemonstration.finalizeCall_NPol(pacient.getNumberpol());
         numberPolise.sendKeys(String.valueOf(pacient.getNumberpol()));
 
         birthdate.sendKeys(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
