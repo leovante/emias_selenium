@@ -44,4 +44,11 @@
     <!--<package name="emias.calldoctor.regress"/>-->
     <!--</packages>-->
     <!--</test>-->
+
+    <test name="AfterTest-finalizeCalls" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.calldoctor.after"/>
+        </packages>
+    </test>
 </suite>

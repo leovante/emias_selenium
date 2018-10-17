@@ -1,4 +1,4 @@
-package emias.disp;
+package emias.disp.before;
 
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
@@ -9,7 +9,7 @@ import pages.sql.SQLDemonstration;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
-public class RDisp00Test extends AbstractTestGrid {
+public class BeforeTest extends AbstractTestGrid {
 
     @Test(description = "Обнуляю карты диспансеризации")
     @RetryCountIfFailed(2)

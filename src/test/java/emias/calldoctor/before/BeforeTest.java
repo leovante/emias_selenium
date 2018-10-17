@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class BeforeTest extends AbstractTestGrid {
 
-    @Test(description = "Завершаю вызовы у тестовых врачей и создаю новое расписание на сегодня")
+    @Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws InterruptedException, IOException {
         updateDB();
