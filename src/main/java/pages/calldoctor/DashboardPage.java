@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -14,7 +15,6 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static org.testng.Assert.assertFalse;
 
 public class DashboardPage extends AbstractPage {
 
@@ -112,22 +112,6 @@ public class DashboardPage extends AbstractPage {
         System.out.println("Краткая карта вызова проверена!");
     }
 
-//    @Step("проверяю на дашборде запись у врача в группе активные")
-//    public void verifyActiveDocGroup(String nameGen, String profile, String profile2) throws InterruptedException, IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        File reader2 = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile2 + ".json");
-//        Map proData2 = new ObjectMapper().readValue(reader2, Map.class);
-//        Thread.sleep(4000);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).click();
-//        activeCallProgressFrame.$(By.id("order")).click();
-//        activeCallProgressFrame.click();
-//        $(By.xpath("//*[contains(text(),'" + proData2.get("adressDashboard") + "')]")).click();
-//        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData2.get("telephone") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Краткая карта вызова проверена!");
-//    }
-
     @Step("проверяю на дашборде запись у врача в группе активные")
     public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws IOException {
         SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
@@ -161,10 +145,24 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyRecordIsCancelFromDashboard() throws InterruptedException {
-        Thread.sleep(4000);
-        assertFalse(newCallProgressFrame.findElement(By.id("order")).isDisplayed(), "Проверка что группа новые не отображается");
-        newCallProgressFrame.$(By.id("order")).shouldBe(Condition.not(Condition.visible));
+    public void verifyRecordIsCancelFromDashboard(Pacient pacient) throws InterruptedException {
+        Thread.sleep(5000);
+        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
+        if (newCallProgressFrame.isDisplayed()) {
+            newCallProgressFrame.$(By.id("order")).click();
+            newCallProgressFrame.click();
+            if (address.isDisplayed()) {
+                address.click();
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
+            } else {
+                System.out.println("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
+            }
+        } else {
+            System.out.println("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
+        }
     }
 
     @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")

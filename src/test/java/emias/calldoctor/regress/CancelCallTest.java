@@ -22,7 +22,7 @@ public class CancelCallTest extends AbstractTestGrid {
         page.fullCardPage().cancelOnFullCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
-                .verifyRecordIsCancelFromDashboard();
+                .verifyRecordIsCancelFromDashboard(pacient);
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
@@ -37,10 +37,10 @@ public class CancelCallTest extends AbstractTestGrid {
                 .cancelOnChangePageBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
-                .verifyRecordIsCancelFromDashboard();
+                .verifyRecordIsCancelFromDashboard(pacient);
     }
 
-    @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
+    @Test(groups = "CD", description = "отмена вызова на дашборде")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException {
@@ -51,6 +51,6 @@ public class CancelCallTest extends AbstractTestGrid {
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .deleteNewCallProgressFrame(pacient)
-                .verifyRecordIsCancelFromDashboard();
+                .verifyRecordIsCancelFromDashboard(pacient);
     }
 }
