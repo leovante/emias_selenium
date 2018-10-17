@@ -28,7 +28,7 @@ public class LoginPage extends AbstractPage {
 
     public void loginAdmin() {
         open("http://emias.mosreg.ru/demonstration/");
-        $(By.id("Login")).setValue("admin/");
+        $(By.id("Login")).setValue("admin");
         $(By.id("Password")).setValue("RChS2014");
         $(By.id("loginBtn")).click();
     }

@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -51,8 +50,8 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private Date parseDate(String dateString) {
         try {
             return simpleDateFormat.parse(dateString);
-        } catch (final ParseException e) {
-            return new Date();
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -86,9 +85,11 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     public String getBirthdate(String format) {
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
-        String date1 = null;
+        String date1;
         if (birthdate != null) {
             date1 = simpleDateFormatEdit.format(birthdate);
+        } else {
+            date1 = null;
         }
         return date1;
     }
