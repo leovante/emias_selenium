@@ -1,6 +1,7 @@
 package pages.sql;
 
 import io.qameta.allure.Step;
+import org.codehaus.plexus.util.IOUtil;
 import pages.AbstractPage;
 
 import java.io.*;
@@ -230,10 +231,7 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Запуск скрипта на демонстрейшн")
-    public static void scriptsFromFolder(String path) throws FileNotFoundException {
-        FileInputStream fstream = new FileInputStream(path);
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
+    public static void scriptTxt(String script) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -241,9 +239,8 @@ public class SQLDemonstration extends AbstractPage {
         try {
             System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-                String sql2 = br.readLine();
                 try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql2);
+                    statement.executeUpdate(script);
                     System.out.println("SQL scripst Complete!");
                 }
             }
@@ -252,13 +249,17 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    public static void getScripts() throws FileNotFoundException {
+    public static void getScripts() throws IOException {
         File dir = new File("src/main/resources/sql/calldoctor");
-//        File dir = new File(SQLDemonstration.class.getClassLoader().getResource("sql/calldoctor").getFile());
         File[] files = dir.listFiles();
         File[] scriptList = files;
-        for (File script : scriptList) {
-            scriptsFromFolder(script.toString());
+        for (File scriptPath : scriptList) {
+            InputStream is = new FileInputStream(scriptPath);
+            String script = IOUtil.toString(is, "UTF-8");
+            scriptTxt(script);
+            System.out.println("начало");
+            System.out.println(script);
+            System.out.println("конец");
         }
     }
 
