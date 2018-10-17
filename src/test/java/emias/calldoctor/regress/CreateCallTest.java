@@ -45,7 +45,7 @@ public class CreateCallTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(3)
     public void testCallRegistrMkab() throws Exception {
         Pacient pacient = new Pacient("Profile2");
         enterSite.enterCalldoctorFromMis();
