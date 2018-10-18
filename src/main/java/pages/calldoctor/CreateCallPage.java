@@ -1,303 +1,406 @@
 package pages.calldoctor;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClients;
-import org.json.simple.JSONObject;
 import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.testng.Assert;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Profile;
+import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.sql.SQLDemonstration;
+import pages.utilities.api_model.CallDoctorEntity;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Map;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 
 
-public class CreateCallPage extends AbstractPage implements Profile {
+public class CreateCallPage extends AbstractPage {
+    CallDoctorEntity callDoctorEntity;
+    HttpResponse httpResponse;
+    private Pacient pacient;
 
-    public CreateCallPage() {
-    }
+    SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
+    SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
+    SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
+    SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
+    SelenideElement telephoneNumber = $(By.id("phone"));
+    SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
+    SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
+    SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
+    SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
+    SelenideElement pd = $(By.xpath("//input[@placeholder='П-д']"));
 
-    @Step("создаю пустой вызов")
-    public void createCallProfile0() throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile0.json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
+    SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
+    SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
+    SelenideElement seriyaPol = $(By.xpath("//input[@placeholder='Серия']"));
+    SelenideElement nomerPol = $(By.xpath("//input[@placeholder='Номер полиса']"));
+    SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
+    SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
+    SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
+    SelenideElement birthDateTemp = $(By.xpath("//input[@placeholder='Дата рождения']"));
+
+    SelenideElement tipVisivaushego = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
+    //    SelenideElement birthDateTemp = $(By.id("birthDateTemp"));
+    SelenideElement phone = $(By.id("phone"));
+    SelenideElement age = $(By.id("age"));
+    SelenideElement famCall = $(By.id("callFamily"));
+    SelenideElement nameCall = $(By.id("callName"));
+    SelenideElement otCall = $(By.id("callPatronymic"));
+    SelenideElement sourceSmp = $(By.id("source0"));
+    SelenideElement sourceReg = $(By.id("source1"));
+
+    public CreateCallPage createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
+        this.pacient = pacient;
         addNewCall()
-                .adress()
-                .telephoneChk()
-                .complaint()
-                .vozrastKat()
-                .complaint()
-                .saveBtn()
-                .adressAlarma();
-    }
-
-    @Step("создаю вызов -МКАБ +Регистр")
-    public void createCallProfile1(String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile1.json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .adress()
-                .telephone()
-                .vozrastKat()
-                .adressAddition()
-                .sexM()
-                .complaint()
-                .polis()
-                .FIO(nameGen)
+                .sourceCall()
+                .address()
                 .birthDay()
-                .callerPatient()
-                .saveBtn();
-    }
-
-    @Step("создаю вызов с МКАБ + СМП")
-    public void createCallProfile2(String nameGen) throws IOException {
-        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\Profile2.json");
-        this.proData = new ObjectMapper().readValue(reader, Map.class);
-        addNewCall()
-                .sourceSMP()
-                .searchField()
-                .adressAddition()
-                .polis()
-                .telephone()
+                .gender()
                 .complaint()
-                .callerPredstavit(nameGen)
+                .polis()
+                .FIO()
+                .caller()
+                .telephone()
                 .saveBtn();
+        return this;
     }
 
-    @Step("создаю вызов от СМП по api Ребёнок без КЛАДР по МКАБ")
-    public void createCallProfile3(String nameGen) {
+    public CreateCallPage createCall_Mkab(Pacient pacient) throws IOException, InterruptedException, ParseException {
+        this.pacient = pacient;
+        addNewCall()
+                .sourceCall()
+                .searchField()
+                .addressPlus()
+                .complaint()
+                .caller()
+                .telephone()
+                .saveBtn();
+        return this;
+    }
+
+    @Step("Создаю вызов через api")
+    public void createCall_Api(Pacient pacient) {
+        SQLDemonstration.finalizeCall_NPol(pacient.getNumberpol());
         HttpClient httpClient = HttpClients.createDefault();
-        JSONObject json = new JSONObject();
-        json.put("name", nameGen);
-        json.put("family", "Тестовый");
-        json.put("ot", "СМП");
-        json.put("birthdate", "2002-01-10");
-        json.put("seriespol", "");
-        json.put("numberpol", "5098799789000154");//реальный мкаб
-        json.put("gender", "2");
-        json.put("address", "это не формализованный адрес");
-        json.put("complaint", "тестовый вызов");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+79606223551");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "12");
-        json.put("floor", "5");
-
-        try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
+        if (pacient.getSource() == 2) {
+            try {
+                callDoctorEntity = new CallDoctorEntity(pacient);
+                httpResponse = httpClient.execute(callDoctorEntity.createRequest());
+                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("Error, " + "Cannot Estabilish Connection");
             }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        } finally {
-//            driver.close();
         }
+        if (pacient.getSource() == 3) {
+            try {
+                callDoctorEntity = new CallDoctorEntity(pacient);
+                httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
+                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                System.out.println("Error, " + "Cannot Estabilish Connection");
+            }
+        }
+        System.out.println("Карта вызова создана!");
     }
 
-    @Step("создаю вызов от СМП по api Взрослый по КЛАДР без МКАБ")
-    public void createCallProfile6(String nameGen) {
-        HttpClient httpClient = HttpClients.createDefault();
-
-        JSONObject kladraddress = new JSONObject();
-        kladraddress.put("addressString", "Белгородская обл., г. Белгород, ул. Есенина, д.11а, стр.2, корп.3, кв.4");
-        kladraddress.put("addressStringMin", "Белгородская обл., г. Белгород, ул. Есенина");
-        kladraddress.put("appartment", "4");
-        kladraddress.put("building", "3");
-        kladraddress.put("code", "31000001000007700");
-        kladraddress.put("construction", "2");
-        kladraddress.put("number", "11а");
-
-        JSONObject json = new JSONObject();
-        json.put("name", nameGen);
-        json.put("family", "Тестов");
-        json.put("ot", "Тестович");
-        json.put("birthdate", "2000-01-01");
-        json.put("seriespol", "404");
-        json.put("numberpol", "501");
-        json.put("gender", "1");
-        json.put("complaint", "тестовый вызов по апи от СМП");
-        json.put("diagnosis", "j20");
-        json.put("type", "4");
-        json.put("codedomophone", "12№#!@-тут символы");
-        json.put("phone", "+79606223551");
-        json.put("source", "2");
-        json.put("sourceName", "СМП");
-        json.put("sourceCode", "2");
-        json.put("entrance", "12");
-        json.put("floor", "5");
-        json.put("kladraddress", kladraddress);
-
-        try {
-            HttpPost request = new HttpPost("http://12.8.1.126:2224/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233");
-            request.addHeader("content-type", "application/json");
-            request.addHeader("Authorization", "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3");
-
-            StringEntity params = new StringEntity(json.toString(), "UTF-8");
-            request.setEntity(params);
-            HttpResponse response = httpClient.execute(request);
-            HttpEntity entity = response.getEntity();
-
-            if (response != null) {
-                InputStream in = response.getEntity().getContent();
-                System.out.println(in);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("Error, " + "Cannot Estabilish Connection");
-        } finally {
-//            driver.close();
-        }
+    @Step("редактирую вызов с МКАБ + СМП")
+    public void editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
+        this.pacient = pacient;
+        sourceCall()
+                .searchField()
+                .addressPlus()
+                .complaint()
+                .caller()
+                .telephone()
+                .saveBtn();
+        System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
     }
 
+    public CreateCallPage setDeafult() {
+        $(By.id("source1")).click();
+        new PressEscape();
+        List<SelenideElement> selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')]"));
+        List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
 
-    public CreateCallPage addNewCall() {
+        for (SelenideElement element : selenideElements) {
+            if (element.isDisplayed())
+                element.click();
+        }
+
+        for (SelenideElement element : selenideElements2) {
+            if (element.isDisplayed())
+                element.click();
+        }
+
+        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
+        $(By.xpath("//input[@placeholder='Дом']")).clear();
+        $(By.id("phone")).clear();
+//        $(By.xpath("//label[@class='mat-checkbox-layout']")).clear();
+        $(By.xpath("//input[@placeholder='Корпус']")).clear();
+        $(By.xpath("//input[@placeholder='Строение']")).clear();
+        $(By.xpath("//input[@placeholder='Квартира']")).clear();
+        $(By.xpath("//input[@placeholder='П-д']")).clear();
+        $(By.xpath("//input[@placeholder='Д-фон']")).clear();
+        $(By.xpath("//input[@placeholder='Этаж']")).clear();
+        $(By.xpath("//input[@placeholder='Серия']")).clear();
+        $(By.xpath("//input[@placeholder='Номер полиса']")).clear();
+        $(By.xpath("//input[@placeholder='Фамилия']")).clear();
+        $(By.xpath("//input[@placeholder='Имя']")).clear();
+        $(By.xpath("//input[@placeholder='Отчество']")).clear();
+        $(By.xpath("//input[@placeholder='Дата рождения']")).clear();
+        System.out.println("Карта вызова очищена для редактирования!");
+        return this;
+    }
+
+    private CreateCallPage addNewCall() {
         $(By.id("addNewCall")).click();
         return this;
     }
 
-    public CreateCallPage sourceSMP() {
-        $(By.id("source0")).click();
+    private CreateCallPage sourceCall() {
+        try {
+            if (pacient.getSource() == 1) {
+                sourceReg.click();
+            }
+            if (pacient.getSource() == 2) {
+                sourceSmp.click();
+            }
+        } catch (Exception e) {
+            throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
+        }
         return this;
     }
 
-    public CreateCallPage searchField() {
-        $(By.id("findPatientInput")).setValue(nomerPol);
-        $(By.id("findPatientInput")).pressEnter();
+    private CreateCallPage searchField() {
+        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
+        $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
         return this;
     }
 
-    private CreateCallPage adress() {
-        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
-        //тут нужно сделать цикл, потому что адрес может быть разной длины
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue((String) proData.get(adress_1));
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adress_2);
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Адрес']")).setValue(adress_3);
-        $(By.xpath("//div[@class='autocomplete-list-container']/ul/li")).click();
-        $(By.xpath("//input[@placeholder='Дом']")).setValue(dom);
+    private CreateCallPage address() throws InterruptedException {
+        cancelAdress.shouldBe(Condition.visible);
+        if (pacient.getAddress1() != null && pacient.getAddress2() != "") {
+            cancelAdress.click();
+            adress.setValue(pacient.getAddress1());
+            list_first_container.click();
+        }
+        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
+            adress.setValue(pacient.getAddress2());
+            list_first_container.isDisplayed();
+            Thread.sleep(700);
+            list_first_container.click();
+        }
+        if (pacient.getAddress3() != null && pacient.getAddress2() != "") {
+            adress.setValue(pacient.getAddress3());
+            list_first_container.isDisplayed();
+            Thread.sleep(700);
+            list_first_container.click();
+        }
+        if (pacient.getNumber() != null && pacient.getNumber() != "") {
+            $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
+        }
+        addressPlus();
         return this;
     }
 
-    private CreateCallPage adressAlarma() {
-        //тут нажимаем на кнопку - да во всплывающем окне
+    private CreateCallPage addressPlus() {
+        $(By.xpath("//input[@placeholder='Корпус']")).setValue(pacient.getBuilding());
+        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
+        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
+        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
+        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
+        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
         return this;
     }
 
     private CreateCallPage telephone() {
-        $(By.id("phone")).setValue((String) proData.get(telephone));
+        try {
+            if (!pacient.getPhone().equals(null)) {
+                $(By.id("phone")).setValue(pacient.getPhone());
+            }
+            if (pacient.getPhone().equals("")) {
+                $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
+            }
+        } catch (Exception e) {
+            throw new InvalidArgumentException("Ошибка, не найден номер телефона у профиля!");
+        }
         return this;
     }
 
-    private CreateCallPage telephoneChk() {
-        $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
-        return this;
-    }
-
-    private CreateCallPage vozrastKat() {
-        $(By.xpath("//button[2]/span/mat-icon")).click();
-        $(By.xpath("//input[@placeholder='Возр. категория']")).click();
-        $(By.xpath("//span[contains(.,'Взрослые')]")).click();
-        return this;
-    }
-
-    private CreateCallPage adressAddition() {
-        $(By.xpath("//input[@placeholder='Корпус']")).setValue((String) proData.get(korpus));
-        $(By.xpath("//input[@placeholder='Строение']")).setValue((String) proData.get(stroenie));
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue((String) proData.get(kvartira));
-        $(By.xpath("//input[@placeholder='П-д']")).setValue((String) proData.get(pd));
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue((String) proData.get(dfon));
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue((String) proData.get(etazh));
-        return this;
-    }
-
-    private CreateCallPage sexM() {
-        $(By.id("sex1")).click();
+    private CreateCallPage gender() {
+        if (pacient.getGender() == 1) {
+            $(By.id("sex1")).click();
+        }
+        if (pacient.getGender() == 2) {
+            $(By.id("sex2")).click();
+        }
         return this;
     }
 
     private CreateCallPage complaint() {
-        SelenideElement zhaloba = $(By.xpath("//input[@aria-label='Введите текст жалобы']"));
-
+        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + proData.get(zhaloba) + "';", zhaloba);
-        zhaloba.sendKeys(Keys.SPACE);
+        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
+        complaint.sendKeys(Keys.SPACE);
         return this;
     }
 
     private CreateCallPage polis() {
-        $(By.xpath("//input[@placeholder='Серия']")).setValue((String) proData.get(seriyaPol));
-        $(By.xpath("//input[@placeholder='Номер полиса']")).setValue((String) proData.get(nomerPol));
-        return this;
-    }
-
-    private CreateCallPage FIO(String nameGen) {
-        $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
-        $(By.xpath("//input[@placeholder='Имя']")).setValue(nameGen);
-        $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
+        if (pacient.getSeriespol() != null && pacient.getSeriespol() != "") {
+            $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
+        }
+        if (pacient.getNumberpol() != null && pacient.getNumberpol() != "") {
+            $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacient.getNumberpol()));
+        }
         return this;
     }
 
     private CreateCallPage FIO() {
-        $(By.xpath("//input[@placeholder='Фамилия']")).setValue((String) proData.get(fam));
-        $(By.xpath("//input[@placeholder='Имя']")).setValue((String) proData.get(name));
-        $(By.xpath("//input[@placeholder='Отчество']")).setValue((String) proData.get(otchestvo));
+        if (pacient.getFamily() != null) {
+            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
+        }
+        if (pacient.getName() != null) {
+            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacient.getName());
+        }
+        if (pacient.getOt() != null) {
+            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacient.getOt());
+        }
         return this;
     }
 
     private CreateCallPage birthDay() {
-        $(By.xpath("//input[@placeholder='Дата рождения']")).setValue((String) proData.get(birthDay));
+        if (pacient.getBirthdate() != null)
+            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
         return this;
     }
 
-    private CreateCallPage callerPatient() {
-        $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
-        $(By.xpath("//span[contains(.,'Пациент')]")).click();
+    public CreateCallPage vozrastKat() {
+        $(By.xpath("//button[2]/span/mat-icon")).click();
+        $(By.xpath("//input[@placeholder='Возр. категория']")).click();
+
+        Date newData = new Date();
+        Date bd = pacient.getBirthdate();
+        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        if (years > 18) {
+            $(By.xpath("//span[contains(.,'Взрослые')]")).click();
+        }
+        if (years < 18) {
+            $(By.xpath("//span[contains(.,'Дети')]")).click();
+        }
         return this;
     }
 
-    private CreateCallPage callerPredstavit(String nameGen) {
-        $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
-        $(By.xpath("//span[contains(.,'Представитель')]")).click();
-        $(By.id("sourceSmp")).setValue(station);
-        $(By.id("callFamily")).setValue(callFamily);
-        $(By.id("callName")).setValue(nameGen);
-        $(By.id("callPatronymic")).setValue(callPatronymic);
-
+    private CreateCallPage caller() throws IOException, ParseException {
+        if (pacient.getSource() == 2) {
+            $(By.id("sourceSmp")).setValue("Супер станция");
+            $(By.id("callFamily")).setValue("ФамилияВызывающего");
+            $(By.id("callName")).setValue("ИмяВызывающего");
+            $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
+        } else {
+            if (years() > 18) {
+                $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+                $(By.xpath("//span[contains(.,'Пациент')]")).click();
+            } else {
+                $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+                $(By.xpath("//span[contains(.,'Представитель')]")).click();
+            }
+        }
         return this;
     }
 
-    private CreateCallPage saveBtn() {
-        $(By.id("save")).click();
+    public int years() {
+        Date newData = new Date();
+        Date bd = pacient.getBirthdate();
+        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        return years;
+    }
+
+    public CreateCallPage saveBtn() throws InterruptedException {
+        SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
+//        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
+        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
+        SelenideElement save = $(By.id("save"));
+        String old = driver.getCurrentUrl();
+
+        for (int i = 0; i < 10; i++) {
+            if (!fullCardPage.isDisplayed()) {
+                if (allert.isDisplayed())
+                    allert.click();
+//                if (se.isDisplayed())
+//                    se.click();
+                if (save.isDisplayed())
+                    save.click();
+            } else {
+                break;
+            }
+            Thread.sleep(1000);
+        }
+        if (!old.equals(driver.getCurrentUrl()))
+            System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов НЕ создан!");
         return this;
+    }
+
+    public CreateCallPage editCallBtn() {
+        $(By.id("change")).click();
+        return this;
+    }
+
+    @Step("проверяю на странице редактирования корректность данных")
+    public CreateCallPage verifyCallProfile1(Pacient pacient) {
+        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
+        Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
+        Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
+        Assert.assertEquals(fam.getAttribute("value"), pacient.getFamily(), "Фамилия некорректная");
+        Assert.assertEquals(name.getAttribute("value"), pacient.getName(), "Имя некорректное");
+        Assert.assertEquals(otchestvo.getAttribute("value"), pacient.getOt(), "Отчество некорректное");
+        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
+//        Assert.assertEquals(age.getAttribute("value"), pacient.getAge(), "Возраст некорректный");
+//        Assert.assertEquals(vKat.getAttribute("value"), pacient.getVkat(), "Возрастная категория некорректная");
+        assertThat("Адрес некорректный", pacient.getAddress(), containsString(adress.getAttribute("value")));
+        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
+        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
+        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
+        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
+        Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
+        Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
+        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
+
+//        tipVisivaushego.getAttribute("value").equals(pacient.get("whoIsCall"));
+//        telephoneNumber.getAttribute("value").equals(pacient.get("telephone"));
+//        famCall.getAttribute("value").equals(pacient.get("famCall"));
+//        nameCall.getAttribute("value").equals(pacient.get("nameCall"));
+//        otCall.getAttribute("value").equals(pacient.get("otCall"));
+        System.out.println("Проверка данных на странице редактирования выполнена!");
+        return this;
+    }
+
+    @Step("нажимаю на выпадающий список участков")
+    public CreateCallPage selectUchastokFromNeUdalosOpredelit() {
+        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]")).shouldBe(Condition.visible);
+        se.$(By.xpath("../.")).$(By.xpath(".//mat-form-field")).click();
+        return this;
+    }
+
+    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+        long diffInMillies = date2.getTime() - date1.getTime();
+        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 }

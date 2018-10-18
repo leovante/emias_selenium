@@ -1,105 +1,84 @@
 package emias;
 
-//import org.codehaus.plexus.util.FileUtils;
-
-import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import emias.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
+import pages.sql.SQLDemonstration;
+import pages.utilities.DriverManager;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.FileNotFoundException;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.close;
+import static com.codeborne.selenide.Selenide.switchTo;
 
+@Deprecated
 public abstract class AbstractTest {
     public static WebDriver driver;
     public static Pages page;
     public static String curUrlCalldoctor = null;
+    public String site;
 
-    @Parameters(value = {"browser", "platform"})
+    @Parameters(value = {"browser", "platform", "headless"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String browser,
-                            @Optional String platform,
-                            ITestContext context) {
+    public void beforeSuite(@Optional String browser, @Optional String platform, @Optional Boolean headless, ITestContext context) {
         System.out.println("Browser: " + browser);
         System.out.println("Platform: " + platform);
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        System.setProperty("selenide.browser", "Chrome");
-        Configuration.timeout = 10000;
+        driver = new DriverManager(browser).createDriver(headless);
         page = new Pages();
-        driver = getWebDriver();
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
     }
 
     @AfterSuite(alwaysRun = true)
-    public void afterSuite() {
-//        driver.quit();
+    public void afterSutie() {
+        close();
+        driver.quit();
     }
 
-    @Parameters(value = {"site", "login", "pass"})
+    @Parameters(value = {"site", "loginMis", "pass"})
+    @RetryCountIfFailed(2)
     @BeforeGroups(groups = "CD", alwaysRun = true)
-    public void beforeGroupsCD(@Optional String site,
-                               @Optional String login,
-                               @Optional String pass) {
+    public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
+        this.site = site;
         System.out.println("Site: " + site);
-//        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-//        page.homePage().callDoctorBtn();
-        pages.utilities.SwitchToPage.switchToPage();
-//        String url = driver.getCurrentUrl();
-//        curUrlCalldoctor = "http://192.168.7.48:8020/test/call/call_doctor_ui/call-doctor/board;docPrvdId=1210?ticket=KEHrb%2FkvTOKr3u1HlAyhK0y4BHiG20Bmv7l42aN6jt7NaIPz4%2BKHUinBRa9RxaIPOqWvpzGkcxs%2FfydP9toOUH2ydMRApDs%2BrUk7D78u0BxVOx1TwGypg%2BYocd0TN7cD%2B1dQELdApXKGQ8tmACh8zsk63PnHh1Suepda6o9cEDPu3KflSmQDCySa2mNyoic9OCE%2BkzAN2PWg8%2BM%2BplqaOMVQfybefhAzN28%2FinUIM%2B1AGdHPRp57e5T2Wh4N1hDA6FxPtDBDj25m%2BtJ3eeu9Qgv2miJQR8mJSwS4luTsbBpwPzTF&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault";
+        page.loginPage().login(site, login, pass);
+        page.homePageMis().callDoctorBtn();
+        switchTo().window(1);
 //        curUrlCalldoctor = driver.getCurrentUrl();
+        curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=m8umyRMtXVs5RwAxhY1s%2FQ5WM339QvUFYTsiy5OX6fzcTaqsWidCV%2BSA2zcoRC5s2R%2FQTH2LYCrIbOhNHSdxvA3FscSUp6fEiI%2BO8HTpwU8HHGslTzLce2NzvfD3seROL8MDFritjfuo7sz90KJtRYG7UfetGIJ0yqlbf6W3Z9ty73hw6sRVsDfT9sNymoA0djc8D9dvo0rVxk1D%2BZnTrmud3UZPFuU6q%2Fgf%2BQcrXo5kkxENeeKzFUp9R%2FpXNVbDqP4HgKMHUgmsDI8%2BEiCGBZPHEZnOIroFtBr2SZpiFWLz5lRu&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration2%2FMain%2FDefault";
     }
 
-    @Parameters(value = {"site", "login", "pass"})
+    @RetryCountIfFailed(2)
+    @AfterGroups(groups = "CD")
+    public void afterGroupsCD() {
+//        SQLDemonstration.finalizeAllTestCalls();
+    }
+
+    @Parameters(value = {"site", "loginMis", "pass"})
     @BeforeGroups(groups = "mis", alwaysRun = true)
-    public void beforeGroupsMIS(@Optional String site,
-                                @Optional String login,
-                                @Optional String pass) {
+    public void beforeGroupsMIS(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
-//        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-//        String url = driver.getCurrentUrl();
-//        curUrlCalldoctor = url;
+        page.loginPage().login(site, login, pass);
+        curUrlCalldoctor = driver.getCurrentUrl();
     }
 
-    @BeforeGroups(groups = "CC", alwaysRun = true)
-    public void beforeGroupsCC() {
-    }
-
-    @Parameters(value = {"login", "pass"})
+    @Parameters(value = {"site", "loginMis", "pass"})
     @BeforeGroups(groups = "test", alwaysRun = true)
-    public void beforeGroupsTest(@Optional String login,
-                                 @Optional String pass) {
-//        page.loginPage().login("http://emias.mosreg.ru/demonstration/", login, pass);
-//        page.homePage().callDoctorBtn();
-//        pages.utilities.SwitchToPage.switchToPage();
-        open("http://service.emias.mosreg.ru/test/call/call_doctor_ui/call-doctor/board;docPrvdId=1211?ticket=C%2FQZnj68wErhP4mV892v5evR7%2BxPvSDpoS8UQQwk%2FkL2F95HXWUwnUrXo%2FN25VeVBCVQtKB2LrFsy%2BzT4SGVO%2BO%2BQqivjETVFVKt1VF26wWIRbsO%2BZNaH54psOOoYi2nv0PfAfiLLBKgNEVsG57hUdNX8LIRYi3QvTXlvCAoLPgFsJqmtZLqWHhRcgZmERxFcXO6VCiFm38STaxK7XfR9fRJYshdeA%2FuVtAdFs5vKlr2v%2FT8R67IYPI%2B4mCqD3grjBBUdxtBo3MDyk4ZCD0LcXmaq0LEHBME0SD1fMCQoTs14221&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration%2FMain%2FDefault");
+    public void beforeGroupsTest(@Optional String site, @Optional String login, @Optional String pass) {
+        page.loginPage().login(site, login, pass);
+        page.homePageMis().callDoctorBtn();
+        switchTo().window(1);
+//        curUrlCalldoctor = driver.getCurrentUrl();
+        curUrlCalldoctor = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=m8umyRMtXVs5RwAxhY1s%2FQ5WM339QvUFYTsiy5OX6fzcTaqsWidCV%2BSA2zcoRC5s2R%2FQTH2LYCrIbOhNHSdxvA3FscSUp6fEiI%2BO8HTpwU8HHGslTzLce2NzvfD3seROL8MDFritjfuo7sz90KJtRYG7UfetGIJ0yqlbf6W3Z9ty73hw6sRVsDfT9sNymoA0djc8D9dvo0rVxk1D%2BZnTrmud3UZPFuU6q%2Fgf%2BQcrXo5kkxENeeKzFUp9R%2FpXNVbDqP4HgKMHUgmsDI8%2BEiCGBZPHEZnOIroFtBr2SZpiFWLz5lRu&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration2%2FMain%2FDefault";
     }
 
 
-//    public static void disableWarning() {
-//        try {
-//            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
-//            theUnsafe.setAccessible(true);
-//            Unsafe u = (Unsafe) theUnsafe.get(null);
-//
-//            Class cls = Class.forName("jdk.internal.module.IllegalAccessLogger");
-//            Field logger = cls.getDeclaredField("logger");
-//            u.putObjectVolatile(cls, u.staticFieldOffset(logger), null);
-//        } catch (Exception e) {
-//            // ignore
-//        }
-//    }
-
-    public String getFileName() {
-        DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy_hh.mm.ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
-
-    public void getDriver() {
-//        return this.driver;
+    @AfterGroups(groups = "disp")
+    public void AfterGroupsDisp() throws FileNotFoundException {
+        SQLDemonstration.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
+        SQLDemonstration.runSqlScript("insert default hlt_disp_ServiceDocPrvd.txt");
     }
 }

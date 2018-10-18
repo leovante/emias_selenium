@@ -1,0 +1,6 @@
+update hlt_calldoctor
+set rf_calldoctorstatusid = 3
+from hlt_calldoctor cl
+inner join oms_DocumentHistory dh on cl.guid = dh.rf_documentguid
+where dh.Editor = 'Темников Дмитрий Олегович'
+and cl.rf_calldoctorstatusid in (2, 5, 7)

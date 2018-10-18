@@ -1,110 +1,78 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import pages.callcenter.CallDoctorPage;
-import pages.callcenter.FindPatientPage;
-import pages.callcenter.LoginPageCC;
 import pages.calldoctor.*;
+import pages.disp.ServicesPage;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
+import static com.codeborne.selenide.Selenide.page;
+
 public class Pages extends AbstractPage {
 
-    public Pages(/*WebDriver driver*/WebDriver driver) {
-//        super();
-        //super(/*driver*/);
+    public Pages() {
     }
 
-    public HomePage homePage() {
-        HomePage homePage = new HomePage(); //PageFactory.initElements(driver, HomePage.class);
-        return homePage;
+    public HomePage homePageMis() {
+        return page(HomePage.class);
     }
 
     public LoginPage loginPage() {
-        LoginPage loginPage = new LoginPage();// = PageFactory.initElements(driver, LoginPage.class);
-        return loginPage;
+        return page(LoginPage.class);
+    }
+
+    public NapravlenieNaIssledovanie napravlenieNaIssledovanie() {
+        return page(NapravlenieNaIssledovanie.class);
     }
 
     public ManageShedule manageShedule() {
-        ManageShedule manageShedule = PageFactory.initElements(driver, ManageShedule.class);
-        return manageShedule;
+        return page(ManageShedule.class);
     }
 
     public CreateMedicalCard medicalCard() {
-        CreateMedicalCard medicalCard = PageFactory.initElements(driver, CreateMedicalCard.class);
-        return medicalCard;
+        return page(CreateMedicalCard.class);
     }
 
     public AdmissionSchedule admissionSchedule() {
-        AdmissionSchedule admissionSchedule = PageFactory.initElements(driver, AdmissionSchedule.class);
-        return admissionSchedule;
+        return page(AdmissionSchedule.class);
     }
 
     public TransferRecords transferRecords() {
-        TransferRecords transferRecords = PageFactory.initElements(driver, TransferRecords.class);
-        return transferRecords;
+        return page(TransferRecords.class);
     }
 
     public DoctorMethods doctorMethods() {
-        DoctorMethods doctorMethods = PageFactory.initElements(driver, DoctorMethods.class);
-        return doctorMethods;
+        return page(DoctorMethods.class);
     }
 
     public CreateCallPage createCallPage() {
-        CreateCallPage createCallPage = new CreateCallPage(); //PageFactory.initElements(driver, CreateCallPage.class);
-        return createCallPage;
+        return page(CreateCallPage.class);
     }
 
     public SetDoctorPage setDoctorPage() {
-        SetDoctorPage setDoctorPage = PageFactory.initElements(driver, SetDoctorPage.class);
-        return setDoctorPage;
+        return page(SetDoctorPage.class);
     }
 
     public FullCardPage fullCardPage() {
-        FullCardPage fullCardPage = PageFactory.initElements(driver, FullCardPage.class);
-        return fullCardPage;
+        return page(FullCardPage.class);
     }
 
     public DashboardPage dashboardPage() {
-        DashboardPage dashboardPage = PageFactory.initElements(driver, DashboardPage.class);
-        return dashboardPage;
+        return page(DashboardPage.class);
+    }
+
+    public SetLpuPage setLpuPage() {
+        return page(SetLpuPage.class);
     }
 
     public BeforeWork beforeWork() {
-        BeforeWork beforeWork = PageFactory.initElements(driver, BeforeWork.class);
-        return beforeWork;
+        return page(BeforeWork.class);
     }
-
-    public PerformCardPage editCardPage() {
-        PerformCardPage editCardPage = PageFactory.initElements(driver, PerformCardPage.class);
-        return editCardPage;
-    }
-
-
-    /**
-     * CALL CENTER
-     */
-    public LoginPageCC loginPageCC() {
-        LoginPageCC loginPageCC = PageFactory.initElements(driver, LoginPageCC.class);
-        return loginPageCC;
-    }
-
-    public FindPatientPage findPatientPage() {
-        FindPatientPage findPatientPage = PageFactory.initElements(driver, FindPatientPage.class);
-        return findPatientPage;
-    }
-
-    public CallDoctorPage callDoctorPage() {
-        CallDoctorPage callDoctorPage = PageFactory.initElements(driver, CallDoctorPage.class);
-        return callDoctorPage;
-    }
-
-    /**
-     * PORTAL
-     */
+    // PORTAL
     public PortalDashboard portalDashboard() {
-        PortalDashboard portalDashboard = new PortalDashboard();// PageFactory.initElements(driver, PortalDashboard.class);
-        return portalDashboard;
+        return page(PortalDashboard.class);
+    }
+
+    public ServicesPage servicesPage() {
+        return page(ServicesPage.class);
     }
 }

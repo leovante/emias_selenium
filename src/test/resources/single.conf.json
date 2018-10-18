@@ -1,0 +1,15 @@
+{
+  "server": "hub-cloud.browserstack.com",
+  "user": "USERNAME",
+  "key": "ACCESS_KEY",
+  "capabilities": {
+    "project": "BrowserStack Selenide Project",
+    "build": "Java Selenide Single",
+    "browserstack.debug": true
+  },
+  "environments": {
+    "chrome": {
+      "browser": "chrome"
+    }
+  }
+}
