@@ -1,21 +1,58 @@
 package pages.utilities;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URL;
 
 public class RunSeleniumGrid {
 
-    public static void run() throws IOException, InterruptedException {
+    public static void run() throws Exception {
         Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd C:/selenium_grid && start run_grid.bat && exit\"");
-        Thread.sleep(5000);
-        System.out.println("Запустил Selenium grid");
+        chekStatusGrid();
     }
 
-    public static void stop() throws IOException  {
+    public static void stop() throws IOException {
         URL url = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
         url.openConnection().getInputStream();
         url = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
         url.openConnection().getInputStream();
         System.out.println("Остановил хаб Selenium grid");
+    }
+
+    static void chekStatusGrid() throws Exception {
+        String URL = "http://localhost:4444/grid/api/hub";
+        HttpClient httpClient = HttpClients.createDefault();
+        HttpResponse httpResponse;
+        HttpEntity entity;
+        String responseString;
+        JSONObject jsonOb = null;
+
+        for (int i = 0; i < 20; i++) {
+            try {
+                if (!jsonOb.getString("success").equals(true)) {
+                    httpResponse = httpClient.execute(new HttpGet(URL));
+                    entity = httpResponse.getEntity();
+                    responseString = EntityUtils.toString(entity, "UTF-8");
+                    jsonOb = new JSONObject(responseString);
+                    Thread.sleep(1000);
+                }
+            } catch (ClientProtocolException e) {
+
+            } catch (IOException e) {
+
+            }
+            if (i == 19)
+                throw new Exception("Ошибка. Вышло время подключения к Selenium Grid!");
+
+        }
+        System.out.println("Selenium Grid Запущен!");
     }
 }

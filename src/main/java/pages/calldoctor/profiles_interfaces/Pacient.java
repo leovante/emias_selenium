@@ -42,7 +42,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String sourceCode;
     private Object kladraddress;
 
-
     public Object getKladraddress() {
         return kladraddress;
     }
