@@ -58,7 +58,7 @@ public class RunSeleniumGrid {
             while (SEC_CURRENT <= SEC_COUNT) {
                 getResponse(URL);
                 statCode = httpResponse.getStatusLine().getStatusCode();
-                if (statCode == 201)
+                if (statCode == 200)
                     return true;
                 Thread.sleep(1000);
                 SEC_CURRENT++;
