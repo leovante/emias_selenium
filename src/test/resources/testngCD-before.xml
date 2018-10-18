@@ -12,16 +12,10 @@
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <test name="ChromeTest" verbose="1" parallel="true">
+    <test name="BeforeTest-CreateShedule" verbose="1">
         <parameter name="browser" value="chrome"/>
-        <groups>
-            <run>
-                <include name="CD"/>
-            </run>
-        </groups>
         <packages>
-            <package name="emias.calldoctor.function"/>
-            <package name="emias.calldoctor.regress"/>
+            <package name="emias.calldoctor.before"/>
         </packages>
     </test>
 

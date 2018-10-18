@@ -29,7 +29,6 @@ public class AbstractTestGrid {
         AbstractTestGrid.login = login;
         AbstractTestGrid.pass = pass;
         RunSeleniumGrid.run();
-        System.out.println();
 //        HibernateSession.run();
     }
 
