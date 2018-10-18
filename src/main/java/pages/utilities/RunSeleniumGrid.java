@@ -48,8 +48,7 @@ public class RunSeleniumGrid {
                     break;
                 }
                 if (i == 19)
-                    System.out.println(i);
-                throw new Exception("Ошибка. Вышло время подключения к Selenium Grid!");
+                    throw new Exception("Ошибка. Вышло время подключения к Selenium Grid!");
             }
         } catch (ClientProtocolException e) {
 
