@@ -24,11 +24,12 @@ public class AbstractTestGrid {
 
     @Parameters({"site", "login", "pass"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass) throws IOException, InterruptedException {
+    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass) throws Exception {
         AbstractTestGrid.site = site;
         AbstractTestGrid.login = login;
         AbstractTestGrid.pass = pass;
         RunSeleniumGrid.run();
+        System.out.println();
 //        HibernateSession.run();
     }
 

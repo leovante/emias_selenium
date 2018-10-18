@@ -33,24 +33,27 @@ public class RunSeleniumGrid {
         HttpResponse httpResponse;
         HttpEntity entity;
         String responseString;
-        JSONObject jsonOb = null;
-
-        for (int i = 0; i < 20; i++) {
-            try {
-                if (!jsonOb.getString("success").equals(true)) {
-                    httpResponse = httpClient.execute(new HttpGet(URL));
-                    entity = httpResponse.getEntity();
-                    responseString = EntityUtils.toString(entity, "UTF-8");
-                    jsonOb = new JSONObject(responseString);
+        JSONObject jsonOb;
+        try {
+            httpResponse = httpClient.execute(new HttpGet(URL));
+            entity = httpResponse.getEntity();
+            responseString = EntityUtils.toString(entity, "UTF-8");
+            for (int i = 0; i < 20; i++) {
+                int statCode = httpResponse.getStatusLine().getStatusCode();
+                jsonOb = new JSONObject(responseString);
+                String jsonObj = jsonOb.getString("success");
+                if (!(statCode == 200) && !jsonObj.equals(true)) {
                     Thread.sleep(1000);
+                } else {
+                    break;
                 }
-            } catch (ClientProtocolException e) {
-
-            } catch (IOException e) {
-
-            }
-            if (i == 19)
+                if (i == 19)
+                    System.out.println(i);
                 throw new Exception("Ошибка. Вышло время подключения к Selenium Grid!");
+            }
+        } catch (ClientProtocolException e) {
+
+        } catch (IOException e) {
 
         }
         System.out.println("Selenium Grid Запущен!");
