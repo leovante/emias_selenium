@@ -15,7 +15,7 @@ import java.net.URL;
 public class RunSeleniumGrid {
 
     public static void run() throws Exception {
-        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd C:/selenium_grid && start run_grid.bat && exit\"");
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"");
         chekStatusGrid();
     }
 

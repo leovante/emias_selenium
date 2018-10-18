@@ -257,9 +257,9 @@ public class SQLDemonstration extends AbstractPage {
             InputStream is = new FileInputStream(scriptPath);
             String script = IOUtil.toString(is, "UTF-8");
             scriptTxt(script);
-            System.out.println("начало");
-            System.out.println(script);
-            System.out.println("конец");
+//            System.out.println("начало");///
+//            System.out.println(script);
+//            System.out.println("конец");
         }
     }
 
