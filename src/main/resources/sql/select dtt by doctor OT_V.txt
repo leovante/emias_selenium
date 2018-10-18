@@ -1,0 +1,6 @@
+select dtt.Begin_Time, * from hlt_DocPRVD dp
+inner join hlt_LPUDoctor ldoc on dp.rf_LPUDoctorID = ldoc.LPUDoctorID
+inner join hlt_DoctorTimeTable dtt on dtt.rf_DocPRVDID = dp.DocPRVDID
+where
+    ldoc.OT_V = 'ЛитАвтоТест' and
+    dtt.Begin_Time > '2018-10-17 00:00:00.000'

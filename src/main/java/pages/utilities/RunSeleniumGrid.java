@@ -6,7 +6,7 @@ import java.net.URL;
 public class RunSeleniumGrid {
 
     public static void run() throws IOException, InterruptedException {
-        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources && start run_grid.bat && exit\"");
+        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd C:/selenium_grid && start run_grid.bat && exit\"");
         Thread.sleep(5000);
         System.out.println("Запустил Selenium grid");
     }

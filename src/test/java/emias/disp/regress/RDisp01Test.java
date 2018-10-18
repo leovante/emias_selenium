@@ -1,4 +1,4 @@
-package emias.disp;
+package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
