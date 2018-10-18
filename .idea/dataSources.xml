@@ -50,13 +50,44 @@
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="hlt_Kashira_CRB_160101@12.8.1.58" uuid="6f50136e-6bfe-400c-9294-e14b1b494dff">
+    <data-source source="LOCAL" name="hlt_Kashira_CRB_160101@192.168.7.48" uuid="6f50136e-6bfe-400c-9294-e14b1b494dff">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://12.8.1.58;database=hlt_Kashira_CRB_160101</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:14331;database=hlt_Kashira_CRB_160101</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_Korolev_GB1_150101@12.8.1.126" uuid="623b74f3-1cb3-46de-b381-4fd6e82d7ac4">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://12.8.1.126:33346;database=hlt_Korolev_GB1_150101</jdbc-url>
+      <driver-properties>
+        <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="15a89fea-c70a-462f-84ed-d2eea11a6a30">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate.cfg.xml</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://12.8.1.66;databaseName=hlt_demonstration</jdbc-url>
+      <driver-properties>
+        <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_OdincovoLuhov_CRB_240101@192.168.7.48" uuid="22deeba5-a16b-4e37-b891-e0548fb1ebe6">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14333/hlt_OdincovoLuhov_CRB_240101</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
   </component>
