@@ -39,8 +39,10 @@ public class RunSeleniumGrid {
         static int statCode;//200 is true
 
         static void chekStatus() throws JSONException, InterruptedException, IOException {
-            if (!chekResponseStatus() && !chekStatusField())
-                throw new RuntimeException("Ошибка. Вышло время подключения к Selenium Grid!");
+            if (!chekResponseStatus() && !chekStatusField()){
+                System.out.println("Не удалось запустить Selenium Grid, выход с кодом 1");
+                System.exit(1);
+            }
         }
 
         static void getResponse(String URL) throws IOException {
@@ -49,7 +51,7 @@ public class RunSeleniumGrid {
                 entity = httpResponse.getEntity();
                 responseString = EntityUtils.toString(entity, "UTF-8");
             } catch (ClientProtocolException e) {
-                System.out.println("Не могу подключиться!");
+                System.out.println("Не могу подключиться по протоколу!");
             }
         }
 
