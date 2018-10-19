@@ -29,7 +29,7 @@ public class WebDriverInstansiator {
         this.browser = browser;
     }
 
-    public RemoteWebDriver setDriver(Boolean headless) throws MalformedURLException {
+    public void setDriver(Boolean headless) throws MalformedURLException {
         if (browser == null) {
             chromeDriverService = new ChromeDriverService.Builder()
                     .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
@@ -40,7 +40,6 @@ public class WebDriverInstansiator {
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
-            return driver;
         } else {
             switch (browser) {
                 case "firefox":
@@ -83,6 +82,5 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + headless + "; ");
         }
-        return driver;
     }
 }
