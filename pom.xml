@@ -10,7 +10,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.1</aspectj.version>
-        <testngXML>testngCD.xml</testngXML>
+        <testngXML>testngCD</testngXML>
         <hibernate-version>5.3.6.Final</hibernate-version>
     </properties>
 
@@ -136,9 +136,9 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/${testngXML}-before</suiteXmlFile>
-                        <suiteXmlFile>src/test/resources/${testngXML}</suiteXmlFile>
-                        <suiteXmlFile>src/test/resources/${testngXML}-after</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${testngXML}-before.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${testngXML}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${testngXML}-after.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
