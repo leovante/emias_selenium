@@ -8,6 +8,7 @@ import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.List;
 
 public class SQLDemonstration extends AbstractPage {
@@ -264,29 +265,32 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
-    public static void createShedule(String docprvdid) throws FileNotFoundException {
+    public static void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
         //сгенерировать одну ячейку на сегодня
-        FileInputStream fstream = new FileInputStream("src/main/resources/sql/" + "select_top_10000___from_hlt_DoctorTimeTa.tsv");
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+        String a = new DateGenerator().dispDoctorShedule(LPUDoctorID, DocPRVDID);
 
-        String url = connectionUrl +
-                ";databaseName=" + databaseName +
-                ";user=" + userName +
-                ";password=" + password;
-        try {
-            System.out.print("Connecting to SQL Server ... ");
-            try (Connection connection = DriverManager.getConnection(url)) {
 
-                String sql2 = br.readLine();
-
-                try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql2);
-                    System.out.println("Complete!");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        FileInputStream fstream = new FileInputStream("src/main/resources/sql/" + "select_top_10000___from_hlt_DoctorTimeTa.tsv");
+//        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
+//
+//        String url = connectionUrl +
+//                ";databaseName=" + databaseName +
+//                ";user=" + userName +
+//                ";password=" + password;
+//        try {
+//            System.out.print("Connecting to SQL Server ... ");
+//            try (Connection connection = DriverManager.getConnection(url)) {
+//
+//                String sql2 = br.readLine();
+//
+//                try (Statement statement = connection.createStatement()) {
+//                    statement.executeUpdate(sql2);
+//                    System.out.println("Complete!");
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Step("Удаляю расписание врача {docprvdid} (Ай Бо Лит АвтоТест)")
@@ -311,4 +315,6 @@ public class SQLDemonstration extends AbstractPage {
             e.printStackTrace();
         }
     }
+
+
 }
