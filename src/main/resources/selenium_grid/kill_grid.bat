@@ -1,3 +1,3 @@
 @echo off
-start/MIN Taskkill /IM java.exe /F
+start/MIN Taskkill /IM chromedriver.exe /F
 exit
