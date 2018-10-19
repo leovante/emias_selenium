@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
 public class RunSeleniumGrid {
@@ -31,6 +32,7 @@ public class RunSeleniumGrid {
     static class statusGrid {
         static String URL = "http://localhost:4444/grid/api/hub";
         static HttpClient httpClient = HttpClients.createDefault();
+        //        static HttpClient httpClient;
         static HttpResponse httpResponse;
         static HttpEntity entity;
         static String responseString;
@@ -39,19 +41,23 @@ public class RunSeleniumGrid {
         static int statCode;//200 is true
 
         static void chekStatus() throws JSONException, InterruptedException, IOException {
-            if (!chekResponseStatus() && !chekStatusField()){
+            if (!chekResponseStatus() && !chekStatusField()) {
                 System.out.println("Не удалось запустить Selenium Grid, выход с кодом 1");
                 System.exit(1);
             }
         }
 
-        static void getResponse(String URL) throws IOException {
+        static void getResponse(String URL) {
             try {
                 httpResponse = httpClient.execute(new HttpGet(URL));
                 entity = httpResponse.getEntity();
                 responseString = EntityUtils.toString(entity, "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                System.out.println("Не могу подключиться 1!");
             } catch (ClientProtocolException e) {
-                System.out.println("Не могу подключиться по протоколу!");
+                System.out.println("Не могу подключиться 2!");
+            } catch (IOException e) {
+                System.out.println("Не могу подключиться 3!");
             }
         }
 
@@ -59,9 +65,11 @@ public class RunSeleniumGrid {
             int SEC_CURRENT = 1; // default=1 max=20
             while (SEC_CURRENT <= SEC_COUNT) {
                 getResponse(URL);
-                statCode = httpResponse.getStatusLine().getStatusCode();
-                if (statCode == 200)
-                    return true;
+                if (httpResponse != null) {
+                    statCode = httpResponse.getStatusLine().getStatusCode();
+                    if (statCode == 200)
+                        return true;
+                }
                 Thread.sleep(1000);
                 SEC_CURRENT++;
             }
