@@ -3,7 +3,6 @@ package pages.utilities;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,7 +20,6 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class WebDriverInstansiator {
     public String browser;
     public RemoteWebDriver driver;
-    public WebDriver webDriver;
     public ChromeOptions chromeOptions;
     public DesiredCapabilities dcch;
     public static ChromeDriverService chromeDriverService;
@@ -31,7 +29,7 @@ public class WebDriverInstansiator {
         this.browser = browser;
     }
 
-    public void setDriver(Boolean headless) throws MalformedURLException {
+    public RemoteWebDriver setDriver(Boolean headless) throws MalformedURLException {
         if (browser == null) {
             chromeDriverService = new ChromeDriverService.Builder()
                     .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
@@ -42,6 +40,7 @@ public class WebDriverInstansiator {
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
+            return driver;
         } else {
             switch (browser) {
                 case "firefox":
@@ -84,5 +83,6 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + headless + "; ");
         }
+        return driver;
     }
 }
