@@ -15,10 +15,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
 public class RunSeleniumGrid {
-    public static void run() throws Exception {
-        Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"");
-        statusGrid.chekStatus();
-        System.out.println("Selenium Grid Запущен!");
+    public static void run(boolean gridIsRun) throws Exception {
+        if (gridIsRun) {
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"");
+            statusGrid.chekStatus();
+            System.out.println("Selenium Grid Запущен!");
+        }
     }
 
     public static void stop() throws IOException {
@@ -32,7 +34,6 @@ public class RunSeleniumGrid {
     static class statusGrid {
         static String URL = "http://localhost:4444/grid/api/hub";
         static HttpClient httpClient = HttpClients.createDefault();
-        //        static HttpClient httpClient;
         static HttpResponse httpResponse;
         static HttpEntity entity;
         static String responseString;

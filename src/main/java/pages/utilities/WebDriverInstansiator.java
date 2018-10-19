@@ -3,11 +3,12 @@ package pages.utilities;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.SkipException;
 
 import java.awt.*;
 import java.net.MalformedURLException;
@@ -18,6 +19,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class WebDriverInstansiator {
     public String browser;
     public RemoteWebDriver driver;
+    public WebDriver webDriver = new ChromeDriver();
     public ChromeOptions chromeOptions;
     public DesiredCapabilities dcch;
 
@@ -25,7 +27,7 @@ public class WebDriverInstansiator {
         this.browser = browser;
     }
 
-    public RemoteWebDriver setDriver(Boolean headless) throws MalformedURLException {
+    public void setDriver(Boolean headless) throws MalformedURLException {
         if (browser == null) {
             this.chromeOptions = new ChromeOptions();
             chromeOptions.setHeadless(false);
@@ -34,8 +36,8 @@ public class WebDriverInstansiator {
             this.dcch = DesiredCapabilities.chrome();
             dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
 
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
-            WebDriverRunner.setWebDriver(driver);
+//            webDriver = new WebDriver();
+//            WebDriverRunner.setWebDriver(webDriver);
             Configuration.timeout = 20000;
         } else {
             switch (browser) {
@@ -79,6 +81,5 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + headless + "; ");
         }
-        return driver;
     }
 }
