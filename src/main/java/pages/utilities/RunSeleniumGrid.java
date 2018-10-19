@@ -15,20 +15,24 @@ import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
 public class RunSeleniumGrid {
-    public static void run(boolean gridIsRun) throws Exception {
-        if (gridIsRun) {
+    public static void run(String gridIsRun) throws Exception {
+        if (gridIsRun != null) {
             Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"");
             statusGrid.chekStatus();
-            System.out.println("Selenium Grid Запущен!");
+            System.out.println("Selenium Grid запущен!");
+        } else {
+            System.out.println("Selenium Grid не запущен!");
         }
     }
 
-    public static void stop() throws IOException {
-        URL url = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
-        url.openConnection().getInputStream();
-        url = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
-        url.openConnection().getInputStream();
-        System.out.println("Остановил хаб Selenium grid");
+    public static void stop(String gridIsRun) throws IOException {
+        if (gridIsRun != null) {
+            URL url = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
+            url.openConnection().getInputStream();
+            url = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
+            url.openConnection().getInputStream();
+            System.out.println("Остановил хаб Selenium grid");
+        }
     }
 
     static class statusGrid {

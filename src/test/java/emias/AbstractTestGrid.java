@@ -22,7 +22,7 @@ public class AbstractTestGrid {
 
     @Parameters({"site", "login", "pass", "gridIsRun"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional boolean gridIsRun) throws Exception {
+    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional String gridIsRun) throws Exception {
         AbstractTestGrid.site = site;
         AbstractTestGrid.login = login;
         AbstractTestGrid.pass = pass;
@@ -30,9 +30,10 @@ public class AbstractTestGrid {
 //        HibernateSession.run();
     }
 
+    @Parameters({"gridIsRun"})
     @AfterSuite(alwaysRun = true)
-    public void afterSuite() throws IOException {
-        RunSeleniumGrid.stop();
+    public void afterSuite(@Optional String gridIsRun) throws IOException {
+        RunSeleniumGrid.stop(gridIsRun);
     }
 
     @Parameters({"browser", "headless"})

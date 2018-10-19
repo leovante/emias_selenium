@@ -5,12 +5,14 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.awt.*;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,9 +21,11 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class WebDriverInstansiator {
     public String browser;
     public RemoteWebDriver driver;
-    public WebDriver webDriver = new ChromeDriver();
+    public WebDriver webDriver;
     public ChromeOptions chromeOptions;
     public DesiredCapabilities dcch;
+    public static ChromeDriverService chromeDriverService;
+
 
     public WebDriverInstansiator(String browser) {
         this.browser = browser;
@@ -29,15 +33,14 @@ public class WebDriverInstansiator {
 
     public void setDriver(Boolean headless) throws MalformedURLException {
         if (browser == null) {
-            this.chromeOptions = new ChromeOptions();
-            chromeOptions.setHeadless(false);
+            chromeDriverService = new ChromeDriverService.Builder()
+                    .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
+                    .usingAnyFreePort()
+                    .build();
+            chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
-
-            this.dcch = DesiredCapabilities.chrome();
-            dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-
-//            webDriver = new WebDriver();
-//            WebDriverRunner.setWebDriver(webDriver);
+            driver = new ChromeDriver(chromeDriverService, chromeOptions);
+            WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
         } else {
             switch (browser) {
