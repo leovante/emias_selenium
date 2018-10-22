@@ -5,11 +5,11 @@ import emias.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 
-public class AfterTest extends AbstractTestGrid {
+public class AfterSuite extends AbstractTestGrid {
 
     @Test(description = "Завершаю все вызовы с тегом 'тест' в жалобах")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() {
-        SQLDemonstration.finalizeAllTestCalls();
+        SQLDemonstration.finalizeCallsOperatorTemnikov();
     }
 }

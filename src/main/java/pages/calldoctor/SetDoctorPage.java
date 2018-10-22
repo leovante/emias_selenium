@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class SetDoctorPage extends AbstractPage {
     SelenideElement appenOnThisDay = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
+    SelenideElement writeDown = $(By.xpath("//span[contains(text(),'Записать')]"));
 
     public SetDoctorPage() {
     }
@@ -29,6 +30,20 @@ public class SetDoctorPage extends AbstractPage {
     public SetDoctorPage saveAddress() {
         $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
+        return this;
+    }
+
+    @Step("записать")
+    public SetDoctorPage megaClickDoctor(Doctor doctor) {
+        $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
+        appenOnThisDay.click();
+        int i = 2;
+        writeDown.click();
+        while (writeDown.isDisplayed()) {
+            writeDown.click();
+            System.out.println("Я нажал на эту кнопку " + i + " раз");
+            i++;
+        }
         return this;
     }
 }
