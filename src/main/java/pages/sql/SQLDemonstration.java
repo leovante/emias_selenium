@@ -69,8 +69,8 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    @Step("завершаю все существующие вызовы")
-    public static void finalizeAllTestCalls() {
+    @Step("завершаю вызовы оператора Темников")
+    public static void finalizeCallsOperatorTemnikov() {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -80,9 +80,11 @@ public class SQLDemonstration extends AbstractPage {
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor " +
-                                "set rf_CallDoctorStatusID = 3 " +
-                                "where rf_CallDoctorStatusID != 3 " +
-                                "and Complaint like '%тест%'";
+                                "set rf_calldoctorstatusid = 3 " +
+                                "from hlt_calldoctor cl " +
+                                "inner join oms_DocumentHistory dh on cl.guid = dh.rf_documentguid " +
+                                "where dh.Editor = 'Темников Дмитрий Олегович' " +
+                                "and cl.rf_calldoctorstatusid in (2, 5, 7)";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);

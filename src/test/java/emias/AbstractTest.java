@@ -54,7 +54,7 @@ public abstract class AbstractTest {
     @RetryCountIfFailed(2)
     @AfterGroups(groups = "CD")
     public void afterGroupsCD() {
-//        SQLDemonstration.finalizeAllTestCalls();
+//        SQLDemonstration.finalizeCallsOperatorTemnikov();
     }
 
     @Parameters(value = {"site", "loginMis", "pass"})
