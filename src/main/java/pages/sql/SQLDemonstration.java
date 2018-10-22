@@ -267,7 +267,7 @@ public class SQLDemonstration extends AbstractPage {
     @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
     public static void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
         //сгенерировать одну ячейку на сегодня
-        String a = new DateGenerator().dispDoctorShedule(LPUDoctorID, DocPRVDID);
+        String request = new DateGenerator().dispDoctorShedule(LPUDoctorID, DocPRVDID);
 
 
 //        FileInputStream fstream = new FileInputStream("src/main/resources/sql/" + "select_top_10000___from_hlt_DoctorTimeTa.tsv");

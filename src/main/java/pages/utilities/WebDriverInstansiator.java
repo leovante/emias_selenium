@@ -37,6 +37,7 @@ public class WebDriverInstansiator {
                     .build();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
+            chromeOptions.setHeadless(true);
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
