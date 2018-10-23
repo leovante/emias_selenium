@@ -9,7 +9,7 @@ import pages.sql.SQLDemonstration;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 
-public class BeforeTest extends AbstractTestGrid {
+public class BeforeSuiteDisp extends AbstractTestGrid {
 
     @Test(description = "Обнуляю карты диспансеризации")
     @RetryCountIfFailed(2)

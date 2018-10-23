@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class BeforeTest extends AbstractTestGrid {
+public class BeforeSuiteCalldoctor extends AbstractTestGrid {
 
     @Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)

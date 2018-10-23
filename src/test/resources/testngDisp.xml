@@ -16,7 +16,7 @@
     <test name="BeforeTest" verbose="1">
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="emias.disp.before.BeforeTest"/>
+            <class name="emias.disp.before.BeforeSuiteDisp"/>
         </classes>
     </test>
 
