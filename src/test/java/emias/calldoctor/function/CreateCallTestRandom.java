@@ -41,5 +41,7 @@ public class CreateCallTestRandom extends AbstractTestGrid {
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }
+
+    // TODO: 10/23/2018 пока напишу здесь, нуна сделать тест проверки отображения подразделения при наличии расписания и его отсутствии
 }
 
