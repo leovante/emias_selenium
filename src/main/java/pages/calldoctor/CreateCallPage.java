@@ -6,6 +6,7 @@ import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
@@ -101,7 +102,7 @@ public class CreateCallPage extends AbstractPage {
             try {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequest());
-                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+                verifyBodyResponceNewCall(httpResponse);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
@@ -111,7 +112,7 @@ public class CreateCallPage extends AbstractPage {
             try {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
-                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+                verifyBodyResponceNewCall(httpResponse);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
@@ -402,5 +403,14 @@ public class CreateCallPage extends AbstractPage {
     public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
         long diffInMillies = date2.getTime() - date1.getTime();
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+    }
+
+    void verifyBodyResponceNewCall(HttpResponse resp) throws IOException {
+        int a = resp.getStatusLine().getStatusCode();
+        if (a != 200) {
+            System.out.println("Не удаётся создать новый вызов!");
+            System.out.println("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
+            System.exit(1);
+        }
     }
 }
