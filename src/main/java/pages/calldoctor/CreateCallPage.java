@@ -196,7 +196,7 @@ public class CreateCallPage extends AbstractPage {
 
     private CreateCallPage address() throws InterruptedException {
         cancelAdress.shouldBe(Condition.visible);
-        if (pacient.getAddress1() != null && pacient.getAddress2() != "") {
+        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
             cancelAdress.click();
             adress.setValue(pacient.getAddress1());
             list_first_container.click();
@@ -207,7 +207,7 @@ public class CreateCallPage extends AbstractPage {
             Thread.sleep(700);
             list_first_container.click();
         }
-        if (pacient.getAddress3() != null && pacient.getAddress2() != "") {
+        if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
             adress.setValue(pacient.getAddress3());
             list_first_container.isDisplayed();
             Thread.sleep(700);
