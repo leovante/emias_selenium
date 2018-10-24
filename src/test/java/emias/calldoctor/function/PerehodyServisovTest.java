@@ -22,7 +22,6 @@ import java.text.ParseException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-
 public class PerehodyServisovTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
@@ -81,10 +80,8 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
     }
 
-    @Flaky
     @Test(groups = "CD", description = "проверка кнопки выход")
     @Epic("Переходы")
-    @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
     public void testInstruction() {
         enterSite.enterCalldoctorFromMis();
