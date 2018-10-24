@@ -212,7 +212,10 @@ public class CreateCallPage extends AbstractPage {
             adress.setValue(pacient.getAddress3());
             list_first_container.isDisplayed();
             Thread.sleep(700);
-            list_first_container.click();
+            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
+                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
+            else
+                list_first_container.click();
         }
         if (pacient.getNumber() != null && pacient.getNumber() != "") {
             $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());

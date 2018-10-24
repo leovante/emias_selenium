@@ -65,12 +65,9 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     public void testRelogingAnotherOperator() {
         enterSite.enterCalldoctorFromMis();
         switchTo().window(0);
-        enterSite.enterCalldoctorFromMisAdmin();
-//        page.homePageMis().exitBtn();
-//        page.loginPage().login("Admin", "RChS2014");
-//        page.homePageMis().callDoctorBtn();
+        enterSite.enterCalldoctorFromMisGenerator();
         switchTo().window(2);
-        $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(.,'Генератор Маршрутного')]")).shouldBe(Condition.visible);
     }
 
     @Flaky
