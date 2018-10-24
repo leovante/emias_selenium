@@ -22,7 +22,7 @@ public class AbstractTestGrid {
     public static String site;
     public static String login;
     public static String pass;
-
+//
     @Parameters({"site", "login", "pass"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass) throws IOException, InterruptedException {
