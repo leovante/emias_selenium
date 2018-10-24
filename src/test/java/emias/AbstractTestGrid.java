@@ -20,6 +20,7 @@ public class AbstractTestGrid {
     public static String login;
     public static String pass;
 //
+//
     @Parameters({"site", "login", "pass", "gridIsRun"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional String gridIsRun) throws Exception {
