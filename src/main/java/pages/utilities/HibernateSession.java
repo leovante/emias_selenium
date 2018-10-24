@@ -1,14 +1,13 @@
 package pages.utilities;
 
 import org.hibernate.Session;
-import pages.sql.HltCallDoctorEntity;
+import system.model.HltCallDoctorEntity;
 
 import java.io.IOException;
 
 public class HibernateSession {
-    public static void run() throws IOException {
-        Runtime.getRuntime().exec("src/main/resources/run_grid.bat");
 
+    public static void run() throws IOException {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
 

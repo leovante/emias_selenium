@@ -1,4 +1,4 @@
-package pages.sql;
+package system.model;
 
 import javax.persistence.*;
 import java.util.Date;

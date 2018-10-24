@@ -11,13 +11,14 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
 
+//import system.model.HltDispExamEntity;
+
 public class SQLDemonstration extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";
     private static List<File> lst;
-
 
     @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {
@@ -212,30 +213,38 @@ public class SQLDemonstration extends AbstractPage {
 
     @Step("Сбросить мероприятия у карты вызова")
     public static void setDefaultServices(String cardID) { // TODO: 04.09.2018 доделать обнуление заключения
-        String url = connectionUrl +
-                ";databaseName=" + databaseName +
-                ";user=" + userName +
-                ";password=" + password;
-        try {
-            System.out.print("Connecting to SQL Server ... ");
-            try (Connection connection = DriverManager.getConnection(url)) {
-                String sql =
-                        "update hlt_disp_Exam" +
-                                " set IsDeviation = 0," +
-                                " IsOtkaz = 0," +
-                                " IsSigned = 0" +
-                                " from hlt_disp_Card dc" +
-                                " inner join hlt_disp_Exam de on dc.Guid = de.rf_CardGuid" +
-                                " where dc.disp_CardID = '" + cardID + "'";
+//        HltDispExamService hltDispExamService = new HltDispExamService();
+//        HltDispExamEntity hltDispExamEntity = new HltDispExamEntity();
+//        hltDispExamEntity.setFlags(1);
+//        hltDispExamService.saveExam(hltDispExamEntity);
+//
+//        Query query = session.createQuery("select * from HltDispExamEntity");
+//        query.setParameter("id", "255");
+//        List list = query.list();
 
-                try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql);
-                    System.out.println("Card: " + cardID + " is default!");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        String url = connectionUrl +
+//                ";databaseName=" + databaseName +
+//                ";user=" + userName +
+//                ";password=" + password;
+//        try {
+//            System.out.print("Connecting to SQL Server ... ");
+//            try (Connection connection = DriverManager.getConnection(url)) {
+//                String sql =
+//                        "update hlt_disp_Exam" +
+//                                " set IsDeviation = 0," +
+//                                " IsOtkaz = 0," +
+//                                " IsSigned = 0" +
+//                                " from hlt_disp_Card dc" +
+//                                " inner join hlt_disp_Exam de on dc.Guid = de.rf_CardGuid" +
+//                                " where dc.disp_CardID = '" + cardID + "'";
+//                try (Statement statement = connection.createStatement()) {
+//                    statement.executeUpdate(sql);
+//                    System.out.println("Card: " + cardID + " is default!");
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Step("Запуск скрипта на демонстрейшн")
