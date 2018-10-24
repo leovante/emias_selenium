@@ -11,7 +11,6 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 import java.io.IOException;
 import java.text.ParseException;
 
-
 public class FilterTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
