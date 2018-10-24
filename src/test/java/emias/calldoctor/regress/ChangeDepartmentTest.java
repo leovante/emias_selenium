@@ -97,8 +97,10 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
         Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
+        enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().transferToDepartBtn();
+        $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
     }
 
