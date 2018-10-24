@@ -80,4 +80,16 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         page.dashboardPage().exitToMis();
         $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
     }
+
+    @Flaky
+    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Epic("Переходы")
+    @Issue("EMIAS-658")
+    @RetryCountIfFailed(2)
+    public void testInstruction() {
+        enterSite.enterCalldoctorFromMis();
+        page.dashboardPage().instruction();
+        switchTo().window(2);
+        $(By.xpath("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]")).shouldBe(Condition.visible);
+    }
 }

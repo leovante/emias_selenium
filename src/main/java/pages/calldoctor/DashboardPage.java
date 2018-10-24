@@ -21,6 +21,7 @@ public class DashboardPage extends AbstractPage {
 
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
+    private SelenideElement instructionBtn = $(By.xpath("//*[contains(text(),'Инструкция')]"));
     private SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
     private SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
     private SelenideElement typeCall = $(By.xpath("//*[@placeholder='Вид вызова']"));
@@ -38,6 +39,12 @@ public class DashboardPage extends AbstractPage {
     public void exitToMis() {
         exitToMis.click();
         exitBtn.click();
+    }
+
+    @Step("вышел в мис")
+    public void instruction() {
+        exitToMis.click();
+        instructionBtn.click();
     }
 
 //    @Step("поиск в фильтре ФИО")
