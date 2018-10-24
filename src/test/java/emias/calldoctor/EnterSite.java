@@ -14,8 +14,8 @@ public class EnterSite extends AbstractTestGrid {
         return this;
     }
 
-    public EnterSite enterCalldoctorFromMisAdmin() {
-        page.loginPage().login("http://emias.mosreg.ru/demonstration", "Admin", "RChS2014");
+    public EnterSite enterCalldoctorFromMisGenerator() {
+        page.loginPage().login("http://emias.mosreg.ru/demonstration", "generator", "1212");
         page.homePageMis().callDoctorBtn();
         switchTo().window(1);
         return this;

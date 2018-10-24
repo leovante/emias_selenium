@@ -451,6 +451,7 @@ public class FullCardPage extends AbstractPage {
     @Step("передать в другое ЛПУ через подробную карту вызова")
     public void transferToDepartBtn() {
         toLpu.click();
+        $(By.xpath("//*[contains(text(),'Выберите куда передать вызов')]")).shouldBe(Condition.visible);
     }
 
     @Step("Проверка текущего подразделения у карты вызова")

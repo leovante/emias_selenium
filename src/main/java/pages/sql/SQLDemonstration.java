@@ -1,12 +1,14 @@
 package pages.sql;
 
 import io.qameta.allure.Step;
+import org.codehaus.plexus.util.IOUtil;
 import pages.AbstractPage;
 
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.List;
 
 public class SQLDemonstration extends AbstractPage {
@@ -44,6 +46,34 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
+    @Step("удаляю расписание этого врача")
+    public static void deleteShedule(int LPUDoctorID, int DocPRVDID) {
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
+                                "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
+                                "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '17530101', GETDATE()) / 7) * 7) - 7, '17530101') " +
+                                "  AND dtt.rf_DocPRVDID = " + DocPRVDID +
+                                "  AND dtt.rf_LPUDoctorID = " + LPUDoctorID;
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    System.out.println("Table DTT is clean.");
+                    statement.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println();
+            e.printStackTrace();
+        }
+        System.out.println("Удалил расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
+    }
+
     @Step("завершаю все существующие вызовы")
     public static void finalizeAllCalls() {
         String url = connectionUrl +
@@ -67,8 +97,8 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    @Step("завершаю все существующие вызовы")
-    public static void finalizeAllTestCalls() {
+    @Step("завершаю вызовы оператора Темников")
+    public static void finalizeCallsOperatorTemnikov() {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -78,9 +108,11 @@ public class SQLDemonstration extends AbstractPage {
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor " +
-                                "set rf_CallDoctorStatusID = 3 " +
-                                "where rf_CallDoctorStatusID != 3 " +
-                                "and Complaint like '%тест%'";
+                                "set rf_calldoctorstatusid = 3 " +
+                                "from hlt_calldoctor cl " +
+                                "inner join oms_DocumentHistory dh on cl.guid = dh.rf_documentguid " +
+                                "where dh.Editor = 'Темников Дмитрий Олегович' " +
+                                "and cl.rf_calldoctorstatusid in (2, 5, 7)";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
@@ -207,10 +239,9 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Запуск скрипта на демонстрейшн")
-    public static void runSqlScript(String sql) throws FileNotFoundException {
-        FileInputStream fstream = new FileInputStream("src/main/resources/sql/" + sql);
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
+    public static void runSqlScript(String sql) throws IOException {
+        InputStream is = new FileInputStream("src/main/resources/sql/disp/" + sql);
+        String script = IOUtil.toString(is, "UTF-8");
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -218,9 +249,8 @@ public class SQLDemonstration extends AbstractPage {
         try {
             System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-                String sql2 = br.readLine();
                 try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql2);
+                    statement.executeUpdate(script);
                     System.out.println("SQL scripst " + sql + " Complete!");
                 }
             }
@@ -230,10 +260,7 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Запуск скрипта на демонстрейшн")
-    public static void scriptsFromFolder(String path) throws FileNotFoundException {
-        FileInputStream fstream = new FileInputStream(path);
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
+    public static void scriptTxt(String script) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -241,9 +268,8 @@ public class SQLDemonstration extends AbstractPage {
         try {
             System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-                String sql2 = br.readLine();
                 try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql2);
+                    statement.executeUpdate(script);
                     System.out.println("SQL scripst Complete!");
                 }
             }
@@ -252,22 +278,20 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
-    public static void getScripts() throws FileNotFoundException {
+    public static void scriptsToCalldoctor() throws IOException {
         File dir = new File("src/main/resources/sql/calldoctor");
-//        File dir = new File(SQLDemonstration.class.getClassLoader().getResource("sql/calldoctor").getFile());
         File[] files = dir.listFiles();
         File[] scriptList = files;
-        for (File script : scriptList) {
-            scriptsFromFolder(script.toString());
+        for (File scriptPath : scriptList) {
+            InputStream is = new FileInputStream(scriptPath);
+            String script = IOUtil.toString(is, "UTF-8");
+            scriptTxt(script);
         }
     }
 
     @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
-    public static void createShedule(String docprvdid) throws FileNotFoundException {
-        //сгенерировать одну ячейку на сегодня
-        FileInputStream fstream = new FileInputStream("src/main/resources/sql/" + "select_top_10000___from_hlt_DoctorTimeTa.tsv");
-        BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-
+    public static void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
+        String request = new DateGenerator().dispDoctorShedule(LPUDoctorID, DocPRVDID);
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -275,11 +299,28 @@ public class SQLDemonstration extends AbstractPage {
         try {
             System.out.print("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-
-                String sql2 = br.readLine();
-
                 try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql2);
+                    statement.executeUpdate(request);
+                    System.out.println("Complete!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
+    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
+        String request = new DateGenerator().dispDoctorSheduleCD(LPUDoctorID, DocPRVDID);
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(request);
                     System.out.println("Complete!");
                 }
             }

@@ -6,6 +6,7 @@ import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
@@ -101,7 +102,7 @@ public class CreateCallPage extends AbstractPage {
             try {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequest());
-                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+                verifyBodyResponceNewCall(httpResponse);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
@@ -111,7 +112,7 @@ public class CreateCallPage extends AbstractPage {
             try {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
-                Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), 200, "Не удаётся создать новый вызов!");
+                verifyBodyResponceNewCall(httpResponse);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
@@ -196,7 +197,7 @@ public class CreateCallPage extends AbstractPage {
 
     private CreateCallPage address() throws InterruptedException {
         cancelAdress.shouldBe(Condition.visible);
-        if (pacient.getAddress1() != null && pacient.getAddress2() != "") {
+        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
             cancelAdress.click();
             adress.setValue(pacient.getAddress1());
             list_first_container.click();
@@ -207,11 +208,14 @@ public class CreateCallPage extends AbstractPage {
             Thread.sleep(700);
             list_first_container.click();
         }
-        if (pacient.getAddress3() != null && pacient.getAddress2() != "") {
+        if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
             adress.setValue(pacient.getAddress3());
             list_first_container.isDisplayed();
             Thread.sleep(700);
-            list_first_container.click();
+            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
+                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
+            else
+                list_first_container.click();
         }
         if (pacient.getNumber() != null && pacient.getNumber() != "") {
             $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
@@ -402,5 +406,14 @@ public class CreateCallPage extends AbstractPage {
     public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
         long diffInMillies = date2.getTime() - date1.getTime();
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+    }
+
+    void verifyBodyResponceNewCall(HttpResponse resp) throws IOException {
+        int a = resp.getStatusLine().getStatusCode();
+        if (a != 200) {
+            System.out.println("Не удаётся создать новый вызов!");
+            System.out.println("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
+            System.exit(1);
+        }
     }
 }

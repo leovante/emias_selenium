@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,6 +25,9 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String address1;
     private String address2;
     private String address3;
+
+
+    private String address3adv;
     private String complaint;
     private String diagnosis;
     private String phone;
@@ -43,7 +45,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String sourceCode;
     private Object kladraddress;
 
-
     public Object getKladraddress() {
         return kladraddress;
     }
@@ -51,9 +52,13 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private Date parseDate(String dateString) {
         try {
             return simpleDateFormat.parse(dateString);
-        } catch (final ParseException e) {
-            return new Date();
+        } catch (Exception e) {
+            return null;
         }
+    }
+
+    public String getAddress3adv() {
+        return address3adv;
     }
 
     public int getSource() {
@@ -86,9 +91,11 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     public String getBirthdate(String format) {
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
-        String date1 = null;
+        String date1;
         if (birthdate != null) {
             date1 = simpleDateFormatEdit.format(birthdate);
+        } else {
+            date1 = null;
         }
         return date1;
     }
@@ -248,6 +255,9 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
         if (jsonOb.has("address3") && !jsonOb.get("address3").equals(""))
             this.address3 = jsonOb.getString("address3");
+
+        if (jsonOb.has("address3adv") && !jsonOb.get("address3adv").equals(""))
+            this.address3adv = jsonOb.getString("address3adv");
 
         if (jsonOb.has("complaint") && !jsonOb.get("complaint").equals(""))
             this.complaint = jsonOb.getString("complaint");

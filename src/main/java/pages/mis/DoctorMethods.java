@@ -2,7 +2,6 @@ package pages.mis;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ex.ElementNotFound;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -102,13 +101,7 @@ public class DoctorMethods extends AbstractPage {
 
     @Step("выбрать врача")
     public DoctorMethods selectDoctor(String doctorInlet) {
-        try {
-            $(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]")).click();
-        } catch (Exception e) {
-            throw new ElementNotFound(
-                    (By) $(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]")),
-                    Condition.enabled);
-        }
+        $(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]")).click();
         return this;
     }
 }

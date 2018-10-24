@@ -22,7 +22,6 @@ import java.text.ParseException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-
 public class PerehodyServisovTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
@@ -65,12 +64,9 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     public void testRelogingAnotherOperator() {
         enterSite.enterCalldoctorFromMis();
         switchTo().window(0);
-        enterSite.enterCalldoctorFromMisAdmin();
-//        page.homePageMis().exitBtn();
-//        page.loginPage().login("Admin", "RChS2014");
-//        page.homePageMis().callDoctorBtn();
+        enterSite.enterCalldoctorFromMisGenerator();
         switchTo().window(2);
-        $(By.xpath("//*[contains(.,'Узкий Врач')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(.,'Генератор Маршрутного')]")).shouldBe(Condition.visible);
     }
 
     @Flaky
@@ -82,5 +78,15 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.dashboardPage().exitToMis();
         $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Epic("Переходы")
+    @RetryCountIfFailed(2)
+    public void testInstruction() {
+        enterSite.enterCalldoctorFromMis();
+        page.dashboardPage().instruction();
+        switchTo().window(2);
+        $(By.xpath("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]")).shouldBe(Condition.visible);
     }
 }

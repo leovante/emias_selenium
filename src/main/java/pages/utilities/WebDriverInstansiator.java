@@ -3,12 +3,15 @@ package pages.utilities;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.awt.*;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -19,21 +22,23 @@ public class WebDriverInstansiator {
     public RemoteWebDriver driver;
     public ChromeOptions chromeOptions;
     public DesiredCapabilities dcch;
+    public static ChromeDriverService chromeDriverService;
+
 
     public WebDriverInstansiator(String browser) {
         this.browser = browser;
     }
 
-    public RemoteWebDriver setDriver(Boolean headless) throws MalformedURLException {
+    public void setDriver(Boolean headless) throws MalformedURLException {
         if (browser == null) {
-            this.chromeOptions = new ChromeOptions();
-            chromeOptions.setHeadless(false);
+            chromeDriverService = new ChromeDriverService.Builder()
+                    .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
+                    .usingAnyFreePort()
+                    .build();
+            chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
-
-            this.dcch = DesiredCapabilities.chrome();
-            dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
+            chromeOptions.setHeadless(false);
+            driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
         } else {
@@ -78,6 +83,5 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + headless + "; ");
         }
-        return driver;
     }
 }

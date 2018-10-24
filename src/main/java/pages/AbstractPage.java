@@ -8,12 +8,13 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-abstract public class AbstractPage {
+public class AbstractPage {
     public WebDriver driver;
 
     public AbstractPage() {
         this.driver = getWebDriver();
     }
+
 
     public void ShouldBeVisible(String text) {
         $(By.xpath("//*[contains(text(),'" + text + "')]")).shouldBe(Condition.visible);

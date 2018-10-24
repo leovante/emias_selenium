@@ -10,7 +10,7 @@ import pages.Pages;
 import pages.sql.SQLDemonstration;
 import pages.utilities.DriverManager;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.close;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -54,7 +54,7 @@ public abstract class AbstractTest {
     @RetryCountIfFailed(2)
     @AfterGroups(groups = "CD")
     public void afterGroupsCD() {
-//        SQLDemonstration.finalizeAllTestCalls();
+//        SQLDemonstration.finalizeCallsOperatorTemnikov();
     }
 
     @Parameters(value = {"site", "loginMis", "pass"})
@@ -77,7 +77,7 @@ public abstract class AbstractTest {
 
 
     @AfterGroups(groups = "disp")
-    public void AfterGroupsDisp() throws FileNotFoundException {
+    public void AfterGroupsDisp() throws IOException {
         SQLDemonstration.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
         SQLDemonstration.runSqlScript("insert default hlt_disp_ServiceDocPrvd.txt");
     }
