@@ -32,5 +32,3 @@ public class HltDispExamService {
         return hltDispExam.findAll();
     }
 }
-
-
