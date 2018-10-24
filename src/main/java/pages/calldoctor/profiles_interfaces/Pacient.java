@@ -25,8 +25,6 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String address1;
     private String address2;
     private String address3;
-
-
     private String address3adv;
     private String complaint;
     private String diagnosis;
