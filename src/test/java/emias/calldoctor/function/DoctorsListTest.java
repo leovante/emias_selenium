@@ -189,8 +189,8 @@ public class DoctorsListTest extends AbstractTestGrid {
         page.createCallPage()
                 .setDeafult()
                 .editCallPage(pacient2);
-        page.setDoctorPage().saveAddress();
         page.fullCardPage().chooseDoctorBtn();
+        page.setDoctorPage().saveAddress();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Моков')]")).shouldBe(Condition.visible);
