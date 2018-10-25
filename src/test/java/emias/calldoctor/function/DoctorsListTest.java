@@ -175,10 +175,8 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldNotBe(Condition.visible);
     }
 
-    @Flaky
-    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Test(groups = "CD", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
-    @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile2");
