@@ -2,7 +2,6 @@ package pages.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -12,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -136,7 +136,10 @@ public class CreateCallPage extends AbstractPage {
 
     public CreateCallPage setDeafult() {
         $(By.id("source1")).click();
-        new PressEscape();
+
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ESCAPE).perform();
+
         List<SelenideElement> selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')]"));
         List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
 

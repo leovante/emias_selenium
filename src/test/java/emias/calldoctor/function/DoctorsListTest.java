@@ -174,4 +174,28 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Немцова')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldNotBe(Condition.visible);
     }
+
+    @Flaky
+    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Epic("Создание вызова")
+    @Issue("EMIAS-659")
+    @RetryCountIfFailed(2)
+    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile2");
+        Pacient pacient2 = new Pacient("Profile0_2");
+        enterSite.enterCalldoctorFromMis();
+        page.createCallPage().createCall_Mkab(pacient);
+        page.fullCardPage().editCallBtn();
+        page.createCallPage()
+                .setDeafult()
+                .editCallPage(pacient2);
+        page.setDoctorPage().saveAddress();
+        page.fullCardPage().chooseDoctorBtn();
+        $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Темников')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Моков')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Серова')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Немцова')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldBe(Condition.visible);
+    }
 }

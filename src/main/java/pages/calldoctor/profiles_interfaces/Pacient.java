@@ -17,10 +17,10 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private int source;
     private int type;
     private int gender;
-    private String numberpol;
     private String birthdate_string;
     private Date birthdate;
     private String seriespol;
+    private String numberpol;
     private String address;
     private String address1;
     private String address2;
