@@ -30,6 +30,7 @@ public class WebDriverInstansiator {
     }
 
     public void setDriver(Boolean headless) throws MalformedURLException {
+        //ручной запуск
         if (browser == null) {
             chromeDriverService = new ChromeDriverService.Builder()
                     .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
@@ -41,7 +42,9 @@ public class WebDriverInstansiator {
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
-        } else {
+        }
+        //селениум грид
+        else {
             switch (browser) {
                 case "firefox":
                     FirefoxOptions options = new FirefoxOptions();
