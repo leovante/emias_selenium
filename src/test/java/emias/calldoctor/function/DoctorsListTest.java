@@ -187,6 +187,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         page.createCallPage()
                 .setDeafult()
                 .editCallPage(pacient2);
+        $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().saveAddress();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
@@ -195,5 +196,40 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "проверяю что после редактирования карты и изменения адреса на неформализованный пропадает привязка к старому участку")
+    @Epic("Создание вызова")
+    @Issue("EMIAS-956")
+    @RetryCountIfFailed(2)
+    public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile2");
+        Pacient pacient2 = new Pacient("Profile0_2");
+        enterSite.enterCalldoctorFromMis();
+        page.createCallPage().createCall_Mkab(pacient);
+        page.fullCardPage().editCallBtn();
+        page.createCallPage()
+                .setDeafult()
+                .editCallPage_Mkab(pacient2)
+                .saveBtn();
+        $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "проверяю наличие валидации адреса после редактирвоания карты вызова")
+    @Epic("Создание вызова")
+    @Issue("EMIAS-956")
+    @RetryCountIfFailed(2)
+    public void testValidationAddressAfterSaveEditedCall() throws Exception {
+        Pacient pacient = new Pacient("Profile2");
+        Pacient pacient2 = new Pacient("Profile0_3");
+        enterSite.enterCalldoctorFromMis();
+        page.createCallPage().createCall_Mkab(pacient);
+        page.fullCardPage().editCallBtn();
+        page.createCallPage()
+                .setDeafult()
+                .editCallPage_Mkab(pacient2)
+                .saveBtn();
+        throw new Exception("добавить ассерт");
+        //пока что это не исправили, нужно сделать два save
     }
 }

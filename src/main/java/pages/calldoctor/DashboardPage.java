@@ -179,6 +179,7 @@ public class DashboardPage extends AbstractPage {
         SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(address).perform();
+
         SelenideElement smallMenu = address.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
         actions.moveToElement(smallMenu).perform();
         SelenideElement openCard = address.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Открыть карту вызова']"));

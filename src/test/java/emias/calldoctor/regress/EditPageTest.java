@@ -52,7 +52,8 @@ public class EditPageTest extends AbstractTestGrid {
                 .createCall(pacient)
                 .editCallBtn()
                 .setDeafult()
-                .editCallPage(pacient2);
+                .editCallPage_Mkab(pacient2)
+                .saveBtn();
         page.fullCardPage()
                 .verifyNewCall(pacient2)
                 .closeCardBtn();

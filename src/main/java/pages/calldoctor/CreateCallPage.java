@@ -125,13 +125,35 @@ public class CreateCallPage extends AbstractPage {
     public void editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
         this.pacient = pacient;
         sourceCall()
+                .sourceCall()
+                .address()
+                .addressPlus()
+                .addressPlus()
+                .complaint()
+                .polis()
+                .FIO()
+                .caller()
+                .telephone();
+//                .saveBtn();
+        System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
+    }
+
+    @Step("редактирую вызов с МКАБ + СМП")
+    public CreateCallPage editCallPage_Mkab(Pacient pacient) throws IOException, ParseException, InterruptedException {
+        this.pacient = pacient;
+        sourceCall()
                 .searchField()
                 .addressPlus()
                 .complaint()
                 .caller()
-                .telephone()
-                .saveBtn();
+                .telephone();
+//                .saveBtn();
         System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
+        return this;
+    }
+
+    public void saveBtn1() {
+
     }
 
     public CreateCallPage setDeafult() {
@@ -314,7 +336,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage caller() throws IOException, ParseException {
+    private CreateCallPage caller() {
         if (pacient.getSource() == 2) {
             $(By.id("sourceSmp")).setValue("Супер станция");
             $(By.id("callFamily")).setValue("ФамилияВызывающего");
@@ -325,7 +347,7 @@ public class CreateCallPage extends AbstractPage {
                 $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
                 $(By.xpath("//span[contains(.,'Пациент')]")).click();
             } else {
-                $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+                $(By.xpath("//input[@placeholder='Тип вызывающего']")).hover().click();
                 $(By.xpath("//span[contains(.,'Представитель')]")).click();
             }
         }
@@ -339,7 +361,7 @@ public class CreateCallPage extends AbstractPage {
         return years;
     }
 
-    public CreateCallPage saveBtn() throws InterruptedException {
+    public void saveBtn() throws InterruptedException {
         SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
 //        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
         SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
@@ -362,7 +384,31 @@ public class CreateCallPage extends AbstractPage {
         if (!old.equals(driver.getCurrentUrl()))
             System.out.println("Вызов создан! " + driver.getCurrentUrl());
         else System.out.println("Вызов НЕ создан!");
-        return this;
+    }
+
+    public void saveBtn2() throws InterruptedException {
+        SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
+//        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
+        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
+        SelenideElement save = $(By.id("save"));
+        String old = driver.getCurrentUrl();
+
+        for (int i = 0; i < 10; i++) {
+            if (!fullCardPage.isDisplayed()) {
+                if (allert.isDisplayed())
+                    allert.click();
+//                if (se.isDisplayed())
+//                    se.click();
+                if (save.isDisplayed())
+                    save.click();
+            } else {
+                break;
+            }
+            Thread.sleep(1000);
+        }
+        if (!old.equals(driver.getCurrentUrl()))
+            System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов НЕ создан!");
     }
 
     public CreateCallPage editCallBtn() {
