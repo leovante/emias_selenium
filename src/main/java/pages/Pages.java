@@ -2,6 +2,7 @@ package pages;
 
 import pages.calldoctor.*;
 import pages.disp.ServicesPage;
+import pages.kladr.CreateKladr;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
@@ -74,5 +75,9 @@ public class Pages extends AbstractPage {
 
     public ServicesPage servicesPage() {
         return page(ServicesPage.class);
+    }
+
+    public CreateKladr createKladr() {
+        return page(CreateKladr.class);
     }
 }
