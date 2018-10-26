@@ -186,7 +186,8 @@ public class DoctorsListTest extends AbstractTestGrid {
         page.fullCardPage().editCallBtn();
         page.createCallPage()
                 .setDeafult()
-                .editCallPage(pacient2);
+                .editCallPage(pacient2)
+                .saveBtn();
         $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage().saveAddress();

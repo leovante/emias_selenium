@@ -122,7 +122,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public void editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
+    public CreateCallPage editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .sourceCall()
@@ -136,6 +136,7 @@ public class CreateCallPage extends AbstractPage {
                 .telephone();
 //                .saveBtn();
         System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
+        return this;
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
