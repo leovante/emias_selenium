@@ -214,6 +214,4 @@ public class DoctorsListTest extends AbstractTestGrid {
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
     }
-
-
 }
