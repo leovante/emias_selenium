@@ -215,21 +215,5 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю наличие валидации адреса после редактирвоания карты вызова")
-    @Epic("Создание вызова")
-    @Issue("EMIAS-956")
-    @RetryCountIfFailed(2)
-    public void testValidationAddressAfterSaveEditedCall() throws Exception {
-        Pacient pacient = new Pacient("Profile2");
-        Pacient pacient2 = new Pacient("Profile0_3");
-        enterSite.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Mkab(pacient);
-        page.fullCardPage().editCallBtn();
-        page.createCallPage()
-                .setDeafult()
-                .editCallPage_Mkab(pacient2)
-                .saveBtn();
-        throw new Exception("добавить ассерт");
-        //пока что это не исправили, нужно сделать два save
-    }
+
 }
