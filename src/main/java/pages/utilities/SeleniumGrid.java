@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-public class RunSeleniumGrid {
+public class SeleniumGrid {
     public static void run(String gridIsRun) throws Exception {
         if (gridIsRun != null) {
             Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"");

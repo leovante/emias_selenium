@@ -2,7 +2,11 @@ package pages.utilities;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.client.ClientUtil;
+import net.lightbody.bmp.proxy.CaptureType;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Proxy;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,7 +16,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.awt.*;
 import java.io.File;
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -29,16 +33,24 @@ public class WebDriverInstansiator {
         this.browser = browser;
     }
 
-    public void setDriver(Boolean headless) throws MalformedURLException {
+    public void setDriver(Boolean headless, BrowserMobProxy proxy) throws IOException {
         //ручной запуск
         if (browser == null) {
+            proxy.start(4300);
+            Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
+            proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+            proxy.newHar("demo");
+
             chromeDriverService = new ChromeDriverService.Builder()
                     .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
                     .usingAnyFreePort()
                     .build();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
+            chromeOptions.addArguments("--proxy-server=localhost:", String.valueOf(proxy.getPort()));
             chromeOptions.setHeadless(false);
+            chromeOptions.setProxy(seleniumProxy);
+
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
