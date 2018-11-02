@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -86,41 +87,18 @@ public class FullCardPage extends AbstractPage {
         ShouldBeVisible(doctor.getUchastocs());
     }
 
-//    public String parseTelephone(Pacient pacient) {
-//        String telephone = pacient.getPhone();
-//        if (pacient.getSource() == 4) {
-//            telephone = telephone.substring(0, 1) + "7 (" +
-//                    telephone.substring(1, 4) + ") " +
-//                    telephone.substring(4, 7) + "-" +
-//                    telephone.substring(7, 9) + "-" +
-//                    telephone.substring(9, telephone.length() - 1);
-//        }
-//        if (pacient.getSource() != 4) {
-//            telephone = telephone.substring(0, 2) + " (" +
-//                    telephone.substring(2, 5) + ") " +
-//                    telephone.substring(5, 8) + "-" +
-//                    telephone.substring(8, 10) + "-" +
-//                    telephone.substring(10, telephone.length());
-//        }
-//        return telephone;
-//    }
-//    @Step("проверяю новый вызов {profile}")
-//    public FullCardPage verifyCallProfile0(String profile) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        baseElements();
-//
-//        $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Подробная карта вызова проверена!");
-//        return this;
-//    }
+    public void verifyTime() {
+        String timeCur = currentTime("HH:mm");
+        String timeCard = $(By.xpath("//span[contains(text(),'Время')]")).$(By.xpath("../.")).$(By.xpath("./span[2]")).getText();
+        Assert.assertEquals(timeCard, timeCur, "Время создания вызова не корректное");
+    }
 
     @Step("проверяю новый вызов {profile}")
     public FullCardPage verifyNewCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient(pacient);
+        verifyTime();
         System.out.println("Подробная карта вызова проверена!");
         return this;
     }
@@ -143,218 +121,6 @@ public class FullCardPage extends AbstractPage {
         System.out.println("Подробная карта вызова проверена!");
         return this;
     }
-
-//    @Step("проверяю новый вызов {profile}")
-//    public FullCardPage verifyNewCallDash(String profile, String nameGen) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
-//        baseElements();
-//        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).shouldBe(Condition.visible);
-////        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).shouldBe()(Condition.visible);
-////        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).shouldBe()(Condition.visible); это есть в baseElements
-//        $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("adressFull") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("zhaloba") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("dfon") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("etazh") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + nameGen + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("otchestvo") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("seriyaPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("nomerPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("birthDay") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("age") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Подробная карта вызова проверена!");
-//        return this;
-//    }
-//
-//    @Step("проверяю новый вызов {profile}")
-//    public FullCardPage verifyNewCallDash(String profile) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//
-//        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
-//        baseElements();
-//        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).shouldBe(Condition.visible);
-////        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).shouldBe()(Condition.visible);
-////        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).shouldBe()(Condition.visible); это есть в baseElements
-//        $(By.xpath("//*[contains(.,'" + "Не назначен" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("source") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("address") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("complaint") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("pd") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("dfon") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("etazh") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("otchestvo") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("seriyaPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("nomerPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("birthDay") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("age") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("vKat") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + proData.get("department") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Подробная карта вызова проверена!");
-//        return this;
-//    }
-
-//    @Step("проверяю активный вызов {profile}")
-//    public FullCardPage verifyCallActivityGroup(String nameGen, String profile) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
-//        baseElements();
-//        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Плановое время обхода" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("source") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("department") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("adressFull") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("zhaloba") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("pd") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//span[contains(text(),'" + proData.get("dfon") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("etazh") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("otchestvo") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//div/span[2][contains(text(),'" + proData.get("uchastocs") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Подробная карта проверена!");
-//        return this;
-//    }
-//
-//    @Step("проверяю активный вызов {profile} {profile2}")
-//    public FullCardPage verifyCallActivityGroup(String nameGen, String profile, String profile2) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        File reader2 = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile2 + ".json");
-//        Map proData2 = new ObjectMapper().readValue(reader2, Map.class);
-//        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
-//        baseElements();
-//        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Отменить вызов" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Новый" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Взрослые" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Стенд ЕМИАС МО" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Плановое время обхода" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("department") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("source") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("adressFull") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("zhaloba") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("pd") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//span[contains(text(),'" + proData.get("dfon") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("etazh") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("otchestvo") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//span[contains(text(),'" + proData.get("age") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData2.get("doctorFam") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Подробная карта вызова проверена!");
-//        return this;
-//    }
-//
-//    @Step("проверяю обслуженный вызов {profile}")
-//    public FullCardPage verifyDoneDocGroup(String profile, String nameGen) throws IOException {
-//        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
-//        Selenide.refresh();
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
-//        baseElements();
-//        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Обслуженный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Назначенный врач" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Дата перевода в статус активный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Дата и время завершения обслуживания вызова" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("department") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("source") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("adressFull") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("zhaloba") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("pd") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("dfon") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("etazh") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("otchestvo") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("years") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Подробная карта вызова проверена!");
-//        return this;
-//    }
-//
-//    @Step("проверяю обслуженный вызов {profile}")
-//    public FullCardPage verifyDoneDocGroup(String profile) throws IOException {
-//        File reader = new File("src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + profile + ".json");
-//        Map proData = new ObjectMapper().readValue(reader, Map.class);
-//        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
-//        Selenide.refresh();
-//        $(By.xpath("//*[contains(.,'Карта вызова')]")).shouldBe(Condition.visible);
-//        baseElements();
-//        $(By.xpath("//*[contains(.,'" + "Возраст" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Пол" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Обслуженный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Первичный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Карта создана" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Назначенный врач" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Дата перевода в статус активный" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(.,'" + "Дата и время завершения обслуживания вызова" + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("department") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("whoIsCall") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("source") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("adressFull") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("zhaloba") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("pd") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("dfon") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("etazh") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("otchestvo") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("seriyaPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("nomerPol") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("birthDay") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("years") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("vKat") + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + proData.get("doctorFam") + "')]")).shouldBe(Condition.visible);
-//        System.out.println("Подробная карта вызова проверена!");
-//        return this;
-//    }
 
     @Step("отменить вызов")
     public FullCardPage cancelOnFullCardBtn() {
