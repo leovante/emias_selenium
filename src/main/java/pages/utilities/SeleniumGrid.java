@@ -93,4 +93,6 @@ public class SeleniumGrid {
             return false;
         }
     }
+
+    // TODO: 11/2/2018 сделать параллельный запуск старой версии хрома
 }
