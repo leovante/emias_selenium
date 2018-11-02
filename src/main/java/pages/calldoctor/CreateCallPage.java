@@ -121,12 +121,13 @@ public class CreateCallPage extends AbstractPage {
         System.out.println("Карта вызова создана!");
     }
 
-    @Step("редактирую вызов с МКАБ + СМП")
+    @Step("редактирую вызов")
     public CreateCallPage editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .sourceCall()
                 .address()
+                .birthDay()
                 .addressPlus()
                 .addressPlus()
                 .complaint()
