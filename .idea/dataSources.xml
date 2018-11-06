@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hlt_demonstration@12.8.1.66" uuid="746674ce-b2f9-4fad-9cc9-adc5a0845d18">
+    <data-source source="LOCAL" name="hlt_demonstration@192.168.7.48" uuid="746674ce-b2f9-4fad-9cc9-adc5a0845d18">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://12.8.1.66;databaseName=hlt_demonstration</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:50004;databaseName=hlt_demonstration</jdbc-url>
       <default-dialect>TSQL</default-dialect>
     </data-source>
     <data-source source="LOCAL" name="hlt_Krasnogorsk_GB2_200401@12.8.1.62" uuid="b998b3c3-51a8-47ef-8ba3-fbb203abb565">
@@ -41,7 +41,7 @@
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="hlt_Chekhov_CRP_510201@12.8.1.58" uuid="a65afaab-fb56-4dc5-86c8-4ca5395ebf73">
+    <data-source source="LOCAL" name="hlt_Chekhov_CRP_510201@192.168.7.48" uuid="a65afaab-fb56-4dc5-86c8-4ca5395ebf73">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
