@@ -25,4 +25,9 @@ public class EnterSite extends AbstractTestGrid {
         open("https://uslugi.mosreg.ru/zdrav/");
         return this;
     }
+
+    public EnterSite loginMis() {
+        page.loginPage().login(site, login, pass);
+        return this;
+    }
 }

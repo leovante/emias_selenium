@@ -36,7 +36,7 @@ public class WebDriverInstansiator {
     public void setDriver(Boolean headless, BrowserMobProxy proxy) throws IOException {
         //ручной запуск
         if (browser == null) {
-            proxy.start(4300);
+            proxy.start(5300);
             Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
             proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
             proxy.newHar("demo");

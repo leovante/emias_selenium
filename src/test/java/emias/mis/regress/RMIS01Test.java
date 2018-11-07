@@ -1,4 +1,4 @@
-package emias.mis;
+package emias.mis.regress;
 
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
@@ -126,4 +126,6 @@ public class RMIS01Test extends AbstractTestGrid {
 
         page.transferRecords().verifyTransferShedule();
     }
+// TODO: 8/24/2018 сделать тест переходов на различные сервисы
+// TODO: 8/24/2018 сделать тест переходов на различные сервисы
 }
