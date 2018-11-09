@@ -1,5 +1,6 @@
 package pages;
 
+import pages.callCenter.*;
 import pages.calldoctor.*;
 import pages.disp.ServicesPage;
 import pages.kladr.CreateKladr;
@@ -76,8 +77,21 @@ public class Pages extends AbstractPage {
     public ServicesPage servicesPage() {
         return page(ServicesPage.class);
     }
+<<<<<<< HEAD
+    //CallCenter
+    public RecordDoctorPage recordDoctorPage() {return page(RecordDoctorPage.class);}
+
+    public FindPatientPage findPatientPage() {return page(FindPatientPage.class);}
+
+    public WaitingListPage waitingListPage() {return page(WaitingListPage.class);}
+
+    public CallDoctorPage callDoctorPage() {return page(CallDoctorPage.class);}
+
+    public DirectionsPage directionsPage() {return page(DirectionsPage.class);}
+=======
 
     public CreateKladr createKladr() {
         return page(CreateKladr.class);
     }
+>>>>>>> 507b077479b4dd788ef5ece1ee49e9de4d6041cc
 }

@@ -1,7 +1,10 @@
 package emias.calldoctor;
 
+import com.codeborne.selenide.SelenideElement;
 import emias.AbstractTestGrid;
+import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.switchTo;
 
@@ -26,8 +29,20 @@ public class EnterSite extends AbstractTestGrid {
         return this;
     }
 
+<<<<<<< HEAD
+    public EnterSite enterCallCenter(){
+        SelenideElement log = $(By.id("USER_LOGIN"));
+        SelenideElement pass = $(By.id("USER_PASSWORD"));
+        SelenideElement loginButton = $(By.xpath("//button[@type='submit']"));
+        open("http://call.emias.mosreg.ru/");
+        log.val("ccg");
+        pass.val("ccg123");
+        loginButton.click();
+        open("http://call.emias.mosreg.ru/call2_dev/to_work//");
+=======
     public EnterSite loginMis() {
         page.loginPage().login(site, login, pass);
+>>>>>>> 507b077479b4dd788ef5ece1ee49e9de4d6041cc
         return this;
     }
 }
