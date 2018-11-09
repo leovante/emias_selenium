@@ -17,6 +17,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class AbstractTestGrid {
+    public String dispProfile = "http://service.emias.mosreg.ru/test/disp;doctorId=1220;doctorGuid=eb18c49f-e74f-4ea3-bfd8-b4abd924cdcf;doctorTypeGuid=81d86a3b-2c5a-44b0-8ef9-48e34fbce21d;ticket=uF43FOxR4U1FHuFosKZhvxZnxxzIxOU7N%2FgUwrJa%2FsdvfykZjtlYj%2Fe3DQMp1fmbIIy3wisBiF0Zy%2FPvY7aXbEqQAhRF1HG3Rw44mQk1PdpOq521RgXQ%2Bn5nmdRC0Dw097bu%2B2buwdQ0Cp5JVicApIK50u%2B6BMzrTiPnEd%2BCx7XTkgHZtNRRaYTT0YeUf%2BbNl8MSZlqLy%2F6Y8Npp8Ua9I88HUJ5bOCMMicRu2u2ChWsb6XO5WBqlJ%2F%2BN4NkI4OrZ4iy6FioUvsG1jSjH19tGk9vtuTfuNhvKd8p7v9hZqp8W11Io/card/3063?ticket=uF43FOxR4U1FHuFosKZhvxZnxxzIxOU7N%2FgUwrJa%2FsdvfykZjtlYj%2Fe3DQMp1fmbIIy3wisBiF0Zy%2FPvY7aXbEqQAhRF1HG3Rw44mQk1PdpOq521RgXQ%2Bn5nmdRC0Dw097bu%2B2buwdQ0Cp5JVicApIK50u%2B6BMzrTiPnEd%2BCx7XTkgHZtNRRaYTT0YeUf%2BbNl8MSZlqLy%2F6Y8Npp8Ua9I88HUJ5bOCMMicRu2u2ChWsb6XO5WBqlJ%2F%2BN4NkI4OrZ4iy6FioUvsG1jSjH19tGk9vtuTfuNhvKd8p7v9hZqp8W11Io&mkabId=0&dvtId=384771&docPrvdId=1220&MisUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration2&ReturnUrl=http:%2F%2Femias.mosreg.ru%2Fdemonstration2%2FSchedule";
+    public String dispJournal = "http://service.emias.mosreg.ru/test/disp;doctorId=0;doctorGuid=;doctorTypeGuid=/card/1594?dvtId=-1";
     public static Pages page;
     public EnterSite enterSite;
     public static String site;
