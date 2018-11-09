@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -52,12 +53,31 @@ public class EditPageTest extends AbstractTestGrid {
                 .createCall(pacient)
                 .editCallBtn()
                 .setDeafult()
-                .editCallPage(pacient2);
+                .editCallPage_Mkab(pacient2)
+                .saveBtn();
         page.fullCardPage()
                 .verifyNewCall(pacient2)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
                 .verifyNewCallGroup(pacient2);
+    }
+
+    @Test(groups = "CD", description = "проверяю наличие валидации адреса после редактирвоания карты вызова")
+    @Epic("Редактирование вызова")
+    @Issue("EMIAS-956")
+    @RetryCountIfFailed(2)
+    public void testValidationAddressAfterSaveEditedCall() throws Exception {
+        Pacient pacient = new Pacient("Profile2");
+        Pacient pacient2 = new Pacient("Profile0_3");
+        enterSite.enterCalldoctorFromMis();
+        page.createCallPage().createCall_Mkab(pacient);
+        page.fullCardPage().editCallBtn();
+        page.createCallPage()
+                .setDeafult()
+                .editCallPage_Mkab(pacient2)
+                .saveBtn();
+        throw new Exception("добавить ассерт");
+        //пока что это не исправили, нужно сделать два save
     }
 }

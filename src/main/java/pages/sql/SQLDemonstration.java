@@ -14,7 +14,7 @@ import java.util.List;
 //import system.model.HltDispExamEntity;
 
 public class SQLDemonstration extends AbstractPage {
-    private static String connectionUrl = "jdbc:sqlserver://12.8.1.66";
+    private static String connectionUrl = "jdbc:sqlserver://192.168.7.48:50004";
     private static String databaseName = "hlt_demonstration";
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";

@@ -14,38 +14,11 @@ public class BeforeSuiteCalldoctor extends AbstractTestGrid {
 
     @Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
-    public void cleanBeforeCallDoctorTests() throws InterruptedException, IOException, ParseException {
+    public void cleanBeforeCallDoctorTests() throws IOException, ParseException {
         updateDB();
         deleteShedule();
         createShedule();
-
-//        page.loginPage().login(site, login, pass);
-//        switchTo().window(0);
-//        page.homePageMis().manageSheduleBtn();
-//        createDoctorShedule();
     }
-
-//    @Step("Создаю расписание врача")
-//    public void createDoctorShedule() throws InterruptedException {
-//        ArrayList<String> doctors = new ArrayList<>();
-//        doctors.add("Темников Дмитрий Олегович");
-//        doctors.add("Моков Павел Александрович");
-//        doctors.add("Серова Нина Кузьминична");
-//        doctors.add("Немцова Татьяна Андреевна");
-//        doctors.add("Юдина Татьяна Борисовна");//взрослая поликлиника
-//        doctors.add("Зайцева Татьяна Михайловна");//детская поликлиника
-//        for (String doctor_num : doctors) {
-//            String doctor_fam = ManageShedule.getSecondName(doctor_num);
-//            SQLDemonstration.finalizeCallLpuDoctor(doctor_fam);
-//            SQLDemonstration.deleteShedule(doctor_fam);
-//        }
-//        for (String doctor_num : doctors) {
-//            page.doctorMethods().selectDoctor(doctor_num);
-//            page.beforeWork().createShedule();
-//            page.manageShedule().verifyCreatedShedule(doctor_num);
-//            page.doctorMethods().selectDoctor(doctor_num);
-//        }
-//    }
 
     @Step("Обновляю БД для тестов на случай её изменения")
     public void updateDB() throws IOException {

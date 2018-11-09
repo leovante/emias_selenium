@@ -27,9 +27,18 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("назначиь врача")
-    public SetDoctorPage saveAddress() {
-        $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
+    public SetDoctorPage saveAddress() throws InterruptedException {
+        SelenideElement shoseDoctor = $(By.xpath("//*[contains(text(),'Выберите врача')]"));
+        SelenideElement adressIsRecognize = $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]"));
+        for (int i = 0; i < 10; i++) {
+            Thread.sleep(1000);
+            if (!shoseDoctor.isDisplayed()) {
+                if (adressIsRecognize.isDisplayed()) {
+                    $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]")).shouldBe(Condition.visible);
+                    $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
+                }
+            }
+        }
         return this;
     }
 

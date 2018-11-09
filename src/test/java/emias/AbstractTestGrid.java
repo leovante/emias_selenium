@@ -5,13 +5,16 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import emias.calldoctor.EnterSite;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.selenide.AllureSelenide;
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.BrowserMobProxyServer;
+import net.lightbody.bmp.core.har.Har;
 import org.testng.annotations.*;
 import pages.Pages;
-import pages.utilities.RunSeleniumGrid;
+import pages.utilities.SeleniumGrid;
 import pages.utilities.WebDriverInstansiator;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 public class AbstractTestGrid {
     public static Pages page;
@@ -19,6 +22,7 @@ public class AbstractTestGrid {
     public static String site;
     public static String login;
     public static String pass;
+    BrowserMobProxy proxy = new BrowserMobProxyServer();
 //
 //
     @Parameters({"site", "login", "pass", "gridIsRun"})
@@ -27,21 +31,24 @@ public class AbstractTestGrid {
         AbstractTestGrid.site = site;
         AbstractTestGrid.login = login;
         AbstractTestGrid.pass = pass;
-        RunSeleniumGrid.run(gridIsRun);
+        SeleniumGrid.run(gridIsRun);
 //        HibernateSession.run();
     }
 
     @Parameters({"gridIsRun"})
     @AfterSuite(alwaysRun = true)
     public void afterSuite(@Optional String gridIsRun) throws IOException {
-        RunSeleniumGrid.stop(gridIsRun);
+        Har har = proxy.getHar();
+        FileOutputStream fileOutputStream = new FileOutputStream("target/selenium_logs.har");
+        har.writeTo(fileOutputStream);
+        SeleniumGrid.stop(gridIsRun);
     }
 
     @Parameters({"browser", "headless"})
     @RetryCountIfFailed(2)
     @BeforeMethod(alwaysRun = true)
-    public void setUp(@Optional String browser, @Optional Boolean headless) throws MalformedURLException {
-        new WebDriverInstansiator(browser).setDriver(headless);
+    public void setUp(@Optional String browser, @Optional Boolean headless) throws IOException {
+        new WebDriverInstansiator(browser).setDriver(headless, proxy);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
         enterSite = new EnterSite();

@@ -20,7 +20,7 @@
         <!--</run>-->
         <!--</groups>-->
         <classes>
-            <!--<class name="emias.mis.RMIS00Test->
+            <!--<class name="emias.mis.before.RMIS00Test->
             <class name="emias.callcenter.RTD01Test"/>
         </classes>
     </test>

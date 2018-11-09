@@ -5,6 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
@@ -14,7 +18,6 @@ public class AbstractPage {
     public AbstractPage() {
         this.driver = getWebDriver();
     }
-
 
     public void ShouldBeVisible(String text) {
         $(By.xpath("//*[contains(text(),'" + text + "')]")).shouldBe(Condition.visible);
@@ -39,4 +42,11 @@ public class AbstractPage {
         return telephone;
     }
 
+    public String currentTime(String format) {
+        String time;
+        SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
+        Date date = Calendar.getInstance().getTime();
+        time = simpleDateFormatEdit.format(date);
+        return time;
+    }
 }

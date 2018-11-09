@@ -2,7 +2,6 @@ package pages.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -12,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -121,22 +121,49 @@ public class CreateCallPage extends AbstractPage {
         System.out.println("Карта вызова создана!");
     }
 
+    @Step("редактирую вызов")
+    public CreateCallPage editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
+        this.pacient = pacient;
+        sourceCall()
+                .sourceCall()
+                .address()
+                .birthDay()
+                .addressPlus()
+                .addressPlus()
+                .complaint()
+                .polis()
+                .FIO()
+                .caller()
+                .telephone();
+//                .saveBtn();
+        System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
+        return this;
+    }
+
     @Step("редактирую вызов с МКАБ + СМП")
-    public void editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
+    public CreateCallPage editCallPage_Mkab(Pacient pacient) throws IOException, ParseException, InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .searchField()
                 .addressPlus()
                 .complaint()
                 .caller()
-                .telephone()
-                .saveBtn();
+                .telephone();
+//                .saveBtn();
         System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
+        return this;
+    }
+
+    public void saveBtn1() {
+
     }
 
     public CreateCallPage setDeafult() {
         $(By.id("source1")).click();
-        new PressEscape();
+
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.ESCAPE).perform();
+
         List<SelenideElement> selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')]"));
         List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
 
@@ -311,7 +338,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    private CreateCallPage caller() throws IOException, ParseException {
+    private CreateCallPage caller() {
         if (pacient.getSource() == 2) {
             $(By.id("sourceSmp")).setValue("Супер станция");
             $(By.id("callFamily")).setValue("ФамилияВызывающего");
@@ -322,7 +349,7 @@ public class CreateCallPage extends AbstractPage {
                 $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
                 $(By.xpath("//span[contains(.,'Пациент')]")).click();
             } else {
-                $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+                $(By.xpath("//input[@placeholder='Тип вызывающего']")).hover().click();
                 $(By.xpath("//span[contains(.,'Представитель')]")).click();
             }
         }
@@ -336,7 +363,7 @@ public class CreateCallPage extends AbstractPage {
         return years;
     }
 
-    public CreateCallPage saveBtn() throws InterruptedException {
+    public void saveBtn() throws InterruptedException {
         SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
 //        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
         SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
@@ -359,7 +386,31 @@ public class CreateCallPage extends AbstractPage {
         if (!old.equals(driver.getCurrentUrl()))
             System.out.println("Вызов создан! " + driver.getCurrentUrl());
         else System.out.println("Вызов НЕ создан!");
-        return this;
+    }
+
+    public void saveBtn2() throws InterruptedException {
+        SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
+//        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
+        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
+        SelenideElement save = $(By.id("save"));
+        String old = driver.getCurrentUrl();
+
+        for (int i = 0; i < 10; i++) {
+            if (!fullCardPage.isDisplayed()) {
+                if (allert.isDisplayed())
+                    allert.click();
+//                if (se.isDisplayed())
+//                    se.click();
+                if (save.isDisplayed())
+                    save.click();
+            } else {
+                break;
+            }
+            Thread.sleep(1000);
+        }
+        if (!old.equals(driver.getCurrentUrl()))
+            System.out.println("Вызов создан! " + driver.getCurrentUrl());
+        else System.out.println("Вызов НЕ создан!");
     }
 
     public CreateCallPage editCallBtn() {
