@@ -1,7 +1,7 @@
 package pages;
 
 import pages.calldoctor.*;
-import pages.disp.ServicesPage;
+import pages.disp.ExampPage;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
@@ -73,7 +73,7 @@ public class PagesCall extends AbstractPage {
         return page(PortalDashboard.class);
     }
 
-    public ServicesPage servicesPage() {
-        return page(ServicesPage.class);
+    public ExampPage servicesPage() {
+        return page(ExampPage.class);
     }
 }

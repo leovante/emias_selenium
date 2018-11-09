@@ -87,19 +87,34 @@ public class PerehodyTest extends AbstractTestGrid {
     /**
      * переходы в медзаписи
      */
-    @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб", enabled = false)
+    @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
     @RetryCountIfFailed(3)
     public void transitionMedMkab() {
-        page.loginPage();
-        //
-        $(By.xpath("//*[contains(text(),'Поиск медицинской записи по наименованию')]")).shouldBe(Condition.visible);
+        page.loginPage().login(site, login, pass);
+        $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
+        $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
+        $(By.id("searchMkabByFilter")).click();
+        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
+        $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
+        $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Мед. записи →')]")).click();
+        switchTo().window(1);
+        $(By.xpath("//*[@placeholder='Поиск медицинской записи по наименованию']")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Медзаписи из Тап", enabled = false)
+    @Test(groups = "mis", description = "Переход в Медзаписи из Тап")
     @RetryCountIfFailed(3)
     public void transitionMedTap() {
-        page.loginPage();
-        //
-        $(By.xpath("//*[contains(text(),'Поиск медицинской записи по наименованию')]")).shouldBe(Condition.visible);
+        page.loginPage().login(site, login, pass);
+        $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
+        $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
+        $(By.id("searchMkabByFilter")).click();
+        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
+        $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
+        $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Случаи')]")).click();
+        $(By.id("tapgrid2")).$(By.id("1944035")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
+        $(By.id("jqContextMenu")).$(By.id("tapgrid2contextmenuitem0")).click();
+        $(By.id("TAPDialogTabs")).$(By.xpath(".//*[contains(text(),'Медицинские записи →')]")).click();
+        switchTo().window(1);
+        $(By.xpath("//*[@placeholder='Поиск медицинской записи по наименованию']")).shouldBe(Condition.visible);
     }
 }

@@ -1,7 +1,9 @@
 package pages;
 
 import pages.calldoctor.*;
-import pages.disp.ServicesPage;
+import pages.disp.ExampPage;
+import pages.disp.JournalPage;
+import pages.disp.KvotyPage;
 import pages.kladr.CreateKladr;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
@@ -68,13 +70,22 @@ public class Pages extends AbstractPage {
     public BeforeWork beforeWork() {
         return page(BeforeWork.class);
     }
+
     // PORTAL
     public PortalDashboard portalDashboard() {
         return page(PortalDashboard.class);
     }
 
-    public ServicesPage servicesPage() {
-        return page(ServicesPage.class);
+    public ExampPage exampPage() {
+        return page(ExampPage.class);
+    }
+
+    public JournalPage journalPage() {
+        return page(JournalPage.class);
+    }
+
+    public KvotyPage kvotyPage() {
+        return page(KvotyPage.class);
     }
 
     public CreateKladr createKladr() {
