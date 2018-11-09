@@ -13,6 +13,8 @@ public class Doctor extends AbstractTestNGSpringContextTests {
     private String ot;
     private String department;//этаж
     private String uchastocs;//домофон
+    private String specialization;//специализация врача
+    private String cabinet;
 
     public String getName() {
         if (name != null)
@@ -44,6 +46,18 @@ public class Doctor extends AbstractTestNGSpringContextTests {
         return "";
     }
 
+    public String getSpecialization() {
+        if (specialization != null)
+            return specialization;
+        return "";
+    }
+
+    public String getCabinet() {
+        if (cabinet != null)
+            return cabinet;
+        return "";
+    }
+
     public Doctor(String name) throws IOException {
         File reader = new File("src\\main\\java\\pages\\calldoctor\\doctors_interfaces\\" + name + ".json");
         HashMap<String, Object> proData = new ObjectMapper().readValue(reader, HashMap.class);
@@ -57,5 +71,9 @@ public class Doctor extends AbstractTestNGSpringContextTests {
             this.department = (String) proData.get("department");
         if (proData.get("uchastocs") != null && proData.get("uchastocs") != "")
             this.uchastocs = (String) proData.get("uchastocs");
+        if (proData.get("specialization") != null && proData.get("specialization") != "")
+            this.specialization = (String) proData.get("specialization");
+        if (proData.get("cabinet") != null && proData.get("cabinet") != "")
+            this.cabinet = (String) proData.get("cabinet");
     }
 }
