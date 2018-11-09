@@ -1,5 +1,6 @@
 package pages;
 
+import pages.callCenter.*;
 import pages.calldoctor.*;
 import pages.disp.ServicesPage;
 import pages.mis.*;
@@ -75,4 +76,14 @@ public class Pages extends AbstractPage {
     public ServicesPage servicesPage() {
         return page(ServicesPage.class);
     }
+    //CallCenter
+    public RecordDoctorPage recordDoctorPage() {return page(RecordDoctorPage.class);}
+
+    public FindPatientPage findPatientPage() {return page(FindPatientPage.class);}
+
+    public WaitingListPage waitingListPage() {return page(WaitingListPage.class);}
+
+    public CallDoctorPage callDoctorPage() {return page(CallDoctorPage.class);}
+
+    public DirectionsPage directionsPage() {return page(DirectionsPage.class);}
 }
