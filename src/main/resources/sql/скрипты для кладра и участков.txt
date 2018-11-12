@@ -1,0 +1,82 @@
+--связь участков с домами
+Select *
+from hlt_HouseToUchastok
+-- в мкабе: адреса регистрации и проживания, ссылки на kla_Address
+select m.ADRES, m.rf_AddressRegID, m.AdresFact, m.rf_AddressLiveID, m.MKABID
+from hlt_MKAB m
+    -- таблицы КЛАДРА
+    kla_Address
+    kla_Street
+    kla_House
+
+    kla_KlAdr
+    kla_SocrBase
+    kla_AltNames
+
+
+Select *
+from hlt_HouseToUchastok
+select *
+from kla_House
+select *
+from kla_Street
+select *
+from kla_KlAdr
+
+select *
+from hlt_Uchastok
+select *
+from hlt_HouseToUchastok
+select *
+from kla_House
+select *
+from hlt_UchastokMKAB
+select *
+from hlt_UchastokMkabReturns
+
+-- =========================
+select *
+from kla_KlAdr
+-- where CODE = '50040001000018200'
+-- where CODE = '50040001000'
+-- where kladrid = '2020042'
+where FLAGS != 0
+
+select *
+from kla_Address
+where CODE = '50040001000018200'
+-- where FLAGS != 0
+
+select *
+from kla_Address
+where AddressID = 34223
+
+select *
+from kla_Street
+-- where  code = '50040001000018200'
+-- where rf_KlAdrID = 1899153
+where FLAGS != 0
+
+select *
+from kla_House
+where HouseID = 19785
+-- where FLAGS != 0
+
+-- ==========================
+
+    kla_KlAdr
+    kla_SocrBase
+    kla_AltNames
+
+select *
+from kla_AltNames
+where newcode = '50040001000018200'
+
+
+
+
+select ad.AddressString, st.name
+from kla_KlAdr kl
+       inner join kla_Street st on kl.KlAdrID = st.rf_KlAdrID
+       inner join kla_Address ad on ad.code = st.CODE
+where st.FLAGS != 0 or kl.FLAGS != 0
