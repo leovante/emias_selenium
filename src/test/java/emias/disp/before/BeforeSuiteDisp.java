@@ -38,14 +38,14 @@ public class BeforeSuiteDisp extends AbstractTestGrid {
         SQLDemonstration.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
     }
 
+    @Step("Удаляю расписание")
+    void deleteShedule() throws FileNotFoundException, ParseException {
+        SQLDemonstration.deleteShedule(2100, 1285);
+    }
+
     @Step("Создание расписания для врачей")
     void createShedule() throws FileNotFoundException, ParseException {
         SQLDemonstration.createShedule(2100, 1285);
         System.out.println();
-    }
-
-    @Step("Удаляю расписание")
-    void deleteShedule() throws FileNotFoundException, ParseException {
-        SQLDemonstration.deleteShedule(2100, 1285);
     }
 }
