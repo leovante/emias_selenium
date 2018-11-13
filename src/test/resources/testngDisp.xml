@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Name suite - CD">
-    <parameter name="browser" value="chrome"/>
-    <parameter name="platform" value="WINDOWS"/>
     <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
     <parameter name="gridIsRun" value="false"/>
-
     <parameter name="headless" value="true"/>
+
     <listeners>
         <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
     </listeners>
@@ -21,6 +19,7 @@
     </test>
 
     <test verbose="1" name="Dispanserisation">
+        <parameter name="browser" value="chrome"/>
         <groups>
             <run>
                 <include name="disp"/>
