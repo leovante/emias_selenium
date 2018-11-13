@@ -56,4 +56,9 @@ public class HomePage extends AbstractPage {
     public void exitBtn() {
         $(By.xpath("//span[contains(.,'Выход')]")).click();
     }
+
+    @Step("Нажимаю на Карты диспансеризации")
+    public void dispCardBtn() {
+        $(By.xpath("//span[contains(.,'Карты диспансеризации')]")).click();
+    }
 }

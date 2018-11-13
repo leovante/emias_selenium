@@ -49,4 +49,5 @@ public class AbstractPage {
         time = simpleDateFormatEdit.format(date);
         return time;
     }
+
 }
