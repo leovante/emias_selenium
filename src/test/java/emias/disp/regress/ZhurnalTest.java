@@ -1,5 +1,5 @@
 /**
- * тут мы заходим в журнал и проверяем что шаблоны соответствуют мероприятиям
+ * заходим в журнал и проверяем карту из журнала
  */
 
 package emias.disp.regress;
@@ -16,7 +16,7 @@ public class ZhurnalTest extends AbstractTestGrid {
     @Ignore
     @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24г", enabled = false)
     @RetryCountIfFailed(0)
-    public void testZapolnenieMeropriyatii() throws InterruptedException {
+    public void testZapolnenieMeropriyatii() {
         enterSite.loginMis();
         page.homePageMis().dispCardBtn();
         switchTo().window(1);
