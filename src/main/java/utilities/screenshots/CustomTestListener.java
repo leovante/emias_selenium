@@ -1,4 +1,4 @@
-package emias.screenshots;
+package utilities.screenshots;
 
 import io.qameta.allure.Attachment;
 import org.testng.ITestResult;

@@ -1,4 +1,4 @@
-package pages.utilities;
+package utilities;
 
 import org.hibernate.Session;
 import system.model.HltCallDoctorEntity;

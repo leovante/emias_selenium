@@ -1,14 +1,14 @@
 package emias;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.Pages;
 import pages.sql.SQLDemonstration;
-import pages.utilities.DriverManager;
+import utilities.DriverManager;
 
 import java.io.IOException;
 

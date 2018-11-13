@@ -1,7 +1,7 @@
 package emias.mis.regress;
 
 import emias.AbstractTestGrid;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;

@@ -16,7 +16,7 @@ import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.sql.SQLDemonstration;
-import pages.utilities.api_model.CallDoctorEntity;
+import utilities.api_model.CallDoctorEntity;
 
 import java.io.IOException;
 import java.text.ParseException;

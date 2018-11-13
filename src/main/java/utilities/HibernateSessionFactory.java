@@ -1,4 +1,4 @@
-package pages.utilities;
+package utilities;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

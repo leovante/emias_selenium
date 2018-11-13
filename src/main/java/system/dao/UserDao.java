@@ -1,7 +1,7 @@
 package system.dao;
 
 import org.springframework.stereotype.Repository;
-import pages.utilities.HibernateSessionFactory;
+import utilities.HibernateSessionFactory;
 import system.model.User;
 
 import java.util.Arrays;

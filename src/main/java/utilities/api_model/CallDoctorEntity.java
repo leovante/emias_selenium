@@ -1,11 +1,11 @@
-package pages.utilities.api_model;
+package utilities.api_model;
 
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import pages.utilities.Tokenizer;
+import utilities.Tokenizer;
 
 public class CallDoctorEntity {
     private Pacient pacient;

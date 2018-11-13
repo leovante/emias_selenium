@@ -1,7 +1,7 @@
 package emias.kladr;
 
 import emias.AbstractTestGrid;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 

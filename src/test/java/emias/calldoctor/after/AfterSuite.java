@@ -1,7 +1,7 @@
 package emias.calldoctor.after;
 
 import emias.AbstractTestGrid;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 
