@@ -16,7 +16,7 @@ public class ExampPage extends AbstractPage {
     SelenideElement MeasureIndividualnoeProfConsulting = $(By.xpath("//div[contains(text(),'Индивидуальное профилактическое консультирование')]")).$(By.xpath("../../."));
     SelenideElement MeasureOpredelenieLvlGlukozi = $(By.xpath("//*[contains(text(),'Определение уровня глюкозы в крови экспресс-методом (допускается лабораторный метод)')]")).$(By.xpath("../../."));
     SelenideElement MeasureOpredelenieLvlHolesterina = $(By.xpath("//*[contains(text(),'Определение уровня общего холестерина в крови (допускается экспресс-метод)')]")).$(By.xpath("../../."));
-    SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
+    SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../../."));
     SelenideElement MeasureOpredelenieOtnositelnogoSSR = $(By.xpath("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")).$(By.xpath("../../."));
     SelenideElement MeasureOsmotrTerapevta = $(By.xpath("//*[contains(text(),'Прием (осмотр) врача-терапевта')]")).$(By.xpath("../../."));
     SelenideElement Zakluchenie = $(By.xpath("//*[contains(text(),'Заключение')]"));
@@ -264,7 +264,7 @@ public class ExampPage extends AbstractPage {
     }
 
 
-    public void viewTemnikov() {
+    public void viewTemnikov() throws InterruptedException {
         switchAllServicesTap()
                 .viewMeasureArtPressure()
                 .viewMeasureOpros_Anketirovanie()
@@ -348,20 +348,27 @@ public class ExampPage extends AbstractPage {
         return this;
     }
 
-    public ExampPage viewFlurography() {
-        MeasureFlura.$(By.xpath("../tr[2]")).hover().click();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Результат флюорографии')]")).hover().click();
-        switchTo().frame(MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
-        $(By.id("singleLineTextInput2")).sendKeys("666");
-        switchTo().defaultContent();
-        MeasureFlura.$(By.xpath("../tr[3]")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureFlura.hover().click();
+    public ExampPage viewFlurography() throws InterruptedException {
+//        MeasureFlura.$(By.xpath("../tr[2]")).hover().click();
+//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Результат флюорографии')]")).hover().click();
+//        switchTo().frame(MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
+//        $(By.id("singleLineTextInput2")).sendKeys("666");
+//        switchTo().defaultContent();
+//        MeasureFlura.$(By.xpath("../tr[3]")).hover();
+//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
+//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
+//        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
+//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
+//        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
+//        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+//        MeasureFlura.hover().click();
+
+        MeasureFlura.hover();
+        MeasureFlura.$(By.xpath("./tr")).click();
+        Thread.sleep(700);
+        MeasureFlura.hover();
+        MeasureFlura.$(By.xpath("./tr[3]//*[contains(text(),'Результат флюорографии')]")).click();
+        MeasureFlura.hover();
         return this;
     }
 
@@ -496,6 +503,7 @@ public class ExampPage extends AbstractPage {
         return this;
     }
 
+
     /**
      * меню слева
      */
@@ -503,4 +511,6 @@ public class ExampPage extends AbstractPage {
         $(By.id("mCSB_1_container")).$(By.xpath(".//*[contains(text(),'Заключение')]")).click();
         return this;
     }
+
+
 }

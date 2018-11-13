@@ -8,6 +8,7 @@ import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
+import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -21,6 +22,12 @@ public class AdmissionSchedule extends AbstractPage {
     SelenideElement selectMkab = $(By.xpath("//table[@id='mkabScheduleGrid']/tbody/tr[3]/td[3]"));
     SelenideElement recordElement = $(By.xpath("//div[@style='background-color:#508132;border-color:#508132;color:#FFFFFF']"));
     SelenideElement predvarit = $(By.xpath("//span[contains(.,'Предварительный')]"));
+    SelenideElement ml = $(By.xpath("//*[contains(.,'Маршрутный лист')]"));
+    SelenideElement mlSearchBtn = $(By.id("btnfindmkabScheduleGrid"));
+    SelenideElement mkabSearch = $(By.id("sinpmkabScheduleGrid"));
+    SelenideElement mkabSearchTable = $(By.id("mkabScheduleGrid"));
+    SelenideElement selectPatientButton = $(By.id("selectPatientButton"));
+    SelenideElement schedule = $(By.id("schedule"));
 
     public AdmissionSchedule() {
     }
@@ -50,6 +57,23 @@ public class AdmissionSchedule extends AbstractPage {
                 driver.switchTo().window(mwh);
             }
         }
+    }
+
+    public void createDispMl(Pacient pacient) {
+        ml.click();
+        mkabSearch.val(pacient.getFamily());
+        mlSearchBtn.click();
+        mkabSearchTable.$(By.xpath("//*[contains(text(),'" + pacient.getBirthdate("dd.MM.yyyy") + "')]")).click();
+        selectPatientButton.click();
+        $(By.xpath("//*[@ng-click='btnGenerateRouteCard()']")).click();
+        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog()']//*[contains(text(),'Да')]")).click();
+        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog()']//*[contains(text(),'Да')]")).click();
+        $(By.xpath("//*[contains(text(),'Сохранить и закрыть')]")).click();
+    }
+
+    public void selectCell() {
+//        schedule.
+        // TODO: 11/13/2018 сделал задачу Лёше что бы как то находить ячейки в расписании
     }
 
     public void verifyFindCallName(String nameGen) {

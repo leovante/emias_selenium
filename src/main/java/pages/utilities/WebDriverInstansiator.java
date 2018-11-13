@@ -2,11 +2,7 @@ package pages.utilities;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.client.ClientUtil;
-import net.lightbody.bmp.proxy.CaptureType;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Proxy;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -33,13 +29,13 @@ public class WebDriverInstansiator {
         this.browser = browser;
     }
 
-    public void setDriver(Boolean headless, BrowserMobProxy proxy) throws IOException {
+    public void setDriver(Boolean headless/*, BrowserMobProxy proxy*/) throws IOException {
         //ручной запуск
         if (browser == null) {
-            proxy.start(5300);
-            Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
-            proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
-            proxy.newHar("demo");
+//            proxy.start(5300);
+//            Proxy seleniumProxy = ClientUtil.createSeleniumProxy(proxy);
+//            proxy.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+//            proxy.newHar("demo");
 
             chromeDriverService = new ChromeDriverService.Builder()
                     .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
@@ -47,9 +43,9 @@ public class WebDriverInstansiator {
                     .build();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
-            chromeOptions.addArguments("--proxy-server=localhost:", String.valueOf(proxy.getPort()));
+//            chromeOptions.addArguments("--proxy-server=localhost:", String.valueOf(proxy.getPort()));
             chromeOptions.setHeadless(false);
-            chromeOptions.setProxy(seleniumProxy);
+//            chromeOptions.setProxy(seleniumProxy);
 
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);

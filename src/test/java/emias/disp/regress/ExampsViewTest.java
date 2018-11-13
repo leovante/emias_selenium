@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ExampsViewTest extends AbstractTestGrid {
 
-    @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года")
+    @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года", enabled = false)
     @RetryCountIfFailed(3)
     public void testFillExamp() {
         open(dispJournal);

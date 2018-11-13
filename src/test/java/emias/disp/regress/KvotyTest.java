@@ -16,7 +16,7 @@ public class KvotyTest extends AbstractTestGrid {
     public void testSearchCard1() {
         open(dispProfile);
         page.kvotyPage().kvotyBtn();
-        $(By.xpath("//*[contains(text(),'Квоты диспансеризации')")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(.,'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }
 
     @Test(groups = "disp", description = "проверка что открываются квоты на странице просмотра карты")
@@ -24,8 +24,6 @@ public class KvotyTest extends AbstractTestGrid {
     public void testSearchCard2() {
         open(dispJournal);
         page.kvotyPage().kvotyBtn();
-        $(By.xpath("//*[contains(text(),'Квоты диспансеризации')")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }
-
-
 }
