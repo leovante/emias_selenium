@@ -1,5 +1,6 @@
 package emias.calldoctor.regress;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
@@ -12,6 +13,7 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class EditPageTest extends AbstractTestGrid {
@@ -75,9 +77,8 @@ public class EditPageTest extends AbstractTestGrid {
         page.fullCardPage().editCallBtn();
         page.createCallPage()
                 .setDeafult()
-                .editCallPage_Mkab(pacient2)
+                .editCallPage(pacient2)
                 .saveBtn();
-        throw new Exception("добавить ассерт");
-        //пока что это не исправили, нужно сделать два save
+        $(By.xpath("//*[contains(text(),'Московская обл.,Химки г.,Пролетарская ул.')]")).shouldNotBe(Condition.visible);
     }
 }

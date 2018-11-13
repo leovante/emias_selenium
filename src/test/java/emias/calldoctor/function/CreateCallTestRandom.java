@@ -4,7 +4,6 @@ import emias.AbstractTestGrid;
 import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -14,7 +13,7 @@ import java.text.ParseException;
 
 public class CreateCallTestRandom extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "пустой вызов")
+    @Test(groups = "CD", description = "", enabled = false)
     @Epic("Создание рандомного вызова")
     @RetryCountIfFailed(0)
     public void testCall() throws IOException, InterruptedException, ParseException, JSONException {
@@ -26,8 +25,7 @@ public class CreateCallTestRandom extends AbstractTestGrid {
                 .closeCardBtn();
     }
 
-    @Ignore
-    @Test(groups = "CD", description = "пустой вызов")
+    @Test(groups = "CD", description = "", enabled = false)
     @Epic("Создание закликивающего вызова")
     @RetryCountIfFailed(0)
     public void testCallMegaClick() throws IOException, InterruptedException, ParseException, JSONException {
