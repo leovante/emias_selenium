@@ -1,15 +1,15 @@
-package emias.calldoctor.regress;
+package emias.callDoctor.regress;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.util.List;
 

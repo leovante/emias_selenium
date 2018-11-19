@@ -21,7 +21,7 @@
             </run>
         </groups>
         <!--<classes>-->
-        <!--<class name="emias.calldoctor.regress.CreateCallTest"/>-->
+        <!--<class name="emias.callDoctor.regress.CreateCallTest"/>-->
         <!--</classes>-->
         <packages>
             <package name="emias.kladr"/>

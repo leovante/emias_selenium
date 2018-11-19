@@ -1,9 +1,9 @@
-package emias.calldoctor.after;
+package emias.callDoctor.after;
 
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 public class AfterSuite extends AbstractTestGrid {
 

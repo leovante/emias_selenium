@@ -1,10 +1,10 @@
-package emias.calldoctor.before;
+package emias.callDoctor.before;
 
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

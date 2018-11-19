@@ -16,7 +16,7 @@
     <test name="BeforeTest-CreateShedule" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>
-            <package name="emias.calldoctor.before"/>
+            <package name="emias.callDoctor.before"/>
         </packages>
     </test>
     <test name="ChromeTest" verbose="1" parallel="true">
@@ -27,14 +27,14 @@
             </run>
         </groups>
         <packages>
-            <package name="emias.calldoctor.function"/>
-            <package name="emias.calldoctor.regress"/>
+            <package name="emias.callDoctor.function"/>
+            <package name="emias.callDoctor.regress"/>
         </packages>
     </test>
     <test name="AfterTest-finalizeCalls" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>
-            <package name="emias.calldoctor.after"/>
+            <package name="emias.callDoctor.after"/>
         </packages>
     </test>
 </suite>

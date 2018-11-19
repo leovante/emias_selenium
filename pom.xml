@@ -10,7 +10,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.1</aspectj.version>
-        <testngXML>testngCD</testngXML>
+        <testngCD>testngCD</testngCD>
+        <testngDisp>testngDisp</testngDisp>
+        <testngKladr>testngKladr</testngKladr>
+        <testngMIS>testngMIS</testngMIS>
         <hibernate-version>5.3.6.Final</hibernate-version>
     </properties>
 
@@ -140,7 +143,10 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/${testngXML}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${testngCD}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${testngDisp}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${testngKladr}.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/${testngMIS}.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>

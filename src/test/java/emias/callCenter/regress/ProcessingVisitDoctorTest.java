@@ -1,12 +1,11 @@
 package emias.callCenter.regress;
 
 import emias.AbstractTestGrid;
-import emias.calldoctor.EnterSite;
-import emias.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;

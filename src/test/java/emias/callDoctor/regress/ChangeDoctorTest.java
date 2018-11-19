@@ -1,11 +1,11 @@
-package emias.calldoctor.regress;
+package emias.callDoctor.regress;
 
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 public class ChangeDoctorTest extends AbstractTestGrid {
 

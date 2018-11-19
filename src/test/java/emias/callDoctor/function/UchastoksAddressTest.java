@@ -2,16 +2,16 @@
  * проверяем участки и адреса
  */
 
-package emias.calldoctor.function;
+package emias.callDoctor.function;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;

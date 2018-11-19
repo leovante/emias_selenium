@@ -2,13 +2,13 @@ package emias;
 
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import emias.calldoctor.EnterSite;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import emias.callDoctor.EnterSite;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.*;
 import pages.Pages;
 import utilities.SeleniumGrid;
 import utilities.WebDriverInstansiator;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

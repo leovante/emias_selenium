@@ -1,4 +1,4 @@
-package emias.calldoctor;
+package emias.callDoctor;
 
 import com.codeborne.selenide.SelenideElement;
 import emias.AbstractTestGrid;

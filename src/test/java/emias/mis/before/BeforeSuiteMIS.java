@@ -1,13 +1,13 @@
 package emias.mis.before;
 
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.mis.ManageShedule;
 import pages.sql.SQLDemonstration;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
-public class RMIS00Test extends AbstractTestGrid {
+public class BeforeSuiteMIS extends AbstractTestGrid {
 
     @Test(groups = "mis", description = "Завершаю все вызовы и создаю новое расписание у врачей на сегодня")
     @RetryCountIfFailed(2)

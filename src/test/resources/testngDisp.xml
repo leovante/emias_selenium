@@ -26,7 +26,7 @@
             </run>
         </groups>
         <!--<classes>-->
-        <!--<class name="emias.calldoctor.regress.EditPageTest"/>-->
+        <!--<class name="emias.callDoctor.regress.EditPageTest"/>-->
         <!--</classes>-->
         <packages>
             <package name="emias.disp.regress"/>
