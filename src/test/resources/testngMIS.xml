@@ -7,24 +7,29 @@
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
     <parameter name="gridIsRun" value="true"/>
-
     <parameter name="headless" value="false"/>
+
     <listeners>
-        <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
     <test verbose="1" name="MIS">
-        <!--<groups>-->
-        <!--<run>-->
-        <!--<include name="mis"/>-->
-        <!--</run>-->
-        <!--</groups>-->
-        <classes>
-            <!--<class name="emias.mis.before.RMIS00Test->
-            <class name="emias.callcenter.RTD01Test"/>
-        </classes>
+        <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="mis"/>
+            </run>
+        </groups>
+        <!--<classes>-->
+        <!--<class name="emias.mis.before.RMIS00Test/>-->
+        <!--<class name="emias.callcenter.RTD01Test"/>-->
+        <!--</classes>-->
+        <packages>
+            <package name="emias.mis.regress"/>
+        </packages>
     </test>
 </suite>
-<!--mvn clean test-->
-<!--allure serve target/allure-results-->
+
+        <!--mvn clean test-->
+        <!--allure serve target/allure-results-->
         <!--mvn site-->

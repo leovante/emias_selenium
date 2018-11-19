@@ -16,7 +16,7 @@ import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.sql.SQLDemonstration;
-import pages.utilities.api_model.CallDoctorEntity;
+import utilities.api_model.CallDoctorEntity;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -317,7 +317,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage birthDay() {
-        if (pacient.getBirthdate() != null)
+        if (pacient.getBirthdate("") != null)
             $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
         return this;
     }

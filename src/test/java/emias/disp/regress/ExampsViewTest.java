@@ -2,7 +2,7 @@ package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class ExampsViewTest extends AbstractTestGrid {
 
-    @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года")
+    @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года", enabled = false)
     @RetryCountIfFailed(3)
     public void testFillExamp() {
         open(dispJournal);

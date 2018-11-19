@@ -13,28 +13,18 @@
         <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <test name="BeforeTest-CreateShedule" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <packages>
-            <package name="emias.calldoctor.before"/>
-        </packages>
-    </test>
     <test name="ChromeTest" verbose="1" parallel="true">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
-                <include name="CD"/>
+                <include name="kl"/>
             </run>
         </groups>
+        <!--<classes>-->
+        <!--<class name="emias.calldoctor.regress.CreateCallTest"/>-->
+        <!--</classes>-->
         <packages>
-            <package name="emias.calldoctor.function"/>
-            <package name="emias.calldoctor.regress"/>
-        </packages>
-    </test>
-    <test name="AfterTest-finalizeCalls" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <packages>
-            <package name="emias.calldoctor.after"/>
+            <package name="emias.kladr"/>
         </packages>
     </test>
 </suite>

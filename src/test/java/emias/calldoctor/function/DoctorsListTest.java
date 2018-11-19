@@ -6,7 +6,7 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;

@@ -2,7 +2,7 @@ package emias.mis.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 

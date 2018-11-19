@@ -7,11 +7,10 @@
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1215"/>
     <parameter name="gridIsRun" value="true"/>
-
     <parameter name="headless" value="true"/>
 
     <listeners>
-        <listener class-name="emias.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
     <test name="ChromeTest" verbose="1" parallel="true">

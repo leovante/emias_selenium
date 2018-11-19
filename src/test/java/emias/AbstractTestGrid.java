@@ -3,15 +3,12 @@ package emias;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import emias.calldoctor.EnterSite;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.selenide.AllureSelenide;
-import net.lightbody.bmp.BrowserMobProxy;
-import net.lightbody.bmp.BrowserMobProxyServer;
-import net.lightbody.bmp.core.har.Har;
 import org.testng.annotations.*;
 import pages.Pages;
-import pages.utilities.SeleniumGrid;
-import pages.utilities.WebDriverInstansiator;
+import utilities.SeleniumGrid;
+import utilities.WebDriverInstansiator;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,7 +21,8 @@ public class AbstractTestGrid {
     public static String site;
     public static String login;
     public static String pass;
-    BrowserMobProxy proxy = new BrowserMobProxyServer();
+
+    //    BrowserMobProxy proxy = new BrowserMobProxyServer();
 //
 //
     @Parameters({"site", "login", "pass", "gridIsRun"})
@@ -40,9 +38,9 @@ public class AbstractTestGrid {
     @Parameters({"gridIsRun"})
     @AfterSuite(alwaysRun = true)
     public void afterSuite(@Optional String gridIsRun) throws IOException {
-        Har har = proxy.getHar();
+//        Har har = proxy.getHar();
         FileOutputStream fileOutputStream = new FileOutputStream("target/selenium_logs.har");
-        har.writeTo(fileOutputStream);
+//        har.writeTo(fileOutputStream);
         SeleniumGrid.stop(gridIsRun);
     }
 
@@ -50,7 +48,7 @@ public class AbstractTestGrid {
     @RetryCountIfFailed(2)
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional String browser, @Optional Boolean headless) throws IOException {
-        new WebDriverInstansiator(browser).setDriver(headless, proxy);
+        new WebDriverInstansiator(browser).setDriver(headless/*, proxy*/);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
         enterSite = new EnterSite();

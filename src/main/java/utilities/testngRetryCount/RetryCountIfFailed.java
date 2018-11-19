@@ -1,4 +1,4 @@
-package emias.testngRetryCount;
+package utilities.testngRetryCount;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

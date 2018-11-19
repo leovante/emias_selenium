@@ -2,7 +2,7 @@ package emias.calldoctor.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import emias.testngRetryCount.RetryCountIfFailed;
+import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;

@@ -10,12 +10,9 @@ public class KvotyPage extends AbstractPage {
     SelenideElement kvotyNumber = $(By.xpath("//*[contains(text(),'Квоты')]"));
 
     public KvotyPage() {
-
     }
 
     public void kvotyBtn() {
         kvotyNumber.click();
     }
-
-
 }

@@ -1,7 +1,7 @@
 package pages;
 
 import org.hibernate.Session;
-import pages.utilities.HibernateSessionFactory;
+import utilities.HibernateSessionFactory;
 import system.model.HltCallDoctorEntity;
 
 import java.io.IOException;

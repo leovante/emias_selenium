@@ -2,7 +2,7 @@ package system.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import pages.utilities.HibernateSessionFactory;
+import utilities.HibernateSessionFactory;
 import system.model.HltDispExamEntity;
 
 import java.util.List;
