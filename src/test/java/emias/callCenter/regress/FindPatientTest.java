@@ -30,7 +30,4 @@ public class FindPatientTest extends AbstractTestGrid {
         enterSite.enterCallCenter();
         page.findPatientPage().findByFio(pacient);
     }
-
-
-
 }

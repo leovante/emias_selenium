@@ -88,7 +88,7 @@ public class Pages extends AbstractPage {
     public KvotyPage kvotyPage() {
         return page(KvotyPage.class);
     }
-<<<<<<< HEAD
+
     //CallCenter
     public RecordDoctorPage recordDoctorPage() {return page(RecordDoctorPage.class);}
 
@@ -99,10 +99,8 @@ public class Pages extends AbstractPage {
     public CallDoctorPage callDoctorPage() {return page(CallDoctorPage.class);}
 
     public DirectionsPage directionsPage() {return page(DirectionsPage.class);}
-=======
 
     public CreateKladr createKladr() {
         return page(CreateKladr.class);
     }
->>>>>>> 507b077479b4dd788ef5ece1ee49e9de4d6041cc
 }
