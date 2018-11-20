@@ -175,7 +175,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
+    @Test(groups = "CD", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {
@@ -199,7 +199,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю что после редактирования карты и изменения адреса на неформализованный пропадает привязка к старому участку")
+    @Test(groups = "CD", description = "проверяю что после редактирования карты и изменения адреса пропадает привязка к старому участку")
     @Epic("Создание вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)

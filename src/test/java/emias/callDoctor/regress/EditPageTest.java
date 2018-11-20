@@ -65,7 +65,7 @@ public class EditPageTest extends AbstractTestGrid {
                 .verifyNewCallGroup(pacient2);
     }
 
-    @Test(groups = "test", description = "проверяю наличие валидации адреса после редактирвоания карты вызова")
+    @Test(groups = "test", description = "проверяю  наличие валидации адреса после редактирвоания карты вызова")
     @Epic("Редактирование вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
@@ -79,6 +79,6 @@ public class EditPageTest extends AbstractTestGrid {
                 .setDeafult()
                 .editCallPage(pacient2)
                 .saveBtn();
-        $(By.xpath("//*[contains(text(),'Московская обл.,Химки г.,Пролетарская ул.')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//simple-snack-bar[contains(.,'Не указан адрес')]")).shouldBe(Condition.visible);
     }
 }
