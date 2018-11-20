@@ -14,6 +14,7 @@ public class JournalPage extends AbstractPage {
     SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search']"));
     SelenideElement journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]"));
     SelenideElement grida = $(By.xpath("//datatable-body-row[@class='datatable-body-row datatable-row-even ng-star-inserted']"));
+    SelenideElement grida2 = $(By.xpath("//datatable-body[@class='datatable-body']"));
     SelenideElement oprosMeasure = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]"));
     SelenideElement oprosMeasureExamp = $(By.xpath("//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]"));
     SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
@@ -49,14 +50,11 @@ public class JournalPage extends AbstractPage {
         polNumber.val(String.valueOf(number));
         searchBtn.click();
         grida.$(By.xpath(".//*[contains(.,'" + number + "')]")).click();
-        grida.$(By.xpath(".//*[@class='zmdi zmdi-edit']")).click();
+        grida2.$(By.xpath(".//*[@mattooltip='Редактировать']")).click();
     }
 
     public void editCardBtn(int numberPol) {
-        $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//div[contains(.,'" + numberPol + "')]")).click();
-        $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Редактировать']")).click();
-
+        grida2.$(By.xpath(".//div[contains(.,'" + numberPol + "')]")).click();
+        grida2.$(By.xpath(".//*[@mattooltip='Редактировать']")).click();
     }
-
-
 }
