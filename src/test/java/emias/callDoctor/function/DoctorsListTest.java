@@ -175,7 +175,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
+    @Test(groups = "test", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {

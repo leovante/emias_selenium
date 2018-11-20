@@ -1,10 +1,10 @@
 package emias.disp.before;
 
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -24,8 +24,6 @@ public class BeforeSuiteDisp extends AbstractTestGrid {
     @Step("Обнуляю карты диспансеризации")
     void setDefaultCard() {
         ArrayList<String> cardID = new ArrayList<>();
-//        cardID.add("1837");
-//        cardID.add("2183");
         cardID.add("3059");
         for (String cards : cardID) {
             SQLDemonstration.setDefaultServices(cards);

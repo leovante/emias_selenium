@@ -15,10 +15,15 @@ public class EnterSite extends AbstractTestGrid {
         return this;
     }
 
-    public EnterSite enterCalldoctorFromMisGenerator() {
-        page.loginPage().login("http://emias.mosreg.ru/demonstration", "generator", "1212");
+    public EnterSite enterCalldoctorFromMisGenerator(String name, String pass) {
+        page.loginPage().login("http://emias.mosreg.ru/demonstration", name, pass);
         page.homePageMis().callDoctorBtn();
         switchTo().window(1);
+        return this;
+    }
+
+    public EnterSite enterMIS() {
+        page.loginPage().login(site, login, pass);
         return this;
     }
 
@@ -26,7 +31,6 @@ public class EnterSite extends AbstractTestGrid {
         open("https://uslugi.mosreg.ru/zdrav/");
         return this;
     }
-
 
     public EnterSite enterCallCenter(){
         SelenideElement log = $(By.id("USER_LOGIN"));

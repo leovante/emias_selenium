@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ValidationTest extends AbstractTestGrid {
 
-    @Test(groups = "CD", description = "проверка что вызов не сохраняется с пустым полем адрес")
+    @Test(groups = "test", description = "проверка что вызов не сохраняется с пустым полем адрес")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {

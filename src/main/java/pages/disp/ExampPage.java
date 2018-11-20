@@ -9,16 +9,18 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class ExampPage extends AbstractPage {
+    /*мероприятия*/
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
-    SelenideElement MeasureArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
-    SelenideElement MeasureOpros_Anketirovanie = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]")).$(By.xpath("../../."));
-    SelenideElement MeasureAntropometriya = $(By.xpath("//div[contains(text(),'Антропометрия (измерение роста стоя, массы тела, окружности талии), расчет индекса массы тела')]")).$(By.xpath("../../."));
-    SelenideElement MeasureIndividualnoeProfConsulting = $(By.xpath("//div[contains(text(),'Индивидуальное профилактическое консультирование')]")).$(By.xpath("../../."));
-    SelenideElement MeasureOpredelenieLvlGlukozi = $(By.xpath("//*[contains(text(),'Определение уровня глюкозы в крови экспресс-методом (допускается лабораторный метод)')]")).$(By.xpath("../../."));
-    SelenideElement MeasureOpredelenieLvlHolesterina = $(By.xpath("//*[contains(text(),'Определение уровня общего холестерина в крови (допускается экспресс-метод)')]")).$(By.xpath("../../."));
-    SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../../."));
-    SelenideElement MeasureOpredelenieOtnositelnogoSSR = $(By.xpath("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")).$(By.xpath("../../."));
-    SelenideElement MeasureOsmotrTerapevta = $(By.xpath("//*[contains(text(),'Прием (осмотр) врача-терапевта')]")).$(By.xpath("../../."));
+    SelenideElement ArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
+    SelenideElement Opros_Anketirovanie = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]")).$(By.xpath("../../."));
+    SelenideElement Antropometriya = $(By.xpath("//div[contains(text(),'Антропометрия (измерение роста стоя, массы тела, окружности талии), расчет индекса массы тела')]")).$(By.xpath("../../."));
+    SelenideElement IndividualnoeProfConsulting = $(By.xpath("//div[contains(text(),'Индивидуальное профилактическое консультирование')]")).$(By.xpath("../../."));
+    SelenideElement OpredelenieLvlGlukozi = $(By.xpath("//*[contains(text(),'Определение уровня глюкозы в крови экспресс-методом (допускается лабораторный метод)')]")).$(By.xpath("../../."));
+    SelenideElement OpredelenieLvlHolesterina = $(By.xpath("//*[contains(text(),'Определение уровня общего холестерина в крови (допускается экспресс-метод)')]")).$(By.xpath("../../."));
+    SelenideElement Flura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
+    SelenideElement OpredelenieOtnositelnogoSSR = $(By.xpath("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")).$(By.xpath("../../."));
+    SelenideElement OsmotrTerapevta = $(By.xpath("//*[contains(text(),'Прием (осмотр) врача-терапевта')]")).$(By.xpath("../../."));
+    /*остальное*/
     SelenideElement Zakluchenie = $(By.xpath("//*[contains(text(),'Заключение')]"));
     SelenideElement VidOplati = $(By.xpath("//*[@placeholder='Вид оплаты']"));
     SelenideElement CelPosesheniya = $(By.xpath("//*[@placeholder='Цель посещения']"));
@@ -28,23 +30,22 @@ public class ExampPage extends AbstractPage {
     SelenideElement VrachPishetZakluchenie = $(By.xpath("//*[@placeholder='Врач, который пишет заключение']"));
     SelenideElement PodvalSaveBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Сохранить')]"));
     SelenideElement PodvalPodpisatBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Подписать')]"));
-    SelenideElement Alarma_MedZapisUspeshnoSohranena = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно сохранена.')]"));
-    SelenideElement Alarma_MedZapisUspeshnoPodpisana = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
+    SelenideElement ALARMA_SAVE = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно сохранена.')]"));
+    SelenideElement ALARMA_PODPISANA = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
 
     public ExampPage() {
-
     }
 
-    public void fillTemnikov() {
+    public void fillTemnikov() throws InterruptedException {
         switchAllServicesTap()
-                .fillMeasureArtPressure()
-                .fillMeasureOpros_Anketirovanie()
+                .fillOpros_Anketirovanie()
+                .fillArtPressure()
                 .fillAntropometriya()
-                .fillIndividProfConsulting()
                 .fillOpredelenieLvlGlukozi()
                 .fillOpredelenieLvlHolesterina()
                 .fillFlurography()
                 .fillOpredelenieOtnositSummSSR()
+                .fillIndividProfConsulting()
                 .fillPriem_OsmotrTerapevta()
                 .fillZakluchenie();
     }
@@ -54,216 +55,212 @@ public class ExampPage extends AbstractPage {
         return this;
     }
 
-    public ExampPage fillMeasureArtPressure() {
-        MeasureArtPressure.hover().click();
-        MeasureArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
-        MeasureArtPressure.$(By.xpath("td[4]/mat-checkbox")).hover().click();
-        MeasureArtPressure.hover().click();
+    public ExampPage fillArtPressure() throws InterruptedException {
+        Thread.sleep(4000);
+        ArtPressure.$(By.xpath("../.")).hover();
+        ArtPressure.click();
+        ArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
+        ArtPressure.$(By.xpath("td[4]/mat-checkbox")).hover().click();
+        ArtPressure.hover().click();
         return this;
     }
 
-    public ExampPage fillMeasureOpros_Anketirovanie() {
-        MeasureOpros_Anketirovanie.hover().click();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover().click();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//tr[@id='84900']"));
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//div[@class='cursorPointer hide-med-record']")).hover();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureOpros_Anketirovanie.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureOpros_Anketirovanie.hover().click();
+    public ExampPage fillOpros_Anketirovanie() throws InterruptedException {
+        Thread.sleep(4000);
+        Opros_Anketirovanie.$(By.xpath("../.")).hover();
+        Opros_Anketirovanie.click();
+        Thread.sleep(1000);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).click();
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//div[@class='cursorPointer hide-med-record']")).hover();
+        Thread.sleep(1000);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//button[@mattooltip='Добавить']")).hover();
+        Thread.sleep(1000);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Сохранить')]")).click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        Opros_Anketirovanie.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+        Opros_Anketirovanie.hover().click();
         return this;
     }
 
-    public ExampPage fillAntropometriya() {
-        MeasureAntropometriya.hover().click();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover().click();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureAntropometriya.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureAntropometriya.hover().click();
+    public ExampPage fillAntropometriya() throws InterruptedException {
+        Thread.sleep(4000);
+        Antropometriya.$(By.xpath("../.")).hover();
+        Antropometriya.click();
+        Thread.sleep(1000);
+        Antropometriya.$(By.xpath("../tr[3]//*[contains(text(),'Антропометрия')]")).hover().click();
+        Thread.sleep(1000);
+        Antropometriya.$(By.xpath("../tr[3]//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        Antropometriya.$(By.xpath("../tr[3]//button[@mattooltip='Добавить']")).hover();
+        Thread.sleep(1000);
+        Antropometriya.$(By.xpath("../tr[3]//*[contains(text(),'Сохранить')]")).hover().click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        Antropometriya.$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        Antropometriya.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+        Antropometriya.hover().click();
         return this;
     }
 
-    public ExampPage fillIndividProfConsulting() {
-        MeasureIndividualnoeProfConsulting.hover().click();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover().click();
-        switchTo().frame(MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
+    public ExampPage fillIndividProfConsulting() throws InterruptedException {
+        Thread.sleep(4000);
+        IndividualnoeProfConsulting.$(By.xpath("../.")).hover();
+        IndividualnoeProfConsulting.click();
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).hover();
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).click();
+        switchTo().frame(IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
         $(By.id("multiLineTextTextarea1")).sendKeys("Автотестовая рекомендация");
         switchTo().defaultContent();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureIndividualnoeProfConsulting.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureIndividualnoeProfConsulting.hover().click();
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).hover();
+        Thread.sleep(1000);
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]//button[@mattooltip='Добавить']")).hover();
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]//*[contains(text(),'Сохранить')]")).click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        IndividualnoeProfConsulting.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+        IndividualnoeProfConsulting.hover().click();
         return this;
     }
 
-    public ExampPage fillOpredelenieLvlGlukozi() {
-        MeasureOpredelenieLvlGlukozi.click();
-        MeasureOpredelenieLvlGlukozi.$(By.xpath("td[4]/mat-checkbox")).click();
-        MeasureOpredelenieLvlGlukozi.click();
+    public ExampPage fillOpredelenieLvlGlukozi() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieLvlGlukozi.$(By.xpath("../.")).hover();
+        OpredelenieLvlGlukozi.click();
+        OpredelenieLvlGlukozi.$(By.xpath("./td[4]/mat-checkbox")).click();
+        OpredelenieLvlGlukozi.$(By.xpath("../tr[3]")).hover();
+        OpredelenieLvlGlukozi.click();
         return this;
     }
 
-    public ExampPage fillOpredelenieLvlHolesterina() {
-        MeasureOpredelenieLvlHolesterina.click();
-        MeasureOpredelenieLvlHolesterina.$(By.xpath("td[4]/mat-checkbox")).click();
-        MeasureOpredelenieLvlHolesterina.click();
+    public ExampPage fillOpredelenieLvlHolesterina() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieLvlHolesterina.$(By.xpath("../.")).hover();
+        OpredelenieLvlHolesterina.click();
+        OpredelenieLvlHolesterina.$(By.xpath("./td[4]/mat-checkbox")).click();
+        OpredelenieLvlHolesterina.$(By.xpath("../tr[3]")).hover();
+        OpredelenieLvlHolesterina.click();
         return this;
     }
 
-    public ExampPage fillFlurography() {
-        MeasureFlura.$(By.xpath("../tr[2]")).hover();
-        MeasureFlura.click();
-        MeasureFlura.$(By.xpath("../tr[3]")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Результат флюорографии')]")).click();
-        switchTo().frame(MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
-        $(By.id("singleLineTextInput2")).sendKeys("666");
+    public ExampPage fillFlurography() throws InterruptedException {
+        Thread.sleep(4000);
+        Flura.$(By.xpath("../.")).hover();
+        Thread.sleep(1000);
+        Flura.click();
+        Thread.sleep(1000);
+        Flura.$(By.xpath("../tr[3]")).hover();
+        Thread.sleep(1000);
+        Flura.$(By.xpath("../tr[3]//*[contains(text(),'Результат флюорографии')]")).hover().click();
+        Thread.sleep(1000);
+        switchTo().frame(Flura.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
+        $(By.id("singleLineTextInput2")).sendKeys("777");
+        $(By.id("spanMU4")).click();
+        $(By.id("spanMU6")).click();
         switchTo().defaultContent();
-        MeasureFlura.$(By.xpath("../tr[3]")).hover();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureFlura.hover().click();
+        Flura.$(By.xpath("../tr[3]")).hover();
+        Thread.sleep(1000);
+        Flura.$(By.xpath("../tr[3]//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        Flura.$(By.xpath("../tr[3]//*[contains(text(),'Сохранить')]")).hover().click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        Flura.$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        Flura.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+        Flura.hover().click();
         return this;
     }
 
-    public ExampPage fillOpredelenieOtnositSummSSR() {
-        MeasureOpredelenieOtnositelnogoSSR.$(By.xpath("../tr[2]")).hover();
-        MeasureOpredelenieOtnositelnogoSSR.click();
-        MeasureOpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
-        MeasureOpredelenieOtnositelnogoSSR.click();
+    public ExampPage fillOpredelenieOtnositSummSSR() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
+        OpredelenieOtnositelnogoSSR.click();
+        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
+        OpredelenieOtnositelnogoSSR.click();
         return this;
     }
 
-    public ExampPage fillPriem_OsmotrTerapevta() {
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[2]")).hover();
-        MeasureOsmotrTerapevta.click();
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).hover();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]"))
-                .click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//tbody"))
-                .hover();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//button[contains(text(),'Просмотреть')]"))
-                .click();
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//table")).$(By.xpath("../div")).hover();
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]"))
-                .click();
+    public ExampPage fillPriem_OsmotrTerapevta() throws InterruptedException {
+        Thread.sleep(4000);
+        OsmotrTerapevta.$(By.xpath("../.")).hover();
+        OsmotrTerapevta.click();
+        Thread.sleep(1000);
+        OsmotrTerapevta.$(By.xpath("../tr[3]")).hover();
+        /*медзапись*/
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]")).click();
+        Thread.sleep(1000);
+        OsmotrTerapevta.$(By.xpath("../tr[3]//tbody")).hover();
+        OsmotrTerapevta.$(By.xpath("../tr[3]//button[contains(text(),'Просмотреть')]")).hover().click();
+        Thread.sleep(1000);
+        OsmotrTerapevta.$(By.xpath("../tr[3]//table/../div")).hover();
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Сохранить')]")).hover().click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]")).click();
         /*диагнозы*/
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div[2]"))
                 .$(By.xpath(".//*[contains(text(),'add')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[2]"))
                 .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[2]"))
                 .$(By.xpath(".//*[contains(text(),'1 - Предварительный')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[3]"))
                 .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[3]"))
                 .$(By.xpath(".//*[contains(text(),'2 - Установлено ранее')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[4]"))
                 .$(By.xpath(".//*[@placeholder = 'undefined']")).val("J20.1");
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[4]"))
                 .$(By.xpath(".//*[contains(text(),'J20.1 - Острый бронхит, вызванный Haemophilus influenzae [палочкой Афанасьева-Пфейффера]')]")).click();
         /*услуги*/
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Без отклонений')]")).click();
-
-        MeasureOsmotrTerapevta.hover();
-        MeasureOsmotrTerapevta.click();
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Без отклонений')]")).click();
+        OsmotrTerapevta.hover();
+        OsmotrTerapevta.click();
         return this;
     }
 
-    public ExampPage fillZakluchenie() {
-        Zakluchenie
-                .$(By.xpath("../../conclusion"))
-                .hover();
-        Zakluchenie
-                .$(By.xpath("../../conclusion"))
-                .$(By.xpath(".//div[contains(text(),'низкий')]")).click();
+    public ExampPage fillZakluchenie() throws InterruptedException {
+        Thread.sleep(4000);
+        Zakluchenie.$(By.xpath("../../conclusion")).hover();
+        Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
         VrachPishetZakluchenie.hover();
-        VidOplati
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        VidOplati
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'ОМС')]")).click();
-        CelPosesheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        CelPosesheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'1 - Заболевание')]")).click();
-        MestoObsluzhivaniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        MestoObsluzhivaniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'1 - Поликлиника')]")).click();
-        ResultatObrasheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        ResultatObrasheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'01 - ВЫПИСАН')]")).click();
-        IshodObrashenia
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        IshodObrashenia
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'01 - ВЫЗДОРОВЛЕНИЕ')]")).click();
+        VidOplati.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        VidOplati.$(By.xpath("..//*[contains(text(),'ОМС')]")).click();
+        CelPosesheniya.$(By.xpath("..//mat-icon[contains(text(),'close')]")).click();
+        CelPosesheniya.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        CelPosesheniya.$(By.xpath("..//*[contains(text(),'1 - Заболевание')]")).click();
+        MestoObsluzhivaniya.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        MestoObsluzhivaniya.$(By.xpath("..//*[contains(text(),'1 - Поликлиника')]")).click();
+        ResultatObrasheniya.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        ResultatObrasheniya.$(By.xpath("..//*[contains(text(),'31 - ЛЕЧЕНИЕ ЗАВЕРШЕНО')]")).click();
+        IshodObrashenia.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        IshodObrashenia.$(By.xpath("..//*[contains(text(),'01 - ВЫЗДОРОВЛЕНИЕ')]")).click();
         return this;
     }
 
-
+    /*тут для тестов по просмотру*/
     public void viewTemnikov() throws InterruptedException {
         switchAllServicesTap()
                 .viewMeasureArtPressure()
@@ -278,239 +275,195 @@ public class ExampPage extends AbstractPage {
                 .viewZakluchenie();
     }
 
-    public ExampPage viewMeasureArtPressure() {
-        MeasureArtPressure.hover().click();
-        MeasureArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
-        MeasureArtPressure.$(By.xpath("td[4]/mat-checkbox")).hover().click();
-        MeasureArtPressure.hover().click();
+    public ExampPage viewMeasureArtPressure() throws InterruptedException {
+        Thread.sleep(4000);
+        ArtPressure.hover().click();
+        ArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
+        ArtPressure.$(By.xpath("td[4]/mat-checkbox")).hover().click();
+        ArtPressure.hover().click();
         return this;
     }
 
-    public ExampPage viewMeasureOpros_Anketirovanie() {
-        MeasureOpros_Anketirovanie.hover().click();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover().click();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//tr[@id='84900']"));
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//div[@class='cursorPointer hide-med-record']")).hover();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureOpros_Anketirovanie.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureOpros_Anketirovanie.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureOpros_Anketirovanie.hover().click();
+    public ExampPage viewMeasureOpros_Anketirovanie() throws InterruptedException {
+        Thread.sleep(4000);
+        Opros_Anketirovanie.hover().click();
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover().click();
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//tr[@id='84900']"));
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//div[@class='cursorPointer hide-med-record']")).hover();
+        Thread.sleep(1000);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//button[@mattooltip='Добавить']")).hover();
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Сохранить')]")).click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        Opros_Anketirovanie.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+        Opros_Anketirovanie.hover().click();
         return this;
     }
 
-    public ExampPage viewAntropometriya() {
-        MeasureAntropometriya.hover().click();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover().click();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureAntropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureAntropometriya.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureAntropometriya.hover().click();
+    public ExampPage viewAntropometriya() throws InterruptedException {
+        Thread.sleep(4000);
+        Antropometriya.hover().click();
+        Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover().click();
+        Thread.sleep(1000);
+        Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
+        Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        Antropometriya.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+        Antropometriya.hover().click();
         return this;
     }
 
-    public ExampPage viewIndividProfConsulting() {
-        MeasureIndividualnoeProfConsulting.hover().click();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover().click();
-        switchTo().frame(MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
+    public ExampPage viewIndividProfConsulting() throws InterruptedException {
+        Thread.sleep(4000);
+        IndividualnoeProfConsulting.hover().click();
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover().click();
+        switchTo().frame(IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
         $(By.id("multiLineTextTextarea1")).sendKeys("Автотестовая рекомендация");
         switchTo().defaultContent();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureIndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureIndividualnoeProfConsulting.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-        MeasureIndividualnoeProfConsulting.hover().click();
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).hover();
+        Thread.sleep(1000);
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//button[@mattooltip='Добавить']")).hover();
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        IndividualnoeProfConsulting.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
+        IndividualnoeProfConsulting.hover().click();
         return this;
     }
 
-    public ExampPage viewOpredelenieLvlGlukozi() {
-        MeasureOpredelenieLvlGlukozi.click();
-        MeasureOpredelenieLvlGlukozi.$(By.xpath("td[4]/mat-checkbox")).click();
-        MeasureOpredelenieLvlGlukozi.click();
+    public ExampPage viewOpredelenieLvlGlukozi() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieLvlGlukozi.click();
+        OpredelenieLvlGlukozi.$(By.xpath("td[4]/mat-checkbox")).click();
+        OpredelenieLvlGlukozi.click();
         return this;
     }
 
-    public ExampPage viewOpredelenieLvlHolesterina() {
-        MeasureOpredelenieLvlHolesterina.click();
-        MeasureOpredelenieLvlHolesterina.$(By.xpath("td[4]/mat-checkbox")).click();
-        MeasureOpredelenieLvlHolesterina.click();
+    public ExampPage viewOpredelenieLvlHolesterina() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieLvlHolesterina.click();
+        OpredelenieLvlHolesterina.$(By.xpath("td[4]/mat-checkbox")).click();
+        OpredelenieLvlHolesterina.click();
         return this;
     }
 
     public ExampPage viewFlurography() throws InterruptedException {
-//        MeasureFlura.$(By.xpath("../tr[2]")).hover().click();
-//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Результат флюорографии')]")).hover().click();
-//        switchTo().frame(MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
-//        $(By.id("singleLineTextInput2")).sendKeys("666");
-//        switchTo().defaultContent();
-//        MeasureFlura.$(By.xpath("../tr[3]")).hover();
-//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//button[contains(text(),'Просмотреть')]")).click();
-//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
-//        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-//        MeasureFlura.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-//        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-//        MeasureFlura.$(By.xpath("./td[4]/mat-checkbox")).hover().click();
-//        MeasureFlura.hover().click();
-
-        MeasureFlura.hover();
-        MeasureFlura.$(By.xpath("./tr")).click();
+        Thread.sleep(4000);
+        Flura.hover();
+        Flura.$(By.xpath("./tr")).click();
         Thread.sleep(700);
-        MeasureFlura.hover();
-        MeasureFlura.$(By.xpath("./tr[3]//*[contains(text(),'Результат флюорографии')]")).click();
-        MeasureFlura.hover();
+        Flura.hover();
+        Flura.$(By.xpath("./tr[3]//*[contains(text(),'Результат флюорографии')]")).click();
+        Flura.hover();
         return this;
     }
 
-    public ExampPage viewOpredelenieOtnositSummSSR() {
-        MeasureOpredelenieOtnositelnogoSSR.$(By.xpath("../tr[2]")).hover();
-        MeasureOpredelenieOtnositelnogoSSR.click();
-        MeasureOpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
-        MeasureOpredelenieOtnositelnogoSSR.click();
+    public ExampPage viewOpredelenieOtnositSummSSR() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieOtnositelnogoSSR.$(By.xpath("../tr[2]")).hover();
+        OpredelenieOtnositelnogoSSR.click();
+        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
+        OpredelenieOtnositelnogoSSR.click();
         return this;
     }
 
-    public ExampPage viewPriem_OsmotrTerapevta() {
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[2]")).hover();
-        MeasureOsmotrTerapevta.click();
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).hover();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]"))
-                .click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//tbody"))
-                .hover();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//button[contains(text(),'Просмотреть')]"))
-                .click();
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//table")).$(By.xpath("../div")).hover();
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Сохранить')]")).hover().click();
-        Alarma_MedZapisUspeshnoSohranena.shouldBe(Condition.visible);
-        MeasureOsmotrTerapevta.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Подписать')]")).hover().click();
-        Alarma_MedZapisUspeshnoPodpisana.shouldBe(Condition.visible);
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]"))
-                .click();
+    public ExampPage viewPriem_OsmotrTerapevta() throws InterruptedException {
+        Thread.sleep(4000);
+        OsmotrTerapevta.$(By.xpath("../tr[2]")).hover();
+        OsmotrTerapevta.click();
+        OsmotrTerapevta.$(By.xpath("../tr[3]")).hover();
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]")).click();
+        OsmotrTerapevta.$(By.xpath("../tr[3]//tbody")).hover();
+        Thread.sleep(1000);
+        OsmotrTerapevta.$(By.xpath("../tr[3]//button[contains(text(),'Просмотреть')]")).click();
+        Thread.sleep(1000);
+        OsmotrTerapevta.$(By.xpath("../tr[3]/../tr[3]//table")).$(By.xpath("../div")).hover();
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Сохранить')]")).hover().click();
+        ALARMA_SAVE.shouldBe(Condition.visible);
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        ALARMA_PODPISANA.shouldBe(Condition.visible);
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Приложение к форме 131-у осмотр Терапевта')]")).click();
         /*диагнозы*/
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div[2]"))
                 .$(By.xpath(".//*[contains(text(),'add')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[2]"))
                 .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[2]"))
                 .$(By.xpath(".//*[contains(text(),'1 - Предварительный')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[3]"))
                 .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[3]"))
                 .$(By.xpath(".//*[contains(text(),'2 - Установлено ранее')]")).click();
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[4]"))
                 .$(By.xpath(".//*[@placeholder = 'undefined']")).val("J20.1");
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Диагнозы')]"))
+        OsmotrTerapevta
+                .$(By.xpath("../tr[3]//*[contains(text(),'Диагнозы')]"))
                 .$(By.xpath("../../../../../div/table/tbody/tr/td[4]"))
                 .$(By.xpath(".//*[contains(text(),'J20.1 - Острый бронхит, вызванный Haemophilus influenzae [палочкой Афанасьева-Пфейффера]')]")).click();
+
         /*услуги*/
-        MeasureOsmotrTerapevta
-                .$(By.xpath("../tr[3]"))
-                .$(By.xpath(".//*[contains(text(),'Без отклонений')]")).click();
-
-        MeasureOsmotrTerapevta.hover();
-        MeasureOsmotrTerapevta.click();
+        OsmotrTerapevta.$(By.xpath("../tr[3]//*[contains(text(),'Без отклонений')]")).click();
+        OsmotrTerapevta.hover();
+        OsmotrTerapevta.click();
         return this;
     }
 
-    public ExampPage viewZakluchenie() {
-        Zakluchenie
-                .$(By.xpath("../../conclusion"))
-                .hover();
-        Zakluchenie
-                .$(By.xpath("../../conclusion"))
-                .$(By.xpath(".//div[contains(text(),'низкий')]")).click();
+    public ExampPage viewZakluchenie() throws InterruptedException {
+        Thread.sleep(4000);
+        Zakluchenie.$(By.xpath("../../conclusion")).hover();
+        Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
         VrachPishetZakluchenie.hover();
-        VidOplati
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        VidOplati
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'ОМС')]")).click();
-        CelPosesheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        CelPosesheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'1 - Заболевание')]")).click();
-        MestoObsluzhivaniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        MestoObsluzhivaniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'1 - Поликлиника')]")).click();
-        ResultatObrasheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        ResultatObrasheniya
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'01 - ВЫПИСАН')]")).click();
-        IshodObrashenia
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'arrow_drop_down')]")).click();
-        IshodObrashenia
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[contains(text(),'01 - ВЫЗДОРОВЛЕНИЕ')]")).click();
+        VidOplati.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        VidOplati.$(By.xpath("..//*[contains(text(),'ОМС')]")).click();
+        CelPosesheniya.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        CelPosesheniya.$(By.xpath("..//*[contains(text(),'1 - Заболевание')]")).click();
+        MestoObsluzhivaniya.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        MestoObsluzhivaniya.$(By.xpath("..//*[contains(text(),'1 - Поликлиника')]")).click();
+        ResultatObrasheniya.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        ResultatObrasheniya.$(By.xpath("..//*[contains(text(),'01 - ВЫПИСАН')]")).click();
+        IshodObrashenia.$(By.xpath("..//*[contains(text(),'arrow_drop_down')]")).click();
+        IshodObrashenia.$(By.xpath("..//*[contains(text(),'01 - ВЫЗДОРОВЛЕНИЕ')]")).click();
         return this;
     }
 
-
+    /*уведомления*/
     public ExampPage saveBtn() {
         PodvalSaveBtn.click();
+        $(By.xpath("//*[contains(text(),'Карта успешно сохранена')]")).shouldBe(Condition.visible);
         return this;
     }
 
     public ExampPage podpisatBtn() {
         PodvalPodpisatBtn.click();
+        $(By.xpath("//*[contains(text(),'Карта успешно подписана')]")).shouldBe(Condition.visible);
         return this;
     }
 
-
-    /**
-     * меню слева
-     */
+    /* меню слева*/
     public ExampPage zakluchenieMenuBtn() {
         $(By.id("mCSB_1_container")).$(By.xpath(".//*[contains(text(),'Заключение')]")).click();
         return this;
     }
-
-
 }

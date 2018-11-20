@@ -1,7 +1,6 @@
 package emias;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -9,6 +8,7 @@ import org.testng.annotations.*;
 import pages.Pages;
 import pages.sql.SQLDemonstration;
 import utilities.DriverManager;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 
@@ -38,7 +38,7 @@ public abstract class AbstractTest {
         driver.quit();
     }
 
-    @Parameters(value = {"site", "loginMis", "pass"})
+    @Parameters(value = {"site", "enterMIS", "pass"})
     @RetryCountIfFailed(2)
     @BeforeGroups(groups = "CD", alwaysRun = true)
     public void beforeGroupsCD(@Optional String site, @Optional String login, @Optional String pass) {
@@ -57,7 +57,7 @@ public abstract class AbstractTest {
 //        SQLDemonstration.finalizeCallsOperatorTemnikov();
     }
 
-    @Parameters(value = {"site", "loginMis", "pass"})
+    @Parameters(value = {"site", "enterMIS", "pass"})
     @BeforeGroups(groups = "mis", alwaysRun = true)
     public void beforeGroupsMIS(@Optional String site, @Optional String login, @Optional String pass) {
         System.out.println("Site: " + site);
@@ -65,7 +65,7 @@ public abstract class AbstractTest {
         curUrlCalldoctor = driver.getCurrentUrl();
     }
 
-    @Parameters(value = {"site", "loginMis", "pass"})
+    @Parameters(value = {"site", "enterMIS", "pass"})
     @BeforeGroups(groups = "test", alwaysRun = true)
     public void beforeGroupsTest(@Optional String site, @Optional String login, @Optional String pass) {
         page.loginPage().login(site, login, pass);

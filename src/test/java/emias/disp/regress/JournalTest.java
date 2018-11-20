@@ -2,11 +2,11 @@ package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 
@@ -67,7 +67,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
     public void testSearchCard6() {
-        enterSite.loginMis();
+        enterSite.enterMIS();
         page.homePageMis().dispCardJournalBtn();
         switchTo().window(1);
         page.journalPage().journalMenuBtn();
@@ -79,7 +79,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() throws InterruptedException {
-        enterSite.loginMis();
+        enterSite.enterMIS();
         page.homePageMis().dispCardJournalBtn();
         switchTo().window(1);
         page.journalPage().journalMenuBtn();
@@ -93,7 +93,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через мкаб")
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromMkab() throws InterruptedException {
-        enterSite.loginMis();
+        enterSite.enterMIS();
         page.homePageMis().mkabBtn();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -119,7 +119,7 @@ public class JournalTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
         Pacient pacient = new Pacient("Temnikov94");
-        enterSite.loginMis();
+        enterSite.enterMIS();
         page.homePageMis().admissionScheduleBtn();
         page.admissionSchedule().createDispMl(pacient);
         page.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");

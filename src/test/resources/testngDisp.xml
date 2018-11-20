@@ -25,9 +25,6 @@
                 <include name="disp"/>
             </run>
         </groups>
-        <!--<classes>-->
-        <!--<class name="emias.callDoctor.regress.EditPageTest"/>-->
-        <!--</classes>-->
         <packages>
             <package name="emias.disp.regress"/>
         </packages>

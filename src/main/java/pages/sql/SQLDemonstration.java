@@ -208,7 +208,7 @@ public class SQLDemonstration extends AbstractPage {
             System.out.println();
             e.printStackTrace();
         }
-        System.out.println("Вызов завершен для портала!");
+        System.out.println("Вызов завершен!");
     }
 
     @Step("Сбросить мероприятия у карты вызова")

@@ -5,8 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.JavascriptExecutor;
@@ -98,11 +98,12 @@ public class CreateCallPage extends AbstractPage {
     public void createCall_Api(Pacient pacient) {
         SQLDemonstration.finalizeCall_NPol(pacient.getNumberpol());
         HttpClient httpClient = HttpClients.createDefault();
-        if (pacient.getSource() == 2) {
+        if (pacient.getSource() == 2) {//смп
             try {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequest());
-                verifyBodyResponceNewCall(httpResponse);
+                statusBodyResponce(httpResponse);
+                System.out.println("Карта вызова создана!");
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
@@ -112,13 +113,13 @@ public class CreateCallPage extends AbstractPage {
             try {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
-                verifyBodyResponceNewCall(httpResponse);
+                statusBodyResponce(httpResponse);
+                System.out.println("Карта вызова создана!");
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println("Error, " + "Cannot Estabilish Connection");
             }
         }
-        System.out.println("Карта вызова создана!");
     }
 
     @Step("редактирую вызов")
@@ -459,12 +460,10 @@ public class CreateCallPage extends AbstractPage {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    void verifyBodyResponceNewCall(HttpResponse resp) throws IOException {
-        int a = resp.getStatusLine().getStatusCode();
-        if (a != 200) {
-            System.out.println("Не удаётся создать новый вызов!");
-            System.out.println("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
-            System.exit(1);
+    void statusBodyResponce(HttpResponse resp) throws IOException {
+        if (resp.getStatusLine().getStatusCode() != 200) {
+            System.out.println("Ошибка! Ответ сервера:\n" + EntityUtils.toString(resp.getEntity(), "UTF-8"));
+//            System.out.println("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
         }
     }
 }

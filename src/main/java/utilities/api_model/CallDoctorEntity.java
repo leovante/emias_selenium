@@ -13,7 +13,7 @@ public class CallDoctorEntity {
     JSONObject jsonOb;
     String clientApplication = "CB174067-702F-42D0-B0EB-1D84A514515D";
     String authorization = "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3";
-    String requestSmp = "http://rpgu.emias.mosreg.ru/api/v2/smp/callDoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233";
+    String requestSmp = "http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233";
 
     public CallDoctorEntity(Pacient pacient) throws JSONException {
         this.pacient = pacient;
@@ -65,6 +65,7 @@ public class CallDoctorEntity {
         request.addHeader("ClientApplication", clientApplication);
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
+
 //        System.out.println("jsonOb" + jsonOb);
 //        System.out.println("params" + params);
         return request;
@@ -81,6 +82,5 @@ public class CallDoctorEntity {
 //        System.out.println("jsonOb" + jsonOb);
 //        System.out.println("params" + params);
         return request;
-
     }
 }

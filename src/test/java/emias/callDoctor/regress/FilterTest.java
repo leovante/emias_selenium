@@ -43,7 +43,7 @@ public class FilterTest extends AbstractTestGrid {
                 .verifyActiveDocGroup(pacient, doctor);
     }
 
-    @Test(groups = "CD", description = "фильтр поиск по виду вызова")
+    @Test(groups = "test", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException, JSONException {
