@@ -23,8 +23,7 @@ public class AbstractTestGrid {
     public static String pass;
 
     //    BrowserMobProxy proxy = new BrowserMobProxyServer();
-//
-//
+
     @Parameters({"site", "login", "pass", "gridIsRun"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional String gridIsRun) throws Exception {
@@ -42,6 +41,7 @@ public class AbstractTestGrid {
         FileOutputStream fileOutputStream = new FileOutputStream("target/selenium_logs.har");
 //        har.writeTo(fileOutputStream);
         SeleniumGrid.stop(gridIsRun);
+        System.out.println("Тестирование закончено!");
     }
 
     @Parameters({"browser", "headless"})
@@ -52,11 +52,13 @@ public class AbstractTestGrid {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
         enterSite = new EnterSite();
+        System.out.println("Тест начинается!");
     }
 
     @RetryCountIfFailed(2)
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         WebDriverRunner.closeWebDriver();
+        System.out.println("Тест завершен!");
     }
 }

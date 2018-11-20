@@ -80,7 +80,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Test(groups = "CD", description = "проверка перехода на сайт с инструкцией")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testInstruction() {
