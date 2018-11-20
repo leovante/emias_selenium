@@ -13,6 +13,13 @@
         <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
+
+    <test name="BeforeTest" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.mis.before"/>
+        </packages>
+    </test>
     <test verbose="1" name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <groups>
