@@ -83,7 +83,7 @@ public class JournalTest extends AbstractTestGrid {
         page.homePageMis().dispCardJournalBtn();
         switchTo().window(1);
         page.journalPage().journalMenuBtn();
-        page.journalPage().searchByPolNumber(7654321);
+        page.journalPage().searchByPolNumber(1594);
         page.journalPage().clickSearchBtn();
         page.journalPage().editCardBtn(7654321);
         page.exampPage().viewFlurography();
@@ -108,7 +108,7 @@ public class JournalTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Карты диспансеризации')]")).click();
         switchTo().window(1);
         page.journalPage().journalMenuBtn();
-        page.journalPage().searchByPolNumber(7654321);
+        page.journalPage().searchByCardNumber(1594);
         page.journalPage().clickSearchBtn();
         page.journalPage().editCardBtn(7654321);
         page.exampPage().viewFlurography();

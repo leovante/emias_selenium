@@ -52,8 +52,8 @@ public class JournalPage extends AbstractPage {
         grida.$(By.xpath(".//*[@class='zmdi zmdi-edit']")).click();
     }
 
-    public void editCardBtn(int number) {
-        $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//div[contains(.,'7654321')]")).click();
+    public void editCardBtn(int numberPol) {
+        $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//div[contains(.,'" + numberPol + "')]")).click();
         $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Редактировать']")).click();
 
     }

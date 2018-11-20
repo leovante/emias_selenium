@@ -359,12 +359,17 @@ public class ExampPage extends AbstractPage {
 
     public ExampPage viewFlurography() throws InterruptedException {
         Thread.sleep(4000);
-        Flura.hover();
-        Flura.$(By.xpath("./tr")).click();
-        Thread.sleep(700);
-        Flura.hover();
-        Flura.$(By.xpath("./tr[3]//*[contains(text(),'Результат флюорографии')]")).click();
-        Flura.hover();
+        Flura.$(By.xpath("../.")).hover();
+        Thread.sleep(1000);
+        Flura.click();
+        Thread.sleep(1000);
+        Flura.$(By.xpath("../tr[3]")).hover();
+        Thread.sleep(1000);
+        Flura.$(By.xpath("../tr[3]//*[contains(text(),'Результат флюорографии')]")).hover().click();
+        Thread.sleep(1000);
+        switchTo().frame(Flura.$(By.xpath("../tr[3]")).$(By.xpath(".//iframe")));
+        $(By.xpath("//*[contains(.,'Флюорография')]")).shouldBe(Condition.visible);
+        switchTo().defaultContent();
         return this;
     }
 
