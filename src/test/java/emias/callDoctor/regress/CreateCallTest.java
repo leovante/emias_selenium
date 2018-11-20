@@ -93,7 +93,7 @@ public class CreateCallTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "test", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)

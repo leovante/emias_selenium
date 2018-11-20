@@ -10,15 +10,17 @@ import org.apache.http.impl.client.HttpClients;
 import org.testng.Assert;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
+import java.io.IOException;
 import java.util.Map;
 
 public class Tokenizer {
     public static String token;
+    HttpResponse response;
 
     public Tokenizer() {
     }
 
-    public String getToken(Pacient pacient, String ClientApplication) {
+    public String getToken(Pacient pacient, String ClientApplication) throws IOException {
         String bd = pacient.getBirthdate("yyyy-MM-dd");
         String spol = pacient.getSeriespol();
         String npol = pacient.getNumberpol();
@@ -30,15 +32,15 @@ public class Tokenizer {
             ResponseHandler<String> handler = new BasicResponseHandler();
             String jString = httpClient.execute(request, handler);
 
-            HttpResponse response = httpClient.execute(request);
-            int statusCode = response.getStatusLine().getStatusCode();
-            Assert.assertEquals(String.valueOf(statusCode), "200", "Не удаётся получить токен для создания вызова!");
+            this.response = httpClient.execute(request);
+            Assert.assertEquals(response.getStatusLine().getStatusCode(), 200, "Не удаётся получить токен для создания вызова!");
 
             Map<String, String> proData = new ObjectMapper().readValue(jString, Map.class);
             token = proData.get("token");
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.out.println("Ошибка. Не удается подключиться!, " + "Cannot Estabilish Connection");
+            System.out.println("Ответ:\n" + response.getEntity().getContent());
+            System.out.println("Ошибка. Не удается подключиться!");
         }
         return token;
     }

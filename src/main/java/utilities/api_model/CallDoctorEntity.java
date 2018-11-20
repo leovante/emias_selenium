@@ -7,6 +7,8 @@ import org.json.JSONObject;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.Tokenizer;
 
+import java.io.IOException;
+
 public class CallDoctorEntity {
     private Pacient pacient;
     HttpPost request;
@@ -65,13 +67,10 @@ public class CallDoctorEntity {
         request.addHeader("ClientApplication", clientApplication);
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
-
-//        System.out.println("jsonOb" + jsonOb);
-//        System.out.println("params" + params);
         return request;
     }
 
-    public HttpPost createRequestToken() {
+    public HttpPost createRequestToken() throws IOException {
         String token = new Tokenizer().getToken(pacient, clientApplication);
         this.request = new HttpPost(requestSmp);
         request.addHeader("Content-type", "application/json");
@@ -79,8 +78,6 @@ public class CallDoctorEntity {
         request.addHeader("ClientApplication", clientApplication);
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
-//        System.out.println("jsonOb" + jsonOb);
-//        System.out.println("params" + params);
         return request;
     }
 }
