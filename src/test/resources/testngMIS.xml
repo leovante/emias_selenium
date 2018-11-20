@@ -13,20 +13,19 @@
         <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
-    <test verbose="1" name="MIS">
+    <test verbose="1" name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
                 <include name="mis"/>
             </run>
         </groups>
-        <!--<classes>-->
-        <!--<class name="emias.mis.before.BeforeSuiteMIS/>-->
-        <!--<class name="emias.callcenter.RTD01Test"/>-->
-        <!--</classes>-->
-        <packages>
-            <package name="emias.mis.regress"/>
-        </packages>
+        <classes>
+            <class name="emias.mis.before.BeforeSuiteMIS"/>
+        </classes>
+        <!--<packages>-->
+        <!--<package name="emias.mis.regress"/>-->
+        <!--</packages>-->
     </test>
 </suite>
 

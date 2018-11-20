@@ -20,11 +20,11 @@
                 <include name="kl"/>
             </run>
         </groups>
-        <!--<classes>-->
-        <!--<class name="emias.callDoctor.regress.CreateCallTest"/>-->
-        <!--</classes>-->
-        <packages>
-            <package name="emias.kladr"/>
-        </packages>
+        <classes>
+            <class name="emias.kladr.RandomAddressTest"/>
+        </classes>
+        <!--<packages>-->
+        <!--<package name="emias.kladr"/>-->
+        <!--</packages>-->
     </test>
 </suite>

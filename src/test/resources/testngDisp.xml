@@ -18,15 +18,18 @@
         </classes>
     </test>
 
-    <test verbose="1" name="Dispanserisation">
+    <test verbose="1" name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
                 <include name="disp"/>
             </run>
         </groups>
-        <packages>
-            <package name="emias.disp.regress"/>
-        </packages>
+        <classes>
+            <class name="emias.disp.before.BeforeSuiteDisp"/>
+        </classes>
+        <!--<packages>-->
+        <!--<package name="emias.disp.regress"/>-->
+        <!--</packages>-->
     </test>
 </suite>
