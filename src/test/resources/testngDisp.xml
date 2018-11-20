@@ -17,7 +17,6 @@
             <class name="emias.disp.before.BeforeSuiteDisp"/>
         </classes>
     </test>
-
     <test verbose="1" name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <groups>
