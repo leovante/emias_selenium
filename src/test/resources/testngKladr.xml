@@ -21,7 +21,7 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.kladr.RandomAddressTest"/>
+            <class name="emias.kladr.KladrFiasVerify"/>
         </classes>
         <!--<packages>-->
         <!--<package name="emias.kladr"/>-->
