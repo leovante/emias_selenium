@@ -2,9 +2,10 @@ package emias.mis.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -15,6 +16,7 @@ public class PerehodyTest extends AbstractTestGrid {
      * переходы в диспетчер
      */
     @Test(groups = "mis", description = "Переходы в Диспетчер с дашборда")
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDdashboard() {
         enterSite.enterCalldoctorFromMis();
@@ -22,6 +24,7 @@ public class PerehodyTest extends AbstractTestGrid {
     }
 
     @Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDmkab() {
         page.loginPage().login(site, login, pass);
@@ -37,6 +40,7 @@ public class PerehodyTest extends AbstractTestGrid {
     }
 
     @Test(groups = "mis", description = "Переходы в Диспетчер из журнала")
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDjournal() {
         page.loginPage().login(site, login, pass);
@@ -47,6 +51,7 @@ public class PerehodyTest extends AbstractTestGrid {
     }
 
     @Test(groups = "mis", description = "Переходы в Диспетчер из личного кабинета врача")
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDlk() {
         page.loginPage().login(site, login, pass);
@@ -61,6 +66,7 @@ public class PerehodyTest extends AbstractTestGrid {
      * переходы в диспансеризацию
      */
     @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда", enabled = false)
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispDash() {
         page.loginPage();
@@ -69,6 +75,7 @@ public class PerehodyTest extends AbstractTestGrid {
     }
 
     @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ", enabled = false)
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispMkab() {
         page.loginPage();
@@ -77,6 +84,7 @@ public class PerehodyTest extends AbstractTestGrid {
     }
 
     @Test(groups = "mis", description = "Переход в Диспансеризацию из Расписания приема", enabled = false)
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispShedule() {
         page.loginPage();
@@ -88,6 +96,7 @@ public class PerehodyTest extends AbstractTestGrid {
      * переходы в медзаписи
      */
     @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedMkab() {
         page.loginPage().login(site, login, pass);
@@ -102,6 +111,7 @@ public class PerehodyTest extends AbstractTestGrid {
     }
 
     @Test(groups = "mis", description = "Переход в Медзаписи из Тап")
+    @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedTap() {
         page.loginPage().login(site, login, pass);
