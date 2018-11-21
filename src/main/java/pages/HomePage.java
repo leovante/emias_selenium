@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import pages.mis.BeforeWork;
 import pages.mis.DoctorMethods;
 import pages.mis.ManageShedule;
-import pages.sql.SQLDemonstration;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -78,7 +77,7 @@ public class HomePage extends AbstractPage {
             System.out.println("Обрабатываю врача №: " + n);
             String doctor_num = new DoctorMethods().getUnicalDoctor3(n);
             String doctor_num_fam = ManageShedule.getSecondName(doctor_num);
-            SQLDemonstration.deleteShedule(doctor_num_fam);
+//            SQLDemonstration.deleteShedule(doctor_num_fam);
             new DoctorMethods().selectDoctor(doctor_num);
             new BeforeWork().createShedule();
             new ManageShedule().verifyCreatedShedule(doctor_num_fam);
