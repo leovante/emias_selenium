@@ -18,7 +18,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     public void afterTest() {
     }
 
-    @Test(groups = "mis", description = "Создать расписание", enabled = false)
+    @Test(groups = "mis", description = "Создать расписание")
     @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
@@ -32,7 +32,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
         page.manageShedule().verifyCreatedShedule(secondName);
     }
 
-    @Test(groups = "mis", description = "Копировать расписание", enabled = false)
+    @Test(groups = "mis", description = "Копировать расписание")
     @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
@@ -51,7 +51,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
         page.manageShedule().verifyCreatedShedule(second_doctor_fam);
     }
 
-    @Test(groups = "mis", description = "Указать неприемные дни", enabled = false)
+    @Test(groups = "mis", description = "Указать неприемные дни")
     @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
         //driver.get(curUrlCalldoctor);
@@ -62,7 +62,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
                 .verifyNotReceiveDays();
     }
 
-    @Test(groups = "mis", description = "Удалить расписание", enabled = false)
+    @Test(groups = "mis", description = "Удалить расписание")
     @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
@@ -87,7 +87,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
                 .verifyDeletedShedle();
     }
 
-    @Test(groups = "mis", description = "Перенести запись", enabled = false)
+    @Test(groups = "mis", description = "Перенести запись")
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
