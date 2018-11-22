@@ -25,14 +25,16 @@ public class SeleniumGrid {
         }
     }
 
-    public static void stop(String gridIsRun) throws IOException {
+    public static void stop(String gridIsRun) throws IOException, JSONException, InterruptedException {
         // TODO: 11/22/2018 тут сделать проверку на то что тесты могут быть запущены
-        if (gridIsRun != null) {
+        if (gridIsRun != null && statusGrid.checkIsNotWorkStatus()) {
             URL urlHub = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
             urlHub.openConnection().getInputStream();
             URL urlNode = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
             urlNode.openConnection().getInputStream();
             System.out.println("Остановил хаб Selenium grid");
+        } else {
+            System.out.println("Селениум грид работает, остановка невозможна!");
         }
     }
 
@@ -62,6 +64,17 @@ public class SeleniumGrid {
                 return true;
             }
             System.out.println("Селениум не запущен...");
+            return false;
+        }
+
+        static boolean checkIsNotWorkStatus() throws InterruptedException, JSONException {
+            for (int i = 1; i <= SEC_COUNT; i++) {
+                int free = Integer.parseInt(new JSONObject(responseString).getJSONObject("slotCounts").getString("free"));
+                int total = Integer.parseInt(new JSONObject(responseString).getJSONObject("slotCounts").getString("total"));
+                if (free == total)
+                    return true;
+                Thread.sleep(1000);
+            }
             return false;
         }
 
