@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
-@Deprecated
-public class RMIS01Test extends AbstractTestGrid {
+
+public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
 
     @BeforeTest(groups = {"mis", "test"})
     public void beforeTest() {
