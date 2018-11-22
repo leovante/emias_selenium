@@ -53,6 +53,7 @@ public class SeleniumGrid {
             }
         }
 
+        /*при запуске проекта первое обращение на адрес селениума, проверка что он запущен*/
         static boolean checkStatus() throws JSONException, InterruptedException, IOException {
             System.out.println("Проверка запущен ли селениум");
             if (chekResponseStatus() && chekStatusField()) {
