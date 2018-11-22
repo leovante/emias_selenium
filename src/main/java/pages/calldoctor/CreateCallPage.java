@@ -63,7 +63,9 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement nameCall = $(By.id("callName"));
     SelenideElement otCall = $(By.id("callPatronymic"));
     SelenideElement sourceSmp = $(By.id("source0"));
+    SelenideElement sourceSmp2 = $(By.id("sourceSmp"));
     SelenideElement sourceReg = $(By.id("source1"));
+
 
     public CreateCallPage createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
         this.pacient = pacient;
@@ -466,4 +468,18 @@ public class CreateCallPage extends AbstractPage {
 //            System.out.println("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
         }
     }
+
+    public CreateCallPage deleteWhoCallFIO() {
+        famCall.clear();
+        nameCall.clear();
+        otCall.clear();
+        return this;
+    }
+
+    public CreateCallPage fillSourceSmp() {
+        sourceSmp2.val("тест");
+        return this;
+    }
 }
+
+

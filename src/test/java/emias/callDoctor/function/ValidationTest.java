@@ -3,6 +3,8 @@ package emias.callDoctor.function;
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -30,5 +32,24 @@ public class ValidationTest extends AbstractTestGrid {
                 .editCallPage(pacient2)
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Не указан адрес')]")).shouldBe(Condition.visible);
+    }
+
+    @Flaky
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Проверка валидации ФИО кто вызвал")
+    @Epic("Проверка валидатора")
+    @Issue("EMIAS-1108")
+    @RetryCountIfFailed(2)
+    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
+        Pacient pacient = new Pacient("Profile3");
+        enterSite.enterCalldoctorFromMis();
+        page.createCallPage().createCall_Api(pacient);
+        page.dashboardPage().openNewCallDash(pacient);
+        page.fullCardPage().verifyNewCall(pacient);
+        page.fullCardPage().editCallBtn();
+        page.createCallPage()
+                .fillSourceSmp()
+                .deleteWhoCallFIO()
+                .saveBtn();
+        $(By.xpath("//*[contains(text(),'Карта не валидна')]")).shouldBe(Condition.visible);
     }
 }
