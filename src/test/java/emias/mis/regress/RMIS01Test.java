@@ -87,7 +87,7 @@ public class RMIS01Test extends AbstractTestGrid {
                 .verifyDeletedShedle();
     }
 
-    @Test(groups = "mis", description = "Перенести запись")
+    @Test(groups = "mis", description = "Перенести запись", enabled = false)
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
         //driver.get(curUrlCalldoctor);
