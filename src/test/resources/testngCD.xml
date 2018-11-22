@@ -26,13 +26,10 @@
                 <include name="CD"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.callDoctor.before.BeforeSuiteCalldoctor"/>
-        </classes>
-        <!--<packages>-->
-        <!--<package name="emias.callDoctor.function"/>-->
-        <!--<package name="emias.callDoctor.regress"/>-->
-        <!--</packages>-->
+        <packages>
+            <package name="emias.callDoctor.function"/>
+            <package name="emias.callDoctor.regress"/>
+        </packages>
     </test>
     <test name="AfterTest" verbose="1">
         <parameter name="browser" value="chrome"/>
