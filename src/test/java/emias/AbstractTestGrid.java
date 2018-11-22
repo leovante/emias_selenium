@@ -4,6 +4,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import emias.callDoctor.EnterSite;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.json.JSONException;
 import org.testng.annotations.*;
 import pages.Pages;
 import utilities.SeleniumGrid;
@@ -36,7 +37,7 @@ public class AbstractTestGrid {
 
     @Parameters({"gridIsRun"})
     @AfterSuite(alwaysRun = true)
-    public void afterSuite(@Optional String gridIsRun) throws IOException {
+    public void afterSuite(@Optional String gridIsRun) throws IOException, JSONException, InterruptedException {
 //        Har har = proxy.getHar();
         FileOutputStream fileOutputStream = new FileOutputStream("target/selenium_logs.har");
 //        har.writeTo(fileOutputStream);
