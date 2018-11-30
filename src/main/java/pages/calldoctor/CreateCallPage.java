@@ -2,6 +2,7 @@ package pages.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -36,7 +37,7 @@ public class CreateCallPage extends AbstractPage {
     private Pacient pacient;
 
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
-    SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
+    SelenideElement list_first_container = $(By.xpath("//div[@role='listbox']/mat-option"));
     SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
     SelenideElement telephoneNumber = $(By.id("phone"));
@@ -226,32 +227,36 @@ public class CreateCallPage extends AbstractPage {
     }
 
     private CreateCallPage address() throws InterruptedException {
-        cancelAdress.shouldBe(Condition.visible);
         if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
-            cancelAdress.click();
-            adress.setValue(pacient.getAddress1());
-            list_first_container.click();
+            cancelAdress.shouldBe(Condition.visible).click();
+            list_first_container(pacient.getAddress1());
         }
-        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
-            adress.setValue(pacient.getAddress2());
-            list_first_container.isDisplayed();
-            Thread.sleep(700);
-            list_first_container.click();
-        }
+        if (pacient.getAddress2() != null && pacient.getAddress2() != "")
+            list_first_container(pacient.getAddress2());
         if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
-            adress.setValue(pacient.getAddress3());
-            list_first_container.isDisplayed();
-            Thread.sleep(700);
-            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
-                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
-            else
-                list_first_container.click();
+            list_first_container(pacient.getAddress3());
+//            adress.sendKeys(pacient.getAddress3());
+//            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
+//                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
+//            else
+//
+//                list_first_container.click();
         }
         if (pacient.getNumber() != null && pacient.getNumber() != "") {
             $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
         }
         addressPlus();
         return this;
+    }
+
+    void list_first_container(String address) throws InterruptedException {
+        adress.sendKeys(address);
+        Thread.sleep(500);
+        new PressEscape();
+        adress.sendKeys(" ");
+        $(By.xpath("//div[@role='listbox']//*[contains(text(),'" + address + "')]"))
+                .shouldBe(Condition.visible)
+                .click();
     }
 
     private CreateCallPage addressPlus() {
