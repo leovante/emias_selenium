@@ -1,11 +1,13 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -42,12 +44,22 @@ public class AbstractPage {
         return telephone;
     }
 
-    public String currentTime(String format) {
+    /*public String currentTime(String format) {
         String time;
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
         Date date = Calendar.getInstance().getTime();
         time = simpleDateFormatEdit.format(date);
         return time;
-    }
+    }*/
 
+    public ArrayList currentTimeList(String format) {
+        ArrayList dateList = null;
+        String time;
+        SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
+        Date date = Calendar.getInstance().getTime();
+        dateList.add(simpleDateFormatEdit.format(date));
+        Date date1 = DateUtils.addMinutes(date, 1);
+        dateList.add(simpleDateFormatEdit.format(date1));
+        return dateList;
+    }
 }

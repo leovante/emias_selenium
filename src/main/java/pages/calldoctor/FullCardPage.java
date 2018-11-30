@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -16,6 +15,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends AbstractPage {
     SelenideElement doneCall = $(By.id("doneCall"));
@@ -88,9 +88,13 @@ public class FullCardPage extends AbstractPage {
     }
 
     public void verifyTime() {
-        String timeCur = currentTime("HH:mm");
+        ArrayList dateList = currentTimeList("HH:mm");
         String timeCard = $(By.xpath("//span[contains(text(),'Время')]")).$(By.xpath("../.")).$(By.xpath("./span[2]")).getText();
-        Assert.assertEquals(timeCard, timeCur, "Время создания вызова не корректное");
+        assertTimeContains(dateList, timeCard);
+    }
+
+    void assertTimeContains(ArrayList curTime, String expTime) {
+        assertTrue(curTime.contains(expTime));
     }
 
     @Step("проверяю новый вызов {profile}")
