@@ -23,7 +23,7 @@ public class DoctorMethods extends AbstractPage {
     public String getUnicalDoctor(String docName) {
         doctorRow.shouldBe(Condition.visible);
         List<String> dontUseNames = new ArrayList<String>();
-        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
+        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "Ай Бо ЛитАвтоТест", "null");
         dontUseNames.add(docName);
         System.out.println(dontUseNames);
         String doctorStringName = docName;
@@ -51,7 +51,7 @@ public class DoctorMethods extends AbstractPage {
     public String getUnicalDoctor3(int doctorNum) {
         doctorRow.shouldBe(Condition.visible);
         List<String> badNames = new ArrayList<String>();
-        Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null", "Моков Павел Александрович");
+        Collections.addAll(badNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null", "Моков Павел Александрович", "Ай Бо ЛитАвтоТест");
         List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
                 .findElements(By.xpath("tr[@role='row'][@tabindex='-1']/td[3]/div/span[1]"));//нашел строки врачей
@@ -75,7 +75,7 @@ public class DoctorMethods extends AbstractPage {
     public String getUnicalDoctor2(String docName) {
         doctorRow.shouldBe(Condition.visible);
         List<String> dontUseNames = new ArrayList<String>();
-        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "null");
+        Collections.addAll(dontUseNames, "Ай Бо Лит", "Ай Бо ЛитАвтоТест", "Ар Ти Шок", "test test testovych", "null");
         dontUseNames.add(docName);
         System.out.println(dontUseNames);
         String doctorStringName = docName;

@@ -92,4 +92,5 @@ public class UchastoksAddressTest extends AbstractTestGrid {
                 .openNewCallDash(pacient);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
     }
+    // TODO: 12/3/2018 сделать тест проверки списка участков при привязке адреса к участку на педиатр/взрослый
 }
