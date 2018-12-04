@@ -90,5 +90,14 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate.cfg.
         <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="hlt_Krasnogorsk_GB1_200301@192.168.7.48" uuid="08fc47ab-68d5-42c6-898e-ed9cbb73e68b">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14333/hlt_Krasnogorsk_GB1_200301</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

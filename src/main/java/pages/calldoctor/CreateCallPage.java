@@ -226,21 +226,28 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
+
     private CreateCallPage address() throws InterruptedException {
+        cancelAdress.shouldBe(Condition.visible);
         if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
-            cancelAdress.shouldBe(Condition.visible).click();
-            list_first_container(pacient.getAddress1());
+            cancelAdress.click();
+            adress.setValue(pacient.getAddress1());
+            list_first_container.click();
         }
-        if (pacient.getAddress2() != null && pacient.getAddress2() != "")
-            list_first_container(pacient.getAddress2());
+        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
+            adress.setValue(pacient.getAddress2());
+            list_first_container.isDisplayed();
+            Thread.sleep(700);
+            list_first_container.click();
+        }
         if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
-            list_first_container(pacient.getAddress3());
-//            adress.sendKeys(pacient.getAddress3());
-//            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
-//                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
-//            else
-//
-//                list_first_container.click();
+            adress.setValue(pacient.getAddress3());
+            list_first_container.isDisplayed();
+            Thread.sleep(700);
+            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
+                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
+            else
+                list_first_container.click();
         }
         if (pacient.getNumber() != null && pacient.getNumber() != "") {
             $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
@@ -248,6 +255,29 @@ public class CreateCallPage extends AbstractPage {
         addressPlus();
         return this;
     }
+
+//    private CreateCallPage address() throws InterruptedException {
+//        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
+//            cancelAdress.shouldBe(Condition.visible).click();
+//            list_first_container(pacient.getAddress1());
+//        }
+//        if (pacient.getAddress2() != null && pacient.getAddress2() != "")
+//            list_first_container(pacient.getAddress2());
+//        if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
+//            list_first_container(pacient.getAddress3());
+////            adress.sendKeys(pacient.getAddress3());
+////            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
+////                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
+////            else
+////
+////                list_first_container.click();
+//        }
+//        if (pacient.getNumber() != null && pacient.getNumber() != "") {
+//            $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
+//        }
+//        addressPlus();
+//        return this;
+//    }
 
     void list_first_container(String address) throws InterruptedException {
         adress.sendKeys(address);
