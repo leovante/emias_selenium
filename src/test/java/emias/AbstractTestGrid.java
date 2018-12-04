@@ -22,15 +22,16 @@ public class AbstractTestGrid {
     public static String site;
     public static String login;
     public static String pass;
-
+    public static String connection;
     //    BrowserMobProxy proxy = new BrowserMobProxyServer();
 
-    @Parameters({"site", "login", "pass", "gridIsRun"})
+    @Parameters({"site", "login", "pass", "gridIsRun", "demo_url"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional String gridIsRun) throws Exception {
-        AbstractTestGrid.site = site;
-        AbstractTestGrid.login = login;
-        AbstractTestGrid.pass = pass;
+    public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional String gridIsRun, @Optional String siteConnection) throws Exception {
+        this.connection = siteConnection;
+        this.site = site;
+        this.login = login;
+        this.pass = pass;
         SeleniumGrid.run(gridIsRun);
 //        HibernateSession.run();
     }

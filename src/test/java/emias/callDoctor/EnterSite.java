@@ -9,9 +9,14 @@ import static com.codeborne.selenide.Selenide.*;
 public class EnterSite extends AbstractTestGrid {
 
     public EnterSite enterCalldoctorFromMis() {
-        page.loginPage().login(site, login, pass);
-        page.homePageMis().callDoctorBtn();
-        switchTo().window(1);
+        if (connection == null) {
+            page.loginPage().login(site, login, pass);
+            page.homePageMis().callDoctorBtn();
+            switchTo().window(1);
+        } else {
+            System.out.println("Открываю только модуль диспетчер по ссылке:\n" + connection);
+            open(connection);
+        }
         return this;
     }
 
@@ -32,7 +37,7 @@ public class EnterSite extends AbstractTestGrid {
         return this;
     }
 
-    public EnterSite enterCallCenter(){
+    public EnterSite enterCallCenter() {
         SelenideElement log = $(By.id("USER_LOGIN"));
         SelenideElement pass = $(By.id("USER_PASSWORD"));
         SelenideElement loginButton = $(By.xpath("//button[@type='submit']"));

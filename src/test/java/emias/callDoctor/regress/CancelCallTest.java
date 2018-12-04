@@ -12,6 +12,7 @@ import java.text.ParseException;
 
 public class CancelCallTest extends AbstractTestGrid {
 
+
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
