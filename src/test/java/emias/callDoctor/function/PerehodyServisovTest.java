@@ -65,12 +65,12 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         switchTo().window(0);
         enterSite.enterCalldoctorFromMisGenerator("generator", "1212");
-        switchTo().window(2);
+        switchTo().window("Центр управления");
         $(By.xpath("//*[contains(.,'Генератор Маршрутного')]")).shouldBe(Condition.visible);
     }
 
     @Flaky
-    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Test(groups = "test", description = "проверка кнопки выход")
     @Epic("Переходы")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
@@ -85,8 +85,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testInstruction() {
         enterSite.enterCalldoctorFromMis();
-        page.dashboardPage().instruction();
-        switchTo().window(2);
+        page.dashboardPage().instructionTab();
         $(By.xpath("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]")).shouldBe(Condition.visible);
     }
 }

@@ -13,8 +13,7 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage extends AbstractPage {
 
@@ -42,9 +41,10 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("вышел в мис")
-    public void instruction() {
+    public void instructionTab() {
         exitToMis.click();
         instructionBtn.click();
+        switchTo().window("Форум");
     }
 
 //    @Step("поиск в фильтре ФИО")

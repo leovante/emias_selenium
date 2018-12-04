@@ -3,6 +3,7 @@ package emias.callDoctor.regress;
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import io.qameta.allure.Epic;
+import io.qameta.allure.Flaky;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -92,6 +93,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        page.fullCardPage().verifyDepartment("firstDepart");
     }
 
+    @Flaky
     @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
