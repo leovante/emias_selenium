@@ -53,8 +53,7 @@ public class AbstractPage {
     }*/
 
     public ArrayList currentTimeList(String format) {
-        ArrayList dateList = null;
-        String time;
+        ArrayList dateList = new ArrayList();
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
         Date date = Calendar.getInstance().getTime();
         dateList.add(simpleDateFormatEdit.format(date));

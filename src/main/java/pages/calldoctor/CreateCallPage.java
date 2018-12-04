@@ -37,8 +37,11 @@ public class CreateCallPage extends AbstractPage {
     private Pacient pacient;
 
     SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
-    SelenideElement list_first_container = $(By.xpath("//div[@role='listbox']/mat-option"));
+    //    SelenideElement list_first_container = $(By.xpath("//div[@role='listbox']/mat-option"));
+//    SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
+    SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
     SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
+
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
     SelenideElement telephoneNumber = $(By.id("phone"));
     SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
