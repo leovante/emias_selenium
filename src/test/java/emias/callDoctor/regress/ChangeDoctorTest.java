@@ -19,9 +19,9 @@ public class ChangeDoctorTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor(doctor);
+        page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage().changeDoctorBtn();
-        page.setDoctorPage().chooseDoctor(doctor2);
+        page.setDoctorPage().chooseDoctorToday(doctor2);
         page.fullCardPage()
                 .verifyActivCall(pacient)
                 .verifyDoctor(doctor2)

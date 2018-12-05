@@ -18,7 +18,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor(doctor);
+        page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage()
                 .verifyActivCall(pacient)
                 .closeCardBtn();
@@ -36,7 +36,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor(doctor);
+        page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage()
                 .verifyActivCall(pacient)
                 .closeCardBtn();
@@ -62,7 +62,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         page.fullCardPage().chooseDoctorBtn();
         page.setDoctorPage()
                 .saveAddress()
-                .chooseDoctor(doctor);
+                .chooseDoctorToday(doctor);
         page.fullCardPage()
                 .verifyActivCall(pacient)
                 .closeCardBtn();

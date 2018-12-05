@@ -33,7 +33,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor(doctor);
+        page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage()
                 .completeServiceBtn()
                 .verifyMkabIconDisable()
@@ -50,7 +50,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall_Mkab(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctor(doctor);
+        page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage()
                 .completeServiceBtn()
                 .verifyMkabIconEnable()
@@ -70,7 +70,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "test", description = "проверка кнопки выход")
+    @Test(groups = "CD", description = "проверка кнопки выход")
     @Epic("Переходы")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)

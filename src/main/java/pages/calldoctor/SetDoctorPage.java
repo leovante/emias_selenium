@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.CacheLookup;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
 
@@ -12,16 +13,28 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SetDoctorPage extends AbstractPage {
-    SelenideElement appenOnThisDay = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
+    SelenideElement appenToday = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
+    SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
+
+    @CacheLookup
     SelenideElement writeDown = $(By.xpath("//span[contains(text(),'Записать')]"));
+    SelenideElement zapisat = $(By.xpath("//*[contains(text(),'Записать')]"));
 
     public SetDoctorPage() {
     }
 
-    @Step("назначиь врача")
-    public SetDoctorPage chooseDoctor(Doctor doctor) throws IOException {
+    @Step("назначиь врача на сегодня")
+    public SetDoctorPage chooseDoctorToday(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
-        appenOnThisDay.click();
+        appenToday.click();
+        System.out.println("Врач выбран!");
+        return this;
+    }
+
+    @Step("назначиь врача на завтра")
+    public SetDoctorPage chooseDoctorTomorrow(Doctor doctor) throws IOException {
+        $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
+        appenTomorrow.click();
         System.out.println("Врач выбран!");
         return this;
     }
@@ -42,10 +55,10 @@ public class SetDoctorPage extends AbstractPage {
         return this;
     }
 
-    @Step("записать")
+    @Step("нажать записать много раз")
     public SetDoctorPage megaClickDoctor(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
-        appenOnThisDay.click();
+        appenToday.click();
         int i = 2;
         writeDown.click();
         while (writeDown.isDisplayed()) {
@@ -53,6 +66,20 @@ public class SetDoctorPage extends AbstractPage {
             System.out.println("Я нажал на эту кнопку " + i + " раз");
             i++;
         }
+        return this;
+    }
+
+    @Step("записать")
+    public SetDoctorPage clickZapisat(Doctor doctor) {
+//        $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
+//        appenToday.click();
+//        int i = 2;
+        writeDown.click();
+//        while (writeDown.isDisplayed()) {
+//            writeDown.click();
+//            System.out.println("Я нажал на эту кнопку " + i + " раз");
+//            i++;
+//        }
         return this;
     }
 }

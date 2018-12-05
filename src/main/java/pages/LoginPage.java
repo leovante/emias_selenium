@@ -16,7 +16,7 @@ public class LoginPage extends AbstractPage {
             open("http://emias.mosreg.ru/demonstration");
             setCookieOfDepartment();
             $(By.id("Login")).setValue("temnikov");
-            $(By.id("Password")).setValue("1215");
+            $(By.id("Password")).setValue("1214");
         } else {
             open(site);
             setCookieOfDepartment();

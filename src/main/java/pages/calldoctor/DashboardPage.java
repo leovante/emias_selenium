@@ -20,6 +20,14 @@ public class DashboardPage extends AbstractPage {
 
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
+    private SelenideElement mat_select_value = $(By.xpath("//div[@class='mat-select-value']"));
+    private SelenideElement filterTomorrow = $(By.xpath("//*[contains(text(),'Завтра')]"));
+    private SelenideElement filterToday = $(By.xpath("//*[contains(text(),'Сегодня')]"));
+
+    private SelenideElement filterTodayViz = $(By.id("mCSB_5_container")).$(By.xpath(".//span[contains(text(),'Сегодня')]"));
+    private SelenideElement filterTomorrowViz = $(By.id("mCSB_5_container")).$(By.xpath(".//span[contains(text(),'Завтра')]"));
+
+
     private SelenideElement instructionBtn = $(By.xpath("//*[contains(text(),'Инструкция')]"));
     private SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
     private SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
@@ -88,6 +96,22 @@ public class DashboardPage extends AbstractPage {
         return this;
     }
 
+    @Step("Переключить фильтр на завтра")
+    public DashboardPage filterTomorrow() {
+        mat_select_value.click();
+        filterTomorrow.click();
+        filterTomorrowViz.shouldBe(Condition.visible);
+        return this;
+    }
+
+    @Step("Переключить фильтр на сегодня")
+    public DashboardPage filterToday() {
+        mat_select_value.click();
+        filterToday.click();
+        filterTodayViz.shouldBe(Condition.visible);
+        return this;
+    }
+
 //    @Step("проверяю на дашборде запись в группе новые")
 //    public void verifyNewCallGroup(String profile, String nameGen) throws InterruptedException, IOException {
 //        Thread.sleep(4000);
@@ -120,7 +144,8 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws IOException {
+    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws IOException, InterruptedException {
+        Thread.sleep(1000);
         SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
 
@@ -131,6 +156,25 @@ public class DashboardPage extends AbstractPage {
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
+        System.out.println("Краткая карта вызова проверена!");
+        return this;
+    }
+
+    @Step("проверяю на дашборде запись не отображается у врача в группе активные")
+    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) throws IOException, InterruptedException {
+        Thread.sleep(1000);
+        SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
+        if (docFamBlock.isDisplayed()) {
+            docFamBlock.click();
+            SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
+            docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
+                    .$(By.xpath("../."))
+                    .$(By.xpath(".//*[@id='order']")).click();
+            docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
+            $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).shouldNotBe(Condition.visible);
+        } else {
+            docFamBlock.shouldNotBe(Condition.visible);
+        }
         System.out.println("Краткая карта вызова проверена!");
         return this;
     }
