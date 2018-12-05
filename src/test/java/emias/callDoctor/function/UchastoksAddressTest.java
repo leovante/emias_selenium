@@ -92,5 +92,19 @@ public class UchastoksAddressTest extends AbstractTestGrid {
                 .openNewCallDash(pacient);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
     }
+
+    @Test(groups = "test", description = "создаю вызов через СМП, что бы проверить " +
+            "что участок не проставляется, если адрес неформализованный")
+    @Epic("Участки")
+    @RetryCountIfFailed(2)
+    public void testUchastokNotSet() throws IOException, InterruptedException, JSONException {
+        Pacient pacient = new Pacient("ProfileAdressNeIzMkab_neformal");
+        page.createCallPage().createCall_Api(pacient);
+        enterSite.enterCalldoctorFromMis();
+        page.dashboardPage()
+                .searchFilterFio_Fam(pacient)
+                .openNewCallDash(pacient);
+        $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
+    }
     // TODO: 12/3/2018 сделать тест проверки списка участков при привязке адреса к участку на педиатр/взрослый
 }

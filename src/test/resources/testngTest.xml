@@ -23,7 +23,7 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.callDoctor.regress.FilterTest"/>
+            <class name="emias.callDoctor.function.UchastoksAddressTest"/>
         </classes>
         <!--<packages>-->
         <!--<package name="emias.callDoctor.regress"/>-->

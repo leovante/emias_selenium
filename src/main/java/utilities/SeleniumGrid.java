@@ -16,9 +16,9 @@ import java.net.URL;
 
 public class SeleniumGrid {
     public static void run(String gridIsRun) throws Exception {
-        if (gridIsRun != null && !statusGrid.checkStatus()) {
+        if (gridIsRun != null && !statusGrid.checkStatusBeforeRunning()) {
             Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"");
-            statusGrid.chekStatus();
+            statusGrid.checkRunningIsSuccesfull();
             System.out.println("Selenium Grid запущен!");
         } else {
             System.out.println("Selenium Grid не запущен!");
@@ -47,25 +47,26 @@ public class SeleniumGrid {
         static HttpResponse httpResponse;
         static HttpEntity entity;
         static String responseString;
-        final static int SEC_COUNT = 10;
+        final static int SEC_COUNT = 5;
 
-        static void chekStatus() throws JSONException, InterruptedException, IOException {
-            if (!chekResponseStatus() && !chekStatusField()) {
+        static void checkRunningIsSuccesfull() throws JSONException, InterruptedException, IOException {
+            if (!chekResponseStatusAndStatusField()) {
                 System.out.println("Не удалось запустить Selenium Grid, выход с кодом 1");
                 System.exit(1);
             }
         }
 
         /*при запуске проекта первое обращение на адрес селениума, проверка что он запущен*/
-        static boolean checkStatus() throws JSONException, InterruptedException, IOException {
+        static boolean checkStatusBeforeRunning() throws JSONException, InterruptedException, IOException {
             System.out.println("Проверка запущен ли селениум");
-            if (chekResponseStatus() && chekStatusField()) {
-                System.out.println("Селениум уже запущен!");
+            if (responseIsSuccess()) {
+                System.out.println("Проверка показала что селениум уже запущен!");
                 return true;
             }
-            System.out.println("Селениум не запущен...");
+            System.out.println("Проверка показала что селениум не запущен...");
             return false;
         }
+
 
         static boolean checkIsNotWorkStatus() throws InterruptedException, JSONException {
             for (int i = 1; i <= SEC_COUNT; i++) {
@@ -79,17 +80,22 @@ public class SeleniumGrid {
         }
 
         /*проверка что ответ 200*/
-        static boolean chekResponseStatus() throws InterruptedException, IOException {
+        static boolean chekResponseStatusAndStatusField() throws InterruptedException, JSONException {
+            boolean a = false;
             for (int i = 0; i < SEC_COUNT; i++) {
-                getResponse(URL);
-                if (httpResponse != null && httpResponse.getStatusLine().getStatusCode() == 200)
+                if (responseIsSuccess()) {
                     return true;
+                }
                 Thread.sleep(1000);
             }
+            System.out.println(a);
             return false;
         }
+        /*
 
-        /*проверка что селениум запущен*/
+         */
+        /*проверка что селениум запущен*//*
+
         static boolean chekStatusField() throws JSONException, InterruptedException {
             for (int i = 0; i < SEC_COUNT; i++) {
                 if (new JSONObject(responseString).getString("success").equals(true))
@@ -98,8 +104,9 @@ public class SeleniumGrid {
             }
             return false;
         }
+*/
 
-        static void getResponse(String URL) {
+        static boolean responseIsSuccess() throws JSONException {
             try {
                 httpResponse = httpClient.execute(new HttpGet(URL));
                 entity = httpResponse.getEntity();
@@ -111,6 +118,11 @@ public class SeleniumGrid {
             } catch (IOException e) {
                 System.out.println("Не могу подключиться. Код ошибки - 3!");
             }
+            if (httpResponse != null &&
+                    httpResponse.getStatusLine().getStatusCode() == 200 &&
+                    new JSONObject(responseString).getString("success").equals("true"))
+                return true;
+            return false;
         }
     }
     // TODO: 11/2/2018 сделать параллельный запуск старой версии хрома
