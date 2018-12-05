@@ -58,9 +58,9 @@ public class FilterTest extends AbstractTestGrid {
                 .verifyNewCallGroup(pacient);
     }
 
-    @Test(groups = "test", description = "фильтр сортировка все|сегодня|завтра")
+    @Test(groups = "CD", description = "фильтр сортировка все|сегодня|завтра")
     @Epic("Проверка фильтра")
-    @RetryCountIfFailed(0)
+    @RetryCountIfFailed(2)
     public void testFilterActiveGroup() throws InterruptedException, IOException, JSONException, ParseException {
         Pacient pacient = new Pacient("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
