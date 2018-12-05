@@ -1,5 +1,6 @@
 package emias;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import emias.callDoctor.EnterSite;
@@ -28,6 +29,7 @@ public class AbstractTestGrid {
     @Parameters({"site", "login", "pass", "gridIsRun", "demo_url"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional String gridIsRun, @Optional String siteConnection) throws Exception {
+        Configuration.reportsFolder = "target/test-result/reports";
         this.connection = siteConnection;
         this.site = site;
         this.login = login;

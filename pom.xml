@@ -12,6 +12,7 @@
         <aspectj.version>1.9.1</aspectj.version>
         <testng></testng>
         <hibernate-version>5.3.6.Final</hibernate-version>
+        <selenide.reports>target/test-result/reports</selenide.reports>
     </properties>
 
     <dependencies>

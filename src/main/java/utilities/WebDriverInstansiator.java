@@ -30,6 +30,7 @@ public class WebDriverInstansiator {
     }
 
     public void setDriver(Boolean headless/*, BrowserMobProxy proxy*/) throws IOException {
+
         //ручной запуск
         if (browser == null) {
 //            proxy.start(5300);
