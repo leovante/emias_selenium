@@ -93,7 +93,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "test", description = "создаю вызов через СМП, что бы проверить " +
+    @Test(groups = "CD", description = "создаю вызов через СМП, что бы проверить " +
             "что участок не проставляется, если адрес неформализованный")
     @Epic("Участки")
     @RetryCountIfFailed(2)

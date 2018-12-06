@@ -13,6 +13,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 
 public class SetDoctorPage extends AbstractPage {
+    @CacheLookup
     SelenideElement appenToday = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
     SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
 
@@ -27,6 +28,17 @@ public class SetDoctorPage extends AbstractPage {
     public SetDoctorPage chooseDoctorToday(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
+        System.out.println("Врач выбран!");
+        return this;
+    }
+
+    @Step("назначиь врача на сегодня")
+    public SetDoctorPage chooseDoctorTodayBooster(Doctor doctor) throws IOException {
+        $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
+        for (int i = 1; appenToday.isDisplayed(); i++) {
+            appenToday.click();
+            System.out.println("нажал на кнопку " + i + " раз");
+        }
         System.out.println("Врач выбран!");
         return this;
     }
@@ -59,8 +71,8 @@ public class SetDoctorPage extends AbstractPage {
     public SetDoctorPage megaClickDoctor(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
-        int i = 2;
         writeDown.click();
+        int i = 2;
         while (writeDown.isDisplayed()) {
             writeDown.click();
             System.out.println("Я нажал на эту кнопку " + i + " раз");
