@@ -18,8 +18,9 @@ public class SetDoctorPage extends AbstractPage {
     SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
 
     @CacheLookup
-    SelenideElement writeDown = $(By.xpath("//span[contains(text(),'Записать')]"));
-    SelenideElement zapisat = $(By.xpath("//*[contains(text(),'Записать')]"));
+    SelenideElement zapisat = $(By.xpath("//span[contains(text(),'Записать')]"));
+    @CacheLookup
+    SelenideElement zapisatDobavit = $(By.xpath("//span[contains(text(),'Записать и добавить')]"));
 
     public SetDoctorPage() {
     }
@@ -68,30 +69,32 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("нажать записать много раз")
-    public SetDoctorPage megaClickDoctor(Doctor doctor) {
+    public SetDoctorPage zapisatClickBooster(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
-        writeDown.click();
-        int i = 2;
-        while (writeDown.isDisplayed()) {
-            writeDown.click();
+        zapisat.click();
+        for (int i = 1; zapisat.isDisplayed() && i < 100; i++) {
+            zapisat.click();
             System.out.println("Я нажал на эту кнопку " + i + " раз");
-            i++;
+        }
+        return this;
+    }
+
+    @Step("нажать записать и добавить много раз")
+    public SetDoctorPage zapisatDobavitClickBooster(Doctor doctor) {
+        $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
+        appenToday.click();
+        zapisatDobavit.click();
+        for (int i = 1; zapisatDobavit.isDisplayed() && i < 100; i++) {
+            zapisatDobavit.click();
+            System.out.println("Я нажал на эту кнопку " + i + " раз");
         }
         return this;
     }
 
     @Step("записать")
-    public SetDoctorPage clickZapisat(Doctor doctor) {
-//        $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
-//        appenToday.click();
-//        int i = 2;
-        writeDown.click();
-//        while (writeDown.isDisplayed()) {
-//            writeDown.click();
-//            System.out.println("Я нажал на эту кнопку " + i + " раз");
-//            i++;
-//        }
+    public SetDoctorPage zapisatBtn(Doctor doctor) {
+        zapisat.click();
         return this;
     }
 }
