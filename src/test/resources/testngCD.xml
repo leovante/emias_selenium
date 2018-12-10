@@ -5,7 +5,7 @@
     <!--<parameter name="environment" value="chrome"/>-->
     <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
     <parameter name="login" value="temnikov"/>
-    <parameter name="pass" value="1215"/>
+    <parameter name="pass" value="1214"/>
     <parameter name="gridIsRun" value="true"/>
     <parameter name="headless" value="true"/>
     <parameter name="demo_url"

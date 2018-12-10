@@ -1,0 +1,6 @@
+select count(at.ActionScheduleID)
+from hlt_actionschedule at
+       inner join hlt_DoctorVisitTable dv on at.rf_DoctorVisitTableID = dv.DoctorVisitTableID
+       inner join hlt_DocPRVD dp on dp.DocPRVDID = dv.rf_DocPRVDID
+       inner join hlt_calldoctor cd on cd.rf_docprvdid = dp.DocPRVDID
+where cd.CallDoctorID = 66552 and cd.DateCall < dv.DateTimeCreate
