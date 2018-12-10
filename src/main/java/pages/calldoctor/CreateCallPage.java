@@ -282,12 +282,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     void list_first_container(String address) throws InterruptedException {
-        Thread.sleep(1500);
+        Thread.sleep(1000);
         adress.sendKeys(address);
-//        adress.val(address);
-//        adress.setValue(address);
-//        Thread.sleep(1000);
-//        switchTo().activeElement();
         $(By.xpath("//div[@role='listbox']//*[contains(text(),'" + address + "')]"))
                 .shouldBe(Condition.visible)
                 .click();
