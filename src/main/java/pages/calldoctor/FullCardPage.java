@@ -94,8 +94,8 @@ public class FullCardPage extends AbstractPage {
     }
 
     void assertTimeContains(ArrayList curTime, String expTime) {
-        System.out.println("curTime" + curTime);
-        System.out.println("expTime" + expTime);
+        System.out.println("curTime: " + curTime);
+        System.out.println("expTime: " + expTime);
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 
