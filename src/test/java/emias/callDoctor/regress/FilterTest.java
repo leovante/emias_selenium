@@ -67,9 +67,7 @@ public class FilterTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
-        page.setDoctorPage()
-                .chooseDoctorTomorrow(doctor)
-                .zapisatBtn(doctor);
+        page.setDoctorPage().chooseDoctorTomorrow(doctor);
         page.fullCardPage().closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()

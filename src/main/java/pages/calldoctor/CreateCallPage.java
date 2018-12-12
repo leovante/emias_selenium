@@ -266,13 +266,12 @@ public class CreateCallPage extends AbstractPage {
         if (pacient.getAddress2() != null && pacient.getAddress2() != "")
             list_first_container(pacient.getAddress2());
         if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
-            list_first_container(pacient.getAddress3());
-//            adress.sendKeys(pacient.getAddress3());
-//            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
-//                $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
-//            else
-//
-//                list_first_container.click();
+            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "") {
+                Thread.sleep(1000);
+                adress.sendKeys(pacient.getAddress3());
+                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress3adv() + "')]")).click();
+            } else
+                list_first_container(pacient.getAddress3());
         }
         if (pacient.getNumber() != null && pacient.getNumber() != "") {
             $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
@@ -284,7 +283,8 @@ public class CreateCallPage extends AbstractPage {
     void list_first_container(String address) throws InterruptedException {
         Thread.sleep(1000);
         adress.sendKeys(address);
-        $(By.xpath("//div[@role='listbox']//*[contains(text(),'" + address + "')]"))
+        $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
+//        $(By.xpath("//div[@role='listbox']//*[contains(text(),'" + address + "')]"))
                 .shouldBe(Condition.visible)
                 .click();
     }

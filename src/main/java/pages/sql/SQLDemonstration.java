@@ -289,7 +289,7 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     public static void scriptsToCalldoctor() throws IOException {
-        File dir = new File("src/main/resources/sql/callDoctor");
+        File dir = new File("src/main/resources/sql/calldoctor");
         File[] files = dir.listFiles();
         File[] scriptList = files;
         for (File scriptPath : scriptList) {
