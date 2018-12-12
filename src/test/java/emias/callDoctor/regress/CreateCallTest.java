@@ -75,6 +75,7 @@ public class CreateCallTest extends AbstractTestGrid {
         enterSite.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
+        $(By.xpath("//*[contains(text(),'Тестов2')]")).shouldBe(Condition.visible);
         page.fullCardPage().verifyNewCall(pacient);
     }
 

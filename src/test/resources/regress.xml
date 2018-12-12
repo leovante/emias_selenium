@@ -16,13 +16,13 @@
     </listeners>
 
     <!--Диспетчер-->
-    <test name="BeforeTestCD" verbose="1">
+    <test name="TestCD_Before" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>
             <package name="emias.callDoctor.before"/>
         </packages>
     </test>
-    <test name="ChromeTestCD" verbose="1" parallel="true">
+    <test name="TestCD_Chrome" verbose="1" parallel="true">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
@@ -34,7 +34,7 @@
             <package name="emias.callDoctor.regress"/>
         </packages>
     </test>
-    <test name="AfterTestCD" verbose="1">
+    <test name="TestCD_After" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>
             <package name="emias.callDoctor.after"/>
@@ -42,13 +42,13 @@
     </test>
 
     <!--Диспансеризация-->
-    <test name="BeforeTestDisp" verbose="1">
+    <test name="TestDisp_Before" verbose="1">
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="emias.disp.before.BeforeSuiteDisp"/>
         </classes>
     </test>
-    <test name="ChromeTestDisp" verbose="1">
+    <test name="TestDisp_Chrome" verbose="1">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
@@ -59,15 +59,21 @@
             <package name="emias.disp.regress"/>
         </packages>
     </test>
+    <test name="TestDisp_After" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.disp.after"/>
+        </packages>
+    </test>
 
     <!--ЕМИАС веб-->
-    <test name="BeforeTestMIS" verbose="1">
+    <test name="TestMIS_Before" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>
             <package name="emias.mis.before"/>
         </packages>
     </test>
-    <test name="ChromeTestMIS" verbose="1">
+    <test name="TestMIS_Chrome" verbose="1">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
@@ -76,6 +82,12 @@
         </groups>
         <packages>
             <package name="emias.mis.regress"/>
+        </packages>
+    </test>
+    <test name="TestMIS_After" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.mis.after"/>
         </packages>
     </test>
 </suite>

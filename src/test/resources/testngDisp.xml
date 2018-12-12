@@ -31,4 +31,10 @@
         <!--<package name="emias.disp.regress"/>-->
         <!--</packages>-->
     </test>
+    <test name="AfterTest" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.disp.after"/>
+        </packages>
+    </test>
 </suite>

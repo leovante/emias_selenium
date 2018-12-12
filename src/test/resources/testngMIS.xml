@@ -34,6 +34,12 @@
         <!--<package name="emias.mis.regress"/>-->
         <!--</packages>-->
     </test>
+    <test name="AfterTest" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.mis.after"/>
+        </packages>
+    </test>
 </suite>
 
         <!--mvn clean test-->
