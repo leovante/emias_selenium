@@ -2,7 +2,6 @@ package emias.mis.before;
 
 import emias.AbstractTestGrid;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -12,7 +11,7 @@ public class BeforeSuiteMIS extends AbstractTestGrid {
     @Test(groups = "mis", description = "Завершаю все вызовы", enabled = false)
     @RetryCountIfFailed(2)
     public void finalizeCalls() throws IOException {
-        SQLDemonstration.updateDB();//обновляю базу скриптами из папки
+//        SQLDemonstration.updateDB();//обновляю базу скриптами из папки
     }
 
     @Test(groups = "mis", description = "Cоздаю новое расписание у врачей на сегодня", enabled = false)

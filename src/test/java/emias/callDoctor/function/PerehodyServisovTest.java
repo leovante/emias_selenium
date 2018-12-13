@@ -70,7 +70,7 @@ public class PerehodyServisovTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "проверка кнопки выход")
+    @Test(groups = "CD", description = "выход из диспетчера в МИС")
     @Epic("Переходы")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)

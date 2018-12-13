@@ -70,7 +70,7 @@ public class PerehodyTest extends AbstractTestGrid {
     @RetryCountIfFailed(3)
     public void transitionDispDash() {
         page.loginPage();
-        //
+        //// TODO: 12/13/2018
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
@@ -79,7 +79,7 @@ public class PerehodyTest extends AbstractTestGrid {
     @RetryCountIfFailed(3)
     public void transitionDispMkab() {
         page.loginPage();
-        //
+        //// TODO: 12/13/2018
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
@@ -89,6 +89,7 @@ public class PerehodyTest extends AbstractTestGrid {
     public void transitionDispShedule() {
         page.loginPage();
         //Карта мероприятий
+        // TODO: 12/13/2018
         $(By.xpath("//*[contains(text(),'Карта мероприятий')]")).shouldBe(Condition.visible);
     }
 
