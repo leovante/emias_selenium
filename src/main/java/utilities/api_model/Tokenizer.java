@@ -1,4 +1,4 @@
-package utilities;
+package utilities.api_model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;

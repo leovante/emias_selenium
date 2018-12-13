@@ -5,6 +5,7 @@ import system.model.HltCallDoctorEntity;
 
 import java.io.IOException;
 
+@Deprecated
 public class HibernateSession {
 
     public static void run() throws IOException {

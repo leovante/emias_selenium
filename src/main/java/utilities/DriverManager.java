@@ -14,6 +14,7 @@ import java.io.File;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
+@Deprecated
 public class DriverManager {
     public ChromeOptions chromeOptions;
     public ChromeDriverService chromeDriverService;

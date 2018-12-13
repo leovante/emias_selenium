@@ -13,7 +13,7 @@ public class BeforeSuiteCalldoctor extends AbstractTestGrid {
     @Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws IOException, ParseException {
-        SQLDemonstration.updateDB();//обновляю базу скриптами из папки
+//        SQLDemonstration.updateDB();//обновляю базу скриптами из папки
         SQLDemonstration.createShedule();
     }
 }

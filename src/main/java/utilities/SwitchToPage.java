@@ -5,6 +5,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.codeborne.selenide.Selenide.switchTo;
 
+@Deprecated
 public class SwitchToPage {
     private static WebDriver driver;
     private static WebDriverWait wait;

@@ -5,7 +5,6 @@ import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.Tokenizer;
 
 import java.io.IOException;
 

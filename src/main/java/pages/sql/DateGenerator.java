@@ -12,10 +12,11 @@ public class DateGenerator {
     int rf_DocBusyType = 15;
     int FlagAccess = 15;
     int MINUTE_IN_CELL = 15;
-    int CELL_COUNT = 90;
+    int CELL_COUNT = 62;
     int DAY_COUNT = 4;
     int rf_LPUDoctorID;
     int rf_DocPRVDID;
+    String firstCellTime = "07:00:00.000";
     String sqlRequest;
     Calendar date;
     Cell cell;
@@ -25,7 +26,7 @@ public class DateGenerator {
         date = Calendar.getInstance();
     }
 
-    public String dispDoctorShedule(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+    public String doctorShedule_Disp(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
         this.rf_LPUDoctorID = rf_LPUDoctorID;
         this.rf_DocPRVDID = rf_DocPRVDID;
         cellsGenerator();
@@ -33,7 +34,7 @@ public class DateGenerator {
         return sqlRequest;
     }
 
-    public String dispDoctorSheduleCD(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+    public String doctorShedule_CD(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
         this.rf_DocBusyType = 17;
         this.rf_LPUDoctorID = rf_LPUDoctorID;
         this.rf_DocPRVDID = rf_DocPRVDID;
@@ -84,7 +85,7 @@ public class DateGenerator {
 
     String formaterZero(Calendar date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String dateF = dateFormat.format(date.getTime()) + " 00:00:00.000";
+        String dateF = dateFormat.format(date.getTime()) + " " + firstCellTime;
         return dateF;
     }
 
