@@ -99,8 +99,7 @@ public class FullCardPage extends AbstractPage {
 
     @Step("проверяю время из списка")
     void assertTimeContains(ArrayList curTime, String expTime) {
-        LOGGER.info("curTime: " + curTime);
-        LOGGER.info("expTime: " + expTime);
+        LOGGER.info("curTime: " + curTime + "\n" + "expTime: " + expTime);
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 
@@ -110,7 +109,7 @@ public class FullCardPage extends AbstractPage {
         baseElements();
         basePacient(pacient);
         verifyTime();
-        System.out.println("Подробная карта вызова проверена!");
+        LOGGER.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -119,7 +118,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient(pacient);
-        System.out.println("Подробная карта вызова проверена!");
+        LOGGER.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -129,7 +128,7 @@ public class FullCardPage extends AbstractPage {
         baseElements();
         basePacient(pacient);
         baseDoctor(doctor);
-        System.out.println("Подробная карта вызова проверена!");
+        LOGGER.info("Подробная карта вызова проверена!");
         return this;
     }
 

@@ -108,10 +108,10 @@ public class CreateCallPage extends AbstractPage {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequest());
                 statusBodyResponce(httpResponse);
-                System.out.println("Карта вызова создана!");
+                LOGGER.info("Карта вызова создана!");
             } catch (Exception ex) {
                 ex.printStackTrace();
-                System.out.println("Error, " + "Cannot Estabilish Connection");
+                LOGGER.info("Error, " + "Cannot Estabilish Connection");
             }
         }
         if (pacient.getSource() == 3) {
@@ -119,10 +119,10 @@ public class CreateCallPage extends AbstractPage {
                 callDoctorEntity = new CallDoctorEntity(pacient);
                 httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
                 statusBodyResponce(httpResponse);
-                System.out.println("Карта вызова создана!");
+                LOGGER.info("Карта вызова создана!");
             } catch (Exception ex) {
                 ex.printStackTrace();
-                System.out.println("Error, " + "Cannot Estabilish Connection");
+                LOGGER.info("Error, " + "Cannot Estabilish Connection");
             }
         }
     }
@@ -156,7 +156,7 @@ public class CreateCallPage extends AbstractPage {
                 .caller()
                 .telephone();
 //                .saveBtn();
-        System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
+        LOGGER.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -435,8 +435,8 @@ public class CreateCallPage extends AbstractPage {
             Thread.sleep(1000);
         }
         if (!old.equals(driver.getCurrentUrl()))
-            System.out.println("Вызов создан! " + driver.getCurrentUrl());
-        else System.out.println("Вызов НЕ создан!");
+            LOGGER.info("Вызов создан! " + driver.getCurrentUrl());
+        else LOGGER.info("Вызов НЕ создан!");
     }
 
     public void saveBtn2() throws InterruptedException {
@@ -460,8 +460,8 @@ public class CreateCallPage extends AbstractPage {
             Thread.sleep(1000);
         }
         if (!old.equals(driver.getCurrentUrl()))
-            System.out.println("Вызов создан! " + driver.getCurrentUrl());
-        else System.out.println("Вызов НЕ создан!");
+            LOGGER.info("Вызов создан! " + driver.getCurrentUrl());
+        else LOGGER.info("Вызов НЕ создан!");
     }
 
     @Step("кнопка редактировать")
@@ -513,7 +513,7 @@ public class CreateCallPage extends AbstractPage {
 
     void statusBodyResponce(HttpResponse resp) throws IOException {
         if (resp.getStatusLine().getStatusCode() != 200) {
-            System.out.println("Ошибка! Ответ сервера:\n" + EntityUtils.toString(resp.getEntity(), "UTF-8"));
+            LOGGER.info("Ошибка! Ответ сервера:\n" + EntityUtils.toString(resp.getEntity(), "UTF-8"));
 //            System.out.println("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
         }
     }
