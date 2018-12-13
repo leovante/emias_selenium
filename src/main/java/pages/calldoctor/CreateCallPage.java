@@ -160,9 +160,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    public void saveBtn1() {
 
-    }
 
     public CreateCallPage setDeafult() {
         $(By.id("source1")).click();

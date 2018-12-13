@@ -28,6 +28,7 @@ public class LoginPage extends AbstractPage {
         $(By.id("loginBtn")).click();
     }
 
+    @Step("Открываю demonstration от админа")
     public void loginAdmin() {
         open("http://emias.mosreg.ru/demonstration/");
         $(By.id("Login")).setValue("admin");
@@ -35,6 +36,7 @@ public class LoginPage extends AbstractPage {
         $(By.id("loginBtn")).click();
     }
 
+    @Step("Открываю demonstration")
     public void login(String login, String pass) {
         setCookieOfDepartment();
         $(By.id("Login")).setValue(login);
@@ -42,6 +44,7 @@ public class LoginPage extends AbstractPage {
         $(By.id("loginBtn")).click();
     }
 
+    @Step("изменяю куки")
     public void setCookieOfDepartment() {
         String name = "__cp354";
         String value = "1239";

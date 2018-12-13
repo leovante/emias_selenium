@@ -71,6 +71,5 @@ public class ChooseDoctorTest extends AbstractTestGrid {
                 .verifyActiveDocGroup(pacient, doctor);
     }
 
-    // TODO: 13.08.2018 тест назначить врача вызову из регистратуры на зватра
     // TODO: 13.08.2018 тест назначить врача вызову из КЦ
 }

@@ -104,7 +104,7 @@ public class FullCardPage extends AbstractPage {
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 
-    @Step("проверяю новый вызов {profile}")
+    @Step("проверяю новый вызов")
     public FullCardPage verifyNewCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
@@ -114,7 +114,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю новый вызов {profile}")
+    @Step("проверяю новый вызов")
     public FullCardPage verifyActivCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
@@ -123,7 +123,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю новый вызов {profile}")
+    @Step("проверяю новый вызов")
     public FullCardPage verifyDoneCall(Pacient pacient, Doctor doctor) throws IOException {
         $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
         baseElements();
