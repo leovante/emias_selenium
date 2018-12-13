@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 
@@ -11,6 +12,7 @@ public class LoginPage extends AbstractPage {
     public LoginPage() {
     }
 
+    @Step("Открываю demonstration")
     public void login(String site, String login, String pass) {
         if (site == null) {
             open("http://emias.mosreg.ru/demonstration");

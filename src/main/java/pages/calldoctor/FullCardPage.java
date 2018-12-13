@@ -30,6 +30,7 @@ public class FullCardPage extends AbstractPage {
     SelenideElement change = $(By.id("change"));
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
 
+    @Step("проверяю наличие базовых элементов карты вызова")
     public void baseElements() {
         ArrayList<String> elements = new ArrayList<>();
         elements.add("Карта вызова");
@@ -59,6 +60,7 @@ public class FullCardPage extends AbstractPage {
         }
     }
 
+    @Step("проверяю наличие базовых элементов пациента")
     public void basePacient(Pacient pacient) {
         ShouldBeVisible(pacient.getAddress());
         ShouldBeVisible(pacient.getComplaint());
@@ -79,6 +81,7 @@ public class FullCardPage extends AbstractPage {
         }
     }
 
+    @Step("проверяю наличие базовых элементов врача")
     public void baseDoctor(Doctor doctor) {
         ShouldBeVisible(doctor.getName());
         ShouldBeVisible(doctor.getFamily());
@@ -87,12 +90,14 @@ public class FullCardPage extends AbstractPage {
         ShouldBeVisible(doctor.getUchastocs());
     }
 
+    @Step("проверка времени")
     public void verifyTime() {
         ArrayList dateList = currentTimeList("HH:mm");
         String timeCard = $(By.xpath("//span[contains(text(),'Время')]")).$(By.xpath("../.")).$(By.xpath("./span[2]")).getText();
         assertTimeContains(dateList, timeCard);
     }
 
+    @Step("проверяю наличие базовых элементов")
     void assertTimeContains(ArrayList curTime, String expTime) {
         System.out.println("curTime: " + curTime);
         System.out.println("expTime: " + expTime);

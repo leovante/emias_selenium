@@ -2,12 +2,13 @@ package emias.callDoctor;
 
 import com.codeborne.selenide.SelenideElement;
 import emias.AbstractTestGrid;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class EnterSite extends AbstractTestGrid {
-
+    @Step("Захожу в диспетчер через МИС")
     public EnterSite enterCalldoctorFromMis() {
         if (connection == null) {
             page.loginPage().login(site, login, pass);
@@ -20,6 +21,7 @@ public class EnterSite extends AbstractTestGrid {
         return this;
     }
 
+    @Step("Захожу в диспетчер через МИС под учеткой Генератор")
     public EnterSite enterCalldoctorFromMisGenerator(String name, String pass) {
         page.loginPage().login("http://emias.mosreg.ru/demonstration", name, pass);
         page.homePageMis().callDoctorBtn();
@@ -27,16 +29,19 @@ public class EnterSite extends AbstractTestGrid {
         return this;
     }
 
+    @Step("Захожу в МИС")
     public EnterSite enterMIS() {
         page.loginPage().login(site, login, pass);
         return this;
     }
 
+    @Step("Захожу в Портал")
     public EnterSite enterPortal() {
         open("https://uslugi.mosreg.ru/zdrav/");
         return this;
     }
 
+    @Step("Захожу в КЦ")
     public EnterSite enterCallCenter() {
         SelenideElement log = $(By.id("USER_LOGIN"));
         SelenideElement pass = $(By.id("USER_PASSWORD"));

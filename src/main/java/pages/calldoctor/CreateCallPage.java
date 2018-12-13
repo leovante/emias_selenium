@@ -203,11 +203,13 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
+    @Step("добавить новый вызов")
     private CreateCallPage addNewCall() {
         $(By.id("addNewCall")).click();
         return this;
     }
 
+    @Step("выбор источника вызова")
     private CreateCallPage sourceCall() {
         try {
             if (pacient.getSource() == 1) {
@@ -222,6 +224,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
+    @Step("поиск МКАБ")
     private CreateCallPage searchField() {
         $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
         $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
