@@ -97,10 +97,10 @@ public class FullCardPage extends AbstractPage {
         assertTimeContains(dateList, timeCard);
     }
 
-    @Step("проверяю наличие базовых элементов")
+    @Step("проверяю время из списка")
     void assertTimeContains(ArrayList curTime, String expTime) {
-        System.out.println("curTime: " + curTime);
-        System.out.println("expTime: " + expTime);
+        LOGGER.info("curTime: " + curTime);
+        LOGGER.info("expTime: " + expTime);
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 

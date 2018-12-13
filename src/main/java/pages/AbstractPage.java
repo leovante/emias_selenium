@@ -10,12 +10,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AbstractPage {
     public WebDriver driver;
+    public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public AbstractPage() {
         this.driver = getWebDriver();
@@ -55,10 +57,13 @@ public class AbstractPage {
     public ArrayList currentTimeList(String format) {
         ArrayList dateList = new ArrayList();
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
+        //получаем время
         Date date = Calendar.getInstance().getTime();
         dateList.add(simpleDateFormatEdit.format(date));
         Date date1 = DateUtils.addMinutes(date, 1);
         dateList.add(simpleDateFormatEdit.format(date1));
+        Date date2 = DateUtils.addMinutes(date, -1);
+        dateList.add(simpleDateFormatEdit.format(date2));
         return dateList;
     }
 }

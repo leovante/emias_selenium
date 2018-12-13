@@ -35,7 +35,7 @@ public class ValidationTest extends AbstractTestGrid {
     }
 
     @Flaky
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Проверка валидации ФИО кто вызвал")
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Проверка что валидация ФИО кто вызвал не пропадает на странице редактирования")
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
