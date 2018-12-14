@@ -65,7 +65,7 @@ public class EditPageTest extends AbstractTestGrid {
                 .verifyNewCallGroup(pacient2);
     }
 
-    @Test(groups = "CD", description = "проверяю наличие валидации адреса после редактирвоания карты вызова")
+    @Test(groups = "CD", description = "проверяю валидацию на наличие адреса после редактирвоания карты вызова")
     @Epic("Редактирование вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)

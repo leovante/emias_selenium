@@ -50,7 +50,7 @@ public class DateGenerator {
                 date.setTime(parserDate(cellList.get(cellList.size() - 1).getEnd_date()));
                 date.add(Calendar.HOUR, 24);
 
-                cell.setStart_date(formaterZero(date));
+                cell.setStart_date(formaterFirstDate(date));
                 date.setTime(parserDate(cell.getStart_date()));
                 date.add(Calendar.MINUTE, MINUTE_IN_CELL);
 
@@ -58,7 +58,7 @@ public class DateGenerator {
                 cellList.add(cell);
             } else {//добавляю первую ячейку в список со стёртыми значениями часа, минут и секунд
                 cell = new Cell();
-                cell.setStart_date(formaterZero(date));
+                cell.setStart_date(formaterFirstDate(date));
                 date.setTime(parserDate(cell.getStart_date()));
                 date.add(Calendar.MINUTE, MINUTE_IN_CELL);
                 cell.setEnd_date(formater(date));
@@ -84,6 +84,12 @@ public class DateGenerator {
     }
 
     String formaterZero(Calendar date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dateF = dateFormat.format(date.getTime()) + " 00:00:00.000";
+        return dateF;
+    }
+
+    String formaterFirstDate(Calendar date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String dateF = dateFormat.format(date.getTime()) + " " + firstCellTime;
         return dateF;

@@ -2,9 +2,9 @@ package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
-import utilities.testngRetryCount.RetryCountIfFailed;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import utilities.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -26,4 +26,6 @@ public class KvotyTest extends AbstractTestGrid {
         page.kvotyPage().kvotyBtn();
         $(By.xpath("//*[contains(text(),'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }
+
+    // TODO: 12/14/2018 сделать тест поиск квот
 }
