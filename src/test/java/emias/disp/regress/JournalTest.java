@@ -2,6 +2,7 @@ package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
+import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -13,8 +14,8 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.*;
 
 public class JournalTest extends AbstractTestGrid {
-
-    @Test(groups = "disp", description = "поиск карты по номеру")
+    @Epic("Журнал диспансеризации")
+    @Test(groups = "disp", description = "поиск карты по номеру через профиль")
     @RetryCountIfFailed(2)
     public void testSearchCard1() {
         open(dispProfile);
@@ -24,6 +25,7 @@ public class JournalTest extends AbstractTestGrid {
         page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
     }
 
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
     public void testSearchCard2() {
@@ -34,6 +36,7 @@ public class JournalTest extends AbstractTestGrid {
         page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
     }
 
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
     public void testSearchCard3() {
@@ -44,7 +47,8 @@ public class JournalTest extends AbstractTestGrid {
         page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
     }
 
-    @Test(groups = "disp", description = "поиск карты по номеру")
+    @Epic("Журнал диспансеризации")
+    @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
     public void testSearchCard4() {
         open(dispJournal);
@@ -54,6 +58,7 @@ public class JournalTest extends AbstractTestGrid {
         page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
     }
 
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
     public void testSearchCard5() {
@@ -64,6 +69,7 @@ public class JournalTest extends AbstractTestGrid {
         page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
     }
 
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
     public void testSearchCard6() {
@@ -76,6 +82,7 @@ public class JournalTest extends AbstractTestGrid {
         page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
     }
 
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() throws InterruptedException {
@@ -90,6 +97,7 @@ public class JournalTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
     }
 
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через мкаб")
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromMkab() throws InterruptedException {
@@ -115,6 +123,7 @@ public class JournalTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
     }
 
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через ячейку расписания", enabled = false)
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {

@@ -64,5 +64,6 @@ public class AbstractTestGrid {
     public void afterMethod() {
         WebDriverRunner.closeWebDriver();
         System.out.println("Тест завершен!");
+        // TODO: 12/14/2018 после каждого теста отменять созданный вызов через базу
     }
 }

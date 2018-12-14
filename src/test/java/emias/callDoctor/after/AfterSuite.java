@@ -7,7 +7,7 @@ import utilities.testngRetryCount.RetryCountIfFailed;
 
 public class AfterSuite extends AbstractTestGrid {
 
-    @Test(description = "Завершаю все вызовы с тегом 'тест' в жалобах")
+    @Test(description = "Завершаю все вызовы оператора Темников")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() {
         SQLDemonstration.finalizeCallsOperatorTemnikov();

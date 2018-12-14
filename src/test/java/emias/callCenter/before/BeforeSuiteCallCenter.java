@@ -1,17 +1,12 @@
 package emias.callCenter.before;
 
 import emias.AbstractTestGrid;
-import org.testng.annotations.Test;
-import utilities.testngRetryCount.RetryCountIfFailed;
-
-import java.io.IOException;
-import java.text.ParseException;
 
 public class BeforeSuiteCallCenter extends AbstractTestGrid {
 
-    @Test(description = "Создаю новое расписание на сегодня")
-    @RetryCountIfFailed(2)
-    public void cleanBeforeCallDoctorTests() throws InterruptedException, IOException, ParseException {
+//    @Test(description = "Создаю новое расписание на сегодня")
+//    @RetryCountIfFailed(2)
+//    public void cleanBeforeCallDoctorTests() throws InterruptedException, IOException, ParseException {
 //        updateDB();
 //        deleteShedule();
 //        createShedule();
@@ -20,7 +15,7 @@ public class BeforeSuiteCallCenter extends AbstractTestGrid {
 //        switchTo().window(0);
 //        page.homePageMis().manageSheduleBtn();
 //        createDoctorShedule();
-    }
+//    }
 
 //    @Step("Создаю расписание врача")
 //    public void createDoctorShedule() throws InterruptedException {

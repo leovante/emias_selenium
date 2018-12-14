@@ -1,13 +1,14 @@
 package emias.mis.regress;
 
 import emias.AbstractTestGrid;
+import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 import pages.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 
 public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
-
+    @Epic("Управление потоками пациентов")
     @Test(groups = "mis", description = "Создать расписание")
     @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
@@ -22,6 +23,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
         page.manageShedule().verifyCreatedShedule(secondName);
     }
 
+    @Epic("Управление потоками пациентов")
     @Test(groups = "mis", description = "Копировать расписание")
     @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
@@ -41,6 +43,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
         page.manageShedule().verifyCreatedShedule(second_doctor_fam);
     }
 
+    @Epic("Управление потоками пациентов")
     @Test(groups = "mis", description = "Указать неприемные дни")
     @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
@@ -52,6 +55,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
                 .verifyNotReceiveDays();
     }
 
+    @Epic("Управление потоками пациентов")
     @Test(groups = "mis", description = "Удалить расписание")
     @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
@@ -77,6 +81,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
                 .verifyDeletedShedle();
     }
 
+    @Epic("Управление потоками пациентов")
     @Test(groups = "mis", description = "Перенести запись")
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
