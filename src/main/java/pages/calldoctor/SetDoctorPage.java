@@ -40,7 +40,7 @@ public class SetDoctorPage extends AbstractPage {
             appenToday.click();
             LOGGER.info("нажал на кнопку " + i + " раз");
         }
-        System.out.println("Врач выбран!");
+        LOGGER.info("Врач выбран!");
         return this;
     }
 

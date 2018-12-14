@@ -27,7 +27,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -37,12 +37,11 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Table DTT is clean.");
+                    LOGGER.info("Table DTT is clean.");
                     statement.close();
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }
@@ -54,7 +53,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -64,15 +63,14 @@ public class SQLDemonstration extends AbstractPage {
                                 "  AND dtt.rf_LPUDoctorID = " + LPUDoctorID;
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Table DTT is clean.");
+                    LOGGER.info("Table DTT is clean.");
                     statement.close();
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
-        System.out.println("Удалил расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
+        LOGGER.info("Удалил расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
     }
 
     @Deprecated
@@ -83,18 +81,17 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor set rf_calldoctorstatusid = 3";
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Finalize is done.");
+                    LOGGER.info("Finalize is done.");
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }
@@ -106,7 +103,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor " +
@@ -118,11 +115,10 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Finalize is done.");
+                    LOGGER.info("Finalize is done.");
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }
@@ -134,7 +130,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
 //                        "update hlt_CallDoctor " +
@@ -153,7 +149,7 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Doctor: " + doctorName + " is finalize.");
+                    LOGGER.info("Doctor: " + doctorName + " is finalize.");
                 }
             }
         } catch (Exception e) {
@@ -168,7 +164,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_CallDoctor " +
@@ -177,11 +173,10 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Pacient - " + pacientName + " finalize is done.");
+                    LOGGER.info("Pacient - " + pacientName + " finalize is done.");
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }
@@ -193,7 +188,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_CallDoctor " +
@@ -202,14 +197,13 @@ public class SQLDemonstration extends AbstractPage {
 
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Pacient - " + number + " finalize is done.");
+                    LOGGER.info("Pacient - " + number + " finalize is done.");
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
-        System.out.println("Вызов завершен!");
+        LOGGER.info("Вызов завершен!");
     }
 
     @Step("Сбросить мероприятия у карты вызова")
@@ -228,7 +222,7 @@ public class SQLDemonstration extends AbstractPage {
 //                ";user=" + userName +
 //                ";password=" + password;
 //        try {
-//            System.out.print("Connecting to SQL Server ... ");
+//            LOGGER.info("Connecting to SQL Server ... ");
 //            try (Connection connection = DriverManager.getConnection(url)) {
 //                String sql =
 //                        "update hlt_disp_Exam" +
@@ -240,7 +234,7 @@ public class SQLDemonstration extends AbstractPage {
 //                                " where dc.disp_CardID = '" + cardID + "'";
 //                try (Statement statement = connection.createStatement()) {
 //                    statement.executeUpdate(sql);
-//                    System.out.println("Card: " + cardID + " is default!");
+//                    LOGGER.info("Card: " + cardID + " is default!");
 //                }
 //            }
 //        } catch (Exception e) {
@@ -257,11 +251,11 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(script);
-                    System.out.println("SQL scripst " + sql + " Complete!");
+                    LOGGER.info("SQL scripst " + sql + " Complete!");
                 }
             }
         } catch (Exception e) {
@@ -276,11 +270,11 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(script);
-                    System.out.println("SQL scripst Complete!");
+                    LOGGER.info("SQL scripst Complete!");
                 }
             }
         } catch (Exception e) {
@@ -308,11 +302,11 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(request);
-                    System.out.println("Complete!");
+                    LOGGER.info("Complete!");
                 }
             }
         } catch (Exception e) {
@@ -328,11 +322,11 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(request);
-                    System.out.println("Complete!");
+                    LOGGER.info("Complete!");
                 }
             }
         } catch (Exception e) {
@@ -347,18 +341,17 @@ public class SQLDemonstration extends AbstractPage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable where rf_DocPRVDID = '1285'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    System.out.println("Table DTT is clean.");
+                    LOGGER.info("Table DTT is clean.");
                     statement.close();
                 }
             }
         } catch (Exception e) {
-            System.out.println();
             e.printStackTrace();
         }
     }

@@ -170,10 +170,10 @@ public class CreateCall {
 
             //WebElement doctorOne = doctorList.get(1);
 
-            //System.out.println("количество врачей" + doctorList.size());
-            //System.out.println("первый врач" + doctorOne);
+            //LOGGER.info("количество врачей" + doctorList.size());
+            //LOGGER.info("первый врач" + doctorOne);
             //doctorOne = doctorList.get(2);
-            //System.out.println("второй врач" + doctorOne);
+            //LOGGER.info("второй врач" + doctorOne);
 
             //doctorOne.click();
             action.sendKeys(Keys.TAB).perform();

@@ -7,8 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.AbstractPage;
 
-public class SearchRow {
+public class SearchRow extends AbstractPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
 
@@ -69,18 +70,18 @@ public class SearchRow {
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
-        System.out.println("click callDoctorSearchBtn");
+        LOGGER.info("click callDoctorSearchBtn");
         callDoctorSearchBtn.click();
     }
 
     public void waitForSearchResults() {
-        //System.out.println("waitClickableJS why table appeared");
+        //LOGGER.info("waitClickableJS why table appeared");
         wait.until(ExpectedConditions.elementToBeClickable(tableGrid));
-        //System.out.println("the table appeared");
+        //LOGGER.info("the table appeared");
     }
 
     public void verificationTableGridNull() {
-        //System.out.println("Проверка что таблицы нет");
+        //LOGGER.info("Проверка что таблицы нет");
         if (!webDriver.findElements(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }

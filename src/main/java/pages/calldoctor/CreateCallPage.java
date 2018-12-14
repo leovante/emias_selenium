@@ -142,7 +142,7 @@ public class CreateCallPage extends AbstractPage {
                 .caller()
                 .telephone();
 //                .saveBtn();
-        System.out.println("Вызов отредактирован! " + driver.getCurrentUrl());
+        LOGGER.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -197,7 +197,7 @@ public class CreateCallPage extends AbstractPage {
         $(By.xpath("//input[@placeholder='Имя']")).clear();
         $(By.xpath("//input[@placeholder='Отчество']")).clear();
         $(By.xpath("//input[@placeholder='Дата рождения']")).clear();
-        System.out.println("Карта вызова очищена для редактирования!");
+        LOGGER.info("Карта вызова очищена для редактирования!");
         return this;
     }
 
@@ -495,7 +495,7 @@ public class CreateCallPage extends AbstractPage {
 //        famCall.getAttribute("value").equals(pacient.get("famCall"));
 //        nameCall.getAttribute("value").equals(pacient.get("nameCall"));
 //        otCall.getAttribute("value").equals(pacient.get("otCall"));
-        System.out.println("Проверка данных на странице редактирования выполнена!");
+        LOGGER.info("Проверка данных на странице редактирования выполнена!");
         return this;
     }
 
@@ -514,7 +514,7 @@ public class CreateCallPage extends AbstractPage {
     void statusBodyResponce(HttpResponse resp) throws IOException {
         if (resp.getStatusLine().getStatusCode() != 200) {
             LOGGER.info("Ошибка! Ответ сервера:\n" + EntityUtils.toString(resp.getEntity(), "UTF-8"));
-//            System.out.println("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
+//            LOGGER.info("Ответ сервера:\n" + new BasicResponseHandler().handleResponse(resp));
         }
     }
 

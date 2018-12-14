@@ -1,8 +1,8 @@
 package pages;
 
 import org.hibernate.Session;
-import utilities.HibernateSessionFactory;
 import system.model.HltCallDoctorEntity;
+import utilities.HibernateSessionFactory;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class Main {
 //        Hub hub = new Hub(configHub);
 //        //configNode.getHubHost();
 //        hub.start();
-        //System.out.println(configNode.getRemoteHost());
+        //LOGGER.info(configNode.getRemoteHost());
         //hub.stop();
 
 

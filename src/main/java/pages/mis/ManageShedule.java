@@ -148,7 +148,7 @@ public class ManageShedule extends AbstractPage {
         $(By.xpath("//div[@id='schedule']/div/div/div"))
                 .$(By.xpath("span[contains(text(),'Врач на больничном')]"))
                 .shouldBe(Condition.visible);//это название заголовка
-        System.out.println("Проверка наличия заголовка форс-мажора");
+        LOGGER.info("Проверка наличия заголовка форс-мажора");
         return this;
     }
 
@@ -178,7 +178,7 @@ public class ManageShedule extends AbstractPage {
         Thread.sleep(2000);
         $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .$(By.xpath("//*[contains(text(),'23:44 ')]"));
-        System.out.println("Проверил что для доктора " + nameDoctor + " создано расписание!");
+        LOGGER.info("Проверил что для доктора " + nameDoctor + " создано расписание!");
         return this;
     }
 

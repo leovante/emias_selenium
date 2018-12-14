@@ -74,7 +74,7 @@ public class HomePage extends AbstractPage {
     public void createSomeRecords(int i) throws InterruptedException {
         int n = 1;
         while (n <= i) {
-            System.out.println("Обрабатываю врача №: " + n);
+            LOGGER.info("Обрабатываю врача №: " + n);
             String doctor_num = new DoctorMethods().getUnicalDoctor3(n);
             String doctor_num_fam = ManageShedule.getSecondName(doctor_num);
 //            SQLDemonstration.deleteShedule(doctor_num_fam);

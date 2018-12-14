@@ -128,7 +128,7 @@ public class DashboardPage extends AbstractPage {
 //            $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
 //            $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
 //        }
-//        System.out.println("Краткая карта вызова проверена!");
+//        LOGGER.info("Краткая карта вызова проверена!");
 //    }
 
     @Step("проверяю на дашборде запись в группе новые")
@@ -157,7 +157,7 @@ public class DashboardPage extends AbstractPage {
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
-        System.out.println("Краткая карта вызова проверена!");
+        LOGGER.info("Краткая карта вызова проверена!");
         return this;
     }
 
@@ -193,7 +193,7 @@ public class DashboardPage extends AbstractPage {
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
         $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
-        System.out.println("Краткая карта вызова проверена!");
+        LOGGER.info("Краткая карта вызова проверена!");
     }
 
     @Step("Проверка что запись удалена с дашборда")

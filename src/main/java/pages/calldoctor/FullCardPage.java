@@ -188,7 +188,7 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
-        System.out.println("Карта закрыта!");
+        LOGGER.info("Карта закрыта!");
         return this;
     }
 

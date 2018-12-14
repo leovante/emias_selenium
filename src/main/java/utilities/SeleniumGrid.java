@@ -9,19 +9,20 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import pages.AbstractPage;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 
-public class SeleniumGrid {
+public class SeleniumGrid extends AbstractPage {
     public static void run(String gridIsRun) throws Exception {
         if (gridIsRun != null && !statusGrid.checkStatusBeforeRunning()) {
             Runtime.getRuntime().exec("cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"");
             statusGrid.checkRunningIsSuccesfull();
-            System.out.println("Selenium Grid запущен!");
+            LOGGER.info("Selenium Grid запущен!");
         } else {
-            System.out.println("Selenium Grid не запущен!");
+            LOGGER.info("Selenium Grid не запущен!");
         }
     }
 
@@ -32,9 +33,9 @@ public class SeleniumGrid {
             urlHub.openConnection().getInputStream();
             URL urlNode = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
             urlNode.openConnection().getInputStream();
-            System.out.println("Остановил хаб Selenium grid");
+            LOGGER.info("Остановил хаб Selenium grid");
         } else {
-            System.out.println("Селениум грид работает, остановка невозможна!");
+            LOGGER.info("Селениум грид работает, остановка невозможна!");
         }
     }
 
@@ -51,19 +52,19 @@ public class SeleniumGrid {
 
         static void checkRunningIsSuccesfull() throws JSONException, InterruptedException, IOException {
             if (!chekResponseStatusAndStatusField()) {
-                System.out.println("Не удалось запустить Selenium Grid, выход с кодом 1");
-                System.exit(1);
+                LOGGER.info("Не удалось запустить Selenium Grid, выход с кодом 1");
+
             }
         }
 
         /*при запуске проекта первое обращение на адрес селениума, проверка что он запущен*/
         static boolean checkStatusBeforeRunning() throws JSONException, InterruptedException, IOException {
-            System.out.println("Проверка запущен ли селениум");
+            LOGGER.info("Проверка запущен ли селениум");
             if (responseIsSuccess()) {
-                System.out.println("Проверка показала что селениум уже запущен!");
+                LOGGER.info("Проверка показала что селениум уже запущен!");
                 return true;
             }
-            System.out.println("Проверка показала что селениум не запущен...");
+            LOGGER.info("Проверка показала что селениум не запущен...");
             return false;
         }
 
@@ -88,7 +89,7 @@ public class SeleniumGrid {
                 }
                 Thread.sleep(1000);
             }
-            System.out.println(a);
+            LOGGER.info(String.valueOf(a));
             return false;
         }
         /*
@@ -112,11 +113,11 @@ public class SeleniumGrid {
                 entity = httpResponse.getEntity();
                 responseString = EntityUtils.toString(entity, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-                System.out.println("Не могу подключиться. Код ошибки - 1!");
+                LOGGER.info("Не могу подключиться. Код ошибки - 1!");
             } catch (ClientProtocolException e) {
-                System.out.println("Не могу подключиться. Код ошибки - 2!");
+                LOGGER.info("Не могу подключиться. Код ошибки - 2!");
             } catch (IOException e) {
-                System.out.println("Не могу подключиться. Код ошибки - 3!");
+                LOGGER.info("Не могу подключиться. Код ошибки - 3!");
             }
             if (httpResponse != null &&
                     httpResponse.getStatusLine().getStatusCode() == 200 &&

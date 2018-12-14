@@ -104,23 +104,23 @@ public class CallDoctorPage extends AbstractPage {
         String complaint=com.getText();
 
         Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
-        System.out.println(lpu+" есть");
+        LOGGER.info(lpu + " есть");
         Assert.assertTrue(arg2.contains(fio));
-        System.out.println(fio+" есть");
+        LOGGER.info(fio + " есть");
         Assert.assertTrue(arg3.contains(birthday));
-        System.out.println(birthday+" есть");
+        LOGGER.info(birthday + " есть");
         Assert.assertTrue(arg4.contains(adress));
-        System.out.println(adress+" есть");
+        LOGGER.info(adress + " есть");
         Assert.assertTrue(arg5.contains(porch));
-        System.out.println(porch+" есть");
+        LOGGER.info(porch + " есть");
         Assert.assertTrue(arg6.contains(floor));
-        System.out.println(floor+" есть");
+        LOGGER.info(floor + " есть");
         Assert.assertTrue(arg7.contains(intercom));
-        System.out.println(intercom+" есть");
+        LOGGER.info(intercom + " есть");
         Assert.assertTrue(arg8.contains(phone));
-        System.out.println(phone+" есть");
+        LOGGER.info(phone + " есть");
         Assert.assertTrue(arg9.contains(complaint));
-        System.out.println(complaint+" есть");
+        LOGGER.info(complaint + " есть");
         return this;
     }
 
@@ -146,23 +146,23 @@ public class CallDoctorPage extends AbstractPage {
         String complaint=com.getText();
 
         Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
-        System.out.println(lpu+" есть");
+        LOGGER.info(lpu + " есть");
         Assert.assertTrue(arg1.contains(fio));
-        System.out.println(fio+" есть");
+        LOGGER.info(fio + " есть");
         Assert.assertTrue(birthday.contains(""));
-        System.out.println(birthday+" есть");
+        LOGGER.info(birthday + " есть");
         Assert.assertTrue(arg3.contains(adress));
-        System.out.println(adress+" есть");
+        LOGGER.info(adress + " есть");
         Assert.assertTrue(porch.contains(""));
-        System.out.println(porch+" есть");
+        LOGGER.info(porch + " есть");
         Assert.assertTrue(floor.contains(""));
-        System.out.println(floor+" есть");
+        LOGGER.info(floor + " есть");
         Assert.assertTrue(intercom.contains(""));
-        System.out.println(intercom+" есть");
+        LOGGER.info(intercom + " есть");
         Assert.assertTrue(arg4.contains(phone));
-        System.out.println(phone+" есть");
+        LOGGER.info(phone + " есть");
         Assert.assertTrue(arg5.contains(complaint));
-        System.out.println(complaint+" есть");
+        LOGGER.info(complaint + " есть");
         return this;
     }
 

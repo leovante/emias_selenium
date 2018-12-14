@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.*;
+import static pages.AbstractPage.LOGGER;
 
 public class EnterSite extends AbstractTestGrid {
     @Step("Захожу в диспетчер через МИС")
@@ -15,7 +16,7 @@ public class EnterSite extends AbstractTestGrid {
             page.homePageMis().callDoctorBtn();
             switchTo().window(1);
         } else {
-            System.out.println("Открываю только модуль диспетчер по ссылке:\n" + connection);
+            LOGGER.info("Открываю только модуль диспетчер по ссылке:\n" + connection);
             open(connection);
         }
         return this;

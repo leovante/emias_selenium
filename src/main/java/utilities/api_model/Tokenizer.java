@@ -8,12 +8,13 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.testng.Assert;
+import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.util.Map;
 
-public class Tokenizer {
+public class Tokenizer extends AbstractPage {
     public static String token;
     HttpResponse response;
 
@@ -39,8 +40,8 @@ public class Tokenizer {
             token = proData.get("token");
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.out.println("Ответ:\n" + response.getEntity().getContent());
-            System.out.println("Ошибка. Не удается подключиться!");
+            LOGGER.info("Ответ:\n" + response.getEntity().getContent());
+            LOGGER.info("Ошибка. Не удается подключиться!");
         }
         return token;
     }

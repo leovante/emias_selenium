@@ -13,6 +13,7 @@ import java.awt.*;
 import java.io.File;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static pages.AbstractPage.LOGGER;
 
 @Deprecated
 public class DriverManager {
@@ -60,10 +61,10 @@ public class DriverManager {
             Configuration.timeout = 20000;
 
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            System.out.println("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
-            System.out.println("Chrome window resolution: " + getWebDriver().manage().window().getSize());
+            LOGGER.info("Monitor resolution: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight());
+            LOGGER.info("Chrome window resolution: " + getWebDriver().manage().window().getSize());
         }
-        System.out.println("DriverManager - " + getWebDriver());
+        LOGGER.info("DriverManager - " + getWebDriver());
         return driver;
     }
 

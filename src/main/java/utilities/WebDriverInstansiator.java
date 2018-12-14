@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static pages.AbstractPage.LOGGER;
 
 public class WebDriverInstansiator {
     public String browser;
@@ -51,6 +52,8 @@ public class WebDriverInstansiator {
             driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
+            System.setProperty("webdriver.chrome.logfile", "D:\\chromedriver.log");
+            System.setProperty("webdriver.chrome.verboseLogging", "true");
         }
         //селениум грид
         else {
@@ -90,7 +93,7 @@ public class WebDriverInstansiator {
         if (!String.valueOf(dimension).equals("(1919, 1079)")) {
             throw new IllegalArgumentException("Ошибка. Размер окна браузера некорректный!" + dimension);
         } else {
-            System.out.println(
+            LOGGER.info(
                     "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + headless + "; ");
