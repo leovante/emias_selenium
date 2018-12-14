@@ -217,29 +217,29 @@ public class SQLDemonstration extends AbstractPage {
 //        query.setParameter("id", "255");
 //        List list = query.list();
 
-//        String url = connectionUrl +
-//                ";databaseName=" + databaseName +
-//                ";user=" + userName +
-//                ";password=" + password;
-//        try {
-//            LOGGER.info("Connecting to SQL Server ... ");
-//            try (Connection connection = DriverManager.getConnection(url)) {
-//                String sql =
-//                        "update hlt_disp_Exam" +
-//                                " set IsDeviation = 0," +
-//                                " IsOtkaz = 0," +
-//                                " IsSigned = 0" +
-//                                " from hlt_disp_Card dc" +
-//                                " inner join hlt_disp_Exam de on dc.Guid = de.rf_CardGuid" +
-//                                " where dc.disp_CardID = '" + cardID + "'";
-//                try (Statement statement = connection.createStatement()) {
-//                    statement.executeUpdate(sql);
-//                    LOGGER.info("Card: " + cardID + " is default!");
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            LOGGER.info("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_disp_Exam" +
+                                " set IsDeviation = 0," +
+                                " IsOtkaz = 0," +
+                                " IsSigned = 0" +
+                                " from hlt_disp_Card dc" +
+                                " inner join hlt_disp_Exam de on dc.Guid = de.rf_CardGuid" +
+                                " where dc.disp_CardID = '" + cardID + "'";
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    LOGGER.info("Card: " + cardID + " is default!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Step("Запуск скрипта на демонстрейшн")
@@ -376,5 +376,29 @@ public class SQLDemonstration extends AbstractPage {
         SQLDemonstration.createSheduleCD(1932, 1249);
         SQLDemonstration.createSheduleCD(1941, 1278);
         SQLDemonstration.createSheduleCD(2062, 1202);
+    }
+
+    @Step("отменяю созданный вызов после каждого теста")
+    public static void cancelCall() {
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            LOGGER.info("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + callNumber;
+
+                if (callNumber > 0) {
+                    try (Statement statement = connection.createStatement()) {
+                        statement.executeUpdate(sql);
+                        LOGGER.info("Finalize is done.");
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -18,6 +18,8 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class AbstractPage {
     public WebDriver driver;
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    public static int callNumber;
+
 
     public AbstractPage() {
         this.driver = getWebDriver();
@@ -65,5 +67,10 @@ public class AbstractPage {
         Date date2 = DateUtils.addMinutes(date, -1);
         dateList.add(simpleDateFormatEdit.format(date2));
         return dateList;
+    }
+
+    public void cardNumberParser(String text) {
+        String strNew = text.replace("Карта вызова № ", "");
+        this.callNumber = Integer.valueOf(strNew);
     }
 }

@@ -11,13 +11,13 @@ import static pages.AbstractPage.LOGGER;
 public class EnterSite extends AbstractTestGrid {
     @Step("Захожу в диспетчер через МИС")
     public EnterSite enterCalldoctorFromMis() {
-        if (connection == null) {
+        if (demo_url == null) {
             page.loginPage().login(site, login, pass);
             page.homePageMis().callDoctorBtn();
             switchTo().window(1);
         } else {
-            LOGGER.info("Открываю только модуль диспетчер по ссылке:\n" + connection);
-            open(connection);
+            LOGGER.info("Открываю только модуль диспетчер по ссылке:\n" + demo_url);
+            open(demo_url);
         }
         return this;
     }
@@ -52,6 +52,19 @@ public class EnterSite extends AbstractTestGrid {
         pass.val("ccg123");
         loginButton.click();
         open("http://call.emias.mosreg.ru/call2_dev/to_work//");
+        return this;
+    }
+
+    @Step("Захожу в диспансеризацию через МИС")
+    public EnterSite enterDispFromMis() {
+        if (demo_url == null) {
+            page.loginPage().login(site, login, pass);
+            page.homePageMis().dispCardJournalBtn();
+            switchTo().window(1);
+        } else {
+            LOGGER.info("Открываю только модуль диспансеризация по ссылке:\n" + dispJournal);
+            open(dispJournal);
+        }
         return this;
     }
 }

@@ -68,6 +68,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement sourceSmp = $(By.id("source0"));
     SelenideElement sourceSmp2 = $(By.id("sourceSmp"));
     SelenideElement sourceReg = $(By.id("source1"));
+    SelenideElement callerType = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
 
 
     public CreateCallPage createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
@@ -395,10 +396,10 @@ public class CreateCallPage extends AbstractPage {
             $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
         } else {
             if (years() > 18) {
-                $(By.xpath("//input[@placeholder='Тип вызывающего']")).click();
+                callerType.click();
                 $(By.xpath("//span[contains(.,'Пациент')]")).click();
             } else {
-                $(By.xpath("//input[@placeholder='Тип вызывающего']")).hover().click();
+                callerType.click();
                 $(By.xpath("//span[contains(.,'Представитель')]")).click();
             }
         }
