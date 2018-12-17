@@ -330,11 +330,14 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("жалоба")
-    private CreateCallPage complaint() {
+    private CreateCallPage complaint() throws InterruptedException {
         SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
         complaint.sendKeys(Keys.SPACE);
+
+        $(By.xpath("//span[contains(text(),'диатез')]")).click();
+        $(By.xpath("//div[contains(text(),'" + pacient.getComplaint() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
