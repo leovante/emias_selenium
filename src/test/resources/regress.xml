@@ -79,9 +79,9 @@
                 <include name="mis"/>
             </run>
         </groups>
-        <packages>
-            <package name="emias.mis.regress"/>
-        </packages>
+        <classes>
+            <class name="emias.mis.regress.PerehodyTest"/>
+        </classes>
     </test>
     <test name="TestMIS_After" verbose="1">
         <parameter name="browser" value="chrome"/>
