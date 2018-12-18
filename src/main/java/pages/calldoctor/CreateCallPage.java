@@ -262,7 +262,9 @@ public class CreateCallPage extends AbstractPage {
 @Step("ввод адреса")
     private CreateCallPage address() throws InterruptedException {
         if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
+            Thread.sleep(500);
             cancelAdress.shouldBe(Condition.visible).click();
+            Thread.sleep(500);
             list_first_container(pacient.getAddress1());
         }
         if (pacient.getAddress2() != null && pacient.getAddress2() != "")
@@ -284,8 +286,9 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("выбрал адрес из выпадающего списка")
     void list_first_container(String address) throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(500);
         adress.sendKeys(address);
+        Thread.sleep(500);
         $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
 //        $(By.xpath("//div[@role='listbox']//*[contains(text(),'" + address + "')]"))
                 .shouldBe(Condition.visible)

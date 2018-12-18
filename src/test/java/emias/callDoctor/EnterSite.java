@@ -11,13 +11,13 @@ import static pages.AbstractPage.LOGGER;
 public class EnterSite extends AbstractTestGrid {
     @Step("Захожу в диспетчер через МИС")
     public EnterSite enterCalldoctorFromMis() {
-        if (demo_url == null) {
+        if (use_url != null && use_url.equals("false")) {
             page.loginPage().login(site, login, pass);
             page.homePageMis().callDoctorBtn();
             switchTo().window(1);
         } else {
-            LOGGER.info("Открываю только модуль диспетчер по ссылке:\n" + demo_url);
-            open(demo_url);
+            LOGGER.info("Открываю только модуль диспетчер по ссылке:\n" + CALLDOCTOR_URL);
+            open(CALLDOCTOR_URL);
         }
         return this;
     }
@@ -57,13 +57,13 @@ public class EnterSite extends AbstractTestGrid {
 
     @Step("Захожу в диспансеризацию через МИС")
     public EnterSite enterDispFromMis() {
-        if (demo_url == null) {
+        if (CALLDOCTOR_URL == null) {
             page.loginPage().login(site, login, pass);
             page.homePageMis().dispCardJournalBtn();
             switchTo().window(1);
         } else {
-            LOGGER.info("Открываю только модуль диспансеризация по ссылке:\n" + dispJournal);
-            open(dispJournal);
+            LOGGER.info("Открываю только модуль диспансеризация по ссылке:\n" + DISP_JOURNAL_URL);
+            open(DISP_JOURNAL_URL);
         }
         return this;
     }

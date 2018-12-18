@@ -16,7 +16,7 @@ public class ExampsFillTest extends AbstractTestGrid {
     @RetryCountIfFailed(3)
     public void testFillExamp() throws InterruptedException {
         SQLDemonstration.setDefaultServices("3169");
-        open(dispProfile);
+        open(DISP_CARD_URL);
         page.exampPage().fillTemnikov();
         $(By.xpath("//div[@mattooltip='Процент завершенности диспансеризации'][contains(.,'(100%)')]")).shouldBe(Condition.visible);
         page.exampPage().saveBtn();

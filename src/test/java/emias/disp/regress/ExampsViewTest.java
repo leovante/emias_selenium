@@ -14,7 +14,7 @@ public class ExampsViewTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года", enabled = false)
     @RetryCountIfFailed(3)
     public void testFillExamp() throws InterruptedException {
-        open(dispJournal);
+        open(DISP_JOURNAL_URL);
         page.exampPage().fillTemnikov();
         $(By.xpath("//*[contains(text(),'(100%)')]")).shouldBe(Condition.visible);
     }

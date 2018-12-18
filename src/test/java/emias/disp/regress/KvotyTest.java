@@ -14,7 +14,7 @@ public class KvotyTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверка что открываются квоты")
     @RetryCountIfFailed(3)
     public void testSearchCard1() {
-        open(dispProfile);
+        open(DISP_CARD_URL);
         page.kvotyPage().kvotyBtn();
         $(By.xpath("//*[contains(.,'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }
@@ -22,7 +22,7 @@ public class KvotyTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверка что открываются квоты на странице просмотра карты")
     @RetryCountIfFailed(3)
     public void testSearchCard2() {
-        open(dispJournal);
+        open(DISP_JOURNAL_URL);
         page.kvotyPage().kvotyBtn();
         $(By.xpath("//*[contains(text(),'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }
