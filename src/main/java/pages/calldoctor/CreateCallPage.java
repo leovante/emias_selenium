@@ -180,7 +180,7 @@ public class CreateCallPage extends AbstractPage {
                 element.click();
         }
 
-        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
+//        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
         $(By.xpath("//input[@placeholder='Дом']")).clear();
         $(By.id("phone")).clear();
 //        $(By.xpath("//label[@class='mat-checkbox-layout']")).clear();
@@ -260,7 +260,7 @@ public class CreateCallPage extends AbstractPage {
     @Step("ввод адреса")
     private CreateCallPage address() throws InterruptedException {
         if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
-            clearAdress();
+            clearAddress();
             list_first_container(pacient.getAddress1());
         }
         if (pacient.getAddress2() != null && pacient.getAddress2() != "")
@@ -302,8 +302,10 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("очистить поле с адресом")
-    void clearAdress() throws InterruptedException {
-        $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
+    void clearAddress() throws InterruptedException {
+        Assert.assertTrue(
+                $(By.xpath("//*[contains(text(),'Новый вызов')]")).isDisplayed() |
+                        $(By.xpath("//*[contains(text(),'Редактирование вызова')]")).isDisplayed());
         addressLoadWaiter();
         for (int k = 0; k < 10 && !adress.getValue().equals(""); k++) {
             cancelAdress.shouldBe(Condition.visible).click();
@@ -313,13 +315,15 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("жду загрузку адреса")
     void addressLoadWaiter() throws InterruptedException {
-        int i = 0;
-        do {
-            LOGGER.info("жду загрузку адреса");
-            Thread.sleep(1000);
-            i++;
-        } while (!adress.getValue().equals("Московская обл.,") && i < 10);
-        Assert.assertTrue(adress.getValue().equals("Московская обл.,"), "адрес не загрузился");
+        if ($(By.xpath("//*[contains(text(),'Новый вызов')]")).isDisplayed()) {
+            int i = 0;
+            do {
+                LOGGER.info("жду загрузку адреса");
+                Thread.sleep(1000);
+                i++;
+            } while (!adress.getValue().equals("Московская обл.,") && i < 10);
+            Assert.assertTrue(adress.getValue().equals("Московская обл.,"), "адрес не загрузился");
+        }
     }
 
     @Step("уточняю адрес")
