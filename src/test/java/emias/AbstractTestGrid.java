@@ -3,7 +3,6 @@ package emias;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import emias.callDoctor.EnterSite;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.json.JSONException;
 import org.testng.annotations.*;
@@ -23,7 +22,7 @@ public class AbstractTestGrid {
     public static String DISP_JOURNAL_URL = "http://service.emias.mosreg.ru/test/disp/log;doctorId=1239;doctorGuid=71f2edcf-8395-4c0d-b011-be9b4a437718;doctorTypeGuid=81d86a3b-2c5a-44b0-8ef9-48e34fbce21d;ticket=UtduJYr%2fHQzIc4GpRM7n4E4M6TN0uXaja1Tx5GtHDpYRoDdlgS%2fmbGWZqEa0AR%2fPYaH6OQe8jFKM1q%2bOrq%2b6p44Q2xXUuRFb2PN%2bGN5ftNbln6EqRgNPDJgXDJbryHbJmOKJoJ5ocxApTm9jZBPofnwHkZvu%2bAAi1oBXTt6XRDXp3wijkRKZh7dwZH3pGMxdRP6QxW4QJhlMbDNTr4twWAr4tIozibowZTUza2kuJPM1IyG6biJkBKoBrjypNWQOSJ40akxr0nMKrN%2fA0ac0GN%2f37u2clJj4MKveA0lcDJ4z5Kao?ticket=UtduJYr%2fHQzIc4GpRM7n4E4M6TN0uXaja1Tx5GtHDpYRoDdlgS%2fmbGWZqEa0AR%2fPYaH6OQe8jFKM1q%2bOrq%2b6p44Q2xXUuRFb2PN%2bGN5ftNbln6EqRgNPDJgXDJbryHbJmOKJoJ5ocxApTm9jZBPofnwHkZvu%2bAAi1oBXTt6XRDXp3wijkRKZh7dwZH3pGMxdRP6QxW4QJhlMbDNTr4twWAr4tIozibowZTUza2kuJPM1IyG6biJkBKoBrjypNWQOSJ40akxr0nMKrN%2fA0ac0GN%2f37u2clJj4MKveA0lcDJ4z5Kao&mkabId=0&dvtId=0&docPrvdId=1239&MisUrl=http%3a%2f%2femias.mosreg.ru%2fdemonstration&ReturnUrl=http%3a%2f%2femias.mosreg.ru%2fdemonstration%2fMain%2fDefault";
     public static String CALLDOCTOR_URL = "http://service.emias.mosreg.ru/test/call-doctor/board;docprvdid=1239?ticket=892hJ4D5%2fh7YSK687rMnhjktSYivom5%2fh4RynHYnkypzFGqTrNMqHzxndlQYO7UwCEcJYvn%2bA6WY%2fryHmifox0ek0QRvsYC9G%2b2%2bVhXbsmDMuqZpDgpALTwB8SCfjrcMuKt4BlLMTYVllviNhYhxT333Xly6h8ut6UuyXDhMFH710Thr3kOb9FnaS4IO65biOSXCdbNOFW6CQYsyBCWBA1CabRYhio5O90tB%2b5zHwzktR6jODkUmJjXYbYtUDhQhOgu2p2EGQOnIOTDE99ym%2fA1naEqKiXQwA52oD3GKyfRxgMiy";
     public static String use_url;
-    public EnterSite enterSite;
+    public Enter enter;
     public static Pages page;
     public static String site;
     public static String login;
@@ -59,7 +58,7 @@ public class AbstractTestGrid {
         new WebDriverInstansiator(browser).setDriver(headless/*, proxy*/);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
-        enterSite = new EnterSite();
+        enter = new Enter();
         LOGGER.info("Тест начинается!");
     }
 

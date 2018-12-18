@@ -22,11 +22,11 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.callDoctor.negative.ClickBoosterTest"/>
+            <class name="emias.calldoctor.negative.ClickBoosterTest"/>
         </classes>
         <!--<packages>-->
-        <!--<package name="emias.callDoctor.regress"/>-->
-        <!--<package name="emias.callDoctor.function"/>-->
+        <!--<package name="emias.calldoctor.regress"/>-->
+        <!--<package name="emias.calldoctor.function"/>-->
         <!--</packages>-->
     </test>
 </suite>

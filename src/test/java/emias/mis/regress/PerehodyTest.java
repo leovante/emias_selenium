@@ -19,7 +19,7 @@ public class PerehodyTest extends AbstractTestGrid {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDdashboard() {
-        enterSite.enterCalldoctorFromMis();
+        enter.enterCalldoctorFromMis();
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
     }
 

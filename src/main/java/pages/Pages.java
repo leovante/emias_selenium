@@ -1,6 +1,6 @@
 package pages;
 
-import pages.callCenter.*;
+import pages.callcenter.*;
 import pages.calldoctor.*;
 import pages.disp.ExampPage;
 import pages.disp.JournalPage;
@@ -16,6 +16,7 @@ public class Pages extends AbstractPage {
     public Pages() {
     }
 
+    //MIS
     public HomePage homePageMis() {
         return page(HomePage.class);
     }

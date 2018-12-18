@@ -73,7 +73,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
     public void testSearchCard6() {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().dispCardJournalBtn();
         switchTo().window(1);
         page.journalPage().journalMenuBtn();
@@ -86,7 +86,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() throws InterruptedException {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().dispCardJournalBtn();
         switchTo().window(1);
         page.journalPage().journalMenuBtn();
@@ -101,7 +101,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через мкаб")
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromMkab() throws InterruptedException {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().mkabBtn();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -128,7 +128,7 @@ public class JournalTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
         Pacient pacient = new Pacient("Temnikov94");
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().admissionScheduleBtn();
         page.admissionSchedule().createDispMl(pacient);
         page.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");

@@ -12,7 +12,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @Test(groups = "mis", description = "Создать расписание")
     @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().manageSheduleBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
@@ -27,7 +27,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @Test(groups = "mis", description = "Копировать расписание")
     @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
@@ -47,7 +47,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @Test(groups = "mis", description = "Указать неприемные дни")
     @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().manageSheduleBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         page.manageShedule()
@@ -59,7 +59,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @Test(groups = "mis", description = "Удалить расписание")
     @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
@@ -85,7 +85,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @Test(groups = "mis", description = "Перенести запись")
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
-        enterSite.enterMIS();
+        enter.enterMIS();
         page.homePageMis().manageSheduleBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);

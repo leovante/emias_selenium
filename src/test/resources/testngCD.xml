@@ -17,7 +17,7 @@
     <test name="BeforeTest" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>
-            <package name="emias.callDoctor.before"/>
+            <package name="emias.calldoctor.before"/>
         </packages>
     </test>
     <test name="ChromeTest" verbose="1" parallel="true">
@@ -28,14 +28,14 @@
             </run>
         </groups>
         <packages>
-            <package name="emias.callDoctor.function"/>
-            <package name="emias.callDoctor.regress"/>
+            <package name="emias.calldoctor.function"/>
+            <package name="emias.calldoctor.regress"/>
         </packages>
     </test>
     <test name="AfterTest" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>
-            <package name="emias.callDoctor.after"/>
+            <package name="emias.calldoctor.after"/>
         </packages>
     </test>
 </suite>
