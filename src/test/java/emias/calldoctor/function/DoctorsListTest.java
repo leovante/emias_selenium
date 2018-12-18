@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 public class DoctorsListTest extends AbstractTestGrid {
 
@@ -162,9 +161,7 @@ public class DoctorsListTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile13");
-        page.loginPage().loginAdmin();
-        page.homePageMis().callDoctorBtn();
-        switchTo().window(1);
+        enter.enterCalldoctorFromMis_Admin();
         page.createCallPage().createCall(pacient);
         page.fullCardPage().chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
