@@ -7,9 +7,7 @@ import org.openqa.selenium.WebDriver;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -20,6 +18,7 @@ public class AbstractPage {
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static int callNumber;
 
+    public static Map<String, Integer> cardMap = new HashMap();
 
     public AbstractPage() {
         this.driver = getWebDriver();
@@ -69,8 +68,13 @@ public class AbstractPage {
         return dateList;
     }
 
-    public void cardNumberParser(String text) {
+//    public void cardNumberParser(String text) {
+//        String strNew = text.replace("Карта вызова № ", "");
+//        this.callNumber = Integer.valueOf(strNew);
+//    }
+
+    public Integer cardNumberParser(String text) {
         String strNew = text.replace("Карта вызова № ", "");
-        this.callNumber = Integer.valueOf(strNew);
+        return Integer.valueOf(strNew);
     }
 }

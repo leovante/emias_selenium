@@ -5,10 +5,12 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.json.JSONException;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.Pages;
 import pages.sql.SQLDemonstration;
 import utilities.SeleniumGrid;
+import utilities.TestMethodCapture;
 import utilities.WebDriverInstansiator;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
@@ -17,6 +19,7 @@ import java.io.IOException;
 
 import static pages.AbstractPage.LOGGER;
 
+@Listeners(TestMethodCapture.class)
 public class AbstractTestGrid {
     public static String DISP_CARD_URL = "http://service.emias.mosreg.ru/test/disp;doctorId=1239;doctorGuid=71f2edcf-8395-4c0d-b011-be9b4a437718;doctorTypeGuid=81d86a3b-2c5a-44b0-8ef9-48e34fbce21d;ticket=KgHJ4f8mS1LP3YV%2bZnTy4d10h8xgdeJ7fxS9qjcEI2zdlg3AbSqDvDKxOODzM4juNRHlsSkSIyj4kRjxtqO2Tl0cw2fGBAG%2bbeuWsiRvKlaM%2frSG86U24eBF%2fabwRz%2ftxzhF0eY%2f8umxvbD95%2bBHNuxgBEJxIe3gmMwKo74dZFmzZUWhv4TXVSEWr%2bsbrFUHqTCibgPM2FYtEPOcCtBGMWsKKPCpeKwImyB8m2g3hWBxA7O2YhSgoY0Q%2bx%2bBJyqL4dBCMXNQ4g0mS0d9IjPdG9mR69ImYvrlwxdZdldDCelWygW0/card/3169?ticket=KgHJ4f8mS1LP3YV%2bZnTy4d10h8xgdeJ7fxS9qjcEI2zdlg3AbSqDvDKxOODzM4juNRHlsSkSIyj4kRjxtqO2Tl0cw2fGBAG%2bbeuWsiRvKlaM%2frSG86U24eBF%2fabwRz%2ftxzhF0eY%2f8umxvbD95%2bBHNuxgBEJxIe3gmMwKo74dZFmzZUWhv4TXVSEWr%2bsbrFUHqTCibgPM2FYtEPOcCtBGMWsKKPCpeKwImyB8m2g3hWBxA7O2YhSgoY0Q%2bx%2bBJyqL4dBCMXNQ4g0mS0d9IjPdG9mR69ImYvrlwxdZdldDCelWygW0&mkabId=0&dvtId=385541&docPrvdId=1239&MisUrl=http%3a%2f%2femias.mosreg.ru%2fdemonstration&ReturnUrl=http%3a%2f%2femias.mosreg.ru%2fdemonstration%2fSchedule";
     public static String use_url;
@@ -26,6 +29,12 @@ public class AbstractTestGrid {
     public static String login;
     public static String pass;
     //    BrowserMobProxy proxy = new BrowserMobProxyServer();
+    public String testName;
+
+    public String testName() {
+//        this.testName = TestMethodCapture.class.getName();
+        return TestMethodCapture.getTestMethod().getMethodName();
+    }
 
     @Parameters({"site", "login", "pass", "gridIsRun", "use_url"})
     @BeforeSuite(alwaysRun = true)
@@ -70,8 +79,8 @@ public class AbstractTestGrid {
 
     @RetryCountIfFailed(2)
     @AfterMethod(alwaysRun = true, groups = "CD")
-    public void afterMethodCD() {
-        SQLDemonstration.cancelCall();
+    public void afterMethodCD(ITestResult result) {
+        SQLDemonstration.cancelCall(result.getMethod().getMethodName());
         LOGGER.info("Вызов удален!");
     }
 }

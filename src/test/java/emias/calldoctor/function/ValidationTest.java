@@ -26,7 +26,7 @@ public class ValidationTest extends AbstractTestGrid {
         Pacient pacient2 = new Pacient("Profile2_0");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().editCallBtn();
+        page.fullCardPage(testName()).editCallBtn();
         page.createCallPage()
                 .setDeafult()
                 .editCallPage(pacient2)
@@ -44,8 +44,8 @@ public class ValidationTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage().verifyNewCall(pacient);
-        page.fullCardPage().editCallBtn();
+        page.fullCardPage(testName()).verifyNewCall(pacient);
+        page.fullCardPage(testName()).editCallBtn();
         page.createCallPage()
                 .fillSourceSmp()
                 .deleteWhoCallFIO()

@@ -57,7 +57,7 @@ public class EditPageTest extends AbstractTestGrid {
                 .setDeafult()
                 .editCallPage_Mkab(pacient2)
                 .saveBtn();
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient2)
                 .closeCardBtn();
         page.dashboardPage()
@@ -74,7 +74,7 @@ public class EditPageTest extends AbstractTestGrid {
         Pacient pacient2 = new Pacient("Profile0_3");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Mkab(pacient);
-        page.fullCardPage().editCallBtn();
+        page.fullCardPage(testName()).editCallBtn();
         page.createCallPage()
                 .setDeafult()
                 .editCallPage(pacient2)

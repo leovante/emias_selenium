@@ -31,8 +31,8 @@ public class FullCardPage extends AbstractPage {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
 
-    FullCardPage() {
-        cardNumberParser(cardNumber.getText());
+    public FullCardPage(String testName) {
+        cardMap.put(testName, cardNumberParser(cardNumber.getText()));
     }
 
     @Step("проверяю наличие базовых элементов карты вызова")

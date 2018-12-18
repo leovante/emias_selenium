@@ -379,7 +379,7 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("отменяю созданный вызов после каждого теста")
-    public static void cancelCall() {
+    public static void cancelCall(String methodName) {
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -388,13 +388,15 @@ public class SQLDemonstration extends AbstractPage {
             LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
-                        "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + callNumber;
+                        "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + cardMap.get(methodName);
 
-                if (callNumber > 0) {
+                if (cardMap.get(methodName) != null && cardMap.get(methodName) > 0) {
                     try (Statement statement = connection.createStatement()) {
                         statement.executeUpdate(sql);
-                        LOGGER.info("Finalize is done.");
+                        LOGGER.info("Вызов взят из стека и отменён!");
                     }
+                } else {
+                    LOGGER.info("вызов не отменен!: " + cardMap.get(methodName));
                 }
             }
         } catch (Exception e) {

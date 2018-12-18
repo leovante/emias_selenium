@@ -17,9 +17,9 @@ public class CompleteServiceTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .completeServiceBtn()
                 .verifyDoneCall(pacient, doctor)
                 .closeCardBtn();

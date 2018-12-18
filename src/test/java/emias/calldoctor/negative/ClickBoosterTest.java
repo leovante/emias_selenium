@@ -22,7 +22,7 @@ public class ClickBoosterTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTodayBooster(doctor);
         // TODO: 12/6/2018 тут нужно как-то прикрутить прокси и запускать тест при слабом интернете
     }
@@ -35,9 +35,9 @@ public class ClickBoosterTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatClickBooster(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }
@@ -51,9 +51,9 @@ public class ClickBoosterTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
 //        page.createCallPage().createCall(pacient);
         page.createCallPage().createCall_Api(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatDobavitClickBooster(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }

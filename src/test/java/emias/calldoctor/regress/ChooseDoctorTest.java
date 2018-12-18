@@ -17,9 +17,9 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyActivCall(pacient)
                 .closeCardBtn();
         page.dashboardPage()
@@ -35,9 +35,9 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyActivCall(pacient)
                 .closeCardBtn();
         page.dashboardPage()
@@ -58,12 +58,12 @@ public class ChooseDoctorTest extends AbstractTestGrid {
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallDash(pacient);
-        page.fullCardPage().verifyNewCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).verifyNewCall(pacient);
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage()
                 .saveAddress()
                 .chooseDoctorToday(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyActivCall(pacient)
                 .closeCardBtn();
         page.dashboardPage()

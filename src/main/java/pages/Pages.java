@@ -57,8 +57,8 @@ public class Pages extends AbstractPage {
         return page(SetDoctorPage.class);
     }
 
-    public FullCardPage fullCardPage() {
-        return page(FullCardPage.class);
+    public FullCardPage fullCardPage(String s) {
+        return new FullCardPage(s);
     }
 
     public DashboardPage dashboardPage() {

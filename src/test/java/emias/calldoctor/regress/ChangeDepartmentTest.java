@@ -27,11 +27,11 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage().verifyDepartment(doctor2);
+        page.fullCardPage(testName()).verifyDepartment(doctor2);
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
@@ -44,15 +44,15 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyDepartment(doctor2)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor3);
-        page.fullCardPage().verifyDepartment(doctor3);
+        page.fullCardPage(testName()).verifyDepartment(doctor3);
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
@@ -64,15 +64,15 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyDepartment(doctor2)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor);
-        page.fullCardPage().verifyDepartment(doctor);
+        page.fullCardPage(testName()).verifyDepartment(doctor);
     }
 
     @Test(groups = "CD", description = "передача вызова из ЛПУ в ЛПУ")
@@ -101,7 +101,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().transferToDepartBtn();
+        page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
     }
@@ -113,7 +113,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile2");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Mkab(pacient);
-        page.fullCardPage().transferToDepartBtn();
+        page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
     }
     // TODO: 13.08.2018 передать вызов из первого ЛПУ в др. ЛПУ

@@ -19,7 +19,7 @@ public class CreateCallTestRandom extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile0");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }

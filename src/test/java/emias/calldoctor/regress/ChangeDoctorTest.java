@@ -18,11 +18,11 @@ public class ChangeDoctorTest extends AbstractTestGrid {
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage().changeDoctorBtn();
+        page.fullCardPage(testName()).changeDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor2);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyActivCall(pacient)
                 .verifyDoctor(doctor2)
                 .closeCardBtn();

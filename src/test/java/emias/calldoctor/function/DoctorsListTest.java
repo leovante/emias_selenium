@@ -29,7 +29,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile7");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
@@ -42,7 +42,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile8");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
@@ -55,7 +55,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile9");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
@@ -68,7 +68,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile10");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
@@ -81,7 +81,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile11");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
@@ -94,7 +94,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile12");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
@@ -107,7 +107,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile13");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
@@ -120,7 +120,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile2");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
     }
 
@@ -134,7 +134,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .openNewCallDash(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
@@ -149,7 +149,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
     }
@@ -163,7 +163,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile13");
         enter.enterCalldoctorFromMis_Admin();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Моков')]")).shouldNotBe(Condition.visible);
@@ -180,13 +180,13 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient2 = new Pacient("Profile0_2");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Mkab(pacient);
-        page.fullCardPage().editCallBtn();
+        page.fullCardPage(testName()).editCallBtn();
         page.createCallPage()
                 .setDeafult()
                 .editCallPage(pacient2)
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().saveAddress();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldBe(Condition.visible);
@@ -205,7 +205,7 @@ public class DoctorsListTest extends AbstractTestGrid {
         Pacient pacient2 = new Pacient("Profile0_2");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Mkab(pacient);
-        page.fullCardPage().editCallBtn();
+        page.fullCardPage(testName()).editCallBtn();
         page.createCallPage()
                 .setDeafult()
                 .editCallPage_Mkab(pacient2)

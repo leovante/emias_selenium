@@ -7,8 +7,10 @@ import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.TestMethodCapture;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Listeners(TestMethodCapture.class)
 public class CreateCallTest extends AbstractTestGrid {
 
     @Test(groups = "CD", description = "пустой вызов")
@@ -25,7 +28,7 @@ public class CreateCallTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile0");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }
@@ -37,7 +40,7 @@ public class CreateCallTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
         page.dashboardPage().verifyNewCallGroup(pacient);
@@ -50,7 +53,7 @@ public class CreateCallTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile2");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
         page.dashboardPage().verifyNewCallGroup(pacient);
@@ -64,7 +67,7 @@ public class CreateCallTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage().verifyNewCall(pacient);
+        page.fullCardPage(testName()).verifyNewCall(pacient);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
@@ -76,7 +79,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
         $(By.xpath("//*[contains(text(),'Тестов2')]")).shouldBe(Condition.visible);
-        page.fullCardPage().verifyNewCall(pacient);
+        page.fullCardPage(testName()).verifyNewCall(pacient);
     }
 
     @Test(groups = "CD", description = "вызов ребенка с Портала")
@@ -90,7 +93,7 @@ public class CreateCallTest extends AbstractTestGrid {
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallDash(pacient);
-        page.fullCardPage().verifyNewCall(pacient);
+        page.fullCardPage(testName()).verifyNewCall(pacient);
     }
 
     @Flaky
@@ -103,7 +106,7 @@ public class CreateCallTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage().verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
+        page.fullCardPage(testName()).verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
@@ -116,7 +119,7 @@ public class CreateCallTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Api(pacient);
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage().verifyNewCall(pacient);
+        page.fullCardPage(testName()).verifyNewCall(pacient);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
     }

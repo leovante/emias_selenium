@@ -20,7 +20,7 @@ public class FilterTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .verifyNewCallGroup(pacient);
@@ -34,9 +34,9 @@ public class FilterTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
                 .searchFilterDoctor(doctor)
@@ -51,7 +51,7 @@ public class FilterTest extends AbstractTestGrid {
         page.createCallPage().createCall_Api(pacient);
         enter.enterCalldoctorFromMis();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .searchFilterTypeCallNeotlozhniy()
@@ -66,9 +66,9 @@ public class FilterTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTomorrow(doctor);
-        page.fullCardPage().closeCardBtn();
+        page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
                 .filterTomorrow()

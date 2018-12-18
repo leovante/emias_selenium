@@ -32,9 +32,9 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .completeServiceBtn()
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
@@ -49,9 +49,9 @@ public class PerehodyServisovTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall_Mkab(pacient);
-        page.fullCardPage().chooseDoctorBtn();
+        page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage()
+        page.fullCardPage(testName())
                 .completeServiceBtn()
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
