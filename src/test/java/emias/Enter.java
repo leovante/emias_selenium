@@ -56,13 +56,13 @@ public class Enter extends AbstractTestGrid {
     }
 
     @Step("Захожу в диспансеризацию через МИС")
-    public Enter enterDispFromMis() {
-        if (CALLDOCTOR_URL == null) {
+    public Enter enterDispJournalFromMis() {
+        if (use_url != null && use_url.equals("false")) {
             page.loginPage().login(site, login, pass);
             page.homePageMis().dispCardJournalBtn();
-            switchTo().window(1);
+            switchTo().window("Медицинская Информационная Система");
         } else {
-            LOGGER.info("Открываю только модуль диспансеризация по ссылке:\n" + DISP_JOURNAL_URL);
+            LOGGER.info("Открываю только журнал модуля диспансеризация по ссылке:\n" + DISP_JOURNAL_URL);
             open(DISP_JOURNAL_URL);
         }
         return this;

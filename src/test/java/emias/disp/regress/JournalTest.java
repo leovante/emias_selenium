@@ -51,7 +51,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
     public void testSearchCard4() {
-        open(DISP_JOURNAL_URL);
+        enter.enterDispJournalFromMis();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(3059);
         page.journalPage().clickSearchBtn();
@@ -62,7 +62,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
     public void testSearchCard5() {
-        open(DISP_JOURNAL_URL);
+        enter.enterDispJournalFromMis();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByPolNumber(7654321);
         page.journalPage().clickSearchBtn();
@@ -73,9 +73,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
     public void testSearchCard6() {
-        enter.enterMIS();
-        page.homePageMis().dispCardJournalBtn();
-        switchTo().window(1);
+        enter.enterDispJournalFromMis();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByFio("Темников Дмитрий Олегович");
         page.journalPage().clickSearchBtn();
@@ -86,9 +84,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() throws InterruptedException {
-        enter.enterMIS();
-        page.homePageMis().dispCardJournalBtn();
-        switchTo().window(1);
+        enter.enterDispJournalFromMis();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(1594);
         page.journalPage().clickSearchBtn();

@@ -7,11 +7,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidArgumentException;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -26,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
@@ -35,7 +34,7 @@ public class CreateCallPage extends AbstractPage {
     HttpResponse httpResponse;
     private Pacient pacient;
 
-    SelenideElement cancelAdress = $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
+    SelenideElement cancelAdress = /*$(By.xpath("//span[contains(text(),'АДРЕС')]/../../")).*/$(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     //    SelenideElement list_first_container = $(By.xpath("//div[@role='listbox']/mat-option"));
 //    SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
@@ -162,7 +161,6 @@ public class CreateCallPage extends AbstractPage {
     }
 
 
-
     public CreateCallPage setDeafult() {
         $(By.id("source1")).click();
 
@@ -231,7 +229,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
 
-//    private CreateCallPage address() throws InterruptedException {
+    //    private CreateCallPage address() throws InterruptedException {
 //        cancelAdress.shouldBe(Condition.visible);
 //        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
 //            cancelAdress.click();
@@ -259,12 +257,10 @@ public class CreateCallPage extends AbstractPage {
 //        addressPlus();
 //        return this;
 //    }
-@Step("ввод адреса")
+    @Step("ввод адреса")
     private CreateCallPage address() throws InterruptedException {
         if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
-            Thread.sleep(500);
-            cancelAdress.shouldBe(Condition.visible).click();
-            Thread.sleep(500);
+            clearAdress();
             list_first_container(pacient.getAddress1());
         }
         if (pacient.getAddress2() != null && pacient.getAddress2() != "")
@@ -286,18 +282,49 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("выбрал адрес из выпадающего списка")
     void list_first_container(String address) throws InterruptedException {
-        Thread.sleep(500);
-        adress.sendKeys(address);
-        Thread.sleep(500);
+        adress.hover();
+        Thread.sleep(1000);
+        WebDriver driver = getWebDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+
+        WebElement address1 = driver.findElement(By.xpath("//input[@placeholder='Адрес']"));
+        address1.sendKeys(address);
+        Thread.sleep(1000);
+        korpus.hover();
+        Thread.sleep(1000);
+        adress.hover();
+//        WebElement addressString = driver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"));
+//        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))));
+//        driver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]")).click();
         $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
-//        $(By.xpath("//div[@role='listbox']//*[contains(text(),'" + address + "')]"))
                 .shouldBe(Condition.visible)
                 .click();
     }
 
+    @Step("очистить поле с адресом")
+    void clearAdress() throws InterruptedException {
+        $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
+        addressLoadWaiter();
+        for (int k = 0; k < 10 && !adress.getValue().equals(""); k++) {
+            cancelAdress.shouldBe(Condition.visible).click();
+            LOGGER.info("очистил поле с адресом");
+        }
+    }
+
+    @Step("жду загрузку адреса")
+    void addressLoadWaiter() throws InterruptedException {
+        int i = 0;
+        do {
+            LOGGER.info("жду загрузку адреса");
+            Thread.sleep(1000);
+            i++;
+        } while (!adress.getValue().equals("Московская обл.,") && i < 10);
+        Assert.assertTrue(adress.getValue().equals("Московская обл.,"), "адрес не загрузился");
+    }
+
     @Step("уточняю адрес")
     private CreateCallPage addressPlus() {
-        $(By.xpath("//input[@placeholder='Корпус']")).setValue(pacient.getBuilding());
+        korpus.setValue(pacient.getBuilding());
         $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
         $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
         $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
@@ -509,7 +536,7 @@ public class CreateCallPage extends AbstractPage {
     @Step("нажимаю на выпадающий список участков")
     public CreateCallPage selectUchastokFromNeUdalosOpredelit() {
         SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]")).shouldBe(Condition.visible);
-        se.$(By.xpath("../.")).$(By.xpath(".//mat-form-field")).click();
+        $(By.xpath("//mat-label[contains(text(),'Участок')]/../../..//mat-select")).click();
         return this;
     }
 
