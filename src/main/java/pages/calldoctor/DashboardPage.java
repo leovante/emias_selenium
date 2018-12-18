@@ -75,6 +75,7 @@ public class DashboardPage extends AbstractPage {
         docFilter.click();
         Thread.sleep(1000);
         docFilter.sendKeys(doctor.getFamily());
+        Thread.sleep(1000);
         $(By.xpath("//div/div/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//div/div/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).click();
@@ -164,7 +165,10 @@ public class DashboardPage extends AbstractPage {
     @Step("проверяю на дашборде запись не отображается у врача в группе активные")
     public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) throws IOException, InterruptedException {
         Thread.sleep(1000);
-        SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
+        SelenideElement docFamBlock =
+                $(By.xpath("//*[contains(text(),'Активные')]"))
+                        .$(By.xpath("./../..//span[contains(text(),'" + doctor.getFamily() + "')]"));
+        Thread.sleep(500);
         if (docFamBlock.isDisplayed()) {
             docFamBlock.click();
             SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
