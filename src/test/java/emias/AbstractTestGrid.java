@@ -30,7 +30,7 @@ public class AbstractTestGrid {
     public static String pass;
     //    BrowserMobProxy proxy = new BrowserMobProxyServer();
 
-    @Parameters({"site", "login", "pass", "gridIsRun", "enter_without_mis"})
+    @Parameters({"site", "login", "pass", "gridIsRun", "use_url"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String site, @Optional String login, @Optional String pass, @Optional String gridIsRun, @Optional String use_url) throws Exception {
         Configuration.reportsFolder = "target/test-result/reports";

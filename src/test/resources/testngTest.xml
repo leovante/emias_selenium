@@ -8,7 +8,7 @@
     <parameter name="pass" value="1214"/>
     <parameter name="gridIsRun" value="true"/>
     <parameter name="headless" value="false"/>
-    <parameter name="enter_without_mis" value="false"/>
+    <parameter name="use_url" value="false"/>
 
     <listeners>
         <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
