@@ -81,6 +81,5 @@ public class AbstractTestGrid {
     @AfterMethod(alwaysRun = true, groups = "CD")
     public void afterMethodCD(ITestResult result) {
         SQLDemonstration.cancelCall(result.getMethod().getMethodName());
-        LOGGER.info("Вызов удален!");
     }
 }

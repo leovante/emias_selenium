@@ -303,9 +303,10 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("очистить поле с адресом")
     void clearAddress() throws InterruptedException {
-        Assert.assertTrue(
-                $(By.xpath("//*[contains(text(),'Новый вызов')]")).isDisplayed() |
-                        $(By.xpath("//*[contains(text(),'Редактирование вызова')]")).isDisplayed());
+        $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
+//        Assert.assertTrue(
+//                $(By.xpath("//*[contains(text(),'Новый вызов')]")).isDisplayed() |
+//                        $(By.xpath("//*[contains(text(),'Редактирование вызова')]")).isDisplayed());
         addressLoadWaiter();
         for (int k = 0; k < 10 && !adress.getValue().equals(""); k++) {
             cancelAdress.shouldBe(Condition.visible).click();
