@@ -3,9 +3,14 @@ package emias.mis.regress;
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import io.qameta.allure.Epic;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.calldoctor.doctors_interfaces.Doctor;
+import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
+
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -65,31 +70,46 @@ public class PerehodyTest extends AbstractTestGrid {
     /**
      * переходы в диспансеризацию
      */
-    @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда", enabled = false)
+    @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispDash() {
-        page.loginPage();
-        //// TODO: 12/13/2018
+        page.loginPage().login(site, login, pass);
+        page.homePageMis().dispCardJournalBtn();
+        switchTo().window("Медицинская Информационная Система");
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ", enabled = false)
+    @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispMkab() {
-        page.loginPage();
-        //// TODO: 12/13/2018
+        page.loginPage().login(site, login, pass);
+        $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
+        $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
+        $(By.id("searchMkabByFilter")).click();
+        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
+        $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
+        $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
+        $(By.xpath("//*[contains(text(),'Карты диспансеризации / профосмотры')]")).click();
+        switchTo().window("Медицинская Информационная Система");
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Диспансеризацию из Расписания приема", enabled = false)
+    @Test(groups = "mis", description = "Переход в Диспансеризацию из ячейки расписание приема")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
-    public void transitionDispShedule() {
-        page.loginPage();
-        //Карта мероприятий
-        // TODO: 12/13/2018
+    public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
+        Pacient pacient = new Pacient("Temnikov94");
+        Doctor doctor = new Doctor("AiBoLitAutoTest");
+        page.loginPage().login(site, login, pass);
+        page.homePageMis().raspisaniPriemaBtn();
+        page.raspisaniePriemaPage()
+                .generateML(pacient)
+                .getTerapevtTime()
+                .saveAndCloseBtn()
+                .selectDoctor(doctor)
+                .lastDispPacientCell_kartaProfOsmotra();
         $(By.xpath("//*[contains(text(),'Карта мероприятий')]")).shouldBe(Condition.visible);
     }
 

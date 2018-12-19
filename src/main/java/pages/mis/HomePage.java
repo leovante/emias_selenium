@@ -20,12 +20,12 @@ public class HomePage extends AbstractPage {
     }
 
     @Step("Захожу в ведение расписания")
-    public void manageSheduleBtn() {
+    public void vedenieRaspisaniyaBtn() {
         timeTableBtn.click();
     }
 
     @Step("Захожу в расписание приема")
-    public HomePage admissionScheduleBtn() {
+    public HomePage raspisaniPriemaBtn() {
         admissionScheduleBtn.click();
         return this;
     }
@@ -74,11 +74,11 @@ public class HomePage extends AbstractPage {
         while (n <= i) {
             LOGGER.info("Обрабатываю врача №: " + n);
             String doctor_num = new DoctorMethods().getUnicalDoctor3(n);
-            String doctor_num_fam = ManageShedule.getSecondName(doctor_num);
+            String doctor_num_fam = VedenieRaspisaniyaPage.getSecondName(doctor_num);
 //            SQLDemonstration.deleteShedule(doctor_num_fam);
             new DoctorMethods().selectDoctor(doctor_num);
             new BeforeWork().createShedule();
-            new ManageShedule().verifyCreatedShedule(doctor_num_fam);
+            new VedenieRaspisaniyaPage().verifyCreatedShedule(doctor_num_fam);
             new DoctorMethods().selectDoctor(doctor_num);
             n++;
         }

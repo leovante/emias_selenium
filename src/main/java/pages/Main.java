@@ -18,7 +18,6 @@ public class Main {
         session.getTransaction().commit();
         session.close();
 
-//        TODO Auto-generated method stub
 //        GridHubConfiguration configHub = new GridHubConfiguration();
 //        configHub.host = "localhost";
 //        configHub.port = 8060;

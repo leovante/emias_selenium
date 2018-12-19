@@ -27,7 +27,6 @@ public class SeleniumGrid extends AbstractPage {
     }
 
     public static void stop(String gridIsRun) throws IOException, JSONException, InterruptedException {
-        // TODO: 11/22/2018 тут сделать проверку на то что тесты могут быть запущены
         if (gridIsRun != null && statusGrid.checkIsNotWorkStatus()) {
             URL urlHub = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
             urlHub.openConnection().getInputStream();

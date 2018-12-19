@@ -13,7 +13,7 @@ public class BeforeSuiteCallCenter extends AbstractTestGrid {
 
 //        page.loginPage().login(site, login, pass);
 //        switchTo().window(0);
-//        page.homePageMis().manageSheduleBtn();
+//        page.homePageMis().vedenieRaspisaniyaBtn();
 //        createDoctorShedule();
 //    }
 

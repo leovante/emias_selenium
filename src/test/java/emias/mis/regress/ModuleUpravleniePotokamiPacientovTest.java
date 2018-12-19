@@ -13,7 +13,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
         enter.enterMIS();
-        page.homePageMis().manageSheduleBtn();
+        page.homePageMis().vedenieRaspisaniyaBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
         SQLDemonstration.deleteShedule(secondName);
@@ -28,7 +28,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
         enter.enterMIS();
-        page.homePageMis().manageSheduleBtn();
+        page.homePageMis().vedenieRaspisaniyaBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
         String second_doctor_fam = page.manageShedule().getSecondName(secondDoctor);
@@ -48,7 +48,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
         enter.enterMIS();
-        page.homePageMis().manageSheduleBtn();
+        page.homePageMis().vedenieRaspisaniyaBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         page.manageShedule()
                 .setNotReceiveDays(firstDoctor)
@@ -60,7 +60,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
         enter.enterMIS();
-        page.homePageMis().manageSheduleBtn();
+        page.homePageMis().vedenieRaspisaniyaBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
@@ -86,7 +86,7 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
         enter.enterMIS();
-        page.homePageMis().manageSheduleBtn();
+        page.homePageMis().vedenieRaspisaniyaBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
@@ -103,10 +103,10 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
 
         page.homePageMis()
                 .logoHomeBtn()
-                .admissionScheduleBtn();
+                .raspisaniPriemaBtn();
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
-        page.admissionSchedule().createRecord(first_doctor_fullname);
+        page.raspisaniePriemaPage().createRecord(first_doctor_fullname);
 
         page.homePageMis()
                 .logoHomeBtn()

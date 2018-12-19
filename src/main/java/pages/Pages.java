@@ -29,16 +29,16 @@ public class Pages extends AbstractPage {
         return page(NapravlenieNaIssledovanie.class);
     }
 
-    public ManageShedule manageShedule() {
-        return page(ManageShedule.class);
+    public VedenieRaspisaniyaPage manageShedule() {
+        return page(VedenieRaspisaniyaPage.class);
     }
 
     public CreateMedicalCard medicalCard() {
         return page(CreateMedicalCard.class);
     }
 
-    public AdmissionSchedule admissionSchedule() {
-        return page(AdmissionSchedule.class);
+    public RaspisaniePriemaPage raspisaniePriemaPage() {
+        return page(RaspisaniePriemaPage.class);
     }
 
     public TransferRecords transferRecords() {

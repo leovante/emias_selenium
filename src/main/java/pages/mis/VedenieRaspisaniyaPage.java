@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class ManageShedule extends AbstractPage {
+public class VedenieRaspisaniyaPage extends AbstractPage {
 
     SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
     SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
@@ -34,9 +34,6 @@ public class ManageShedule extends AbstractPage {
     SelenideElement row_doctorOnBoln = $(By.xpath("//div[@id='radio_busy']/label[2]/span/span"));
     SelenideElement saveBtn = $(By.xpath("//button[@id='btn_busy_save']/span"));
     SelenideElement copyShedule = $(By.xpath("//button[@id='btn_copy']/span[2]"));
-
-    public ManageShedule() {
-    }
 
     @Step("Создать расписание")
     public void createShedule() throws InterruptedException {
@@ -61,7 +58,7 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("задать неприемные дни")
-    public ManageShedule setNotReceiveDays(String firstDoctor) {
+    public VedenieRaspisaniyaPage setNotReceiveDays(String firstDoctor) {
 //        waitAllEmias();
 //        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
 
@@ -103,7 +100,7 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("удалить расписание")
-    public ManageShedule deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
+    public VedenieRaspisaniyaPage deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
 //        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
 //        waitAllEmias();
 
@@ -143,7 +140,7 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("проверить неприемные дни")
-    public ManageShedule verifyNotReceiveDays() {
+    public VedenieRaspisaniyaPage verifyNotReceiveDays() {
 //        waitAllEmias();
         $(By.xpath("//div[@id='schedule']/div/div/div"))
                 .$(By.xpath("span[contains(text(),'Врач на больничном')]"))
@@ -153,7 +150,7 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("проверить удаление расписания")
-    public ManageShedule verifyDeletedShedle() {
+    public VedenieRaspisaniyaPage verifyDeletedShedle() {
         if (!$(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
@@ -174,16 +171,11 @@ public class ManageShedule extends AbstractPage {
     }
 
     @Step("проверка создания распсиания")
-    public ManageShedule verifyCreatedShedule(String nameDoctor) throws InterruptedException {
+    public VedenieRaspisaniyaPage verifyCreatedShedule(String nameDoctor) throws InterruptedException {
         Thread.sleep(2000);
         $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .$(By.xpath("//*[contains(text(),'23:44 ')]"));
         LOGGER.info("Проверил что для доктора " + nameDoctor + " создано расписание!");
         return this;
     }
-
-//    public void waitWhileClickable(WebElement webElement) {
-//        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-//    }
-
 }

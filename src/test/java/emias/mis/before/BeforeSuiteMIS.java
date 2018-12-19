@@ -18,7 +18,7 @@ public class BeforeSuiteMIS extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void cleanBeforeWork() throws InterruptedException {
         page.loginPage().login(site, login, pass);
-        page.homePageMis().manageSheduleBtn();
+        page.homePageMis().vedenieRaspisaniyaBtn();
         page.homePageMis().createSomeRecords(15);
         page.homePageMis().logoHomeBtn();
     }

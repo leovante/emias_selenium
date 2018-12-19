@@ -125,10 +125,10 @@ public class JournalTest extends AbstractTestGrid {
     public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
         Pacient pacient = new Pacient("Temnikov94");
         enter.enterMIS();
-        page.homePageMis().admissionScheduleBtn();
-        page.admissionSchedule().createDispMl(pacient);
+        page.homePageMis().raspisaniPriemaBtn();
+        page.raspisaniePriemaPage().createDispMl(pacient);
         page.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");
-        page.admissionSchedule().selectCell();
+//        page.raspisaniePriemaPage().selectCell();
 
         page.homePageMis().mkabBtn();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");

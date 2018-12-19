@@ -6,6 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.AbstractPage;
+import pages.calldoctor.doctors_interfaces.Doctor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -103,6 +104,15 @@ public class DoctorMethods extends AbstractPage {
     @Step("выбрать врача")
     public DoctorMethods selectDoctor(String doctorInlet) {
         $(By.xpath("//td/div/span[contains(text(),'" + doctorInlet + "')]")).click();
+        return this;
+    }
+
+    public DoctorMethods selectDoctor(Doctor doctor) {
+        $(By.xpath("//td/div/span[contains(text(),'" +
+                doctor.getFamily() + " " +
+                doctor.getName() + " " +
+                doctor.getOt() +
+                "')]")).click();
         return this;
     }
 }
