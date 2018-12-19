@@ -52,4 +52,43 @@ public class ValidationTest extends AbstractTestGrid {
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Карта не валидна')]")).shouldBe(Condition.visible);
     }
+
+    @Test(groups = "CD", description = "отмена вызова без указания причины на странице подробной карты вызова")
+    @Epic("Проверка валидатора")
+    @RetryCountIfFailed(2)
+    public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile0_CancelValidation");
+        enter.enterCalldoctorFromMis();
+        page.createCallPage().createCall(pacient);
+        page.fullCardPage(testName())
+                .cancelOnFullCardBtn("")
+                .verifyCancellCallValidation();
+    }
+
+    @Test(groups = "CD", description = "отмена вызова без указания причины на странице редактирования карты")
+    @Epic("Проверка валидатора")
+    @RetryCountIfFailed(2)
+    public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile0_CancelValidation");
+        enter.enterCalldoctorFromMis();
+        page.createCallPage().createCall(pacient);
+        page.fullCardPage(testName()).editCallBtn();
+        page.createCallPage()
+                .cancelOnFullCardBtn("")
+                .verifyCancellCallValidation();
+    }
+
+    @Test(groups = "CD", description = "отмена вызова без указания причины на дашборде")
+    @Epic("Проверка валидатора")
+    @RetryCountIfFailed(2)
+    public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile0_CancelValidation");
+        enter.enterCalldoctorFromMis();
+        page.createCallPage().createCall(pacient);
+        page.fullCardPage(testName()).closeCardBtn();
+        page.dashboardPage()
+                .cancelNewCallDash(pacient)
+                .verifyCancellCallValidation()
+                .verifyCallIsNotCancelFromDashboard(pacient);
+    }
 }

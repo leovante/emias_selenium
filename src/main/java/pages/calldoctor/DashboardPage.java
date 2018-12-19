@@ -201,7 +201,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyRecordIsCancelFromDashboard(Pacient pacient) throws InterruptedException {
+    public void verifyCallIsCancelFromDashboard(Pacient pacient) throws InterruptedException {
         Thread.sleep(5000);
         SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         if (newCallProgressFrame.isDisplayed()) {
@@ -221,7 +221,28 @@ public class DashboardPage extends AbstractPage {
         }
     }
 
-    @Step("открываю карту вызова в группе 'Ожидают обработки' через дашбоард")
+    @Step("Проверка что запись удалена с дашборда")
+    public void verifyCallIsNotCancelFromDashboard(Pacient pacient) throws InterruptedException {
+        Thread.sleep(5000);
+        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
+        if (newCallProgressFrame.isDisplayed()) {
+            newCallProgressFrame.$(By.id("order")).click();
+            newCallProgressFrame.click();
+            if (address.isDisplayed()) {
+                address.click();
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
+            } else {
+                LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
+            }
+        } else {
+            LOGGER.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
+        }
+    }
+
+    @Step("открываю вызов в группе 'Ожидают обработки' через дашбоард")
     public void openNewCallDash(Pacient pacient) throws IOException, InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
@@ -238,17 +259,52 @@ public class DashboardPage extends AbstractPage {
         openCard.click();
     }
 
-    @Step("удаляю карту вызова в группе 'Ожидают обработки' через дашбоард")
+    @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")
+    public DashboardPage cancelNewCallDash(Pacient pacient) throws IOException, InterruptedException {
+        newCallProgressFrame.$(By.id("order")).click();
+        newCallProgressFrame.click();
+        SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(address).perform();
+
+        SelenideElement smallMenu = address
+                .$(By.xpath("../../../."))
+                .$(By.xpath(".//*[contains(text(),'chevron_left')]"));
+        actions.moveToElement(smallMenu).perform();
+        SelenideElement cancelCard = address
+                .$(By.xpath("../../../."))
+                .$(By.xpath(".//a[@title='Отменить вызов']"))
+                .$(By.xpath(".//mat-icon[contains(text(),'close')]"));
+        Thread.sleep(1000);
+        cancelCard.click();
+        return this;
+    }
+
+    @Step("отменяю вызов в группе 'Ожидают обработки' через дашбоард")
     public DashboardPage deleteNewCallProgressFrame(Pacient pacient) throws IOException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
+
         SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(adress).perform();
-        SelenideElement smallMenu = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
+
+        SelenideElement smallMenu = adress
+                .$(By.xpath("../../../."))
+                .$(By.xpath(".//*[contains(text(),'chevron_left')]"));
         actions.moveToElement(smallMenu).perform();
-        SelenideElement openCard = adress.$(By.xpath("../../../.")).$(By.xpath(".//*[@title='Отменить вызов']"));
+        SelenideElement openCard = adress
+                .$(By.xpath("../../../."))
+                .$(By.xpath(".//*[@title='Отменить вызов']"));
         openCard.click();
+        return this;
+    }
+
+    @Step("валидация что вызов не отменился на странице редактирования")
+    public DashboardPage verifyCancellCallValidation() throws InterruptedException {
+        $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
+        Thread.sleep(2000);
+        $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
         return this;
     }
 }

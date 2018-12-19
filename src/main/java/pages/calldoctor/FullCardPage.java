@@ -23,12 +23,12 @@ public class FullCardPage extends AbstractPage {
     SelenideElement setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
     SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
     SelenideElement completeServiceBtn = $(By.id("toDone"));
-    SelenideElement cancelBtn = $(By.id("cancel"));
     SelenideElement toLpu = $(By.id("toLpu"));
-    SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
     SelenideElement change = $(By.id("change"));
+    SelenideElement cancelBtn = $(By.id("cancel"));
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
+    SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
 
     public FullCardPage(String testName) {
@@ -138,10 +138,10 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("отменить вызов")
-    public FullCardPage cancelOnFullCardBtn() {
+    public FullCardPage cancelOnFullCardBtn(String reason) {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         cancelBtn.click();
-        cancelField.setValue("отмена автотестом");
+        cancelField.setValue(reason);
         cancelCall.click();
         return this;
     }
@@ -230,9 +230,10 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("передать в другое ЛПУ через подробную карту вызова")
-    public void transferToDepartBtn() {
+    public FullCardPage transferToDepartBtn() {
         toLpu.click();
         $(By.xpath("//*[contains(text(),'Выберите куда передать вызов')]")).shouldBe(Condition.visible);
+        return this;
     }
 
     @Step("Проверка текущего подразделения у карты вызова")
@@ -251,6 +252,14 @@ public class FullCardPage extends AbstractPage {
     @Step("проверить врача")
     public FullCardPage verifyDoctor(Doctor doctor) {
         $(By.xpath("//*[contains(.,'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
+        return this;
+    }
+
+    @Step("валидация что вызов не отменился на подробной странице")
+    public FullCardPage verifyCancellCallValidation() throws InterruptedException {
+        $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
+        Thread.sleep(2000);
+        $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
         return this;
     }
 }

@@ -20,10 +20,10 @@ public class CancelCallTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
         page.createCallPage().createCall(pacient);
-        page.fullCardPage(testName()).cancelOnFullCardBtn();
+        page.fullCardPage(testName()).cancelOnFullCardBtn("отмена автотестом");
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
-                .verifyRecordIsCancelFromDashboard(pacient);
+                .verifyCallIsCancelFromDashboard(pacient);
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
@@ -38,7 +38,7 @@ public class CancelCallTest extends AbstractTestGrid {
                 .cancelOnChangePageBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
-                .verifyRecordIsCancelFromDashboard(pacient);
+                .verifyCallIsCancelFromDashboard(pacient);
     }
 
     @Test(groups = "CD", description = "отмена вызова на дашборде")
@@ -52,6 +52,6 @@ public class CancelCallTest extends AbstractTestGrid {
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .deleteNewCallProgressFrame(pacient)
-                .verifyRecordIsCancelFromDashboard(pacient);
+                .verifyCallIsCancelFromDashboard(pacient);
     }
 }
