@@ -81,7 +81,7 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-    public CreateCallPage createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
+    public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
 //        this.pacient = pacient;
         addNewCall()
                 .sourceCall()
@@ -97,7 +97,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    public CreateCallPage createCall_Mkab(Pacient pacient) throws IOException, InterruptedException, ParseException {
+    public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
         this.pacient = pacient;
         addNewCall()
                 .sourceCall()
@@ -111,7 +111,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("Создаю вызов через api")
-    public void createCall_Api(Pacient pacient) {
+    public void createCall_Api() {
         SQLDemonstration.finalizeCall_NPol(pacient.getNumberpol());
         HttpClient httpClient = HttpClients.createDefault();
         if (pacient.getSource() == 2) {//смп

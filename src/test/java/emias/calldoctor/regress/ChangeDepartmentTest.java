@@ -26,7 +26,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -43,7 +43,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -63,7 +63,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -100,7 +100,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     public void testshowMeYourAdultPoliklinika() throws Exception {
         Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
@@ -112,7 +112,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
     public void testshowMeYourKidPoliklinika() throws Exception {
         Pacient pacient = new Pacient("Profile2");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Mkab(pacient);
+        page.createCallPage(pacient).createCall_Mkab();
         page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
     }

@@ -50,10 +50,6 @@ public class Pages extends AbstractPage {
         return page(DoctorMethods.class);
     }
 
-    public CreateCallPage createCallPage() {
-        return page(CreateCallPage.class);
-    }
-
     public CreateCallPage createCallPage(Pacient pacient) {
         return new CreateCallPage(pacient);
     }

@@ -19,7 +19,7 @@ public class FilterTest extends AbstractTestGrid {
     public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
@@ -33,7 +33,7 @@ public class FilterTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage(testName()).closeCardBtn();
@@ -48,7 +48,7 @@ public class FilterTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testTypeCall() throws InterruptedException, IOException, JSONException {
         Pacient pacient = new Pacient("Profile3_1");
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         enter.enterCalldoctorFromMis();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(testName()).closeCardBtn();
@@ -65,7 +65,7 @@ public class FilterTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTomorrow(doctor);
         page.fullCardPage(testName()).closeCardBtn();

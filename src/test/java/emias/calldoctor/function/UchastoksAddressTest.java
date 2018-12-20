@@ -26,8 +26,8 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile15");
         enter.enterCalldoctorFromMis();
-        page.createCallPage()
-                .createCall(pacient)
+        page.createCallPage(pacient)
+                .createCall()
                 .selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -39,8 +39,8 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile16");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
-        page.createCallPage().selectUchastokFromNeUdalosOpredelit();
+        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient).selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
@@ -55,8 +55,8 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile17");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
-        page.createCallPage().selectUchastokFromNeUdalosOpredelit();
+        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient).selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
@@ -71,7 +71,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile18");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
@@ -85,7 +85,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileAdressNeIzMkab");
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         enter.enterCalldoctorFromMis();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
@@ -99,7 +99,7 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testUchastokNotSet() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileAdressNeIzMkab_neformal");
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         enter.enterCalldoctorFromMis();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)

@@ -27,7 +27,7 @@ public class CreateCallTest extends AbstractTestGrid {
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
@@ -39,7 +39,7 @@ public class CreateCallTest extends AbstractTestGrid {
     public void testCallRegistr() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
@@ -52,7 +52,7 @@ public class CreateCallTest extends AbstractTestGrid {
     public void testCallRegistrMkab() throws Exception {
         Pacient pacient = new Pacient("Profile2");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
@@ -65,7 +65,7 @@ public class CreateCallTest extends AbstractTestGrid {
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile3");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(testName()).verifyNewCall(pacient);
     }
@@ -76,7 +76,7 @@ public class CreateCallTest extends AbstractTestGrid {
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile6");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         $(By.xpath("//*[contains(text(),'Тестов2')]")).shouldBe(Condition.visible);
         page.fullCardPage(testName()).verifyNewCall(pacient);
@@ -104,7 +104,7 @@ public class CreateCallTest extends AbstractTestGrid {
     public void testCallCenterChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile14");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(testName()).verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
@@ -117,7 +117,7 @@ public class CreateCallTest extends AbstractTestGrid {
     public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile20");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(testName()).verifyNewCall(pacient);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);

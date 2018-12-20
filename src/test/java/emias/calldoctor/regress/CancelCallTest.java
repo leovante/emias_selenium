@@ -19,7 +19,7 @@ public class CancelCallTest extends AbstractTestGrid {
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).cancelOnFullCardBtn("отмена автотестом");
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
@@ -32,7 +32,7 @@ public class CancelCallTest extends AbstractTestGrid {
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .editCallBtn()
                 .cancelOnChangePageBtn();
@@ -47,7 +47,7 @@ public class CancelCallTest extends AbstractTestGrid {
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)

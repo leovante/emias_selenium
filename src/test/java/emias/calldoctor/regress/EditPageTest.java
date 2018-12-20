@@ -24,8 +24,8 @@ public class EditPageTest extends AbstractTestGrid {
     public void testVerifyEditPage() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
-        page.createCallPage()
-                .createCall(pacient)
+        page.createCallPage(pacient)
+                .createCall()
                 .editCallBtn()
                 .verifyCallProfile1(pacient);
     }
@@ -36,8 +36,8 @@ public class EditPageTest extends AbstractTestGrid {
     public void testVerifyEditPage_2() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         enter.enterCalldoctorFromMis();
-        page.createCallPage()
-                .createCall(pacient)
+        page.createCallPage(pacient)
+                .createCall()
                 .editCallBtn()
                 .saveBtn();
         List<SelenideElement> se = $$(By.xpath("//div[@class='datatable-row-center datatable-row-group ng-star-inserted']"));
@@ -51,8 +51,8 @@ public class EditPageTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile1");
         Pacient pacient2 = new Pacient("Profile2");
         enter.enterCalldoctorFromMis();
-        page.createCallPage()
-                .createCall(pacient)
+        page.createCallPage(pacient)
+                .createCall()
                 .editCallBtn()
                 .setDeafult()
                 .editCallPage_Mkab(pacient2)
@@ -73,9 +73,9 @@ public class EditPageTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile0_3");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Mkab(pacient);
+        page.createCallPage(pacient).createCall_Mkab();
         page.fullCardPage(testName()).editCallBtn();
-        page.createCallPage()
+        page.createCallPage(pacient)
                 .setDeafult()
                 .editCallPage(pacient2)
                 .saveBtn();

@@ -25,9 +25,9 @@ public class ValidationTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile2_0");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).editCallBtn();
-        page.createCallPage()
+        page.createCallPage(pacient)
                 .setDeafult()
                 .editCallPage(pacient2)
                 .saveBtn();
@@ -42,11 +42,11 @@ public class ValidationTest extends AbstractTestGrid {
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile3");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(testName()).verifyNewCall(pacient);
         page.fullCardPage(testName()).editCallBtn();
-        page.createCallPage()
+        page.createCallPage(pacient)
                 .fillSourceSmp()
                 .deleteWhoCallFIO()
                 .saveBtn();
@@ -59,7 +59,7 @@ public class ValidationTest extends AbstractTestGrid {
     public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName())
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
@@ -71,9 +71,9 @@ public class ValidationTest extends AbstractTestGrid {
     public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).editCallBtn();
-        page.createCallPage()
+        page.createCallPage(pacient)
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -84,7 +84,7 @@ public class ValidationTest extends AbstractTestGrid {
     public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .cancelNewCallDash(pacient)

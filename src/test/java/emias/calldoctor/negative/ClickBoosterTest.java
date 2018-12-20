@@ -20,7 +20,7 @@ public class ClickBoosterTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile3_Kladr");
         Doctor doctor = new Doctor("MokovStendTestovoe");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTodayBooster(doctor);
@@ -34,7 +34,7 @@ public class ClickBoosterTest extends AbstractTestGrid {
         Pacient pacient = new Pacient("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
-        page.createCallPage().createCall(pacient);
+        page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatClickBooster(doctor);
         page.fullCardPage(testName())
@@ -50,7 +50,7 @@ public class ClickBoosterTest extends AbstractTestGrid {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         enter.enterCalldoctorFromMis();
 //        page.createCallPage().createCall(pacient);
-        page.createCallPage().createCall_Api(pacient);
+        page.createCallPage(pacient).createCall_Api();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatDobavitClickBooster(doctor);
         page.fullCardPage(testName())
