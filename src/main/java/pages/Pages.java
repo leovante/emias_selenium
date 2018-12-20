@@ -2,6 +2,7 @@ package pages;
 
 import pages.callcenter.*;
 import pages.calldoctor.*;
+import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.disp.ExampPage;
 import pages.disp.JournalPage;
 import pages.disp.KvotyPage;
@@ -51,6 +52,10 @@ public class Pages extends AbstractPage {
 
     public CreateCallPage createCallPage() {
         return page(CreateCallPage.class);
+    }
+
+    public CreateCallPage createCallPage(Pacient pacient) {
+        return new CreateCallPage(pacient);
     }
 
     public SetDoctorPage setDoctorPage() {

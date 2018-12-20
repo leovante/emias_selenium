@@ -1,11 +1,15 @@
 package emias.calldoctor.regress;
 
+import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import io.qameta.allure.Epic;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class InteractionMisCalldoctor extends AbstractTestGrid {
 
@@ -25,5 +29,29 @@ public class InteractionMisCalldoctor extends AbstractTestGrid {
         page.homePageMis().raspisaniPriemaBtn();
         page.doctorMethods().selectDoctor(doctor);
 
+    }
+
+    @Test(groups = "CD", description = "проверка заполнения формализованного адреса при выборе мкаб на странице создания вызова")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testFormalizeAddress() throws Exception {
+        Pacient pacient = new Pacient("Profile2");
+        enter.enterCalldoctorFromMis();
+        page.createCallPage(pacient)
+                .addNewCall()
+                .searchField();
+        $(By.xpath("//*[contains(text(),'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "проверка заполнения неформализованного адреса при выборе мкаб на странице создания вызова")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testNotformalizeAddress() throws Exception {
+        Pacient pacient = new Pacient("Temnikov94");
+        enter.enterCalldoctorFromMis();
+        page.createCallPage(pacient)
+                .addNewCall()
+                .searchField();
+        $(By.xpath("//*[contains(text(),'Московская обл., Рузский р-н., дп. Учитель СНТ, д.1')]")).shouldBe(Condition.visible);
     }
 }

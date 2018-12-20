@@ -66,6 +66,10 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
 
+    public CreateCallPage(Pacient pacient) {
+        this.pacient = pacient;
+    }
+
     protected static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
         long diffInMillies = date2.getTime() - date1.getTime();
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
@@ -78,7 +82,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     public CreateCallPage createCall(Pacient pacient) throws IOException, InterruptedException, ParseException {
-        this.pacient = pacient;
+//        this.pacient = pacient;
         addNewCall()
                 .sourceCall()
                 .address()
@@ -208,7 +212,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("добавить новый вызов")
-    private CreateCallPage addNewCall() {
+    public CreateCallPage addNewCall() {
         $(By.id("addNewCall")).click();
         return this;
     }
@@ -229,7 +233,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("поиск МКАБ")
-    private CreateCallPage searchField() {
+    public CreateCallPage searchField() {
         $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
         $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
         return this;
