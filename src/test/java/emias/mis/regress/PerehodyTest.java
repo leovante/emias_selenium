@@ -73,7 +73,7 @@ public class PerehodyTest extends AbstractTestGrid {
     @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
-    public void transitionDispDash() {
+    public void transitionDispDash() throws InterruptedException {
         page.loginPage().login(site, login, pass);
         page.homePageMis().dispCardJournalBtn();
         switchTo().window("Медицинская Информационная Система");

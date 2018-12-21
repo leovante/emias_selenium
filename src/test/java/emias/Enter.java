@@ -75,7 +75,7 @@ public class Enter extends AbstractTestGrid {
     }
 
     @Step("Захожу в диспансеризацию через МИС")
-    public Enter enterDispJournalFromMis() {
+    public Enter enterDispJournalFromMis() throws InterruptedException {
         if (use_url != null && use_url.equals("false")) {
             page.loginPage().login(site, login, pass);
             page.homePageMis().dispCardJournalBtn();

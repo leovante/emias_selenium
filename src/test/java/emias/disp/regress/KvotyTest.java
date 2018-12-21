@@ -21,7 +21,7 @@ public class KvotyTest extends AbstractTestGrid {
 
     @Test(groups = "disp", description = "проверка что открываются квоты на странице просмотра карты")
     @RetryCountIfFailed(3)
-    public void testSearchCard2() {
+    public void testSearchCard2() throws InterruptedException {
         enter.enterDispJournalFromMis();
         page.kvotyPage().kvotyBtn();
         $(By.xpath("//*[contains(text(),'Квоты диспансеризации')]")).shouldBe(Condition.visible);

@@ -50,7 +50,7 @@ public class JournalTest extends AbstractTestGrid {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
-    public void testSearchCard4() {
+    public void testSearchCard4() throws InterruptedException {
         enter.enterDispJournalFromMis();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(3059);
@@ -61,7 +61,7 @@ public class JournalTest extends AbstractTestGrid {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
-    public void testSearchCard5() {
+    public void testSearchCard5() throws InterruptedException {
         enter.enterDispJournalFromMis();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByPolNumber(7654321);
@@ -72,7 +72,7 @@ public class JournalTest extends AbstractTestGrid {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
-    public void testSearchCard6() {
+    public void testSearchCard6() throws InterruptedException {
         enter.enterDispJournalFromMis();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByFio("Темников Дмитрий Олегович");

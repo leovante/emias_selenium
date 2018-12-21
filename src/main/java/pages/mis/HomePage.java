@@ -59,7 +59,8 @@ public class HomePage extends AbstractPage {
     }
 
     @Step("Нажимаю на Карты диспансеризации")
-    public void dispCardJournalBtn() {
+    public void dispCardJournalBtn() throws InterruptedException {
+        Thread.sleep(1000);
         $(By.xpath("//span[contains(.,'Карты диспансеризации')]")).click();
     }
 
