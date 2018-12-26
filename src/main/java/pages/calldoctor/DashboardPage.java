@@ -17,7 +17,6 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage extends AbstractPage {
 
-
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
     private SelenideElement mat_select_value = $(By.xpath("//div[@class='mat-select-value']"));
@@ -26,7 +25,6 @@ public class DashboardPage extends AbstractPage {
 
     private SelenideElement filterTodayViz = $(By.id("mCSB_5_container")).$(By.xpath(".//span[contains(text(),'Сегодня')]"));
     private SelenideElement filterTomorrowViz = $(By.id("mCSB_5_container")).$(By.xpath(".//span[contains(text(),'Завтра')]"));
-
 
     private SelenideElement instructionBtn = $(By.xpath("//*[contains(text(),'Инструкция')]"));
     private SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
@@ -37,6 +35,8 @@ public class DashboardPage extends AbstractPage {
     private SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
     private SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
     private SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
+    private SelenideElement cancelCall = $(By.id("cancelcall"));
+
 
     public DashboardPage() {
 
@@ -72,13 +72,14 @@ public class DashboardPage extends AbstractPage {
 
     @Step("поиск в фильтре врача")
     public DashboardPage searchFilterDoctor(Doctor doctor) throws IOException, InterruptedException {
+        Thread.sleep(1000);
         docFilter.click();
         Thread.sleep(1000);
         docFilter.sendKeys(doctor.getFamily());
         Thread.sleep(1000);
-        $(By.xpath("//div/div/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
-        $(By.xpath("//div/div/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).click();
+        $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).click();
         return this;
     }
 
@@ -168,14 +169,20 @@ public class DashboardPage extends AbstractPage {
         SelenideElement docFamBlock =
                 $(By.xpath("//*[contains(text(),'Активные')]"))
                         .$(By.xpath("./../..//span[contains(text(),'" + doctor.getFamily() + "')]"));
+        SelenideElement docFamBlockList = docFamBlock
+                .$(By.xpath("../../../../../."))
+                .$(By.xpath("./div[1]"));
         Thread.sleep(500);
         if (docFamBlock.isDisplayed()) {
-            docFamBlock.click();
+            if (!docFamBlockList.isDisplayed())
+                docFamBlock.click();
             SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
-            docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
-                    .$(By.xpath("../."))
-                    .$(By.xpath(".//*[@id='order']")).click();
-            docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
+            SelenideElement waitGreen = docFamBlock.$(By.xpath("../../../../../.")).$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"));
+            if (waitGreen.isDisplayed()) {
+                waitGreen.$(By.xpath("../."))
+                        .$(By.xpath(".//*[@id='order']")).click();
+                waitGreen.click();
+            }
             $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).shouldNotBe(Condition.visible);
         } else {
             docFamBlock.shouldNotBe(Condition.visible);
@@ -263,6 +270,7 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage cancelNewCallDash(Pacient pacient) throws IOException, InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
+        Thread.sleep(4000);
         SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(address).perform();
@@ -270,6 +278,7 @@ public class DashboardPage extends AbstractPage {
         SelenideElement smallMenu = address
                 .$(By.xpath("../../../."))
                 .$(By.xpath(".//*[contains(text(),'chevron_left')]"));
+        Thread.sleep(1000);
         actions.moveToElement(smallMenu).perform();
         SelenideElement cancelCard = address
                 .$(By.xpath("../../../."))
@@ -277,6 +286,7 @@ public class DashboardPage extends AbstractPage {
                 .$(By.xpath(".//mat-icon[contains(text(),'close')]"));
         Thread.sleep(1000);
         cancelCard.click();
+        address.$(By.xpath("../../../../../.")).$(By.xpath(".//a[@title='Отменить вызов']")).click();
         return this;
     }
 

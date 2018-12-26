@@ -40,7 +40,7 @@ public class InteractionMisCalldoctor extends AbstractTestGrid {
         page.createCallPage(pacient)
                 .addNewCall()
                 .searchField();
-        $(By.xpath("//*[contains(text(),'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[@placeholder='Адрес']")).getText().equals(pacient.getAddress3adv());
     }
 
     @Test(groups = "CD", description = "проверка заполнения неформализованного адреса при выборе мкаб на странице создания вызова")

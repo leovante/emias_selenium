@@ -117,5 +117,25 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate.cfg.
         <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="1_hlt_db_lpu10@192.168.7.149" uuid="36e14b52-c3bc-4c6a-b430-1af05078a285">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://192.168.7.149\rm;database=1_hlt_db_lpu10</jdbc-url>
+      <default-dialect>TSQL</default-dialect>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+        <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="3_hlt_db_lpu10@192.168.7.149" uuid="41398a75-b2d0-4c9c-80db-67b10fbceeba">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.149/3_hlt_db_lpu10;instance=rm</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>
