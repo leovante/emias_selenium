@@ -75,6 +75,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         page.fullCardPage(testName()).verifyDepartment(doctor);
     }
 
+    // TODO: 12/27/2018 сделать тест передачи вызова из лпу в лпу
     @Test(groups = "CD", description = "передача вызова из ЛПУ в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
@@ -115,6 +116,6 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         page.createCallPage(pacient).createCall_Mkab();
         page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
     }
-    // TODO: 13.08.2018 передать вызов из первого ЛПУ в др. ЛПУ
 }
