@@ -3,7 +3,6 @@ package emias.calldoctor.regress;
 import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -94,7 +93,6 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        page.fullCardPage().verifyDepartment("firstDepart");
     }
 
-    @Flaky
     @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
@@ -104,6 +102,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
+        Thread.sleep(1000);
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
     }
 
@@ -115,7 +114,8 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
         enter.enterCalldoctorFromMis();
         page.createCallPage(pacient).createCall_Mkab();
         page.fullCardPage(testName()).transferToDepartBtn();
-        $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
+        Thread.sleep(1000);
+        $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);
     }
 }
