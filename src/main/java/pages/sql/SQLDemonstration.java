@@ -459,10 +459,4 @@ public class SQLDemonstration extends AbstractPage {
         Assert.assertTrue("адрес вернулся null", addressString != null);
         return addressString;
     }
-
-
-    select *
-    from kla_street
-    where code = '03000001000043400'
-
 }
