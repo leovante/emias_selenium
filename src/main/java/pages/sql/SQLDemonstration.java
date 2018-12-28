@@ -2,11 +2,13 @@ package pages.sql;
 
 import io.qameta.allure.Step;
 import org.codehaus.plexus.util.IOUtil;
+import org.junit.Assert;
 import pages.AbstractPage;
 
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
@@ -403,4 +405,64 @@ public class SQLDemonstration extends AbstractPage {
             e.printStackTrace();
         }
     }
+
+    @Step("Получаю адрес стринг из кладр")
+    public static String getAddressString(int addressID) {
+        String addressString = null;
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            LOGGER.info("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql = "select addressstring from kla_address where addressid =" + addressID;
+                try (Statement statement = connection.createStatement()) {
+                    ResultSet rs = statement.executeQuery(sql);
+                    while (rs.next()) {
+                        addressString = rs.getString("addressstring");
+                        LOGGER.info("гет стринг: " + rs.getString("addressstring"));
+                    }
+                    LOGGER.info("Table DTT is clean.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue("адрес вернулся null", addressString != null);
+        return addressString;
+    }
+
+    @Step("Проверяю flag по коду")
+    public static String verifyCodeAddress(String code) {
+        String addressString = null;
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            LOGGER.info("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql = "select * from kla_street where code = " + code;
+                try (Statement statement = connection.createStatement()) {
+                    ResultSet rs = statement.executeQuery(sql);
+                    while (rs.next()) {
+                        addressString = rs.getString("addressstring");
+                        LOGGER.info("гет стринг: " + rs.getString("addressstring"));
+                    }
+                    LOGGER.info("Table DTT is clean.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue("адрес вернулся null", addressString != null);
+        return addressString;
+    }
+
+
+    select *
+    from kla_street
+    where code = '03000001000043400'
+
 }

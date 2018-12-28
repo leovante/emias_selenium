@@ -6,7 +6,7 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.disp.ExampPage;
 import pages.disp.JournalPage;
 import pages.disp.KvotyPage;
-import pages.kladr.CreateKladr;
+import pages.kladr.Kladr;
 import pages.mis.*;
 import pages.portal.PortalDashboard;
 
@@ -102,7 +102,7 @@ public class Pages extends AbstractPage {
 
     public DirectionsPage directionsPage() {return page(DirectionsPage.class);}
 
-    public CreateKladr createKladr() {
-        return page(CreateKladr.class);
+    public Kladr kladr() {
+        return page(Kladr.class);
     }
 }

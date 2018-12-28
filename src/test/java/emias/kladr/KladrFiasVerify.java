@@ -2,17 +2,20 @@ package emias.kladr;
 
 import emias.AbstractTestGrid;
 import io.qameta.allure.Epic;
+import org.json.JSONException;
 import org.testng.annotations.Test;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
+import java.io.IOException;
+
 public class KladrFiasVerify extends AbstractTestGrid {
 
-    @Test(groups = "kl", description = "рандомный вызов по кладр", enabled = false)
+    @Test(groups = "kl", description = "рандомный вызов по кладр")
     @Epic("Кладр")
     @RetryCountIfFailed(2)
-    public void testCancelCallFrom_Registr() {
-        page.createKladr().getAddressString();//беру адрес из базы в виде стринги
-        page.createKladr().sendFormalizer();//отправляю в фиас и получаю ответ в формализованном виде
-        page.createKladr().verifyKladrCode();//сверяю коды кладр с фиас
+    public void testKladrVSFias() throws IOException, JSONException {
+        page.kladr().getAddressString()
+                .sendToFormalizer()
+                .verifyKladrCode();
     }
 }
