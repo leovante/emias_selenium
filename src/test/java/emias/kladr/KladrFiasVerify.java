@@ -13,9 +13,10 @@ public class KladrFiasVerify extends AbstractTestGrid {
     @Test(groups = "kl", description = "рандомный вызов по кладр")
     @Epic("Кладр")
     @RetryCountIfFailed(2)
-    public void testKladrVSFias() throws IOException, JSONException {
-        page.kladr().getAddressString()
-                .sendToFormalizer()
-                .verifyKladrCode();
+    public void testKladrVSFias() throws IOException, JSONException, InterruptedException {
+        Thread.sleep(500);
+        page.kladr()
+                .getAddressStringList()
+                .sendToFormalizerAndVerifyFullKLADRCodeAddress();
     }
 }

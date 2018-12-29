@@ -55,14 +55,17 @@ public class Formalizer {
     }
 
     public String getEntity() throws IOException, JSONException {
-        String text = String.valueOf(new JSONObject(responseString)
+        String text = null;
+        JSONObject responseText = new JSONObject(responseString)
                 .getJSONObject("SOAP-ENV:Envelope")
                 .getJSONObject("SOAP-ENV:Body")
                 .getJSONObject("NS1:workPocketAdrResponse")
                 .getJSONObject("NS2:TPacketAdr")
-                .getJSONObject("fullKLADRCodeAddress")
-                .getString("#text"));
-        LOGGER.info("#text: " + text);
+                .getJSONObject("fullKLADRCodeAddress");
+        if (responseText.has("#text")) {
+            LOGGER.info("#text: " + responseText.getString("#text"));
+            return responseText.getString("#text");
+        }
         return text;
     }
 }

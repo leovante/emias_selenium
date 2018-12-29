@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 //import system.model.HltDispExamEntity;
@@ -407,7 +408,7 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Получаю адрес стринг из кладр")
-    public static String getAddressString(int addressID) {
+    public static String getRandomAddressString(int addressID) {
         String addressString = null;
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -416,7 +417,8 @@ public class SQLDemonstration extends AbstractPage {
         try {
             LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-                String sql = "select addressstring from kla_address where addressid =" + addressID;
+                String sql = "SELECT TOP 1 addressstring FROM kla_address where flags = 1 ORDER BY NEWID()";
+
                 try (Statement statement = connection.createStatement()) {
                     ResultSet rs = statement.executeQuery(sql);
                     while (rs.next()) {
@@ -433,8 +435,39 @@ public class SQLDemonstration extends AbstractPage {
         return addressString;
     }
 
+    @Step("Получаю адрес стринг из кладр")
+    public static List getAddressString(int addressID) {
+        String addressString1 = null;
+        ResultSet rs;
+        List<String> addressStringList = new ArrayList<>();
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            LOGGER.info("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql = "SELECT addressstring FROM kla_address where flags = 1 group by addressString";
+
+                try (Statement statement = connection.createStatement()) {
+                    rs = statement.executeQuery(sql);
+                    while (rs.next()) {
+                        addressString1 = rs.getString("addressstring");
+                        addressStringList.add(addressString1);
+                        LOGGER.info("гет стринг: " + addressString1);
+                    }
+                    LOGGER.info("Table DTT is clean.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue("адрес вернулся null", addressString1 != null);
+        return addressStringList;
+    }
+
     @Step("Проверяю flag по коду")
-    public static String verifyCodeAddress(String code) {
+    public static String verifyCodeAddress(String fullKLADRCodeAddress) {
         String addressString = null;
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
@@ -443,7 +476,7 @@ public class SQLDemonstration extends AbstractPage {
         try {
             LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
-                String sql = "select * from kla_street where code = " + code;
+                String sql = "select * from kla_street where code = " + fullKLADRCodeAddress;
                 try (Statement statement = connection.createStatement()) {
                     ResultSet rs = statement.executeQuery(sql);
                     while (rs.next()) {

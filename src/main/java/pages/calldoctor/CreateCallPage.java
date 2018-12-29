@@ -305,7 +305,7 @@ public class CreateCallPage extends AbstractPage {
         korpus.hover();
         Thread.sleep(1000);
         adress.hover();
-//        WebElement getAddressString = driver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"));
+//        WebElement getRandomAddressString = driver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"));
 //        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))));
 //        driver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]")).click();
         $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
