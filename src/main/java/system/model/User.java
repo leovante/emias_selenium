@@ -5,6 +5,7 @@ public class User {
     private String password;
 
     //<!--правка hibernate-->
+    //<!--правка hibernate-->
     public User() {
     }
 
