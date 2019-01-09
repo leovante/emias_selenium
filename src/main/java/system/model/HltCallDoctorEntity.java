@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
+//<!--правка hibernate-->
 @Entity
 @Table(name = "hlt_CallDoctor", schema = "dbo", catalog = "hlt_demonstration")
 public class HltCallDoctorEntity {

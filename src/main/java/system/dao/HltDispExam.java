@@ -8,7 +8,7 @@ import system.model.HltDispExamEntity;
 import java.util.List;
 
 public class HltDispExam implements Dao<HltDispExamEntity> {
-
+//<!--правка hibernate-->
 
     public HltDispExamEntity findById(int id) {
         return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);

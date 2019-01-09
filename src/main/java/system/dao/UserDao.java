@@ -7,6 +7,7 @@ import system.model.User;
 import java.util.Arrays;
 import java.util.List;
 
+//<!--правка hibernate-->
 @Repository
 public class UserDao implements Dao {
 

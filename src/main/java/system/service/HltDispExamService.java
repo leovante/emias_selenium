@@ -6,7 +6,7 @@ import system.model.HltDispExamEntity;
 import java.util.List;
 
 public class HltDispExamService {
-
+    //<!--правка hibernate-->
     private HltDispExam hltDispExam = new HltDispExam();
 
     public HltDispExamService() {

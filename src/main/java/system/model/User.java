@@ -4,6 +4,7 @@ public class User {
     private String name;
     private String password;
 
+    //<!--правка hibernate-->
     public User() {
     }
 

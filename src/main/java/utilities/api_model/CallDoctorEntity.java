@@ -8,6 +8,7 @@ import pages.calldoctor.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 
+//<!--правка hibernate-->
 public class CallDoctorEntity {
     private Pacient pacient;
     HttpPost request;

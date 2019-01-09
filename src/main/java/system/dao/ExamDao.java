@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ExamDao implements Dao<HltDispExamEntity> {
 
-
+    //<!--правка hibernate-->
     public HltDispExamEntity findById(int id) {
         return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);
     }

@@ -6,7 +6,7 @@ import system.dao.ExamDao;
 import java.util.List;
 
 public class ExamService {
-
+    //<!--правка hibernate-->
     private ExamDao examDao = new ExamDao();
 
     public ExamService() {
