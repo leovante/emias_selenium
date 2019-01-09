@@ -88,7 +88,7 @@ public class ValidationTest extends AbstractTestGrid {
         page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .cancelNewCallDash(pacient)
-                .verifyCancellCallValidation()
+                .verifyCancellCallValidation_Dash()
                 .verifyCallIsNotCancelFromDashboard(pacient);
     }
 }

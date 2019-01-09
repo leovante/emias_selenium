@@ -317,4 +317,11 @@ public class DashboardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
         return this;
     }
+
+    @Step("валидация что вызов не отменился на дашборде")
+    public DashboardPage verifyCancellCallValidation_Dash() throws InterruptedException {
+        $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
+        Thread.sleep(2000);
+        return this;
+    }
 }
