@@ -1,4 +1,4 @@
-package system.service;
+package system.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

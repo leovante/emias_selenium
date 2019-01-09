@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+//<!--правка hibernate-->
+//<!--правка hibernate-->
 @Entity
 @Table(name = "hlt_disp_Exam", schema = "dbo", catalog = "hlt_demonstration")
 public class HltDispExamEntity {
@@ -12,18 +14,19 @@ public class HltDispExamEntity {
     private int dispExamId;
     private int dopPriznak;
     private int flags;
-    private Object guid;
+    private String guid;
     private boolean isDeviation;
     private boolean isOtkaz;
-    private Object rfCardGuid;
-    private Object rfDocPrvdGuid;
-    private Object rfDvtGuid;
-    private Object rfServiceGuid;
+    private String rfCardGuid;
+    private String rfDocPrvdGuid;
+    private String rfDvtGuid;
+    private String rfServiceGuid;
     private int xEdition;
     private byte xStatus;
     private boolean isSigned;
-    private Object rfServicePmGuid;
-    private Object rfTapGuid;
+    private String rfServicePmGuid;
+    private String rfTapGuid;
+
 
     @Basic
     @Column(name = "DateExam", nullable = false)
@@ -77,11 +80,11 @@ public class HltDispExamEntity {
 
     @Basic
     @Column(name = "Guid", nullable = false)
-    public Object getGuid() {
+    public String getGuid() {
         return guid;
     }
 
-    public void setGuid(Object guid) {
+    public void setGuid(String guid) {
         this.guid = guid;
     }
 
@@ -107,41 +110,50 @@ public class HltDispExamEntity {
 
     @Basic
     @Column(name = "rf_CardGuid", nullable = false)
-    public Object getRfCardGuid() {
+    public String getRfCardGuid() {
         return rfCardGuid;
     }
 
-    public void setRfCardGuid(Object rfCardGuid) {
+    public void setRfCardGuid(String rfCardGuid) {
         this.rfCardGuid = rfCardGuid;
     }
 
+//    @ManyToOne
+//    @JoinColumn(name="Guid")
+//    private HltDispCardEntity guid;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Guid", nullable = false)
+    private HltDispCardEntity hltDispCardEntity;
+
+
     @Basic
     @Column(name = "rf_DocPrvdGuid", nullable = false)
-    public Object getRfDocPrvdGuid() {
+    public String getRfDocPrvdGuid() {
         return rfDocPrvdGuid;
     }
 
-    public void setRfDocPrvdGuid(Object rfDocPrvdGuid) {
+    public void setRfDocPrvdGuid(String rfDocPrvdGuid) {
         this.rfDocPrvdGuid = rfDocPrvdGuid;
     }
 
     @Basic
     @Column(name = "rf_DvtGuid", nullable = false)
-    public Object getRfDvtGuid() {
+    public String getRfDvtGuid() {
         return rfDvtGuid;
     }
 
-    public void setRfDvtGuid(Object rfDvtGuid) {
+    public void setRfDvtGuid(String rfDvtGuid) {
         this.rfDvtGuid = rfDvtGuid;
     }
 
     @Basic
     @Column(name = "rf_ServiceGuid", nullable = false)
-    public Object getRfServiceGuid() {
+    public String getRfServiceGuid() {
         return rfServiceGuid;
     }
 
-    public void setRfServiceGuid(Object rfServiceGuid) {
+    public void setRfServiceGuid(String rfServiceGuid) {
         this.rfServiceGuid = rfServiceGuid;
     }
 
@@ -177,21 +189,21 @@ public class HltDispExamEntity {
 
     @Basic
     @Column(name = "rf_ServicePMGuid", nullable = false)
-    public Object getRfServicePmGuid() {
+    public String getRfServicePmGuid() {
         return rfServicePmGuid;
     }
 
-    public void setRfServicePmGuid(Object rfServicePmGuid) {
+    public void setRfServicePmGuid(String rfServicePmGuid) {
         this.rfServicePmGuid = rfServicePmGuid;
     }
 
     @Basic
     @Column(name = "rf_TapGuid", nullable = false)
-    public Object getRfTapGuid() {
+    public String getRfTapGuid() {
         return rfTapGuid;
     }
 
-    public void setRfTapGuid(Object rfTapGuid) {
+    public void setRfTapGuid(String rfTapGuid) {
         this.rfTapGuid = rfTapGuid;
     }
 

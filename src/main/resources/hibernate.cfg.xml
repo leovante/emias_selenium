@@ -17,8 +17,8 @@
         <property name="generate_statistics">true</property>
         <property name="max_fetch_depth">1</property>
 
-        <mapping class="com.system.model.HltDispExamEntity"/>
-        <mapping class="system.service.KlaAddressEntity"/>
-        <mapping class="system.service.HltDispCardEntity"/>
+        <mapping class="system.model.HltDispExamEntity"/>
+        <mapping class="system.model.KlaAddressEntity"/>
+        <mapping class="system.model.HltDispCardEntity"/>
     </session-factory>
 </hibernate-configuration>
