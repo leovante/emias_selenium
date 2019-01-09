@@ -24,14 +24,16 @@ public class WebDriverInstansiator {
     public ChromeOptions chromeOptions;
     public DesiredCapabilities dcch;
     public static ChromeDriverService chromeDriverService;
-
+    public Dimension dimension;
+    public java.awt.Dimension screenSize;
+    public Boolean headless;
 
     public WebDriverInstansiator(String browser) {
         this.browser = browser;
     }
 
-    public void setDriver(Boolean headless/*, BrowserMobProxy proxy*/) throws IOException {
-
+    public RemoteWebDriver setDriver(Boolean headless/*, BrowserMobProxy proxy*/) throws IOException {
+        this.headless = headless;
         //ручной запуск
         if (browser == null) {
 //            proxy.start(5300);
@@ -49,7 +51,7 @@ public class WebDriverInstansiator {
             chromeOptions.setHeadless(false);
 //            chromeOptions.setProxy(seleniumProxy);
 
-            driver = new ChromeDriver(chromeDriverService, chromeOptions);
+            this.driver = new ChromeDriver(chromeDriverService, chromeOptions);
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
             System.setProperty("webdriver.chrome.logfile", "D:\\chromedriver.log");
@@ -87,9 +89,8 @@ public class WebDriverInstansiator {
                     break;
             }
         }
-        java.awt.Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension dimension = getWebDriver().manage().window().getSize();
-
+        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        dimension = getWebDriver().manage().window().getSize();
         if (!String.valueOf(dimension).equals("(1919, 1079)")) {
             throw new IllegalArgumentException("Ошибка. Размер окна браузера некорректный!" + dimension);
         } else {
@@ -98,5 +99,7 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + headless + "; ");
         }
+
+        return driver;
     }
 }

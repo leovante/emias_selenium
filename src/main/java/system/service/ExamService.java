@@ -1,7 +1,7 @@
 package system.service;
 
-import pages.sql.HltDispExamEntity;
 import system.dao.ExamDao;
+import system.model.HltDispExamEntity;
 
 import java.util.List;
 

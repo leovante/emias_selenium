@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class KladrFiasVerify extends AbstractTestGrid {
 
-    @Test(groups = "kl", description = "рандомный вызов по кладр")
+    @Test(groups = "kl", description = "проверяю что закрытые адреса из кладр формализуются фиас как открытые адреса")
     @Epic("Кладр")
     @RetryCountIfFailed(2)
     public void testKladrVSFias() throws IOException, JSONException, InterruptedException {

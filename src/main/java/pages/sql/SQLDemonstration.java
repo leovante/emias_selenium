@@ -2,8 +2,12 @@ package pages.sql;
 
 import io.qameta.allure.Step;
 import org.codehaus.plexus.util.IOUtil;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.junit.Assert;
 import pages.AbstractPage;
+import utilities.HibernateSessionFactory;
 
 import java.io.*;
 import java.sql.Connection;
@@ -464,6 +468,51 @@ public class SQLDemonstration extends AbstractPage {
         }
         Assert.assertTrue("адрес вернулся null", addressString1 != null);
         return addressStringList;
+    }
+
+    @Step("Получаю адрес стринг из кладр")
+    public static List getAddressStringHiber(int addressID) {
+        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Query q1 = session.createQuery(
+                "select " +
+                        "kl.addressString " +
+                        "from KlaAddressEntity kl " +
+                        "where kl.flags = 1 " +
+                        "group by " +
+                        "kl.addressString");
+        System.out.println(q1);
+        System.out.println(q1.list());
+        return q1.list();
+
+
+//        String addressString1 = null;
+//        ResultSet rs;
+//        List<String> addressStringList = new ArrayList<>();
+//        String url = connectionUrl +
+//                ";databaseName=" + databaseName +
+//                ";user=" + userName +
+//                ";password=" + password;
+//        try {
+//            LOGGER.info("Connecting to SQL Server ... ");
+//            try (Connection connection = DriverManager.getConnection(url)) {
+//                String sql = "SELECT addressstring FROM kla_address where flags = 1 group by addressString";
+//
+//                try (Statement statement = connection.createStatement()) {
+//                    rs = statement.executeQuery(sql);
+//                    while (rs.next()) {
+//                        addressString1 = rs.getString("addressstring");
+//                        addressStringList.add(addressString1);
+//                        LOGGER.info("гет стринг: " + addressString1);
+//                    }
+//                    LOGGER.info("Table DTT is clean.");
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        Assert.assertTrue("адрес вернулся null", addressString1 != null);
+//        return addressStringList;
     }
 
     @Step("Проверяю flag по коду")

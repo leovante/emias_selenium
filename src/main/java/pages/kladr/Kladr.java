@@ -16,7 +16,8 @@ public class Kladr {
 
     public Kladr getAddressStringList() {
         int x = (int) (Math.random() * 1295);
-        addressStringList = SQLDemonstration.getAddressString(x);
+//        addressStringList = SQLDemonstration.getAddressString(x);
+        addressStringList = SQLDemonstration.getAddressStringHiber(x);
         return this;
     }
 
