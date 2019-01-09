@@ -18,7 +18,7 @@
         <property name="max_fetch_depth">1</property>
 
         <mapping class="com.system.model.HltDispExamEntity"/>
-        <mapping class="com.system.model.KlaAddressEntity"/>
-        <mapping class="com.system.model.HltDispCardEntity"/>
+        <mapping class="system.service.KlaAddressEntity"/>
+        <mapping class="system.service.HltDispCardEntity"/>
     </session-factory>
 </hibernate-configuration>

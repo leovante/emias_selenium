@@ -18,6 +18,6 @@
         <property name="show_sql">true</property>
         <!--<property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>-->
         <mapping class="com.system.model.HltDispExamEntity"/>
-        <mapping class="com.system.model.KlaAddressEntity"/>
+        <mapping class="system.service.KlaAddressEntity"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,8 +1,8 @@
-package com.system.service;
+package system.service;
 
-import com.system.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import system.dao.UserDao;
 
 import java.util.List;
 

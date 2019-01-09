@@ -1,4 +1,4 @@
-package com.system.model;
+package system.service;
 
 import javax.persistence.*;
 import java.util.Objects;

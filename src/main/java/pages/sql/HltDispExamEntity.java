@@ -1,5 +1,7 @@
 package com.system.model;
 
+import system.service.HltDispCardEntity;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
