@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.1</aspectj.version>
         <testng></testng>
-        <hibernate-version>5.3.6.Final</hibernate-version>
+        <hibernate-version>5.3.7.Final</hibernate-version>
         <selenide.reports>target/test-result/reports</selenide.reports>
     </properties>
 
@@ -93,15 +93,16 @@
             <artifactId>json-simple</artifactId>
             <version>1.1</version>
         </dependency>
+        <!--hibernate-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
         <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.3</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate-version}</version>
         </dependency>
         <!--Spring-->
         <dependency>
@@ -114,10 +115,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>2.0.5.RELEASE</version>
         </dependency>
+        <!--other-->
         <dependency>
             <groupId>net.lightbody.bmp</groupId>
             <artifactId>browsermob-core</artifactId>
             <version>2.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
 
