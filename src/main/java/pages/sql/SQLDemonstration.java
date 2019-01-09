@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
 
+import static utilities.HibernateSessionFactory.shutdown;
+
 public class SQLDemonstration extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://192.168.7.48:50004";
     private static String databaseName = "hlt_demonstration";
@@ -222,7 +224,7 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Получаю адрес стринг из кладр")
-    public static List getAddressStringHiber(int addressID) {
+    public static List getAddressStringHiber() {
         SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
         Query q1 = session.createQuery(
@@ -232,8 +234,7 @@ public class SQLDemonstration extends AbstractPage {
                         "where kl.flags = 1 " +
                         "group by " +
                         "kl.addressString");
-        System.out.println(q1);
-        System.out.println(q1.list());
+        shutdown();
         return q1.list();
     }
 
@@ -258,11 +259,9 @@ public class SQLDemonstration extends AbstractPage {
                     .setParameter("code1", fullKLADRCodeAddress)
                     .uniqueResult();
         }
-
         if (q1 != null && q1.equals("1"))
             return true;
-        System.out.println("респонс " + q1);
-//        System.out.println(q1.list());
+        shutdown();
         return false;
     }
 }

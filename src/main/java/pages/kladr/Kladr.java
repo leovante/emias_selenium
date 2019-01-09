@@ -18,9 +18,7 @@ public class Kladr {
 
     //получаю стринги адресов
     public Kladr getAddressStringList() {
-        int x = (int) (Math.random() * 1295);
-//        addressStringList = SQLDemonstration.getAddressString(x);
-        addressStringList = SQLDemonstration.getAddressStringHiber(x);
+        addressStringList = SQLDemonstration.getAddressStringHiber();
         return this;
     }
 
