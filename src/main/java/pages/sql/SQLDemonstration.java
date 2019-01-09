@@ -484,35 +484,6 @@ public class SQLDemonstration extends AbstractPage {
         System.out.println(q1);
         System.out.println(q1.list());
         return q1.list();
-
-
-//        String addressString1 = null;
-//        ResultSet rs;
-//        List<String> addressStringList = new ArrayList<>();
-//        String url = connectionUrl +
-//                ";databaseName=" + databaseName +
-//                ";user=" + userName +
-//                ";password=" + password;
-//        try {
-//            LOGGER.info("Connecting to SQL Server ... ");
-//            try (Connection connection = DriverManager.getConnection(url)) {
-//                String sql = "SELECT addressstring FROM kla_address where flags = 1 group by addressString";
-//
-//                try (Statement statement = connection.createStatement()) {
-//                    rs = statement.executeQuery(sql);
-//                    while (rs.next()) {
-//                        addressString1 = rs.getString("addressstring");
-//                        addressStringList.add(addressString1);
-//                        LOGGER.info("гет стринг: " + addressString1);
-//                    }
-//                    LOGGER.info("Table DTT is clean.");
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        Assert.assertTrue("адрес вернулся null", addressString1 != null);
-//        return addressStringList;
     }
 
     @Step("Проверяю flag по коду")
@@ -540,5 +511,21 @@ public class SQLDemonstration extends AbstractPage {
         }
         Assert.assertTrue("адрес вернулся null", addressString != null);
         return addressString;
+    }
+
+    @Step("Проверяю flag по коду")
+    public static boolean verifyCodeAddressHiber(String fullKLADRCodeAddress) {
+        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Query q1 = session.createQuery(
+                "select ks.flags " +
+                        "from KlaStreetEntity ks " +
+                        "where ks.code = :code1")
+                .setParameter("code1", fullKLADRCodeAddress);
+        if (q1.equals("1"))
+            return true;
+        System.out.println(q1);
+        System.out.println(q1.list());
+        return false;
     }
 }

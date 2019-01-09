@@ -14,6 +14,7 @@ public class Kladr {
     List addressStringList;
     String fullKLADRCodeAddress;
 
+    //получаю стринги адресов
     public Kladr getAddressStringList() {
         int x = (int) (Math.random() * 1295);
 //        addressStringList = SQLDemonstration.getAddressString(x);
@@ -21,6 +22,7 @@ public class Kladr {
         return this;
     }
 
+    //отправляю формализатору стринги и получаю ответ в виде кода адреса
     public Kladr sendToFormalizerAndVerifyFullKLADRCodeAddress() throws IOException, JSONException {
         Iterator<String> iter = addressStringList.iterator();
         BufferedWriter writer = new BufferedWriter(new FileWriter("samplefile1.txt"));
@@ -29,8 +31,10 @@ public class Kladr {
                     .sendToFormalizer()
                     .getEntity();
             if (fullKLADRCodeAddress != null) {
-                writer.write(fullKLADRCodeAddress + " : " + iter.next());
-                writer.newLine();
+                if (verifyKladrCode()) {
+                    writer.write(fullKLADRCodeAddress + " : " + iter.next());
+                    writer.newLine();
+                }
             }
         }
         writer.close();
@@ -45,8 +49,10 @@ public class Kladr {
         }
     }
 
-    public Kladr verifyKladrCode() {
-        String a = SQLDemonstration.verifyCodeAddress(fullKLADRCodeAddress);
-        return this;
+    public boolean verifyKladrCode() {
+        if (SQLDemonstration.verifyCodeAddressHiber(fullKLADRCodeAddress)) {
+            return true;
+        }
+        return false;
     }
 }
