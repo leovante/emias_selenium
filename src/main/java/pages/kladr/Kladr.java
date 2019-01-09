@@ -1,6 +1,7 @@
 package pages.kladr;
 
 import org.json.JSONException;
+import org.testng.Assert;
 import pages.sql.SQLDemonstration;
 import utilities.Formalizer;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class Kladr {
     List addressStringList;
     String fullKLADRCodeAddress;
+    List<String> badAddress;
 
     //получаю стринги адресов
     public Kladr getAddressStringList() {
@@ -32,6 +34,7 @@ public class Kladr {
                     .getEntity();
             if (fullKLADRCodeAddress != null) {
                 if (verifyKladrCode()) {
+                    badAddress.add(fullKLADRCodeAddress);
                     writer.write(fullKLADRCodeAddress + " : " + iter.next());
                     writer.newLine();
                 }
@@ -50,9 +53,13 @@ public class Kladr {
     }
 
     public boolean verifyKladrCode() {
-        if (SQLDemonstration.verifyCodeAddressHiber(fullKLADRCodeAddress)) {
+        if (SQLDemonstration.verifyKladrCodeHiber(fullKLADRCodeAddress)) {
             return true;
         }
         return false;
+    }
+
+    public void badAddressCanBeEmpty() {
+        Assert.assertTrue(badAddress.size() == 0, "Аларма! Формализатор выдает заблокированные адреса!");
     }
 }

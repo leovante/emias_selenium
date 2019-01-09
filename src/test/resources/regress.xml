@@ -65,6 +65,19 @@
         </packages>
     </test>
 
+    <!--КЛАДР-->
+    <test name="TestKladr_Chrome" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="kl"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="emias.kladr"/>
+        </packages>
+    </test>
+
     <!--ЕМИАС веб-->
     <test name="TestMIS_Before" verbose="1">
         <parameter name="browser" value="chrome"/>

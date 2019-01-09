@@ -514,18 +514,31 @@ public class SQLDemonstration extends AbstractPage {
     }
 
     @Step("Проверяю flag по коду")
-    public static boolean verifyCodeAddressHiber(String fullKLADRCodeAddress) {
+    public static boolean verifyKladrCodeHiber(String fullKLADRCodeAddress) {
         SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Query q1 = session.createQuery(
-                "select ks.flags " +
-                        "from KlaStreetEntity ks " +
-                        "where ks.code = :code1")
-                .setParameter("code1", fullKLADRCodeAddress);
-        if (q1.equals("1"))
+        Object q1 = null;
+        if (fullKLADRCodeAddress.length() == 13) {
+            q1 = session.createQuery(
+                    "select ks.flags " +
+                            "from KlaStreetEntity ks " +
+                            "where ks.code = :code1")
+                    .setParameter("code1", fullKLADRCodeAddress)
+                    .uniqueResult();
+        }
+        if (fullKLADRCodeAddress.length() == 17) {
+            q1 = session.createQuery(
+                    "select ks.flags " +
+                            "from KlaKlAdrEntity ks " +
+                            "where ks.code = :code1")
+                    .setParameter("code1", fullKLADRCodeAddress)
+                    .uniqueResult();
+        }
+
+        if (q1 != null && q1.equals("1"))
             return true;
-        System.out.println(q1);
-        System.out.println(q1.list());
+        System.out.println("респонс " + q1);
+//        System.out.println(q1.list());
         return false;
     }
 }

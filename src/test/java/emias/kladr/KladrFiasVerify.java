@@ -17,6 +17,7 @@ public class KladrFiasVerify extends AbstractTestGrid {
         Thread.sleep(500);
         page.kladr()
                 .getAddressStringList()
-                .sendToFormalizerAndVerifyFullKLADRCodeAddress();
+                .sendToFormalizerAndVerifyFullKLADRCodeAddress()
+                .badAddressCanBeEmpty();
     }
 }
