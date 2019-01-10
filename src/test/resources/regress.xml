@@ -96,10 +96,4 @@
             <class name="emias.mis.regress.PerehodyTest"/>
         </classes>
     </test>
-    <test name="TestMIS_After" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="emias.mis.regress.PerehodyTest"/>
-        </classes>
-    </test>
 </suite>

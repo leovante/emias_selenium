@@ -22,6 +22,7 @@ public class WebDriverInstansiator {
     public String browser;
     public RemoteWebDriver driver;
     public ChromeOptions chromeOptions;
+    public FirefoxOptions firefoxOptions;
     public DesiredCapabilities dcch;
     public static ChromeDriverService chromeDriverService;
     public Dimension dimension;
@@ -61,29 +62,28 @@ public class WebDriverInstansiator {
         else {
             switch (browser) {
                 case "firefox":
-                    FirefoxOptions options = new FirefoxOptions();
-                    options.setHeadless(headless);
+                    firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setHeadless(headless);
+//                    firefoxOptions.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
+//                    firefoxOptions.addArguments("--window-size=1919,1079");
+//
+//                    System.setProperty("webdriver.gecko.driver", "src/main/resources/selenium_grid/geckodriver.exe");
+//                    dcch = DesiredCapabilities.firefox();
+//                    dcch.setBrowserName("firefox");
+//                    dcch.setCapability("marionette", true);
+//                    dcch.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
+//                    dcch.setCapability("headless", headless);
 
-                    DesiredCapabilities dcff = DesiredCapabilities.firefox();
-                    dcff.setBrowserName("firefox");
-                    dcff.setCapability("marionette", true);
-                    dcff.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
-                    dcff.setCapability("headless", headless);
-
-                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcff);
-                    driver.manage().window().setSize(new Dimension(1919, 1079));
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+//                    driver.manage().window().setSize(new Dimension(1919, 1079));
                     WebDriverRunner.setWebDriver(driver);
                     Configuration.timeout = 20000;
                     break;
                 case "chrome":
-                    this.chromeOptions = new ChromeOptions();
+                    chromeOptions = new ChromeOptions();
                     chromeOptions.setHeadless(headless);
                     chromeOptions.addArguments("window-size=1919,1079");
-
-                    this.dcch = DesiredCapabilities.chrome();
-                    dcch.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-
-                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dcch);
+                    driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
                     WebDriverRunner.setWebDriver(driver);
                     Configuration.timeout = 20000;
                     break;
