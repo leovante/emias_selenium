@@ -27,6 +27,7 @@ public class BeforeSuiteCalldoctor extends AbstractTestGrid {
         while (it.hasNext()) {
             Map.Entry<Integer, Integer> pair = it.next();
             SQLDemonstration.deleteShedule(pair.getKey(), pair.getValue());
+            SQLDemonstration.createSheduleCD(pair.getKey(), pair.getValue());
         }
     }
 }

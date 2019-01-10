@@ -197,6 +197,26 @@ public class SQLDemonstration extends AbstractPage {
         }
     }
 
+    @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
+    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
+        String request = new DateGenerator().doctorShedule_CD(LPUDoctorID, DocPRVDID);
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            System.out.print("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(request);
+                    System.out.println("Complete!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Step("отменяю созданный вызов после каждого теста")
     public static void cancelCall(String methodName) {
         String url = connectionUrl +
