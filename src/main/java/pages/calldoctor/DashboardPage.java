@@ -73,10 +73,13 @@ public class DashboardPage extends AbstractPage {
     @Step("поиск в фильтре врача")
     public DashboardPage searchFilterDoctor(Doctor doctor) throws IOException, InterruptedException {
         Thread.sleep(1000);
-        docFilter.click();
+        docFilter.hover().click();
         Thread.sleep(1000);
         docFilter.sendKeys(doctor.getFamily());
         Thread.sleep(1000);
+        fioFilter.hover().click();
+        Thread.sleep(1000);
+        docFilter.hover().click();
         $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).click();
