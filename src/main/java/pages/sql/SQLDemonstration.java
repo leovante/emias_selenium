@@ -15,8 +15,6 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
 
-import static utilities.HibernateSessionFactory.shutdown;
-
 public class SQLDemonstration extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://192.168.7.48:50004";
     private static String databaseName = "hlt_demonstration";
@@ -254,7 +252,6 @@ public class SQLDemonstration extends AbstractPage {
                         "where kl.flags = 1 " +
                         "group by " +
                         "kl.addressString");
-        shutdown();
         return q1.list();
     }
 
@@ -281,7 +278,6 @@ public class SQLDemonstration extends AbstractPage {
         }
         if (q1 != null && q1.equals("1"))
             return true;
-        shutdown();
         return false;
     }
 }

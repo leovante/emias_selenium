@@ -14,7 +14,7 @@ public class KladrFiasVerify extends AbstractTestGrid {
     @Epic("Кладр")
     @RetryCountIfFailed(2)
     public void testKladrVSFias() throws IOException, JSONException, InterruptedException {
-        Thread.sleep(500);
+        Thread.sleep(250);
         page.kladr()
                 .getAddressStringList()
                 .sendToFormalizerAndVerifyFullKLADRCodeAddress()

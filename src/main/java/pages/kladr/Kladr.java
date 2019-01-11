@@ -58,6 +58,6 @@ public class Kladr {
     }
 
     public void badAddressCanBeEmpty() {
-        Assert.assertTrue(badAddress.size() == 0, "Аларма! Формализатор выдает заблокированные адреса!");
+        Assert.assertTrue(badAddress == null, "Аларма! Формализатор выдает заблокированные адреса!");
     }
 }
