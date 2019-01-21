@@ -36,7 +36,7 @@
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://192.168.7.196:49199;database=dev_mo_hlt_Kashira_20180109</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://192.168.7.196:49199</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
@@ -135,6 +135,28 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate.cfg.
       <jdbc-url>jdbc:jtds:sqlserver://192.168.7.149/3_hlt_db_lpu10;instance=rm</jdbc-url>
       <driver-properties>
         <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_Stupino_CRKB_460101@192.168.7.48" uuid="ab3bdaf0-3318-4774-aecb-5833c45ef782">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14331/hlt_Stupino_CRKB_460101</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hibernate_dev.cfg.xml/Hibernate" uuid="ca1c8779-a6d4-4e80-8f28-b6690d876f22">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.cfg.xml</remarks>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://192.168.7.196:49199;databaseName=dev_mo_hlt_Kashira_20180109</jdbc-url>
+      <driver-properties>
+        <property name="applicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
   </component>

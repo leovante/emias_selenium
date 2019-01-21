@@ -1,0 +1,32 @@
+select *
+from hlt_disp_card
+where disp_cardid = 7416
+
+select *
+from hlt_disp_exam
+where rf_cardguid = '3BD0F6FB-DB18-4999-8EA9-6DFB1199E8E1'
+
+select rf_medrecordguid, *
+from hlt_disp_exammr
+where rf_examguid in (
+    'F91B121A-5ACE-402E-B6A5-E16253AEC988',
+    '05CF2ABF-4AE9-4B1D-9FFA-2E657F7AFD3E',
+    '874EB100-2F77-4086-9BEA-DF079B8CA7B0',
+    'D7BD2235-92BE-415B-AF86-C5D547D66593',
+    'DBA59047-59BB-4FDB-BBBF-E0CE992DB0F0',
+    'D22862C7-D8FA-4345-8B1C-956E996B6372',
+    'B6D981A1-6A12-4B34-9816-805027653172',
+    'E386C435-3396-4269-9F9B-52ACA4D13EAA',
+    'AA05F025-A99A-4CEF-92BD-660E648E2533',
+    '7F394A3A-D8A4-4ADF-88B4-226A6A9EC8F7',
+    '6117222B-B27F-4DEE-B8F3-B7473CB38327',
+    'DBB8D70B-AF6B-463E-AC3F-DF714867A32D'
+    )
+order by disp_exammrid
+
+select * from life_hlt_medrecord
+where guid = 'C3775445-8A95-4BE7-99C3-909315ED6343'
+
+select x_operation, * from life_ehr_medrecord
+where createdate > '2019-01-18 13:20:00.000'
+order by medrecordid
