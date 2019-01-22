@@ -81,4 +81,5 @@ public class EditPageTest extends AbstractTestGrid {
                 .saveBtn();
         $(By.xpath("//simple-snack-bar[contains(.,'Не указан адрес')]")).shouldBe(Condition.visible);
     }
+    // TODO: 1/21/2019 добавить тест, вводить новый адрес английскими буквами
 }

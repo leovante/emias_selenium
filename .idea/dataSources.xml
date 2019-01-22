@@ -159,5 +159,39 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
         <property name="applicationName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="localMis_whc - dev_mo_hlt_Kashira_20180109@192.168.7.253" uuid="873b8d19-f37b-4efc-83a4-19f335c540d2">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.253:49199/dev_mo_hlt_Kashira_20180109</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="localMis_mis - dev_mo_hlt_Kashira_20180109____other@AKRYSOV" uuid="5fa65f21-b64d-4d56-b2bf-53ba0c89287e">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://AKRYSOV/dev_mo_hlt_Kashira_20180109____other;instance=SQLDEVELOP2014</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_Klin_GB_170101@192.168.7.48" uuid="3ef60a83-4fba-409b-9f7a-f9a4393c66e3">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14333/hlt_Klin_GB_170101</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_demonstration2@192.168.7.48 [2]" uuid="a6f45d47-b250-401d-97fa-316185c7ad44">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:50004;databaseName=hlt_demonstration2</jdbc-url>
+      <default-dialect>TSQL</default-dialect>
+    </data-source>
   </component>
 </project>
