@@ -3,7 +3,7 @@
 <suite name="Name suite - Test" thread-count="5" parallel="classes">
     <!--<parameter name="config" value="local.conf.json"/>-->
     <!--<parameter name="environment" value="chrome"/>-->
-    <parameter name="site" value="http://emias.mosreg.ru/demonstration"/>
+    <parameter name="site" value="http://emias.mosreg.ru/demonstration3"/>
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
     <parameter name="gridIsRun" value="true"/>

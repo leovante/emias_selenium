@@ -16,7 +16,7 @@ public class LoginPage extends AbstractPage {
     @Step("Открываю demonstration")
     public void login(String site, String login, String pass) {
         if (site == null) {
-            open("http://emias.mosreg.ru/demonstration");
+            open("http://emias.mosreg.ru/demonstration3");
             setCookieOfDepartment();
             $(By.id("Login")).setValue("temnikov");
             $(By.id("Password")).setValue("1214");
@@ -31,7 +31,7 @@ public class LoginPage extends AbstractPage {
 
     @Step("Открываю demonstration от админа")
     public void loginAdmin() {
-        open("http://emias.mosreg.ru/demonstration/");
+        open("http://emias.mosreg.ru/demonstration3");
         $(By.id("Login")).setValue("admin");
         $(By.id("Password")).setValue("RChS2014");
         $(By.id("loginBtn")).click();

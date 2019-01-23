@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Name suite - Disp">
-    <parameter name="site" value="http://emias.mosreg.ru/demonstration/"/>
+    <parameter name="site" value="http://emias.mosreg.ru/demonstration3"/>
     <parameter name="login" value="temnikov"/>
     <parameter name="pass" value="1214"/>
     <parameter name="gridIsRun" value="true"/>
