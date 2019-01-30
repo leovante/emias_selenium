@@ -17,7 +17,7 @@ import java.util.List;
 
 public class SQLDemonstration extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://192.168.7.48:50004";
-    private static String databaseName = "hlt_demonstration";
+    private static String databaseName = "hlt_demonstration2";
     private static String userName = "sa";
     private static String password = "sagfhjkzYES!";
     private static List<File> lst;
@@ -56,6 +56,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";password=" + password;
         try {
             LOGGER.info("Connecting to SQL Server ... ");
+            LOGGER.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -66,7 +67,7 @@ public class SQLDemonstration extends AbstractPage {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     LOGGER.info("Table DTT is clean.");
-                    statement.close();
+//                    statement.close();
                 }
             }
         } catch (Exception e) {
@@ -204,6 +205,7 @@ public class SQLDemonstration extends AbstractPage {
                 ";password=" + password;
         try {
             System.out.print("Connecting to SQL Server ... ");
+            System.out.print(url);
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(request);

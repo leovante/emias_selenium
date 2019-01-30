@@ -85,7 +85,8 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate.cfg.
       <driver-ref>sqlserver.jtds</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14333/hlt_OdincovoLuhov_CRB_240101</jdbc-url>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14334/hlt_OdincovoLuhov_CRB_240101</jdbc-url>
+      <default-dialect>TSQL</default-dialect>
       <driver-properties>
         <property name="appName" value="DataGrip" />
       </driver-properties>
@@ -192,6 +193,24 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://192.168.7.48:50004;databaseName=hlt_demonstration2</jdbc-url>
       <default-dialect>TSQL</default-dialect>
+    </data-source>
+    <data-source source="LOCAL" name="dev_mo_hlt_Demihovsk_20170916" uuid="0d0885ff-17be-424c-a1db-7187bc5464a3">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.196:49199/dev_mo_hlt_Demihovsk_20170916</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="dev_bel_cod_person_20170803@192.168.7.196" uuid="e335d483-148c-4b58-830c-dc3e1d95a16c">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.196:49199/dev_bel_cod_person_20170803</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
     </data-source>
   </component>
 </project>

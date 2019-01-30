@@ -17,6 +17,7 @@ public class BeforeSuiteCalldoctor extends AbstractTestGrid {
     @Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws IOException, ParseException {
+        //int LPUDoctorID, int DocPRVDID
         LPUDoctor.put(2078, 1220);
         LPUDoctor.put(1958, 1253);
         LPUDoctor.put(2075, 1244);
