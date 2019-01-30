@@ -18,12 +18,12 @@ public class BeforeSuiteCalldoctor extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws IOException, ParseException {
         //int LPUDoctorID, int DocPRVDID
-        LPUDoctor.put(2078, 1220);
-        LPUDoctor.put(1958, 1253);
-        LPUDoctor.put(2075, 1244);
-        LPUDoctor.put(1932, 1249);
-        LPUDoctor.put(1941, 1278);
-        LPUDoctor.put(2062, 1202);
+        LPUDoctor.put(2078, 1220);//Темников Дмитрий
+        LPUDoctor.put(1958, 1205);//Моков
+        LPUDoctor.put(2075, 1196);//Серова
+        LPUDoctor.put(1932, 1217);//Немцова
+        LPUDoctor.put(1941, 1005);//Юдина
+        LPUDoctor.put(2062, 1202);//Зайцева
         Iterator<Map.Entry<Integer, Integer>> it = LPUDoctor.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<Integer, Integer> pair = it.next();
