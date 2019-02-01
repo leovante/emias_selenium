@@ -110,6 +110,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
+    @Deprecated
     @Step("Создаю вызов через api")
     public void createCall_Api() {
         SQLDemonstration.finalizeCall_NPol(pacient.getNumberpol());
