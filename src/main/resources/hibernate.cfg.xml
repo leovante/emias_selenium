@@ -11,8 +11,7 @@
         <property name="show_sql">true</property>
         <property name="connection.username">sa</property>
         <property name="connection.password">sagfhjkzYES!</property>
-        <mapping class="pages.sql.HltCallDoctorEntity"/>
+        <mapping class="system.model.HltCallDoctorEntity"/>
         <mapping class="pages.sql.HltDoctorTimeTableEntity"/>
-
     </session-factory>
 </hibernate-configuration>
