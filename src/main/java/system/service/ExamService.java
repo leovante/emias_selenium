@@ -4,6 +4,7 @@ import system.dao.ExamDao;
 import system.model.HltDispExamEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ExamService {
     //<!--правка hibernate-->
@@ -12,8 +13,8 @@ public class ExamService {
     public ExamService() {
     }
 
-    public HltDispExamEntity findExam(int id) {
-        return examDao.findById(id);
+    public Optional<HltDispExamEntity> findExam(int id) {
+        return examDao.findById(Long.valueOf(id));
     }
 
     public void saveExam(HltDispExamEntity hltDispExamEntity) {

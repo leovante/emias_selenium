@@ -22,5 +22,6 @@
         <mapping class="system.model.HltDispCardEntity"/>
         <mapping class="system.model.KlaStreetEntity"/>
         <mapping class="system.model.KlaKlAdrEntity"/>
+        <mapping class="system.model.HltMkabEntity"/>
     </session-factory>
 </hibernate-configuration>

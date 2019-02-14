@@ -1,13 +1,13 @@
 package system.service;
 
-import system.dao.HltDispExam;
+import system.dao.HltDispExamDao;
 import system.model.HltDispExamEntity;
 
 import java.util.List;
 
 public class HltDispExamService {
     //<!--правка hibernate-->
-    private HltDispExam hltDispExam = new HltDispExam();
+    private HltDispExamDao hltDispExam = new HltDispExamDao();
 
     public HltDispExamService() {
     }

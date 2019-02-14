@@ -2,12 +2,12 @@ package system.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import utilities.HibernateSessionFactory;
 import system.model.HltDispExamEntity;
+import utilities.HibernateSessionFactory;
 
 import java.util.List;
 
-public class HltDispExam implements Dao<HltDispExamEntity> {
+public class HltDispExamDao implements Dao<HltDispExamEntity> {
 //<!--правка hibernate-->
 
     public HltDispExamEntity findById(int id) {

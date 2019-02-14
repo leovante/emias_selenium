@@ -6,12 +6,14 @@ import system.model.HltDispExamEntity;
 import utilities.HibernateSessionFactory;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ExamDao implements Dao<HltDispExamEntity> {
 
-    //<!--правка hibernate-->
-    public HltDispExamEntity findById(int id) {
-        return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);
+    @Override
+    public Optional<HltDispExamEntity> findById(Long id) {
+//        return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);
+        return null;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class ExamDao implements Dao<HltDispExamEntity> {
         tx1.commit();
         session.close();
     }
+
 
     public List<HltDispExamEntity> findAll() {
         List<HltDispExamEntity> hltDispExamEntity = (List<HltDispExamEntity>) HibernateSessionFactory
