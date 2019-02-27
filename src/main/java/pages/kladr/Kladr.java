@@ -2,8 +2,8 @@ package pages.kladr;
 
 import org.json.JSONException;
 import org.testng.Assert;
-import pages.sql.SQLDemonstration;
 import utilities.Formalizer;
+import utilities.sql.SQLDemonstration;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

@@ -1,4 +1,4 @@
-package pages.sql;
+package utilities.sql;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -137,4 +137,6 @@ public class DateGenerator {
             this.end_date = end_date;
         }
     }
+
+    // TODO: 15-Feb-19 переписать в соответствии с http://dev-blogs.com/simple-spring-database/
 }

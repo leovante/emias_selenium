@@ -2,7 +2,7 @@ package emias.calldoctor.before;
 
 import emias.AbstractTestGrid;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import utilities.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;

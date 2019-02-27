@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import pages.sql.SQLDemonstration;
 import utilities.api_model.CallDoctorEntity;
+import utilities.sql.SQLDemonstration;
 
 import java.io.IOException;
 import java.text.ParseException;

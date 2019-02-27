@@ -3,11 +3,10 @@ package system.dao;
 import system.model.HltMkabEntity;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface Dao<T> {
+public interface MkabDao<T> {
 
-    Optional<T> findById(Long id);
+    HltMkabEntity findById(int id);
 
     List<T> findAll();
 
@@ -15,5 +14,5 @@ public interface Dao<T> {
 
     void update(HltMkabEntity hltMkabEntity);
 
-    void delete(HltMkabEntity hltMkabEntity);
+    void delete(long id);
 }

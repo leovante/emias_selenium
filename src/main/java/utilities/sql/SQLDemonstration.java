@@ -1,4 +1,4 @@
-package pages.sql;
+package utilities.sql;
 
 import io.qameta.allure.Step;
 import org.codehaus.plexus.util.IOUtil;
@@ -36,7 +36,6 @@ public class SQLDemonstration extends AbstractPage {
                                 "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
                                 "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '17530101', GETDATE()) / 7) * 7) - 7, '17530101') " +
                                 "AND ldoc.FAM_V = '" + fam + "'";
-
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     LOGGER.info("Table DTT is clean.");
@@ -92,7 +91,6 @@ public class SQLDemonstration extends AbstractPage {
                                 "inner join oms_DocumentHistory dh on cl.guid = dh.rf_documentguid " +
                                 "where dh.Editor = 'Темников Дмитрий Олегович' " +
                                 "and cl.rf_calldoctorstatusid in (2, 5, 7)";
-
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     LOGGER.info("Finalize is done.");
@@ -116,7 +114,6 @@ public class SQLDemonstration extends AbstractPage {
                         "update hlt_CallDoctor " +
                                 "set rf_CallDoctorStatusID = 3 " +
                                 "where numberPol = '" + number + "'";
-
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
                     LOGGER.info("Pacient - " + number + " finalize is done.");
@@ -228,7 +225,6 @@ public class SQLDemonstration extends AbstractPage {
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + cardMap.get(methodName);
-
                 if (cardMap.get(methodName) != null && cardMap.get(methodName) > 0) {
                     try (Statement statement = connection.createStatement()) {
                         statement.executeUpdate(sql);

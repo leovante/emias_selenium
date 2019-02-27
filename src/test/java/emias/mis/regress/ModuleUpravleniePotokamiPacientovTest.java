@@ -3,7 +3,7 @@ package emias.mis.regress;
 import emias.AbstractTestGrid;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import utilities.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 

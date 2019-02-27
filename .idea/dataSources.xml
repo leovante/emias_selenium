@@ -221,5 +221,23 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
         <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="dev_mo_cod_NSI_20190129@192.168.7.253" uuid="5330155c-3239-4420-b1a2-232afe3f41da">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.253:49199/dev_mo_cod_NSI_20190129</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="dev_mo_cod_NSI_20170917@192.168.7.253" uuid="61f87a75-3531-451d-a2fa-28aea3bb72e6">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.253:49199/dev_mo_cod_NSI_20170917</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

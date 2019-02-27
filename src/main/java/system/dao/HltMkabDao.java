@@ -1,21 +1,21 @@
 package system.dao;
 
+import org.springframework.stereotype.Repository;
 import system.model.HltMkabEntity;
+import utilities.HibernateSessionFactory;
 
 import java.util.List;
-import java.util.Optional;
 
-public class HltMkabDao implements Dao<HltMkabEntity> {
-//    public static final String SQL_FIND_ALL = "select * from " + HltMkabEntity
-//    public static final String SQL_FIND_BY_ID =
+@Repository
+public class HltMkabDao implements MkabDao {
 
     @Override
-    public Optional<HltMkabEntity> findById(Long id) {
-        return Optional.empty();
+    public HltMkabEntity findById(int id) {
+        return HibernateSessionFactory.getSessionFactory().openSession().get(HltMkabEntity.class, id);
     }
 
     @Override
-    public List<HltMkabEntity> findAll() {
+    public List findAll() {
         return null;
     }
 
@@ -30,7 +30,7 @@ public class HltMkabDao implements Dao<HltMkabEntity> {
     }
 
     @Override
-    public void delete(HltMkabEntity hltMkabEntity) {
+    public void delete(long id) {
 
     }
 }

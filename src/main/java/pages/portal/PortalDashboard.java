@@ -6,7 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import pages.sql.SQLDemonstration;
+import utilities.sql.SQLDemonstration;
 
 import java.io.IOException;
 

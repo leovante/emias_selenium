@@ -1,44 +1,51 @@
 package system.dao;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.springframework.stereotype.Repository;
 import system.model.HltDispExamEntity;
+import system.model.HltMkabEntity;
 import utilities.HibernateSessionFactory;
 
 import java.util.List;
+import java.util.Optional;
 
-public class HltDispExamDao implements Dao<HltDispExamEntity> {
+@Repository
+public class HltDispExamDao implements Dao {
 //<!--правка hibernate-->
 
-    public HltDispExamEntity findById(int id) {
-        return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);
-    }
+//    public HltDispExamEntity findById(int id) {
+//        return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);
+//    }
+//
+//    @Override
+//    public void save(HltDispExamEntity hltDispExamEntity) {
+//        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+//        Transaction tx1 = session.beginTransaction();
+//        session.save(hltDispExamEntity);
+//        tx1.commit();
+//        session.close();
+//    }
+//
+//    @Override
+//    public void update(HltDispExamEntity hltDispExamEntity) {
+//        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+//        Transaction tx1 = session.beginTransaction();
+//        session.update(hltDispExamEntity);
+//        tx1.commit();
+//        session.close();
+//    }
+//
+//    @Override
+//    public void delete(HltDispExamEntity hltDispExamEntity) {
+//        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+//        Transaction tx1 = session.beginTransaction();
+//        session.delete(hltDispExamEntity);
+//        tx1.commit();
+//        session.close();
+//    }
 
     @Override
-    public void save(HltDispExamEntity hltDispExamEntity) {
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.save(hltDispExamEntity);
-        tx1.commit();
-        session.close();
-    }
-
-    @Override
-    public void update(HltDispExamEntity hltDispExamEntity) {
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.update(hltDispExamEntity);
-        tx1.commit();
-        session.close();
-    }
-
-    @Override
-    public void delete(HltDispExamEntity hltDispExamEntity) {
-        Session session = HibernateSessionFactory.getSessionFactory().openSession();
-        Transaction tx1 = session.beginTransaction();
-        session.delete(hltDispExamEntity);
-        tx1.commit();
-        session.close();
+    public Optional<HltDispExamEntity> findById(Long id) {
+        return Optional.empty();
     }
 
     public List<HltDispExamEntity> findAll() {
@@ -48,5 +55,20 @@ public class HltDispExamDao implements Dao<HltDispExamEntity> {
                 .createQuery("From HltDispExamEntity")
                 .list();
         return hltDispExamEntity;
+    }
+
+    @Override
+    public void save(HltMkabEntity hltMkabEntity) {
+
+    }
+
+    @Override
+    public void update(HltMkabEntity hltMkabEntity) {
+
+    }
+
+    @Override
+    public void delete(HltMkabEntity hltMkabEntity) {
+
     }
 }

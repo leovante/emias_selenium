@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import emias.AbstractTestGrid;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import utilities.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.$;

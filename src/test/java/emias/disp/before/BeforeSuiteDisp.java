@@ -3,7 +3,7 @@ package emias.disp.before;
 import emias.AbstractTestGrid;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;
-import pages.sql.SQLDemonstration;
+import utilities.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.FileNotFoundException;

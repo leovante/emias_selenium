@@ -1,0 +1,6 @@
+select * from hlt_disp_ResultValue rv
+inner join hlt_disp_ResultType rt on rt.Guid = rv.rf_ResultTypeGuid
+where rf_CardGuid = '68596A3A-A8DC-45D3-B55E-38B55F3079E8'
+
+select * from hlt_disp_ResultType
+select * from hlt_disp_ResultTypeValue

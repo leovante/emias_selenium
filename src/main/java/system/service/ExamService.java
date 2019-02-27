@@ -17,18 +17,17 @@ public class ExamService {
         return examDao.findById(Long.valueOf(id));
     }
 
-    public void saveExam(HltDispExamEntity hltDispExamEntity) {
-        examDao.save(hltDispExamEntity);
-    }
-
-    public void deleteExam(HltDispExamEntity hltDispExamEntity) {
-        examDao.delete(hltDispExamEntity);
-    }
-
-
-    public void updateExam(HltDispExamEntity hltDispExamEntity) {
-        examDao.update(hltDispExamEntity);
-    }
+//    public void saveExam(HltDispExamEntity hltDispExamEntity) {
+//        examDao.save(hltDispExamEntity);
+//    }
+//
+//    public void deleteExam(HltDispExamEntity hltDispExamEntity) {
+//        examDao.delete(hltDispExamEntity);
+//    }
+//
+//    public void updateExam(HltDispExamEntity hltDispExamEntity) {
+//        examDao.update(hltDispExamEntity);
+//    }
 
     public List<HltDispExamEntity> findAllExam() {
         return examDao.findAll();
