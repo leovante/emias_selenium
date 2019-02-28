@@ -37,7 +37,7 @@ public class HltMkabEntity {
     private int rfTypedocid;
     private String sPol;
     private String nPol;
-    private Object uguid;
+    private String uguid;
     private int rfOtherSmoid;
     private String sDoc;
     private String nDoc;
@@ -82,9 +82,9 @@ public class HltMkabEntity {
     private int rfEditUserId;
     private int rfKlTipOmsid;
     private String ridn;
-    private Object mkabInfo;
+    private String mkabInfo;
     private String birthplace;
-    private Object mainMkabGuid;
+    private String mainMkabGuid;
     private Timestamp dateDoc;
     private Timestamp dateMkab;
     private boolean isLsHome;
@@ -400,11 +400,11 @@ public class HltMkabEntity {
 
     @Basic
     @Column(name = "UGUID", nullable = false)
-    public Object getUguid() {
+    public String getUguid() {
         return uguid;
     }
 
-    public void setUguid(Object uguid) {
+    public void setUguid(String uguid) {
         this.uguid = uguid;
     }
 
@@ -850,11 +850,11 @@ public class HltMkabEntity {
 
     @Basic
     @Column(name = "MKABInfo", nullable = false)
-    public Object getMkabInfo() {
+    public String getMkabInfo() {
         return mkabInfo;
     }
 
-    public void setMkabInfo(Object mkabInfo) {
+    public void setMkabInfo(String mkabInfo) {
         this.mkabInfo = mkabInfo;
     }
 
@@ -870,11 +870,11 @@ public class HltMkabEntity {
 
     @Basic
     @Column(name = "MainMKABGuid", nullable = false)
-    public Object getMainMkabGuid() {
+    public String getMainMkabGuid() {
         return mainMkabGuid;
     }
 
-    public void setMainMkabGuid(Object mainMkabGuid) {
+    public void setMainMkabGuid(String mainMkabGuid) {
         this.mainMkabGuid = mainMkabGuid;
     }
 

@@ -8,6 +8,10 @@ public interface MkabDao<T> {
 
     HltMkabEntity findById(int id);
 
+    void findByModel();
+
+    List findByIdList(int id);
+
     List<T> findAll();
 
     void save(HltMkabEntity hltMkabEntity);

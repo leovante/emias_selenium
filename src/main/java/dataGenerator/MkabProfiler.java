@@ -50,7 +50,7 @@ public class MkabProfiler {
         this.contactMPhone = contactMPhone;
     }
 
-    List getMkabData() {
+    public List getMkabData() {
         SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
         Query q1 = session.createQuery(

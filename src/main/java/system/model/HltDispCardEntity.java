@@ -33,7 +33,6 @@ public class HltDispCardEntity {
     private String uinState;
     private int rfDocPrvdid;
 
-
     @Basic
     @Column(name = "DateAccept", nullable = false)
     public Timestamp getDateAccept() {

@@ -18,6 +18,10 @@ public class HltMkabService implements MkabService {
         return hltMkabDao.findById(id);
     }
 
+    public List findByIdList(int id) {
+        return hltMkabDao.findByIdList(id);
+    }
+
     @Override
     public List findAll() {
         return hltMkabDao.findAll();
