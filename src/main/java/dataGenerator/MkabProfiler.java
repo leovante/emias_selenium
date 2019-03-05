@@ -39,7 +39,7 @@ public class MkabProfiler {
     String uchastok;
     String contactMPhone;
 
-    public MkabProfiler(ProfileData data) {
+    public MkabProfiler() {
         this.gender = gender;
         this.date_bd = date_bd;
         this.s_pol = s_pol;

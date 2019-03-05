@@ -21,31 +21,30 @@ public class HltMkabDao implements MkabDao {
     }
 
     @Override
-    public void findByModel() {
+    public HltMkabEntity findByModel() {
+//        MkabBuilder mkab = MkabBuilder.newBuilder()
+//                .setW()
+//                .setIsAdult()//0-ребенок; 1-взрослый; пусто-без возрастной
+//                .contactMPhone()
+//                .
+
         SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
         Session session = sessionFactory.openSession();
-        Query q1 = session.createQuery(
-                "select " +
-                        "kl.w, " +
-                        "kl.dateBd, " +
-                        "kl.sPol, " +
-                        "kl.nPol, " +
-                        "kl.adres, " +
-                        "kl.adresFact, " +
-                        "kl.rfUchastokId, " +
-                        "kl.contactMPhone " +
-                        "from HltMkabEntity kl " +
-                        "where kl.ss != '' " +
-                        "and kl.gender != '' " +
-                        "and kl.date_bd > dateadd(year, -18, getdate()) " +//что тут?
-                        "and kl.s_pol != '' " +
-                        "and kl.n_pol != '' " +
-                        "and kl.adres != AdresFact " +
-                        "and kl.AdresFact != '' " +
-                        "and kl.rf_UchastokID != '' " +
-                        "and kl.DATE_BD != '' " +
-                        "and kl.contactMPhone != ''"
+        /*----*/
+        session.createQuery(
+                "from HltMkabEntity me " +
+                        "where me.ss != '' " +
+                        "and me.w != 0 " +
+//                        "and me.datebd > dateadd(year, -18, getdate()) " +//что тут?
+                        "and me.sPol != '' " +
+                        "and me.nPol != '' " +
+//                        "and me.adres != AdresFact " +
+                        "and me.adresFact != '' " +
+                        "and me.rfUchastokId != 0 " +
+                        "and me.dateBd != '' " +
+                        "and me.contactMPhone != ''"
         );
+        return null;
     }
 
     @Override

@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class ClickBoosterTest extends AbstractTestGrid {
     public void testAppendTomorrowClickBooster() throws Exception {
         Pacient pacient = new Pacient("Profile3_Kladr");
         Doctor doctor = new Doctor("MokovStendTestovoe");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
         enter.enterCalldoctorFromMis();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
@@ -48,6 +51,9 @@ public class ClickBoosterTest extends AbstractTestGrid {
     public void testZapisatDobavitClickBooster() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
+
         enter.enterCalldoctorFromMis();
 //        page.createCallPage().createCall(pacient);
         page.createCallPage(pacient).createCall_Api();

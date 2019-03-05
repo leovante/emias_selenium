@@ -8,6 +8,10 @@ public interface MkabService<T> {
 
     HltMkabEntity findById(int id);
 
+    List findByIdList(int id);
+
+    HltMkabEntity findByModel();
+
     List<T> findAll();
 
     void save(T t);

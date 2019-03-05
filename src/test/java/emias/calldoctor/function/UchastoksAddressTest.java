@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -85,6 +86,8 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileAdressNeIzMkab");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
         page.createCallPage(pacient).createCall_Api();
         enter.enterCalldoctorFromMis();
         page.dashboardPage()
@@ -99,6 +102,8 @@ public class UchastoksAddressTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testUchastokNotSet() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileAdressNeIzMkab_neformal");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
         page.createCallPage(pacient).createCall_Api();
         enter.enterCalldoctorFromMis();
         page.dashboardPage()

@@ -11,6 +11,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.TestMethodCapture;
+import utilities.sql.SQLDemonstration;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -64,6 +65,8 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile3");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
         enter.enterCalldoctorFromMis();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
@@ -75,6 +78,8 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile6");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
         enter.enterCalldoctorFromMis();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
@@ -103,6 +108,8 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile14");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
         enter.enterCalldoctorFromMis();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
@@ -116,6 +123,8 @@ public class CreateCallTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile20");
+        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
+
         enter.enterCalldoctorFromMis();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);

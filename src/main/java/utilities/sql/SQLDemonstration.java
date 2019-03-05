@@ -103,6 +103,7 @@ public class SQLDemonstration extends AbstractPage {
 
     @Step("завершаю вызовы пациента по полису")
     public static void finalizeCall_NPol(String number) {
+
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
