@@ -19,6 +19,9 @@ public class CreateCallTest extends AbstractTestGrid {
     @Autowired
     private HltMkabService hltMkabService;
 
+    @Autowired
+    private FactoryData factoryData;
+
     @Test(groups = "e2e", description = "")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() {
@@ -29,19 +32,10 @@ public class CreateCallTest extends AbstractTestGrid {
     @Test(groups = "e2e", description = "")
     @RetryCountIfFailed(2)
     public void testCallRegistrWithGenerator() throws InterruptedException, ParseException, IOException {
-        ModuleData mData = new FactoryData()
+        ModuleData mData = factoryData
                 .getData(CalldoctorData)
                 .findByModel()
                 .setDopData("СМП", "жалоба", "адрес");
-
-
-
-//        Pacient pacient = new Pacient("Profile1");
-//        Caller caller = new CallerFromApi(findByModel);
-        //сделать фабрику на тип вызова
-        //в ручную или по апи
-        //если в ручную, то от смп или от регистратуры
-        //если по апи, то методом с авторизацией или без
 
         enter.enterCalldoctorFromMis();
         page.createCallPage(mData).createCall();

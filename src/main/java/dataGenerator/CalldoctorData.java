@@ -1,9 +1,11 @@
 package dataGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import system.model.HltMkabEntity;
 import system.service.HltMkabService;
 
+@Component
 public class CalldoctorData implements ModuleData {
     HltMkabEntity mkab;
     String source;
@@ -17,10 +19,6 @@ public class CalldoctorData implements ModuleData {
     public CalldoctorData findByModel() {
         mkab = hltMkabService.findByModel();
         return this;
-    }
-
-    public CalldoctorData() {
-        mkab = hltMkabService.findByModel();
     }
 
     @Override
