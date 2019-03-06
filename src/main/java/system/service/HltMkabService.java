@@ -28,8 +28,6 @@ public class HltMkabService implements MkabService {
         return hltMkabDao.findByModel();
     }
 
-
-
     @Override
     public List findAll() {
         return hltMkabDao.findAll();

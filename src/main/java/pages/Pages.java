@@ -1,8 +1,8 @@
 package pages;
 
+import dataGenerator.ModuleData;
 import pages.callcenter.*;
 import pages.calldoctor.*;
-import pages.calldoctor.profiles_interfaces.Pacient;
 import pages.disp.ExampPage;
 import pages.disp.JournalPage;
 import pages.disp.KvotyPage;
@@ -50,20 +50,20 @@ public class Pages extends AbstractPage {
         return page(DoctorMethods.class);
     }
 
-    public CreateCallPage createCallPage(Pacient pacient) {
-        return new CreateCallPage(pacient);
+    public CreateCallPage createCallPage(ModuleData mData) {
+        return new CreateCallPage(mData);
     }
 
     public SetDoctorPage setDoctorPage() {
         return page(SetDoctorPage.class);
     }
 
-    public FullCardPage fullCardPage(String s) {
-        return new FullCardPage(s);
+    public FullCardPage fullCardPage(ModuleData mData) {
+        return new FullCardPage(mData);
     }
 
-    public DashboardPage dashboardPage() {
-        return page(DashboardPage.class);
+    public DashboardPage dashboardPage(ModuleData mData) {
+        return new DashboardPage(mData);
     }
 
     public SetLpuPage setLpuPage() {

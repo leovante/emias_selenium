@@ -3,6 +3,7 @@ package pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import dataGenerator.ModuleData;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -10,12 +11,15 @@ import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import system.model.HltMkabEntity;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage extends AbstractPage {
+    ModuleData mData;
+    HltMkabEntity mkab;
 
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
@@ -38,7 +42,9 @@ public class DashboardPage extends AbstractPage {
     private SelenideElement cancelCall = $(By.id("cancelcall"));
 
 
-    public DashboardPage() {
+    public DashboardPage(ModuleData mData) {
+        this.mData = mData;
+        this.mkab = mData.getMkab();
 
     }
 
@@ -137,15 +143,15 @@ public class DashboardPage extends AbstractPage {
 //    }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public void verifyNewCallGroup(Pacient pacient) throws InterruptedException, IOException {
+    public void verifyNewCallGroup() throws InterruptedException, IOException {
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
+//        $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
+//        $(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).shouldBe(Condition.visible);
+//        $(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).shouldBe(Condition.visible);
+//        $(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).shouldBe(Condition.visible);
+//        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
     }
 

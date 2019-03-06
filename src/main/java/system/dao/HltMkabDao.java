@@ -22,7 +22,7 @@ public class HltMkabDao implements MkabDao {
 
     @Override
     public HltMkabEntity findByModel() {
-//        MkabBuilder mkab = MkabBuilder.newBuilder()
+//        MkabBuilder findByModel = MkabBuilder.newBuilder()
 //                .setW()
 //                .setIsAdult()//0-ребенок; 1-взрослый; пусто-без возрастной
 //                .contactMPhone()

@@ -3,11 +3,12 @@ package pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
+import dataGenerator.ModuleData;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import system.model.HltMkabEntity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,9 +31,14 @@ public class FullCardPage extends AbstractPage {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
+    ModuleData mData;
+    HltMkabEntity mkab;
 
-    public FullCardPage(String testName) {
-        cardMap.put(testName, cardNumberParser(cardNumber.getText()));
+    public FullCardPage(ModuleData mData) {
+        this.mData = mData;
+        this.mkab = mData.getMkab();
+
+//        cardMap.put(testName, cardNumberParser(cardNumber.getText()));
     }
 
     @Step("проверяю наличие базовых элементов карты вызова")
@@ -66,33 +72,33 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю наличие базовых элементов пациента")
-    public void basePacient(Pacient pacient) {
-        ShouldBeVisible(pacient.getAddress());
-        ShouldBeVisible(pacient.getComplaint());
-        ShouldBeVisible(pacient.getCodedomophone());
-        ShouldBeVisible(parseTelephone(pacient));
-        ShouldBeVisible(String.valueOf(pacient.getEntrance()));
-        ShouldBeVisible(String.valueOf(pacient.getFloor()));
-        ShouldBeVisible(pacient.getName());
-        ShouldBeVisible(pacient.getFamily());
-        ShouldBeVisible(pacient.getOt());
-        ShouldBeVisible(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
-        ShouldBeVisible(String.valueOf(pacient.getSeriespol()));
-        ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
-        if (pacient.getKladraddress() != null) {
-            ShouldBeVisible(pacient.getAppartment());
-            ShouldBeVisible(pacient.getBuilding());
-            ShouldBeVisible(pacient.getConstruction());
-        }
+    public void basePacient() {
+//        ShouldBeVisible(pacient.getAddress());
+//        ShouldBeVisible(pacient.getComplaint());
+//        ShouldBeVisible(pacient.getCodedomophone());
+//        ShouldBeVisible(parseTelephone(pacient));
+//        ShouldBeVisible(String.valueOf(pacient.getEntrance()));
+//        ShouldBeVisible(String.valueOf(pacient.getFloor()));
+//        ShouldBeVisible(pacient.getName());
+//        ShouldBeVisible(pacient.getFamily());
+//        ShouldBeVisible(pacient.getOt());
+//        ShouldBeVisible(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
+//        ShouldBeVisible(String.valueOf(pacient.getSeriespol()));
+//        ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
+//        if (pacient.getKladraddress() != null) {
+//            ShouldBeVisible(pacient.getAppartment());
+//            ShouldBeVisible(pacient.getBuilding());
+//            ShouldBeVisible(pacient.getConstruction());
+//        }
     }
 
     @Step("проверяю наличие базовых элементов врача")
     public void baseDoctor(Doctor doctor) {
-        ShouldBeVisible(doctor.getName());
-        ShouldBeVisible(doctor.getFamily());
-        ShouldBeVisible(doctor.getOt());
-        ShouldBeVisible(doctor.getDepartment());
-        ShouldBeVisible(doctor.getUchastocs());
+//        ShouldBeVisible(doctor.getName());
+//        ShouldBeVisible(doctor.getFamily());
+//        ShouldBeVisible(doctor.getOt());
+//        ShouldBeVisible(doctor.getDepartment());
+//        ShouldBeVisible(doctor.getUchastocs());
     }
 
     @Step("проверка времени")
@@ -109,30 +115,30 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyNewCall(Pacient pacient) throws IOException {
+    public FullCardPage verifyNewCall() throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
-        basePacient(pacient);
+//        basePacient(pacient);
         verifyTime();
         LOGGER.info("Подробная карта вызова проверена!");
         return this;
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(Pacient pacient) throws IOException {
+    public FullCardPage verifyActivCall() throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
-        basePacient(pacient);
+//        basePacient(pacient);
         LOGGER.info("Подробная карта вызова проверена!");
         return this;
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyDoneCall(Pacient pacient, Doctor doctor) throws IOException {
+    public FullCardPage verifyDoneCall() throws IOException {
         $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
         baseElements();
-        basePacient(pacient);
-        baseDoctor(doctor);
+//        basePacient(pacient);
+//        baseDoctor(doctor);
         LOGGER.info("Подробная карта вызова проверена!");
         return this;
     }

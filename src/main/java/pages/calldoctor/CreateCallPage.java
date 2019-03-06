@@ -2,6 +2,7 @@ package pages.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import dataGenerator.ModuleData;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -32,6 +33,7 @@ public class CreateCallPage extends AbstractPage {
     CallDoctorEntity callDoctorEntity;
     HttpResponse httpResponse;
     //    private Pacient pacient;
+    ModuleData mData;
     HltMkabEntity mkab;
 
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
@@ -67,9 +69,9 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
 
-    public CreateCallPage(HltMkabEntity mkab) {
-//        this.pacient = pacient;
-        this.mkab = mkab;
+    public CreateCallPage(ModuleData mData) {
+        this.mData = mData;
+        this.mkab = mData.getMkab();
     }
 
     protected static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
@@ -84,7 +86,6 @@ public class CreateCallPage extends AbstractPage {
     }
 
     public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
-//        this.pacient = pacient;
         addNewCall()
                 .sourceCall()
                 .address()
@@ -100,7 +101,6 @@ public class CreateCallPage extends AbstractPage {
     }
 
     public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
-//        this.pacient = pacient;
         addNewCall()
                 .sourceCall()
                 .searchField()
@@ -116,34 +116,33 @@ public class CreateCallPage extends AbstractPage {
     @Step("Создаю вызов через api")
     public void createCall_Api() {
         HttpClient httpClient = HttpClients.createDefault();
-        if (pacient.getSource() == 2) {//смп
-            try {
-                callDoctorEntity = new CallDoctorEntity(mkab);
-                httpResponse = httpClient.execute(callDoctorEntity.createRequest());
-                statusBodyResponce(httpResponse);
-                LOGGER.info("Карта вызова создана!");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                LOGGER.info("Error, " + "Cannot Estabilish Connection");
-            }
-        }
-        if (pacient.getSource() == 3) {
-            try {
-                callDoctorEntity = new CallDoctorEntity(mkab);
-                httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
-                statusBodyResponce(httpResponse);
-                LOGGER.info("Карта вызова создана!");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                LOGGER.info("Error, " + "Cannot Estabilish Connection");
-            }
-        }
+//        if (pacient.getSource() == 2) {//смп
+//            try {
+//                callDoctorEntity = new CallDoctorEntity(findByModel);
+//                httpResponse = httpClient.execute(callDoctorEntity.createRequest());
+//                statusBodyResponce(httpResponse);
+//                LOGGER.info("Карта вызова создана!");
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//                LOGGER.info("Error, " + "Cannot Estabilish Connection");
+//            }
+//        }
+//        if (pacient.getSource() == 3) {
+//            try {
+//                callDoctorEntity = new CallDoctorEntity(findByModel);
+//                httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
+//                statusBodyResponce(httpResponse);
+//                LOGGER.info("Карта вызова создана!");
+//            } catch (Exception ex) {
+//                ex.printStackTrace();
+//                LOGGER.info("Error, " + "Cannot Estabilish Connection");
+//            }
+//        }
     }
 
     @Step("редактирую вызов")
-    public CreateCallPage editCallPage(HltMkabEntity mkab) throws IOException, ParseException, InterruptedException {
-//        this.pacient = pacient;
-        this.mkab = mkab;
+    public CreateCallPage editCallPage(ModuleData mData) throws IOException, ParseException, InterruptedException {
+        this.mkab = mData.getMkab();
         sourceCall()
                 .sourceCall()
                 .address()
@@ -161,9 +160,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public CreateCallPage editCallPage_Mkab(HltMkabEntity mkab) throws IOException, ParseException, InterruptedException {
-//        this.pacient = pacient;
-        this.mkab = mkab;
+    public CreateCallPage editCallPage_Mkab(ModuleData mkab) throws IOException, ParseException, InterruptedException {
+        this.mkab = mkab.getMkab();
         sourceCall()
                 .searchField()
                 .addressPlus()
@@ -221,16 +219,16 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("выбор источника вызова")
     private CreateCallPage sourceCall() {
-        try {
-            if (pacient.getSource() == 1) {
-                sourceReg.click();
-            }
-            if (pacient.getSource() == 2) {
-                sourceSmp.click();
-            }
-        } catch (Exception e) {
-            throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
-        }
+//        try {
+//            if (pacient.getSource() == 1) {
+//                sourceReg.click();
+//            }
+//            if (pacient.getSource() == 2) {
+//                sourceSmp.click();
+//            }
+//        } catch (Exception e) {
+//            throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
+//        }
         return this;
     }
 
@@ -243,24 +241,24 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("ввод адреса")
     private CreateCallPage address() throws InterruptedException {
-        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
-            clearAddress();
-            list_first_container(pacient.getAddress1());
-        }
-        if (pacient.getAddress2() != null && pacient.getAddress2() != "")
-            list_first_container(pacient.getAddress2());
-        if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
-            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "") {
-                Thread.sleep(1000);
-                adress.sendKeys(pacient.getAddress3());
-                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress3adv() + "')]")).click();
-            } else
-                list_first_container(pacient.getAddress3());
-        }
-        if (mkab.getPhoneHome() != null && mkab.getnPol() != "") {
-            $(By.xpath("//input[@placeholder='Дом']")).setValue(mkab.getnPol());
-        }
-        addressPlus();
+//        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
+//            clearAddress();
+//            list_first_container(pacient.getAddress1());
+//        }
+//        if (pacient.getAddress2() != null && pacient.getAddress2() != "")
+//            list_first_container(pacient.getAddress2());
+//        if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
+//            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "") {
+//                Thread.sleep(1000);
+//                adress.sendKeys(pacient.getAddress3());
+//                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress3adv() + "')]")).click();
+//            } else
+//                list_first_container(pacient.getAddress3());
+//        }
+//        if (findByModel.getPhoneHome() != null && findByModel.getnPol() != "") {
+//            $(By.xpath("//input[@placeholder='Дом']")).setValue(findByModel.getnPol());
+//        }
+//        addressPlus();
         return this;
     }
 
@@ -307,12 +305,12 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("уточняю адрес")
     private CreateCallPage addressPlus() {
-        korpus.setValue(pacient.getBuilding());
-        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
-        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
+//        korpus.setValue(pacient.getBuilding());
+//        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
+//        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
+//        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
+//        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
+//        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
         return this;
     }
 
@@ -344,13 +342,13 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("жалоба")
     private CreateCallPage complaint() throws InterruptedException {
-        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
-        complaint.sendKeys(Keys.SPACE);
-
-        $(By.xpath("//span[contains(text(),'диатез')]")).click();
-        $(By.xpath("//div[contains(text(),'" + pacient.getComplaint() + "')]")).shouldBe(Condition.visible);
+//        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
+//        JavascriptExecutor jse = (JavascriptExecutor) driver;
+//        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
+//        complaint.sendKeys(Keys.SPACE);
+//
+//        $(By.xpath("//span[contains(text(),'диатез')]")).click();
+//        $(By.xpath("//div[contains(text(),'" + pacient.getComplaint() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -381,8 +379,8 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("день рождения")
     private CreateCallPage birthDay() {
-        if (mkab.getDateBd() != null)
-            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(mkab.getDateBd("dd-MM-yyyy"));
+//        if (findByModel.getDateBd() != null)
+//            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(findByModel.getDateBd("dd-MM-yyyy"));
         return this;
     }
 
@@ -405,20 +403,20 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("фио вызывающего")
     private CreateCallPage caller() {
-        if (pacient.getSource() == 2) {
-            $(By.id("sourceSmp")).setValue("Супер станция");
-            $(By.id("callFamily")).setValue("ФамилияВызывающего");
-            $(By.id("callName")).setValue("ИмяВызывающего");
-            $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
-        } else {
-            if (years() > 18) {
-                callerType.click();
-                $(By.xpath("//span[contains(.,'Пациент')]")).click();
-            } else {
-                callerType.click();
-                $(By.xpath("//span[contains(.,'Представитель')]")).click();
-            }
-        }
+//        if (pacient.getSource() == 2) {
+//            $(By.id("sourceSmp")).setValue("Супер станция");
+//            $(By.id("callFamily")).setValue("ФамилияВызывающего");
+//            $(By.id("callName")).setValue("ИмяВызывающего");
+//            $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
+//        } else {
+//            if (years() > 18) {
+//                callerType.click();
+//                $(By.xpath("//span[contains(.,'Пациент')]")).click();
+//            } else {
+//                callerType.click();
+//                $(By.xpath("//span[contains(.,'Представитель')]")).click();
+//            }
+//        }
         return this;
     }
 
