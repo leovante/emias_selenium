@@ -49,7 +49,7 @@ public class WebDriverInstansiator {
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
 //            chromeOptions.addArguments("--proxy-server=localhost:", String.valueOf(proxy.getPort()));
-            chromeOptions.setHeadless(false);
+            chromeOptions.setHeadless(true);
 //            chromeOptions.setProxy(seleniumProxy);
 
             this.driver = new ChromeDriver(chromeDriverService, chromeOptions);

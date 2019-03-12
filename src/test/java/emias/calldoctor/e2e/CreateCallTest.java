@@ -4,6 +4,7 @@ import dataGenerator.FactoryData;
 import dataGenerator.ModuleData;
 import emias.AbstractTestGrid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import system.service.HltMkabService;
 import utilities.testngRetryCount.RetryCountIfFailed;
@@ -31,12 +32,18 @@ public class CreateCallTest extends AbstractTestGrid {
 
     @Test(groups = "e2e", description = "")
     @RetryCountIfFailed(2)
-    public void testCallRegistrWithGenerator() throws InterruptedException, ParseException, IOException {
-        ModuleData mData = factoryData
-                .getData(CalldoctorData)
-                .findByModel()
-                .setDopData("СМП", "жалоба", "адрес");
+    public void testCallRegistrMkab2() {
+        ModuleData mData = factoryData.getData(CalldoctorData).findByModel();
 
+        List l = hltMkabService.findByIdList(2662108);
+        System.out.println("Ответик" + l);
+    }
+
+    @Test(groups = "e2e", description = "")
+    @RetryCountIfFailed(2)
+    public void testCallRegistrWithGenerator() throws InterruptedException, ParseException, IOException {
+        ModuleData mData = factoryData.getData(CalldoctorData).findByModel();
+        Assert.assertNotEquals(mData.getMkab(), null);
         enter.enterCalldoctorFromMis();
         page.createCallPage(mData).createCall();
         page.fullCardPage(mData)

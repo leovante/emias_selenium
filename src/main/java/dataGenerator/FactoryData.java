@@ -1,19 +1,17 @@
 package dataGenerator;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.test.context.ContextConfiguration;
 
-@Component
+@Service
+@ContextConfiguration(locations = {"classpath:beans.xml"})
 public class FactoryData implements UserData {
-
-    @Autowired
-    CalldoctorData calldoctorData;
 
     @Override
     public ModuleData getData(DataType type) {
         try {
             if (type == DataType.CalldoctorData) {
-                return calldoctorData;
+                return new CalldoctorData();
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
