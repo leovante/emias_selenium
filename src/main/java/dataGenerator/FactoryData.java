@@ -1,17 +1,20 @@
 package dataGenerator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
+import system.service.HltMkabService;
 
 @Service
-@ContextConfiguration(locations = {"classpath:beans.xml"})
 public class FactoryData implements UserData {
+
+    @Autowired
+    HltMkabService hltMkabService;
 
     @Override
     public ModuleData getData(DataType type) {
         try {
             if (type == DataType.CalldoctorData) {
-                return new CalldoctorData();
+                return new CalldoctorData(hltMkabService);
             }
         } catch (NullPointerException e) {
             e.printStackTrace();

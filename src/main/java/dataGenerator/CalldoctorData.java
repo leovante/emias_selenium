@@ -2,12 +2,10 @@ package dataGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.test.context.ContextConfiguration;
 import system.model.HltMkabEntity;
 import system.service.HltMkabService;
 
 @Service
-@ContextConfiguration(locations = {"classpath:beans.xml"})
 public class CalldoctorData implements ModuleData {
     HltMkabEntity mkab;
     String source;
@@ -16,6 +14,10 @@ public class CalldoctorData implements ModuleData {
 
     @Autowired
     HltMkabService hltMkabService;
+
+    public CalldoctorData(HltMkabService hltMkabService) {
+        this.hltMkabService = hltMkabService;
+    }
 
     @Override
     public CalldoctorData findByModel() {
