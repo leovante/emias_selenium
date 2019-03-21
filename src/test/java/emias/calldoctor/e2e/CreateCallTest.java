@@ -4,13 +4,11 @@ import dataGenerator.FactoryData;
 import dataGenerator.ModuleData;
 import emias.AbstractTestGrid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import system.service.HltMkabService;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 import static dataGenerator.DataType.CalldoctorData;
@@ -18,23 +16,25 @@ import static dataGenerator.DataType.CalldoctorData;
 public class CreateCallTest extends AbstractTestGrid {
 
     @Autowired
-    private HltMkabService hltMkabService;
-
-    @Autowired
     private FactoryData factoryData;
 
-    @Test(groups = "e2e", description = "")
+    @Autowired
+    private HltMkabService hltMkabService;
+
+    @Test(groups = "e2e", description = "пытаюсь взять модель с двумя таблицами")
     @RetryCountIfFailed(2)
-    public void testCallRegistrMkab() {
-        List l = hltMkabService.findByIdList(2662108);
-        System.out.println("Ответик" + l);
+    public void testHiber() {
+        List a = hltMkabService.modelWithKladr();
+        System.out.println(a);
     }
 
-    @Test(groups = "e2e", description = "")
+    @Test(groups = "e2e", description = "первый тест с генератором тестовых данных")
     @RetryCountIfFailed(2)
-    public void testCallRegistrWithGenerator() throws InterruptedException, ParseException, IOException {
-        ModuleData mData = factoryData.getData(CalldoctorData).findByModel();
-        Assert.assertNotEquals(mData.getMkab(), null);
+    public void testCallRegistrWithGenerator() throws InterruptedException, IOException {
+        ModuleData mData = factoryData
+                .getData(CalldoctorData)
+                .findByModel()
+                .setDopData(false, false, "СМП", "", "");
         enter.enterCalldoctorFromMis();
         page.createCallPage(mData).createCall();
         page.fullCardPage(mData)

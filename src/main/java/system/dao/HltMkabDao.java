@@ -22,29 +22,48 @@ public class HltMkabDao implements MkabDao {
 
     @Override
     public HltMkabEntity findByModel() {
-//        MkabBuilder findByModel = MkabBuilder.newBuilder()
-//                .setW()
-//                .setIsAdult()//0-ребенок; 1-взрослый; пусто-без возрастной
-//                .contactMPhone()
-//                .
-
-        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-        Session session = sessionFactory.openSession();
-        /*----*/
-        session.createQuery(
-                "from HltMkabEntity me " +
-                        "where me.ss != '' " +
-                        "and me.w != 0 " +
+        HltMkabEntity hltMkabEntity = HibernateSessionFactory.getSessionFactory()
+                .openSession()
+                .createQuery(
+                        "from HltMkabEntity me " +
+//                                "inner join KlaAddressEntity klaa on me.rfAddressRegId = klaa.addressId " +
+                                "where me.ss != '' " +
+                                "and me.w != 0 " +
 //                        "and me.datebd > dateadd(year, -18, getdate()) " +//что тут?
-                        "and me.sPol != '' " +
-                        "and me.nPol != '' " +
+                                "and me.sPol != '' " +
+                                "and me.nPol != '' " +
 //                        "and me.adres != AdresFact " +
-                        "and me.adresFact != '' " +
-                        "and me.rfUchastokId != 0 " +
-                        "and me.dateBd != '' " +
-                        "and me.contactMPhone != ''"
-        );
-        return null;
+                                "and me.adresFact != '' " +
+                                "and me.rfUchastokId != 0 " +
+                                "and me.dateBd != '' " +
+                                "and me.contactMPhone != ''", HltMkabEntity.class
+                )
+                .setMaxResults(1)
+                .getSingleResult();
+        return hltMkabEntity;
+    }
+
+    @Override
+    public List modelWithKladr() {
+        List hltMkabEntity = HibernateSessionFactory.getSessionFactory()
+                .openSession()
+                .createQuery(
+                        "from HltMkabEntity me, KlaAddressEntity kl " +
+//                                "inner join KlaAddressEntity klaa on me.rfAddressRegId = kl.addressId " +
+                                "where me.rfAddressRegId = kl.addressId " +
+                                "and me.ss != '' " +
+                                "and me.w != 0 " +
+                                "and me.sPol != '' " +
+                                "and me.nPol != '' " +
+                                "and me.adresFact != '' " +
+                                "and me.rfAddressRegId != null " +
+                                "and me.rfUchastokId != 0 " +
+                                "and me.dateBd != '' " +
+                                "and me.contactMPhone != ''"
+                )
+                .setMaxResults(1)
+                .list();
+        return hltMkabEntity;
     }
 
     @Override
@@ -78,6 +97,5 @@ public class HltMkabDao implements MkabDao {
 
     @Override
     public void delete(long id) {
-
     }
 }

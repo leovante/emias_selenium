@@ -6,8 +6,10 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-        <property name="connection.url">jdbc:sqlserver://192.168.7.48:50004;databaseName=hlt_demonstration2</property>
-        <property name="connection.username">sa</property>
+        <property name="connection.url">
+            jdbc:sqlserver://192.168.7.253:64783;databaseName=test_mo_hlt_Taldom_CRB_20190129
+        </property>
+        <property name="connection.username">mis</property>
         <property name="connection.password">sagfhjkzYES!</property>
         <!--<property name="current_session_context_class">thread</property>-->
         <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>

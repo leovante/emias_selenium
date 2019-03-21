@@ -29,6 +29,11 @@ public class HltMkabService implements MkabService {
     }
 
     @Override
+    public List modelWithKladr() {
+        return hltMkabDao.modelWithKladr();
+    }
+
+    @Override
     public List findAll() {
         return hltMkabDao.findAll();
     }

@@ -1,19 +1,22 @@
 package dataGenerator;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import system.model.HltMkabEntity;
 import system.service.HltMkabService;
 
 @Service
 public class CalldoctorData implements ModuleData {
-    HltMkabEntity mkab;
-    String source;
-    String complaint;
-    String adress;
-
-    @Autowired
+    HltMkabEntity hltMkabEntity;
     HltMkabService hltMkabService;
+    Boolean api;
+    Boolean mkabStat;
+    String source;
+    String complaint = "тестовая жалоба";
+    String adress;
+    String smpPhone = "+79511582711";
+    String pd = "132";
+    String dfon = "135";
+    String entrance = "172";
 
     public CalldoctorData(HltMkabService hltMkabService) {
         this.hltMkabService = hltMkabService;
@@ -21,33 +24,68 @@ public class CalldoctorData implements ModuleData {
 
     @Override
     public CalldoctorData findByModel() {
-        mkab = hltMkabService.findByModel();
+        hltMkabEntity = hltMkabService.findByModel();
         return this;
     }
 
     @Override
-    public CalldoctorData setDopData(String source, String complaint, String adress) {
-        this.source = source;
-        this.complaint = complaint;
-        this.adress = adress;
+    public ModuleData modelWithKladr() {
+        hltMkabEntity = hltMkabService.findByModel();
         return this;
     }
 
+    @Override
+    public CalldoctorData setDopData(Boolean mkabStat, Boolean api, String source, String complaint, String dopAdress) {
+        this.mkabStat = mkabStat;
+        this.api = api;
+        this.source = source;
+        this.complaint = complaint;
+        this.adress = dopAdress;
+        return this;
+    }
+
+    @Override
     public String getSource() {
         return source;
     }
 
+    @Override
     public String getComplaint() {
         return complaint;
     }
 
     @Override
     public HltMkabEntity getMkab() {
-        return mkab;
+        return hltMkabEntity;
     }
-    //тут дополнительно к мкаб будут проставляться
-    //тип вызова, по апи или нет
-    //источник вызова
-    //дополнительные параметры для адреса (корпус, строение)
-    //жалоба
+
+    @Override
+    public Boolean getApiStat() {
+        return api;
+    }
+
+    @Override
+    public Boolean getMkabStat() {
+        return mkabStat;
+    }
+
+    @Override
+    public String getSMPPhone() {
+        return smpPhone;
+    }
+
+    @Override
+    public String getPd() {
+        return pd;
+    }
+
+    @Override
+    public String getDfon() {
+        return dfon;
+    }
+
+    @Override
+    public String getEntrance() {
+        return entrance;
+    }
 }

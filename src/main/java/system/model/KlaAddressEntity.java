@@ -1,13 +1,25 @@
 package system.model;
 
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.Objects;
+import java.util.Set;
 
-//<!--правка hibernate-->
 @Entity
-@Table(name = "kla_Address", schema = "dbo", catalog = "hlt_demonstration")
+@Table(name = "kla_Address", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
 public class KlaAddressEntity {
+
     private int addressId;
+
+    //    @OneToMany(mappedBy = "rfAddressRegId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY, /*mappedBy = "rfAddressRegId",*/ cascade = CascadeType.ALL)
+    @JoinColumn(name = "AddressID")
+    private Set<HltMkabEntity> hltMkabEntities = new LinkedHashSet<>();
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "Guid")
+//    private Set<HltDispExamEntity> guids = new LinkedHashSet<>();
+
     private int xEdition;
     private byte xStatus;
     private String code;

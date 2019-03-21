@@ -11,7 +11,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Table(name = "hlt_MKAB", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
-public class HltMkabEntity {
+public class HltMkabEntityExt extends KlaAddressEntity {
     private int mkabid;
     private int xEdition;
     private byte xStatus;
@@ -1022,7 +1022,7 @@ public class HltMkabEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        HltMkabEntity that = (HltMkabEntity) o;
+        HltMkabEntityExt that = (HltMkabEntityExt) o;
         return mkabid == that.mkabid &&
                 xEdition == that.xEdition &&
                 xStatus == that.xStatus &&

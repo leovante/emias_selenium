@@ -1,23 +1,40 @@
 package emias.calldoctor.regress;
 
+import dataGenerator.FactoryData;
+import dataGenerator.ModuleData;
 import emias.AbstractTestGrid;
+import io.qameta.allure.Epic;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 import utilities.TestMethodCapture;
+import utilities.testngRetryCount.RetryCountIfFailed;
+
+import java.io.IOException;
+import java.text.ParseException;
+
+import static dataGenerator.DataType.CalldoctorData;
 
 @Listeners(TestMethodCapture.class)
 public class CreateCallTest extends AbstractTestGrid {
 
-//    @Test(groups = "CD", description = "пустой вызов")
-//    @Epic("Создание вызова")
-//    @RetryCountIfFailed(2)
-//    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {
-//        Pacient pacient = new Pacient("Profile0");
-//        enter.enterCalldoctorFromMis();
-//        page.createCallPage(pacient).createCall();
-//        page.fullCardPage(testName())
-//                .verifyNewCall(pacient)
-//                .closeCardBtn();
-//    }
+    @Autowired
+    private FactoryData factoryData;
+
+    @Test(groups = "CD", description = "пустой вызов")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testCallRegistrEmpy() throws InterruptedException, ParseException, IOException {
+        ModuleData mData = factoryData
+                .getData(CalldoctorData)
+                .findByModel()
+                .setDopData(false, false, "СМП", "", "");
+        enter.enterCalldoctorFromMis();
+        page.createCallPage(mData).createCall();
+        page.fullCardPage(mData)
+                .verifyNewCall()
+                .closeCardBtn();
+    }
 //
 //    @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
 //    @Epic("Создание вызова")
@@ -31,20 +48,25 @@ public class CreateCallTest extends AbstractTestGrid {
 //                .closeCardBtn();
 //        page.dashboardPage().verifyNewCallGroup(pacient);
 //    }
-//
-//    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
-//    @Epic("Создание вызова")
-//    @RetryCountIfFailed(3)
-//    public void testCallRegistrMkab() throws Exception {
-//        Pacient pacient = new Pacient("Profile2");
-//        enter.enterCalldoctorFromMis();
-//        page.createCallPage(pacient).createCall();
-//        page.fullCardPage(testName())
-//                .verifyNewCall(pacient)
-//                .closeCardBtn();
-//        page.dashboardPage().verifyNewCallGroup(pacient);
-//    }
-//
+
+    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(3)
+    public void testCallRegistrMkab() throws Exception {
+        ModuleData mData = factoryData
+                .getData(CalldoctorData)
+                .modelWithKladr()
+                .setDopData(true, false, "СМП", "", "");
+        enter.enterCalldoctorFromMis();
+        page.createCallPage(mData)
+                .createCall();
+        page.fullCardPage(mData)
+                .verifyNewCall()
+                .closeCardBtn();
+        page.dashboardPage(mData)
+                .verifyNewCallGroup();
+    }
+
 //    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)

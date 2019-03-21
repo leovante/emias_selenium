@@ -10,6 +10,8 @@ public interface MkabDao<T> {
 
     HltMkabEntity findByModel();
 
+    List modelWithKladr();
+
     List findByIdList(int id);
 
     List<T> findAll();

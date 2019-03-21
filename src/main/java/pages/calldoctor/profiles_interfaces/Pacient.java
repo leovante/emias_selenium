@@ -287,8 +287,8 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         if (jsonOb.has("appartment") && !jsonOb.get("appartment").equals(""))
             this.appartment = jsonOb.getString("appartment");
 
-        if (jsonOb.has("entrance") && !jsonOb.get("entrance").equals(""))
-            this.entrance = jsonOb.getString("entrance");
+        if (jsonOb.has("getEntrance") && !jsonOb.get("getEntrance").equals(""))
+            this.entrance = jsonOb.getString("getEntrance");
 
         if (jsonOb.has("floor") && !jsonOb.get("floor").equals(""))
             this.floor = jsonOb.getString("floor");

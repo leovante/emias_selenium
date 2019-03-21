@@ -8,7 +8,7 @@ import java.util.Set;
 
 //<!--правка hibernate-->
 @Entity
-@Table(name = "hlt_disp_Card", schema = "dbo", catalog = "hlt_demonstration")
+@Table(name = "hlt_disp_Card", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
 public class HltDispCardEntity {
     private Timestamp dateAccept;
     private Timestamp dateClose;

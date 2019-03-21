@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "kla_KlAdr", schema = "dbo", catalog = "hlt_demonstration")
+@Table(name = "kla_KlAdr", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
 public class KlaKlAdrEntity {
     private int klAdrId;
     private int xEdition;

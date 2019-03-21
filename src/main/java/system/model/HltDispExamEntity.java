@@ -7,7 +7,7 @@ import java.util.Objects;
 //<!--правка hibernate-->
 //<!--правка hibernate-->
 @Entity
-@Table(name = "hlt_disp_Exam", schema = "dbo", catalog = "hlt_demonstration")
+@Table(name = "hlt_disp_Exam", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
 public class HltDispExamEntity {
     private Timestamp dateExam;
     private Timestamp dateOtkaz;

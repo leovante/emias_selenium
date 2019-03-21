@@ -12,6 +12,8 @@ public interface MkabService<T> {
 
     HltMkabEntity findByModel();
 
+    List modelWithKladr();
+
     List<T> findAll();
 
     void save(T t);

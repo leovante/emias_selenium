@@ -13,7 +13,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Pacient;
 import system.model.HltMkabEntity;
 import utilities.api_model.CallDoctorEntity;
 
@@ -26,13 +25,10 @@ import java.util.concurrent.TimeUnit;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
 
 public class CreateCallPage extends AbstractPage {
     CallDoctorEntity callDoctorEntity;
     HttpResponse httpResponse;
-    //    private Pacient pacient;
     ModuleData mData;
     HltMkabEntity mkab;
 
@@ -85,37 +81,76 @@ public class CreateCallPage extends AbstractPage {
         }
     }
 
-    public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
-        addNewCall()
-                .sourceCall()
-                .address()
-                .birthDay()
-                .gender()
-                .complaint()
-                .polis()
-                .FIO()
-                .caller()
-                .telephone()
-                .saveBtn();
+    public CreateCallPage createCall() throws InterruptedException {
+        if (mData.getApiStat() == true) {
+            HttpClient httpClient = HttpClients.createDefault();
+            if (mData.getSource() == "СМП") {//смп
+                try {
+                    callDoctorEntity = new CallDoctorEntity(mData);
+                    httpResponse = httpClient.execute(callDoctorEntity.createRequest());
+                    statusBodyResponce(httpResponse);
+                    LOGGER.info("Карта вызова создана!");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    LOGGER.info("Error, " + "Cannot Estabilish Connection");
+                }
+            }
+            if (mData.getSource() == "КЦ") {
+                try {
+                    callDoctorEntity = new CallDoctorEntity(mData);
+                    httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
+                    statusBodyResponce(httpResponse);
+                    LOGGER.info("Карта вызова создана!");
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    LOGGER.info("Error, " + "Cannot Estabilish Connection");
+                }
+            }
+        }
+        if (mData.getApiStat() == false) {
+            if (mData.getMkabStat() == false) {
+                addNewCall()
+                        .sourceCall()
+                        .address()
+                        .birthDay()
+                        .gender()
+                        .complaint()
+                        .polis()
+                        .FIO()
+                        .caller()
+                        .telephone()
+                        .saveBtn();
+            }
+            if (mData.getMkabStat() == true) {
+                addNewCall()
+                        .sourceCall()
+                        .searchField()
+                        .addressPlus()
+                        .complaint()
+                        .caller()
+                        .telephone()
+                        .saveBtn();
+            }
+        }
         return this;
     }
 
-    public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
-        addNewCall()
-                .sourceCall()
-                .searchField()
-                .addressPlus()
-                .complaint()
-                .caller()
-                .telephone()
-                .saveBtn();
-        return this;
-    }
+//    public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
+//        addNewCall()
+//                .sourceCall()
+//                .searchField()
+//                .addressPlus()
+//                .complaint()
+//                .caller()
+//                .telephone()
+//                .saveBtn();
+//        return this;
+//    }
 
     //переделать под фабрику
-    @Step("Создаю вызов через api")
-    public void createCall_Api() {
-        HttpClient httpClient = HttpClients.createDefault();
+//    @Step("Создаю вызов через api")
+//    public void createCall_Api() {
+//        HttpClient httpClient = HttpClients.createDefault();
 //        if (pacient.getSource() == 2) {//смп
 //            try {
 //                callDoctorEntity = new CallDoctorEntity(findByModel);
@@ -138,7 +173,7 @@ public class CreateCallPage extends AbstractPage {
 //                LOGGER.info("Error, " + "Cannot Estabilish Connection");
 //            }
 //        }
-    }
+//    }
 
     @Step("редактирую вызов")
     public CreateCallPage editCallPage(ModuleData mData) throws IOException, ParseException, InterruptedException {
@@ -219,16 +254,15 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("выбор источника вызова")
     private CreateCallPage sourceCall() {
-//        try {
-//            if (pacient.getSource() == 1) {
-//                sourceReg.click();
-//            }
-//            if (pacient.getSource() == 2) {
-//                sourceSmp.click();
-//            }
-//        } catch (Exception e) {
-//            throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
-//        }
+        try {
+            if (mData.getSource() == "СМП") {
+                sourceSmp.click();
+            } else if (mData.getSource() == "Регистратура") {
+                sourceReg.click();
+            }
+        } catch (Exception e) {
+            throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
+        }
         return this;
     }
 
@@ -305,27 +339,12 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("уточняю адрес")
     private CreateCallPage addressPlus() {
-//        korpus.setValue(pacient.getBuilding());
-//        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
-//        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
-//        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
-//        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
-//        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
-        return this;
-    }
-
-    @Step("телефон")
-    private CreateCallPage telephone() {
-        try {
-            if (!mkab.getPhoneWork().equals(null)) {
-                $(By.id("phone")).setValue(mkab.getPhoneWork());
-            }
-            if (mkab.getPhoneWork().equals("")) {
-                $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
-            }
-        } catch (Exception e) {
-            throw new InvalidArgumentException("Ошибка, не найден номер телефона у профиля!");
-        }
+//        korpus.setValue();
+//        stroenie.setValue();
+//        kvartira.setValue();
+        pd.setValue(mData.getPd());
+        dfon.setValue(mData.getDfon());
+        etazh.setValue(mData.getEntrance());
         return this;
     }
 
@@ -342,13 +361,13 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("жалоба")
     private CreateCallPage complaint() throws InterruptedException {
-//        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
-//        JavascriptExecutor jse = (JavascriptExecutor) driver;
-//        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
-//        complaint.sendKeys(Keys.SPACE);
-//
-//        $(By.xpath("//span[contains(text(),'диатез')]")).click();
-//        $(By.xpath("//div[contains(text(),'" + pacient.getComplaint() + "')]")).shouldBe(Condition.visible);
+        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
+        JavascriptExecutor jse = (JavascriptExecutor) driver;
+        jse.executeScript("arguments[0].value='" + mData.getComplaint() + "';", complaint);
+        complaint.sendKeys(Keys.SPACE);
+
+        $(By.xpath("//span[contains(text(),'диатез')]")).click();
+        $(By.xpath("//div[contains(text(),'" + mData.getComplaint() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
@@ -403,20 +422,32 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("фио вызывающего")
     private CreateCallPage caller() {
-//        if (pacient.getSource() == 2) {
-//            $(By.id("sourceSmp")).setValue("Супер станция");
-//            $(By.id("callFamily")).setValue("ФамилияВызывающего");
-//            $(By.id("callName")).setValue("ИмяВызывающего");
-//            $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
-//        } else {
-//            if (years() > 18) {
-//                callerType.click();
-//                $(By.xpath("//span[contains(.,'Пациент')]")).click();
-//            } else {
-//                callerType.click();
-//                $(By.xpath("//span[contains(.,'Представитель')]")).click();
-//            }
-//        }
+        if (mData.getSource() == "СМП") {
+            $(By.id("sourceSmp")).setValue("Супер станция");
+            $(By.id("callFamily")).setValue("ФамилияВызывающего");
+            $(By.id("callName")).setValue("ИмяВызывающего");
+            $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
+            $(By.id("phone")).setValue(mData.getSMPPhone());
+        } else {
+            if (years() >= 18) {
+                callerType.click();
+                $(By.xpath("//span[contains(.,'Пациент')]")).click();
+            } else {
+                callerType.click();
+                $(By.xpath("//span[contains(.,'Представитель')]")).click();
+            }
+        }
+        return this;
+    }
+
+    @Step("телефон")
+    private CreateCallPage telephone() {
+        if (!mkab.getPhoneWork().equals("")) {
+            $(By.id("phone")).setValue(mkab.getPhoneWork());
+        }
+        if (mkab.getPhoneWork().equals("")) {
+            $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
+        }
         return this;
     }
 
@@ -446,6 +477,7 @@ public class CreateCallPage extends AbstractPage {
             }
             Thread.sleep(1000);
         }
+
         if (!old.equals(driver.getCurrentUrl()))
             LOGGER.info("Вызов создан! " + driver.getCurrentUrl());
         else LOGGER.info("Вызов НЕ создан!");
@@ -459,22 +491,22 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPage verifyCallProfile1(Pacient pacient) {
-        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
-        Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
-        Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
-        Assert.assertEquals(fam.getAttribute("value"), pacient.getFamily(), "Фамилия некорректная");
-        Assert.assertEquals(name.getAttribute("value"), pacient.getName(), "Имя некорректное");
-        Assert.assertEquals(otchestvo.getAttribute("value"), pacient.getOt(), "Отчество некорректное");
-        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
-        assertThat("Адрес некорректный", pacient.getAddress(), containsString(adress.getAttribute("value")));
-        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
-        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
-        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
-        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
-        Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
-        Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
-        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
+    public CreateCallPage verifyCallProfile1() {
+        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(mData), "Номер телефона некорректный");
+        Assert.assertEquals(nomerPol.getAttribute("value"), mkab.getnPol(), "Номер полиса некорректный");
+        Assert.assertEquals(seriyaPol.getAttribute("value"), mkab.getsPol(), "Серия полса некорректная");
+        Assert.assertEquals(fam.getAttribute("value"), mkab.getFamily(), "Фамилия некорректная");
+        Assert.assertEquals(name.getAttribute("value"), mkab.getName(), "Имя некорректное");
+        Assert.assertEquals(otchestvo.getAttribute("value"), mkab.getOt(), "Отчество некорректное");
+//        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
+//        assertThat("Адрес некорректный", pacient.getAddress(), containsString(adress.getAttribute("value")));
+//        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
+//        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
+//        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
+//        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
+//        Assert.assertEquals(getPd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
+//        Assert.assertEquals(getDfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
+//        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
 
         LOGGER.info("Проверка данных на странице редактирования выполнена!");
         return this;

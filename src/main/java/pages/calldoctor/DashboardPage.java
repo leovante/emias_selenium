@@ -167,7 +167,7 @@ public class DashboardPage extends AbstractPage {
                 .$(By.xpath(".//*[@id='order']")).click();
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
         return this;
     }
@@ -212,7 +212,7 @@ public class DashboardPage extends AbstractPage {
                 .$(By.xpath(".//*[@id='order']")).click();
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
     }
 
@@ -228,7 +228,7 @@ public class DashboardPage extends AbstractPage {
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).isDisplayed());
             } else {
                 LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
@@ -249,7 +249,7 @@ public class DashboardPage extends AbstractPage {
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
-                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).isDisplayed());
             } else {
                 LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
