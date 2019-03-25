@@ -69,7 +69,7 @@ public class HltMkabEntity {
     private KlaAddressEntity klaAddressEntity;
 
     @ManyToOne
-    @JoinColumn(name = "AddressID")
+    @JoinColumn(name = "AddressID", nullable = false, insertable = false, updatable = false)
     public KlaAddressEntity getKlaAddressEntity() {
         return klaAddressEntity;
     }

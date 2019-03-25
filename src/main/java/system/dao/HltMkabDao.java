@@ -48,9 +48,8 @@ public class HltMkabDao implements MkabDao {
         List hltMkabEntity = HibernateSessionFactory.getSessionFactory()
                 .openSession()
                 .createQuery(
-                        "from HltMkabEntity me, KlaAddressEntity kl " +
-//                                "inner join KlaAddressEntity klaa on me.rfAddressRegId = kl.addressId " +
-                                "where me.rfAddressRegId = kl.addressId " +
+                        "from HltMkabEntity me " +
+                                "inner join KlaAddressEntity kl on me.rfAddressRegId = kl.addressId " +
                                 "and me.ss != '' " +
                                 "and me.w != 0 " +
                                 "and me.sPol != '' " +
@@ -59,7 +58,7 @@ public class HltMkabDao implements MkabDao {
                                 "and me.rfAddressRegId != null " +
                                 "and me.rfUchastokId != 0 " +
                                 "and me.dateBd != '' " +
-                                "and me.contactMPhone != ''"
+                                "and me.contactMPhone != '' order by newid()"
                 )
                 .setMaxResults(1)
                 .list();

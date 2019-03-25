@@ -11,14 +11,9 @@ public class KlaAddressEntity {
 
     private int addressId;
 
-    //    @OneToMany(mappedBy = "rfAddressRegId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @OneToMany(fetch = FetchType.LAZY, /*mappedBy = "rfAddressRegId",*/ cascade = CascadeType.ALL)
-    @JoinColumn(name = "AddressID")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "klaAddressEntity", cascade = CascadeType.ALL)
+    @JoinColumn(name = "AddressID", referencedColumnName = "id", nullable = false)
     private Set<HltMkabEntity> hltMkabEntities = new LinkedHashSet<>();
-
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "Guid")
-//    private Set<HltDispExamEntity> guids = new LinkedHashSet<>();
 
     private int xEdition;
     private byte xStatus;
