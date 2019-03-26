@@ -14,7 +14,7 @@ public class Config {
     private String dispCard;
     private String calldoctor;
 
-    public void Conf() {
+    public Config() {
         FileInputStream fis;
         Properties property = new Properties();
         try {

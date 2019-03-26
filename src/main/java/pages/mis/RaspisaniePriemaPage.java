@@ -91,19 +91,15 @@ public class RaspisaniePriemaPage extends AbstractPage {
     }
 
     public RaspisaniePriemaPage generateML() throws InterruptedException {
-        Thread.sleep(2000);
-        String i = kvotyCount.getValue();
+        String i = kvotyCount.getText();
         $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
-
-        $(By.xpath("//div[contains(text(),'На текущую дату использованы все квоты, Продолжить?')]"))
-//                .$(By.xpath("./..//span[contains(text,'Да')]"))
-                .pressEnter();
-        $(By.xpath("//div[contains(text(),'Проверка перед генерацией маршрутного листа')]"))
-                .$(By.xpath("./..//*[contains(text,'Да')]"))
-                .pressEnter();
+        if (i.equals("0")) {
+            $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']//*[contains(text(),'Да')]")).click();
+        }
+        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']"))
+                .$(By.xpath(".//*[contains(text(),'Да')]")).click();
         return this;
     }
-
 
     public void verifyFindCallName(String nameGen) {
         RecordsArea.shouldBe(Condition.visible);
@@ -169,6 +165,22 @@ public class RaspisaniePriemaPage extends AbstractPage {
                 doctor.getName() + " " +
                 doctor.getOt() +
                 "')]")).click();
+        return this;
+    }
+
+    public RaspisaniePriemaPage disableIPK() {
+        $(By.xpath("//*[contains(text(),'Индивидуальное профилактическое консультирование')]"))
+                .$(By.xpath("./../..//[@ng-click='CancelService(exam)']"))
+                .click();
+        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']"))
+                .$(By.xpath(".//*[contains(text(),'Да')]")).click();
+        return this;
+    }
+
+    public RaspisaniePriemaPage validateTerapevtLast() {
+        $$(By.xpath("//*[class='examListBody']")).last()
+                .$(By.xpath(".//*[contains(text(),'Прием врача-терапевта')]"))
+                .shouldBe(Condition.visible);
         return this;
     }
 }
