@@ -2,7 +2,9 @@ package pages.disp;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import pages.AbstractPage;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -469,6 +471,38 @@ public class ExampPage extends AbstractPage {
     /* меню слева*/
     public ExampPage zakluchenieMenuBtn() {
         $(By.id("mCSB_1_container")).$(By.xpath(".//*[contains(text(),'Заключение')]")).click();
+        return this;
+    }
+
+    /* всякие заполнения */
+    public ExampPage validateFieldParamIsEmpy() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
+        OpredelenieOtnositelnogoSSR.click();
+        Thread.sleep(2000);//
+        String i = OpredelenieOtnositelnogoSSR
+                .$(By.xpath("//th[contains(text(),'Показатели')]"))
+                .$(By.xpath("../../../."))
+                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
+                .$(By.xpath(".//input[@formcontrolname='value']")).getValue();
+        Assert.assertEquals(i, "", "поле показателей должно быть пустым");
+        return this;
+    }
+
+    @Step("Проверяю валидацию поля параметров с пробелом")
+    public ExampPage validateFieldParamWithSpace() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
+        OpredelenieOtnositelnogoSSR.click();
+        Thread.sleep(2000);//
+        OpredelenieOtnositelnogoSSR
+                .$(By.xpath("//th[contains(text(),'Показатели')]"))
+                .$(By.xpath("../../../."))
+                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
+                .$(By.xpath(".//input[@formcontrolname='value']")).setValue(" ");
+        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
+        OpredelenieOtnositelnogoSSR.click();
+        $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
         return this;
     }
 }
