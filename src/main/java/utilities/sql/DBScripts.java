@@ -15,7 +15,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
 
-public class SQLDemonstration extends AbstractPage {
+public class DBScripts extends AbstractPage {
     private static String connectionUrl = "jdbc:sqlserver://192.168.7.48:50004";
     private static String databaseName = "hlt_demonstration2";
     private static String userName = "sa";

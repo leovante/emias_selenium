@@ -1,8 +1,8 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class ChooseDoctorTest extends AbstractTestGrid {
+public class ChooseDoctorTest extends TestBase {
 
 //    @Test(groups = "CD", description = "назначить вызову из регистратуры врача на сегодня")
 //    @Epic("Назначить врача")
@@ -10,7 +10,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
 //    public void testAppendDoctorToCall_Registr() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
 //        Doctor doctor = new Doctor("SerovaStendTestovoe");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorToday(doctor);
@@ -28,7 +28,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
 //    public void testAppendDoctorToCall_SMP() throws Exception {
 //        Pacient pacient = new Pacient("Profile2");
 //        Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorToday(doctor);
@@ -49,7 +49,7 @@ public class ChooseDoctorTest extends AbstractTestGrid {
 //        Doctor doctor = new Doctor("MokovStendTestovoe");
 //        enter.enterPortal();
 //        page.portalDashboard().createCall(pacient);
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.dashboardPage()
 //                .clearAllFilters()
 //                .openNewCallDash(pacient);

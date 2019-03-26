@@ -19,6 +19,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static pages.AbstractPage.LOGGER;
 
 public class WebDriverInstansiator {
+    private Config conf;
     public String browser;
     public RemoteWebDriver driver;
     public ChromeOptions chromeOptions;
@@ -27,14 +28,13 @@ public class WebDriverInstansiator {
     public static ChromeDriverService chromeDriverService;
     public Dimension dimension;
     public java.awt.Dimension screenSize;
-    public Boolean headless;
 
     public WebDriverInstansiator(String browser) {
+        conf = new Config();
         this.browser = browser;
     }
 
-    public RemoteWebDriver setDriver(Boolean headless/*, BrowserMobProxy proxy*/) throws IOException {
-        this.headless = headless;
+    public RemoteWebDriver setDriver(/*, BrowserMobProxy proxy*/) throws IOException {
         //ручной запуск
         if (browser == null) {
 //            proxy.start(5300);
@@ -49,7 +49,7 @@ public class WebDriverInstansiator {
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
 //            chromeOptions.addArguments("--proxy-server=localhost:", String.valueOf(proxy.getPort()));
-            chromeOptions.setHeadless(true);
+            chromeOptions.setHeadless(conf.getHeadless());
 //            chromeOptions.setProxy(seleniumProxy);
 
             this.driver = new ChromeDriver(chromeDriverService, chromeOptions);
@@ -63,7 +63,7 @@ public class WebDriverInstansiator {
             switch (browser) {
                 case "firefox":
                     firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.setHeadless(headless);
+                    firefoxOptions.setHeadless(conf.getHeadless());
 //                    firefoxOptions.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
 //                    firefoxOptions.addArguments("--window-size=1919,1079");
 //
@@ -81,7 +81,7 @@ public class WebDriverInstansiator {
                     break;
                 case "chrome":
                     chromeOptions = new ChromeOptions();
-                    chromeOptions.setHeadless(headless);
+                    chromeOptions.setHeadless(conf.getHeadless());
                     chromeOptions.addArguments("window-size=1919,1079");
                     driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
                     WebDriverRunner.setWebDriver(driver);
@@ -97,9 +97,9 @@ public class WebDriverInstansiator {
             LOGGER.info(
                     "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
                             "Browser resolution: " + dimension + "; " +
-                            "Headless: " + headless + "; ");
+                            "Headless: " + conf.getHeadless() + "; ");
         }
-
+        Configuration.reportsFolder = "target/test-result/reports";
         return driver;
     }
 }

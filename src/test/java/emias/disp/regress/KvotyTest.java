@@ -1,20 +1,19 @@
 package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
-public class KvotyTest extends AbstractTestGrid {
+public class KvotyTest extends TestBase {
 
     @Test(groups = "disp", description = "проверка что открываются квоты")
     @RetryCountIfFailed(3)
     public void testSearchCard1() {
-        open(DISP_CARD_URL);
+        page.loginPage().dispCard();
         page.kvotyPage().kvotyBtn();
         $(By.xpath("//*[contains(.,'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }
@@ -22,10 +21,9 @@ public class KvotyTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверка что открываются квоты на странице просмотра карты")
     @RetryCountIfFailed(3)
     public void testSearchCard2() throws InterruptedException {
-        enter.enterDispJournalFromMis();
+        page.loginPage().dispJournal();
         page.kvotyPage().kvotyBtn();
         $(By.xpath("//*[contains(text(),'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }
-
     // TODO: 12/14/2018 сделать тест поиск квот
 }

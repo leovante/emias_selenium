@@ -1,8 +1,7 @@
 package emias.calldoctor.before;
 
-import emias.AbstractTestGrid;
-import org.testng.annotations.Test;
-import utilities.sql.SQLDemonstration;
+import emias.TestBase;
+import utilities.sql.DBScripts;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -11,10 +10,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class BeforeSuiteCalldoctor extends AbstractTestGrid {
+public class BeforeSuiteCalldoctor extends TestBase {
     Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
 
-    @Test(description = "Создаю новое расписание на сегодня")
+    @org.testng.annotations.Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws IOException, ParseException {
         //int LPUDoctorID, int DocPRVDID
@@ -27,8 +26,8 @@ public class BeforeSuiteCalldoctor extends AbstractTestGrid {
         Iterator<Map.Entry<Integer, Integer>> it = LPUDoctor.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<Integer, Integer> pair = it.next();
-            SQLDemonstration.deleteShedule(pair.getKey(), pair.getValue());
-            SQLDemonstration.createSheduleCD(pair.getKey(), pair.getValue());
+            DBScripts.deleteShedule(pair.getKey(), pair.getValue());
+            DBScripts.createSheduleCD(pair.getKey(), pair.getValue());
         }
     }
 }

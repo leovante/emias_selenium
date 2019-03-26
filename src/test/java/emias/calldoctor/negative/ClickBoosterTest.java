@@ -1,8 +1,8 @@
 package emias.calldoctor.negative;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class ClickBoosterTest extends AbstractTestGrid {
+public class ClickBoosterTest extends TestBase {
 
 //    @Test(groups = "CD", description = "закликивание кнопки 'назначить на сегодня' что бы проверить что не создаются дубликаты")
 //    @Epic("Негативные тесты")
@@ -12,7 +12,7 @@ public class ClickBoosterTest extends AbstractTestGrid {
 //        Doctor doctor = new Doctor("MokovStendTestovoe");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        page.fullCardPage(testName()).chooseDoctorBtn();
@@ -26,7 +26,7 @@ public class ClickBoosterTest extends AbstractTestGrid {
 //    public void testZapisatClickBooster() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile0_1");
 //        Doctor doctor = new Doctor("SerovaStendTestovoe");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().zapisatClickBooster(doctor);
@@ -44,7 +44,7 @@ public class ClickBoosterTest extends AbstractTestGrid {
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 ////        page.createCallPage().createCall(pacient);
 //        page.createCallPage(pacient).createCall_Api();
 //        page.fullCardPage(testName()).chooseDoctorBtn();

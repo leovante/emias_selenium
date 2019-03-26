@@ -1,13 +1,13 @@
 package emias.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class Auth extends AbstractTestGrid {
+public class Auth extends TestBase {
 
     public Auth enterCallCenter() {
         SelenideElement log = $(By.id("USER_LOGIN"));

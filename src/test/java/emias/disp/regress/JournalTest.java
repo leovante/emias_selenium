@@ -1,7 +1,7 @@
 package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -11,14 +11,15 @@ import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
 
-public class JournalTest extends AbstractTestGrid {
+public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по номеру через профиль")
     @RetryCountIfFailed(2)
     public void testSearchCard1() {
-        open(DISP_CARD_URL);
+        page.loginPage().dispCard();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(3059);
         page.journalPage().clickSearchBtn();
@@ -29,7 +30,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
     public void testSearchCard2() {
-        open(DISP_CARD_URL);
+        page.loginPage().dispCard();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByPolNumber(7654321);
         page.journalPage().clickSearchBtn();
@@ -40,7 +41,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
     public void testSearchCard3() {
-        open(DISP_CARD_URL);
+        page.loginPage().dispCard();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByFio("Темников Дмитрий Олегович");
         page.journalPage().clickSearchBtn();
@@ -51,7 +52,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
     public void testSearchCard4() throws InterruptedException {
-        enter.enterDispJournalFromMis();
+        page.loginPage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(3059);
         page.journalPage().clickSearchBtn();
@@ -62,7 +63,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
     public void testSearchCard5() throws InterruptedException {
-        enter.enterDispJournalFromMis();
+        page.loginPage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByPolNumber(7654321);
         page.journalPage().clickSearchBtn();
@@ -73,7 +74,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
     public void testSearchCard6() throws InterruptedException {
-        enter.enterDispJournalFromMis();
+        page.loginPage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByFio("Темников Дмитрий Олегович");
         page.journalPage().clickSearchBtn();
@@ -81,10 +82,10 @@ public class JournalTest extends AbstractTestGrid {
     }
 
     @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
+    @org.testng.annotations.Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() throws InterruptedException {
-        enter.enterDispJournalFromMis();
+        page.loginPage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(1594);
         page.journalPage().clickSearchBtn();
@@ -97,7 +98,7 @@ public class JournalTest extends AbstractTestGrid {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через мкаб")
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromMkab() throws InterruptedException {
-        enter.enterMIS();
+        page.loginPage().loginMis();
         page.homePageMis().mkabBtn();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -124,9 +125,9 @@ public class JournalTest extends AbstractTestGrid {
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
         Pacient pacient = new Pacient("Temnikov94");
-        enter.enterMIS();
+        page.loginPage().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
-        page.raspisaniePriemaPage().createDispMl(pacient);
+//        page.raspisaniePriemaPage().createDispMl(pacient);
         page.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");
 //        page.raspisaniePriemaPage().selectCell();
 

@@ -3,7 +3,7 @@ package pages.kladr;
 import org.json.JSONException;
 import org.testng.Assert;
 import utilities.Formalizer;
-import utilities.sql.SQLDemonstration;
+import utilities.sql.DBScripts;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,7 +18,7 @@ public class Kladr {
 
     //получаю стринги адресов
     public Kladr getAddressStringList() {
-        addressStringList = SQLDemonstration.getAddressStringHiber();
+        addressStringList = DBScripts.getAddressStringHiber();
         return this;
     }
 
@@ -51,7 +51,7 @@ public class Kladr {
     }
 
     public boolean verifyKladrCode() {
-        if (SQLDemonstration.verifyKladrCodeHiber(fullKLADRCodeAddress)) {
+        if (DBScripts.verifyKladrCodeHiber(fullKLADRCodeAddress)) {
             return true;
         }
         return false;

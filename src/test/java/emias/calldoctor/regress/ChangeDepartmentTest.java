@@ -1,8 +1,8 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class ChangeDepartmentTest extends AbstractTestGrid {
+public class ChangeDepartmentTest extends TestBase {
 
 //    @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
 //    @Epic("Передача вызова")
@@ -11,7 +11,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("ProfileTransferLpu-Dep");
 //        Doctor doctor = new Doctor("TemnikovStend");
 //        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName())
 //                .verifyDepartment(doctor)
@@ -28,7 +28,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        Doctor doctor = new Doctor("TemnikovStend");
 //        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
 //        Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName())
 //                .verifyDepartment(doctor)
@@ -48,7 +48,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
 //        Doctor doctor = new Doctor("TemnikovStend");
 //        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName())
 //                .verifyDepartment(doctor)
@@ -85,7 +85,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testshowMeYourAdultPoliklinika() throws Exception {
 //        Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).transferToDepartBtn();
 //        $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
@@ -98,7 +98,7 @@ public class ChangeDepartmentTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testshowMeYourKidPoliklinika() throws Exception {
 //        Pacient pacient = new Pacient("Profile2");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Mkab();
 //        page.fullCardPage(testName()).transferToDepartBtn();
 //        $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);

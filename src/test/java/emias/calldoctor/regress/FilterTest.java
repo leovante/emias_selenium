@@ -1,15 +1,15 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class FilterTest extends AbstractTestGrid {
+public class FilterTest extends TestBase {
 
 //    @Test(groups = "CD", description = "фильтр поиск по ФИО")
 //    @Epic("Проверка фильтра")
 //    @RetryCountIfFailed(2)
 //    public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile1");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).closeCardBtn();
 //        page.dashboardPage()
@@ -23,7 +23,7 @@ public class FilterTest extends AbstractTestGrid {
 //    public void testFilterDoctor() throws InterruptedException, IOException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile1");
 //        Doctor doctor = new Doctor("SerovaStendTestovoe");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorToday(doctor);
@@ -40,7 +40,7 @@ public class FilterTest extends AbstractTestGrid {
 //    public void testTypeCall() throws InterruptedException, IOException, JSONException {
 //        Pacient pacient = new Pacient("Profile3_1");
 //        page.createCallPage(pacient).createCall_Api();
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        page.fullCardPage(testName()).closeCardBtn();
 //        page.dashboardPage()
@@ -55,7 +55,7 @@ public class FilterTest extends AbstractTestGrid {
 //    public void testFilterActiveGroup() throws InterruptedException, IOException, JSONException, ParseException {
 //        Pacient pacient = new Pacient("Profile2_2");
 //        Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorTomorrow(doctor);

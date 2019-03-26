@@ -1,22 +1,20 @@
 package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import org.openqa.selenium.By;
-import org.testng.annotations.Test;
-import utilities.sql.SQLDemonstration;
+import utilities.sql.DBScripts;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
-public class ExampsFillTest extends AbstractTestGrid {
+public class ExampsFillTest extends TestBase {
 
-    @Test(groups = "disp", description = "проверка заполнения мероприятий М24")
+    @org.testng.annotations.Test(groups = "disp", description = "проверка заполнения мероприятий М24")
     @RetryCountIfFailed(3)
     public void testFillExamp() throws InterruptedException {
-        SQLDemonstration.setDefaultServices("3169");
-        open(DISP_CARD_URL);
+        DBScripts.setDefaultServices("3169");
+        page.loginPage().dispCard();
         page.exampPage().fillTemnikov();
         $(By.xpath("//div[@mattooltip='Процент завершенности диспансеризации'][contains(.,'(100%)')]")).shouldBe(Condition.visible);
         page.exampPage().saveBtn();

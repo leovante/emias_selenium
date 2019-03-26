@@ -4,16 +4,16 @@
 
 package emias.calldoctor.function;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class DoctorsListTest extends AbstractTestGrid {
+public class DoctorsListTest extends TestBase {
 
 //    @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
 //    public void testChildCall() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile7");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
@@ -26,7 +26,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testChildCall2() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile8");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
@@ -39,7 +39,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testChildCall3() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile9");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
@@ -52,7 +52,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testChildCall4() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile10");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
@@ -65,7 +65,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testChildCall5() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile11");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
@@ -78,7 +78,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testChildCall6() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile12");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
@@ -91,7 +91,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testChildCall7() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile13");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
@@ -104,7 +104,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testPreviewUchDoctorWithKladr() throws Exception {
 //        Pacient pacient = new Pacient("Profile2");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
@@ -117,7 +117,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("ProfileDetkina");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage()
 //                .searchFilterFio_Fam(pacient)
@@ -136,7 +136,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile19");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        page.fullCardPage(testName()).chooseDoctorBtn();
@@ -151,7 +151,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile13");
-//        enter.enterCalldoctorFromMis_Admin();
+//        enter.calldoctorFromMis_Admin();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
@@ -168,7 +168,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile2");
 //        Pacient pacient2 = new Pacient("Profile0_2");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Mkab();
 //        page.fullCardPage(testName()).editCallBtn();
 //        page.createCallPage(pacient)
@@ -193,7 +193,7 @@ public class DoctorsListTest extends AbstractTestGrid {
 //    public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile2");
 //        Pacient pacient2 = new Pacient("Profile0_2");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Mkab();
 //        page.fullCardPage(testName()).editCallBtn();
 //        page.createCallPage(pacient)

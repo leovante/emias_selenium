@@ -1,8 +1,8 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class InteractionMisCalldoctor extends AbstractTestGrid {
+public class InteractionMisCalldoctor extends TestBase {
 
 //    @Test(groups = "CD", description = "назначить вызову из регистратуры врача на сегодня", enabled = false)
 //    @Epic("Назначить врача")
@@ -10,13 +10,13 @@ public class InteractionMisCalldoctor extends AbstractTestGrid {
 //    public void testAppendDoctorToCall_Registr() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
 //        Doctor doctor = new Doctor("SerovaStendTestovoe");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorToday(doctor);
 //        page.fullCardPage(testName()).verifyActivCall(pacient);
 //
-//        page.loginPage().login(site, login, pass);
+//        page.loginPage().loginMis(site, loginMis, pass);
 //        page.homePageMis().raspisaniPriemaBtn();
 //        page.doctorMethods().selectDoctor(doctor);
 //
@@ -27,7 +27,7 @@ public class InteractionMisCalldoctor extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testFormalizeAddress() throws Exception {
 //        Pacient pacient = new Pacient("Profile2");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient)
 //                .addNewCall()
 //                .searchField();
@@ -39,7 +39,7 @@ public class InteractionMisCalldoctor extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testNotformalizeAddress() throws Exception {
 //        Pacient pacient = new Pacient("Temnikov94");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient)
 //                .addNewCall()
 //                .searchField();

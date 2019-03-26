@@ -1,10 +1,10 @@
 package emias.disp.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import org.testng.annotations.Test;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
-public class ValidationTest extends AbstractTestGrid {
+public class ValidationTest extends TestBase {
 
     @Test(groups = "disp", description = "значения в показателях")
     @RetryCountIfFailed(3)

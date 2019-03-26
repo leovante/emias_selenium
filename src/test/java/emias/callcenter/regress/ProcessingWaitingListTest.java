@@ -1,9 +1,8 @@
 package emias.callcenter.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
-import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
@@ -11,14 +10,14 @@ import java.io.IOException;
 import java.text.ParseException;
 
 
-public class ProcessingWaitingListTest extends AbstractTestGrid {
+public class ProcessingWaitingListTest extends TestBase {
 
-    @Test(groups = "VD", description = "Создание листа ожидания")
+    @org.testng.annotations.Test(groups = "VD", description = "Создание листа ожидания")
     @Epic("листы ожидания")
     @RetryCountIfFailed(2)
     public void testWaitingList() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
-        enter.enterCallCenter();
+        page.loginPage().callCenter();
         page.waitingListPage().waitingList(pacient);
     }
 

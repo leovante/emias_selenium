@@ -1,8 +1,8 @@
 package emias.callcenter.before;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class BeforeSuiteCallCenter extends AbstractTestGrid {
+public class BeforeSuiteCallCenter extends TestBase {
 
 //    @Test(description = "Создаю новое расписание на сегодня")
 //    @RetryCountIfFailed(2)
@@ -11,7 +11,7 @@ public class BeforeSuiteCallCenter extends AbstractTestGrid {
 //        deleteShedule();
 //        createShedule();
 
-//        page.loginPage().login(site, login, pass);
+//        page.loginPage().loginMis(site, loginMis, pass);
 //        switchTo().window(0);
 //        page.homePageMis().vedenieRaspisaniyaBtn();
 //        createDoctorShedule();

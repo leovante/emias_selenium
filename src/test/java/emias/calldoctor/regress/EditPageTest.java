@@ -1,15 +1,15 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class EditPageTest extends AbstractTestGrid {
+public class EditPageTest extends TestBase {
 
 //    @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
 //    @Epic("Редактирование вызова")
 //    @RetryCountIfFailed(2)
 //    public void testVerifyEditPage() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient)
 //                .createCall()
 //                .editCallBtn()
@@ -21,7 +21,7 @@ public class EditPageTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testVerifyEditPage_2() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient)
 //                .createCall()
 //                .editCallBtn()
@@ -36,7 +36,7 @@ public class EditPageTest extends AbstractTestGrid {
 //    public void testEditCall() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
 //        Pacient pacient2 = new Pacient("Profile2");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient)
 //                .createCall()
 //                .editCallBtn()
@@ -58,7 +58,7 @@ public class EditPageTest extends AbstractTestGrid {
 //    public void testValidationAddressAfterSaveEditedCall() throws Exception {
 //        Pacient pacient = new Pacient("Profile2");
 //        Pacient pacient2 = new Pacient("Profile0_3");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Mkab();
 //        page.fullCardPage(testName()).editCallBtn();
 //        page.createCallPage(pacient)

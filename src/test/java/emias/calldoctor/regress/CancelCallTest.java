@@ -1,15 +1,15 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class CancelCallTest extends AbstractTestGrid {
+public class CancelCallTest extends TestBase {
 
 //    @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
 //    @Epic("Отмена вызова")
 //    @RetryCountIfFailed(2)
 //    public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile1");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).cancelOnFullCardBtn("отмена автотестом");
 //        page.dashboardPage()
@@ -22,7 +22,7 @@ public class CancelCallTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile1");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName())
 //                .editCallBtn()
@@ -37,7 +37,7 @@ public class CancelCallTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile1");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).closeCardBtn();
 //        page.dashboardPage()

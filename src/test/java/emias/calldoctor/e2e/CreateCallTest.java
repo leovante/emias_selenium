@@ -1,11 +1,8 @@
 package emias.calldoctor.e2e;
 
-import dataGenerator.FactoryData;
 import dataGenerator.ModuleData;
-import emias.AbstractTestGrid;
-import org.springframework.beans.factory.annotation.Autowired;
+import emias.TestBase;
 import org.testng.annotations.Test;
-import system.service.HltMkabService;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -13,13 +10,8 @@ import java.util.List;
 
 import static dataGenerator.DataType.CalldoctorData;
 
-public class CreateCallTest extends AbstractTestGrid {
+public class CreateCallTest extends TestBase {
 
-    @Autowired
-    private FactoryData factoryData;
-
-    @Autowired
-    private HltMkabService hltMkabService;
 
     @Test(groups = "e2e", description = "пытаюсь взять модель с двумя таблицами")
     @RetryCountIfFailed(2)
@@ -35,7 +27,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .getData(CalldoctorData)
                 .findByModel()
                 .setDopData(false, false, "СМП", "", "");
-        enter.enterCalldoctorFromMis();
+        page.loginPage().calldoctor();
         page.createCallPage(mData).createCall();
         page.fullCardPage(mData)
                 .verifyNewCall()

@@ -2,11 +2,10 @@ package emias.calldoctor.regress;
 
 import dataGenerator.FactoryData;
 import dataGenerator.ModuleData;
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
 import utilities.TestMethodCapture;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
@@ -16,12 +15,12 @@ import java.text.ParseException;
 import static dataGenerator.DataType.CalldoctorData;
 
 @Listeners(TestMethodCapture.class)
-public class CreateCallTest extends AbstractTestGrid {
+public class CreateCallTest extends TestBase {
 
     @Autowired
     private FactoryData factoryData;
 
-    @Test(groups = "CD", description = "пустой вызов")
+    @org.testng.annotations.Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws InterruptedException, ParseException, IOException {
@@ -29,7 +28,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .getData(CalldoctorData)
                 .findByModel()
                 .setDopData(false, false, "СМП", "", "");
-        enter.enterCalldoctorFromMis();
+        page.loginPage().loginMis();
         page.createCallPage(mData).createCall();
         page.fullCardPage(mData)
                 .verifyNewCall()
@@ -41,7 +40,7 @@ public class CreateCallTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testCallRegistr() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName())
 //                .verifyNewCall(pacient)
@@ -49,7 +48,7 @@ public class CreateCallTest extends AbstractTestGrid {
 //        page.dashboardPage().verifyNewCallGroup(pacient);
 //    }
 
-    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @org.testng.annotations.Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(3)
     public void testCallRegistrMkab() throws Exception {
@@ -57,7 +56,7 @@ public class CreateCallTest extends AbstractTestGrid {
                 .getData(CalldoctorData)
                 .modelWithKladr()
                 .setDopData(true, false, "СМП", "", "");
-        enter.enterCalldoctorFromMis();
+        page.loginPage().loginMis();
         page.createCallPage(mData)
                 .createCall();
         page.fullCardPage(mData)
@@ -74,7 +73,7 @@ public class CreateCallTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile3");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        page.fullCardPage(testName()).verifyNewCall(pacient);
@@ -87,7 +86,7 @@ public class CreateCallTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile6");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        $(By.xpath("//*[contains(text(),'Тестов2')]")).shouldBe(Condition.visible);
@@ -101,7 +100,7 @@ public class CreateCallTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile4");
 //        enter.enterPortal();
 //        page.portalDashboard().createCall(pacient);
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.dashboardPage()
 //                .clearAllFilters()
 //                .openNewCallDash(pacient);
@@ -117,7 +116,7 @@ public class CreateCallTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile14");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        page.fullCardPage(testName()).verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
@@ -132,7 +131,7 @@ public class CreateCallTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile20");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        page.fullCardPage(testName()).verifyNewCall(pacient);

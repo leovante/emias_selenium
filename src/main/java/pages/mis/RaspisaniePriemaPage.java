@@ -40,6 +40,8 @@ public class RaspisaniePriemaPage extends AbstractPage {
     SelenideElement selectPatientButton = $(By.id("selectPatientButton"));
     SelenideElement schedule = $(By.id("schedule"));
     SelenideElement applyBtn = $(By.id("ApplyBtn"));
+    SelenideElement kvotyCount = $(By.xpath("//*[@class='ng-binding'][@ng-hide='!data.IsQuotaDispType']"));
+
 
     public RaspisaniePriemaPage() {
     }
@@ -71,17 +73,37 @@ public class RaspisaniePriemaPage extends AbstractPage {
         }
     }
 
-    public void createDispMl(Pacient pacient) {
+    public RaspisaniePriemaPage createDispMl(String pacient, String bd) {
         ml.click();
-        mkabSearch.val(pacient.getFamily());
+        mkabSearch.val(pacient);
         mlSearchBtn.click();
-        mkabSearchTable.$(By.xpath("//*[contains(text(),'" + pacient.getBirthdate("dd.MM.yyyy") + "')]")).click();
+        mkabSearchTable.$(By.xpath("//*[contains(text(),'" + bd + "')]")).click();
         selectPatientButton.click();
-        $(By.xpath("//*[@ng-click='btnGenerateRouteCard()']")).click();
-        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog()']//*[contains(text(),'Да')]")).click();
-        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog()']//*[contains(text(),'Да')]")).click();
-        $(By.xpath("//*[contains(text(),'Сохранить и закрыть')]")).click();
+//        $(By.xpath("//*[@ng-click='btnGenerateRouteCard()']")).click();
+//        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog()']//*[contains(text(),'Да')]")).click();
+//        $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog()']//*[contains(text(),'Да')]")).click();
+        return this;
     }
+
+    public RaspisaniePriemaPage saveAndClose() {
+        $(By.xpath("//*[contains(text(),'Сохранить и закрыть')]")).click();
+        return this;
+    }
+
+    public RaspisaniePriemaPage generateML() throws InterruptedException {
+        Thread.sleep(2000);
+        String i = kvotyCount.getValue();
+        $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
+
+        $(By.xpath("//div[contains(text(),'На текущую дату использованы все квоты, Продолжить?')]"))
+//                .$(By.xpath("./..//span[contains(text,'Да')]"))
+                .pressEnter();
+        $(By.xpath("//div[contains(text(),'Проверка перед генерацией маршрутного листа')]"))
+                .$(By.xpath("./..//*[contains(text,'Да')]"))
+                .pressEnter();
+        return this;
+    }
+
 
     public void verifyFindCallName(String nameGen) {
         RecordsArea.shouldBe(Condition.visible);

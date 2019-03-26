@@ -1,8 +1,8 @@
 package emias.calldoctor.function;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class ValidationTest extends AbstractTestGrid {
+public class ValidationTest extends TestBase {
 
 //    @Test(groups = "CD", description = "проверка что вызов не сохраняется с пустым полем адрес после редактирования вызова")
 //    @Epic("Проверка валидатора")
@@ -10,7 +10,7 @@ public class ValidationTest extends AbstractTestGrid {
 //    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile2");
 //        Pacient pacient2 = new Pacient("Profile2_0");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).editCallBtn();
 //        page.createCallPage(pacient)
@@ -29,7 +29,7 @@ public class ValidationTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile3");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall_Api();
 //        page.dashboardPage().openNewCallDash(pacient);
 //        page.fullCardPage(testName()).verifyNewCall(pacient);
@@ -46,7 +46,7 @@ public class ValidationTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile0_CancelValidation");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName())
 //                .cancelOnFullCardBtn("")
@@ -58,7 +58,7 @@ public class ValidationTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile0_CancelValidation");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).editCallBtn();
 //        page.createCallPage(pacient)
@@ -71,7 +71,7 @@ public class ValidationTest extends AbstractTestGrid {
 //    @RetryCountIfFailed(2)
 //    public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile0_CancelValidation");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).closeCardBtn();
 //        page.dashboardPage()

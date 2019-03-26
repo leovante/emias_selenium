@@ -1,7 +1,7 @@
 package emias.callcenter.after;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class AfterSuite extends AbstractTestGrid {
+public class AfterSuite extends TestBase {
 
 }

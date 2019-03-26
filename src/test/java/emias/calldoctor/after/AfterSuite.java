@@ -1,15 +1,14 @@
 package emias.calldoctor.after;
 
-import emias.AbstractTestGrid;
-import org.testng.annotations.Test;
-import utilities.sql.SQLDemonstration;
+import emias.TestBase;
+import utilities.sql.DBScripts;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
-public class AfterSuite extends AbstractTestGrid {
+public class AfterSuite extends TestBase {
 
-    @Test(description = "Завершаю все вызовы оператора Темников")
+    @org.testng.annotations.Test(description = "Завершаю все вызовы оператора Темников")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() {
-        SQLDemonstration.finalizeCallsOperatorTemnikov();
+        DBScripts.finalizeCallsOperatorTemnikov();
     }
 }

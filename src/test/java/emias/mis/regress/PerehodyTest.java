@@ -1,11 +1,10 @@
 package emias.mis.regress;
 
 import com.codeborne.selenide.Condition;
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
-import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
@@ -15,24 +14,24 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class PerehodyTest extends AbstractTestGrid {
+public class PerehodyTest extends TestBase {
 
     /**
      * переходы в диспетчер
      */
-    @Test(groups = "mis", description = "Переходы в Диспетчер с дашборда")
+    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер с дашборда")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDdashboard() {
-        enter.enterCalldoctorFromMis();
+        page.loginPage().calldoctor();
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
+    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDmkab() {
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -44,22 +43,22 @@ public class PerehodyTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переходы в Диспетчер из журнала")
+    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер из журнала")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDjournal() {
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         $(By.xpath("//span[contains(text(),'Вызов врача на дом')]")).click();
         $(By.id("add_doc_house_btn")).click();
         switchTo().window(1);
         $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переходы в Диспетчер из личного кабинета врача")
+    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер из личного кабинета врача")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDlk() {
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         $(By.xpath("//span[contains(text(),'Личный кабинет')]")).click();
         $(By.id("MyCallTab")).click();
         $(By.id("add_doc_house_btn")).click();
@@ -70,21 +69,21 @@ public class PerehodyTest extends AbstractTestGrid {
     /**
      * переходы в диспансеризацию
      */
-    @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
+    @org.testng.annotations.Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispDash() throws InterruptedException {
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         page.homePageMis().dispCardJournalBtn();
         switchTo().window("Медицинская Информационная Система");
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
+    @org.testng.annotations.Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispMkab() {
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -96,13 +95,13 @@ public class PerehodyTest extends AbstractTestGrid {
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Диспансеризацию из ячейки расписание приема")
+    @org.testng.annotations.Test(groups = "mis", description = "Переход в Диспансеризацию из ячейки расписание приема")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
         Pacient pacient = new Pacient("Temnikov94");
         Doctor doctor = new Doctor("AiBoLitAutoTest");
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
         page.raspisaniePriemaPage()
                 .generateML(pacient)
@@ -116,11 +115,11 @@ public class PerehodyTest extends AbstractTestGrid {
     /**
      * переходы в медзаписи
      */
-    @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
+    @org.testng.annotations.Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedMkab() {
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -131,11 +130,11 @@ public class PerehodyTest extends AbstractTestGrid {
         $(By.xpath("//*[@placeholder='Поиск медицинской записи по наименованию']")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Медзаписи из Тап")
+    @org.testng.annotations.Test(groups = "mis", description = "Переход в Медзаписи из Тап")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedTap() {
-        page.loginPage().login(site, login, pass);
+        page.loginPage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();

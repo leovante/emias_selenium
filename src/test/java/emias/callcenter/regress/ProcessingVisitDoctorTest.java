@@ -1,9 +1,8 @@
 package emias.callcenter.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
-import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
@@ -11,32 +10,32 @@ import java.io.IOException;
 import java.text.ParseException;
 
 
-public class ProcessingVisitDoctorTest extends AbstractTestGrid {
+public class ProcessingVisitDoctorTest extends TestBase {
 
-    @Test(groups = "VD", description = "Запись на прием к врачу")
+    @org.testng.annotations.Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
-        enter.enterCallCenter();
+        page.loginPage().callCenter();
         page.recordDoctorPage().visitDoctorAssertTalon(pacient);
     }
 
-    @Test(groups = "VD", description = "Запись на прием к врачу")
+    @org.testng.annotations.Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testRewritableVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
-        enter.enterCallCenter();
+        page.loginPage().callCenter();
         page.recordDoctorPage().visitDoctorRewritable(pacient);
     }
 
-    @Test(groups = "VD", description = "Запись на прием к врачу")
+    @org.testng.annotations.Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testDeleteVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0");
-        enter.enterCallCenter();
+        page.loginPage().callCenter();
         page.recordDoctorPage().deleteVisitDoctor(pacient);
     }
 

@@ -1,8 +1,8 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class CompleteServiceTest extends AbstractTestGrid {
+public class CompleteServiceTest extends TestBase {
 
 //    @Test(groups = "CD", description = "завершить обслуживание вызова")
 //    @Epic("Завершить обслуживание")
@@ -10,7 +10,7 @@ public class CompleteServiceTest extends AbstractTestGrid {
 //    public void testCompleteCallRegistr() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
 //        Doctor doctor = new Doctor("SerovaStendTestovoe");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorToday(doctor);

@@ -1,8 +1,8 @@
 package emias.calldoctor.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 
-public class ChangeDoctorTest extends AbstractTestGrid {
+public class ChangeDoctorTest extends TestBase {
 
 //    @Test(groups = "CD", description = "передать вызов другому врачу")
 //    @Epic("Передача вызова")
@@ -11,7 +11,7 @@ public class ChangeDoctorTest extends AbstractTestGrid {
 //        Pacient pacient = new Pacient("Profile1");
 //        Doctor doctor = new Doctor("SerovaStendTestovoe");
 //        Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
-//        enter.enterCalldoctorFromMis();
+//        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorToday(doctor);

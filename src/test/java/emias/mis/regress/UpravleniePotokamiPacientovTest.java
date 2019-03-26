@@ -1,22 +1,21 @@
 package emias.mis.regress;
 
-import emias.AbstractTestGrid;
+import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.testng.annotations.Test;
-import utilities.sql.SQLDemonstration;
+import utilities.sql.DBScripts;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 
-public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
+public class UpravleniePotokamiPacientovTest extends TestBase {
     @Epic("Управление потоками пациентов")
-    @Test(groups = "mis", description = "Создать расписание")
+    @org.testng.annotations.Test(groups = "mis", description = "Создать расписание")
     @RetryCountIfFailed(2)
     public void createShedule() throws InterruptedException {
-        enter.enterMIS();
+        page.loginPage().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
         String secondName = page.manageShedule().getSecondName(docFullName);
-        SQLDemonstration.deleteShedule(secondName);
+        DBScripts.deleteShedule(secondName);
         page.doctorMethods().selectDoctor(docFullName);
         page.manageShedule().createShedule();
 
@@ -24,15 +23,15 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     }
 
     @Epic("Управление потоками пациентов")
-    @Test(groups = "mis", description = "Копировать расписание")
+    @org.testng.annotations.Test(groups = "mis", description = "Копировать расписание")
     @RetryCountIfFailed(4)
     public void copyShedule() throws InterruptedException {
-        enter.enterMIS();
+        page.loginPage().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         String secondDoctor = page.doctorMethods().getUnicalDoctor(firstDoctor);
         String second_doctor_fam = page.manageShedule().getSecondName(secondDoctor);
-        SQLDemonstration.deleteShedule(second_doctor_fam);
+        DBScripts.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(firstDoctor);
         page.manageShedule().createShedule();
@@ -44,10 +43,10 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     }
 
     @Epic("Управление потоками пациентов")
-    @Test(groups = "mis", description = "Указать неприемные дни")
+    @org.testng.annotations.Test(groups = "mis", description = "Указать неприемные дни")
     @RetryCountIfFailed(4)
     public void setNotReceiveDays() {
-        enter.enterMIS();
+        page.loginPage().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
         page.manageShedule()
@@ -56,17 +55,17 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     }
 
     @Epic("Управление потоками пациентов")
-    @Test(groups = "mis", description = "Удалить расписание")
+    @org.testng.annotations.Test(groups = "mis", description = "Удалить расписание")
     @RetryCountIfFailed(4)
     public void deleteShedule() throws InterruptedException {
-        enter.enterMIS();
+        page.loginPage().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         String second_doctor_fam = page.manageShedule().getSecondName(second_doctor_fullname);
-        SQLDemonstration.deleteShedule(first_doctor_fam);
-        SQLDemonstration.deleteShedule(second_doctor_fam);
+        DBScripts.deleteShedule(first_doctor_fam);
+        DBScripts.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();
@@ -82,17 +81,17 @@ public class ModuleUpravleniePotokamiPacientovTest extends AbstractTestGrid {
     }
 
     @Epic("Управление потоками пациентов")
-    @Test(groups = "mis", description = "Перенести запись")
+    @org.testng.annotations.Test(groups = "mis", description = "Перенести запись")
     @RetryCountIfFailed(4)
     public void surviveShedule() throws InterruptedException {
-        enter.enterMIS();
+        page.loginPage().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
         String first_doctor_fam = page.manageShedule().getSecondName(first_doctor_fullname);
         String second_doctor_fullname = page.doctorMethods().getUnicalDoctor(first_doctor_fullname);
         String second_doctor_fam = page.manageShedule().getSecondName(second_doctor_fullname);
-        SQLDemonstration.deleteShedule(first_doctor_fam);
-        SQLDemonstration.deleteShedule(second_doctor_fam);
+        DBScripts.deleteShedule(first_doctor_fam);
+        DBScripts.deleteShedule(second_doctor_fam);
 
         page.doctorMethods().selectDoctor(first_doctor_fullname);
         page.manageShedule().createShedule();
