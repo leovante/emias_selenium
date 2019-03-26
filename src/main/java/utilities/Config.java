@@ -13,6 +13,9 @@ public class Config {
     private String dispJournal;
     private String dispCard;
     private String calldoctor;
+    private String clientApplication;
+    private String authorization;
+    private String requestSmp;
 
     public Config() {
         FileInputStream fis;
@@ -29,6 +32,9 @@ public class Config {
             dispJournal = property.getProperty("st.mis.url.dispJournal");
             dispCard = property.getProperty("st.mis.url.dispCard");
             calldoctor = property.getProperty("st.mis.url.calldoctor");
+            clientApplication = property.getProperty("st.api.clientApplication");
+            authorization = property.getProperty("st.api.authorization");
+            requestSmp = property.getProperty("st.api.requestSmp");
 
         } catch (IOException e) {
             System.err.println("ОШИБКА: Файл свойств отсуствует!");
@@ -66,4 +72,17 @@ public class Config {
     public String getCalldoctor() {
         return calldoctor;
     }
+
+    public String getClientApplication() {
+        return clientApplication;
+    }
+
+    public String getAuthorization() {
+        return authorization;
+    }
+
+    public String getRequestSmp() {
+        return requestSmp;
+    }
 }
+

@@ -10,15 +10,18 @@ import org.apache.http.impl.client.HttpClients;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utilities.Config;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class Tokenizer extends AbstractPage {
+    Config config;
     public static String token;
     HttpResponse response;
 
     public Tokenizer() {
+        config = new Config();
     }
 
     public String getToken(Pacient pacient, String ClientApplication) throws IOException {

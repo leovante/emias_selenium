@@ -5,21 +5,21 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;
+import utilities.Config;
 
 import java.io.IOException;
 
 //<!--правка hibernate-->
 public class CallDoctorEntity {
     private ModuleData mData;
+    Config config;
     HttpPost request;
     JSONObject jsonOb;
-    String clientApplication = "CB174067-702F-42D0-B0EB-1D84A514515D";
-    String authorization = "fb6e439f-c34f-4ee0-b2ba-38c1be5116a3";
-    String requestSmp = "http://rpgu.emias.mosreg.ru/api/v2/smp/calldoctor/a7f391d4-d5d8-44d5-a770-f7b527bb1233";
 
     public CallDoctorEntity(ModuleData mData) throws JSONException {
         this.mData = mData;
         this.jsonOb = new JSONObject();
+        this.config = new Config();
 //        if (pacient.getName() != null && pacient.getName() != "")
 //            jsonOb.put("name", pacient.getName());
 //        if (pacient.getFamily() != null && pacient.getFamily() != "")
@@ -61,10 +61,10 @@ public class CallDoctorEntity {
     }
 
     public HttpPost createRequest() {
-        this.request = new HttpPost(requestSmp);
+        this.request = new HttpPost(config.getRequestSmp());
         request.addHeader("content-type", "application/json");
-        request.addHeader("Authorization", authorization);
-        request.addHeader("ClientApplication", clientApplication);
+        request.addHeader("Authorization", config.getAuthorization());
+        request.addHeader("ClientApplication", config.getClientApplication());
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
         return request;
@@ -72,10 +72,10 @@ public class CallDoctorEntity {
 
     public HttpPost createRequestToken() throws IOException {
 //        String token = new Tokenizer().getToken(pacient, clientApplication);
-        this.request = new HttpPost(requestSmp);
+        this.request = new HttpPost(config.getRequestSmp());
         request.addHeader("Content-type", "application/json");
 //        request.addHeader("Authorization", "Bearer " + token);
-        request.addHeader("ClientApplication", clientApplication);
+        request.addHeader("ClientApplication", config.getClientApplication());
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
         return request;
