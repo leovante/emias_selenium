@@ -1,4 +1,4 @@
-package emias.calldoctor.e2e;
+package emias.calldoctor2.e2e;
 
 import dataGenerator.ModuleData;
 import emias.TestBase;

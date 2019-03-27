@@ -30,7 +30,7 @@ public class CalldoctorData implements ModuleData {
 
     @Override
     public ModuleData modelWithKladr() {
-        hltMkabEntity = hltMkabService.findByModel();
+//        hltMkabEntity = hltMkabService.modelWithKladr();
         return this;
     }
 

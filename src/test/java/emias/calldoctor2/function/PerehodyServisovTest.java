@@ -2,7 +2,7 @@
  * тут проверяем всякую мелочь
  */
 
-package emias.calldoctor.function;
+package emias.calldoctor2.function;
 
 import emias.TestBase;
 

@@ -1,4 +1,4 @@
-package emias.calldoctor.regress;
+package emias.calldoctor2.regress;
 
 import dataGenerator.FactoryData;
 import dataGenerator.ModuleData;
@@ -6,6 +6,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 import utilities.TestMethodCapture;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
@@ -48,9 +49,9 @@ public class CreateCallTest extends TestBase {
 //        page.dashboardPage().verifyNewCallGroup(pacient);
 //    }
 
-    @org.testng.annotations.Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
+    @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         ModuleData mData = factoryData
                 .getData(CalldoctorData)

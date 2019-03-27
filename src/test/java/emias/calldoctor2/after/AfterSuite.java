@@ -1,4 +1,4 @@
-package emias.calldoctor.after;
+package emias.calldoctor2.after;
 
 import emias.TestBase;
 import utilities.sql.DBScripts;

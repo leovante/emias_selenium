@@ -1,4 +1,4 @@
-package emias.calldoctor.regress;
+package emias.calldoctor2.regress;
 
 import emias.TestBase;
 

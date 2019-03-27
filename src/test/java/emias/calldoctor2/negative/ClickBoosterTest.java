@@ -1,4 +1,4 @@
-package emias.calldoctor.negative;
+package emias.calldoctor2.negative;
 
 import emias.TestBase;
 

@@ -66,17 +66,19 @@ public class HltMkabEntity {
     private int rfKlHealthGroupId;
     private int rfAddressLiveId;
 
-    private KlaAddressEntity klaAddressEntity;
+
 
     @ManyToOne
-    @JoinColumn(name = "AddressID", nullable = false, insertable = false, updatable = false)
-    public KlaAddressEntity getKlaAddressEntity() {
+    @JoinColumn(name = "AddressID", nullable = false)
+    private KlaAddressEntity klaAddressEntity;
+
+    /*public KlaAddressEntity getKlaAddressEntity() {
         return klaAddressEntity;
     }
 
     public void setKlaAddressEntity(KlaAddressEntity klaAddressEntity) {
         this.klaAddressEntity = klaAddressEntity;
-    }
+    }*/
 
     private int rfAddressRegId;
 
