@@ -3,7 +3,6 @@ package pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import dataGenerator.ModuleData;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -11,15 +10,12 @@ import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import system.model.HltMkabEntity;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage extends AbstractPage {
-    ModuleData mData;
-    HltMkabEntity mkab;
 
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
@@ -42,9 +38,7 @@ public class DashboardPage extends AbstractPage {
     private SelenideElement cancelCall = $(By.id("cancelcall"));
 
 
-    public DashboardPage(ModuleData mData) {
-        this.mData = mData;
-        this.mkab = mData.getMkab();
+    public DashboardPage() {
 
     }
 
@@ -143,15 +137,15 @@ public class DashboardPage extends AbstractPage {
 //    }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public void verifyNewCallGroup() throws InterruptedException, IOException {
+    public void verifyNewCallGroup(Pacient pacient) throws InterruptedException, IOException {
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-//        $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-//        $(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).shouldBe(Condition.visible);
-//        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
+        $(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
     }
 
@@ -167,7 +161,7 @@ public class DashboardPage extends AbstractPage {
                 .$(By.xpath(".//*[@id='order']")).click();
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
         return this;
     }
@@ -212,7 +206,7 @@ public class DashboardPage extends AbstractPage {
                 .$(By.xpath(".//*[@id='order']")).click();
         docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
         $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
     }
 
@@ -228,7 +222,7 @@ public class DashboardPage extends AbstractPage {
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
             } else {
                 LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
@@ -249,7 +243,7 @@ public class DashboardPage extends AbstractPage {
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
-                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(mData) + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
             } else {
                 LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }

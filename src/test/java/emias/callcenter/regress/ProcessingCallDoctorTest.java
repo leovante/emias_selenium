@@ -4,7 +4,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor2.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;

@@ -214,7 +214,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     public Pacient(String pacient) throws IOException, JSONException {
         JSONObject jsonOb;
-        String path = "src\\main\\java\\pages\\calldoctor2\\profiles_interfaces\\" + pacient + ".json";
+        String path = "src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json";
         File reader2 = new File(path);
         if (reader2.exists()) {
             InputStream is = new FileInputStream(path);
@@ -287,8 +287,8 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         if (jsonOb.has("appartment") && !jsonOb.get("appartment").equals(""))
             this.appartment = jsonOb.getString("appartment");
 
-        if (jsonOb.has("getEntrance") && !jsonOb.get("getEntrance").equals(""))
-            this.entrance = jsonOb.getString("getEntrance");
+        if (jsonOb.has("entrance") && !jsonOb.get("entrance").equals(""))
+            this.entrance = jsonOb.getString("entrance");
 
         if (jsonOb.has("floor") && !jsonOb.get("floor").equals(""))
             this.floor = jsonOb.getString("floor");

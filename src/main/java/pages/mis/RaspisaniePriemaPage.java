@@ -9,8 +9,8 @@ import com.codeborne.selenide.commands.PressEscape;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
-import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor2.doctors_interfaces.Doctor;
+import pages.calldoctor2.profiles_interfaces.Pacient;
 
 import java.util.Iterator;
 import java.util.Set;

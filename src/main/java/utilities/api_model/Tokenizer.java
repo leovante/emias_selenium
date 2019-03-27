@@ -9,7 +9,7 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClients;
 import org.testng.Assert;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor2.profiles_interfaces.Pacient;
 import utilities.Config;
 
 import java.io.IOException;

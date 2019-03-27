@@ -6,7 +6,7 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor2.profiles_interfaces.Pacient;
 
 import static com.codeborne.selenide.Selenide.$;
 

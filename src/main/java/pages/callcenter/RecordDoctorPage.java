@@ -3,8 +3,8 @@ package pages.callcenter;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
-import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor2.doctors_interfaces.Doctor;
+import pages.calldoctor2.profiles_interfaces.Pacient;
 
 import java.io.IOException;
 import java.text.ParseException;
