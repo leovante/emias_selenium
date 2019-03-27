@@ -505,4 +505,31 @@ public class ExampPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
         return this;
     }
+
+    @Step("Проверяю валидацию поля параметров с дефолтным значением")
+    public ExampPage validateDefaultParamWithSpace() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
+        OpredelenieOtnositelnogoSSR.click();
+        Thread.sleep(2000);//
+//        OpredelenieOtnositelnogoSSR
+//                .$(By.xpath("//th[contains(text(),'Показатели')]"))
+//                .$(By.xpath("../../../."))
+//                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
+//                .$(By.xpath(".//input[@formcontrolname='value']")).setValue(" ");
+        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
+        OpredelenieOtnositelnogoSSR.click();
+        $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
+        return this;
+    }
+
+    @Step("Проверяю валидацию поля параметров с дефолтным значением")
+    public ExampPage validateParamNotOpen() throws InterruptedException {
+        Thread.sleep(4000);
+        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
+        Thread.sleep(2000);//
+        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
+        $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
+        return this;
+    }
 }

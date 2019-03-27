@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import pages.Pages2;
+import pages.Pages;
 import system.service.HltMkabService;
 import utilities.SeleniumGrid;
 import utilities.TestMethodCapture;
@@ -26,7 +26,7 @@ import static pages.AbstractPage.LOGGER;
 @Listeners(TestMethodCapture.class)
 @ContextConfiguration(locations = {"classpath:beans.xml"})
 public class TestBase extends AbstractTestNGSpringContextTests {
-    public static Pages2 page;
+    public static Pages page;
     public String testName;
     //    BrowserMobProxy proxy = new BrowserMobProxyServer();
 
@@ -65,7 +65,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         new WebDriverInstansiator(browser).setDriver();
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         LOGGER.info("Тест начинается!");
-        page = new Pages2();
+        page = new Pages();
     }
 
     @RetryCountIfFailed(2)

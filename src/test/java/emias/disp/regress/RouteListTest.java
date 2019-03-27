@@ -31,5 +31,19 @@ public class RouteListTest extends TestBase {
         page.loginPage().dispCard();
         page.exampPage().validateFieldParamWithSpace();
     }
+
+    @Test(groups = "disp", description = "показатели не должны сохраняться с дефолтным пустым полем")
+    @RetryCountIfFailed(2)
+    public void testDefaultValidationFieldParams() throws InterruptedException {
+        page.loginPage().dispCard();
+        page.exampPage().validateDefaultParamWithSpace();
+    }
+
+    @Test(groups = "disp", description = "пустое мероприятие не должно промаркироваться, даже если его не раскрыли")
+    @RetryCountIfFailed(2)
+    public void validateParamNotOpen() throws InterruptedException {
+        page.loginPage().dispCard();
+        page.exampPage().validateParamNotOpen();
+    }
     // TODO: 14-Feb-19 сделать тест добавление мероприятия на истекшее время. Бекетова 63 года
 }

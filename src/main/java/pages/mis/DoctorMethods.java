@@ -6,7 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.AbstractPage;
-import pages.calldoctor2.doctors_interfaces.Doctor;
+import pages.calldoctor.doctors_interfaces.Doctor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -115,4 +115,6 @@ public class DoctorMethods extends AbstractPage {
                 "')]")).click();
         return this;
     }
+
+
 }

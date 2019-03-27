@@ -8,6 +8,8 @@ public class Config {
     private String url;
     private String login;
     private String password;
+    private String adminLogin;
+    private String adminPassword;
     private String useUrl;
     private String headless;
     private String dispJournal;
@@ -26,6 +28,9 @@ public class Config {
 
             url = property.getProperty("st.mis.url");
             login = property.getProperty("st.mis.doctorLogin");
+            password = property.getProperty("st.mis.doctorLoginPass");
+            adminLogin = property.getProperty("st.mis.adminLogin");
+            adminPassword = property.getProperty("st.mis.adminLoginPass");
             password = property.getProperty("st.mis.doctorLoginPass");
             useUrl = property.getProperty("st.mis.useUrl");
             headless = property.getProperty("st.mis.headless");
@@ -51,6 +56,14 @@ public class Config {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getAdminLogin() {
+        return adminLogin;
+    }
+
+    public String getAdminPassword() {
+        return adminPassword;
     }
 
     public String getUseUrl() {

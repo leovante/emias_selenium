@@ -39,6 +39,15 @@ public class LoginPage extends AbstractPage {
         open(conf.getCalldoctor());
     }
 
+    @Step("Захожу в диспетчер через МИС под админом")
+    public void calldoctorFromMis() {
+        open(conf.getUrl());
+        $(By.id("Login")).setValue(conf.getAdminLogin());
+        $(By.id("Password")).setValue(conf.getAdminPassword());
+        $(By.id("loginBtn")).click();
+        $(By.xpath("//span[contains(.,'Диспетчер')]")).click();
+    }
+
     @Step("Вход в модуль диспансеризация через журнал")
     public void dispJournal() {
         open(conf.getDispJournal());

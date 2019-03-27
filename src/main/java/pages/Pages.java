@@ -1,5 +1,6 @@
 package pages;
 
+import dataGenerator.ModuleData;
 import pages.callcenter.*;
 import pages.calldoctor.*;
 import pages.calldoctor.profiles_interfaces.Pacient;
@@ -105,4 +106,19 @@ public class Pages extends AbstractPage {
     public Kladr kladr() {
         return page(Kladr.class);
     }
+
+    //======================
+    //MIS
+    public pages.calldoctor2.CreateCallPage createCallPage(ModuleData mData) {
+        return new pages.calldoctor2.CreateCallPage(mData);
+    }
+
+    public pages.calldoctor2.FullCardPage fullCardPage(ModuleData mData) {
+        return new pages.calldoctor2.FullCardPage(mData);
+    }
+
+    public pages.calldoctor2.DashboardPage dashboardPage(ModuleData mData) {
+        return new pages.calldoctor2.DashboardPage(mData);
+    }
+
 }
