@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="regress_tests" target="10" />
+      <module name="regress_tests" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

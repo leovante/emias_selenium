@@ -11,8 +11,6 @@ import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage extends AbstractPage {
@@ -48,7 +46,7 @@ public class DashboardPage extends AbstractPage {
         exitBtn.click();
     }
 
-    @Step("вышел в мис")
+    @Step("инструкция в мис")
     public void instructionTab() {
         exitToMis.click();
         instructionBtn.click();
@@ -63,7 +61,7 @@ public class DashboardPage extends AbstractPage {
 //    }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio_Fam(Pacient pacient) throws IOException, InterruptedException {
+    public DashboardPage searchFilterFio_Fam(Pacient pacient) throws InterruptedException {
         fioFilter.click();
         fioFilter.setValue(pacient.getFamily());
         Thread.sleep(2000);
@@ -71,7 +69,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPage searchFilterDoctor(Doctor doctor) throws IOException, InterruptedException {
+    public DashboardPage searchFilterDoctor(Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         docFilter.hover().click();
         Thread.sleep(1000);
@@ -137,7 +135,7 @@ public class DashboardPage extends AbstractPage {
 //    }
 
     @Step("проверяю на дашборде запись в группе новые")
-    public void verifyNewCallGroup(Pacient pacient) throws InterruptedException, IOException {
+    public void verifyNewCallGroup(Pacient pacient) throws InterruptedException {
         Thread.sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
@@ -150,7 +148,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws IOException, InterruptedException {
+    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
@@ -167,7 +165,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись не отображается у врача в группе активные")
-    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) throws IOException, InterruptedException {
+    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock =
                 $(By.xpath("//*[contains(text(),'Активные')]"))
@@ -195,7 +193,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(Pacient pacient, Doctor doctor) throws InterruptedException {
+    public void verifyDoneDocGroup(Pacient pacient, Doctor doctor) {
         SelenideElement doneFrame = $(By.xpath("//*[contains(text(),'Обслуженные')]")).$(By.xpath("../../."));
         SelenideElement docFamBlock = doneFrame.$(By.xpath(".//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
@@ -253,7 +251,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("открываю вызов в группе 'Ожидают обработки' через дашбоард")
-    public void openNewCallDash(Pacient pacient) throws IOException, InterruptedException {
+    public void openNewCallDash(Pacient pacient) throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
@@ -270,7 +268,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage cancelNewCallDash(Pacient pacient) throws IOException, InterruptedException {
+    public DashboardPage cancelNewCallDash(Pacient pacient) throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         Thread.sleep(4000);
@@ -294,7 +292,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("отменяю вызов в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage deleteNewCallProgressFrame(Pacient pacient) throws IOException {
+    public DashboardPage deleteNewCallProgressFrame(Pacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
@@ -325,6 +323,12 @@ public class DashboardPage extends AbstractPage {
     public DashboardPage verifyCancellCallValidation_Dash() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
+        return this;
+    }
+
+    @Step("кнопка печати группы активные")
+    public DashboardPage printActionColumn() {
+        $x("//div[@id='activeCallAllCount']/../div[6]/mat-icon").click();
         return this;
     }
 }

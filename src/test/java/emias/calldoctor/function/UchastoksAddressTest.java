@@ -1,7 +1,3 @@
-/**
- * проверяем участки и адреса
- */
-
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
@@ -104,6 +100,19 @@ public class UchastoksAddressTest extends TestBase {
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .openNewCallDash(pacient);
+        $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
+    }
+
+    @Test(groups = "CD", description = "не отображать участок у вызова с неформализованным адресом")
+    @Epic("Участки")
+    @RetryCountIfFailed(2)
+    public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException, ParseException {
+        Pacient pacient = new Pacient("Profile0_3");
+        page.createCallPage(pacient).createCall_Api();
+        page.loginPage().calldoctor();
+        page.createCallPage(pacient).createCall_Mkab();
+        page.fullCardPage(testName())
+                .verifyNewCall(pacient);
         $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
     }
     // TODO: 12/3/2018 сделать тест проверки списка участков при привязке адреса к участку на педиатр/взрослый

@@ -5,6 +5,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 import pages.calldoctor2.doctors_interfaces.Doctor;
 import pages.calldoctor2.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
@@ -19,7 +20,7 @@ public class PerehodyTest extends TestBase {
     /**
      * переходы в диспетчер
      */
-    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер с дашборда")
+    @Test(groups = "mis", description = "Переходы в Диспетчер с дашборда")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDdashboard() {
@@ -27,7 +28,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
     }
 
-    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
+    @Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDmkab() {
@@ -43,7 +44,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
     }
 
-    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер из журнала")
+    @Test(groups = "mis", description = "Переходы в Диспетчер из журнала")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDjournal() {
@@ -54,7 +55,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
     }
 
-    @org.testng.annotations.Test(groups = "mis", description = "Переходы в Диспетчер из личного кабинета врача")
+    @Test(groups = "mis", description = "Переходы в Диспетчер из личного кабинета врача")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDlk() {
@@ -69,7 +70,7 @@ public class PerehodyTest extends TestBase {
     /**
      * переходы в диспансеризацию
      */
-    @org.testng.annotations.Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
+    @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispDash() throws InterruptedException {
@@ -79,7 +80,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
-    @org.testng.annotations.Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
+    @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispMkab() {
@@ -95,7 +96,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
-    @org.testng.annotations.Test(groups = "mis", description = "Переход в Диспансеризацию из ячейки расписание приема")
+    @Test(groups = "mis", description = "Переход в Диспансеризацию из ячейки расписание приема")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
@@ -115,7 +116,7 @@ public class PerehodyTest extends TestBase {
     /**
      * переходы в медзаписи
      */
-    @org.testng.annotations.Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
+    @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedMkab() {
@@ -130,7 +131,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[@placeholder='Поиск медицинской записи по наименованию']")).shouldBe(Condition.visible);
     }
 
-    @org.testng.annotations.Test(groups = "mis", description = "Переход в Медзаписи из Тап")
+    @Test(groups = "mis", description = "Переход в Медзаписи из Тап")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedTap() {

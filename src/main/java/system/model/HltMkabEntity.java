@@ -1,15 +1,11 @@
 package system.model;
 
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
 @Table(name = "hlt_MKAB", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
 public class HltMkabEntity {
     private int mkabid;

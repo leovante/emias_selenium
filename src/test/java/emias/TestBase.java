@@ -1,9 +1,7 @@
 package emias;
 
 import com.codeborne.selenide.WebDriverRunner;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import dataGenerator.FactoryData;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,6 +20,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static pages.AbstractPage.LOGGER;
+
+//import io.qameta.allure.selenide.AllureSelenide;
 
 @Listeners(TestMethodCapture.class)
 @ContextConfiguration(locations = {"classpath:beans.xml"})
@@ -63,7 +63,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional String browser) throws IOException {
         new WebDriverInstansiator(browser).setDriver();
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
+//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         LOGGER.info("Тест начинается!");
         page = new Pages();
     }
