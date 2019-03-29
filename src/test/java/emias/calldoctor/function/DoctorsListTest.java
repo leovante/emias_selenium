@@ -7,7 +7,6 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -154,7 +153,6 @@ public class DoctorsListTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
     }
 
-    @Flaky
     @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
     @Issue("EMIAS-659")

@@ -14,13 +14,14 @@ import java.io.IOException;
 public class CallDoctorEntity {
     private Pacient pacient;
     private ModuleData mData;
-    Config config;
+    private Config config;
     HttpPost request;
     JSONObject jsonOb;
 
     public CallDoctorEntity(Pacient pacient) throws JSONException {
         this.pacient = pacient;
         this.jsonOb = new JSONObject();
+        this.config = new Config();
         if (pacient.getName() != null && pacient.getName() != "")
             jsonOb.put("name", pacient.getName());
         if (pacient.getFamily() != null && pacient.getFamily() != "")
@@ -106,11 +107,11 @@ public class CallDoctorEntity {
 
     public HttpPost createRequest() {
         this.request = new HttpPost(config.getRequestSmp());
-        request.addHeader("content-type", "application/json");
-        request.addHeader("Authorization", config.getAuthorization());
-        request.addHeader("ClientApplication", config.getClientApplication());
+        this.request.addHeader("content-type", "application/json");
+        this.request.addHeader("Authorization", config.getAuthorization());
+        this.request.addHeader("ClientApplication", config.getClientApplication());
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
-        request.setEntity(params);
+        this.request.setEntity(params);
         return request;
     }
 

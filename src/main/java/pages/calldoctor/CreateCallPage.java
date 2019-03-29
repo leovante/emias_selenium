@@ -1,6 +1,7 @@
 package pages.calldoctor;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
@@ -19,7 +20,6 @@ import utilities.sql.DBScripts;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -60,7 +60,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement sourceSmp = $(By.id("source0"));
     SelenideElement sourceSmp2 = $(By.id("sourceSmp"));
     SelenideElement sourceReg = $(By.id("source1"));
-    SelenideElement callerType = $(By.xpath("//input[@placeholder='Тип вызывающего']"));
+    SelenideElement callerType = $(By.xpath("//mat-select[@aria-label='Тип вызывающего']"));
 
     SelenideElement cancelBtn = $(By.id("cancelCall"));
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
@@ -178,20 +178,15 @@ public class CreateCallPage extends AbstractPage {
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.ESCAPE).perform();
 
-        List<SelenideElement> selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')]"));
-        List<SelenideElement> selenideElements2 = $$(By.xpath("//svg[@height='16px']"));
+        ElementsCollection selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
 
         for (SelenideElement element : selenideElements) {
             if (element.isDisplayed())
                 element.click();
+            actions.sendKeys(Keys.ESCAPE).perform();
         }
 
-        for (SelenideElement element : selenideElements2) {
-            if (element.isDisplayed())
-                element.click();
-        }
-
-//        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
+        //        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
         $(By.xpath("//input[@placeholder='Дом']")).clear();
         $(By.id("phone")).clear();
 //        $(By.xpath("//label[@class='mat-checkbox-layout']")).clear();

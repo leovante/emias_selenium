@@ -3,7 +3,6 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -34,7 +33,6 @@ public class ValidationTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Не указан адрес')]")).shouldBe(Condition.visible);
     }
 
-    @Flaky
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Проверка что валидация ФИО кто вызвал не пропадает на странице редактирования")
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")

@@ -5,12 +5,15 @@ import com.codeborne.selenide.SelenideElement;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
+import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utilities.testngRetryCount.RetryCountIfFailed;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -81,5 +84,18 @@ public class EditPageTest extends TestBase {
                 .saveBtn();
         $(By.xpath("//simple-snack-bar[contains(.,'Не указан адрес')]")).shouldBe(Condition.visible);
     }
+
+    @Test(groups = "CD", description = "подтягивание неформализованного мкаб на странице редактирования")
+    @Epic("Редактирование вызова")
+    @RetryCountIfFailed(2)
+    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile0_3");
+        page.loginPage().calldoctor();
+        page.createCallPage(pacient).createCall_Mkab();
+        page.fullCardPage(testName()).verifyNewCall(pacient);
+        page.createCallPage(pacient).editCallBtn();
+        $(By.xpath("//simple-snack-bar[contains(.,'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
+    }
+
     // TODO: 1/21/2019 добавить тест, вводить новый адрес английскими буквами
 }

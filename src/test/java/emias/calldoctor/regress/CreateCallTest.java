@@ -3,7 +3,6 @@ package emias.calldoctor.regress;
 import com.codeborne.selenide.Condition;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import io.qameta.allure.Flaky;
 import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -33,6 +32,18 @@ public class CreateCallTest extends TestBase {
                 .closeCardBtn();
     }
 
+    @Test(groups = "CD", description = "подтягивание неформализованного мкаб")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException {
+        Pacient pacient = new Pacient("Profile0_3");
+        page.loginPage().calldoctor();
+        page.createCallPage(pacient).createCall_Mkab();
+        page.fullCardPage(testName())
+                .verifyNewCall(pacient)
+                .closeCardBtn();
+    }
+
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
@@ -48,7 +59,7 @@ public class CreateCallTest extends TestBase {
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         Pacient pacient = new Pacient("Profile2");
         page.loginPage().calldoctor();
@@ -96,7 +107,6 @@ public class CreateCallTest extends TestBase {
 //        page.fullCardPage(testName()).verifyNewCall(pacient);
 //    }
 
-    @Flaky
     @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
@@ -124,7 +134,5 @@ public class CreateCallTest extends TestBase {
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 }
-
 // TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
-// TODO: 29.08.2018 делать проверку на время создания вызова
 // TODO: 29.08.2018 сделать тест добавление адреса в адресное пространство
