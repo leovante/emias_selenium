@@ -91,6 +91,7 @@ public class WebDriverInstansiator {
         }
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         dimension = getWebDriver().manage().window().getSize();
+
         if (!String.valueOf(dimension).equals("(1919, 1079)")) {
             throw new IllegalArgumentException("Ошибка. Размер окна браузера некорректный!" + dimension);
         } else {
@@ -99,6 +100,7 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + conf.getHeadless() + "; ");
         }
+
         Configuration.reportsFolder = "target/test-result/reports";
         return driver;
     }

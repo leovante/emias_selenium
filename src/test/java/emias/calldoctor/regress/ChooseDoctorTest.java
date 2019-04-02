@@ -42,7 +42,7 @@ public class ChooseDoctorTest extends TestBase {
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .searchFilterDoctor(doctor)
+//                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacient, doctor);
     }
 

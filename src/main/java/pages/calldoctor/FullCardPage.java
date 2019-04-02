@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends AbstractPage {
@@ -46,7 +45,7 @@ public class FullCardPage extends AbstractPage {
         elements.add("Источник");
         elements.add("КТО ПАЦИЕНТ");
         elements.add("Возраст");
-//        elements.add("Пол");
+        elements.add("Пол");
         elements.add("АДРЕС");
         elements.add("ЖАЛОБЫ");
         elements.add("КТО ПАЦИЕНТ");
@@ -260,6 +259,12 @@ public class FullCardPage extends AbstractPage {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
+        return this;
+    }
+
+    @Step("нажимаю на кнопку печати")
+    public FullCardPage printBtn() throws InterruptedException {
+        $x("//div[@id='viewPrint']/mat-icon").click();
         return this;
     }
 }
