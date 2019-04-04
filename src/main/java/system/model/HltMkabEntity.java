@@ -61,22 +61,11 @@ public class HltMkabEntity {
     private int rfKlSexId;
     private int rfKlHealthGroupId;
     private int rfAddressLiveId;
-
-
+    private int rfAddressRegId;
 
     @ManyToOne
     @JoinColumn(name = "AddressID", nullable = false)
     private KlaAddressEntity klaAddressEntity;
-
-    /*public KlaAddressEntity getKlaAddressEntity() {
-        return klaAddressEntity;
-    }
-
-    public void setKlaAddressEntity(KlaAddressEntity klaAddressEntity) {
-        this.klaAddressEntity = klaAddressEntity;
-    }*/
-
-    private int rfAddressRegId;
 
     @Basic
     @Column(name = "rf_AddressRegID", nullable = false)

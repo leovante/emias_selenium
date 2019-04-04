@@ -133,6 +133,30 @@ public class CreateCallTest extends TestBase {
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
+
+    @Test(groups = "CD", description = "проверка заполнения формализованного адреса при выборе мкаб на странице создания вызова")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testFormalizeAddress() throws Exception {
+        Pacient pacient = new Pacient("Profile2");
+        page.loginPage().calldoctor();
+        page.createCallPage(pacient)
+                .addNewCall()
+                .searchField();
+        $(By.xpath("//*[@placeholder='Адрес']")).getText().equals(pacient.getAddress3adv());
+    }
+
+    @Test(groups = "CD", description = "проверка заполнения неформализованного адреса при выборе мкаб на странице создания вызова")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testNotformalizeAddress() throws Exception {
+        Pacient pacient = new Pacient("Temnikov94");
+        page.loginPage().calldoctor();
+        page.createCallPage(pacient)
+                .addNewCall()
+                .searchField();
+        $(By.xpath("//*[contains(text(),'Московская обл., Рузский р-н., дп. Учитель СНТ, д.1')]")).shouldBe(Condition.visible);
+    }
 }
 // TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
 // TODO: 29.08.2018 сделать тест добавление адреса в адресное пространство
