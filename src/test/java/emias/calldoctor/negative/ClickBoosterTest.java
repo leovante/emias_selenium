@@ -6,7 +6,8 @@ import org.json.JSONException;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -30,7 +31,7 @@ public class ClickBoosterTest extends TestBase {
     @Test(groups = "CD", description = "закликивание кнопки 'записать' что бы проверить что не создаются дубликаты", enabled = false)
     @Epic("Негативные тесты")
     @RetryCountIfFailed(2)
-    public void testZapisatClickBooster() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testZapisatClickBooster() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();

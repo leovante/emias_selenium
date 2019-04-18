@@ -3,7 +3,7 @@ package system.dao;
 import org.springframework.stereotype.Repository;
 import system.model.HltDispExamEntity;
 import system.model.HltMkabEntity;
-import utilities.HibernateSessionFactory;
+import utils.HibernateSessionFactory;
 
 import java.util.List;
 import java.util.Optional;

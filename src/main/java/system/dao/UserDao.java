@@ -3,7 +3,7 @@ package system.dao;
 import org.springframework.stereotype.Repository;
 import system.model.HltMkabEntity;
 import system.model.User;
-import utilities.HibernateSessionFactory;
+import utils.HibernateSessionFactory;
 
 import java.util.Arrays;
 import java.util.List;

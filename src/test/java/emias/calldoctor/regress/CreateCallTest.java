@@ -9,8 +9,9 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.TestMethodCapture;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.TestMethodCapture;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -23,7 +24,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -35,7 +36,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "подтягивание неформализованного мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_3");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Mkab();
@@ -150,12 +151,12 @@ public class CreateCallTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testNotformalizeAddress() throws Exception {
-        Pacient pacient = new Pacient("Temnikov94");
+        Pacient pacient = new Pacient("AdressNeformal");
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .addNewCall()
                 .searchField();
-        $(By.xpath("//*[contains(text(),'Московская обл., Рузский р-н., дп. Учитель СНТ, д.1')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(text(),'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
     }
 }
 // TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)

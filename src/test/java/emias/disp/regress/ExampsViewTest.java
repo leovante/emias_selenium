@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import emias.TestBase;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.$;
 

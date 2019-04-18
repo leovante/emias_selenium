@@ -7,7 +7,8 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -19,7 +20,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile15");
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
@@ -32,7 +33,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile16");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -48,7 +49,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile17");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -64,7 +65,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile18");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -106,7 +107,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "не отображать участок у вызова с неформализованным адресом")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException, ParseException {
+    public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException, ParseException, NoticeException {
         Pacient pacient = new Pacient("Profile0_3");
         page.createCallPage(pacient).createCall_Api();
         page.loginPage().calldoctor();

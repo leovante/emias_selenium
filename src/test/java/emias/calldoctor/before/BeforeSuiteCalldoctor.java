@@ -2,8 +2,8 @@ package emias.calldoctor.before;
 
 import emias.TestBase;
 import org.testng.annotations.Test;
-import utilities.sql.DBScripts;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.sql.DBScripts;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;

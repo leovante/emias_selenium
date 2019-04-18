@@ -10,7 +10,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -88,7 +89,7 @@ public class EditPageTest extends TestBase {
     @Test(groups = "CD", description = "подтягивание неформализованного мкаб на странице редактирования")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_3");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Mkab();

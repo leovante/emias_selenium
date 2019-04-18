@@ -5,7 +5,7 @@ import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 public class ChooseDoctorTest extends TestBase {
 

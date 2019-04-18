@@ -2,8 +2,8 @@ package emias.mis.regress;
 
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import utilities.sql.DBScripts;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.sql.DBScripts;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 
 public class UpravleniePotokamiPacientovTest extends TestBase {

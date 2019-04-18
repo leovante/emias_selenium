@@ -7,7 +7,8 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -30,7 +31,7 @@ public class PrintFormTest extends TestBase {
     @Test(groups = "CD", description = "проверка формы печати на странице карты вызова")
     @Epic("Печать")
     @RetryCountIfFailed(2)
-    public void testPrintCard() throws IOException, JSONException, ParseException, InterruptedException {
+    public void testPrintCard() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
         Pacient pacient = new Pacient("Profile0");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();

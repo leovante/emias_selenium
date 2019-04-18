@@ -6,7 +6,8 @@ import org.json.JSONException;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -16,7 +17,7 @@ public class FilterTest extends TestBase {
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException {
+    public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile1");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -29,7 +30,7 @@ public class FilterTest extends TestBase {
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterDoctor() throws InterruptedException, IOException, ParseException, JSONException {
+    public void testFilterDoctor() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
@@ -61,7 +62,7 @@ public class FilterTest extends TestBase {
     @Test(groups = "CD", description = "фильтр сортировка все|сегодня|завтра")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterActiveGroup() throws InterruptedException, IOException, JSONException, ParseException {
+    public void testFilterActiveGroup() throws InterruptedException, IOException, JSONException, ParseException, NoticeException {
         Pacient pacient = new Pacient("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();

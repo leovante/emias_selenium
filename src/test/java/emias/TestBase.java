@@ -10,10 +10,10 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.Pages;
 import system.service.HltMkabService;
-import utilities.SeleniumGrid;
-import utilities.TestMethodCapture;
-import utilities.WebDriverInstansiator;
-import utilities.sql.DBScripts;
+import utils.SeleniumGrid;
+import utils.TestMethodCapture;
+import utils.WebDriverInstansiator;
+import utils.sql.DBScripts;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

@@ -2,7 +2,7 @@ package emias.disp.regress;
 
 import emias.TestBase;
 import org.testng.annotations.Test;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 public class ValidationTest extends TestBase {
 

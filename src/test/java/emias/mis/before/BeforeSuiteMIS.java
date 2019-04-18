@@ -1,7 +1,7 @@
 package emias.mis.before;
 
 import emias.TestBase;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 

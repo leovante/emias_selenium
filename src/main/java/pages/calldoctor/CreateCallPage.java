@@ -14,8 +14,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.api_model.CallDoctorEntity;
-import utilities.sql.DBScripts;
+import utils.api_model.CallDoctorEntity;
+import utils.except.NoticeException;
+import utils.sql.DBScripts;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -83,30 +84,37 @@ public class CreateCallPage extends AbstractPage {
 
     public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
 //        this.pacient = pacient;
-        addNewCall()
-                .sourceCall()
-                .address()
-                .birthDay()
-                .gender()
-                .complaint()
-                .polis()
-                .FIO()
-                .caller()
-                .telephone()
-                .saveBtn();
+        try {
+            addNewCall()
+                    .sourceCall()
+                    .address()
+                    .birthDay()
+                    .gender()
+                    .complaint()
+                    .polis()
+                    .FIO()
+                    .caller()
+                    .telephone()
+                    .saveBtn();
+        } catch (NoticeException note) {
+            note.printStackTrace();
+        }
         return this;
     }
 
     public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
-        this.pacient = pacient;
-        addNewCall()
-                .sourceCall()
-                .searchField()
-                .addressPlus()
-                .complaint()
-                .caller()
-                .telephone()
-                .saveBtn();
+        try {
+            addNewCall()
+                    .sourceCall()
+                    .searchField()
+                    .addressPlus()
+                    .complaint()
+                    .caller()
+                    .telephone()
+                    .saveBtn();
+        } catch (NoticeException note) {
+            note.printStackTrace();
+        }
         return this;
     }
 
@@ -460,29 +468,15 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("кнопка сохранить")
-    public CreateCallPage saveBtn() throws InterruptedException {
-        SelenideElement fullCardPage = $(By.xpath("//*[contains(text(),'Карта вызова')]"));
-//        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]"));
-        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
+    public CreateCallPage saveBtn() throws InterruptedException, NoticeException {
         SelenideElement save = $(By.id("save"));
         String old = driver.getCurrentUrl();
-
-        for (int i = 0; i < 10; i++) {
-            if (!fullCardPage.isDisplayed()) {
-                if (allert.isDisplayed())
-                    allert.click();
-//                if (se.isDisplayed())
-//                    se.click();
-                if (save.isDisplayed())
-                    save.click();
-            } else {
-                break;
-            }
-            Thread.sleep(1000);
-        }
-        if (!old.equals(driver.getCurrentUrl()))
+        save.click();
+        if (!old.equals(driver.getCurrentUrl())) {
             LOGGER.info("Вызов создан! " + driver.getCurrentUrl());
-        else LOGGER.info("Вызов НЕ создан!");
+        } else {
+            throw new NoticeException("Вызов НЕ создан! " + driver.getCurrentUrl());
+        }
         return this;
     }
 

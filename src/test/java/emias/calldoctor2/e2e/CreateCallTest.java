@@ -5,23 +5,25 @@ import emias.TestBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 import system.model.HltMkabEntity;
-import system.repositories.HltMkabService2;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import system.service.HltMkabService;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import static dataGenerator.DataType.CalldoctorData;
 
 public class CreateCallTest extends TestBase {
 
+//    @Autowired
+//    private HltMkabService2 hltMkabService2;
+
     @Autowired
-    private HltMkabService2 hltMkabService2;
+    private HltMkabService hltMkabService;
 
     @Test(groups = "e2e", description = "пытаюсь взять модель с двумя таблицами")
     @RetryCountIfFailed(2)
     public void testHiber() {
-        Optional<HltMkabEntity> var = hltMkabService2.findById(2467544);
+        HltMkabEntity var = hltMkabService.findById(2467544);
         System.out.println(var);
     }
 

@@ -13,7 +13,8 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,7 +27,7 @@ public class PerehodyServisovTest extends TestBase {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
@@ -43,7 +44,7 @@ public class PerehodyServisovTest extends TestBase {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();

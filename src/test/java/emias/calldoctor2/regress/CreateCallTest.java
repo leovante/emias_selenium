@@ -7,8 +7,8 @@ import io.qameta.allure.Epic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import utilities.TestMethodCapture;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.TestMethodCapture;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;

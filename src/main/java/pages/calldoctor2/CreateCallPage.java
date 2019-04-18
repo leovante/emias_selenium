@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
 import system.model.HltMkabEntity;
-import utilities.api_model.CallDoctorEntity;
+import utils.api_model.CallDoctorEntity;
 
 import java.io.IOException;
 import java.text.ParseException;

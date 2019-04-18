@@ -4,7 +4,7 @@
     <parameter name="gridIsRun" value="true"/>
 
     <listeners>
-        <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
 

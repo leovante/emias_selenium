@@ -3,7 +3,7 @@ package dataGenerator;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import utilities.HibernateSessionFactory;
+import utils.HibernateSessionFactory;
 
 import java.util.List;
 

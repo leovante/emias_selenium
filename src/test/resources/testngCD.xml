@@ -4,7 +4,7 @@
     <parameter name="gridIsRun" value="true"/>
 
     <listeners>
-        <listener class-name="utilities.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
     </listeners>
     <!--chrome-->
     <test name="TestCD_Chrome_Before" verbose="1">

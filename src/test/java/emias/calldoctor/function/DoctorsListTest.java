@@ -12,7 +12,8 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,7 +25,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testChildCall() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile7");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -37,7 +38,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall2() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testChildCall2() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile8");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -50,7 +51,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall3() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testChildCall3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile9");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -63,7 +64,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall4() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testChildCall4() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile10");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -76,7 +77,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall5() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testChildCall5() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile11");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -89,7 +90,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall6() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testChildCall6() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile12");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -102,7 +103,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall7() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testChildCall7() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile13");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -157,7 +158,7 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile13");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -173,7 +174,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile0_2");
         page.loginPage().calldoctor();
@@ -198,7 +199,7 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
-    public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile0_2");
         page.loginPage().calldoctor();

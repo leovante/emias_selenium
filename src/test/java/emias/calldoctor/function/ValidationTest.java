@@ -8,7 +8,8 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utilities.testngRetryCount.RetryCountIfFailed;
+import utils.except.NoticeException;
+import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,7 +21,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "проверка что вызов не сохраняется с пустым полем адрес после редактирования вызова")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile2_0");
         page.loginPage().calldoctor();
@@ -37,7 +38,7 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
+    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile3");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
@@ -54,7 +55,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на странице подробной карты вызова")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -66,7 +67,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на странице редактирования карты")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
@@ -79,7 +80,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на дашборде")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
