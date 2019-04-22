@@ -19,7 +19,9 @@ public class CancelCallTest extends TestBase {
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).cancelOnFullCardBtn("отмена автотестом");
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
@@ -32,7 +34,9 @@ public class CancelCallTest extends TestBase {
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName())
                 .editCallBtn()
                 .cancelOnChangePageBtn();
@@ -47,7 +51,9 @@ public class CancelCallTest extends TestBase {
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)

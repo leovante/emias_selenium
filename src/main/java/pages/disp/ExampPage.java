@@ -7,10 +7,9 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.AbstractPage;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 
-public class ExampPage extends AbstractPage {
+public class ExampPage extends AbstractPage implements Services {
     /*мероприятия*/
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
     SelenideElement ArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
@@ -34,8 +33,20 @@ public class ExampPage extends AbstractPage {
     SelenideElement PodvalPodpisatBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Подписать')]"));
     SelenideElement ALARMA_SAVE = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно сохранена.')]"));
     SelenideElement ALARMA_PODPISANA = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
+    SelenideElement elem;
 
-    public ExampPage() {
+
+    public ExampPage openService(String service) throws InterruptedException {
+        this.elem = $x("//*[contains(text(),'" + service + "')]").$x("../../.");
+        this.elem.$x("../.").hover();
+        this.elem.click();
+        return this;
+    }
+
+    public ExampPage signService() throws InterruptedException {
+        $x("//*[contains(text(),'" + elem + "')]")
+                .$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+        return this;
     }
 
     public void fillTemnikov() throws InterruptedException {
@@ -455,7 +466,16 @@ public class ExampPage extends AbstractPage {
         return this;
     }
 
+
+
     /*уведомления*/
+
+    public ExampPage validateServiceIsSign() {
+        $(By.xpath("//*[contains(text(),'Мероприятие успешно подписано')]")).shouldBe(Condition.visible);
+        return this;
+    }
+
+
     public ExampPage saveBtn() {
         PodvalSaveBtn.click();
         $(By.xpath("//*[contains(text(),'Карта успешно сохранена')]")).shouldBe(Condition.visible);

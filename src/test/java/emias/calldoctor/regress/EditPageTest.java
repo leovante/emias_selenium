@@ -30,6 +30,7 @@ public class EditPageTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
+                .saveBtn()
                 .editCallBtn()
                 .verifyCallProfile1(pacient);
     }
@@ -42,6 +43,7 @@ public class EditPageTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
+                .saveBtn()
                 .editCallBtn()
                 .saveBtn();
         List<SelenideElement> se = $$(By.xpath("//div[@class='datatable-row-center datatable-row-group ng-star-inserted']"));
@@ -57,6 +59,7 @@ public class EditPageTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
+                .saveBtn()
                 .editCallBtn()
                 .setDeafult()
                 .editCallPage_Mkab(pacient2)
@@ -77,7 +80,9 @@ public class EditPageTest extends TestBase {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile0_3");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Mkab();
+        page.createCallPage(pacient)
+                .createCall_Mkab()
+                .saveBtn();
         page.fullCardPage(testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()
@@ -92,7 +97,9 @@ public class EditPageTest extends TestBase {
     public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_3");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Mkab();
+        page.createCallPage(pacient)
+                .createCall_Mkab()
+                .saveBtn();
         page.fullCardPage(testName()).verifyNewCall(pacient);
         page.createCallPage(pacient).editCallBtn();
         $(By.xpath("//simple-snack-bar[contains(.,'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);

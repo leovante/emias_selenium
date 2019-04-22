@@ -34,7 +34,9 @@ public class PrintFormTest extends TestBase {
     public void testPrintCard() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
         Pacient pacient = new Pacient("Profile0");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).printBtn();
         switchTo().window(1);
         $(By.xpath("//*[contains(text(),'test/call-doctor/card/view')]")).shouldBe(Condition.visible);

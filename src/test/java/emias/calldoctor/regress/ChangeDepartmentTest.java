@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
@@ -20,12 +21,14 @@ public class ChangeDepartmentTest extends TestBase {
     @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -36,13 +39,15 @@ public class ChangeDepartmentTest extends TestBase {
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("ProfileTransferDep-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -57,12 +62,14 @@ public class ChangeDepartmentTest extends TestBase {
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(3)
-    public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -99,7 +106,9 @@ public class ChangeDepartmentTest extends TestBase {
     public void testshowMeYourAdultPoliklinika() throws Exception {
         Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
@@ -112,7 +121,9 @@ public class ChangeDepartmentTest extends TestBase {
     public void testshowMeYourKidPoliklinika() throws Exception {
         Pacient pacient = new Pacient("Profile2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Mkab();
+        page.createCallPage(pacient)
+                .createCall_Mkab()
+                .saveBtn();
         page.fullCardPage(testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);

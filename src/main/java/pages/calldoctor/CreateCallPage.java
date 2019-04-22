@@ -83,38 +83,27 @@ public class CreateCallPage extends AbstractPage {
     }
 
     public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
-//        this.pacient = pacient;
-        try {
-            addNewCall()
-                    .sourceCall()
-                    .address()
-                    .birthDay()
-                    .gender()
-                    .complaint()
-                    .polis()
-                    .FIO()
-                    .caller()
-                    .telephone()
-                    .saveBtn();
-        } catch (NoticeException note) {
-            note.printStackTrace();
-        }
+        addNewCall()
+                .sourceCall()
+                .address()
+                .birthDay()
+                .gender()
+                .complaint()
+                .polis()
+                .FIO()
+                .caller()
+                .telephone();
         return this;
     }
 
     public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
-        try {
-            addNewCall()
-                    .sourceCall()
-                    .searchField()
-                    .addressPlus()
-                    .complaint()
-                    .caller()
-                    .telephone()
-                    .saveBtn();
-        } catch (NoticeException note) {
-            note.printStackTrace();
-        }
+        addNewCall()
+                .sourceCall()
+                .searchField()
+                .addressPlus()
+                .complaint()
+                .caller()
+                .telephone();
         return this;
     }
 
@@ -469,14 +458,16 @@ public class CreateCallPage extends AbstractPage {
 
     @Step("кнопка сохранить")
     public CreateCallPage saveBtn() throws InterruptedException, NoticeException {
+        Thread.sleep(1000);
         SelenideElement save = $(By.id("save"));
-        String old = driver.getCurrentUrl();
         save.click();
-        if (!old.equals(driver.getCurrentUrl())) {
-            LOGGER.info("Вызов создан! " + driver.getCurrentUrl());
-        } else {
-            throw new NoticeException("Вызов НЕ создан! " + driver.getCurrentUrl());
-        }
+        return this;
+    }
+
+    @Step("кнопка сохранить")
+    public CreateCallPage allertBtn() throws InterruptedException, NoticeException {
+        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
+        allert.click();
         return this;
     }
 

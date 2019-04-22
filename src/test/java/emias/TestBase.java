@@ -20,8 +20,6 @@ import java.io.IOException;
 
 import static pages.AbstractPage.LOGGER;
 
-//import io.qameta.allure.selenide.AllureSelenide;
-
 @Listeners(TestMethodCapture.class)
 @ContextConfiguration(locations = {"classpath:beans.xml"})
 public class TestBase extends AbstractTestNGSpringContextTests {

@@ -16,7 +16,9 @@ public class ChooseDoctorTest extends TestBase {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage(testName())
@@ -34,7 +36,9 @@ public class ChooseDoctorTest extends TestBase {
         Pacient pacient = new Pacient("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage(testName())

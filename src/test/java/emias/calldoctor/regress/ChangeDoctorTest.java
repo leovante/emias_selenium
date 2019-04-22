@@ -18,7 +18,9 @@ public class ChangeDoctorTest extends TestBase {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage(testName()).changeDoctorBtn();
@@ -29,7 +31,6 @@ public class ChangeDoctorTest extends TestBase {
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-//                .searchFilterFio()
                 .verifyActiveDocGroup(pacient, doctor2);
     }
 }

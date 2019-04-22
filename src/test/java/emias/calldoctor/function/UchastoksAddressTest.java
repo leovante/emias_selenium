@@ -25,6 +25,7 @@ public class UchastoksAddressTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
+                .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -36,7 +37,9 @@ public class UchastoksAddressTest extends TestBase {
     public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile16");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.createCallPage(pacient).selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
@@ -52,8 +55,10 @@ public class UchastoksAddressTest extends TestBase {
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile17");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
-        page.createCallPage(pacient).selectUchastokFromNeUdalosOpredelit();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
@@ -68,7 +73,9 @@ public class UchastoksAddressTest extends TestBase {
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile18");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);

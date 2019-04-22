@@ -2,21 +2,17 @@ package emias.calldoctor.before;
 
 import emias.TestBase;
 import org.testng.annotations.Test;
-import utils.sql.DBScripts;
 import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class BeforeSuiteCalldoctor extends TestBase {
-    Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
 
     @Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws IOException, ParseException {
+        /*Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
         //int LPUDoctorID, int DocPRVDID
         LPUDoctor.put(2078, 1220);//Темников Дмитрий
         LPUDoctor.put(1958, 1205);//Моков
@@ -29,6 +25,6 @@ public class BeforeSuiteCalldoctor extends TestBase {
             Map.Entry<Integer, Integer> pair = it.next();
             DBScripts.deleteShedule(pair.getKey(), pair.getValue());
             DBScripts.createSheduleCD(pair.getKey(), pair.getValue());
-        }
+        }*/
     }
 }

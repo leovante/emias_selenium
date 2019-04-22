@@ -178,7 +178,9 @@ public class DoctorsListTest extends TestBase {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile0_2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Mkab();
+        page.createCallPage(pacient)
+                .createCall_Mkab()
+                .saveBtn();
         page.fullCardPage(testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()
@@ -203,7 +205,9 @@ public class DoctorsListTest extends TestBase {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile0_2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Mkab();
+        page.createCallPage(pacient)
+                .createCall_Mkab()
+                .saveBtn();
         page.fullCardPage(testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()

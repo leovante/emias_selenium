@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 @Listeners(TestMethodCapture.class)
 public class CreateCallTest extends TestBase {
@@ -27,7 +28,10 @@ public class CreateCallTest extends TestBase {
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
         page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
@@ -36,13 +40,12 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "подтягивание неформализованного мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0_3");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Mkab();
-        page.fullCardPage(testName())
-                .verifyNewCall(pacient)
-                .closeCardBtn();
+        page.createCallPage(pacient)
+                .createCall_Mkab();
+        $x("//*[contains(text(),'" + pacient.getAddress() + "')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
@@ -51,7 +54,9 @@ public class CreateCallTest extends TestBase {
     public void testCallRegistr() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
@@ -94,19 +99,21 @@ public class CreateCallTest extends TestBase {
         page.fullCardPage(testName()).verifyNewCall(pacient);
     }
 
-//    @Test(groups = "CD", description = "вызов ребенка с Портала")
-//    @Epic("Создание вызова")
-//    @RetryCountIfFailed(2)
-//    public void testCallPortal() throws IOException, InterruptedException, JSONException {
-//        Pacient pacient = new Pacient("Profile4");
-//        enter.enterPortal();
-//        page.portalDashboard().createCall(pacient);
-//        page.loginPage().calldoctor();
-//        page.dashboardPage()
-//                .clearAllFilters()
-//                .openNewCallDash(pacient);
-//        page.fullCardPage(testName()).verifyNewCall(pacient);
-//    }
+/*
+    @Test(groups = "CD", description = "вызов ребенка с Портала")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void testCallPortal() throws IOException, InterruptedException, JSONException {
+        Pacient pacient = new Pacient("Profile4");
+        enter.enterPortal();
+        page.portalDashboard().createCall(pacient);
+        page.loginPage().calldoctor();
+        page.dashboardPage()
+                .clearAllFilters()
+                .openNewCallDash(pacient);
+        page.fullCardPage(testName()).verifyNewCall(pacient);
+    }
+*/
 
     @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")

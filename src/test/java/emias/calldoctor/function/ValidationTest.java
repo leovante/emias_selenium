@@ -25,7 +25,9 @@ public class ValidationTest extends TestBase {
         Pacient pacient = new Pacient("Profile2");
         Pacient pacient2 = new Pacient("Profile2_0");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()
@@ -58,7 +60,9 @@ public class ValidationTest extends TestBase {
     public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName())
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
@@ -70,7 +74,9 @@ public class ValidationTest extends TestBase {
     public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).editCallBtn();
         page.createCallPage(pacient)
                 .cancelOnFullCardBtn("")
@@ -83,7 +89,9 @@ public class ValidationTest extends TestBase {
     public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile0_CancelValidation");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .cancelNewCallDash(pacient)

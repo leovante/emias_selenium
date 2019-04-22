@@ -20,7 +20,9 @@ public class FilterTest extends TestBase {
     public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
@@ -34,7 +36,9 @@ public class FilterTest extends TestBase {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
         page.fullCardPage(testName()).closeCardBtn();
@@ -66,7 +70,9 @@ public class FilterTest extends TestBase {
         Pacient pacient = new Pacient("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
         page.fullCardPage(testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTomorrow(doctor);
         page.fullCardPage(testName()).closeCardBtn();
