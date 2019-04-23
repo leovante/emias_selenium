@@ -1,7 +1,3 @@
-/**
- * проверяем что список врачей корректно отображается
- */
-
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
@@ -11,6 +7,7 @@ import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
+import pages.calldoctor.doctors_interfaces.Doctor;
 import pages.calldoctor.profiles_interfaces.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
@@ -22,33 +19,44 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class DoctorsListTest extends TestBase {
 
-    @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
+    @Test(groups = "CD", description = "пустой вызов ребенка М.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile7");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
+        Doctor serova = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
+        asserts.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
+        asserts.isVisibleText(mokov.getUchastocs());
+        asserts.isVisibleText(nemcova.getUchastocs());
+        asserts.isNotVisibleText(serova.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
+    @Test(groups = "CD", description = "пустой вызов ребенка Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall2() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile8");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
         page.fullCardPage(testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
+    @Test(groups = "CD", description = "пустой вызов ребенка без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
@@ -61,7 +69,7 @@ public class DoctorsListTest extends TestBase {
         $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
+    @Test(groups = "CD", description = "пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall4() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
@@ -69,12 +77,12 @@ public class DoctorsListTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
+        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
+    @Test(groups = "CD", description = "пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall5() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
@@ -87,7 +95,7 @@ public class DoctorsListTest extends TestBase {
         $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
+    @Test(groups = "CD", description = "пустой вызов взрослого без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testChildCall6() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {

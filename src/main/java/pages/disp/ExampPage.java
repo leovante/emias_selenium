@@ -466,15 +466,11 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-
-
     /*уведомления*/
-
     public ExampPage validateServiceIsSign() {
         $(By.xpath("//*[contains(text(),'Мероприятие успешно подписано')]")).shouldBe(Condition.visible);
         return this;
     }
-
 
     public ExampPage saveBtn() {
         PodvalSaveBtn.click();

@@ -13,6 +13,8 @@ import system.service.HltMkabService;
 import utils.SeleniumGrid;
 import utils.TestMethodCapture;
 import utils.WebDriverInstansiator;
+import utils.override.Assistance;
+import utils.override.AssistanceImpl;
 import utils.sql.DBScripts;
 
 import java.io.FileOutputStream;
@@ -25,6 +27,7 @@ import static pages.AbstractPage.LOGGER;
 public class TestBase extends AbstractTestNGSpringContextTests {
     public static Pages page;
     public String testName;
+    public Assistance asserts = new AssistanceImpl();
     //    BrowserMobProxy proxy = new BrowserMobProxyServer();
 
     public String testName() {
