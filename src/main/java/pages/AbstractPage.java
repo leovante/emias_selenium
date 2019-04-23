@@ -1,32 +1,35 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import dataGenerator.ModuleData;
 import org.apache.commons.lang3.time.DateUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.calldoctor.profiles_interfaces.Pacient;
+import utils.override.Assistance;
+import utils.override.AssistanceImpl;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.Logger;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AbstractPage {
     public WebDriver driver;
+    public Assistance as = new AssistanceImpl();
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static int callNumber;
-
     public static Map<String, Integer> cardMap = new HashMap();
 
     public AbstractPage() {
         this.driver = getWebDriver();
     }
 
-    public void ShouldBeVisible(String text) {
-        $(By.xpath("//*[contains(text(),'" + text + "')]")).shouldBe(Condition.visible);
+    public void isVisibleText(String text) {
+        as.isVisibleText(text);
+    }
+
+    public void isNotVisibleText(String text) {
+        as.isNotVisibleText(text);
     }
 
     public String parseTelephone(ModuleData mData) {

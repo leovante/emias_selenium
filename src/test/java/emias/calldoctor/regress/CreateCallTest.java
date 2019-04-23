@@ -76,7 +76,7 @@ public class CreateCallTest extends TestBase {
         page.dashboardPage().verifyNewCallGroup(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api от ребенка. Проверяю что адрес подтянулся из вызова.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
@@ -87,7 +87,7 @@ public class CreateCallTest extends TestBase {
         page.fullCardPage(testName()).verifyNewCall(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, взрослый без МКАБ по КЛАДР")
+    @Test(groups = "CD", description = "вызов от СМП по api от взрослого, Проверяю что адрес по кладр.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
@@ -95,8 +95,10 @@ public class CreateCallTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        $(By.xpath("//*[contains(text(),'Тестов2')]")).shouldBe(Condition.visible);
-        page.fullCardPage(testName()).verifyNewCall(pacient);
+        page.fullCardPage(testName())
+                .verifyNewCall(pacient)
+                .editCallBtn();
+        $x("//input[@placeholder='Адрес']").getValue().contains(pacient.getAddressStringMin());
     }
 
 /*

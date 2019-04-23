@@ -14,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
 import system.model.HltMkabEntity;
-import utils.api_model.CallDoctorEntity;
+import utils.api_model.CallDoctorHttp;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,7 +27,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class CreateCallPage extends AbstractPage {
-    CallDoctorEntity callDoctorEntity;
+    CallDoctorHttp callDoctorHttp;
     HttpResponse httpResponse;
     ModuleData mData;
     HltMkabEntity mkab;
@@ -86,8 +86,8 @@ public class CreateCallPage extends AbstractPage {
             HttpClient httpClient = HttpClients.createDefault();
             if (mData.getSource() == "СМП") {//смп
                 try {
-                    callDoctorEntity = new CallDoctorEntity(mData);
-                    httpResponse = httpClient.execute(callDoctorEntity.createRequest());
+                    callDoctorHttp = new CallDoctorHttp(mData);
+                    httpResponse = httpClient.execute(callDoctorHttp.createPostRequest());
                     statusBodyResponce(httpResponse);
                     LOGGER.info("Карта вызова создана!");
                 } catch (Exception ex) {
@@ -97,8 +97,8 @@ public class CreateCallPage extends AbstractPage {
             }
             if (mData.getSource() == "КЦ") {
                 try {
-                    callDoctorEntity = new CallDoctorEntity(mData);
-                    httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
+                    callDoctorHttp = new CallDoctorHttp(mData);
+                    httpResponse = httpClient.execute(callDoctorHttp.createPostRequestToken());
                     statusBodyResponce(httpResponse);
                     LOGGER.info("Карта вызова создана!");
                 } catch (Exception ex) {
@@ -154,7 +154,7 @@ public class CreateCallPage extends AbstractPage {
 //        if (pacient.getSource() == 2) {//смп
 //            try {
 //                callDoctorEntity = new CallDoctorEntity(findByModel);
-//                httpResponse = httpClient.execute(callDoctorEntity.createRequest());
+//                httpResponse = httpClient.execute(callDoctorEntity.createPostRequest());
 //                statusBodyResponce(httpResponse);
 //                LOGGER.info("Карта вызова создана!");
 //            } catch (Exception ex) {
@@ -165,7 +165,7 @@ public class CreateCallPage extends AbstractPage {
 //        if (pacient.getSource() == 3) {
 //            try {
 //                callDoctorEntity = new CallDoctorEntity(findByModel);
-//                httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
+//                httpResponse = httpClient.execute(callDoctorEntity.createPostRequestToken());
 //                statusBodyResponce(httpResponse);
 //                LOGGER.info("Карта вызова создана!");
 //            } catch (Exception ex) {

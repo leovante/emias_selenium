@@ -4,19 +4,15 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
-import utils.api_model.CallDoctorEntity;
+import utils.api_model.CallDoctorHttp;
 import utils.except.NoticeException;
-import utils.sql.DBScripts;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -30,8 +26,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
 public class CreateCallPage extends AbstractPage {
-    CallDoctorEntity callDoctorEntity;
-    HttpResponse httpResponse;
     private Pacient pacient;
 
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
@@ -76,11 +70,6 @@ public class CreateCallPage extends AbstractPage {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    protected void statusBodyResponce(HttpResponse resp) throws IOException {
-        if (resp.getStatusLine().getStatusCode() != 200) {
-            LOGGER.info("Ошибка! Ответ сервера:\n" + EntityUtils.toString(resp.getEntity(), "UTF-8"));
-        }
-    }
 
     public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
         addNewCall()
@@ -107,32 +96,11 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    @Step("Создаю вызов через api")
-    public void createCall_Api() {
-        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
-        HttpClient httpClient = HttpClients.createDefault();
-        if (pacient.getSource() == 2) {//смп
-            try {
-                callDoctorEntity = new CallDoctorEntity(pacient);
-                httpResponse = httpClient.execute(callDoctorEntity.createRequest());
-                statusBodyResponce(httpResponse);
-                LOGGER.info("Карта вызова создана!");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                LOGGER.info("Error, " + "Cannot Estabilish Connection");
-            }
-        }
-        if (pacient.getSource() == 3) {
-            try {
-                callDoctorEntity = new CallDoctorEntity(pacient);
-                httpResponse = httpClient.execute(callDoctorEntity.createRequestToken());
-                statusBodyResponce(httpResponse);
-                LOGGER.info("Карта вызова создана!");
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                LOGGER.info("Error, " + "Cannot Estabilish Connection");
-            }
-        }
+    @Step("создаю вызов через api")
+    public void createCall_Api() throws JSONException {
+//        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
+//        мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
+        LOGGER.info(String.valueOf(new CallDoctorHttp(pacient).execute()));
     }
 
     @Step("редактирую вызов")
@@ -155,7 +123,8 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public CreateCallPage editCallPage_Mkab(Pacient pacient) throws IOException, ParseException, InterruptedException {
+    public CreateCallPage editCallPage_Mkab(Pacient pacient) throws
+            IOException, ParseException, InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .searchField()

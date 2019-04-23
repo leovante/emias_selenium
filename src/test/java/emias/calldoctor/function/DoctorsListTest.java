@@ -151,7 +151,7 @@ public class DoctorsListTest extends TestBase {
         as.isVisibleText(serova.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
+    @Test(groups = "CD", description = "пустой вызов Без Возр Кат, Без Пола, СМП")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void call_noAge_noGender() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
@@ -174,32 +174,42 @@ public class DoctorsListTest extends TestBase {
         as.isVisibleText(serova.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "создаю вызов в ВД что бы проверить что отобразился участковый")
+    @Test(groups = "CD", description = "проверка что отобразился участковый")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithKladr() throws Exception {
         Pacient pacient = new Pacient("Profile2");
+        Doctor operator = new Doctor("Operator");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn();
+        as.isVisibleText(operator.getDepartment());
+        as.isVisibleText(nemcova.getUchastocs());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+        as.isVisibleText("УЧАСТКОВЫЙ ВРАЧ");
+        as.isVisibleText(nemcova.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что отобразился участковый")
+    @Test(groups = "CD", description = "вызов по api СМП без авторизации. Проверка отображения участкового")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileDetkina");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .openNewCallDash(pacient);
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName())
                 .verifyNewCall(pacient)
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+        as.isVisibleText(mokov.getUchastocs());
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адрессу нельзя назначить врача")

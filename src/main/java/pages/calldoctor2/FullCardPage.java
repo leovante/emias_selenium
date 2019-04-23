@@ -73,32 +73,32 @@ public class FullCardPage extends AbstractPage {
 
     @Step("проверяю наличие базовых элементов пациента")
     public void basePacient() {
-//        ShouldBeVisible(pacient.getAddress());
-//        ShouldBeVisible(pacient.getComplaint());
-//        ShouldBeVisible(pacient.getCodedomophone());
-//        ShouldBeVisible(parseTelephone(pacient));
-//        ShouldBeVisible(String.valueOf(pacient.getEntrance()));
-//        ShouldBeVisible(String.valueOf(pacient.getFloor()));
-//        ShouldBeVisible(pacient.getName());
-//        ShouldBeVisible(pacient.getFamily());
-//        ShouldBeVisible(pacient.getOt());
-//        ShouldBeVisible(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
-//        ShouldBeVisible(String.valueOf(pacient.getSeriespol()));
-//        ShouldBeVisible(String.valueOf(pacient.getNumberpol()));
+//        isVisibleText(pacient.getAddress());
+//        isVisibleText(pacient.getComplaint());
+//        isVisibleText(pacient.getCodedomophone());
+//        isVisibleText(parseTelephone(pacient));
+//        isVisibleText(String.valueOf(pacient.getEntrance()));
+//        isVisibleText(String.valueOf(pacient.getFloor()));
+//        isVisibleText(pacient.getName());
+//        isVisibleText(pacient.getFamily());
+//        isVisibleText(pacient.getOt());
+//        isVisibleText(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
+//        isVisibleText(String.valueOf(pacient.getSeriespol()));
+//        isVisibleText(String.valueOf(pacient.getNumberpol()));
 //        if (pacient.getKladraddress() != null) {
-//            ShouldBeVisible(pacient.getAppartment());
-//            ShouldBeVisible(pacient.getBuilding());
-//            ShouldBeVisible(pacient.getConstruction());
+//            isVisibleText(pacient.getAppartment());
+//            isVisibleText(pacient.getBuilding());
+//            isVisibleText(pacient.getConstruction());
 //        }
     }
 
     @Step("проверяю наличие базовых элементов врача")
     public void baseDoctor(Doctor doctor) {
-//        ShouldBeVisible(doctor.getName());
-//        ShouldBeVisible(doctor.getFamily());
-//        ShouldBeVisible(doctor.getOt());
-//        ShouldBeVisible(doctor.getDepartment());
-//        ShouldBeVisible(doctor.getUchastocs());
+//        isVisibleText(doctor.getName());
+//        isVisibleText(doctor.getFamily());
+//        isVisibleText(doctor.getOt());
+//        isVisibleText(doctor.getDepartment());
+//        isVisibleText(doctor.getUchastocs());
     }
 
     @Step("проверка времени")

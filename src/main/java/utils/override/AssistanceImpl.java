@@ -15,4 +15,8 @@ public class AssistanceImpl implements Assistance {
     public void isNotVisibleText(String text) {
         $x("//*[contains(.,'" + text + "')]").shouldNotBe(Condition.visible);
     }
+
+    @Override
+    public void isContains(String text) {
+    }
 }

@@ -41,7 +41,12 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String codedomophone;//домофон
     private String sourceName;
     private String sourceCode;
-    private Object kladraddress;
+    private JSONObject kladraddress;
+    private String addressStringMin;
+
+    public String getAddressStringMin() {
+        return addressStringMin;
+    }
 
     public Object getKladraddress() {
         return kladraddress;
@@ -307,5 +312,8 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
         if (jsonOb.has("kladraddress") && !jsonOb.get("kladraddress").equals(""))
             this.kladraddress = jsonOb.getJSONObject("kladraddress");
+
+        if (kladraddress.has("addressStringMin") && !kladraddress.get("addressStringMin").equals(""))
+            this.addressStringMin = kladraddress.getString("addressStringMin");
     }
 }
