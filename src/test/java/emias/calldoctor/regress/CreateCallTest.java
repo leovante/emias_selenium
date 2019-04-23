@@ -87,7 +87,7 @@ public class CreateCallTest extends TestBase {
         page.fullCardPage(testName()).verifyNewCall(pacient);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api от взрослого, Проверяю что адрес по кладр.")
+    @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что адрес по кладр.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
@@ -117,7 +117,7 @@ public class CreateCallTest extends TestBase {
     }
 */
 
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
+    @Test(groups = "CD", description = "вызов из КЦ по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
     @Issue("EMIAS-657")
     @RetryCountIfFailed(2)
@@ -131,7 +131,7 @@ public class CreateCallTest extends TestBase {
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "вызов из Колл-Центра по api, ребенок по МКАБ без КЛАДР.")
+    @Test(groups = "CD", description = "вызов из КЦ по api, ребенок по МКАБ без КЛАДР.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {
