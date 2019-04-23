@@ -11,7 +11,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю пустой вызов ребенка М")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testChildCall() throws IOException, InterruptedException, ParseException, JSONException {
+//    public void childCall_male() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile7");
 //        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
@@ -24,7 +24,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю пустой вызов ребенка Ж")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testChildCall2() throws IOException, InterruptedException, ParseException, JSONException {
+//    public void childCall_female() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile8");
 //        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
@@ -37,7 +37,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю пустой вызов ребенка Без Пола")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testChildCall3() throws IOException, InterruptedException, ParseException, JSONException {
+//    public void childCall_noGender() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile9");
 //        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
@@ -50,7 +50,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю пустой вызов взрослого М")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testChildCall4() throws IOException, InterruptedException, ParseException, JSONException {
+//    public void adultCall_male() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile10");
 //        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
@@ -63,7 +63,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю пустой вызов взрослого Ж")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testChildCall5() throws IOException, InterruptedException, ParseException, JSONException {
+//    public void adultCall_female() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile11");
 //        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
@@ -76,7 +76,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю пустой вызов взрослого Без пола")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testChildCall6() throws IOException, InterruptedException, ParseException, JSONException {
+//    public void adultCall_noGender() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile12");
 //        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();
@@ -89,7 +89,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testChildCall7() throws IOException, InterruptedException, ParseException, JSONException {
+//    public void call_noAge_noGender() throws IOException, InterruptedException, ParseException, JSONException {
 //        Pacient pacient = new Pacient("Profile13");
 //        enter.calldoctorFromMis();
 //        page.createCallPage(pacient).createCall();

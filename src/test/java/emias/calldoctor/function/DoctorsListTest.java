@@ -19,10 +19,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class DoctorsListTest extends TestBase {
 
-    @Test(groups = "CD", description = "пустой вызов ребенка М.")
+    @Test(groups = "CD", description = "пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void childCall_male() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile7");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -33,92 +33,145 @@ public class DoctorsListTest extends TestBase {
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        asserts.isVisibleText(operator.getDepartment());
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        asserts.isVisibleText(mokov.getUchastocs());
-        asserts.isVisibleText(nemcova.getUchastocs());
-        asserts.isNotVisibleText(serova.getUchastocs());
+        as.isVisibleText(mokov.getUchastocs());
+        as.isVisibleText(nemcova.getUchastocs());
+        as.isNotVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов ребенка Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall2() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void childCall_female() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile8");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
+        Doctor serova = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
+        as.isVisibleText(mokov.getUchastocs());
+        as.isVisibleText(nemcova.getUchastocs());
+        as.isNotVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов ребенка без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void childCall_noGender() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile9");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
+        Doctor serova = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldNot(Condition.visible);
+        as.isVisibleText(mokov.getUchastocs());
+        as.isVisibleText(nemcova.getUchastocs());
+        as.isNotVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall4() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void adultCall_male() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile10");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
+        Doctor serova = new Doctor("SerovaStendTestovoe");
+        Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
+        as.isNotVisibleText(mokov.getUchastocs());
+        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        as.isVisibleText(nemcova.getUchastocs());
+        as.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall5() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void adultCall_female() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile11");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
+        Doctor serova = new Doctor("SerovaStendTestovoe");
+        Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
+        as.isNotVisibleText(mokov.getUchastocs());
+        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        as.isVisibleText(nemcova.getUchastocs());
+        as.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов взрослого без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall6() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void adultCall_noGender() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile12");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
+        Doctor serova = new Doctor("SerovaStendTestovoe");
+        Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldNot(Condition.visible);
+        as.isNotVisibleText(mokov.getUchastocs());
+        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        as.isVisibleText(nemcova.getUchastocs());
+        as.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "создаю пустой вызов Без Возр Кат, Без Пола, СМП")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testChildCall7() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void call_noAge_noGender() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("Profile13");
+        Doctor operator = new Doctor("Operator");
+        Doctor mokov = new Doctor("MokovStendTestovoe");
+        Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
+        Doctor serova = new Doctor("SerovaStendTestovoe");
+        Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
+        page.createCallPage(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
+        as.isVisibleText(operator.getDepartment());
         page.fullCardPage(testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(.,'Серова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(.,'Моков')]")).shouldBe(Condition.visible);
+        as.isVisibleText(mokov.getUchastocs());
+        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        as.isVisibleText(nemcova.getUchastocs());
+        as.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "создаю вызов в ВД что бы проверить что отобразился участковый")

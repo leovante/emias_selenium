@@ -27,7 +27,7 @@ import static pages.AbstractPage.LOGGER;
 public class TestBase extends AbstractTestNGSpringContextTests {
     public static Pages page;
     public String testName;
-    public Assistance asserts = new AssistanceImpl();
+    public Assistance as = new AssistanceImpl();
     //    BrowserMobProxy proxy = new BrowserMobProxyServer();
 
     public String testName() {
