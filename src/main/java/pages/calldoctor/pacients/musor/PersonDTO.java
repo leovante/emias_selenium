@@ -1,4 +1,4 @@
-package pages.calldoctor.profiles_interfaces.musor;
+package pages.calldoctor.pacients.musor;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;

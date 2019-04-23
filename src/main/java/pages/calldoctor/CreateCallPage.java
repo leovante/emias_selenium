@@ -10,7 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import pages.AbstractPage;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.api_model.CallDoctorHttp;
 import utils.except.NoticeException;
 

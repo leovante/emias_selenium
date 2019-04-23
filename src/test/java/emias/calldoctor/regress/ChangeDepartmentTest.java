@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -29,11 +29,11 @@ public class ChangeDepartmentTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(testName()).verifyDepartment(doctor2);
+        page.fullCardPage(pacient, testName()).verifyDepartment(doctor2);
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
@@ -48,15 +48,15 @@ public class ChangeDepartmentTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyDepartment(doctor2)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor3);
-        page.fullCardPage(testName()).verifyDepartment(doctor3);
+        page.fullCardPage(pacient, testName()).verifyDepartment(doctor3);
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
@@ -70,15 +70,15 @@ public class ChangeDepartmentTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyDepartment(doctor2)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor);
-        page.fullCardPage(testName()).verifyDepartment(doctor);
+        page.fullCardPage(pacient, testName()).verifyDepartment(doctor);
     }
 
     // TODO: 12/27/2018 сделать тест передачи вызова из лпу в лпу
@@ -109,7 +109,7 @@ public class ChangeDepartmentTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).transferToDepartBtn();
+        page.fullCardPage(pacient, testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
@@ -124,7 +124,7 @@ public class ChangeDepartmentTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(testName()).transferToDepartBtn();
+        page.fullCardPage(pacient, testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);

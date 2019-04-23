@@ -4,7 +4,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -21,7 +21,7 @@ public class EditPageTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .editCallBtn();
         page.createCallPage(pacient).saveBtn();

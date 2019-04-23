@@ -1,4 +1,4 @@
-package pages.calldoctor.profiles_interfaces.musor;
+package pages.calldoctor.pacients.musor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

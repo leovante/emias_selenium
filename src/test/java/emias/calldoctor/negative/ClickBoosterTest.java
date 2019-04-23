@@ -5,7 +5,7 @@ import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -23,7 +23,7 @@ public class ClickBoosterTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTodayBooster(doctor);
         // TODO: 12/6/2018 тут нужно как-то прикрутить прокси и запускать тест при слабом интернете
     }
@@ -36,9 +36,9 @@ public class ClickBoosterTest extends TestBase {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatClickBooster(doctor);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }
@@ -52,9 +52,9 @@ public class ClickBoosterTest extends TestBase {
         page.loginPage().calldoctor();
 //        page.createCallPage().createCall(pacient);
         page.createCallPage(pacient).createCall_Api();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatDobavitClickBooster(doctor);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }

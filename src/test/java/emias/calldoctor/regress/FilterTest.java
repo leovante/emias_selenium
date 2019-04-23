@@ -5,7 +5,7 @@ import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -23,7 +23,7 @@ public class FilterTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).closeCardBtn();
+        page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .verifyNewCallGroup(pacient);
@@ -39,9 +39,9 @@ public class FilterTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(testName()).closeCardBtn();
+        page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
                 .searchFilterDoctor(doctor)
@@ -56,7 +56,7 @@ public class FilterTest extends TestBase {
         page.createCallPage(pacient).createCall_Api();
         page.loginPage().calldoctor();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName()).closeCardBtn();
+        page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .searchFilterTypeCallNeotlozhniy()
@@ -73,9 +73,9 @@ public class FilterTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTomorrow(doctor);
-        page.fullCardPage(testName()).closeCardBtn();
+        page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
                 .filterTomorrow()

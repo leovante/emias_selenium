@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -34,7 +34,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isVisibleText(nemcova.getUchastocs());
         as.isNotVisibleText(serova.getUchastocs());
@@ -55,7 +55,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isVisibleText(nemcova.getUchastocs());
         as.isNotVisibleText(serova.getUchastocs());
@@ -76,7 +76,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isVisibleText(nemcova.getUchastocs());
         as.isNotVisibleText(serova.getUchastocs());
@@ -98,7 +98,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isNotVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
@@ -121,7 +121,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isNotVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
@@ -144,7 +144,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isNotVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
@@ -167,7 +167,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
@@ -187,7 +187,7 @@ public class DoctorsListTest extends TestBase {
                 .saveBtn();
         as.isVisibleText(operator.getDepartment());
         as.isVisibleText(nemcova.getUchastocs());
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         as.isVisibleText("УЧАСТКОВЫЙ ВРАЧ");
         as.isVisibleText(nemcova.getUchastocs());
     }
@@ -205,7 +205,7 @@ public class DoctorsListTest extends TestBase {
                 .searchFilterFio_Fam(pacient)
                 .openNewCallDash(pacient);
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
@@ -220,7 +220,7 @@ public class DoctorsListTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
     }
@@ -233,7 +233,7 @@ public class DoctorsListTest extends TestBase {
         Pacient pacient = new Pacient("Profile13");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Моков')]")).shouldNotBe(Condition.visible);
@@ -252,13 +252,13 @@ public class DoctorsListTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(testName()).editCallBtn();
+        page.fullCardPage(pacient, testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()
                 .editCallPage(pacient2)
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().saveAddress();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldBe(Condition.visible);
@@ -279,7 +279,7 @@ public class DoctorsListTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(testName()).editCallBtn();
+        page.fullCardPage(pacient, testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()
                 .editCallPage_Mkab(pacient2)

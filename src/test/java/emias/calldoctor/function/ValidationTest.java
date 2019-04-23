@@ -7,7 +7,7 @@ import io.qameta.allure.Issue;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -28,7 +28,7 @@ public class ValidationTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).editCallBtn();
+        page.fullCardPage(pacient, testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()
                 .editCallPage(pacient2)
@@ -45,8 +45,8 @@ public class ValidationTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName()).verifyNewCall(pacient);
-        page.fullCardPage(testName()).editCallBtn();
+        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
+        page.fullCardPage(pacient, testName()).editCallBtn();
         page.createCallPage(pacient)
                 .fillSourceSmp()
                 .deleteWhoCallFIO()
@@ -63,7 +63,7 @@ public class ValidationTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -77,7 +77,7 @@ public class ValidationTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).editCallBtn();
+        page.fullCardPage(pacient, testName()).editCallBtn();
         page.createCallPage(pacient)
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
@@ -92,7 +92,7 @@ public class ValidationTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).closeCardBtn();
+        page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
                 .cancelNewCallDash(pacient)
                 .verifyCancellCallValidation_Dash()

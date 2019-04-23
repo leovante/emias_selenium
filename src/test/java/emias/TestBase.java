@@ -59,7 +59,6 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     }
 
     @Parameters({"browser"})
-//    @RetryCountIfFailed(2)
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional String browser) throws IOException {
         new WebDriverInstansiator(browser).setDriver();
@@ -68,14 +67,12 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         page = new Pages();
     }
 
-    //    @RetryCountIfFailed(2)
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
         WebDriverRunner.getWebDriver().close();
         LOGGER.info("Тест завершен!");
     }
 
-    //    @RetryCountIfFailed(2)
     @AfterMethod(alwaysRun = true, groups = "CD")
     public void afterMethodCD(ITestResult result) {
         DBScripts.cancelCall(result.getMethod().getMethodName());

@@ -12,7 +12,7 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -34,9 +34,9 @@ public class PerehodyServisovTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .completeServiceBtn()
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
@@ -53,9 +53,9 @@ public class PerehodyServisovTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .completeServiceBtn()
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()

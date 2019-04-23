@@ -1,4 +1,4 @@
-package pages.calldoctor.profiles_interfaces.musor;
+package pages.calldoctor.pacients.musor;
 
 import org.junit.Before;
 import org.junit.runner.RunWith;

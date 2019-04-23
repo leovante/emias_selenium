@@ -4,7 +4,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -22,7 +22,7 @@ public class CancelCallTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).cancelOnFullCardBtn("отмена автотестом");
+        page.fullCardPage(pacient, testName()).cancelOnFullCardBtn("отмена автотестом");
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .verifyCallIsCancelFromDashboard(pacient);
@@ -37,7 +37,7 @@ public class CancelCallTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .editCallBtn()
                 .cancelOnChangePageBtn();
         page.dashboardPage()
@@ -54,7 +54,7 @@ public class CancelCallTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).closeCardBtn();
+        page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacient)
                 .deleteNewCallProgressFrame(pacient)

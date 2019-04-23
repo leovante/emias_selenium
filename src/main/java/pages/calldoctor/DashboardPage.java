@@ -9,7 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 
 import static com.codeborne.selenide.Selenide.*;
 

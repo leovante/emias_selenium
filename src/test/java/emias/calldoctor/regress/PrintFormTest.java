@@ -6,7 +6,7 @@ import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -37,7 +37,7 @@ public class PrintFormTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).printBtn();
+        page.fullCardPage(pacient, testName()).printBtn();
         switchTo().window(1);
         $(By.xpath("//*[contains(text(),'test/call-doctor/card/view')]")).shouldBe(Condition.visible);
     }

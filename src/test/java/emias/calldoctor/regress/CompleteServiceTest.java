@@ -4,7 +4,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.testngRetryCount.RetryCountIfFailed;
 
 public class CompleteServiceTest extends TestBase {
@@ -19,11 +19,11 @@ public class CompleteServiceTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName()).chooseDoctorBtn();
+        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .completeServiceBtn()
-                .verifyDoneCall(pacient, doctor)
+                .verifyDoneCall(doctor)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()

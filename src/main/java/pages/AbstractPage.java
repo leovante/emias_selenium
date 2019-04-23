@@ -3,7 +3,7 @@ package pages;
 import dataGenerator.ModuleData;
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.WebDriver;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.override.Assistance;
 import utils.override.AssistanceImpl;
 

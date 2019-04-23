@@ -6,7 +6,7 @@ import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -119,7 +119,7 @@ public class UchastoksAddressTest extends TestBase {
         page.createCallPage(pacient).createCall_Api();
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Mkab();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient);
         $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
     }

@@ -20,5 +20,4 @@ public class InteractionMisCalldoctor extends TestBase {
 //        page.homePageMis().raspisaniPriemaBtn();
 //        page.doctorMethods().selectDoctor(doctor);
 //    }
-
 }

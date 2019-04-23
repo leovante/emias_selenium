@@ -7,7 +7,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +17,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends AbstractPage {
+    Pacient pacient;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header = $(By.xpath("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"));
     SelenideElement setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
@@ -34,6 +35,11 @@ public class FullCardPage extends AbstractPage {
         cardMap.put(testName, cardNumberParser(cardNumber.getText()));
     }
 
+    public FullCardPage(Pacient pacient, String testName) {
+        this.pacient = pacient;
+        cardMap.put(testName, cardNumberParser(cardNumber.getText()));
+    }
+
     @Step("проверяю наличие базовых элементов карты вызова")
     public void baseElements() {
         ArrayList<String> elements = new ArrayList<>();
@@ -45,7 +51,8 @@ public class FullCardPage extends AbstractPage {
         elements.add("Источник");
         elements.add("КТО ПАЦИЕНТ");
         elements.add("Возраст");
-        elements.add("Пол");
+        if (pacient.getGender() != 0)
+            elements.add("Пол");
         elements.add("АДРЕС");
         elements.add("ЖАЛОБЫ");
         elements.add("КТО ПАЦИЕНТ");
@@ -65,7 +72,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю наличие базовых элементов пациента")
-    public void basePacient(Pacient pacient) {
+    public void basePacient() {
         isVisibleText(pacient.getAddress());
         isVisibleText(pacient.getComplaint());
         isVisibleText(pacient.getCodedomophone());
@@ -111,7 +118,7 @@ public class FullCardPage extends AbstractPage {
     public FullCardPage verifyNewCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
-        basePacient(pacient);
+        basePacient();
         verifyTime();
         LOGGER.info("Подробная карта вызова проверена!");
         return this;
@@ -121,16 +128,16 @@ public class FullCardPage extends AbstractPage {
     public FullCardPage verifyActivCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
-        basePacient(pacient);
+        basePacient();
         LOGGER.info("Подробная карта вызова проверена!");
         return this;
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyDoneCall(Pacient pacient, Doctor doctor) throws IOException {
+    public FullCardPage verifyDoneCall(Doctor doctor) throws IOException {
         $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
         baseElements();
-        basePacient(pacient);
+        basePacient();
         baseDoctor(doctor);
         LOGGER.info("Подробная карта вызова проверена!");
         return this;

@@ -3,7 +3,7 @@ package pages;
 import dataGenerator.ModuleData;
 import pages.callcenter.*;
 import pages.calldoctor.*;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import pages.disp.ExampPage;
 import pages.disp.JournalPage;
 import pages.disp.KvotyPage;
@@ -59,8 +59,8 @@ public class Pages extends AbstractPage {
         return page(SetDoctorPage.class);
     }
 
-    public FullCardPage fullCardPage(String s) {
-        return new FullCardPage(s);
+    public FullCardPage fullCardPage(Pacient pacient, String s) {
+        return new FullCardPage(pacient, s);
     }
 
     public DashboardPage dashboardPage() {

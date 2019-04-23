@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.TestMethodCapture;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
@@ -32,7 +32,7 @@ public class CreateCallTest extends TestBase {
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }
@@ -45,7 +45,7 @@ public class CreateCallTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall_Mkab();
-        $x("//*[contains(text(),'" + pacient.getAddress() + "')]").shouldBe(Condition.visible);
+        as.isVisibleText(pacient.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
@@ -57,7 +57,7 @@ public class CreateCallTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
         page.dashboardPage().verifyNewCallGroup(pacient);
@@ -70,7 +70,7 @@ public class CreateCallTest extends TestBase {
         Pacient pacient = new Pacient("Profile2");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
         page.dashboardPage().verifyNewCallGroup(pacient);
@@ -84,7 +84,7 @@ public class CreateCallTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName()).verifyNewCall(pacient);
+        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что адрес по кладр.")
@@ -95,27 +95,11 @@ public class CreateCallTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .editCallBtn();
         $x("//input[@placeholder='Адрес']").getValue().contains(pacient.getAddressStringMin());
     }
-
-/*
-    @Test(groups = "CD", description = "вызов ребенка с Портала")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testCallPortal() throws IOException, InterruptedException, JSONException {
-        Pacient pacient = new Pacient("Profile4");
-        enter.enterPortal();
-        page.portalDashboard().createCall(pacient);
-        page.loginPage().calldoctor();
-        page.dashboardPage()
-                .clearAllFilters()
-                .openNewCallDash(pacient);
-        page.fullCardPage(testName()).verifyNewCall(pacient);
-    }
-*/
 
     @Test(groups = "CD", description = "вызов из КЦ по api, ребенок по МКАБ без КЛАДР. 2 участка. Проставиться не должен ни один")
     @Epic("Создание вызова")
@@ -126,7 +110,7 @@ public class CreateCallTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName()).verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
+        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
@@ -139,7 +123,7 @@ public class CreateCallTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(testName()).verifyNewCall(pacient);
+        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
     }
@@ -165,8 +149,6 @@ public class CreateCallTest extends TestBase {
         page.createCallPage(pacient)
                 .addNewCall()
                 .searchField();
-        $(By.xpath("//*[contains(text(),'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
+        as.isVisibleText(pacient.getAddress3adv());
     }
 }
-// TODO: 18.08.2018 сделать пару тестов для проверки кладра (выписать адреса с которыми было много проблем)
-// TODO: 29.08.2018 сделать тест добавление адреса в адресное пространство

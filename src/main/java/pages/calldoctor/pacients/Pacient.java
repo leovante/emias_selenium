@@ -1,4 +1,4 @@
-package pages.calldoctor.profiles_interfaces;
+package pages.calldoctor.pacients;
 
 import org.codehaus.plexus.util.IOUtil;
 import org.json.JSONException;
@@ -219,7 +219,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     public Pacient(String pacient) throws IOException, JSONException {
         JSONObject jsonOb;
-        String path = "src\\main\\java\\pages\\calldoctor\\profiles_interfaces\\" + pacient + ".json";
+        String path = "src\\main\\java\\pages\\calldoctor\\pacients\\" + pacient + ".json";
         File reader2 = new File(path);
         if (reader2.exists()) {
             InputStream is = new FileInputStream(path);
@@ -310,10 +310,11 @@ public class Pacient extends AbstractTestNGSpringContextTests {
         if (birthdate_string != null && birthdate_string != "")
             this.birthdate = parseDate(birthdate_string);
 
-        if (jsonOb.has("kladraddress") && !jsonOb.get("kladraddress").equals(""))
+        if (jsonOb.has("kladraddress") && !jsonOb.get("kladraddress").equals("")) {
             this.kladraddress = jsonOb.getJSONObject("kladraddress");
 
-        if (kladraddress.has("addressStringMin") && !kladraddress.get("addressStringMin").equals(""))
-            this.addressStringMin = kladraddress.getString("addressStringMin");
+            if (kladraddress.has("addressStringMin") && !kladraddress.get("addressStringMin").equals(""))
+                this.addressStringMin = kladraddress.getString("addressStringMin");
+        }
     }
 }

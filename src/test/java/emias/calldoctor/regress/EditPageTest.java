@@ -9,7 +9,7 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -64,7 +64,7 @@ public class EditPageTest extends TestBase {
                 .setDeafult()
                 .editCallPage_Mkab(pacient2)
                 .saveBtn();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient2)
                 .closeCardBtn();
         page.dashboardPage()
@@ -83,7 +83,7 @@ public class EditPageTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(testName()).editCallBtn();
+        page.fullCardPage(pacient, testName()).editCallBtn();
         page.createCallPage(pacient)
                 .setDeafult()
                 .editCallPage(pacient2)
@@ -100,7 +100,7 @@ public class EditPageTest extends TestBase {
         page.createCallPage(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(testName()).verifyNewCall(pacient);
+        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
         page.createCallPage(pacient).editCallBtn();
         $(By.xpath("//simple-snack-bar[contains(.,'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
     }

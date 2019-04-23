@@ -4,7 +4,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
-import pages.calldoctor.profiles_interfaces.Pacient;
+import pages.calldoctor.pacients.Pacient;
 import utils.except.NoticeException;
 import utils.testngRetryCount.RetryCountIfFailed;
 
@@ -20,11 +20,10 @@ public class CreateCallTestRandom extends TestBase {
         Pacient pacient = new Pacient("Profile0");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
-        page.fullCardPage(testName())
+        page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
     }
-
 
     // TODO: 10/23/2018 пока напишу здесь, нуна сделать тест проверки отображения подразделения при наличии расписания и его отсутствии
 }
