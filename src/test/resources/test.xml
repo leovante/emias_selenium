@@ -8,13 +8,13 @@
     </listeners>
     <!--chrome-->
     <test name="TestCD_Chrome_Before" verbose="1">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="firefox"/>
         <packages>
             <package name="emias.calldoctor.before"/>
         </packages>
     </test>
     <test name="TestCD_Chrome" verbose="1" parallel="true">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="firefox"/>
         <groups>
             <run>
                 <include name="CD"/>
@@ -25,7 +25,7 @@
         </classes>
     </test>
     <test name="TestCD_Chrome_After" verbose="1">
-        <parameter name="browser" value="chrome"/>
+        <parameter name="browser" value="firefox"/>
         <packages>
             <package name="emias.calldoctor.after"/>
         </packages>

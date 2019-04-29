@@ -42,7 +42,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         SeleniumGrid.run(gridRun);
     }
 
-    @AfterSuite()
+    @AfterSuite(alwaysRun = true)
     public void afterSuite() throws IOException, JSONException, InterruptedException {
         SeleniumGrid.stop();
     }
@@ -60,7 +60,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         driverInst.driverClose();
     }
 
-    @AfterMethod(groups = "CD")
+    @AfterMethod(groups = "CD", alwaysRun = true)
     public void afterMethodCD(ITestResult result) {
         DBScripts.cancelCall(result.getMethod().getMethodName());
     }

@@ -8,7 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.SkipException;
 
 import java.awt.*;
 import java.io.IOException;
@@ -33,6 +35,7 @@ public class WebDriverInstansiator {
         ChromeOptions chromeOptions;
         if (browser == null) {
             WebDriverManager.chromedriver().setup();
+            WebDriverManager.chromedriver().version("74.0.3729.6");
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
             chromeOptions.setHeadless(conf.getHeadless());
@@ -44,17 +47,21 @@ public class WebDriverInstansiator {
         else {
             switch (browser) {
                 case "firefox":
+                    System.setProperty("webdriver.gecko.remoteDriver", "src/main/resources/selenium_grid/geckodriver.exe");
+                    System.setProperty("webdriver.gecko.driver", "src/main/resources/selenium_grid/geckodriver.exe");
+
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.setHeadless(conf.getHeadless());
+//                    firefoxOptions.setHeadless(conf.getHeadless());
+//                    firefoxOptions.setLegacy(true);
 //                    firefoxOptions.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
 //                    firefoxOptions.addArguments("--window-size=1919,1079");
 //
-//                    System.setProperty("webdriver.gecko.remoteDriver", "src/main/resources/selenium_grid/geckodriver.exe");
-//                    dcch = DesiredCapabilities.firefox();
+
+                    DesiredCapabilities dcch = DesiredCapabilities.firefox();
 //                    dcch.setBrowserName("firefox");
 //                    dcch.setCapability("marionette", true);
 //                    dcch.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
-//                    dcch.setCapability("headless", headless);
+//                    dcch.setCapability("headless", conf.getHeadless());
 
                     remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
 //                    remoteDriver.manage().window().setSize(new Dimension(1919, 1079));
@@ -75,7 +82,7 @@ public class WebDriverInstansiator {
         Dimension dimension = getWebDriver().manage().window().getSize();
 
         if (!String.valueOf(dimension).equals("(1919, 1079)")) {
-            throw new IllegalArgumentException("Ошибка. Размер окна браузера некорректный!" + dimension);
+            throw new SkipException("Ошибка. Размер окна браузера некорректный!" + dimension);
         } else {
             LOGGER.info(
                     "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
