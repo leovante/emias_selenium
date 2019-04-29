@@ -254,7 +254,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("выбрал адрес из выпадающего списка")
-    void list_first_container(String address) throws InterruptedException {
+    public CreateCallPage list_first_container(String address) throws InterruptedException {
         adress.hover();
         Thread.sleep(1000);
         WebDriver driver = getWebDriver();
@@ -272,6 +272,7 @@ public class CreateCallPage extends AbstractPage {
         $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
                 .shouldBe(Condition.visible)
                 .click();
+        return this;
     }
 
     @Step("очистить поле с адресом")
