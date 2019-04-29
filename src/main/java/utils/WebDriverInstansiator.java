@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -35,7 +36,6 @@ public class WebDriverInstansiator {
         ChromeOptions chromeOptions;
         if (browser == null) {
             WebDriverManager.chromedriver().setup();
-            WebDriverManager.chromedriver().version("74.0.3729.6");
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
             chromeOptions.setHeadless(conf.getHeadless());
@@ -64,7 +64,8 @@ public class WebDriverInstansiator {
 //                    dcch.setCapability("headless", conf.getHeadless());
 
                     remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
-//                    remoteDriver.manage().window().setSize(new Dimension(1919, 1079));
+                    remoteDriver.manage().window().setSize(new Dimension(1919, 1079));
+                    remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
                     Configuration.timeout = 20000;
                     break;
@@ -73,6 +74,7 @@ public class WebDriverInstansiator {
                     chromeOptions.setHeadless(conf.getHeadless());
                     chromeOptions.addArguments("window-size=1919,1079");
                     remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+                    remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
                     Configuration.timeout = 20000;
                     break;

@@ -13,21 +13,22 @@
             <package name="emias.calldoctor.before"/>
         </packages>
     </test>
-    <test name="TestCD_Chrome" verbose="1" parallel="true">
-        <parameter name="browser" value="firefox"/>
-        <groups>
-            <run>
-                <include name="CD"/>
-            </run>
-        </groups>
-        <classes>
-            <class name="emias.calldoctor.regress.CreateCallTest"/>
-        </classes>
-    </test>
-    <test name="TestCD_Chrome_After" verbose="1">
-        <parameter name="browser" value="firefox"/>
-        <packages>
-            <package name="emias.calldoctor.after"/>
-        </packages>
-    </test>
+
+    <!--<test name="TestCD_Chrome" verbose="1" parallel="true">-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<groups>-->
+            <!--<run>-->
+                <!--<include name="CD"/>-->
+            <!--</run>-->
+        <!--</groups>-->
+        <!--<classes>-->
+            <!--<class name="emias.calldoctor.regress.CreateCallTest"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--<test name="TestCD_Chrome_After" verbose="1">-->
+        <!--<parameter name="browser" value="firefox"/>-->
+        <!--<packages>-->
+            <!--<package name="emias.calldoctor.after"/>-->
+        <!--</packages>-->
+    <!--</test>-->
 </suite>
