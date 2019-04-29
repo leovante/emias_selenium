@@ -10,7 +10,7 @@ public class DirectionsPage extends AbstractPage {
     SelenideElement closemodal = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button"));
 //    @FindBy(xpath = "//*[@id='direction-list-tab']")
 //    WebElement apo;
-//    JavascriptExecutor js = (JavascriptExecutor) driver;
+//    JavascriptExecutor js = (JavascriptExecutor) remoteDriver;
 
     public DirectionsPage() {
     }

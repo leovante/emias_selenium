@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Name suite - CD" thread-count="5" parallel="classes">
+    <parameter name="gridRun" value="true"/>
+
+    <listeners>
+        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
+    </listeners>
+    <!--chrome-->
+    <test name="TestCD_Chrome_Before" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.calldoctor.before"/>
+        </packages>
+    </test>
+    <test name="TestCD_Chrome" verbose="1" parallel="true">
+        <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="CD"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="emias.calldoctor.regress.CreateCallTest"/>
+        </classes>
+    </test>
+    <test name="TestCD_Chrome_After" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="emias.calldoctor.after"/>
+        </packages>
+    </test>
+</suite>

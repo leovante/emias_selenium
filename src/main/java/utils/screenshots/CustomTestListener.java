@@ -25,8 +25,8 @@ public class CustomTestListener extends TestListenerAdapter {
     @Attachment(value = "Page screenshot", type = "image/png")
     private void saveScreenshot(ITestResult result) {
         Object currentClass = result.getInstance();
-        //WebDriver driver = ((AbstractTest) currentClass).getDriver();
-        //return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        //WebDriver remoteDriver = ((AbstractTest) currentClass).getDriver();
+        //return ((TakesScreenshot) remoteDriver).getScreenshotAs(OutputType.BYTES);
     }
 }
 

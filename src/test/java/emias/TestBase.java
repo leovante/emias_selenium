@@ -1,6 +1,5 @@
 package emias;
 
-import com.codeborne.selenide.WebDriverRunner;
 import dataGenerator.FactoryData;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,28 +9,24 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 import pages.Pages;
 import system.service.HltMkabService;
-import utils.SeleniumGrid;
+import utils.Selenium.SeleniumGrid;
 import utils.TestMethodCapture;
 import utils.WebDriverInstansiator;
 import utils.override.Assistance;
 import utils.override.AssistanceImpl;
 import utils.sql.DBScripts;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static pages.AbstractPage.LOGGER;
-
 @Listeners(TestMethodCapture.class)
-@ContextConfiguration(locations = {"classpath:beans.xml"})
+@ContextConfiguration("classpath:beans.xml")
 public class TestBase extends AbstractTestNGSpringContextTests {
+    private WebDriverInstansiator driverInst;
     public static Pages page;
     public String testName;
-    public Assistance as = new AssistanceImpl();
-    //    BrowserMobProxy proxy = new BrowserMobProxyServer();
+    protected Assistance as = new AssistanceImpl();
 
     public String testName() {
-//        this.testName = TestMethodCapture.class.getName();
         return TestMethodCapture.getTestMethod().getMethodName();
     }
 
@@ -41,39 +36,31 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @Autowired
     public HltMkabService hltMkabService;
 
-    @Parameters({"gridIsRun"})
+    @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String gridIsRun) throws Exception {
-        SeleniumGrid.run(gridIsRun);
-//        HibernateSession.run();
+    public void beforeSuite(@Optional String gridRun) throws Exception {
+        SeleniumGrid.run(gridRun);
     }
 
-    @Parameters({"gridIsRun"})
-    @AfterSuite(alwaysRun = true)
-    public void afterSuite(@Optional String gridIsRun) throws IOException, JSONException, InterruptedException {
-//        Har har = proxy.getHar();
-        FileOutputStream fileOutputStream = new FileOutputStream("target/selenium_logs.har");
-//        har.writeTo(fileOutputStream);
-        SeleniumGrid.stop(gridIsRun);
-        LOGGER.info("Тестирование закончено!");
+    @AfterSuite()
+    public void afterSuite() throws IOException, JSONException, InterruptedException {
+        SeleniumGrid.stop();
     }
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional String browser) throws IOException {
-        new WebDriverInstansiator(browser).setDriver();
-//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
-        LOGGER.info("Тест начинается!");
+        driverInst = new WebDriverInstansiator(browser);
+        driverInst.setDriver();
         page = new Pages();
     }
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-        WebDriverRunner.getWebDriver().close();
-        LOGGER.info("Тест завершен!");
+        driverInst.driverClose();
     }
 
-    @AfterMethod(alwaysRun = true, groups = "CD")
+    @AfterMethod(groups = "CD")
     public void afterMethodCD(ITestResult result) {
         DBScripts.cancelCall(result.getMethod().getMethodName());
     }

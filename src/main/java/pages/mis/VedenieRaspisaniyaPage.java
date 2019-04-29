@@ -60,7 +60,7 @@ public class VedenieRaspisaniyaPage extends AbstractPage {
     @Step("задать неприемные дни")
     public VedenieRaspisaniyaPage setNotReceiveDays(String firstDoctor) {
 //        waitAllEmias();
-//        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
+//        Keyboard keyboard = ((HasInputDevices) remoteDriver).getKeyboard();
 
         $(By.xpath("//*[contains(text(),'" + firstDoctor + "')]")).click();
 //        waitAllEmias();
@@ -101,7 +101,7 @@ public class VedenieRaspisaniyaPage extends AbstractPage {
 
     @Step("удалить расписание")
     public VedenieRaspisaniyaPage deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
-//        Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
+//        Keyboard keyboard = ((HasInputDevices) remoteDriver).getKeyboard();
 //        waitAllEmias();
 
 //        waitWhileClickable(deleteShedule);

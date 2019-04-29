@@ -28,8 +28,6 @@
         <!--<package name="emias.mis.regress"/>-->
         <!--</packages>-->
     </test>
-    создаю вызов в ВД что бы проверить что отобразился участковый
-
     <test name="AfterTest" verbose="1">
         <parameter name="browser" value="chrome"/>
         <packages>

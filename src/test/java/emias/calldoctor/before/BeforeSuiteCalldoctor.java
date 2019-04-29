@@ -6,12 +6,15 @@ import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.logging.LogManager;
 
 public class BeforeSuiteCalldoctor extends TestBase {
+    LogManager manager = LogManager.getLogManager();
 
     @Test(description = "Создаю новое расписание на сегодня")
     @RetryCountIfFailed(2)
     public void cleanBeforeCallDoctorTests() throws IOException, ParseException {
+//        manager
         /*Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
         //int LPUDoctorID, int DocPRVDID
         LPUDoctor.put(2078, 1220);//Темников Дмитрий
