@@ -2,6 +2,7 @@ package emias.calldoctor.negative;
 
 import emias.TestBase;
 import io.qameta.allure.Epic;
+import org.hibernate.AssertionFailure;
 import org.json.JSONException;
 import org.testng.annotations.Test;
 import pages.calldoctor.doctors_interfaces.Doctor;
@@ -25,6 +26,8 @@ public class ClickBoosterTest extends TestBase {
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTodayBooster(doctor);
+        //нет проверки
+        throw new AssertionFailure("сделай нормальную проверку");
         // TODO: 12/6/2018 тут нужно как-то прикрутить прокси и запускать тест при слабом интернете
     }
 
@@ -41,6 +44,7 @@ public class ClickBoosterTest extends TestBase {
         page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
+        throw new AssertionFailure("сделай нормальную проверку");
     }
 
     @Test(groups = "test", description = "закликивание кнопки 'записать и добавить' что бы проверить что не создаются дубликаты")
@@ -57,5 +61,6 @@ public class ClickBoosterTest extends TestBase {
         page.fullCardPage(pacient, testName())
                 .verifyNewCall(pacient)
                 .closeCardBtn();
+        throw new AssertionFailure("сделай нормальную проверку");
     }
 }
