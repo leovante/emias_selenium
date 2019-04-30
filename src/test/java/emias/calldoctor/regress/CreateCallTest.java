@@ -36,7 +36,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "подтягивание неформализованного мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacient = new Pacient("Profile0_3");
         page.loginPage().calldoctor();
         page.createCallPage(pacient)

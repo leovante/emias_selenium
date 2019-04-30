@@ -2,11 +2,11 @@ package utils;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,6 +14,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.SkipException;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -21,10 +22,10 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static pages.AbstractPage.LOGGER;
 
 public class WebDriverInstansiator {
+    private RemoteWebDriver remoteDriver;
     private Config conf;
     public String browser;
     public WebDriver driver;
-    RemoteWebDriver remoteDriver;
 
     public WebDriverInstansiator(String browser) {
         this.conf = new Config();
@@ -35,11 +36,16 @@ public class WebDriverInstansiator {
         //ручной запуск
         ChromeOptions chromeOptions;
         if (browser == null) {
-            WebDriverManager.chromedriver().setup();
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/selenium_grid/chromedriver.exe");
+            new ChromeDriverService.Builder()
+                    .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
+                    .usingAnyFreePort()
+                    .build();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
             chromeOptions.setHeadless(conf.getHeadless());
             driver = new ChromeDriver(chromeOptions);
+            driver.manage().window().setPosition(new Point(0, 0));
             WebDriverRunner.setWebDriver(driver);
             Configuration.timeout = 20000;
         }
