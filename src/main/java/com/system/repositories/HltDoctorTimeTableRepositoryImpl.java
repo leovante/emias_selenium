@@ -16,8 +16,8 @@ public class HltDoctorTimeTableRepositoryImpl implements CustomizedDoctorTimeTab
 
     @Override
     public List deleteShedule(int LPUDoctorID, int DocPRVDID) {
-        TypedQuery<HltDoctorTimeTableEntity> q = em.createQuery("select dtt from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
-                "on dtt.rf_LPUDoctorID = ldoc.LPUDoctorID " +
+        TypedQuery<HltDoctorTimeTableEntity> q = em.createQuery("select dtt from HltDoctorTimeTableEntity dtt left outer join HltLpuDoctorEntity ldoc " +
+                "on dtt.rfLpuDoctorId = ldoc.lpuDoctorId " +
                 "where dtt.Date >= DATEADD(dd, ((DATEDIFF(dd, '17530101', GETDATE()) / 7) * 7) - 7, '17530101') " +
                 "AND dtt.rf_DocPRVDID = :DocPRVDID " +
                 "AND dtt.rf_LPUDoctorID = :LPUDoctorID", HltDoctorTimeTableEntity.class);

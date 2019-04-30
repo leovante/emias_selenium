@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Name suite - Regress" thread-count="5" parallel="classes">
+<suite name="Name suite - Regress" thread-count="3" parallel="classes">
     <parameter name="gridRun" value="true"/>
 
     <listeners>
@@ -56,20 +56,8 @@
             <package name="emias.disp.after"/>
         </packages>
     </test>
-    <!--КЛАДР-->
-    <test name="TestKladr_Chrome" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <groups>
-            <run>
-                <include name="kl"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="emias.kladr"/>
-        </packages>
-    </test>
     <!--Медицинские записи-->
-    <test name="TestDisp_Chrome" verbose="1">
+    <test name="TestMR_Chrome" verbose="1">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
@@ -98,4 +86,5 @@
             <class name="emias.mis.regress.PerehodyTest"/>
         </classes>
     </test>
+
 </suite>

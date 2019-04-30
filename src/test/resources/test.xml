@@ -4,15 +4,8 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
-        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
     </listeners>
-    <!--chrome-->
-    <!--<test name="TestCD_Chrome_Before" verbose="1">-->
-        <!--<parameter name="browser" value="firefox"/>-->
-    <!--<packages>-->
-    <!--<package name="emias.calldoctor.before"/>-->
-    <!--</packages>-->
-    <!--</test>-->
 
     <test name="TestCD_Chrome" verbose="1" parallel="true">
         <parameter name="browser" value="chrome"/>
@@ -25,10 +18,4 @@
             <class name="emias.calldoctor.regress.CreateCallTest"/>
         </classes>
     </test>
-    <!--<test name="TestCD_Chrome_After" verbose="1">-->
-        <!--<parameter name="browser" value="firefox"/>-->
-        <!--<packages>-->
-            <!--<package name="emias.calldoctor.after"/>-->
-        <!--</packages>-->
-    <!--</test>-->
 </suite>
