@@ -1,14 +1,14 @@
 package emias.mis.regress;
 
 import com.codeborne.selenide.Condition;
+import com.pages.calldoctor2.doctors_interfaces.Doctor;
+import com.pages.calldoctor2.profiles_interfaces.Pacient;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-import pages.calldoctor2.doctors_interfaces.Doctor;
-import pages.calldoctor2.profiles_interfaces.Pacient;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 

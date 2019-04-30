@@ -1,11 +1,11 @@
 package emias.disp.regress;
 
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import org.testng.annotations.Test;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.open;
-import static pages.disp.Services.issledovanieKala;
+import static com.pages.disp.Services.issledovanieKala;
 
 public class RouteListTest extends TestBase {
 

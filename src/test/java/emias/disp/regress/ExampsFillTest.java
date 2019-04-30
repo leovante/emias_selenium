@@ -1,10 +1,10 @@
 package emias.disp.regress;
 
 import com.codeborne.selenide.Condition;
+import com.utils.sql.DBScripts;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import org.openqa.selenium.By;
-import utils.sql.DBScripts;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import static com.codeborne.selenide.Selenide.$;
 

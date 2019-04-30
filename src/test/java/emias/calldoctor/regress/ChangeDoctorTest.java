@@ -1,12 +1,12 @@
 package emias.calldoctor.regress;
 
 
+import com.pages.calldoctor.doctors_interfaces.Doctor;
+import com.pages.calldoctor.pacients.Pacient;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
-import pages.calldoctor.doctors_interfaces.Doctor;
-import pages.calldoctor.pacients.Pacient;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 public class ChangeDoctorTest extends TestBase {
 

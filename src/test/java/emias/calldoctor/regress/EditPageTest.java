@@ -2,6 +2,9 @@ package emias.calldoctor.regress;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.pages.calldoctor.pacients.Pacient;
+import com.utils.except.NoticeException;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
@@ -9,9 +12,6 @@ import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.calldoctor.pacients.Pacient;
-import utils.except.NoticeException;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;

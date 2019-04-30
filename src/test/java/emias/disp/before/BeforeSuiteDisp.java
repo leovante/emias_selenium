@@ -1,9 +1,9 @@
 package emias.disp.before;
 
+import com.utils.sql.DBScripts;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Step;
-import utils.sql.DBScripts;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

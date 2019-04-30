@@ -1,10 +1,11 @@
 package emias.callcenter.regress;
 
+import com.pages.calldoctor.pacients.Pacient;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
-import pages.calldoctor2.profiles_interfaces.Pacient;
-import utils.testngRetryCount.RetryCountIfFailed;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -12,7 +13,7 @@ import java.text.ParseException;
 
 public class ProcessingVisitDoctorTest extends TestBase {
 
-    @org.testng.annotations.Test(groups = "VD", description = "Запись на прием к врачу")
+    @Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
@@ -21,7 +22,7 @@ public class ProcessingVisitDoctorTest extends TestBase {
         page.recordDoctorPage().visitDoctorAssertTalon(pacient);
     }
 
-    @org.testng.annotations.Test(groups = "VD", description = "Запись на прием к врачу")
+    @Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testRewritableVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
@@ -30,7 +31,7 @@ public class ProcessingVisitDoctorTest extends TestBase {
         page.recordDoctorPage().visitDoctorRewritable(pacient);
     }
 
-    @org.testng.annotations.Test(groups = "VD", description = "Запись на прием к врачу")
+    @Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testDeleteVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {

@@ -1,9 +1,9 @@
 package emias.kladr;
 
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 

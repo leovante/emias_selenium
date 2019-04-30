@@ -1,14 +1,14 @@
 package emias.calldoctor.regress;
 
+import com.pages.calldoctor.pacients.Pacient;
+import com.utils.TestMethodCapture;
+import com.utils.except.NoticeException;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.calldoctor.pacients.Pacient;
-import utils.TestMethodCapture;
-import utils.except.NoticeException;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;

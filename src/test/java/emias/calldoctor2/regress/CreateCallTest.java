@@ -1,19 +1,19 @@
 package emias.calldoctor2.regress;
 
-import dataGenerator.FactoryData;
-import dataGenerator.ModuleData;
+import com.dataGenerator.FactoryData;
+import com.dataGenerator.ModuleData;
+import com.utils.TestMethodCapture;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import utils.TestMethodCapture;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;
 
-import static dataGenerator.DataType.CalldoctorData;
+import static com.dataGenerator.DataType.CalldoctorData;
 
 @Listeners(TestMethodCapture.class)
 public class CreateCallTest extends TestBase {
@@ -21,7 +21,7 @@ public class CreateCallTest extends TestBase {
     @Autowired
     private FactoryData factoryData;
 
-    @org.testng.annotations.Test(groups = "CD", description = "пустой вызов")
+    @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws InterruptedException, ParseException, IOException {

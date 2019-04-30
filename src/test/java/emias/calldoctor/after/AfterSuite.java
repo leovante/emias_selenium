@@ -1,9 +1,9 @@
 package emias.calldoctor.after;
 
+import com.utils.sql.DBScripts;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import org.testng.annotations.Test;
-import utils.sql.DBScripts;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 public class AfterSuite extends TestBase {
 

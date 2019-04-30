@@ -1,25 +1,26 @@
 package emias;
 
-import dataGenerator.FactoryData;
+import com.config.AppConfig;
+import com.dataGenerator.FactoryData;
+import com.pages.Pages;
+import com.system.service.HltMkabService;
+import com.utils.Selenium.SeleniumGrid;
+import com.utils.TestMethodCapture;
+import com.utils.WebDriverInstansiator;
+import com.utils.override.Assistance;
+import com.utils.override.AssistanceImpl;
+import com.utils.sql.DBScripts;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import pages.Pages;
-import system.service.HltMkabService;
-import utils.Selenium.SeleniumGrid;
-import utils.TestMethodCapture;
-import utils.WebDriverInstansiator;
-import utils.override.Assistance;
-import utils.override.AssistanceImpl;
-import utils.sql.DBScripts;
 
 import java.io.IOException;
 
 @Listeners(TestMethodCapture.class)
-@ContextConfiguration("classpath:beans.xml")
+@ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
     public static Pages page;

@@ -1,8 +1,8 @@
 package emias.calldoctor2.before;
 
+import com.utils.sql.DBScripts;
+import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
-import utils.sql.DBScripts;
-import utils.testngRetryCount.RetryCountIfFailed;
 
 import java.io.IOException;
 import java.text.ParseException;

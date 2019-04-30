@@ -4,9 +4,8 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
-        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
     </listeners>
-
     <!--Диспетчер-->
     <test name="TestCD_Before" verbose="1">
         <parameter name="browser" value="chrome"/>
@@ -24,6 +23,7 @@
         <packages>
             <package name="emias.calldoctor.function"/>
             <package name="emias.calldoctor.regress"/>
+            <package name="emias.calldoctor.negative"/>
         </packages>
     </test>
     <test name="TestCD_After" verbose="1">
@@ -32,7 +32,6 @@
             <package name="emias.calldoctor.after"/>
         </packages>
     </test>
-
     <!--Диспансеризация-->
     <test name="TestDisp_Before" verbose="1">
         <parameter name="browser" value="chrome"/>
@@ -57,7 +56,6 @@
             <package name="emias.disp.after"/>
         </packages>
     </test>
-
     <!--КЛАДР-->
     <test name="TestKladr_Chrome" verbose="1">
         <parameter name="browser" value="chrome"/>
@@ -70,7 +68,18 @@
             <package name="emias.kladr"/>
         </packages>
     </test>
-
+    <!--Медицинские записи-->
+    <test name="TestDisp_Chrome" verbose="1">
+        <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="MR"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="emias.medicalrecords"/>
+        </packages>
+    </test>
     <!--ЕМИАС веб-->
     <test name="TestMIS_Before" verbose="1">
         <parameter name="browser" value="chrome"/>
