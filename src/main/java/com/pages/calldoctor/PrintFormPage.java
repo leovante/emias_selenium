@@ -15,7 +15,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
-public class FullCardPage extends AbstractPage {
+public class PrintFormPage extends AbstractPage {
     Pacient pacient;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
@@ -31,11 +31,11 @@ public class FullCardPage extends AbstractPage {
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
 
-    public FullCardPage(String testName) {
+    public PrintFormPage(String testName) {
         cardMap.put(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public FullCardPage(Pacient pacient, String testName) {
+    public PrintFormPage(Pacient pacient, String testName) {
         this.pacient = pacient;
         cardMap.put(testName, cardNumberParser(cardNumber.getText()));
     }
@@ -61,13 +61,8 @@ public class FullCardPage extends AbstractPage {
         elements.add("Возрастная категория");
         elements.add("Телефон");
         elements.add("Врач");
-        elements.add("ИСТОРИЯ ВЫЗОВА");
-        elements.add("АВТОР");
-        elements.add("ЧТО ИЗМЕНИЛОСЬ");
-        elements.add("ИЗМЕНЕНИЕ");
-//        elements.add("Карта создана");
         for (String element : elements) {
-            $(By.xpath("//*[contains(.,'" + element + "')]")).shouldBe(Condition.visible);
+            $x("//*[contains(.,'" + element + "')]").shouldBe(Condition.visible);
         }
     }
 
@@ -115,7 +110,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyNewCall(Pacient pacient) throws IOException {
+    public PrintFormPage verifyNewCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -125,7 +120,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(Pacient pacient) throws IOException {
+    public PrintFormPage verifyActivCall(Pacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -134,7 +129,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyDoneCall(Doctor doctor) throws IOException {
+    public PrintFormPage verifyDoneCall(Doctor doctor) throws IOException {
         $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -144,7 +139,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("отменить вызов")
-    public FullCardPage cancelOnFullCardBtn(String reason) {
+    public PrintFormPage cancelOnFullCardBtn(String reason) {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         cancelBtn.click();
         cancelField.setValue(reason);
@@ -153,7 +148,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("отмена вызов на странице редактирвоания")
-    public FullCardPage cancelOnChangePageBtn() {
+    public PrintFormPage cancelOnChangePageBtn() {
         $(By.xpath("//*[contains(.,'" + "Редактирование вызова" + "')]")).shouldBe(Condition.visible);
         cancelCall.click();
         cancelField.setValue("отмена автотестом");
@@ -162,13 +157,13 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("передать другому врачу")
-    public FullCardPage changeDoctorBtn() {
+    public PrintFormPage changeDoctorBtn() {
         setAnotherDoctor.click();
         return this;
     }
 
     @Step("назначить врача")
-    public FullCardPage chooseDoctorBtn() {
+    public PrintFormPage chooseDoctorBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).shouldBe(Condition.visible);
         appoindDoctorBtn.hover().click();
@@ -176,7 +171,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("завершить обслуживание")
-    public FullCardPage completeServiceBtn() throws InterruptedException {
+    public PrintFormPage completeServiceBtn() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         completeServiceBtn.click();
 //        mat_calendar_header.click();
@@ -187,14 +182,14 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("отмена вызов на странице редактирвоания")
-    public FullCardPage editCallBtn() {
+    public PrintFormPage editCallBtn() {
         $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         change.click();
         return this;
     }
 
     @Step("закрыть подробную карту")
-    public FullCardPage closeCardBtn() {
+    public PrintFormPage closeCardBtn() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
@@ -203,7 +198,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяем что кнопка МКАБ не активна")
-    public FullCardPage verifyMkabIconDisable() {
+    public PrintFormPage verifyMkabIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         SelenideElement mkabTxt = $(By.xpath("//div[contains(text(),'МКАБ')]"));
         mkabTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']"));
@@ -211,7 +206,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяем что кнопка МКАБ активна")
-    public FullCardPage verifyMkabIconEnable() {
+    public PrintFormPage verifyMkabIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         SelenideElement mkabTxt = $(By.xpath("//div[contains(text(),'МКАБ')]"));
         mkabTxt.$(By.xpath("../.")).$(By.xpath(".//*[@class='mat-icon call-doctor-red-text material-icons']"));
@@ -219,7 +214,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяем что кнопка ТАП не активна")
-    public FullCardPage verifyTapIconDisable() {
+    public PrintFormPage verifyTapIconDisable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         SelenideElement tapTxt = $(By.xpath("//div[contains(text(),'ТАП')]"));
         tapTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']"));
@@ -227,7 +222,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяем что кнопка ТАП активна")
-    public FullCardPage verifyTapIconEnable() {
+    public PrintFormPage verifyTapIconEnable() {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         SelenideElement tapTxt = $(By.xpath("//div[contains(text(),'ТАП')]"));
         tapTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-red-text material-icons']")).click();
@@ -235,33 +230,33 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("передать в другое ЛПУ через подробную карту вызова")
-    public FullCardPage transferToDepartBtn() {
+    public PrintFormPage transferToDepartBtn() {
         toLpu.click();
         $(By.xpath("//*[contains(text(),'Выберите куда передать вызов')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("Проверка текущего подразделения у карты вызова")
-    public FullCardPage verifyDepartment(Doctor doctor) throws IOException {
+    public PrintFormPage verifyDepartment(Doctor doctor) throws IOException {
         $(By.xpath("//*[contains(.,'" + doctor.getDepartment() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("сохранить распознанный адрес")
-    public FullCardPage saveAdressAsKladr() {
+    public PrintFormPage saveAdressAsKladr() {
         $(By.xpath("//*[contains(text(),'Адрес успешно распознан.')]")).click();
         $(By.xpath("//*[contains(text(),'Сохранить адрес')]")).click();
         return this;
     }
 
     @Step("проверить врача")
-    public FullCardPage verifyDoctor(Doctor doctor) {
+    public PrintFormPage verifyDoctor(Doctor doctor) {
         $(By.xpath("//*[contains(.,'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("валидация что вызов не отменился на подробной странице")
-    public FullCardPage verifyCancellCallValidation() throws InterruptedException {
+    public PrintFormPage verifyCancellCallValidation() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
@@ -269,7 +264,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("нажимаю на кнопку печати")
-    public FullCardPage printBtn() throws InterruptedException {
+    public PrintFormPage printBtn() throws InterruptedException {
         $x("//div[@id='viewPrint']/mat-icon").click();
         return this;
     }

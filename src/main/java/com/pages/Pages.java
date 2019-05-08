@@ -65,6 +65,10 @@ public class Pages extends AbstractPage {
         return new FullCardPage(pacient, s);
     }
 
+    public PrintFormPage printFormPage(Pacient pacient, String s) {
+        return new PrintFormPage(pacient, s);
+    }
+
     public DashboardPage dashboardPage() {
         return page(DashboardPage.class);
     }

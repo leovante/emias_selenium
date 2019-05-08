@@ -19,8 +19,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.text.ParseException;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PerehodyServisovTest extends TestBase {
 
@@ -65,12 +64,14 @@ public class PerehodyServisovTest extends TestBase {
     @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void testRelogingAnotherOperator() {
+    public void testRelogingAnotherOperator() throws IOException {
+        Doctor operator = new Doctor("Operator");
         page.loginPage().calldoctor();
+        $x("//header[@class='header']").$x(".//*[contains(.,'" + operator.getFamily() + " " + operator.getName() + "')]").shouldBe(Condition.visible);
         switchTo().window(0);
         page.loginPage().calldoctorFromMis();
-        switchTo().window("Центр управления");
-        $(By.xpath("//*[contains(.,'Генератор Маршрутного')]")).shouldBe(Condition.visible);
+        $x("//*[contains(text(),'Вызов врача на дом')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'" + operator.getFamily() + " " + operator.getName() + "')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "выход из диспетчера в МИС")
