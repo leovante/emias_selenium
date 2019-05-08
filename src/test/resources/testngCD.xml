@@ -4,15 +4,9 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
-        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
     </listeners>
     <!--chrome-->
-    <test name="TestCD_Chrome_Before" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <packages>
-            <package name="emias.calldoctor.before"/>
-        </packages>
-    </test>
     <test name="TestCD_Chrome" verbose="1" parallel="true">
         <parameter name="browser" value="chrome"/>
         <groups>
@@ -22,40 +16,8 @@
         </groups>
         <packages>
             <package name="emias.calldoctor.function"/>
-            <package name="emias.calldoctor.regress"/>
             <package name="emias.calldoctor.negative"/>
+            <package name="emias.calldoctor.base"/>
         </packages>
     </test>
-    <test name="TestCD_Chrome_After" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <packages>
-            <package name="emias.calldoctor.after"/>
-        </packages>
-    </test>
-    <!--firefox-->
-    <!--<test name="TestCD_Firefox_Before" verbose="1">-->
-    <!--<parameter name="browser" value="firefox"/>-->
-    <!--<packages>-->
-    <!--<package name="emias.calldoctor.before"/>-->
-    <!--</packages>-->
-    <!--</test>-->
-    <!--<test name="TestCD_Firefox" verbose="1" parallel="true">-->
-    <!--<parameter name="browser" value="firefox"/>-->
-    <!--<groups>-->
-    <!--<run>-->
-    <!--<include name="CD"/>-->
-    <!--</run>-->
-    <!--</groups>-->
-    <!--<packages>-->
-    <!--<package name="emias.calldoctor.function"/>-->
-    <!--<package name="emias.calldoctor.regress"/>-->
-    <!--<package name="emias.calldoctor.negative"/>-->
-    <!--</packages>-->
-    <!--</test>-->
-    <!--<test name="TestCD_Firefox_After" verbose="1">-->
-    <!--<parameter name="browser" value="firefox"/>-->
-    <!--<packages>-->
-    <!--<package name="emias.calldoctor.after"/>-->
-    <!--</packages>-->
-    <!--</test>-->
 </suite>

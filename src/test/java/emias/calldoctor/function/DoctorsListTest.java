@@ -192,10 +192,13 @@ public class DoctorsListTest extends TestBase {
         as.isVisibleText(nemcova.getUchastocs());
     }
 
+    /**
+     * сломан формализатор на стенде. Тест пока не работает
+     */
     @Test(groups = "CD", description = "вызов по api СМП без авторизации. Проверка отображения участкового")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException, JSONException {
+    public void testPreviewUchDoctorWithoutKladrApi() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("ProfileDetkina");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");

@@ -13,7 +13,7 @@ public class DateGenerator {
     int FlagAccess = 15;
     int MINUTE_IN_CELL = 15;
     int CELL_COUNT = 62;
-    int DAY_COUNT = 4;
+    int DAY_COUNT = 2;
     int rf_LPUDoctorID;
     int rf_DocPRVDID;
     String firstCellTime = "07:00:00.000";

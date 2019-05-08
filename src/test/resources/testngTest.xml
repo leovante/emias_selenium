@@ -4,7 +4,7 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
-        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
     <test name="ChromeTest" verbose="1" parallel="true">
@@ -18,7 +18,7 @@
             <class name="emias.calldoctor.negative.ClickBoosterTest"/>
         </classes>
         <!--<packages>-->
-        <!--<package name="emias.calldoctor22.regress"/>-->
+        <!--<package name="emias.calldoctor22.base"/>-->
         <!--<package name="emias.calldoctor22.function"/>-->
         <!--</packages>-->
     </test>

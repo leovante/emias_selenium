@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface HltDoctorTimeTableRepository extends JpaRepository<HltDoctorTimeTableEntity, Long>,
         CustomizedDoctorTimeTableRepositoryImpl<HltDoctorTimeTableEntity> {
 
+//    @Query("SELECT mtrId FROM MtrGasEntity mg WHERE mg.mtrId=(:pType)")
+//    Optional<MtrGasEntity> getById(@Param("pType") Long id);
 
 }

@@ -44,7 +44,7 @@ public class WebDriverInstansiator {
                     .build();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
-            chromeOptions.setHeadless(conf.getHeadless());
+            chromeOptions.setHeadless(false);
             driver = new ChromeDriver(chromeOptions);
             driver.manage().window().setPosition(new Point(0, 0));
             WebDriverRunner.setWebDriver(driver);

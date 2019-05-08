@@ -113,7 +113,7 @@ public class DoctorsListTest extends TestBase {
 //    @Test(groups = "CD", description = "создаю вызов через СМП с авторизацией по токену, что бы проверить что отобразился участковый")
 //    @Epic("Создание вызова")
 //    @RetryCountIfFailed(2)
-//    public void testPreviewUchDoctorWithoutKladr() throws IOException, InterruptedException, JSONException {
+//    public void testPreviewUchDoctorWithoutKladrApi() throws IOException, InterruptedException, JSONException {
 //        Pacient pacient = new Pacient("ProfileDetkina");
 //        SQLDemonstration.finalizeCall_NPol(mkab.getnPol());
 //

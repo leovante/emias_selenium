@@ -10,6 +10,9 @@ import com.utils.WebDriverInstansiator;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
 import com.utils.sql.DBScripts;
+import emias.calldoctor.after.AfterTestCalldoctor;
+import emias.calldoctor.before.BeforeTestCalldoctor;
+import emias.disp.before.BeforeTestDisp;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,6 +21,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 @Listeners(TestMethodCapture.class)
 @ContextConfiguration(classes = {AppConfig.class})
@@ -46,6 +50,21 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @AfterSuite(alwaysRun = true)
     public void afterSuite() throws IOException, JSONException, InterruptedException {
         SeleniumGrid.stop();
+    }
+
+    @BeforeTest(groups = "CD")
+    public void beforeTestCD() throws IOException, ParseException {
+        new BeforeTestCalldoctor().beforeCallDoctorTest();
+    }
+
+    @AfterTest(groups = "CD")
+    public void afterTestCD() {
+        new AfterTestCalldoctor().cleanAfterCallDoctorTests();
+    }
+
+    @BeforeTest(groups = "disp")
+    public void beforeTestDisp() throws IOException, ParseException {
+        new BeforeTestDisp().cleanBeforeDisp();
     }
 
     @Parameters({"browser"})

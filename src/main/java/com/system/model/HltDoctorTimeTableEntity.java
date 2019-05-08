@@ -3,7 +3,7 @@ package com.system.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
@@ -12,9 +12,9 @@ public class HltDoctorTimeTableEntity {
     private int doctorTimeTableId;
     private int xEdition;
     private byte xStatus;
-    private Date beginTime;
-    private Date endTime;
-    private Date date;
+    private Timestamp beginTime;
+    private Timestamp endTime;
+    private Timestamp date;
     private int rfLpuDoctorId;
     private int rfDocBusyType;
     private int flagAccess;
@@ -58,33 +58,33 @@ public class HltDoctorTimeTableEntity {
         this.xStatus = xStatus;
     }
 
-    @Temporal(TemporalType.DATE)
+    //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "Begin_Time", nullable = false)
-    public Date getBeginTime() {
+    public Timestamp getBeginTime() {
         return beginTime;
     }
 
-    public void setBeginTime(Date beginTime) {
+    public void setBeginTime(Timestamp beginTime) {
         this.beginTime = beginTime;
     }
 
-    @Temporal(TemporalType.DATE)
+    //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "End_Time", nullable = false)
-    public Date getEndTime() {
+    public Timestamp getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(Timestamp endTime) {
         this.endTime = endTime;
     }
 
-    @Temporal(TemporalType.DATE)
+    //    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "Date", nullable = false)
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

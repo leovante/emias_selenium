@@ -4,7 +4,7 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
-        <listener class-name="utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
         <!--         <listener class-name="Listeners.TestListener"/> -->
     </listeners>
 
@@ -25,7 +25,7 @@
             <class name="emias.mis.before.BeforeSuiteMIS"/>
         </classes>
         <!--<packages>-->
-        <!--<package name="emias.mis.regress"/>-->
+        <!--<package name="emias.mis.base"/>-->
         <!--</packages>-->
     </test>
     <test name="AfterTest" verbose="1">

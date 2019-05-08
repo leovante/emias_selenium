@@ -17,9 +17,9 @@ import java.util.List;
 
 public class DBScripts extends AbstractPage {
 
-    private static String connectionUrl = "jdbc:sqlserver://192.168.7.48:50004";
-    private static String databaseName = "hlt_demonstration2";
-    private static String userName = "sa";
+    private static String connectionUrl = "jdbc:sqlserver://192.168.7.253:64783";
+    private static String databaseName = "test_mo_hlt_Taldom_CRB_20190129";
+    private static String userName = "mis";
     private static String password = "sagfhjkzYES!";
     private static List<File> lst;
 

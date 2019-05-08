@@ -7,12 +7,6 @@
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
     </listeners>
 
-    <test name="BeforeTest" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <classes>
-            <class name="emias.disp.before.BeforeSuiteDisp"/>
-        </classes>
-    </test>
     <test verbose="1" name="ChromeTest">
         <parameter name="browser" value="chrome"/>
         <groups>
@@ -21,16 +15,10 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.disp.before.BeforeSuiteDisp"/>
+            <class name="emias.disp.before.BeforeTestDisp"/>
         </classes>
         <!--<packages>-->
-        <!--<package name="emias.disp.regress"/>-->
+        <!--<package name="emias.disp.base"/>-->
         <!--</packages>-->
-    </test>
-    <test name="AfterTest" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <packages>
-            <package name="emias.disp.after"/>
-        </packages>
     </test>
 </suite>
