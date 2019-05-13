@@ -39,6 +39,11 @@ public class LoginPage extends AbstractPage {
         open(conf.getCalldoctor());
     }
 
+    @Step("Вход в модуль диспетчер от взрослой поликлиникой")
+    public void calldoctorVzroslaya() {
+        open(conf.getCalldoctorVz());
+    }
+
     @Step("Захожу в диспетчер через МИС под админом")
     public void calldoctorFromMis() {
         open(conf.getUrl());

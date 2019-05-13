@@ -64,21 +64,19 @@ public class ChangeDepartmentTest extends TestBase {
     @RetryCountIfFailed(3)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
-        Doctor doctor = new Doctor("TemnikovStend");
-        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
-        page.loginPage().calldoctor();
+        Doctor depDoc = new Doctor("TemnikovVzroslayaTerapev");
+        Doctor urDoc = new Doctor("TemnikovStend");
+        page.loginPage().calldoctorVzroslaya();
         page.createCallPage(pacient)
                 .createCall()
-                .saveBtn();
+                .saveBtn()
+                .allertBtn();
         page.fullCardPage(pacient, testName())
-                .verifyDepartment(doctor)
+                .verifyDepartment(depDoc)
                 .transferToDepartBtn();
-        page.setLpuPage().transfer(doctor2);
+        page.setLpuPage().transfer(urDoc);
         page.fullCardPage(pacient, testName())
-                .verifyDepartment(doctor2)
-                .transferToDepartBtn();
-        page.setLpuPage().transfer(doctor);
-        page.fullCardPage(pacient, testName()).verifyDepartment(doctor);
+                .verifyDepartment(urDoc);
     }
 
     // TODO: 12/27/2018 сделать тест передачи вызова из лпу в лпу

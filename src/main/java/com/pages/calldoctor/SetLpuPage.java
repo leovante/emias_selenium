@@ -13,7 +13,7 @@ public class SetLpuPage extends AbstractPage {
 
     @Step("Передаю в другое подразделение на страинце поиска ЛПУ")
     public void transfer(Doctor doctor) throws IOException {
-        $(By.xpath("//*[contains(text(),'" + doctor.getDepartment() + "')]")).click();
+        $(By.xpath("//*[text()='" + doctor.getDepartment() + "']")).click();
         $(By.xpath("//*[contains(text(),'Передать')]")).click();
         $(By.xpath("/html/body/app-root/app-call-doctor/main/app-call-doctor-other/app-call-doctor-other-lpu/div[2]/div[4]/div[2]/div[2]/a[2]/mat-icon")).click();
     }

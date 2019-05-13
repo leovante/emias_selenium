@@ -15,6 +15,7 @@ public class Config {
     private String dispJournal;
     private String dispCard;
     private String calldoctor;
+    private String calldoctorVz;
     private String clientApplication;
     private String authorization;
     private String requestSmp;
@@ -37,6 +38,7 @@ public class Config {
             dispJournal = property.getProperty("st.mis.url.dispJournal");
             dispCard = property.getProperty("st.mis.url.dispCard");
             calldoctor = property.getProperty("st.mis.url.calldoctor");
+            calldoctorVz = property.getProperty("st.mis.url.calldoctorVz");
             clientApplication = property.getProperty("st.api.clientApplication");
             authorization = property.getProperty("st.api.authorization");
             requestSmp = property.getProperty("st.api.requestSmp");
@@ -84,6 +86,10 @@ public class Config {
 
     public String getCalldoctor() {
         return calldoctor;
+    }
+
+    public String getCalldoctorVz() {
+        return calldoctorVz;
     }
 
     public String getClientApplication() {
