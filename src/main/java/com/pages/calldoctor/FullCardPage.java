@@ -133,7 +133,7 @@ public class FullCardPage extends AbstractPage {
         return this;
     }
 
-    @Step("проверяю новый вызов")
+    @Step("проверяю обслуженный вызов")
     public FullCardPage verifyDoneCall(Doctor doctor) throws IOException {
         $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
         baseElements();

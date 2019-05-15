@@ -15,6 +15,8 @@ public class JournalPage extends AbstractPage {
     SelenideElement journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]"));
     SelenideElement grida = $(By.xpath("//datatable-body-row[@class='datatable-body-row datatable-row-even ng-star-inserted']"));
     SelenideElement grida2 = $(By.xpath("//datatable-body[@class='datatable-body']"));
+    SelenideElement openCard = $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Просмотр']"));
+    SelenideElement closeCard = $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Закрыть']"));
     SelenideElement oprosMeasure = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]"));
     SelenideElement oprosMeasureExamp = $(By.xpath("//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]"));
     SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
@@ -22,12 +24,14 @@ public class JournalPage extends AbstractPage {
     public JournalPage() {
     }
 
-    public void journalMenuBtn() {
+    public JournalPage journalMenuBtn() {
         journalBtn.click();
+        return this;
     }
 
-    public void searchByCardNumber(int number) {
+    public JournalPage searchByCardNumber(int number) {
         cardNumber.val(String.valueOf(number));
+        return this;
     }
 
     public void searchByPolNumber(int number) {
@@ -42,19 +46,49 @@ public class JournalPage extends AbstractPage {
         fioField.val(String.valueOf(fio));
     }
 
-    public void clickSearchBtn() {
+    public JournalPage clickSearchBtn() {
         searchBtn.click();
+        return this;
     }
 
     public void openCardByPolis(int number) {
         polNumber.val(String.valueOf(number));
         searchBtn.click();
         grida.$(By.xpath(".//*[contains(.,'" + number + "')]")).click();
-        grida2.$(By.xpath(".//*[@mattooltip='Редактировать']")).click();
+        openCard.click();
     }
 
-    public void editCardBtn(int numberPol) {
+    public JournalPage editCardBtn(int numberPol) {
         grida2.$(By.xpath(".//div[contains(.,'" + numberPol + "')]")).click();
-        grida2.$(By.xpath(".//*[@mattooltip='Редактировать']")).click();
+        openCard.click();
+        return this;
+    }
+
+    public JournalPage closeCardBtn(int numberPol) {
+        grida2.$(By.xpath(".//div[contains(.,'" + numberPol + "')]")).click();
+        closeCard.click();
+        return this;
+    }
+
+    public JournalPage setCloseReasonDeath() {
+        grida2.$(By.xpath(".//div[contains(.,'Причины закрытия')]")).click();
+        $(By.xpath(".//div[contains(.,'Смерть')]")).click();
+        return this;
+    }
+
+    public JournalPage setCloseReasonDescription() {
+        grida2.$(By.xpath(".//*[@placeholder='Примечание']")).val("Подавился печенькой");
+        return this;
+    }
+
+    public JournalPage closeCard2() {
+        $(By.xpath("//*[text()='Закрыть']")).click();
+        return this;
+    }
+
+    public JournalPage changeCardStatus_toClosed() {
+        $(By.xpath("//*[text()='Статус карты']")).click();
+        $(By.xpath("//*[text()='Закрытая']")).click();
+        return this;
     }
 }

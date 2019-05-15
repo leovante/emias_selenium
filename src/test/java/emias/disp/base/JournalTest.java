@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class JournalTest extends TestBase {
+
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по номеру через профиль")
     @RetryCountIfFailed(2)
@@ -82,7 +83,7 @@ public class JournalTest extends TestBase {
     }
 
     @Epic("Журнал диспансеризации")
-    @org.testng.annotations.Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
+    @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() throws InterruptedException {
         page.loginPage().dispJournal();
@@ -152,4 +153,39 @@ public class JournalTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
     }
     //проверить отображение шаблона через мкаб и через ячейку расписания
+
+    @Epic("Журнал диспансеризации")
+    @Test(groups = "disp", description = "проверяю что мероприятие открывается у подписанной карты")
+    @RetryCountIfFailed(2)
+    public void openClosedCard() throws InterruptedException, IOException, JSONException {
+        page.loginPage().dispJournal();
+        page.journalPage()
+                .journalMenuBtn()
+                .searchByCardNumber(454)
+                .clickSearchBtn()
+                .editCardBtn(165734);
+        page.exampPage()
+                .switchAllServicesTap()
+                .viewFlurography();
+    }
+
+    @Epic("Журнал диспансеризации")
+    @Test(groups = "disp", description = "закрытие карты диспансеризации с проставлением причины")
+    @RetryCountIfFailed(2)
+    public void closeCard() throws InterruptedException, IOException, JSONException {
+        // TODO: 5/15/2019 добавить открытие карты через базу
+        page.loginPage().dispJournal();
+        page.journalPage()
+                .journalMenuBtn()
+                .searchByCardNumber(180)
+                .clickSearchBtn()
+                .closeCardBtn(165734)
+                .setCloseReasonDeath()
+                .setCloseReasonDescription()
+                .closeCard2();
+        page.journalPage()
+                .changeCardStatus_toClosed()
+                .clickSearchBtn()
+                .openCardByPolis(165734);
+    }
 }
