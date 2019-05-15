@@ -8,11 +8,13 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.hibernate.AssertionFailure;
 import org.json.JSONException;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
 
+@Ignore
 public class ClickBoosterTest extends TestBase {
 
     @Test(groups = "test", description = "закликивание кнопки 'назначить на сегодня' что бы проверить что не создаются дубликаты", enabled = false)

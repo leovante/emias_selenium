@@ -22,7 +22,6 @@ public class BeforeTestCalldoctor extends TestBase {
     @RetryCountIfFailed(2)
     public void beforeCallDoctorTest() throws IOException, ParseException {
         Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
-//        int LPUDoctorID, int DocPRVDID
         LPUDoctor.put(3068, 2123);//Темников Дмитрий
         LPUDoctor.put(1831, 417);//Моков
         LPUDoctor.put(2924, 2091);//Серова

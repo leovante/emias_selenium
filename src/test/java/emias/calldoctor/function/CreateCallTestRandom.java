@@ -6,6 +6,7 @@ import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.text.ParseException;
 
 public class CreateCallTestRandom extends TestBase {
 
+    @Ignore
     @Test(groups = "CD", description = "", enabled = false)
     @Epic("Создание рандомного вызова")
     @RetryCountIfFailed(0)

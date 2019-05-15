@@ -5,12 +5,13 @@ import com.utils.sql.DBScripts;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import org.openqa.selenium.By;
+import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class ExampsFillTest extends TestBase {
 
-    @org.testng.annotations.Test(groups = "disp", description = "проверка заполнения мероприятий М24")
+    @Test(groups = "disp", description = "проверка заполнения мероприятий М24")
     @RetryCountIfFailed(3)
     public void testFillExamp() throws InterruptedException {
         DBScripts.setDefaultServices("3169");

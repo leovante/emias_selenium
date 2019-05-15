@@ -62,9 +62,9 @@ public class FilterTest extends TestBase {
 //        page.fullCardPage(testName()).closeCardBtn();
 //        page.dashboardPage()
 //                .clearAllFilters()
-//                .filterTomorrow()
+//                .filter_all_tomorrow()
 //                .verifyActiveDocGroup(pacient, doctor)
-//                .filterToday()
+//                .filter_tomorrow_today()
 //                .verifyActiveDocGroupNotVisible(pacient, doctor);
 //    }
     // TODO: 13.08.2018 сделать тест отображение вызовов в различных подразделениях и группах

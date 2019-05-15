@@ -17,28 +17,21 @@ public class DashboardPage extends AbstractPage {
 
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
-    private SelenideElement mat_select_value = $(By.xpath("//div[@class='mat-select-value']"));
-    private SelenideElement filterTomorrow = $(By.xpath("//*[contains(text(),'Завтра')]"));
-    private SelenideElement filterToday = $(By.xpath("//*[contains(text(),'Сегодня')]"));
-
-    private SelenideElement filterTodayViz = $(By.id("mCSB_5_container")).$(By.xpath(".//span[contains(text(),'Сегодня')]"));
-    private SelenideElement filterTomorrowViz = $(By.id("mCSB_5_container")).$(By.xpath(".//span[contains(text(),'Завтра')]"));
-
+    private SelenideElement filter_all = $(By.xpath("//*[text()='Все']"));
+    private SelenideElement filter_today = $(By.xpath("//*[text()='Сегодня']"));
+    private SelenideElement filter_tomorrow = $(By.xpath("//*[text()='Завтра']"));
+    private SelenideElement filterTodayViz = /*$(By.id("mCSB_5_container")).*/$(By.xpath("//span[contains(text(),'Сегодня')]"));
+    private SelenideElement filterTomorrowViz = /*$(By.id("mCSB_5_container")).*/$(By.xpath("//span[contains(text(),'Завтра')]"));
     private SelenideElement instructionBtn = $(By.xpath("//*[contains(text(),'Инструкция')]"));
     private SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
     private SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
-    private SelenideElement typeCall = $(By.xpath("//*[@placeholder='Вид вызова']"));
+    private SelenideElement typeCall = $(By.xpath("//*[text()='Вид вызова']"));
     private SelenideElement newCallProgressFrame = $(By.id("newCallProgressFrame"));
     private SelenideElement matExpansionPanel = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"));
     private SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
     private SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
     private SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
     private SelenideElement cancelCall = $(By.id("cancelcall"));
-
-
-    public DashboardPage() {
-
-    }
 
     @Step("вышел в мис")
     public void exitToMis() {
@@ -78,9 +71,9 @@ public class DashboardPage extends AbstractPage {
         fioFilter.hover().click();
         Thread.sleep(1000);
         docFilter.hover().click();
-        $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getSpecialization() + "')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
-        $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getFamily() + "')]")).click();
+        $(By.xpath("//div[@role='listbox']/mat-option/span[contains(text(),'" + doctor.getSpecialization() + "')]")).click();
         return this;
     }
 
@@ -100,19 +93,17 @@ public class DashboardPage extends AbstractPage {
         return this;
     }
 
-    @Step("Переключить фильтр на завтра")
-    public DashboardPage filterTomorrow() {
-        mat_select_value.click();
-        filterTomorrow.click();
-        filterTomorrowViz.shouldBe(Condition.visible);
+    @Step("Переключить фильтр все-завтра")
+    public DashboardPage filter_all_tomorrow() {
+        filter_all.click();
+        filterTomorrowViz.click();
         return this;
     }
 
-    @Step("Переключить фильтр на сегодня")
-    public DashboardPage filterToday() {
-        mat_select_value.click();
-        filterToday.click();
-        filterTodayViz.shouldBe(Condition.visible);
+    @Step("Переключить фильтр завтра-сегодня")
+    public DashboardPage filter_tomorrow_today() {
+        filter_tomorrow.click();
+        filterTodayViz.click();
         return this;
     }
 

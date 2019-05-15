@@ -32,13 +32,13 @@ public class BeforeTestDisp extends TestBase {
 
     @Step("Подготовка мероприятий")
     void setTestServices() throws IOException {
-        DBScripts.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
-        DBScripts.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
+//        DBScripts.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
+//        DBScripts.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
     }
 
     @Step("Создание расписания для врачей")
     void createShedule() throws FileNotFoundException, ParseException {
-        DBScripts.deleteShedule(2100, 1285);
-        DBScripts.createShedule(2100, 1285);
+//        DBScripts.deleteShedule(2100, 1285);
+//        DBScripts.createShedule(2100, 1285);
     }
 }

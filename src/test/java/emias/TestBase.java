@@ -52,21 +52,6 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         SeleniumGrid.stop();
     }
 
-    @BeforeTest(groups = "CD")
-    public void beforeTestCD() throws IOException, ParseException {
-        new BeforeTestCalldoctor().beforeCallDoctorTest();
-    }
-
-    @AfterTest(groups = "CD")
-    public void afterTestCD() {
-        new AfterTestCalldoctor().cleanAfterCallDoctorTests();
-    }
-
-    @BeforeTest(groups = "disp")
-    public void beforeTestDisp() throws IOException, ParseException {
-        new BeforeTestDisp().cleanBeforeDisp();
-    }
-
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional String browser) throws IOException {
@@ -80,8 +65,23 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         driverInst.driverClose();
     }
 
+    @Parameters({"testng"})
+    @BeforeTest(groups = "CD")
+    public void beforeTestCD(@Optional String testng) throws IOException, ParseException {
+        if (testng != null)
+            new BeforeTestCalldoctor().beforeCallDoctorTest();
+    }
+
     @AfterMethod(groups = "CD", alwaysRun = true)
     public void afterMethodCD(ITestResult result) {
         DBScripts.cancelCall(result.getMethod().getMethodName());
+        new AfterTestCalldoctor().cleanAfterCallDoctorTests();
+    }
+
+    @Parameters({"testng"})
+    @BeforeTest(groups = "disp")
+    public void beforeTestDisp(@Optional String testng) throws IOException, ParseException {
+        if (testng != null)
+            new BeforeTestDisp().cleanBeforeDisp();
     }
 }

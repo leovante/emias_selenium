@@ -2,6 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Name suite - CD" thread-count="5" parallel="classes">
     <parameter name="gridRun" value="true"/>
+    <parameter name="testng" value="true"/>
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
