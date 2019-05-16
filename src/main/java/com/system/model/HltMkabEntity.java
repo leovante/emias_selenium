@@ -66,15 +66,15 @@ public class HltMkabEntity {
 //    @JoinColumn(name = "AddressID", nullable = false)
 //    private KlaAddressEntity klaAddressEntity;
 
-    @Basic
-    @Column(name = "rf_AddressRegID", nullable = false)
-    public int getRfAddressRegId() {
-        return rfAddressRegId;
-    }
-
-    public void setRfAddressRegId(int rfAddressRegId) {
-        this.rfAddressRegId = rfAddressRegId;
-    }
+//    @Basic
+//    @Column(name = "rf_AddressRegID", nullable = false)
+//    public int getRfAddressRegId() {
+//        return rfAddressRegId;
+//    }
+//
+//    public void setRfAddressRegId(int rfAddressRegId) {
+//        this.rfAddressRegId = rfAddressRegId;
+//    }
 
     private boolean confirmAgree;
     private Timestamp confirmDate;
@@ -1106,15 +1106,15 @@ public class HltMkabEntity {
         return Objects.hash(mkabid, xEdition, xStatus, family, name, ot, ss, dType, num, w, dateBd, adres, rfInvid, rfSmoid, phoneWork, phoneHome, work, profession, post, dependent, rfLpuid, kindCod, rh, codPerson, militaryCod, rfUchastokId, rfCitizenId, rfTypedocid, sPol, nPol, uguid, rfOtherSmoid, sDoc, nDoc, isWorker, rfMkabLocationId, rfSpecEventCertId, adresFact, datePolBegin, datePolEnd, rfEnterpriseId, blackLabel, rfOkatoid, flags, isClosed, rfReasonCloseMkabid, dateClose, rfKlPrivilegeCategoryId, rfOmsOkvedid, rfKlSocStatusId, rfKlSexId, rfKlHealthGroupId, rfAddressLiveId, rfAddressRegId, confirmAgree, confirmDate, confirmUserFio, contactConfirm, contactEmail, contactMPhone, createUserName, editUserName, hash0, hash1, hash2, hash3, hash4, isEncrypted, mainContact, messageFlag, rfConfirmUserId, rfCreateUserId, rfEditUserId, rfKlTipOmsid, ridn, mkabInfo, birthplace, mainMkabGuid, dateDoc, dateMkab, isLsHome, docIssuedBy, rfKlEducationTypeId, rfKlMaterialStatusId, blackLabelComment, isAuto, isExistIpra, rfOksmid, identificationDate, rfIdentificationStatusId);
     }
 
-    private KlaAddressEntity kla_address;
+    private KlaAddressEntity rf_AddressRegID;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rf_AddressRegID", referencedColumnName = "AddressId", nullable = false)
-    public KlaAddressEntity getKla_address() {
-        return kla_address;
+    @ManyToOne
+    @JoinColumn(name = "rf_AddressRegID", referencedColumnName = "addressId", nullable = false)
+    public KlaAddressEntity getRf_AddressRegID() {
+        return rf_AddressRegID;
     }
 
-    public void setKla_address(KlaAddressEntity kla_address) {
-        this.kla_address = kla_address;
+    public void setRf_AddressRegID(KlaAddressEntity rf_AddressRegID) {
+        this.rf_AddressRegID = rf_AddressRegID;
     }
 }

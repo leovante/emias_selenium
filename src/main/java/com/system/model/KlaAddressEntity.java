@@ -125,13 +125,12 @@ public class KlaAddressEntity {
 
     private Set<HltMkabEntity> hltMkabEntities;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "kla_address", cascade = CascadeType.ALL)
-    @JoinColumn(name = "rf_AddressRegID", nullable = false)
-    public Set<HltMkabEntity> getOneToMany() {
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "rf_AddressRegID", cascade = CascadeType.ALL)
+    public Set<HltMkabEntity> getHltMkabEntities() {
         return hltMkabEntities;
     }
 
-    public void setOneToMany(Set<HltMkabEntity> hltMkabEntities) {
+    public void setHltMkabEntities(Set<HltMkabEntity> hltMkabEntities) {
         this.hltMkabEntities = hltMkabEntities;
     }
 }

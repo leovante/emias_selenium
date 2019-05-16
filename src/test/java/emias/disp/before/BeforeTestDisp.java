@@ -38,7 +38,7 @@ public class BeforeTestDisp extends TestBase {
     @Step("Подготовка мероприятий")
     void setTestServices() throws IOException {
         DBScripts.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");// TODO: 5/16/2019 исправить тут перенести на hibernate
-        DBScripts.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
+        DBScripts.runSqlScript("test hlt_disp_ServiceDocPrvd_192.168.7.54.txt");
     }
 
     @Step("Создание расписания для врачей")
