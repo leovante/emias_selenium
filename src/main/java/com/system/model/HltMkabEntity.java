@@ -61,21 +61,6 @@ public class HltMkabEntity {
     private int rfKlHealthGroupId;
     private int rfAddressLiveId;
     private int rfAddressRegId;
-
-//    @ManyToOne
-//    @JoinColumn(name = "AddressID", nullable = false)
-//    private KlaAddressEntity klaAddressEntity;
-
-//    @Basic
-//    @Column(name = "rf_AddressRegID", nullable = false)
-//    public int getRfAddressRegId() {
-//        return rfAddressRegId;
-//    }
-//
-//    public void setRfAddressRegId(int rfAddressRegId) {
-//        this.rfAddressRegId = rfAddressRegId;
-//    }
-
     private boolean confirmAgree;
     private Timestamp confirmDate;
     private String confirmUserFio;
@@ -114,6 +99,7 @@ public class HltMkabEntity {
     private int rfIdentificationStatusId;
 
     @Id
+    @GeneratedValue
     @Column(name = "MKABID", nullable = false)
     public int getMkabid() {
         return mkabid;

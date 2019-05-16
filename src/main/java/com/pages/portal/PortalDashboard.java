@@ -3,7 +3,7 @@ package com.pages.portal;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.AbstractPage;
-import com.pages.calldoctor2.profiles_interfaces.Pacient;
+import com.pages.calldoctor.pacients.Pacient;
 import com.utils.sql.DBScripts;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

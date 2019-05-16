@@ -1,6 +1,5 @@
 package com.pages;
 
-import com.dataGenerator.ModuleData;
 import com.pages.callcenter.*;
 import com.pages.calldoctor.*;
 import com.pages.calldoctor.pacients.Pacient;
@@ -15,8 +14,6 @@ import com.pages.portal.PortalDashboard;
 import static com.codeborne.selenide.Selenide.page;
 
 public class Pages extends AbstractPage {
-
-
     public Pages() {
     }
 
@@ -113,22 +110,8 @@ public class Pages extends AbstractPage {
         return page(Kladr.class);
     }
 
-    //MIS
-    public com.pages.calldoctor2.CreateCallPage createCallPage(ModuleData mData) {
-        return new com.pages.calldoctor2.CreateCallPage(mData);
-    }
-
-    public com.pages.calldoctor2.FullCardPage fullCardPage(ModuleData mData) {
-        return new com.pages.calldoctor2.FullCardPage(mData);
-    }
-
-    public com.pages.calldoctor2.DashboardPage dashboardPage(ModuleData mData) {
-        return new com.pages.calldoctor2.DashboardPage(mData);
-    }
-
     //MedicalRecords
     public NewMRPage newMRPage() {
         return new NewMRPage();
     }
-
 }

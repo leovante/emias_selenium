@@ -21,6 +21,7 @@ public class KlaStreetEntity {
     private String postIndex;
 
     @Id
+    @GeneratedValue
     @Column(name = "StreetID", nullable = false)
     public int getStreetId() {
         return streetId;

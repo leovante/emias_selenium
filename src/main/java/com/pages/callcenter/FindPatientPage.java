@@ -2,7 +2,7 @@ package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
 import com.pages.AbstractPage;
-import com.pages.calldoctor2.profiles_interfaces.Pacient;
+import com.pages.calldoctor.pacients.Pacient;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;

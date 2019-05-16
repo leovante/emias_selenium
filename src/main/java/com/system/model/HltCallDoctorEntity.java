@@ -60,6 +60,7 @@ public class HltCallDoctorEntity {
     private int rfKlAgeGroupId;
 
     @Id
+    @GeneratedValue
     @Column(name = "CallDoctorID", nullable = false)
     public int getCallDoctorId() {
         return callDoctorId;

@@ -49,6 +49,7 @@ public class HltDispExamEntity {
     }
 
     @Id
+    @GeneratedValue
     @Column(name = "disp_ExamID", nullable = false)
     public int getDispExamId() {
         return dispExamId;

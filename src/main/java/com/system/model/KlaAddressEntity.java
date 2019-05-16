@@ -9,11 +9,6 @@ import java.util.Set;
 public class KlaAddressEntity {
 
     private int addressId;
-
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "klaAddressEntity", cascade = CascadeType.ALL)
-//    @JoinColumn(name = "AddressID", referencedColumnName = "id", nullable = false)
-//    private Set<HltMkabEntity> hltMkabEntities = new LinkedHashSet<>();
-
     private int xEdition;
     private byte xStatus;
     private String code;
@@ -23,6 +18,7 @@ public class KlaAddressEntity {
     private int flags;
 
     @Id
+    @GeneratedValue
     @Column(name = "AddressID", nullable = false)
     public int getAddressId() {
         return addressId;

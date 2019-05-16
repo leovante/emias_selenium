@@ -1,14 +1,13 @@
 package com.pages.mis;
 
-
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import com.codeborne.selenide.commands.PressEscape;
 import com.pages.AbstractPage;
-import com.pages.calldoctor2.doctors_interfaces.Doctor;
-import com.pages.calldoctor2.profiles_interfaces.Pacient;
+import com.pages.calldoctor.doctors_interfaces.Doctor;
+import com.pages.calldoctor.pacients.Pacient;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 

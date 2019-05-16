@@ -23,6 +23,7 @@ public class KlaKlAdrEntity {
     private String postIndex;
 
     @Id
+    @GeneratedValue
     @Column(name = "KlAdrID", nullable = false)
     public int getKlAdrId() {
         return klAdrId;

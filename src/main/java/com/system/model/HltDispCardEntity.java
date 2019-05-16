@@ -63,6 +63,7 @@ public class HltDispCardEntity {
     }
 
     @Id
+    @GeneratedValue
     @Column(name = "disp_CardID", nullable = false)
     public int getDispCardId() {
         return dispCardId;

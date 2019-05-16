@@ -3,7 +3,7 @@ package com.utils.api_model;
 import com.config.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pages.AbstractPage;
-import com.pages.calldoctor2.profiles_interfaces.Pacient;
+import com.pages.calldoctor.pacients.Pacient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;

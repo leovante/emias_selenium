@@ -29,6 +29,7 @@ public class HltDoctorTimeTableEntity {
     private boolean isKatlVisit;
 
     @Id
+    @GeneratedValue
     @Column(name = "DoctorTimeTableID", nullable = false)
     public int getDoctorTimeTableId() {
         return doctorTimeTableId;

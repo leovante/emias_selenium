@@ -36,4 +36,16 @@ public class BeforeTestCalldoctor extends TestBase {
             DBScripts.createSheduleCD(pair.getKey(), pair.getValue());
         }
     }
+
+    /**
+     * сделать эту проверку перед beforeCallDoctorTest, если одна из проверок не сработала, то остановить приложение
+     */
+    @Test(description = "проверка состояний стенда")
+    @RetryCountIfFailed(2)
+    public void beforeCallDoctorTestStandStatus() throws IOException, ParseException {
+        // TODO: 5/16/2019 проверить что вызов можно создать по api
+        // TODO: 5/16/2019 проверить валидность тестовых данных
+        // TODO: 5/16/2019 проверить подключение к базе
+        // TODO: 5/16/2019 проверить что все сервисы работают. Особенно кладр и формализатор
+    }
 }

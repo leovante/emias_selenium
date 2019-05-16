@@ -8,11 +8,13 @@ import com.pages.calldoctor.pacients.Pacient;
 import com.utils.api_model.CallDoctorHttp;
 import com.utils.except.NoticeException;
 import io.qameta.allure.Step;
+import org.apache.http.HttpResponse;
 import org.json.JSONException;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.SkipException;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -27,18 +29,15 @@ import static org.hamcrest.Matchers.containsString;
 
 public class CreateCallPage extends AbstractPage {
     private Pacient pacient;
-
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
     SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
-
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
     SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
     SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
     SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
     SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
     SelenideElement pd = $(By.xpath("//input[@placeholder='П-д']"));
-
     SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
     SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
     SelenideElement seriyaPol = $(By.xpath("//input[@placeholder='Серия']"));
@@ -47,7 +46,6 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
     SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
     SelenideElement birthDateTemp = $(By.xpath("//input[@placeholder='Дата рождения']"));
-
     SelenideElement phone = $(By.id("phone"));
     SelenideElement famCall = $(By.id("callFamily"));
     SelenideElement nameCall = $(By.id("callName"));
@@ -56,7 +54,6 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement sourceSmp2 = $(By.id("sourceSmp"));
     SelenideElement sourceReg = $(By.id("source1"));
     SelenideElement callerType = $(By.xpath("//mat-select[@aria-label='Тип вызывающего']"));
-
     SelenideElement cancelBtn = $(By.id("cancelCall"));
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
@@ -99,8 +96,10 @@ public class CreateCallPage extends AbstractPage {
     @Step("создаю вызов через api")
     public void createCall_Api() throws JSONException {
 //        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
-//        мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
-        LOGGER.info(String.valueOf(new CallDoctorHttp(pacient).execute()));
+// TODO: 5/16/2019 мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
+        HttpResponse hr = new CallDoctorHttp(pacient).execute();
+        if (hr.getStatusLine().getStatusCode() != 200)
+            throw new SkipException("Вызов не создан\n" + hr);
     }
 
     @Step("редактирую вызов")
