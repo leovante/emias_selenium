@@ -27,7 +27,6 @@ public class CreateCallTest extends TestBase {
         page.createCallPage(pacient)
                 .addNewCall()
                 .list_first_container(pacient.getAddress2());
-
         $x("//input[@placeholder='Адрес']").getValue().contains(pacient.getAddress2());
     }
 }

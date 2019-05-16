@@ -1,52 +1,24 @@
 package com.system.service;
 
-import com.system.dao.HltMkabDao;
 import com.system.model.HltMkabEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
-@Service
-public class HltMkabService implements MkabService {
+public interface HltMkabService<T> {
 
-    @Autowired
-    private HltMkabDao hltMkabDao;
+    Optional<HltMkabEntity> findById(int id);
 
-    @Override
-    public HltMkabEntity findById(int id) {
-        return hltMkabDao.findById(id);
-    }
+//    List findByIdList(int id);
 
-    @Override
-    public List findByIdList(int id) {
-        return hltMkabDao.findByIdList(id);
-    }
+//    HltMkabEntity findByModel();
 
-    @Override
-    public HltMkabEntity findByModel() {
-        return hltMkabDao.findByModel();
-    }
+//    List modelWithKladr();
 
-    @Override
-    public List modelWithKladr() {
-        return hltMkabDao.modelWithKladr();
-    }
+//    List<T> findAll();
 
-    @Override
-    public List findAll() {
-        return hltMkabDao.findAll();
-    }
+//    void save(T t);
 
-    @Override
-    public void save(Object o) {
-    }
+//    void update(T t);
 
-    @Override
-    public void update(Object o) {
-    }
-
-    @Override
-    public void delete(long id) {
-    }
+//    void delete(long id);
 }

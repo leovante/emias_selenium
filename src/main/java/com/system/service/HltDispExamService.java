@@ -13,7 +13,7 @@ public class HltDispExamService {
     }
 
 //    public HltDispExamEntity findExam(int id) {
-//        return hltDispExam.findById(id);
+//        return hltDispExam.findOneResultById(id);
 //    }
 //
 //    public void saveExam(HltDispExamEntity hltDispExamEntity) {

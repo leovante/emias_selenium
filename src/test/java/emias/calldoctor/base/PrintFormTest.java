@@ -7,14 +7,16 @@ import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
+import org.openqa.selenium.By;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 
+@Ignore
 public class PrintFormTest extends TestBase {
 
     @Test(groups = "CD", description = "проверка формы печати группы активные")
@@ -39,20 +41,19 @@ public class PrintFormTest extends TestBase {
                 .allertBtn();
         page.fullCardPage(pacient, testName()).printBtn();
         switchTo().window(1);
-//        page.printFormPage(pacient, testName()).baseElements();
-        $x("//*[contains(text(),'Карта вызова')]").shouldBe(Condition.visible);
+        $x("//*[contains(.,'Карта вызова')]").shouldBe(Condition.visible);
     }
 
-//    @Test(groups = "CD", description = "проверка формы печати одного врача")
-//    @Epic("Печать")
-//    @RetryCountIfFailed(2)
-//    public void testPrintOneDoctor() throws IOException, JSONException, ParseException, InterruptedException {
-//        Pacient pacient = new Pacient("Profile0");
-//        page.loginPage().calldoctor();
-//        page.createCallPage(pacient).createCall();
-//        page.fullCardPage(testName()).printBtn();
-//        switchTo().window(1);
-//        $(By.xpath("//*[contains(text(),'test/call-doctor/card/view')]")).shouldBe(Condition.visible);
-//    }
-    // TODO: 4/1/2019 доделать
+    @Test(groups = "CD", description = "проверка формы печати одного врача", enabled = false)
+    @Epic("Печать")
+    @RetryCountIfFailed(2)
+    public void testPrintOneDoctor() throws IOException, JSONException, ParseException, InterruptedException {
+        Pacient pacient = new Pacient("Profile0");
+        page.loginPage().calldoctor();
+        page.createCallPage(pacient).createCall();
+        page.fullCardPage(pacient, testName()).printBtn();
+        switchTo().window(1);
+        $(By.xpath("//*[contains(text(),'test/call-doctor/card/view')]")).shouldBe(Condition.visible);
+        // TODO: 4/1/2019 доделать
+    }
 }

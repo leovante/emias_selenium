@@ -4,16 +4,21 @@ import com.utils.sql.DBScripts;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Step;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
+@Ignore
 public class BeforeTestDisp extends TestBase {
 
-    @Test(description = "Обнуляю карты диспансеризации")
+    @Test(description = "Обнуляю карты диспансеризации", enabled = false)
     @RetryCountIfFailed(2)
     public void cleanBeforeDisp() throws IOException, ParseException {
         setDefaultCard();//обнулить карты
@@ -32,13 +37,20 @@ public class BeforeTestDisp extends TestBase {
 
     @Step("Подготовка мероприятий")
     void setTestServices() throws IOException {
-//        DBScripts.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");
-//        DBScripts.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
+        DBScripts.runSqlScript("delete hlt_disp_ServiceDocPrvd.txt");// TODO: 5/16/2019 исправить тут перенести на hibernate
+        DBScripts.runSqlScript("insert test hlt_disp_ServiceDocPrvd.txt");
     }
 
     @Step("Создание расписания для врачей")
     void createShedule() throws FileNotFoundException, ParseException {
-//        DBScripts.deleteShedule(2100, 1285);
-//        DBScripts.createShedule(2100, 1285);
+        Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
+        LPUDoctor.put(3075, 2137);
+
+        Iterator<Map.Entry<Integer, Integer>> it = LPUDoctor.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Integer, Integer> pair = it.next();
+            DBScripts.deleteShedule(pair.getKey(), pair.getValue());
+            DBScripts.createShedule(pair.getKey(), pair.getValue());
+        }
     }
 }

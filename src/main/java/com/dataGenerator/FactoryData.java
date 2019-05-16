@@ -1,6 +1,6 @@
 package com.dataGenerator;
 
-import com.system.service.HltMkabService;
+import com.system.service.HltMkabServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 public class FactoryData implements UserData {
 
     @Autowired
-    HltMkabService hltMkabService;
+    HltMkabServiceImpl hltMkabService;
 
-    @Override
-    public ModuleData getData(DataType type) {
-        try {
-            if (type == DataType.CalldoctorData) {
-                return new CalldoctorData(hltMkabService);
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    @Override
+//    public ModuleData getData(DataType type) {
+//        try {
+//            if (type == DataType.CalldoctorData) {
+//                return new CalldoctorData(hltMkabService);
+//            }
+//        } catch (NullPointerException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 }

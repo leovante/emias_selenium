@@ -35,7 +35,7 @@ public class ExamDao implements Dao<HltDispExamEntity> {
     }
 
 //    @Override
-//    public Optional<HltDispExamEntity> findById(Long id) {
+//    public Optional<HltDispExamEntity> findOneResultById(Long id) {
 ////        return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);
 //        return null;
 //    }

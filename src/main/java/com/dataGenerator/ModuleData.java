@@ -9,7 +9,7 @@ public interface ModuleData {
 
     ModuleData modelWithKladr();
 
-    CalldoctorData setDopData(Boolean mkabStat, Boolean api, String source, String complaint, String dopAdress);
+//    CalldoctorData setDopData(Boolean mkabStat, Boolean api, String source, String complaint, String dopAdress);
 
     String getSource();
 

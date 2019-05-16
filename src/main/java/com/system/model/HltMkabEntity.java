@@ -1,6 +1,5 @@
 package com.system.model;
 
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -63,9 +62,9 @@ public class HltMkabEntity {
     private int rfAddressLiveId;
     private int rfAddressRegId;
 
-    @ManyToOne
-    @JoinColumn(name = "AddressID", nullable = false)
-    private KlaAddressEntity klaAddressEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "AddressID", nullable = false)
+//    private KlaAddressEntity klaAddressEntity;
 
     @Basic
     @Column(name = "rf_AddressRegID", nullable = false)
@@ -1105,5 +1104,17 @@ public class HltMkabEntity {
     @Override
     public int hashCode() {
         return Objects.hash(mkabid, xEdition, xStatus, family, name, ot, ss, dType, num, w, dateBd, adres, rfInvid, rfSmoid, phoneWork, phoneHome, work, profession, post, dependent, rfLpuid, kindCod, rh, codPerson, militaryCod, rfUchastokId, rfCitizenId, rfTypedocid, sPol, nPol, uguid, rfOtherSmoid, sDoc, nDoc, isWorker, rfMkabLocationId, rfSpecEventCertId, adresFact, datePolBegin, datePolEnd, rfEnterpriseId, blackLabel, rfOkatoid, flags, isClosed, rfReasonCloseMkabid, dateClose, rfKlPrivilegeCategoryId, rfOmsOkvedid, rfKlSocStatusId, rfKlSexId, rfKlHealthGroupId, rfAddressLiveId, rfAddressRegId, confirmAgree, confirmDate, confirmUserFio, contactConfirm, contactEmail, contactMPhone, createUserName, editUserName, hash0, hash1, hash2, hash3, hash4, isEncrypted, mainContact, messageFlag, rfConfirmUserId, rfCreateUserId, rfEditUserId, rfKlTipOmsid, ridn, mkabInfo, birthplace, mainMkabGuid, dateDoc, dateMkab, isLsHome, docIssuedBy, rfKlEducationTypeId, rfKlMaterialStatusId, blackLabelComment, isAuto, isExistIpra, rfOksmid, identificationDate, rfIdentificationStatusId);
+    }
+
+    private KlaAddressEntity kla_address;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rf_AddressRegID", referencedColumnName = "AddressId", nullable = false)
+    public KlaAddressEntity getKla_address() {
+        return kla_address;
+    }
+
+    public void setKla_address(KlaAddressEntity kla_address) {
+        this.kla_address = kla_address;
     }
 }

@@ -1,18 +1,15 @@
 package com.system.repositories;
 
-import com.system.model.HltMkabEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import java.util.Optional;
+import javax.persistence.EntityManager;
 
-@Component
-public class HltMkabRepositoryImpl {
+public class HltMkabRepositoryImpl implements CustomHltMkabRepository {
 
     @Autowired
-    private HltMkabRepository mkabRepository;
+    private EntityManager em;
 
-    public Optional<HltMkabEntity> findById(int id) {
-        return mkabRepository.findById(id);
+    public int findOneResultById(int id) {
+        return em.createQuery("select mk from HltMkabEntity mk").getFirstResult();
     }
 }

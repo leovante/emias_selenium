@@ -12,7 +12,7 @@ import java.util.Optional;
 public class HltDispExamDao implements Dao {
 //<!--правка hibernate-->
 
-//    public HltDispExamEntity findById(int id) {
+//    public HltDispExamEntity findOneResultById(int id) {
 //        return HibernateSessionFactory.getSessionFactory().openSession().get(HltDispExamEntity.class, id);
 //    }
 //

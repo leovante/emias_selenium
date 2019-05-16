@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HltMkabRepository extends JpaRepository<HltMkabEntity, Integer> {
+public interface HltMkabRepository extends JpaRepository<HltMkabEntity, Integer>, CustomHltMkabRepository {
 
 }

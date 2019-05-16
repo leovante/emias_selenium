@@ -1,7 +1,6 @@
 package com.system.model;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,9 +10,9 @@ public class KlaAddressEntity {
 
     private int addressId;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "klaAddressEntity", cascade = CascadeType.ALL)
-    @JoinColumn(name = "AddressID", referencedColumnName = "id", nullable = false)
-    private Set<HltMkabEntity> hltMkabEntities = new LinkedHashSet<>();
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "klaAddressEntity", cascade = CascadeType.ALL)
+//    @JoinColumn(name = "AddressID", referencedColumnName = "id", nullable = false)
+//    private Set<HltMkabEntity> hltMkabEntities = new LinkedHashSet<>();
 
     private int xEdition;
     private byte xStatus;
@@ -121,5 +120,18 @@ public class KlaAddressEntity {
     @Override
     public int hashCode() {
         return Objects.hash(addressId, xEdition, xStatus, code, addressString, appartment, dopData, flags);
+    }
+
+
+    private Set<HltMkabEntity> hltMkabEntities;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "kla_address", cascade = CascadeType.ALL)
+    @JoinColumn(name = "rf_AddressRegID", nullable = false)
+    public Set<HltMkabEntity> getOneToMany() {
+        return hltMkabEntities;
+    }
+
+    public void setOneToMany(Set<HltMkabEntity> hltMkabEntities) {
+        this.hltMkabEntities = hltMkabEntities;
     }
 }

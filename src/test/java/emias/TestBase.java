@@ -1,9 +1,8 @@
 package emias;
 
 import com.config.AppConfig;
-import com.dataGenerator.FactoryData;
 import com.pages.Pages;
-import com.system.service.HltMkabService;
+import com.system.service.HltMkabServiceImpl;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.TestMethodCapture;
 import com.utils.WebDriverInstansiator;
@@ -36,10 +35,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     }
 
     @Autowired
-    public FactoryData factoryData;
-
-    @Autowired
-    public HltMkabService hltMkabService;
+    public HltMkabServiceImpl hltMkabService;
 
     @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
