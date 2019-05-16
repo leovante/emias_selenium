@@ -83,30 +83,30 @@ public class DBScripts extends AbstractPage {
 //                "update HltCallDoctorEntity " +
 //                        "set rfCallDoctorStatusId = 3 " +
 //                        " ");
-//
-//
-//        String url = connectionUrl +
-//                ";databaseName=" + databaseName +
-//                ";user=" + userName +
-//                ";password=" + password;
-//        try {
-//            LOGGER.info("Connecting to SQL Server ... ");
-//            try (Connection connection = DriverManager.getConnection(url)) {
-//                String sql =
-//                        "update hlt_calldoctor " +
-//                                "set rf_calldoctorstatusid = 3 " +
-//                                "from hlt_calldoctor cl " +
-//                                "inner join oms_DocumentHistory dh on cl.guid = dh.rf_documentguid " +
-//                                "where dh.Editor = 'Темников Дмитрий Олегович' " +
-//                                "and cl.rf_calldoctorstatusid in (2, 5, 7)";
-//                try (Statement statement = connection.createStatement()) {
-//                    statement.executeUpdate(sql);
-//                    LOGGER.info("Finalize is done.");
-//                }
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+
+
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            LOGGER.info("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                String sql =
+                        "update hlt_calldoctor " +
+                                "set rf_calldoctorstatusid = 3 " +
+                                "from hlt_calldoctor cl " +
+                                "inner join oms_DocumentHistory dh on cl.guid = dh.rf_documentguid " +
+                                "where dh.Editor = 'Темников Дмитрий Олегович' " +
+                                "and cl.rf_calldoctorstatusid in (2, 5, 7)";
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(sql);
+                    LOGGER.info("Finalize is done.");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Step("завершаю вызовы пациента по полису")

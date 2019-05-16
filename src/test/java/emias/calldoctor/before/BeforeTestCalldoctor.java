@@ -48,4 +48,10 @@ public class BeforeTestCalldoctor extends TestBase {
         // TODO: 5/16/2019 проверить подключение к базе
         // TODO: 5/16/2019 проверить что все сервисы работают. Особенно кладр и формализатор
     }
+
+    @Test(description = "Завершаю все вызовы оператора Темников")
+    @RetryCountIfFailed(2)
+    public void cleanCallOperator() {
+        DBScripts.finalizeCallsOperatorTemnikov();
+    }
 }
