@@ -235,8 +235,14 @@ public class CreateCallPage extends AbstractPage {
             clearAddress();
             list_first_container(pacient.getAddress1());
         }
-        if (pacient.getAddress2() != null && pacient.getAddress2() != "")
-            list_first_container(pacient.getAddress2());
+        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
+            if (pacient.getAddress2adv() != null && pacient.getAddress2adv() != "") {
+                Thread.sleep(1000);
+                adress.sendKeys(pacient.getAddress3());
+                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress2adv() + "')]")).click();
+            } else
+                list_first_container(pacient.getAddress2());
+        }
         if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
             if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "") {
                 Thread.sleep(1000);

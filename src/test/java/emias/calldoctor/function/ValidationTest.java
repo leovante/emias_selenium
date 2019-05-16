@@ -41,7 +41,7 @@ public class ValidationTest extends TestBase {
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile3");
+        Pacient pacient = new Pacient("Profile3_Kladr");
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
@@ -94,6 +94,7 @@ public class ValidationTest extends TestBase {
                 .saveBtn();
         page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
+                .cancelNewCallDash(pacient)
                 .cancelNewCallDash(pacient)
                 .verifyCancellCallValidation_Dash()
                 .verifyCallIsNotCancelFromDashboard(pacient);

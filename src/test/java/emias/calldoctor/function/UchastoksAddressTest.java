@@ -115,12 +115,11 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException, ParseException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_3");
+        Pacient pacient = new Pacient("Profile0_3_1");
         page.createCallPage(pacient).createCall_Api();
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Mkab();
-        page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient);
+        page.dashboardPage().openNewCallDash(pacient);
+        $(By.xpath("//*[contains(text(),'КТО ОБСЛУЖИВАЕТ')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
     }
     // TODO: 12/3/2018 сделать тест проверки списка участков при привязке адреса к участку на педиатр/взрослый

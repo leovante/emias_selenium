@@ -26,6 +26,7 @@ public class Pacient extends AbstractTestNGSpringContextTests {
     private String address2;
     private String address3;
     private String address3adv;
+    private String address2adv;
     private String complaint;
     private String diagnosis;
     private String phone;
@@ -62,6 +63,10 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
     public String getAddress3adv() {
         return address3adv;
+    }
+
+    public String getAddress2adv() {
+        return address2adv;
     }
 
     public int getSource() {
@@ -261,6 +266,9 @@ public class Pacient extends AbstractTestNGSpringContextTests {
 
         if (jsonOb.has("address3adv") && !jsonOb.get("address3adv").equals(""))
             this.address3adv = jsonOb.getString("address3adv");
+
+        if (jsonOb.has("address2adv") && !jsonOb.get("address2adv").equals(""))
+            this.address2adv = jsonOb.getString("address2adv");
 
         if (jsonOb.has("complaint") && !jsonOb.get("complaint").equals(""))
             this.complaint = jsonOb.getString("complaint");
