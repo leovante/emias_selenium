@@ -28,7 +28,8 @@ public class ChangeDepartmentTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
-                .saveBtn();
+                .saveBtn()
+                .allertBtn();
         page.fullCardPage(pacient, testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -47,7 +48,8 @@ public class ChangeDepartmentTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
-                .saveBtn();
+                .saveBtn()
+                .allertBtn();
         page.fullCardPage(pacient, testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
@@ -106,7 +108,8 @@ public class ChangeDepartmentTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient)
                 .createCall()
-                .saveBtn();
+                .saveBtn()
+                .allertBtn();
         page.fullCardPage(pacient, testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);

@@ -1,5 +1,6 @@
 package emias;
 
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.config.AppConfig;
 import com.pages.Pages;
 import com.system.service.HltMkabServiceImpl;
@@ -53,6 +54,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public void setUp(@Optional String browser) throws IOException {
         driverInst = new WebDriverInstansiator(browser);
         driverInst.setDriver();
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
     }
 

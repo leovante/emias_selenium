@@ -4,6 +4,10 @@ import com.system.service.DoctorTimeTableService;
 import com.utils.sql.DBScripts;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
@@ -47,6 +51,9 @@ public class BeforeTestCalldoctor extends TestBase {
         // TODO: 5/16/2019 проверить валидность тестовых данных
         // TODO: 5/16/2019 проверить подключение к базе
         // TODO: 5/16/2019 проверить что все сервисы работают. Особенно кладр и формализатор
+        HttpUriRequest request = new HttpGet("http://192.168.7.24/test/api/kladrsave/find");
+        HttpResponse response = HttpClientBuilder.create().build().execute(request);
+
     }
 
     @Test(description = "Завершаю все вызовы оператора Темников")

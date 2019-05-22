@@ -15,7 +15,7 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.calldoctor.base.PrintFormTest"/>
+            <class name="emias.calldoctor.base.CancelCallTest"/>
         </classes>
     </test>
 </suite>

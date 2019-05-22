@@ -303,6 +303,7 @@ public class CreateCallPage extends AbstractPage {
                 Thread.sleep(1000);
                 i++;
             } while (!adress.getValue().equals("Московская обл.,") && i < 10);
+            // TODO: 5/22/2019 эта проверка отображения элемента, нужна проверка по апи перед запуском тестов
             Assert.assertTrue(adress.getValue().equals("Московская обл.,"), "адрес не загрузился");
         }
     }
