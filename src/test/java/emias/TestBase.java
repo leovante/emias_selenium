@@ -13,6 +13,7 @@ import com.utils.sql.DBScripts;
 import emias.calldoctor.after.AfterTestCalldoctor;
 import emias.calldoctor.before.BeforeTestCalldoctor;
 import emias.disp.before.BeforeTestDisp;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
