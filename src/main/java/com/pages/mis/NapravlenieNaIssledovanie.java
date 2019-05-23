@@ -1,13 +1,13 @@
 package com.pages.mis;
 
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class NapravlenieNaIssledovanie extends AbstractPage {
+public class NapravlenieNaIssledovanie extends PageBase {
 
     public NapravlenieNaIssledovanie() {
     }

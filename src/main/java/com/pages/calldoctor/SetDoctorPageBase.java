@@ -2,7 +2,7 @@ package com.pages.calldoctor;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class SetDoctorPage extends AbstractPage {
+public class SetDoctorPageBase extends PageBase {
     @CacheLookup
     SelenideElement appenToday = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
     SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
@@ -22,11 +22,11 @@ public class SetDoctorPage extends AbstractPage {
     @CacheLookup
     SelenideElement zapisatDobavit = $(By.xpath("//span[contains(text(),'Записать и добавить')]"));
 
-    public SetDoctorPage() {
+    public SetDoctorPageBase() {
     }
 
     @Step("назначиь врача на сегодня")
-    public SetDoctorPage chooseDoctorToday(Doctor doctor) throws IOException {
+    public SetDoctorPageBase chooseDoctorToday(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
         LOGGER.info("Врач выбран!");
@@ -34,7 +34,7 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("назначиь врача на сегодня")
-    public SetDoctorPage chooseDoctorTodayBooster(Doctor doctor) throws IOException {
+    public SetDoctorPageBase chooseDoctorTodayBooster(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         for (int i = 1; appenToday.isDisplayed(); i++) {
             appenToday.click();
@@ -45,7 +45,7 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("назначиь врача на завтра")
-    public SetDoctorPage chooseDoctorTomorrow(Doctor doctor) throws IOException {
+    public SetDoctorPageBase chooseDoctorTomorrow(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenTomorrow.click();
         LOGGER.info("Врач выбран!");
@@ -53,7 +53,7 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("назначиь врача")
-    public SetDoctorPage saveAddress() throws InterruptedException {
+    public SetDoctorPageBase saveAddress() throws InterruptedException {
         SelenideElement shoseDoctor = $(By.xpath("//*[contains(text(),'Выберите врача')]"));
         SelenideElement adressIsRecognize = $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]"));
         for (int i = 0; i < 10; i++) {
@@ -69,7 +69,7 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("нажать записать много раз")
-    public SetDoctorPage zapisatClickBooster(Doctor doctor) {
+    public SetDoctorPageBase zapisatClickBooster(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
         zapisat.click();
@@ -81,7 +81,7 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("нажать записать и добавить много раз")
-    public SetDoctorPage zapisatDobavitClickBooster(Doctor doctor) {
+    public SetDoctorPageBase zapisatDobavitClickBooster(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
         zapisatDobavit.click();
@@ -93,7 +93,7 @@ public class SetDoctorPage extends AbstractPage {
     }
 
     @Step("записать")
-    public SetDoctorPage zapisatBtn(Doctor doctor) {
+    public SetDoctorPageBase zapisatBtn(Doctor doctor) {
         zapisat.click();
         return this;
     }

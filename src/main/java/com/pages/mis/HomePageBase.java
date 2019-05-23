@@ -1,13 +1,13 @@
 package com.pages.mis;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class HomePage extends AbstractPage {
+public class HomePageBase extends PageBase {
 
     SelenideElement homePageBtn = $(By.xpath("//span[contains(.,'ЕМИАС Московской области')]"));
     SelenideElement timeTableBtn = $(By.xpath("//span[contains(.,'Ведение расписания')]"));
@@ -16,7 +16,7 @@ public class HomePage extends AbstractPage {
     SelenideElement callDoctorBtn = $(By.xpath("//span[contains(.,'Диспетчер')]"));
     SelenideElement napravlenieNaIssledovanie = $(By.xpath("//span[contains(.,'Направления на исследование')]"));
 
-    public HomePage() {
+    public HomePageBase() {
     }
 
     @Step("Захожу в ведение расписания")
@@ -25,25 +25,25 @@ public class HomePage extends AbstractPage {
     }
 
     @Step("Захожу в расписание приема")
-    public HomePage raspisaniPriemaBtn() {
+    public HomePageBase raspisaniPriemaBtn() {
         admissionScheduleBtn.click();
         return this;
     }
 
     @Step("Захожу в перенос записей")
-    public HomePage transferRecordsBtn() {
+    public HomePageBase transferRecordsBtn() {
         transferRecordsBtn.click();
         return this;
     }
 
     @Step("Нажимаю на логотип")
-    public HomePage logoHomeBtn() {
+    public HomePageBase logoHomeBtn() {
         homePageBtn.click();
         return this;
     }
 
     @Step("Захожу в направление на исследование")
-    public HomePage napravlenieNaIssledovanie() {
+    public HomePageBase napravlenieNaIssledovanie() {
         napravlenieNaIssledovanie.click();
         return this;
     }
@@ -75,11 +75,11 @@ public class HomePage extends AbstractPage {
         while (n <= i) {
             LOGGER.info("Обрабатываю врача №: " + n);
             String doctor_num = new DoctorMethods().getUnicalDoctor3(n);
-            String doctor_num_fam = VedenieRaspisaniyaPage.getSecondName(doctor_num);
+            String doctor_num_fam = VedenieRaspisaniyaPageBase.getSecondName(doctor_num);
 //            SQLDemonstration.deleteShedule(doctor_num_fam);
             new DoctorMethods().selectDoctor(doctor_num);
             new BeforeWork().createShedule();
-            new VedenieRaspisaniyaPage().verifyCreatedShedule(doctor_num_fam);
+            new VedenieRaspisaniyaPageBase().verifyCreatedShedule(doctor_num_fam);
             new DoctorMethods().selectDoctor(doctor_num);
             n++;
         }

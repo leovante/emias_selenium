@@ -2,7 +2,7 @@ package com.utils.api_model;
 
 import com.config.ConfigFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.pacients.Pacient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -15,7 +15,7 @@ import org.testng.Assert;
 import java.io.IOException;
 import java.util.Map;
 
-public class Tokenizer extends AbstractPage {
+public class Tokenizer extends PageBase {
     ConfigFile configFile;
     public static String token;
     HttpResponse response;

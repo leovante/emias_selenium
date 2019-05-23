@@ -3,7 +3,6 @@ package emias;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.config.AppConfig;
 import com.pages.Pages;
-import com.system.service.HltMkabServiceImpl;
 import com.utils.CustomListner1;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.TestMethodCapture;
@@ -15,7 +14,6 @@ import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.json.JSONException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -35,9 +33,6 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();
     }
-
-    @Autowired
-    public HltMkabServiceImpl hltMkabService;
 
     @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)

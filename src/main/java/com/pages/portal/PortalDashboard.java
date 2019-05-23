@@ -2,18 +2,14 @@ package com.pages.portal;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.pacients.Pacient;
-import com.utils.sql.DBScripts;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.$;
 
-public class PortalDashboard extends AbstractPage {
-
+public class PortalDashboard extends PageBase {
     SelenideElement enterRegister = $(By.xpath("//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']"));
     SelenideElement numberPolise = $(By.xpath("//input[@name='nPol']"));
     SelenideElement birthdate = $(By.xpath("//input[@name='birthday']"));
@@ -29,14 +25,11 @@ public class PortalDashboard extends AbstractPage {
     SelenideElement waitHeader = $(By.xpath("//*[contains(text(),'Адрес вызова')]"));
     SelenideElement standEMIAS = $(By.xpath("//*[contains(text(),'Стенд ЕМИАС МО')]"));
 
-    public PortalDashboard() {
-    }
-
     @Step("создаю вызов через портал")
-    public void createCall(Pacient pacient) throws IOException {
-        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
-        numberPolise.sendKeys(String.valueOf(pacient.getNumberpol()));
+    public void createCall(Pacient pacient) {
+        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
 
+        numberPolise.sendKeys(String.valueOf(pacient.getNumberpol()));
         birthdate.sendKeys(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
         enterRegister.click();
         standEMIAS.shouldBe(Condition.visible);

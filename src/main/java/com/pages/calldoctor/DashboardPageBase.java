@@ -3,7 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
 import com.pages.calldoctor.pacients.Pacient;
 import io.qameta.allure.Step;
@@ -13,7 +13,7 @@ import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class DashboardPage extends AbstractPage {
+public class DashboardPageBase extends PageBase {
 
     private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
     private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
@@ -54,7 +54,7 @@ public class DashboardPage extends AbstractPage {
 //    }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio_Fam(Pacient pacient) throws InterruptedException {
+    public DashboardPageBase searchFilterFio_Fam(Pacient pacient) throws InterruptedException {
         fioFilter.click();
         fioFilter.setValue(pacient.getFamily());
         Thread.sleep(2000);
@@ -62,7 +62,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPage searchFilterDoctor(Doctor doctor) throws InterruptedException {
+    public DashboardPageBase searchFilterDoctor(Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         docFilter.hover().click();
         Thread.sleep(1000);
@@ -78,14 +78,14 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPage searchFilterTypeCallNeotlozhniy() {
+    public DashboardPageBase searchFilterTypeCallNeotlozhniy() {
         typeCall.click();
         typeCallFilterNeotlozhniy.click();
         return this;
     }
 
     @Step("очистить фильтр подразделение")
-    public DashboardPage clearAllFilters() {
+    public DashboardPageBase clearAllFilters() {
         ElementsCollection closeList = $$(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (SelenideElement closeBtn : closeList) {
             closeBtn.click();
@@ -94,14 +94,14 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("Переключить фильтр все-завтра")
-    public DashboardPage filter_all_tomorrow() {
+    public DashboardPageBase filter_all_tomorrow() {
         filter_all.click();
         filterTomorrowViz.click();
         return this;
     }
 
     @Step("Переключить фильтр завтра-сегодня")
-    public DashboardPage filter_tomorrow_today() {
+    public DashboardPageBase filter_tomorrow_today() {
         filter_tomorrow.click();
         filterTodayViz.click();
         return this;
@@ -139,7 +139,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws InterruptedException {
+    public DashboardPageBase verifyActiveDocGroup(Pacient pacient, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
@@ -156,7 +156,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("проверяю на дашборде запись не отображается у врача в группе активные")
-    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) throws InterruptedException {
+    public DashboardPageBase verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock =
                 $(By.xpath("//*[contains(text(),'Активные')]"))
@@ -259,7 +259,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage cancelNewCallDash(Pacient pacient) throws InterruptedException {
+    public DashboardPageBase cancelNewCallDash(Pacient pacient) throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         Thread.sleep(4000);
@@ -283,7 +283,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("отменяю вызов в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage deleteNewCallProgressFrame(Pacient pacient) {
+    public DashboardPageBase deleteNewCallProgressFrame(Pacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
@@ -303,7 +303,7 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("валидация что вызов не отменился на странице редактирования")
-    public DashboardPage verifyCancellCallValidation() throws InterruptedException {
+    public DashboardPageBase verifyCancellCallValidation() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
@@ -311,14 +311,14 @@ public class DashboardPage extends AbstractPage {
     }
 
     @Step("валидация что вызов не отменился на дашборде")
-    public DashboardPage verifyCancellCallValidation_Dash() throws InterruptedException {
+    public DashboardPageBase verifyCancellCallValidation_Dash() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
         return this;
     }
 
     @Step("кнопка печати группы активные")
-    public DashboardPage printActionColumn() {
+    public DashboardPageBase printActionColumn() {
         $x("//div[@id='activeCallAllCount']/../div[6]/mat-icon").click();
         return this;
     }

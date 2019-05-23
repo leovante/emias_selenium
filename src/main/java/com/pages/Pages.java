@@ -3,9 +3,9 @@ package com.pages;
 import com.pages.callcenter.*;
 import com.pages.calldoctor.*;
 import com.pages.calldoctor.pacients.Pacient;
-import com.pages.disp.ExampPage;
-import com.pages.disp.JournalPage;
-import com.pages.disp.KvotyPage;
+import com.pages.disp.ExampPageBase;
+import com.pages.disp.JournalPageBase;
+import com.pages.disp.KvotyPageBase;
 import com.pages.kladr.Kladr;
 import com.pages.medicalrecords.NewMRPage;
 import com.pages.mis.*;
@@ -13,33 +13,33 @@ import com.pages.portal.PortalDashboard;
 
 import static com.codeborne.selenide.Selenide.page;
 
-public class Pages extends AbstractPage {
+public class Pages extends PageBase {
     public Pages() {
     }
 
     //MIS
-    public HomePage homePageMis() {
-        return page(HomePage.class);
+    public HomePageBase homePageMis() {
+        return page(HomePageBase.class);
     }
 
-    public LoginPage loginPage() {
-        return page(LoginPage.class);
+    public LoginPageBase loginPage() {
+        return page(LoginPageBase.class);
     }
 
     public NapravlenieNaIssledovanie napravlenieNaIssledovanie() {
         return page(NapravlenieNaIssledovanie.class);
     }
 
-    public VedenieRaspisaniyaPage manageShedule() {
-        return page(VedenieRaspisaniyaPage.class);
+    public VedenieRaspisaniyaPageBase manageShedule() {
+        return page(VedenieRaspisaniyaPageBase.class);
     }
 
     public CreateMedicalCard medicalCard() {
         return page(CreateMedicalCard.class);
     }
 
-    public RaspisaniePriemaPage raspisaniePriemaPage() {
-        return page(RaspisaniePriemaPage.class);
+    public RaspisaniePriemaPageBase raspisaniePriemaPage() {
+        return page(RaspisaniePriemaPageBase.class);
     }
 
     public TransferRecords transferRecords() {
@@ -50,28 +50,28 @@ public class Pages extends AbstractPage {
         return page(DoctorMethods.class);
     }
 
-    public CreateCallPage createCallPage(Pacient pacient) {
-        return new CreateCallPage(pacient);
+    public CreateCallPageBase createCallPage(Pacient pacient) {
+        return new CreateCallPageBase(pacient);
     }
 
-    public SetDoctorPage setDoctorPage() {
-        return page(SetDoctorPage.class);
+    public SetDoctorPageBase setDoctorPage() {
+        return page(SetDoctorPageBase.class);
     }
 
-    public FullCardPage fullCardPage(Pacient pacient, String s) {
-        return new FullCardPage(pacient, s);
+    public FullCardPageBase fullCardPage(Pacient pacient, String s) {
+        return new FullCardPageBase(pacient, s);
     }
 
-    public PrintFormPage printFormPage(Pacient pacient, String s) {
-        return new PrintFormPage(pacient, s);
+    public PrintFormPageBase printFormPage(Pacient pacient, String s) {
+        return new PrintFormPageBase(pacient, s);
     }
 
-    public DashboardPage dashboardPage() {
-        return page(DashboardPage.class);
+    public DashboardPageBase dashboardPage() {
+        return page(DashboardPageBase.class);
     }
 
-    public SetLpuPage setLpuPage() {
-        return page(SetLpuPage.class);
+    public SetLpuPageBase setLpuPage() {
+        return page(SetLpuPageBase.class);
     }
 
     public BeforeWork beforeWork() {
@@ -83,28 +83,38 @@ public class Pages extends AbstractPage {
         return page(PortalDashboard.class);
     }
 
-    public ExampPage exampPage() {
-        return page(ExampPage.class);
+    public ExampPageBase exampPage() {
+        return page(ExampPageBase.class);
     }
 
-    public JournalPage journalPage() {
-        return page(JournalPage.class);
+    public JournalPageBase journalPage() {
+        return page(JournalPageBase.class);
     }
 
-    public KvotyPage kvotyPage() {
-        return page(KvotyPage.class);
+    public KvotyPageBase kvotyPage() {
+        return page(KvotyPageBase.class);
     }
 
     //CallCenter
-    public RecordDoctorPage recordDoctorPage() {return page(RecordDoctorPage.class);}
+    public RecordDoctorPageBase recordDoctorPage() {
+        return page(RecordDoctorPageBase.class);
+    }
 
-    public FindPatientPage findPatientPage() {return page(FindPatientPage.class);}
+    public FindPatientPageBase findPatientPage() {
+        return page(FindPatientPageBase.class);
+    }
 
-    public WaitingListPage waitingListPage() {return page(WaitingListPage.class);}
+    public WaitingListPageBase waitingListPage() {
+        return page(WaitingListPageBase.class);
+    }
 
-    public CallDoctorPage callDoctorPage() {return page(CallDoctorPage.class);}
+    public CallDoctorPageBase callDoctorPage() {
+        return page(CallDoctorPageBase.class);
+    }
 
-    public DirectionsPage directionsPage() {return page(DirectionsPage.class);}
+    public DirectionsPageBase directionsPage() {
+        return page(DirectionsPageBase.class);
+    }
 
     public Kladr kladr() {
         return page(Kladr.class);

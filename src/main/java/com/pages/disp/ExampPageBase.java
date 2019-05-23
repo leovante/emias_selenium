@@ -2,14 +2,14 @@ package com.pages.disp;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class ExampPage extends AbstractPage implements Services {
+public class ExampPageBase extends PageBase implements Services {
     /*мероприятия*/
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
     SelenideElement ArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
@@ -36,14 +36,14 @@ public class ExampPage extends AbstractPage implements Services {
     SelenideElement elem;
 
 
-    public ExampPage openService(String service) throws InterruptedException {
+    public ExampPageBase openService(String service) throws InterruptedException {
         this.elem = $x("//*[contains(text(),'" + service + "')]").$x("../../.");
         this.elem.$x("../.").hover();
         this.elem.click();
         return this;
     }
 
-    public ExampPage signService() throws InterruptedException {
+    public ExampPageBase signService() throws InterruptedException {
         $x("//*[contains(text(),'" + elem + "')]")
                 .$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
         return this;
@@ -63,12 +63,12 @@ public class ExampPage extends AbstractPage implements Services {
                 .fillZakluchenie();
     }
 
-    public ExampPage switchAllServicesTap() {
+    public ExampPageBase switchAllServicesTap() {
         AllServicesTap.click();
         return this;
     }
 
-    public ExampPage fillArtPressure() throws InterruptedException {
+    public ExampPageBase fillArtPressure() throws InterruptedException {
         Thread.sleep(4000);
         ArtPressure.$(By.xpath("../.")).hover();
         ArtPressure.click();
@@ -78,7 +78,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillOpros_Anketirovanie() throws InterruptedException {
+    public ExampPageBase fillOpros_Anketirovanie() throws InterruptedException {
         Thread.sleep(4000);
         Opros_Anketirovanie.$(By.xpath("../.")).hover();
         Opros_Anketirovanie.click();
@@ -99,7 +99,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillAntropometriya() throws InterruptedException {
+    public ExampPageBase fillAntropometriya() throws InterruptedException {
         Thread.sleep(4000);
         Antropometriya.$(By.xpath("../.")).hover();
         Antropometriya.click();
@@ -119,7 +119,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillIndividProfConsulting() throws InterruptedException {
+    public ExampPageBase fillIndividProfConsulting() throws InterruptedException {
         Thread.sleep(4000);
         IndividualnoeProfConsulting.$(By.xpath("../.")).hover();
         IndividualnoeProfConsulting.click();
@@ -142,7 +142,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillOpredelenieLvlGlukozi() throws InterruptedException {
+    public ExampPageBase fillOpredelenieLvlGlukozi() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlGlukozi.$(By.xpath("../.")).hover();
         OpredelenieLvlGlukozi.click();
@@ -152,7 +152,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillOpredelenieLvlHolesterina() throws InterruptedException {
+    public ExampPageBase fillOpredelenieLvlHolesterina() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlHolesterina.$(By.xpath("../.")).hover();
         OpredelenieLvlHolesterina.click();
@@ -162,7 +162,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillFlurography() throws InterruptedException {
+    public ExampPageBase fillFlurography() throws InterruptedException {
         Thread.sleep(4000);
         Flura.$(By.xpath("../.")).hover();
         Thread.sleep(1000);
@@ -190,7 +190,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillOpredelenieOtnositSummSSR() throws InterruptedException {
+    public ExampPageBase fillOpredelenieOtnositSummSSR() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -199,7 +199,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillPriem_OsmotrTerapevta() throws InterruptedException {
+    public ExampPageBase fillPriem_OsmotrTerapevta() throws InterruptedException {
         Thread.sleep(4000);
         OsmotrTerapevta.$(By.xpath("../.")).hover();
         OsmotrTerapevta.click();
@@ -254,7 +254,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage fillZakluchenie() throws InterruptedException {
+    public ExampPageBase fillZakluchenie() throws InterruptedException {
         Thread.sleep(4000);
         Zakluchenie.$(By.xpath("../../conclusion")).hover();
         Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
@@ -288,7 +288,7 @@ public class ExampPage extends AbstractPage implements Services {
                 .viewZakluchenie();
     }
 
-    public ExampPage viewMeasureArtPressure() throws InterruptedException {
+    public ExampPageBase viewMeasureArtPressure() throws InterruptedException {
         Thread.sleep(4000);
         ArtPressure.hover().click();
         ArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
@@ -297,7 +297,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewMeasureOpros_Anketirovanie() throws InterruptedException {
+    public ExampPageBase viewMeasureOpros_Anketirovanie() throws InterruptedException {
         Thread.sleep(4000);
         Opros_Anketirovanie.hover().click();
         Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover().click();
@@ -316,7 +316,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewAntropometriya() throws InterruptedException {
+    public ExampPageBase viewAntropometriya() throws InterruptedException {
         Thread.sleep(4000);
         Antropometriya.hover().click();
         Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover().click();
@@ -333,7 +333,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewIndividProfConsulting() throws InterruptedException {
+    public ExampPageBase viewIndividProfConsulting() throws InterruptedException {
         Thread.sleep(4000);
         IndividualnoeProfConsulting.hover().click();
         IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover().click();
@@ -354,7 +354,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewOpredelenieLvlGlukozi() throws InterruptedException {
+    public ExampPageBase viewOpredelenieLvlGlukozi() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlGlukozi.click();
         OpredelenieLvlGlukozi.$(By.xpath("td[4]/mat-checkbox")).click();
@@ -362,7 +362,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewOpredelenieLvlHolesterina() throws InterruptedException {
+    public ExampPageBase viewOpredelenieLvlHolesterina() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlHolesterina.click();
         OpredelenieLvlHolesterina.$(By.xpath("td[4]/mat-checkbox")).click();
@@ -370,7 +370,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewFlurography() throws InterruptedException {
+    public ExampPageBase viewFlurography() throws InterruptedException {
         Thread.sleep(4000);
         Flura.$(By.xpath("../.")).hover();
         Thread.sleep(1000);
@@ -386,7 +386,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewOpredelenieOtnositSummSSR() throws InterruptedException {
+    public ExampPageBase viewOpredelenieOtnositSummSSR() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../tr[2]")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -395,7 +395,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewPriem_OsmotrTerapevta() throws InterruptedException {
+    public ExampPageBase viewPriem_OsmotrTerapevta() throws InterruptedException {
         Thread.sleep(4000);
         OsmotrTerapevta.$(By.xpath("../tr[2]")).hover();
         OsmotrTerapevta.click();
@@ -448,7 +448,7 @@ public class ExampPage extends AbstractPage implements Services {
         return this;
     }
 
-    public ExampPage viewZakluchenie() throws InterruptedException {
+    public ExampPageBase viewZakluchenie() throws InterruptedException {
         Thread.sleep(4000);
         Zakluchenie.$(By.xpath("../../conclusion")).hover();
         Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
@@ -467,31 +467,31 @@ public class ExampPage extends AbstractPage implements Services {
     }
 
     /*уведомления*/
-    public ExampPage validateServiceIsSign() {
+    public ExampPageBase validateServiceIsSign() {
         $(By.xpath("//*[contains(text(),'Мероприятие успешно подписано')]")).shouldBe(Condition.visible);
         return this;
     }
 
-    public ExampPage saveBtn() {
+    public ExampPageBase saveBtn() {
         PodvalSaveBtn.click();
         $(By.xpath("//*[contains(text(),'Карта успешно сохранена')]")).shouldBe(Condition.visible);
         return this;
     }
 
-    public ExampPage podpisatBtn() {
+    public ExampPageBase podpisatBtn() {
         PodvalPodpisatBtn.click();
         $(By.xpath("//*[contains(text(),'Карта успешно подписана')]")).shouldBe(Condition.visible);
         return this;
     }
 
     /* меню слева*/
-    public ExampPage zakluchenieMenuBtn() {
+    public ExampPageBase zakluchenieMenuBtn() {
         $(By.id("mCSB_1_container")).$(By.xpath(".//*[contains(text(),'Заключение')]")).click();
         return this;
     }
 
     /* всякие заполнения */
-    public ExampPage validateFieldParamIsEmpy() throws InterruptedException {
+    public ExampPageBase validateFieldParamIsEmpy() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -506,7 +506,7 @@ public class ExampPage extends AbstractPage implements Services {
     }
 
     @Step("Проверяю валидацию поля параметров с пробелом")
-    public ExampPage validateFieldParamWithSpace() throws InterruptedException {
+    public ExampPageBase validateFieldParamWithSpace() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -523,7 +523,7 @@ public class ExampPage extends AbstractPage implements Services {
     }
 
     @Step("Проверяю валидацию поля параметров с дефолтным значением")
-    public ExampPage validateDefaultParamWithSpace() throws InterruptedException {
+    public ExampPageBase validateDefaultParamWithSpace() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -540,7 +540,7 @@ public class ExampPage extends AbstractPage implements Services {
     }
 
     @Step("Проверяю валидацию поля параметров с дефолтным значением")
-    public ExampPage validateParamNotOpen() throws InterruptedException {
+    public ExampPageBase validateParamNotOpen() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         Thread.sleep(2000);//

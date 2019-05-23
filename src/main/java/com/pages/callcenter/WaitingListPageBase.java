@@ -1,14 +1,14 @@
 package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.pacients.Pacient;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class WaitingListPage extends AbstractPage {
+public class WaitingListPageBase extends PageBase {
     private Pacient pacient;
     SelenideElement waitspec = $(By.xpath("//div[@id='department-12102']/button[1]"));
     SelenideElement waitbutton = $(By.xpath("//*[contains(text(),'Записать в лист ожидания')]"));
@@ -17,10 +17,10 @@ public class WaitingListPage extends AbstractPage {
 //    @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
 //    WebElement lpu;
 
-    public WaitingListPage() {
+    public WaitingListPageBase() {
     }
 
-    public WaitingListPage waitingList(Pacient pacient) {
+    public WaitingListPageBase waitingList(Pacient pacient) {
         $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]")).click();
         waitspec.click();
         waitbutton.click();

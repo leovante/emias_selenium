@@ -2,10 +2,12 @@ package com.pages;
 
 import com.dataGenerator.ModuleData;
 import com.pages.calldoctor.pacients.Pacient;
+import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
 import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -13,14 +15,17 @@ import java.util.logging.Logger;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class AbstractPage {
+public class PageBase {
     public WebDriver driver;
     public Assistance as = new AssistanceImpl();
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static int callNumber;
     public static Map<String, Integer> cardMap = new HashMap();
 
-    public AbstractPage() {
+    @Autowired
+    public HltCallDoctorServiceImpl hltCallDoctorService;
+
+    public PageBase() {
         this.driver = getWebDriver();
     }
 

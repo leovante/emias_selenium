@@ -1,13 +1,13 @@
 package com.pages.callcenter;
 
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 
-public class PatientRecordsPage extends AbstractPage {
+public class PatientRecordsPageBase extends PageBase {
     String name2;
     String time2;
     String number2;
 
-    public PatientRecordsPage() {
+    public PatientRecordsPageBase() {
     }
 
 

@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import static com.pages.AbstractPage.LOGGER;
+import static com.pages.PageBase.LOGGER;
 
 public class Status {
     static String URL = "http://localhost:4444/grid/api/hub";

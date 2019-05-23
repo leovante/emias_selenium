@@ -5,7 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import com.codeborne.selenide.commands.PressEscape;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
 import com.pages.calldoctor.pacients.Pacient;
 import io.qameta.allure.Step;
@@ -16,7 +16,7 @@ import java.util.Set;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class RaspisaniePriemaPage extends AbstractPage {
+public class RaspisaniePriemaPageBase extends PageBase {
     static String terapevtTime;
 
     SelenideElement RecordsArea = $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div"));
@@ -42,7 +42,7 @@ public class RaspisaniePriemaPage extends AbstractPage {
     SelenideElement kvotyCount = $(By.xpath("//*[@class='ng-binding'][@ng-hide='!data.IsQuotaDispType']"));
 
 
-    public RaspisaniePriemaPage() {
+    public RaspisaniePriemaPageBase() {
     }
 
     @Step("Сделать запись")
@@ -72,7 +72,7 @@ public class RaspisaniePriemaPage extends AbstractPage {
         }
     }
 
-    public RaspisaniePriemaPage createDispMl(String pacient, String bd) {
+    public RaspisaniePriemaPageBase createDispMl(String pacient, String bd) {
         ml.click();
         mkabSearch.val(pacient);
         mlSearchBtn.click();
@@ -84,12 +84,12 @@ public class RaspisaniePriemaPage extends AbstractPage {
         return this;
     }
 
-    public RaspisaniePriemaPage saveAndClose() {
+    public RaspisaniePriemaPageBase saveAndClose() {
         $(By.xpath("//*[contains(text(),'Сохранить и закрыть')]")).click();
         return this;
     }
 
-    public RaspisaniePriemaPage generateML() throws InterruptedException {
+    public RaspisaniePriemaPageBase generateML() throws InterruptedException {
         String i = kvotyCount.getText();
         $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
         if (i.equals("0")) {
@@ -120,7 +120,7 @@ public class RaspisaniePriemaPage extends AbstractPage {
         switchTo().window("Медицинская Информационная Система");
     }
 
-    public RaspisaniePriemaPage generateML(Pacient pacient) throws InterruptedException {
+    public RaspisaniePriemaPageBase generateML(Pacient pacient) throws InterruptedException {
         ml.click();
         sinpmkabScheduleGrid.setValue(
                 pacient.getFamily() + " " +
@@ -148,17 +148,17 @@ public class RaspisaniePriemaPage extends AbstractPage {
         return this;
     }
 
-    public RaspisaniePriemaPage getTerapevtTime() {
+    public RaspisaniePriemaPageBase getTerapevtTime() {
         terapevtTime = $(By.xpath("//*[contains(text(),'Прием врача-терапевта')]/../../div[6]/span")).getText();
         return this;
     }
 
-    public RaspisaniePriemaPage saveAndCloseBtn() {
+    public RaspisaniePriemaPageBase saveAndCloseBtn() {
         applyBtn.click();
         return this;
     }
 
-    public RaspisaniePriemaPage selectDoctor(Doctor doctor) {
+    public RaspisaniePriemaPageBase selectDoctor(Doctor doctor) {
         $(By.xpath("//td/div/span[contains(text(),'" +
                 doctor.getFamily() + " " +
                 doctor.getName() + " " +
@@ -167,7 +167,7 @@ public class RaspisaniePriemaPage extends AbstractPage {
         return this;
     }
 
-    public RaspisaniePriemaPage disableIPK() {
+    public RaspisaniePriemaPageBase disableIPK() {
         $(By.xpath("//*[contains(text(),'Индивидуальное профилактическое консультирование')]"))
                 .$(By.xpath("./../..//[@ng-click='CancelService(exam)']"))
                 .click();
@@ -176,7 +176,7 @@ public class RaspisaniePriemaPage extends AbstractPage {
         return this;
     }
 
-    public RaspisaniePriemaPage validateTerapevtLast() {
+    public RaspisaniePriemaPageBase validateTerapevtLast() {
         $$(By.xpath("//*[class='examListBody']")).last()
                 .$(By.xpath(".//*[contains(text(),'Прием врача-терапевта')]"))
                 .shouldBe(Condition.visible);

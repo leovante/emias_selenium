@@ -3,7 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.pacients.Pacient;
 import com.utils.api_model.CallDoctorHttp;
 import com.utils.except.NoticeException;
@@ -27,7 +27,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
-public class CreateCallPage extends AbstractPage {
+public class CreateCallPageBase extends PageBase {
     private Pacient pacient;
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
@@ -58,7 +58,7 @@ public class CreateCallPage extends AbstractPage {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
 
-    public CreateCallPage(Pacient pacient) {
+    public CreateCallPageBase(Pacient pacient) {
         this.pacient = pacient;
     }
 
@@ -68,7 +68,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
 
-    public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
+    public CreateCallPageBase createCall() throws IOException, InterruptedException, ParseException {
         addNewCall()
                 .sourceCall()
                 .address()
@@ -82,7 +82,7 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
+    public CreateCallPageBase createCall_Mkab() throws IOException, InterruptedException, ParseException {
         addNewCall()
                 .sourceCall()
                 .searchField()
@@ -103,7 +103,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("редактирую вызов")
-    public CreateCallPage editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
+    public CreateCallPageBase editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .sourceCall()
@@ -121,7 +121,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public CreateCallPage editCallPage_Mkab(Pacient pacient) throws InterruptedException {
+    public CreateCallPageBase editCallPage_Mkab(Pacient pacient) throws InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .searchField()
@@ -134,7 +134,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("очищаю все поля у карты")
-    public CreateCallPage setDeafult() {
+    public CreateCallPageBase setDeafult() {
         $(By.id("source1")).click();
 
         Actions actions = new Actions(driver);
@@ -169,13 +169,13 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("добавить новый вызов")
-    public CreateCallPage addNewCall() {
+    public CreateCallPageBase addNewCall() {
         $(By.id("addNewCall")).click();
         return this;
     }
 
     @Step("выбор источника вызова")
-    private CreateCallPage sourceCall() {
+    private CreateCallPageBase sourceCall() {
         try {
             if (pacient.getSource() == 1) {
                 sourceReg.click();
@@ -190,14 +190,14 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("поиск МКАБ")
-    public CreateCallPage searchField() {
+    public CreateCallPageBase searchField() {
         $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
         $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
         return this;
     }
 
     @Step("ввод адреса")
-    private CreateCallPage address() throws InterruptedException {
+    private CreateCallPageBase address() throws InterruptedException {
         if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
             clearAddress();
             list_first_container(pacient.getAddress1());
@@ -226,7 +226,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("выбрал адрес из выпадающего списка")
-    public CreateCallPage list_first_container(String address) throws InterruptedException {
+    public CreateCallPageBase list_first_container(String address) throws InterruptedException {
         adress.hover();
         Thread.sleep(1000);
         WebDriver driver = getWebDriver();
@@ -270,7 +270,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("уточняю адрес")
-    private CreateCallPage addressPlus() {
+    private CreateCallPageBase addressPlus() {
         korpus.setValue(pacient.getBuilding());
         $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
         $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
@@ -281,7 +281,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("телефон")
-    private CreateCallPage telephone() {
+    private CreateCallPageBase telephone() {
         try {
             if (!pacient.getPhone().equals(null)) {
                 $(By.id("phone")).setValue(pacient.getPhone());
@@ -296,7 +296,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("пол")
-    private CreateCallPage gender() {
+    private CreateCallPageBase gender() {
         if (pacient.getGender() == 1) {
             $(By.id("sex1")).click();
         }
@@ -307,7 +307,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("жалоба")
-    private CreateCallPage complaint() throws InterruptedException {
+    private CreateCallPageBase complaint() throws InterruptedException {
         SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
@@ -319,7 +319,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("полис")
-    private CreateCallPage polis() {
+    private CreateCallPageBase polis() {
         if (pacient.getSeriespol() != null && pacient.getSeriespol() != "") {
             $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
         }
@@ -330,7 +330,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("фио")
-    private CreateCallPage FIO() {
+    private CreateCallPageBase FIO() {
         if (pacient.getFamily() != null) {
             $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
         }
@@ -344,14 +344,14 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("день рождения")
-    private CreateCallPage birthDay() {
+    private CreateCallPageBase birthDay() {
         if (pacient.getBirthdate("") != null)
             $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
         return this;
     }
 
     @Step("возрастная категория")
-    public CreateCallPage vozrastKat() {
+    public CreateCallPageBase vozrastKat() {
         $(By.xpath("//button[2]/span/mat-icon")).click();
         vKat.click();
 
@@ -368,7 +368,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("фио вызывающего")
-    private CreateCallPage caller() {
+    private CreateCallPageBase caller() {
         if (pacient.getSource() == 2) {
             $(By.id("sourceSmp")).setValue("Супер станция");
             $(By.id("callFamily")).setValue("ФамилияВызывающего");
@@ -395,7 +395,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("кнопка сохранить")
-    public CreateCallPage saveBtn() throws InterruptedException, NoticeException {
+    public CreateCallPageBase saveBtn() throws InterruptedException, NoticeException {
         Thread.sleep(1000);
         SelenideElement save = $(By.id("save"));
         save.click();
@@ -403,20 +403,20 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("кнопка сохранить")
-    public CreateCallPage allertBtn() throws InterruptedException, NoticeException {
+    public CreateCallPageBase allertBtn() throws InterruptedException, NoticeException {
         SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
         allert.click();
         return this;
     }
 
     @Step("кнопка редактировать")
-    public CreateCallPage editCallBtn() {
+    public CreateCallPageBase editCallBtn() {
         $(By.id("change")).click();
         return this;
     }
 
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPage verifyCallProfile1(Pacient pacient) {
+    public CreateCallPageBase verifyCallProfile1(Pacient pacient) {
         Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
         Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
         Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
@@ -439,14 +439,14 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("нажимаю на выпадающий список участков")
-    public CreateCallPage selectUchastokFromNeUdalosOpredelit() {
+    public CreateCallPageBase selectUchastokFromNeUdalosOpredelit() {
         SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]")).shouldBe(Condition.visible);
         $(By.xpath("//mat-label[contains(text(),'Участок')]/../../..//mat-select")).click();
         return this;
     }
 
     @Step("очищаю ФИО кто вызывает")
-    public CreateCallPage deleteWhoCallFIO() {
+    public CreateCallPageBase deleteWhoCallFIO() {
         famCall.clear();
         nameCall.clear();
         otCall.clear();
@@ -454,13 +454,13 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("станция СМП")
-    public CreateCallPage fillSourceSmp() {
+    public CreateCallPageBase fillSourceSmp() {
         sourceSmp2.val("тест");
         return this;
     }
 
     @Step("валидация что вызов не отменился на странице редактирования")
-    public CreateCallPage verifyCancellCallValidation() throws InterruptedException {
+    public CreateCallPageBase verifyCancellCallValidation() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
@@ -468,7 +468,7 @@ public class CreateCallPage extends AbstractPage {
     }
 
     @Step("отменить вызов")
-    public CreateCallPage cancelOnFullCardBtn(String reason) {
+    public CreateCallPageBase cancelOnFullCardBtn(String reason) {
         $(By.xpath("//*[contains(text(),'Редактирование вызова')]")).shouldBe(Condition.visible);
         cancelBtn.click();
         cancelField.setValue(reason);

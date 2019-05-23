@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.pages.AbstractPage.LOGGER;
+import static com.pages.PageBase.LOGGER;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;

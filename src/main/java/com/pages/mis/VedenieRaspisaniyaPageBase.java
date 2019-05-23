@@ -3,7 +3,7 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class VedenieRaspisaniyaPage extends AbstractPage {
+public class VedenieRaspisaniyaPageBase extends PageBase {
 
     SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
     SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
@@ -58,7 +58,7 @@ public class VedenieRaspisaniyaPage extends AbstractPage {
     }
 
     @Step("задать неприемные дни")
-    public VedenieRaspisaniyaPage setNotReceiveDays(String firstDoctor) {
+    public VedenieRaspisaniyaPageBase setNotReceiveDays(String firstDoctor) {
 //        waitAllEmias();
 //        Keyboard keyboard = ((HasInputDevices) remoteDriver).getKeyboard();
 
@@ -100,7 +100,7 @@ public class VedenieRaspisaniyaPage extends AbstractPage {
     }
 
     @Step("удалить расписание")
-    public VedenieRaspisaniyaPage deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
+    public VedenieRaspisaniyaPageBase deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
 //        Keyboard keyboard = ((HasInputDevices) remoteDriver).getKeyboard();
 //        waitAllEmias();
 
@@ -140,7 +140,7 @@ public class VedenieRaspisaniyaPage extends AbstractPage {
     }
 
     @Step("проверить неприемные дни")
-    public VedenieRaspisaniyaPage verifyNotReceiveDays() {
+    public VedenieRaspisaniyaPageBase verifyNotReceiveDays() {
 //        waitAllEmias();
         $(By.xpath("//div[@id='schedule']/div/div/div"))
                 .$(By.xpath("span[contains(text(),'Врач на больничном')]"))
@@ -150,7 +150,7 @@ public class VedenieRaspisaniyaPage extends AbstractPage {
     }
 
     @Step("проверить удаление расписания")
-    public VedenieRaspisaniyaPage verifyDeletedShedle() {
+    public VedenieRaspisaniyaPageBase verifyDeletedShedle() {
         if (!$(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
@@ -171,7 +171,7 @@ public class VedenieRaspisaniyaPage extends AbstractPage {
     }
 
     @Step("проверка создания распсиания")
-    public VedenieRaspisaniyaPage verifyCreatedShedule(String nameDoctor) throws InterruptedException {
+    public VedenieRaspisaniyaPageBase verifyCreatedShedule(String nameDoctor) throws InterruptedException {
         Thread.sleep(2000);
         $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .$(By.xpath("//*[contains(text(),'23:44 ')]"));

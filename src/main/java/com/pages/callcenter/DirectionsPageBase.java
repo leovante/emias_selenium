@@ -1,18 +1,18 @@
 package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class DirectionsPage extends AbstractPage {
+public class DirectionsPageBase extends PageBase {
     SelenideElement closemodal = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button"));
 //    @FindBy(xpath = "//*[@id='direction-list-tab']")
 //    WebElement apo;
 //    JavascriptExecutor js = (JavascriptExecutor) remoteDriver;
 
-    public DirectionsPage() {
+    public DirectionsPageBase() {
     }
 
     public void eqNapr(String arg0, String arg1, String arg2){

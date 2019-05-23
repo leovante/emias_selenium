@@ -1,14 +1,14 @@
 package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.pacients.Pacient;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class FindPatientPage extends AbstractPage {
+public class FindPatientPageBase extends PageBase {
     private Pacient pacient;
     SelenideElement fondPatient1 = $(By.xpath("//*[@id='fond-patients']/tr/td[2]"));
     SelenideElement fondPatient2 = $(By.xpath("//*[@id='fond-patients']/tr/td[3]"));
@@ -18,16 +18,16 @@ public class FindPatientPage extends AbstractPage {
     SelenideElement fio = $(By.name("surnameNamePatronymic"));
     SelenideElement birthday = $(By.name("birthday"));
 
-    public FindPatientPage() {
+    public FindPatientPageBase() {
     }
 
-    public FindPatientPage findByPolis(Pacient pacient)  {
+    public FindPatientPageBase findByPolis(Pacient pacient) {
         this.pacient = pacient;
         findPatient(pacient);
         return this;
     }
 
-    public FindPatientPage findByFio(Pacient pacient)  {
+    public FindPatientPageBase findByFio(Pacient pacient) {
         this.pacient = pacient;
         findFio(pacient);
         return this;

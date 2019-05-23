@@ -3,7 +3,7 @@ package com.pages.mis;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.config.ConfigFile;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -11,10 +11,10 @@ import org.openqa.selenium.Cookie;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginPage extends AbstractPage {
+public class LoginPageBase extends PageBase {
     ConfigFile conf;
 
-    public LoginPage() {
+    public LoginPageBase() {
         conf = new ConfigFile();
     }
 

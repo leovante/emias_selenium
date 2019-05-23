@@ -1,6 +1,6 @@
 package com.utils.sql;
 
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.utils.HibernateSessionFactory;
 import io.qameta.allure.Step;
 import org.codehaus.plexus.util.IOUtil;
@@ -15,7 +15,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
 
-public class DBScripts extends AbstractPage {
+public class DBScripts extends PageBase {
 
     private static String connectionUrl = "jdbc:sqlserver://192.168.7.253:64783";
     private static String databaseName = "test_mo_hlt_Taldom_CRB_20190129";
@@ -111,7 +111,6 @@ public class DBScripts extends AbstractPage {
 
     @Step("завершаю вызовы пациента по полису")
     public static void finalizeCall_NPol(String number) {
-
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +

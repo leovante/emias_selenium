@@ -2,7 +2,7 @@ package com.pages.mis;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class DoctorMethods extends AbstractPage {
+public class DoctorMethods extends PageBase {
     SelenideElement doctorRow = $(By.xpath("//tr[@role='row'][@tabindex='-1']"));
 
     public DoctorMethods() {

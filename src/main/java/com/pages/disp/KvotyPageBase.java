@@ -1,15 +1,15 @@
 package com.pages.disp;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.AbstractPage;
+import com.pages.PageBase;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class KvotyPage extends AbstractPage {
+public class KvotyPageBase extends PageBase {
     SelenideElement kvotyNumber = $(By.xpath("//*[contains(text(),'Квоты')]"));
 
-    public KvotyPage() {
+    public KvotyPageBase() {
     }
 
     public void kvotyBtn() {
