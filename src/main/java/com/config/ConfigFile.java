@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class Config {
+public class ConfigFile {
     private String url;
     private String login;
     private String password;
@@ -20,7 +20,7 @@ public class Config {
     private String authorization;
     private String requestSmp;
 
-    public Config() {
+    public ConfigFile() {
         FileInputStream fis;
         Properties property = new Properties();
         try {

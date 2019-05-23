@@ -116,14 +116,12 @@ public class CreateCallPage extends AbstractPage {
                 .FIO()
                 .caller()
                 .telephone();
-//                .saveBtn();
         LOGGER.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public CreateCallPage editCallPage_Mkab(Pacient pacient) throws
-            IOException, ParseException, InterruptedException {
+    public CreateCallPage editCallPage_Mkab(Pacient pacient) throws InterruptedException {
         this.pacient = pacient;
         sourceCall()
                 .searchField()
@@ -131,7 +129,6 @@ public class CreateCallPage extends AbstractPage {
                 .complaint()
                 .caller()
                 .telephone();
-//                .saveBtn();
         LOGGER.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
@@ -199,36 +196,6 @@ public class CreateCallPage extends AbstractPage {
         return this;
     }
 
-    /*
-            private CreateCallPage address() throws InterruptedException {
-            cancelAdress.shouldBe(Condition.visible);
-            if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
-                cancelAdress.click();
-                adress.setValue(pacient.getAddress1());
-                list_first_container.click();
-            }
-            if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
-                adress.setValue(pacient.getAddress2());
-                list_first_container.isDisplayed();
-                Thread.sleep(700);
-                list_first_container.click();
-            }
-            if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
-                adress.setValue(pacient.getAddress3());
-                list_first_container.isDisplayed();
-                Thread.sleep(700);
-                if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "")
-                    $(By.xpath("//div[@class='autocomplete-list-container']/ul/li[@data-value='" + pacient.getAddress3adv() + "']")).click();
-                else
-                    list_first_container.click();
-            }
-            if (pacient.getNumber() != null && pacient.getNumber() != "") {
-                $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
-            }
-            addressPlus();
-            return this;
-        }
-    */
     @Step("ввод адреса")
     private CreateCallPage address() throws InterruptedException {
         if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
@@ -272,9 +239,6 @@ public class CreateCallPage extends AbstractPage {
         Thread.sleep(1000);
         adress.hover();
         address1.sendKeys(" ");
-//        WebElement getRandomAddressString = remoteDriver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"));
-//        wait.until(ExpectedConditions.elementToBeClickable(remoteDriver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))));
-//        remoteDriver.findElement(By.xpath("//mat-option/span[contains(text(),'" + address + "')]")).click();
         $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
                 .shouldBe(Condition.visible)
                 .click();
@@ -284,9 +248,6 @@ public class CreateCallPage extends AbstractPage {
     @Step("очистить поле с адресом")
     void clearAddress() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
-//        Assert.assertTrue(
-//                $(By.xpath("//*[contains(text(),'Новый вызов')]")).isDisplayed() |
-//                        $(By.xpath("//*[contains(text(),'Редактирование вызова')]")).isDisplayed());
         addressLoadWaiter();
         for (int k = 0; k < 10 && !adress.getValue().equals(""); k++) {
             cancelAdress.shouldBe(Condition.visible).click();
@@ -473,12 +434,6 @@ public class CreateCallPage extends AbstractPage {
         Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
         Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
         Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
-
-//        tipVisivaushego.getAttribute("value").equals(pacient.get("whoIsCall"));
-//        telephoneNumber.getAttribute("value").equals(pacient.get("telephone"));
-//        famCall.getAttribute("value").equals(pacient.get("famCall"));
-//        nameCall.getAttribute("value").equals(pacient.get("nameCall"));
-//        otCall.getAttribute("value").equals(pacient.get("otCall"));
         LOGGER.info("Проверка данных на странице редактирования выполнена!");
         return this;
     }

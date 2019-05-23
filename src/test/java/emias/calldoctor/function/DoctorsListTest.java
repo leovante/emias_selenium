@@ -99,6 +99,7 @@ public class DoctorsListTest extends TestBase {
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
         page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+
         as.isNotVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());

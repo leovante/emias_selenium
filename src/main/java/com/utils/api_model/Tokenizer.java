@@ -1,6 +1,6 @@
 package com.utils.api_model;
 
-import com.config.Config;
+import com.config.ConfigFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pages.AbstractPage;
 import com.pages.calldoctor.pacients.Pacient;
@@ -16,12 +16,12 @@ import java.io.IOException;
 import java.util.Map;
 
 public class Tokenizer extends AbstractPage {
-    Config config;
+    ConfigFile configFile;
     public static String token;
     HttpResponse response;
 
     public Tokenizer() {
-        config = new Config();
+        configFile = new ConfigFile();
     }
 
     public String getToken(Pacient pacient, String ClientApplication) throws IOException {

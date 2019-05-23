@@ -2,7 +2,7 @@ package com.pages.mis;
 
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.config.Config;
+import com.config.ConfigFile;
 import com.pages.AbstractPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,10 +12,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage extends AbstractPage {
-    Config conf;
+    ConfigFile conf;
 
     public LoginPage() {
-        conf = new Config();
+        conf = new ConfigFile();
     }
 
     @Step("Открываю стенд")

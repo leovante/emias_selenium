@@ -2,7 +2,7 @@ package com.utils;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
-import com.config.Config;
+import com.config.ConfigFile;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
@@ -24,12 +24,12 @@ import static com.pages.AbstractPage.LOGGER;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;
-    private Config conf;
+    private ConfigFile conf;
     public String browser;
     public WebDriver driver;
 
     public WebDriverInstansiator(String browser) {
-        this.conf = new Config();
+        this.conf = new ConfigFile();
         this.browser = browser;
     }
 

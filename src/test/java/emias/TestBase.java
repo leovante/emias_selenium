@@ -64,6 +64,9 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         driverInst.driverClose();
     }
 
+    /**
+     * СЕРВИСЫ
+     */
     @Parameters({"testng"})
     @BeforeTest(groups = "CD")
     public void beforeTestCD(@Optional String testng) throws IOException, ParseException {
@@ -71,10 +74,14 @@ public class TestBase extends AbstractTestNGSpringContextTests {
             new BeforeTestCalldoctor().beforeCallDoctorTest();
     }
 
+    @AfterTest(groups = "CD")
+    public void afterTestCD() {
+        new AfterTestCalldoctor().cleanAfterCallDoctorTests();
+    }
+
     @AfterMethod(groups = "CD", alwaysRun = true)
     public void afterMethodCD(ITestResult result) {
         DBScripts.cancelCall(result.getMethod().getMethodName());
-        new AfterTestCalldoctor().cleanAfterCallDoctorTests();
     }
 
     @Parameters({"testng"})
