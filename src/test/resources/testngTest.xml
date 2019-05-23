@@ -5,6 +5,7 @@
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.CustomListner1"/>
     </listeners>
 
     <test name="ChromeTest" verbose="1" parallel="true">

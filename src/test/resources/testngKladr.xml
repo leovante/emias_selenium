@@ -5,6 +5,7 @@
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.CustomListner1"/>
     </listeners>
 
     <test name="ChromeTest" verbose="1" parallel="true">
@@ -14,11 +15,8 @@
                 <include name="kl"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.kladr.KladrFiasVerify"/>
-        </classes>
-        <!--<packages>-->
-        <!--<package name="emias.kladr"/>-->
-        <!--</packages>-->
+        <packages>
+            <package name="emias.kladr"/>
+        </packages>
     </test>
 </suite>

@@ -5,6 +5,7 @@
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
+        <listener class-name="com.utils.CustomListner1"/>
     </listeners>
 
     <test verbose="1" name="ChromeTest">
@@ -14,11 +15,8 @@
                 <include name="disp"/>
             </run>
         </groups>
-        <classes>
-            <class name="emias.disp.before.BeforeTestDisp"/>
-        </classes>
-        <!--<packages>-->
-        <!--<package name="emias.disp.base"/>-->
-        <!--</packages>-->
+        <packages>
+            <package name="emias.disp.base"/>
+        </packages>
     </test>
 </suite>
