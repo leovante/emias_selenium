@@ -17,8 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 
 public class EditPageTest extends TestBase {
 
@@ -46,7 +45,8 @@ public class EditPageTest extends TestBase {
                 .saveBtn()
                 .editCallBtn()
                 .saveBtn();
-        List<SelenideElement> se = $$(By.xpath("//div[@class='datatable-row-center datatable-row-group ng-star-inserted']"));
+        $x("//*[contains(.,'Карта создана')]").shouldBe(Condition.visible);
+        List<SelenideElement> se = $$x("//div[@class='datatable-row-center datatable-row-group ng-star-inserted']");
         Assert.assertTrue(se.size() == 1, "Количество записей в истории больше одной!");
     }
 
@@ -64,8 +64,8 @@ public class EditPageTest extends TestBase {
                 .setDeafult()
                 .editCallPage_Mkab(pacient2)
                 .saveBtn();
-        page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient2)
+        page.fullCardPage(pacient2, testName())
+                .verifyNewCall()
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
@@ -95,14 +95,13 @@ public class EditPageTest extends TestBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_3");
+        Pacient pacient = new Pacient("Profile0_3_1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
-                .createCall_Mkab()
-                .saveBtn();
-        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
+        page.createCallPage(pacient).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacient);
+        page.fullCardPage(pacient, testName()).verifyNewCall();
         page.createCallPage(pacient).editCallBtn();
-        $(By.xpath("//simple-snack-bar[contains(.,'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//*[contains(.,'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
     }
 
     // TODO: 1/21/2019 добавить тест, вводить новый адрес английскими буквами

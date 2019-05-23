@@ -93,7 +93,7 @@ public class CallDoctorHttp {
             if (pacient.getSource() == 3) {//кц авторизацией
                 httpResponse = httpClient.execute(createPostRequestToken());
             }
-            if (pacient.getSource() != 2 | pacient.getSource() != 3) {
+            if (pacient.getSource() != 2 && pacient.getSource() != 3) {
                 throw new NullPointerException("Нет такого источника");
             }
         } catch (Exception ex) {

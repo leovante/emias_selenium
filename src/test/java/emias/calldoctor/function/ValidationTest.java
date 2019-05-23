@@ -45,7 +45,7 @@ public class ValidationTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
+        page.fullCardPage(pacient, testName()).verifyNewCall();
         page.fullCardPage(pacient, testName()).editCallBtn();
         page.createCallPage(pacient)
                 .fillSourceSmp()
@@ -94,7 +94,6 @@ public class ValidationTest extends TestBase {
                 .saveBtn();
         page.fullCardPage(pacient, testName()).closeCardBtn();
         page.dashboardPage()
-                .cancelNewCallDash(pacient)
                 .cancelNewCallDash(pacient)
                 .verifyCancellCallValidation_Dash()
                 .verifyCallIsNotCancelFromDashboard(pacient);

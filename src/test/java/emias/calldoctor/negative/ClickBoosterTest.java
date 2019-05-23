@@ -44,7 +44,7 @@ public class ClickBoosterTest extends TestBase {
         page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatClickBooster(doctor);
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .closeCardBtn();
         throw new AssertionFailure("сделай нормальную проверку");
     }
@@ -61,7 +61,7 @@ public class ClickBoosterTest extends TestBase {
         page.fullCardPage(pacient, testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatDobavitClickBooster(doctor);
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .closeCardBtn();
         throw new AssertionFailure("сделай нормальную проверку");
     }

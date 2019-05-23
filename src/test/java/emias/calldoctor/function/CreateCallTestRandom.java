@@ -23,7 +23,7 @@ public class CreateCallTestRandom extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall();
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .closeCardBtn();
     }
 

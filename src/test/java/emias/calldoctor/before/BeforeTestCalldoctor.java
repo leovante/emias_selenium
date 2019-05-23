@@ -50,6 +50,7 @@ public class BeforeTestCalldoctor extends TestBase {
         // TODO: 5/16/2019 проверить что вызов можно создать по api
         // TODO: 5/16/2019 проверить валидность тестовых данных
         // TODO: 5/16/2019 проверить подключение к базе
+        // TODO: 5/22/2019 проверки на ссылки сервисов из конфига (отображение какого-нибудь элемента)
         // TODO: 5/16/2019 проверить что все сервисы работают. Особенно кладр и формализатор
         HttpUriRequest request = new HttpGet("http://192.168.7.24/test/api/kladrsave/find");
         HttpResponse response = HttpClientBuilder.create().build().execute(request);

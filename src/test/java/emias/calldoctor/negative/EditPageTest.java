@@ -22,7 +22,7 @@ public class EditPageTest extends TestBase {
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .editCallBtn();
         page.createCallPage(pacient).saveBtn();
         as.isNotVisibleText("Редактирование вызова № 0");

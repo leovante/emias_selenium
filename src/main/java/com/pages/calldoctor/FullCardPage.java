@@ -115,7 +115,7 @@ public class FullCardPage extends AbstractPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyNewCall(Pacient pacient) throws IOException {
+    public FullCardPage verifyNewCall() throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -135,6 +135,7 @@ public class FullCardPage extends AbstractPage {
 
     @Step("проверяю обслуженный вызов")
     public FullCardPage verifyDoneCall(Doctor doctor) throws IOException {
+        refresh();
         $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();

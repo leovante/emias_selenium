@@ -209,7 +209,7 @@ public class DoctorsListTest extends TestBase {
                 .openNewCallDash(pacient);
         as.isVisibleText(operator.getDepartment());
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
         as.isVisibleText(mokov.getUchastocs());

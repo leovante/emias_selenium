@@ -11,7 +11,7 @@ public class CompleteServiceTest extends TestBase {
 
     @Test(groups = "CD", description = "завершить обслуживание вызова")
     @Epic("Завершить обслуживание")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void testCompleteCallRegistr() throws Exception {
         Pacient pacient = new Pacient("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");

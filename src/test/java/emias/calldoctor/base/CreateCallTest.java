@@ -29,7 +29,7 @@ public class CreateCallTest extends TestBase {
                 .saveBtn()
                 .allertBtn();
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .closeCardBtn();
     }
 
@@ -54,7 +54,7 @@ public class CreateCallTest extends TestBase {
                 .createCall()
                 .saveBtn();
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .closeCardBtn();
         page.dashboardPage().verifyNewCallGroup(pacient);
     }
@@ -69,7 +69,7 @@ public class CreateCallTest extends TestBase {
                 .createCall()
                 .saveBtn();
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .closeCardBtn();
         page.dashboardPage().verifyNewCallGroup(pacient);
     }
@@ -82,7 +82,7 @@ public class CreateCallTest extends TestBase {
         page.loginPage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
+        page.fullCardPage(pacient, testName()).verifyNewCall();
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что адрес по кладр.")
@@ -94,7 +94,7 @@ public class CreateCallTest extends TestBase {
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(pacient, testName())
-                .verifyNewCall(pacient)
+                .verifyNewCall()
                 .editCallBtn();
         $x("//input[@placeholder='Адрес']").getValue().contains(pacient.getAddressStringMin());
     }
