@@ -6,6 +6,8 @@ import java.util.Properties;
 
 public class ConfigFile {
     private String url;
+    private String urlKladr;
+    private String codeLpu;
     private String login;
     private String password;
     private String adminLogin;
@@ -28,6 +30,7 @@ public class ConfigFile {
             property.load(fis);
 
             url = property.getProperty("st.mis.url");
+            urlKladr = property.getProperty("st.mis.urlKladr");
             login = property.getProperty("st.mis.doctorLogin");
             password = property.getProperty("st.mis.doctorLoginPass");
             adminLogin = property.getProperty("st.mis.adminLogin");
@@ -42,7 +45,7 @@ public class ConfigFile {
             clientApplication = property.getProperty("st.api.clientApplication");
             authorization = property.getProperty("st.api.authorization");
             requestSmp = property.getProperty("st.api.requestSmp");
-
+            codeLpu = property.getProperty("st.mis.codeLpu");
         } catch (IOException e) {
             System.err.println("ОШИБКА: Файл свойств отсуствует!");
         }
@@ -50,6 +53,10 @@ public class ConfigFile {
 
     public String getUrl() {
         return url;
+    }
+
+    public String getUrlKladr() {
+        return urlKladr;
     }
 
     public String getLogin() {
@@ -102,6 +109,10 @@ public class ConfigFile {
 
     public String getRequestSmp() {
         return requestSmp;
+    }
+
+    public String getCodeLpu() {
+        return codeLpu;
     }
 }
 

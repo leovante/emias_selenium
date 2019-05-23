@@ -90,7 +90,7 @@ public class CallDoctorHttp {
             if (pacient.getSource() == 2) {//смп
                 httpResponse = httpClient.execute(postRequestSMP());
             }
-            if (pacient.getSource() == 3) {//кц авторизацией
+            if (pacient.getSource() == 3) {//кц с авторизацией
                 httpResponse = httpClient.execute(createPostRequestToken());
             }
             if (pacient.getSource() != 2 && pacient.getSource() != 3) {

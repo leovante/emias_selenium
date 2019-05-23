@@ -20,7 +20,7 @@ public class BeforeTestDisp extends TestBase {
 
     @Test(description = "Обнуляю карты диспансеризации", enabled = false)
     @RetryCountIfFailed(2)
-    public void cleanBeforeDisp() throws IOException, ParseException {
+    public void run() throws IOException, ParseException {
         setDefaultCard();//обнулить карты
         setTestServices();//тестовые ресурсы мероприятий
         createShedule();//создание нового расписания у врачей
