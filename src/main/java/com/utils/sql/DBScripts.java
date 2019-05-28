@@ -109,30 +109,6 @@ public class DBScripts extends PageBase {
         }
     }
 
-    @Step("завершаю вызовы пациента по полису")
-    public static void finalizeCall_NPol(String number) {
-        String url = connectionUrl +
-                ";databaseName=" + databaseName +
-                ";user=" + userName +
-                ";password=" + password;
-        try {
-            LOGGER.info("Connecting to SQL Server ... ");
-            try (Connection connection = DriverManager.getConnection(url)) {
-                String sql =
-                        "update hlt_CallDoctor " +
-                                "set rf_CallDoctorStatusID = 3 " +
-                                "where numberPol = '" + number + "'";
-                try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql);
-                    LOGGER.info("Pacient - " + number + " finalize is done.");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        LOGGER.info("Вызов завершен!");
-    }
-
     @Step("Сбросить мероприятия у карты вызова")
     public static void setDefaultServices(String cardID) { // TODO: 04.09.2018 доделать обнуление заключения
         String url = connectionUrl +
@@ -222,30 +198,30 @@ public class DBScripts extends PageBase {
         }
     }
 
-    @Step("отменяю созданный вызов после каждого теста")
-    public static void cancelCall(String methodName) {
-        String url = connectionUrl +
-                ";databaseName=" + databaseName +
-                ";user=" + userName +
-                ";password=" + password;
-        try {
-            LOGGER.info("Connecting to SQL Server ... ");
-            try (Connection connection = DriverManager.getConnection(url)) {
-                String sql =
-                        "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + cardMap.get(methodName);
-                if (cardMap.get(methodName) != null && cardMap.get(methodName) > 0) {
-                    try (Statement statement = connection.createStatement()) {
-                        statement.executeUpdate(sql);
-                        LOGGER.info("Вызов взят из стека и отменён!");
-                    }
-                } else {
-                    LOGGER.info("вызов не отменен!: " + cardMap.get(methodName));
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Step("отменяю созданный вызов после каждого теста")
+//    public static void cancelCall(String methodName) {
+//        String url = connectionUrl +
+//                ";databaseName=" + databaseName +
+//                ";user=" + userName +
+//                ";password=" + password;
+//        try {
+//            LOGGER.info("Connecting to SQL Server ... ");
+//            try (Connection connection = DriverManager.getConnection(url)) {
+//                String sql =
+//                        "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + cardMap.get(methodName);
+//                if (cardMap.get(methodName) != null && cardMap.get(methodName) > 0) {
+//                    try (Statement statement = connection.createStatement()) {
+//                        statement.executeUpdate(sql);
+//                        LOGGER.info("Вызов взят из стека и отменён!");
+//                    }
+//                } else {
+//                    LOGGER.info("вызов не отменен!: " + cardMap.get(methodName));
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Step("Получаю адрес стринг из кладр")
     public static List getAddressStringHiber() {

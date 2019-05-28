@@ -91,10 +91,12 @@ public class RaspisaniePriemaPageBase extends PageBase {
 
     public RaspisaniePriemaPageBase generateML() throws InterruptedException {
         String i = kvotyCount.getText();
+        $(By.id("patientModelList-button")).$x(".//span").getValue();
         $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
         if (i.equals("0")) {
             $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']//*[contains(text(),'Да')]")).click();
         }
+        Thread.sleep(1000);
         $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']"))
                 .$(By.xpath(".//*[contains(text(),'Да')]")).click();
         return this;
@@ -169,16 +171,20 @@ public class RaspisaniePriemaPageBase extends PageBase {
 
     public RaspisaniePriemaPageBase disableIPK() {
         $(By.xpath("//*[contains(text(),'Индивидуальное профилактическое консультирование')]"))
-                .$(By.xpath("./../..//[@ng-click='CancelService(exam)']"))
+                .$(By.xpath("./../..//div[13]/span[2]"))//[@ng-click='CancelService(exam)'][@ng-model='exam']
+                .scrollTo()
                 .click();
         $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']"))
-                .$(By.xpath(".//*[contains(text(),'Да')]")).click();
+                .$(By.xpath(".//*[contains(text(),'Да')]"))
+                .hover()
+                .click();
         return this;
     }
 
     public RaspisaniePriemaPageBase validateTerapevtLast() {
-        $$(By.xpath("//*[class='examListBody']")).last()
+        $$(By.xpath("//div[class='examListBody']")).last()
                 .$(By.xpath(".//*[contains(text(),'Прием врача-терапевта')]"))
+                .scrollTo()
                 .shouldBe(Condition.visible);
         return this;
     }

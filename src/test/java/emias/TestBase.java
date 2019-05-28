@@ -3,17 +3,18 @@ package emias;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.config.AppConfig;
 import com.pages.Pages;
+import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.CustomListner1;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.TestMethodCapture;
 import com.utils.WebDriverInstansiator;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
-import com.utils.sql.DBScripts;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.json.JSONException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
@@ -29,6 +30,9 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public static Pages page;
     public String testName;
     protected Assistance as = new AssistanceImpl();
+
+    @Autowired
+    public HltCallDoctorServiceImpl hltCallDoctorService;
 
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();
@@ -71,8 +75,8 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         }
     }
 
-    @AfterMethod(groups = "CD", alwaysRun = true)
+    @AfterGroups(groups = "CD", alwaysRun = true)
     public void afterMethodCD(ITestResult result) {
-        DBScripts.cancelCall(result.getMethod().getMethodName());
+        hltCallDoctorService.cancelByTestName(result.getMethod().getMethodName());
     }
 }

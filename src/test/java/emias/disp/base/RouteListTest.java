@@ -2,14 +2,16 @@ package emias.disp.base;
 
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.pages.disp.Services.issledovanieKala;
 
 public class RouteListTest extends TestBase {
-
-    @Test(groups = "disp", description = "проверка что терапевт в конце МЛ после отмены мероприятия")
+    @Ignore
+    @Test(groups = "disp", description = "проверка что терапевт в конце МЛ после отмены мероприятия", enabled = false)
+//сейчас даже если терапевт не последний, тап и заключение отображается как надо
     @RetryCountIfFailed(2)
     public void testCancelTerapevt() throws InterruptedException {
         page.loginPage().loginMis();

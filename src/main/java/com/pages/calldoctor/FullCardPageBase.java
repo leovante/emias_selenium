@@ -32,12 +32,12 @@ public class FullCardPageBase extends PageBase {
     SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
 
     public FullCardPageBase(String testName) {
-        cardMap.put(testName, cardNumberParser(cardNumber.getText()));
+        callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
     public FullCardPageBase(Pacient pacient, String testName) {
         this.pacient = pacient;
-        cardMap.put(testName, cardNumberParser(cardNumber.getText()));
+        callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
     @Step("проверяю наличие базовых элементов карты вызова")

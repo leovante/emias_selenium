@@ -2,8 +2,10 @@ package emias.disp.base;
 
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
+@Ignore
 public class ValidationTest extends TestBase {
 
     @Test(groups = "disp", description = "значения в показателях")

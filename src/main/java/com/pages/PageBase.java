@@ -2,6 +2,7 @@ package com.pages;
 
 import com.dataGenerator.ModuleData;
 import com.pages.calldoctor.pacients.Pacient;
+import com.system.service.CallDoctorCards;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
@@ -10,7 +11,9 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Logger;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -20,7 +23,10 @@ public class PageBase {
     public Assistance as = new AssistanceImpl();
     public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     public static int callNumber;
-    public static Map<String, Integer> cardMap = new HashMap();
+//    public static Map<String, Integer> cardMap = new HashMap();
+
+    @Autowired
+    public CallDoctorCards callDoctorCards;
 
     @Autowired
     public HltCallDoctorServiceImpl hltCallDoctorService;
