@@ -4,6 +4,7 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import com.config.AppConfig;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
+import com.system.service.HltDispCardServiceImpl;
 import com.utils.CustomListner1;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.TestMethodCapture;
@@ -33,6 +34,9 @@ public class TestBase extends AbstractTestNGSpringContextTests {
 
     @Autowired
     public HltCallDoctorServiceImpl hltCallDoctorService;
+
+    @Autowired
+    public HltDispCardServiceImpl hltDispCardServiceImpl;
 
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();

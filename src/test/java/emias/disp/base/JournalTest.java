@@ -99,14 +99,13 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через мкаб")
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromMkab() throws InterruptedException {
+        // TODO: 5/28/2019 объект с данными пациента
         page.loginPage().loginMis();
         page.homePageMis().mkabBtn();
-        $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
-        $(By.id("searchMkabByFilter")).click();
-        $(By.id("MkabGrid"))
-                .$(By.xpath(".//*[@id='2723314']"))
-                .$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']"))
-                .click();
+        page.mkabPage()
+                .fio("Темников Дмитрий Олегович")
+                .serchBtn()
+                .openMkab("Темников Дмитрий Олегович");
         $(By.id("jqContextMenu"))
                 .$(By.id("MkabGridcontextmenuitem0"))
                 .click();
@@ -172,8 +171,8 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "закрытие карты диспансеризации с проставлением причины")
     @RetryCountIfFailed(2)
-    public void closeCard() throws InterruptedException, IOException, JSONException {
-        // TODO: 5/15/2019 добавить открытие карты через базу
+    public void closeCard() {
+        hltDispCardServiceImpl.setIsClosedFalse(180);
         page.loginPage().dispJournal();
         page.journalPage()
                 .journalMenuBtn()

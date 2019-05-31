@@ -1,5 +1,7 @@
 package com.system.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.LinkedHashSet;
@@ -108,7 +110,6 @@ public class HltDispCardEntity {
     @JoinColumn(name = "Guid")
     private Set<HltDispExamEntity> guids = new LinkedHashSet<>();
 
-
     @Basic
     @Column(name = "IsClosed", nullable = false)
     public boolean isClosed() {
@@ -120,6 +121,7 @@ public class HltDispCardEntity {
     }
 
     @Basic
+    @Type(type = "numeric_boolean")
     @Column(name = "IsOtkaz", nullable = false)
     public boolean isOtkaz() {
         return isOtkaz;

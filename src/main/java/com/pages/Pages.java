@@ -54,6 +54,10 @@ public class Pages extends PageBase {
         return new CreateCallPageBase(pacient);
     }
 
+    public MkabPage mkabPage() {
+        return new MkabPage();
+    }
+
     public SetDoctorPageBase setDoctorPage() {
         return page(SetDoctorPageBase.class);
     }
