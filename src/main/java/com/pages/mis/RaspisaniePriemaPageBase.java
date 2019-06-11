@@ -7,7 +7,7 @@ import com.codeborne.selenide.commands.PressEnter;
 import com.codeborne.selenide.commands.PressEscape;
 import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -18,6 +18,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class RaspisaniePriemaPageBase extends PageBase {
     static String terapevtTime;
+    static String terapevtName;
 
     SelenideElement RecordsArea = $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div"));
     SelenideElement selectVibratBtn = $(By.xpath("//button[@id='selectPatientButton']/span"));
@@ -122,17 +123,19 @@ public class RaspisaniePriemaPageBase extends PageBase {
         switchTo().window("Медицинская Информационная Система");
     }
 
-    public RaspisaniePriemaPageBase generateML(Pacient pacient) throws InterruptedException {
+    public RaspisaniePriemaPageBase generateML(PacientImpl pacientImpl) throws InterruptedException {
         ml.click();
         sinpmkabScheduleGrid.setValue(
-                pacient.getFamily() + " " +
-                        pacient.getName() + " " +
-                        pacient.getOt());
+                pacientImpl.getFamily() + " " +
+                        pacientImpl.getName() + " " +
+                        pacientImpl.getOt());
         mlSearchBtn.click();
-        $(By.xpath("//*[contains(text(),'" + pacient.getNumberpol() + "')]")).click();
+        $(By.id("gview_mkabScheduleGrid"))
+                .$x(".//*[contains(text(),'" + pacientImpl.getNumberpol() + "')]")
+                .click();
         selectPatientButton.click();
-        $(By.xpath("//*[contains(text(),'Модель пациента: ')]")).shouldBe(Condition.visible);
-        $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
+        $x("//*[contains(text(),'Модель пациента: ')]").shouldBe(Condition.visible);
+        $x("//span[@ng-click='btnGenerateRouteCard()']").click();
         for (int i = 0; i < 5; i++) {
             if (proverkaKvot.isDisplayed()) {
                 kvotyYes.click();
@@ -152,6 +155,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
 
     public RaspisaniePriemaPageBase getTerapevtTime() {
         terapevtTime = $(By.xpath("//*[contains(text(),'Прием врача-терапевта')]/../../div[6]/span")).getText();
+//        terapevtName = $(By.xpath("//*[contains(text(),'Прием врача-терапевта')]/../../div[8]/span[2]")).getText();
         return this;
     }
 

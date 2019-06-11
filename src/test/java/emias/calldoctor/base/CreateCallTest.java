@@ -1,6 +1,7 @@
 package emias.calldoctor.base;
 
 import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.TestMethodCapture;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
@@ -22,13 +23,13 @@ public class CreateCallTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile0");
+        Pacient pacientImpl = new PacientImpl("Profile0");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
     }
@@ -37,89 +38,89 @@ public class CreateCallTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacient = new Pacient("Profile0_3");
+        Pacient pacientImpl = new PacientImpl("Profile0_3");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall_Mkab();
-        as.isVisibleText(pacient.getAddress());
+        as.isVisibleText(pacientImpl.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
-        Pacient pacient = new Pacient("Profile1");
+        Pacient pacientImpl = new PacientImpl("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallGroup(pacient);
+        page.dashboardPage().verifyNewCallGroup(pacientImpl);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
-        Pacient pacient = new Pacient("Profile2");
+        Pacient pacientImpl = new PacientImpl("Profile2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
-        page.dashboardPage().verifyNewCallGroup(pacient);
+        page.dashboardPage().verifyNewCallGroup(pacientImpl);
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api от ребенка. Проверяю что адрес подтянулся из вызова.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
-        Pacient pacient = new Pacient("Profile3");
+        Pacient pacientImpl = new PacientImpl("Profile3");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName()).verifyNewCall();
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacientImpl);
+        page.fullCardPage(pacientImpl, testName()).verifyNewCall();
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что адрес по кладр.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
-        Pacient pacient = new Pacient("Profile6");
+        Pacient pacientImpl = new PacientImpl("Profile6");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName())
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacientImpl);
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .editCallBtn();
-        $x("//input[@placeholder='Адрес']").getValue().contains(pacient.getAddressStringMin());
+        $x("//input[@placeholder='Адрес']").getValue().contains(pacientImpl.getAddressStringMin());
     }
 
     @Test(groups = "CD", description = "проверка заполнения формализованного адреса при выборе мкаб на странице создания вызова")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testFormalizeAddress() throws Exception {
-        Pacient pacient = new Pacient("Profile2");
+        Pacient pacientImpl = new PacientImpl("Profile2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .addNewCall()
                 .searchField();
-        $x("//*[@placeholder='Адрес']").getText().equals(pacient.getAddress3adv());
+        $x("//*[@placeholder='Адрес']").getText().equals(pacientImpl.getAddress3adv());
     }
 
     @Test(groups = "CD", description = "проверка заполнения неформализованного адреса при выборе мкаб на странице создания вызова")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testNotformalizeAddress() throws Exception {
-        Pacient pacient = new Pacient("AdressNeformal");
+        Pacient pacientImpl = new PacientImpl("AdressNeformal");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .addNewCall()
                 .searchField();
-        as.isVisibleText(pacient.getAddress3adv());
+        as.isVisibleText(pacientImpl.getAddress3adv());
     }
 }

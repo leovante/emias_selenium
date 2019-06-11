@@ -1,7 +1,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -22,16 +22,16 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile2");
-        Pacient pacient2 = new Pacient("Profile2_0");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
+        PacientImpl pacientImpl2 = new PacientImpl("Profile2_0");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).editCallBtn();
-        page.createCallPage(pacient)
+        page.fullCardPage(pacientImpl, testName()).editCallBtn();
+        page.createCallPage(pacientImpl)
                 .setDeafult()
-                .editCallPage(pacient2)
+                .editCallPage(pacientImpl2)
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Не указан адрес')]")).shouldBe(Condition.visible);
     }
@@ -41,13 +41,13 @@ public class ValidationTest extends TestBase {
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile3_Kladr");
+        PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName()).verifyNewCall();
-        page.fullCardPage(pacient, testName()).editCallBtn();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacientImpl);
+        page.fullCardPage(pacientImpl, testName()).verifyNewCall();
+        page.fullCardPage(pacientImpl, testName()).editCallBtn();
+        page.createCallPage(pacientImpl)
                 .fillSourceSmp()
                 .deleteWhoCallFIO()
                 .saveBtn();
@@ -58,12 +58,12 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_CancelValidation");
+        PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -72,13 +72,13 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_CancelValidation");
+        PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).editCallBtn();
-        page.createCallPage(pacient)
+        page.fullCardPage(pacientImpl, testName()).editCallBtn();
+        page.createCallPage(pacientImpl)
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -87,15 +87,15 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_CancelValidation");
+        PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).closeCardBtn();
+        page.fullCardPage(pacientImpl, testName()).closeCardBtn();
         page.dashboardPage()
-                .cancelNewCallDash(pacient)
+                .cancelNewCallDash(pacientImpl)
                 .verifyCancellCallValidation_Dash()
-                .verifyCallIsNotCancelFromDashboard(pacient);
+                .verifyCallIsNotCancelFromDashboard(pacientImpl);
     }
 }

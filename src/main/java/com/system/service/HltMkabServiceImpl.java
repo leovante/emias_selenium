@@ -18,35 +18,10 @@ public class HltMkabServiceImpl implements HltMkabService {
         return hltMkabRepository.findById(id);
     }
 
-/*    @Override
-    public List findByIdList(int id) {
-        return hltMkabDao.findByIdList(id);
-    }
-
     @Override
-    public HltMkabEntity findByModel() {
-        return hltMkabDao.findByModel();
+    public HltMkabEntity findRandom() {
+        double d = Math.random();
+        double f = hltMkabRepository.countAllByName();
+        return findById((int) (d * f)).get();
     }
-
-    @Override
-    public List modelWithKladr() {
-        return hltMkabDao.modelWithKladr();
-    }
-
-    @Override
-    public List findAll() {
-        return hltMkabDao.findAll();
-    }
-
-    @Override
-    public void save(Object o) {
-    }
-
-    @Override
-    public void update(Object o) {
-    }
-
-    @Override
-    public void delete(long id) {
-    }*/
 }

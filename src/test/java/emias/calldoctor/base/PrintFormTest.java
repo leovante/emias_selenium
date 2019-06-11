@@ -1,7 +1,7 @@
 package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -33,13 +33,13 @@ public class PrintFormTest extends TestBase {
     @Epic("Печать")
     @RetryCountIfFailed(2)
     public void testPrintCard() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacient, testName()).printBtn();
+        page.fullCardPage(pacientImpl, testName()).printBtn();
         switchTo().window(1);
         $x("//*[contains(.,'Карта вызова')]").shouldBe(Condition.visible);
     }
@@ -48,10 +48,10 @@ public class PrintFormTest extends TestBase {
     @Epic("Печать")
     @RetryCountIfFailed(2)
     public void testPrintOneDoctor() throws IOException, JSONException, ParseException, InterruptedException {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
-        page.fullCardPage(pacient, testName()).printBtn();
+        page.createCallPage(pacientImpl).createCall();
+        page.fullCardPage(pacientImpl, testName()).printBtn();
         switchTo().window(1);
         $(By.xpath("//*[contains(text(),'test/call-doctor/card/view')]")).shouldBe(Condition.visible);
         // TODO: 4/1/2019 доделать

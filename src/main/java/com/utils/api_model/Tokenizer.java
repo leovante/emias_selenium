@@ -3,7 +3,7 @@ package com.utils.api_model;
 import com.config.ConfigFile;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pages.PageBase;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -24,10 +24,10 @@ public class Tokenizer extends PageBase {
         configFile = new ConfigFile();
     }
 
-    public String getToken(Pacient pacient, String ClientApplication) throws IOException {
-        String bd = pacient.getBirthdate("yyyy-MM-dd");
-        String spol = pacient.getSeriespol();
-        String npol = pacient.getNumberpol();
+    public String getToken(PacientImpl pacientImpl, String ClientApplication) throws IOException {
+        String bd = pacientImpl.getBirthdate("yyyy-MM-dd");
+        String spol = pacientImpl.getSeriespol();
+        String npol = pacientImpl.getNumberpol();
         HttpClient httpClient = HttpClients.createDefault();
         try {
             HttpGet request = new HttpGet("http://rpgu.emias.mosreg.ru/api/v2/auth/a7f391d4-d5d8-44d5-a770-f7b527bb1233/token?Birthday=" + bd + "&s_pol=" + spol + "&n_pol=" + npol);

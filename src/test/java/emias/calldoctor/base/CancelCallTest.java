@@ -1,6 +1,6 @@
 package emias.calldoctor.base;
 
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -17,47 +17,47 @@ public class CancelCallTest extends TestBase {
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).cancelOnFullCardBtn("отмена автотестом");
+        page.fullCardPage(pacientImpl, testName()).cancelOnFullCardBtn("отмена автотестом");
         page.dashboardPage()
-                .searchFilterFio_Fam(pacient)
-                .verifyCallIsCancelFromDashboard(pacient);
+                .searchFilterFio_Fam(pacientImpl)
+                .verifyCallIsCancelFromDashboard(pacientImpl);
     }
 
     @Test(groups = "CD", description = "отмена вызова на странице редактирования")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .editCallBtn()
                 .cancelOnChangePageBtn();
         page.dashboardPage()
-                .searchFilterFio_Fam(pacient)
-                .verifyCallIsCancelFromDashboard(pacient);
+                .searchFilterFio_Fam(pacientImpl)
+                .verifyCallIsCancelFromDashboard(pacientImpl);
     }
 
     @Test(groups = "CD", description = "отмена вызова на дашборде")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).closeCardBtn();
+        page.fullCardPage(pacientImpl, testName()).closeCardBtn();
         page.dashboardPage()
-                .searchFilterFio_Fam(pacient)
-                .deleteNewCallProgressFrame(pacient)
-                .verifyCallIsCancelFromDashboard(pacient);
+                .searchFilterFio_Fam(pacientImpl)
+                .deleteNewCallProgressFrame(pacientImpl)
+                .verifyCallIsCancelFromDashboard(pacientImpl);
     }
 }

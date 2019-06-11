@@ -41,6 +41,6 @@ public class CreateMRTest extends TestBase {
         $x("//span[@title = 'Консультация врача гастроэнтеролога 2']").doubleClick();
         $x("//*[contains(text(),'Просмотреть')]").click();
         $x("//*[contains(text(),'Подписать')]").click();
-        $x("//*[contains(text(),'Отменить')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'Медицинская запись успешно подписана')]").shouldBe(Condition.visible);
     }
 }

@@ -4,9 +4,11 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
+import com.utils.CallDoctorCards;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
 public class PrintFormPageBase extends PageBase {
-    Pacient pacient;
+    PacientImpl pacientImpl;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
     SelenideElement mat_calendar_header = $(By.id(""));
@@ -31,12 +33,15 @@ public class PrintFormPageBase extends PageBase {
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
 
+    @Autowired
+    public CallDoctorCards callDoctorCards;
+
     public PrintFormPageBase(String testName) {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public PrintFormPageBase(Pacient pacient, String testName) {
-        this.pacient = pacient;
+    public PrintFormPageBase(PacientImpl pacientImpl, String testName) {
+        this.pacientImpl = pacientImpl;
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
@@ -51,7 +56,7 @@ public class PrintFormPageBase extends PageBase {
         elements.add("Источник");
         elements.add("КТО ПАЦИЕНТ");
         elements.add("Возраст");
-        if (pacient.getGender() != 0)
+        if (pacientImpl.getGender() != 0)
             elements.add("Пол");
         elements.add("АДРЕС");
         elements.add("ЖАЛОБЫ");
@@ -68,22 +73,22 @@ public class PrintFormPageBase extends PageBase {
 
     @Step("проверяю наличие базовых элементов пациента")
     public void basePacient() {
-        isVisibleText(pacient.getAddress());
-        isVisibleText(pacient.getComplaint());
-        isVisibleText(pacient.getCodedomophone());
-        isVisibleText(parseTelephone(pacient));
-        isVisibleText(String.valueOf(pacient.getEntrance()));
-        isVisibleText(String.valueOf(pacient.getFloor()));
-        isVisibleText(pacient.getName());
-        isVisibleText(pacient.getFamily());
-        isVisibleText(pacient.getOt());
-        isVisibleText(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
-        isVisibleText(String.valueOf(pacient.getSeriespol()));
-        isVisibleText(String.valueOf(pacient.getNumberpol()));
-        if (pacient.getKladraddress() != null) {
-            isVisibleText(pacient.getAppartment());
-            isVisibleText(pacient.getBuilding());
-            isVisibleText(pacient.getConstruction());
+        isVisibleText(pacientImpl.getAddress());
+        isVisibleText(pacientImpl.getComplaint());
+        isVisibleText(pacientImpl.getCodedomophone());
+        isVisibleText(parseTelephone(pacientImpl));
+        isVisibleText(String.valueOf(pacientImpl.getEntrance()));
+        isVisibleText(String.valueOf(pacientImpl.getFloor()));
+        isVisibleText(pacientImpl.getName());
+        isVisibleText(pacientImpl.getFamily());
+        isVisibleText(pacientImpl.getOt());
+        isVisibleText(String.valueOf(pacientImpl.getBirthdate("dd.MM.yyyy")));
+        isVisibleText(String.valueOf(pacientImpl.getSeriespol()));
+        isVisibleText(String.valueOf(pacientImpl.getNumberpol()));
+        if (pacientImpl.getKladraddress() != null) {
+            isVisibleText(pacientImpl.getAppartment());
+            isVisibleText(pacientImpl.getBuilding());
+            isVisibleText(pacientImpl.getConstruction());
         }
     }
 
@@ -110,7 +115,7 @@ public class PrintFormPageBase extends PageBase {
     }
 
     @Step("проверяю новый вызов")
-    public PrintFormPageBase verifyNewCall(Pacient pacient) throws IOException {
+    public PrintFormPageBase verifyNewCall(PacientImpl pacientImpl) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -120,7 +125,7 @@ public class PrintFormPageBase extends PageBase {
     }
 
     @Step("проверяю новый вызов")
-    public PrintFormPageBase verifyActivCall(Pacient pacient) throws IOException {
+    public PrintFormPageBase verifyActivCall(PacientImpl pacientImpl) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();

@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ExampsFillTest extends TestBase {
 
-    @Test(groups = "disp", description = "проверка заполнения мероприятий М24")
+    @Test(groups = "disp", description = "проверка заполнения мероприятий М24", enabled = false)//
     @RetryCountIfFailed(3)
     public void testFillExamp() throws InterruptedException {
         DBScripts.setDefaultServices("3169");

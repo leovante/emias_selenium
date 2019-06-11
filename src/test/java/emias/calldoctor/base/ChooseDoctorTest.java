@@ -1,7 +1,7 @@
 package emias.calldoctor.base;
 
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -13,41 +13,41 @@ public class ChooseDoctorTest extends TestBase {
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacient, testName())
-                .verifyActivCall(pacient)
+        page.fullCardPage(pacientImpl, testName())
+                .verifyActivCall(pacientImpl)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyActiveDocGroup(pacient, doctor);
+                .verifyActiveDocGroup(pacientImpl, doctor);
     }
 
     @Test(groups = "CD", description = "назначить врача вызову из СМП на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {
-        Pacient pacient = new Pacient("Profile2");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacient, testName())
-                .verifyActivCall(pacient)
+        page.fullCardPage(pacientImpl, testName())
+                .verifyActivCall(pacientImpl)
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
 //                .searchFilterDoctor(doctor)
-                .verifyActiveDocGroup(pacient, doctor);
+                .verifyActiveDocGroup(pacientImpl, doctor);
     }
 
 //    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")

@@ -2,7 +2,7 @@ package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -22,62 +22,62 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("ProfileTransferLpu-Dep");
+        PacientImpl pacientImpl = new PacientImpl("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(pacient, testName()).verifyDepartment(doctor2);
+        page.fullCardPage(pacientImpl, testName()).verifyDepartment(doctor2);
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("ProfileTransferDep-Dep");
+        PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyDepartment(doctor2)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor3);
-        page.fullCardPage(pacient, testName()).verifyDepartment(doctor3);
+        page.fullCardPage(pacientImpl, testName()).verifyDepartment(doctor3);
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(3)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
+        PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
         Doctor depDoc = new Doctor("TemnikovVzroslayaTerapev");
         Doctor urDoc = new Doctor("TemnikovStend");
         page.loginPage().calldoctorVzroslaya();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyDepartment(depDoc)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(urDoc);
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyDepartment(urDoc);
     }
 
@@ -104,13 +104,13 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
-        Pacient pacient = new Pacient("ProfileTransferDep-Lpu");
+        PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacient, testName()).transferToDepartBtn();
+        page.fullCardPage(pacientImpl, testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
@@ -120,12 +120,12 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() throws Exception {
-        Pacient pacient = new Pacient("Profile2");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).transferToDepartBtn();
+        page.fullCardPage(pacientImpl, testName()).transferToDepartBtn();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);

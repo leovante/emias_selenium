@@ -1,6 +1,6 @@
 package emias.callcenter.regress;
 
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -16,9 +16,9 @@ public class ProcessingWaitingListTest extends TestBase {
     @Epic("листы ожидания")
     @RetryCountIfFailed(2)
     public void testWaitingList() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().callCenter();
-        page.waitingListPage().waitingList(pacient);
+        page.waitingListPage().waitingList(pacientImpl);
     }
 
 }

@@ -3,9 +3,11 @@ package com.pages.portal;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
+import com.system.service.HltCallDoctorServiceImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -25,23 +27,26 @@ public class PortalDashboard extends PageBase {
     SelenideElement waitHeader = $(By.xpath("//*[contains(text(),'Адрес вызова')]"));
     SelenideElement standEMIAS = $(By.xpath("//*[contains(text(),'Стенд ЕМИАС МО')]"));
 
-    @Step("создаю вызов через портал")
-    public void createCall(Pacient pacient) {
-        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
+    @Autowired
+    public HltCallDoctorServiceImpl hltCallDoctorService;
 
-        numberPolise.sendKeys(String.valueOf(pacient.getNumberpol()));
-        birthdate.sendKeys(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
+    @Step("создаю вызов через портал")
+    public void createCall(PacientImpl pacientImpl) {
+        hltCallDoctorService.cancelByNPol(pacientImpl.getNumberpol());
+
+        numberPolise.sendKeys(String.valueOf(pacientImpl.getNumberpol()));
+        birthdate.sendKeys(String.valueOf(pacientImpl.getBirthdate("dd.MM.yyyy")));
         enterRegister.click();
         standEMIAS.shouldBe(Condition.visible);
         callDoctor.click();
         waitHeader.shouldBe(Condition.visible);
 
-        address.setValue(pacient.getAddress());
-        entrance.setValue(String.valueOf(pacient.getEntrance()));
-        floor.setValue(String.valueOf(pacient.getFloor()));
-        codeDomophone.setValue(pacient.getCodedomophone());
-        phone.setValue(pacient.getPhone());
-        description.setValue(pacient.getComplaint());
+        address.setValue(pacientImpl.getAddress());
+        entrance.setValue(String.valueOf(pacientImpl.getEntrance()));
+        floor.setValue(String.valueOf(pacientImpl.getFloor()));
+        codeDomophone.setValue(pacientImpl.getCodedomophone());
+        phone.setValue(pacientImpl.getPhone());
+        description.setValue(pacientImpl.getComplaint());
         confirmCall.click();
 
         closeWindow.shouldBe(Condition.visible).click();

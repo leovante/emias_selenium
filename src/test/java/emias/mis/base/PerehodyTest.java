@@ -2,7 +2,7 @@ package emias.mis.base;
 
 import com.codeborne.selenide.Condition;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -36,10 +36,19 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
-        $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
-        $(By.id("mkab_tabs")).$(By.id("actions_tab")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
-        $(By.id("mkabtabs_Actions_scroller")).$(By.xpath(".//*[contains(.,'Оформить вызов врача на дом')]")).click();
+        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+//        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
+        $(By.id("jqContextMenu"))
+                .$(By.id("MkabGridcontextmenuitem0"))
+                .click();
+        $(By.id("mkab_tabs"))
+                .$(By.id("actions_tab"))
+                .$(By.xpath(".//*[contains(text(),'Действия')]"))
+                .click();
+        $(By.id("mkabtabs_Actions_scroller"))
+                .$(By.xpath(".//*[contains(text(),'Оформить вызов врача на дом')]"))
+                .hover()
+                .click();
         switchTo().window(1);
         $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
     }
@@ -88,7 +97,8 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
+        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+//        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
         $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
         $(By.xpath("//*[contains(text(),'Карты диспансеризации / профосмотры')]")).click();
@@ -100,12 +110,12 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
-        Pacient pacient = new Pacient("Temnikov94");
-        Doctor doctor = new Doctor("AiBoLitAutoTest");
+        PacientImpl pacientImpl = new PacientImpl("Temnikov94");
+        Doctor doctor = new Doctor("Dispanserizatov");
         page.loginPage().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
         page.raspisaniePriemaPage()
-                .generateML(pacient)
+                .generateML(pacientImpl)
                 .getTerapevtTime()
                 .saveAndCloseBtn()
                 .selectDoctor(doctor)
@@ -124,7 +134,8 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
+        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+//        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
         $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Мед. записи →')]")).click();
         switchTo().window(1);
@@ -139,12 +150,22 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
-        $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
-        $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Случаи')]")).click();
-        $(By.id("tapgrid2")).$(By.id("1944035")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
-        $(By.id("jqContextMenu")).$(By.id("tapgrid2contextmenuitem0")).click();
-        $(By.id("TAPDialogTabs")).$(By.xpath(".//*[contains(text(),'Медицинские записи →')]")).click();
+        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+        $(By.id("jqContextMenu"))
+                .$(By.id("MkabGridcontextmenuitem0"))
+                .click();
+        $(By.id("mkab_tabs"))
+                .$(By.xpath(".//*[contains(text(),'Случаи')]"))
+                .click();
+        $(By.id("tapgrid2"))
+                .$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']"))
+                .click();
+        $(By.id("jqContextMenu"))
+                .$(By.id("tapgrid2contextmenuitem0"))
+                .click();
+        $(By.id("TAPDialogTabs"))
+                .$(By.xpath(".//*[contains(text(),'Медицинские записи →')]"))
+                .click();
         switchTo().window(1);
         $(By.xpath("//*[@placeholder='Поиск медицинской записи по наименованию']")).shouldBe(Condition.visible);
     }

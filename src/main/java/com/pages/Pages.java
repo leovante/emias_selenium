@@ -3,6 +3,7 @@ package com.pages;
 import com.pages.callcenter.*;
 import com.pages.calldoctor.*;
 import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.pages.disp.ExampPageBase;
 import com.pages.disp.JournalPageBase;
 import com.pages.disp.KvotyPageBase;
@@ -50,8 +51,8 @@ public class Pages extends PageBase {
         return page(DoctorMethods.class);
     }
 
-    public CreateCallPageBase createCallPage(Pacient pacient) {
-        return new CreateCallPageBase(pacient);
+    public CreateCallPageBase createCallPage(Pacient pacientImpl) {
+        return new CreateCallPageBase(pacientImpl);
     }
 
     public MkabPage mkabPage() {
@@ -62,12 +63,12 @@ public class Pages extends PageBase {
         return page(SetDoctorPageBase.class);
     }
 
-    public FullCardPageBase fullCardPage(Pacient pacient, String s) {
-        return new FullCardPageBase(pacient, s);
+    public FullCardPageBase fullCardPage(Pacient pacientImpl, String s) {
+        return new FullCardPageBase(pacientImpl, s);
     }
 
-    public PrintFormPageBase printFormPage(Pacient pacient, String s) {
-        return new PrintFormPageBase(pacient, s);
+    public PrintFormPageBase printFormPage(PacientImpl pacientImpl, String s) {
+        return new PrintFormPageBase(pacientImpl, s);
     }
 
     public DashboardPageBase dashboardPage() {

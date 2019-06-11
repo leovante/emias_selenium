@@ -1,6 +1,6 @@
 package emias.callcenter.regress;
 
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -17,27 +17,27 @@ public class ProcessingVisitDoctorTest extends TestBase {
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().callCenter();
-        page.recordDoctorPage().visitDoctorAssertTalon(pacient);
+        page.recordDoctorPage().visitDoctorAssertTalon(pacientImpl);
     }
 
     @Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testRewritableVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().callCenter();
-        page.recordDoctorPage().visitDoctorRewritable(pacient);
+        page.recordDoctorPage().visitDoctorRewritable(pacientImpl);
     }
 
     @Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")
     @RetryCountIfFailed(2)
     public void testDeleteVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().callCenter();
-        page.recordDoctorPage().deleteVisitDoctor(pacient);
+        page.recordDoctorPage().deleteVisitDoctor(pacientImpl);
     }
 
 }

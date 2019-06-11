@@ -5,6 +5,7 @@ import com.config.AppConfig;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
+import com.utils.CallDoctorCards;
 import com.utils.CustomListner1;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.TestMethodCapture;
@@ -28,6 +29,7 @@ import java.text.ParseException;
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
+    public CallDoctorCards callDoctorCards;
     public static Pages page;
     public String testName;
     protected Assistance as = new AssistanceImpl();
@@ -67,9 +69,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         driverInst.driverClose();
     }
 
-    /**
-     * СЕРВИСЫ
-     */
+    /* СЕРВИСЫ */
     @Parameters({"testng"})
     @BeforeTest(alwaysRun = true)
     public void beforeTest(@Optional String testng) throws IOException, ParseException {
@@ -79,8 +79,12 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         }
     }
 
-    @AfterGroups(groups = "CD", alwaysRun = true)
-    public void afterMethodCD(ITestResult result) {
-        hltCallDoctorService.cancelByTestName(result.getMethod().getMethodName());
+    @AfterMethod(groups = "CD", alwaysRun = true)
+    public void afterMethodCD(ITestResult result) {//работает только с afterMethod
+        String testName1 = result.getMethod().getMethodName();
+        if (callDoctorCards.getCardMap(testName1) != null) {
+            int id = callDoctorCards.getCardMap(testName1);
+            hltCallDoctorService.cancelById(id);
+        }
     }
 }

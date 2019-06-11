@@ -2,7 +2,7 @@ package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -11,12 +11,12 @@ import org.openqa.selenium.Keys;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CallDoctorPageBase extends PageBase {
-    private Pacient pacient;
+    private PacientImpl pacientImpl;
 
     public CallDoctorPageBase() {
     }
 
-    public CallDoctorPageBase calldoctor(Pacient pacient) throws InterruptedException {
+    public CallDoctorPageBase calldoctor(PacientImpl pacientImpl) throws InterruptedException {
 
         Thread.sleep(2000);
         $(By.xpath("//div[@class='fast-buttons']//button[text()='Вызов врача']")).click();
@@ -53,11 +53,11 @@ public class CallDoctorPageBase extends PageBase {
         return this;
     }
 
-    public CallDoctorPageBase calldoctorSMP(Pacient pacient) throws InterruptedException {
+    public CallDoctorPageBase calldoctorSMP(PacientImpl pacientImpl) throws InterruptedException {
         $(By.xpath("//div[@class='fast-buttons']//button[text()='Вызов врача']")).click();
         $(By.xpath("//*[@id='searchLPUForm']/div[1]/div/input")).val("СТЕНД ЕМИАС МО");
         $(By.xpath("//*[@id='patientLpuList']/div[2]/button")).click();
-        writePatSMP(pacient);
+        writePatSMP(pacientImpl);
         Alert alert = driver.switchTo().alert();
         alert.accept();
         return this;
@@ -73,13 +73,13 @@ public class CallDoctorPageBase extends PageBase {
         $(By.name("address")).val(adr);
     }
 
-    public void writePatSMP(Pacient pacient){
-        $(By.name("surnameNamePatronymic")).val(pacient.getFamily()+" "+pacient.getName()+" "+pacient.getOt());
+    public void writePatSMP(PacientImpl pacientImpl) {
+        $(By.name("surnameNamePatronymic")).val(pacientImpl.getFamily() + " " + pacientImpl.getName() + " " + pacientImpl.getOt());
         $("#isChild").click();
         $(By.xpath("//*[@id='createHomeVisitForm']/div/div/label[2]/input")).click();
-        $(By.name("complaint")).val(pacient.getComplaint());
+        $(By.name("complaint")).val(pacientImpl.getComplaint());
 //        $(By.name("address")).clear();
-        $(By.name("address")).val(pacient.getAddress());
+        $(By.name("address")).val(pacientImpl.getAddress());
         $(By.name("phone")).val("1234567899");
     }
 

@@ -6,7 +6,7 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -27,15 +27,15 @@ public class PerehodyServisovTest extends TestBase {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .completeServiceBtn()
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
@@ -46,15 +46,15 @@ public class PerehodyServisovTest extends TestBase {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile2");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .completeServiceBtn()
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()

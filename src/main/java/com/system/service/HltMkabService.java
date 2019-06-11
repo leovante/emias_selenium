@@ -8,6 +8,8 @@ public interface HltMkabService<T> {
 
     Optional<HltMkabEntity> findById(int id);
 
+    HltMkabEntity findRandom();
+
 //    List findByIdList(int id);
 
 //    HltMkabEntity findByModel();

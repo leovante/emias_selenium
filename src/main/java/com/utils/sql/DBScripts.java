@@ -84,7 +84,6 @@ public class DBScripts extends PageBase {
 //                        "set rfCallDoctorStatusId = 3 " +
 //                        " ");
 
-
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +

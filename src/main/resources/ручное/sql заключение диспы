@@ -4,3 +4,9 @@ where rf_CardGuid = '68596A3A-A8DC-45D3-B55E-38B55F3079E8'
 
 select * from hlt_disp_ResultType
 select * from hlt_disp_ResultTypeValue
+
+добавление новых вопросов в заключение.
+hlt_disp_QuestionType
+hlt_disp_ResultTypeValue
+hlt_disp_AnswerDocType
+hlt_doctypeRoute

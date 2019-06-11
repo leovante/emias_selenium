@@ -1,6 +1,6 @@
 package emias.calldoctor.negative;
 
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -17,14 +17,14 @@ public class EditPageTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile6");
+        PacientImpl pacientImpl = new PacientImpl("Profile6");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName())
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacientImpl);
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .editCallBtn();
-        page.createCallPage(pacient).saveBtn();
+        page.createCallPage(pacientImpl).saveBtn();
         as.isNotVisibleText("Редактирование вызова № 0");
     }
 }

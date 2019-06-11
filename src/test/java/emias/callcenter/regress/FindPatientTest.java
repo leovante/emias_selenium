@@ -1,6 +1,6 @@
 package emias.callcenter.regress;
 
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -16,17 +16,17 @@ public class FindPatientTest extends TestBase {
     @Epic("Поиск пациента")
     @RetryCountIfFailed(2)
     public void testFindByPolis() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().callCenter();
-        page.findPatientPage().findByPolis(pacient);
+        page.findPatientPage().findByPolis(pacientImpl);
     }
 
     @org.testng.annotations.Test(groups = "СС", description = "Поиск по ФИО")
     @Epic("Поиск пациента")
     @RetryCountIfFailed(2)
     public void testFindByFio() throws Exception {
-        Pacient pacient = new Pacient("Profile0");
+        PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.loginPage().callCenter();
-        page.findPatientPage().findByFio(pacient);
+        page.findPatientPage().findByFio(pacientImpl);
     }
 }

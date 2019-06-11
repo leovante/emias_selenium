@@ -2,14 +2,14 @@ package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class WaitingListPageBase extends PageBase {
-    private Pacient pacient;
+    private PacientImpl pacientImpl;
     SelenideElement waitspec = $(By.xpath("//div[@id='department-12102']/button[1]"));
     SelenideElement waitbutton = $(By.xpath("//*[contains(text(),'Записать в лист ожидания')]"));
     SelenideElement complain = $(By.xpath("//*[@id='complain']"));
@@ -20,7 +20,7 @@ public class WaitingListPageBase extends PageBase {
     public WaitingListPageBase() {
     }
 
-    public WaitingListPageBase waitingList(Pacient pacient) {
+    public WaitingListPageBase waitingList(PacientImpl pacientImpl) {
         $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]")).click();
         waitspec.click();
         waitbutton.click();

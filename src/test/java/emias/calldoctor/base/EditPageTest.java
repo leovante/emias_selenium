@@ -2,7 +2,7 @@ package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -25,22 +25,22 @@ public class EditPageTest extends TestBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPage() throws Exception {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .editCallBtn()
-                .verifyCallProfile1(pacient);
+                .verifyCallProfile1(pacientImpl);
     }
 
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова. После сохранения в истории не должно появиться новых записей")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPage_2() throws Exception {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .editCallBtn()
@@ -54,22 +54,22 @@ public class EditPageTest extends TestBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCall() throws Exception {
-        Pacient pacient = new Pacient("Profile1");
-        Pacient pacient2 = new Pacient("Profile2");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
+        PacientImpl pacientImpl2 = new PacientImpl("Profile2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .editCallBtn()
                 .setDeafult()
-                .editCallPage_Mkab(pacient2)
+                .editCallPage_Mkab(pacientImpl2)
                 .saveBtn();
-        page.fullCardPage(pacient2, testName())
+        page.fullCardPage(pacientImpl2, testName())
                 .verifyNewCall()
                 .closeCardBtn();
         page.dashboardPage()
                 .clearAllFilters()
-                .verifyNewCallGroup(pacient2);
+                .verifyNewCallGroup(pacientImpl2);
     }
 
     @Test(groups = "CD", description = "проверяю валидацию на наличие адреса после редактирвоания карты вызова")
@@ -77,16 +77,16 @@ public class EditPageTest extends TestBase {
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
     public void testValidationAddressAfterSaveEditedCall() throws Exception {
-        Pacient pacient = new Pacient("Profile2");
-        Pacient pacient2 = new Pacient("Profile0_3");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
+        PacientImpl pacientImpl2 = new PacientImpl("Profile0_3");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).editCallBtn();
-        page.createCallPage(pacient)
+        page.fullCardPage(pacientImpl, testName()).editCallBtn();
+        page.createCallPage(pacientImpl)
                 .setDeafult()
-                .editCallPage(pacient2)
+                .editCallPage(pacientImpl2)
                 .saveBtn();
         $(By.xpath("//simple-snack-bar[contains(.,'Не указан адрес')]")).shouldBe(Condition.visible);
     }
@@ -95,13 +95,13 @@ public class EditPageTest extends TestBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_3_1");
+        PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName()).verifyNewCall();
-        page.createCallPage(pacient).editCallBtn();
-        $(By.xpath("//*[contains(.,'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacientImpl);
+        page.fullCardPage(pacientImpl, testName()).verifyNewCall();
+        page.createCallPage(pacientImpl).editCallBtn();
+        $(By.xpath("//*[contains(.,'" + pacientImpl.getAddress3adv() + "')]")).shouldBe(Condition.visible);
     }
 
     // TODO: 1/21/2019 добавить тест, вводить новый адрес английскими буквами

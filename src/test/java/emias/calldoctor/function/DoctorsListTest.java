@@ -2,7 +2,7 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -23,18 +23,18 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_male() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile7");
+        PacientImpl pacientImpl = new PacientImpl("Profile7");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isVisibleText(nemcova.getUchastocs());
         as.isNotVisibleText(serova.getUchastocs());
@@ -44,18 +44,18 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_female() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile8");
+        PacientImpl pacientImpl = new PacientImpl("Profile8");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isVisibleText(nemcova.getUchastocs());
         as.isNotVisibleText(serova.getUchastocs());
@@ -65,18 +65,18 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_noGender() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile9");
+        PacientImpl pacientImpl = new PacientImpl("Profile9");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isVisibleText(nemcova.getUchastocs());
         as.isNotVisibleText(serova.getUchastocs());
@@ -86,19 +86,19 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_male() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile10");
+        PacientImpl pacientImpl = new PacientImpl("Profile10");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
 
         as.isNotVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
@@ -110,19 +110,19 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_female() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile11");
+        PacientImpl pacientImpl = new PacientImpl("Profile11");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         as.isNotVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
@@ -133,19 +133,19 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_noGender() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile12");
+        PacientImpl pacientImpl = new PacientImpl("Profile12");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         as.isNotVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
@@ -156,19 +156,19 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void call_noAge_noGender() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile13");
+        PacientImpl pacientImpl = new PacientImpl("Profile13");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
@@ -179,16 +179,16 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithKladr() throws Exception {
-        Pacient pacient = new Pacient("Profile2");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor operator = new Doctor("Operator");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
         as.isVisibleText(operator.getDepartment());
         as.isVisibleText(nemcova.getUchastocs());
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         as.isVisibleText("УЧАСТКОВЫЙ ВРАЧ");
         as.isVisibleText(nemcova.getUchastocs());
     }
@@ -200,16 +200,16 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladrApi() throws IOException, InterruptedException, JSONException {
-        Pacient pacient = new Pacient("ProfileDetkina");
+        PacientImpl pacientImpl = new PacientImpl("ProfileDetkina");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
+        page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage()
-                .searchFilterFio_Fam(pacient)
-                .openNewCallDash(pacient);
+                .searchFilterFio_Fam(pacientImpl)
+                .openNewCallDash(pacientImpl);
         as.isVisibleText(operator.getDepartment());
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
@@ -220,11 +220,11 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
-        Pacient pacient = new Pacient("Profile19");
+        PacientImpl pacientImpl = new PacientImpl("Profile19");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacientImpl);
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
     }
@@ -234,10 +234,10 @@ public class DoctorsListTest extends TestBase {
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile13");
+        PacientImpl pacientImpl = new PacientImpl("Profile13");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.createCallPage(pacientImpl).createCall();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Моков')]")).shouldNotBe(Condition.visible);
@@ -250,19 +250,19 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile2");
-        Pacient pacient2 = new Pacient("Profile0_2");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
+        PacientImpl pacientImpl2 = new PacientImpl("Profile0_2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).editCallBtn();
-        page.createCallPage(pacient)
+        page.fullCardPage(pacientImpl, testName()).editCallBtn();
+        page.createCallPage(pacientImpl)
                 .setDeafult()
-                .editCallPage(pacient2)
+                .editCallPage(pacientImpl2)
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().saveAddress();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldBe(Condition.visible);
@@ -277,16 +277,16 @@ public class DoctorsListTest extends TestBase {
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
     public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile2");
-        Pacient pacient2 = new Pacient("Profile0_2");
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
+        PacientImpl pacientImpl2 = new PacientImpl("Profile0_2");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacient, testName()).editCallBtn();
-        page.createCallPage(pacient)
+        page.fullCardPage(pacientImpl, testName()).editCallBtn();
+        page.createCallPage(pacientImpl)
                 .setDeafult()
-                .editCallPage_Mkab(pacient2)
+                .editCallPage_Mkab(pacientImpl2)
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
     }

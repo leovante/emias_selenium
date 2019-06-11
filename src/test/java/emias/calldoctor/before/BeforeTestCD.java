@@ -17,7 +17,7 @@ public class BeforeTestCD extends TestBase {
     @RetryCountIfFailed(2)
     public void run() throws IOException, ParseException {
         updateStend();
-        cleanCalls();
+        cleanOperatorCalls();
     }
 
     public void updateStend() throws IOException, ParseException {
@@ -37,7 +37,7 @@ public class BeforeTestCD extends TestBase {
         }
     }
 
-    public void cleanCalls() {
+    public void cleanOperatorCalls() {
         DBScripts.finalizeCallsOperatorTemnikov();
     }
 }

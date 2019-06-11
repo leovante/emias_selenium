@@ -1,7 +1,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -21,9 +21,9 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile15");
+        PacientImpl pacientImpl = new PacientImpl("Profile15");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
@@ -35,12 +35,12 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile16");
+        PacientImpl pacientImpl = new PacientImpl("Profile16");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.createCallPage(pacient).selectUchastokFromNeUdalosOpredelit();
+        page.createCallPage(pacientImpl).selectUchastokFromNeUdalosOpredelit();
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
@@ -53,9 +53,9 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile17");
+        PacientImpl pacientImpl = new PacientImpl("Profile17");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
@@ -71,9 +71,9 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile18");
+        PacientImpl pacientImpl = new PacientImpl("Profile18");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
@@ -88,12 +88,12 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
-        Pacient pacient = new Pacient("ProfileAdressNeIzMkab");
-        page.createCallPage(pacient).createCall_Api();
+        PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab");
+        page.createCallPage(pacientImpl).createCall_Api();
         page.loginPage().calldoctor();
         page.dashboardPage()
-                .searchFilterFio_Fam(pacient)
-                .openNewCallDash(pacient);
+                .searchFilterFio_Fam(pacientImpl)
+                .openNewCallDash(pacientImpl);
         $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
     }
 
@@ -102,12 +102,12 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokNotSet() throws IOException, InterruptedException, JSONException {
-        Pacient pacient = new Pacient("ProfileAdressNeIzMkab_neformal");
-        page.createCallPage(pacient).createCall_Api();
+        PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab_neformal");
+        page.createCallPage(pacientImpl).createCall_Api();
         page.loginPage().calldoctor();
         page.dashboardPage()
-                .searchFilterFio_Fam(pacient)
-                .openNewCallDash(pacient);
+                .searchFilterFio_Fam(pacientImpl)
+                .openNewCallDash(pacientImpl);
         $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
     }
 
@@ -115,10 +115,10 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException, ParseException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_3_1");
-        page.createCallPage(pacient).createCall_Api();
+        PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
+        page.createCallPage(pacientImpl).createCall_Api();
         page.loginPage().calldoctor();
-        page.dashboardPage().openNewCallDash(pacient);
+        page.dashboardPage().openNewCallDash(pacientImpl);
         $(By.xpath("//*[contains(text(),'КТО ОБСЛУЖИВАЕТ')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
     }

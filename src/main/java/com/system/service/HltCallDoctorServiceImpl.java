@@ -11,11 +11,9 @@ import java.util.List;
 @Service
 public class HltCallDoctorServiceImpl {
 
-    @Autowired
-    private HltCallDoctorRepository hltCallDoctorRepository;
 
     @Autowired
-    private CallDoctorCards callDoctorCards;
+    private HltCallDoctorRepository hltCallDoctorRepository;
 
     public void cancelByNPol(String number) {
         List<HltCallDoctorEntity> calls = hltCallDoctorRepository.findAllByNumberPol(number);
@@ -25,8 +23,8 @@ public class HltCallDoctorServiceImpl {
     }
 
     @Step("отменяю созданный вызов")
-    public void cancelByTestName(String testName) {
-        HltCallDoctorEntity calls = hltCallDoctorRepository.findById(callDoctorCards.getCardMap(testName)).get();
+    public void cancelById(int id) {
+        HltCallDoctorEntity calls = hltCallDoctorRepository.findById(id).get();
         calls.setRfCallDoctorStatusId(4);
     }
 }

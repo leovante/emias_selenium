@@ -13,53 +13,53 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class CallDoctorHttp {
-    private Pacient pacient;
+    private Pacient pacientImpl;
     private ConfigFile configFile;
     HttpPost request;
     JSONObject jsonOb;
 
-    public CallDoctorHttp(Pacient pacient) throws JSONException {
-        this.pacient = pacient;
+    public CallDoctorHttp(Pacient pacientImpl) throws JSONException {
+        this.pacientImpl = pacientImpl;
         this.jsonOb = new JSONObject();
         this.configFile = new ConfigFile();
-        if (pacient.getName() != null && pacient.getName() != "")
-            jsonOb.put("name", pacient.getName());
-        if (pacient.getFamily() != null && pacient.getFamily() != "")
-            jsonOb.put("family", pacient.getFamily());
-        if (pacient.getOt() != null && pacient.getOt() != "")
-            jsonOb.put("ot", pacient.getOt());
-        if (pacient.getBirthdate() != null && pacient.getBirthdate("yyyy-MM-dd") != "")
-            jsonOb.put("birthdate", pacient.getBirthdate("yyyy-MM-dd"));
-        if (pacient.getSeriespol() != null && pacient.getSeriespol() != "")
-            jsonOb.put("seriespol", pacient.getSeriespol());
-        if (pacient.getNumberpol() != null && pacient.getNumberpol() != "")
-            jsonOb.put("numberpol", pacient.getNumberpol());
-        if (pacient.getGender() != 0)
-            jsonOb.put("gender", pacient.getGender());
-        if (pacient.getAddress() != null && pacient.getAddress() != "")
-            jsonOb.put("address", pacient.getAddress());
-        if (pacient.getComplaint() != null && pacient.getComplaint() != "")
-            jsonOb.put("complaint", pacient.getComplaint());
-        if (pacient.getDiagnosis() != null && pacient.getDiagnosis() != "")
-            jsonOb.put("diagnosis", pacient.getDiagnosis());
-        if (pacient.getType() != 0)
-            jsonOb.put("type", pacient.getType());
-        if (pacient.getCodedomophone() != null && pacient.getCodedomophone() != "")
-            jsonOb.put("codedomophone", pacient.getCodedomophone());
-        if (pacient.getPhone() != null && pacient.getPhone() != "")
-            jsonOb.put("phone", pacient.getPhone());
-        if (pacient.getSource() != 0)
-            jsonOb.put("source", pacient.getSource());
-        if (pacient.getSourceName() != null && pacient.getSourceName() != "")
-            jsonOb.put("sourceName", pacient.getSourceName());
-        if (pacient.getSourceCode() != null && pacient.getSourceCode() != "")
-            jsonOb.put("sourceCode", pacient.getSourceCode());
-        if (pacient.getEntrance() != null && pacient.getEntrance() != "")
-            jsonOb.put("entrance", pacient.getEntrance());
-        if (pacient.getEntrance() != null && pacient.getEntrance() != "")
-            jsonOb.put("floor", pacient.getFloor());
-        if (pacient.getKladraddress() != null && pacient.getKladraddress() != "")
-            jsonOb.put("kladraddress", pacient.getKladraddress());
+        if (pacientImpl.getName() != null && pacientImpl.getName() != "")
+            jsonOb.put("name", pacientImpl.getName());
+        if (pacientImpl.getFamily() != null && pacientImpl.getFamily() != "")
+            jsonOb.put("family", pacientImpl.getFamily());
+        if (pacientImpl.getOt() != null && pacientImpl.getOt() != "")
+            jsonOb.put("ot", pacientImpl.getOt());
+        if (pacientImpl.getBirthdate() != null && pacientImpl.getBirthdate("yyyy-MM-dd") != "")
+            jsonOb.put("birthdate", pacientImpl.getBirthdate("yyyy-MM-dd"));
+        if (pacientImpl.getSeriespol() != null && pacientImpl.getSeriespol() != "")
+            jsonOb.put("seriespol", pacientImpl.getSeriespol());
+        if (pacientImpl.getNumberpol() != null && pacientImpl.getNumberpol() != "")
+            jsonOb.put("numberpol", pacientImpl.getNumberpol());
+        if (pacientImpl.getGender() != 0)
+            jsonOb.put("gender", pacientImpl.getGender());
+        if (pacientImpl.getAddress() != null && pacientImpl.getAddress() != "")
+            jsonOb.put("address", pacientImpl.getAddress());
+        if (pacientImpl.getComplaint() != null && pacientImpl.getComplaint() != "")
+            jsonOb.put("complaint", pacientImpl.getComplaint());
+        if (pacientImpl.getDiagnosis() != null && pacientImpl.getDiagnosis() != "")
+            jsonOb.put("diagnosis", pacientImpl.getDiagnosis());
+        if (pacientImpl.getType() != 0)
+            jsonOb.put("type", pacientImpl.getType());
+        if (pacientImpl.getCodedomophone() != null && pacientImpl.getCodedomophone() != "")
+            jsonOb.put("codedomophone", pacientImpl.getCodedomophone());
+        if (pacientImpl.getPhone() != null && pacientImpl.getPhone() != "")
+            jsonOb.put("phone", pacientImpl.getPhone());
+        if (pacientImpl.getSource() != 0)
+            jsonOb.put("source", pacientImpl.getSource());
+        if (pacientImpl.getSourceName() != null && pacientImpl.getSourceName() != "")
+            jsonOb.put("sourceName", pacientImpl.getSourceName());
+        if (pacientImpl.getSourceCode() != null && pacientImpl.getSourceCode() != "")
+            jsonOb.put("sourceCode", pacientImpl.getSourceCode());
+        if (pacientImpl.getEntrance() != null && pacientImpl.getEntrance() != "")
+            jsonOb.put("entrance", pacientImpl.getEntrance());
+        if (pacientImpl.getEntrance() != null && pacientImpl.getEntrance() != "")
+            jsonOb.put("floor", pacientImpl.getFloor());
+        if (pacientImpl.getKladraddress() != null && pacientImpl.getKladraddress() != "")
+            jsonOb.put("kladraddress", pacientImpl.getKladraddress());
     }
 
     public HttpPost postRequestSMP() {
@@ -87,13 +87,13 @@ public class CallDoctorHttp {
         HttpClient httpClient = HttpClients.createDefault();
         HttpResponse httpResponse = null;
         try {
-            if (pacient.getSource() == 2) {//смп
+            if (pacientImpl.getSource() == 2) {//смп
                 httpResponse = httpClient.execute(postRequestSMP());
             }
-            if (pacient.getSource() == 3) {//кц с авторизацией
+            if (pacientImpl.getSource() == 3) {//кц с авторизацией
                 httpResponse = httpClient.execute(createPostRequestToken());
             }
-            if (pacient.getSource() != 2 && pacient.getSource() != 3) {
+            if (pacientImpl.getSource() != 2 && pacientImpl.getSource() != 3) {
                 throw new NullPointerException("Нет такого источника");
             }
         } catch (Exception ex) {

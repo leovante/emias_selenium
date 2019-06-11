@@ -3,7 +3,7 @@ package com.pages.callcenter;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
@@ -18,7 +18,7 @@ import static org.testng.Assert.assertTrue;
 
 
 public class RecordDoctorPageBase extends PageBase {
-    private Pacient pacient;
+    private PacientImpl pacientImpl;
     private Doctor doctor;
     SelenideElement allrecord = $(By.xpath("//*[@id='all-patient-records-tab']"));
     SelenideElement reschedule = $(By.xpath("//button[@title='Перенести запись']"));
@@ -47,28 +47,28 @@ public class RecordDoctorPageBase extends PageBase {
     String time2;
     String number2;
 
-    public RecordDoctorPageBase visitDoctor(Pacient pacient) throws IOException, InterruptedException, ParseException {
-        this.pacient = pacient;
+    public RecordDoctorPageBase visitDoctor(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+        this.pacientImpl = pacientImpl;
         recordDoctor2();
         return this;
     }
 
-    public RecordDoctorPageBase visitDoctorAssertTalon(Pacient pacient) throws IOException, InterruptedException, ParseException {
-        this.pacient = pacient;
+    public RecordDoctorPageBase visitDoctorAssertTalon(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+        this.pacientImpl = pacientImpl;
         recordDoctor2()
                 .assertDoc();
         return this;
     }
 
-    public RecordDoctorPageBase visitDoctorRewritable(Pacient pacient) throws IOException, InterruptedException, ParseException {
-        this.pacient = pacient;
+    public RecordDoctorPageBase visitDoctorRewritable(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+        this.pacientImpl = pacientImpl;
         recordDoctor()
                 .workRecord();
         return this;
     }
 
-    public RecordDoctorPageBase deleteVisitDoctor(Pacient pacient) throws IOException, InterruptedException, ParseException {
-        this.pacient = pacient;
+    public RecordDoctorPageBase deleteVisitDoctor(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+        this.pacientImpl = pacientImpl;
         recordDoctor()
                 .deleteRecord();
         return this;

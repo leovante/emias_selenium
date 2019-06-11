@@ -1,0 +1,237 @@
+package com.pages.calldoctor.pacients;
+
+import com.system.model.HltMkabEntity;
+import com.system.service.HltMkabServiceImpl;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class PacientDBImpl implements Pacient {
+    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private int source;
+    private int type;
+    private String complaint;
+    private String diagnosis;
+    private int gender;
+    private Timestamp birthdate;
+    private String seriespol;
+    private String numberpol;
+    private String address;
+    private String phone;
+    private String name;
+    private String family;
+    private String ot;
+    private String entrance;//подьезд
+    private String floor;//этаж
+    private String number;//номер дома
+    private String building;//корпус
+    private String construction;//строение
+    private String appartment;//квартира
+    private String codedomophone;//домофон
+    private String sourceName;
+    private String sourceCode;
+    private JSONObject kladraddress;
+    private String addressStringMin;
+
+    @Autowired
+    HltMkabServiceImpl mkb;
+
+    public String getAddressStringMin() {
+        return addressStringMin;
+    }
+
+    public Object getKladraddress() {
+        return kladraddress;
+    }
+
+    public Date parseDate(String dateString) {
+        try {
+            return simpleDateFormat.parse(dateString);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public String getAddress3adv() {
+        return null;
+    }
+
+    @Override
+    public String getAddress2adv() {
+        return null;
+    }
+
+    public int getSource() {
+        return source;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public String getEntrance() {
+        if (entrance != null)
+            return entrance;
+        return "";
+    }
+
+    public String getFloor() {
+        if (floor != null)
+            return floor;
+        return "";
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    @Override
+    public Date getBirthdate() {
+        return null;
+    }
+
+
+    public String getBirthdate(String format) {
+        SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
+        String date1;
+        if (birthdate != null) {
+            date1 = simpleDateFormatEdit.format(birthdate);
+        } else {
+            date1 = null;
+        }
+        return date1;
+    }
+
+    public String getSeriespol() {
+        if (seriespol != null)
+            return seriespol;
+        return "";
+    }
+
+    public String getNumberpol() {
+        if (numberpol != null)
+            return numberpol;
+        return "";
+    }
+
+    public String getAddress() {
+        if (address != null)
+            return address;
+        return "";
+    }
+
+    public String getComplaint() {
+        if (complaint != null)
+            return complaint;
+        return "";
+    }
+
+    public String getDiagnosis() {
+        if (diagnosis != null)
+            return diagnosis;
+        return "";
+    }
+
+    public String getPhone() {
+        if (phone != null)
+            return phone;
+        return "";
+    }
+
+    public String getName() {
+        if (name != null)
+            return name;
+        return "";
+    }
+
+    public String getFamily() {
+        if (family != null)
+            return family;
+        return "";
+    }
+
+    public String getOt() {
+        if (ot != null)
+            return ot;
+        return "";
+    }
+
+    public String getNumber() {
+        if (number != null)
+            return number;
+        return "";
+    }
+
+    public String getBuilding() {
+        if (building != null)
+            return building;
+        return "";
+    }
+
+    public String getConstruction() {
+        if (construction != null)
+            return construction;
+        return "";
+    }
+
+    public String getAppartment() {
+        if (appartment != null)
+            return appartment;
+        return "";
+    }
+
+    public String getCodedomophone() {
+        if (codedomophone != null)
+            return codedomophone;
+        return "";
+    }
+
+    public String getSourceName() {
+        if (sourceName != null)
+            return sourceName;
+        return "";
+    }
+
+    public String getSourceCode() {
+        if (sourceCode != null)
+            return sourceCode;
+        return "";
+    }
+
+    @Override
+    public String getAddress1() {
+        return null;
+    }
+
+    @Override
+    public String getAddress2() {
+        return null;
+    }
+
+    @Override
+    public String getAddress3() {
+        return null;
+    }
+
+    public PacientDBImpl() throws IOException, JSONException {
+        HltMkabEntity mke = mkb.findRandom();
+        this.seriespol = mke.getsPol();
+        this.numberpol = mke.getnPol();
+        this.gender = mke.getW();
+        this.name = mke.getName();
+        this.ot = mke.getOt();
+        this.family = mke.getFamily();
+        this.address = mke.getAdres();
+        this.address = mke.getAdres();
+        this.phone = mke.getPhoneHome();
+        this.birthdate = mke.getDateBd();
+
+
+    }
+}

@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
 import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -16,28 +17,32 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPageBase extends PageBase {
-    Pacient pacient;
+    Pacient pacientImpl;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
     SelenideElement mat_calendar_header = $(By.id(""));
-    SelenideElement setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
+    SelenideElement setAnotherDoctor = $x("//span[contains(text(),'Передать другому врачу')]");
     SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
     SelenideElement completeServiceBtn = $(By.id("toDone"));
     SelenideElement toLpu = $(By.id("toLpu"));
-    SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
+    SelenideElement cancelCall2 = $x("//a[@title='Отменить вызов']");
     SelenideElement change = $(By.id("change"));
     SelenideElement cancelBtn = $(By.id("cancel"));
-    SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
+    SelenideElement cancelField = $x("//input[@placeholder='Причина отмены вызова']");
     SelenideElement cancelCall = $(By.id("cancelCall"));
-    SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
+    SelenideElement cardNumber = $x("//div[contains(text(),'Карта вызова №')]");
 
     public FullCardPageBase(String testName) {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public FullCardPageBase(Pacient pacient, String testName) {
-        this.pacient = pacient;
-        callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
+    public FullCardPageBase(Pacient pacientImpl, String testName) {
+        this.pacientImpl = pacientImpl;
+        try {
+            callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     @Step("проверяю наличие базовых элементов карты вызова")
@@ -51,7 +56,7 @@ public class FullCardPageBase extends PageBase {
         elements.add("Источник");
         elements.add("КТО ПАЦИЕНТ");
         elements.add("Возраст");
-        if (pacient.getGender() != 0)
+        if (pacientImpl.getGender() != 0)
             elements.add("Пол");
         elements.add("АДРЕС");
         elements.add("ЖАЛОБЫ");
@@ -73,22 +78,22 @@ public class FullCardPageBase extends PageBase {
 
     @Step("проверяю наличие базовых элементов пациента")
     public void basePacient() {
-        isVisibleText(pacient.getAddress());
-        isVisibleText(pacient.getComplaint());
-        isVisibleText(pacient.getCodedomophone());
-        isVisibleText(parseTelephone(pacient));
-        isVisibleText(String.valueOf(pacient.getEntrance()));
-        isVisibleText(String.valueOf(pacient.getFloor()));
-        isVisibleText(pacient.getName());
-        isVisibleText(pacient.getFamily());
-        isVisibleText(pacient.getOt());
-        isVisibleText(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
-        isVisibleText(String.valueOf(pacient.getSeriespol()));
-        isVisibleText(String.valueOf(pacient.getNumberpol()));
-        if (pacient.getKladraddress() != null) {
-            isVisibleText(pacient.getAppartment());
-            isVisibleText(pacient.getBuilding());
-            isVisibleText(pacient.getConstruction());
+        isVisibleText(pacientImpl.getAddress());
+        isVisibleText(pacientImpl.getComplaint());
+        isVisibleText(pacientImpl.getCodedomophone());
+        isVisibleText(parseTelephone(pacientImpl));
+        isVisibleText(String.valueOf(pacientImpl.getEntrance()));
+        isVisibleText(String.valueOf(pacientImpl.getFloor()));
+        isVisibleText(pacientImpl.getName());
+        isVisibleText(pacientImpl.getFamily());
+        isVisibleText(pacientImpl.getOt());
+        isVisibleText(String.valueOf(pacientImpl.getBirthdate("dd.MM.yyyy")));
+        isVisibleText(String.valueOf(pacientImpl.getSeriespol()));
+        isVisibleText(String.valueOf(pacientImpl.getNumberpol()));
+        if (pacientImpl.getKladraddress() != null) {
+            isVisibleText(pacientImpl.getAppartment());
+            isVisibleText(pacientImpl.getBuilding());
+            isVisibleText(pacientImpl.getConstruction());
         }
     }
 
@@ -125,7 +130,7 @@ public class FullCardPageBase extends PageBase {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPageBase verifyActivCall(Pacient pacient) throws IOException {
+    public FullCardPageBase verifyActivCall(PacientImpl pacientImpl) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();

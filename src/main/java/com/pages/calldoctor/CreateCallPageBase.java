@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
 import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.api_model.CallDoctorHttp;
 import com.utils.except.NoticeException;
 import io.qameta.allure.Step;
@@ -28,7 +29,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
 public class CreateCallPageBase extends PageBase {
-    private Pacient pacient;
+    private Pacient pacientImpl;
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
     SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
@@ -58,8 +59,8 @@ public class CreateCallPageBase extends PageBase {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
 
-    public CreateCallPageBase(Pacient pacient) {
-        this.pacient = pacient;
+    public CreateCallPageBase(Pacient pacientImpl) {
+        this.pacientImpl = pacientImpl;
     }
 
     protected static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
@@ -97,14 +98,14 @@ public class CreateCallPageBase extends PageBase {
     public void createCall_Api() throws JSONException {
 //        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
 // TODO: 5/16/2019 мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
-        HttpResponse hr = new CallDoctorHttp(pacient).execute();
+        HttpResponse hr = new CallDoctorHttp(pacientImpl).execute();
         if (hr.getStatusLine().getStatusCode() != 200)
             throw new SkipException("Вызов не создан\n" + hr);
     }
 
     @Step("редактирую вызов")
-    public CreateCallPageBase editCallPage(Pacient pacient) throws IOException, ParseException, InterruptedException {
-        this.pacient = pacient;
+    public CreateCallPageBase editCallPage(PacientImpl pacientImpl) throws IOException, ParseException, InterruptedException {
+        this.pacientImpl = pacientImpl;
         sourceCall()
                 .sourceCall()
                 .address()
@@ -121,8 +122,8 @@ public class CreateCallPageBase extends PageBase {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public CreateCallPageBase editCallPage_Mkab(Pacient pacient) throws InterruptedException {
-        this.pacient = pacient;
+    public CreateCallPageBase editCallPage_Mkab(PacientImpl pacientImpl) throws InterruptedException {
+        this.pacientImpl = pacientImpl;
         sourceCall()
                 .searchField()
                 .addressPlus()
@@ -177,10 +178,10 @@ public class CreateCallPageBase extends PageBase {
     @Step("выбор источника вызова")
     private CreateCallPageBase sourceCall() {
         try {
-            if (pacient.getSource() == 1) {
+            if (pacientImpl.getSource() == 1) {
                 sourceReg.click();
             }
-            if (pacient.getSource() == 2) {
+            if (pacientImpl.getSource() == 2) {
                 sourceSmp.click();
             }
         } catch (Exception e) {
@@ -191,35 +192,35 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("поиск МКАБ")
     public CreateCallPageBase searchField() {
-        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
-        $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
+        $(By.id("findPatientInput")).setValue(String.valueOf(pacientImpl.getNumberpol()));
+        $(By.xpath("//mat-option/span[contains(text(),'" + pacientImpl.getFamily() + "')]")).click();
         return this;
     }
 
     @Step("ввод адреса")
     private CreateCallPageBase address() throws InterruptedException {
-        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
+        if (pacientImpl.getAddress1() != null && pacientImpl.getAddress1() != "") {
             clearAddress();
-            list_first_container(pacient.getAddress1());
+            list_first_container(pacientImpl.getAddress1());
         }
-        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
-            if (pacient.getAddress2adv() != null && pacient.getAddress2adv() != "") {
+        if (pacientImpl.getAddress2() != null && pacientImpl.getAddress2() != "") {
+            if (pacientImpl.getAddress2adv() != null && pacientImpl.getAddress2adv() != "") {
                 Thread.sleep(1000);
-                adress.sendKeys(pacient.getAddress3());
-                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress2adv() + "')]")).click();
+                adress.sendKeys(pacientImpl.getAddress3());
+                $(By.xpath("//mat-option/span[contains(text(),'" + pacientImpl.getAddress2adv() + "')]")).click();
             } else
-                list_first_container(pacient.getAddress2());
+                list_first_container(pacientImpl.getAddress2());
         }
-        if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
-            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "") {
+        if (pacientImpl.getAddress3() != null && pacientImpl.getAddress3() != "") {
+            if (pacientImpl.getAddress3adv() != null && pacientImpl.getAddress3adv() != "") {
                 Thread.sleep(1000);
-                adress.sendKeys(pacient.getAddress3());
-                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress3adv() + "')]")).click();
+                adress.sendKeys(pacientImpl.getAddress3());
+                $(By.xpath("//mat-option/span[contains(text(),'" + pacientImpl.getAddress3adv() + "')]")).click();
             } else
-                list_first_container(pacient.getAddress3());
+                list_first_container(pacientImpl.getAddress3());
         }
-        if (pacient.getNumber() != null && pacient.getNumber() != "") {
-            $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
+        if (pacientImpl.getNumber() != null && pacientImpl.getNumber() != "") {
+            $(By.xpath("//input[@placeholder='Дом']")).setValue(pacientImpl.getNumber());
         }
         addressPlus();
         return this;
@@ -271,22 +272,22 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("уточняю адрес")
     private CreateCallPageBase addressPlus() {
-        korpus.setValue(pacient.getBuilding());
-        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
-        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
+        korpus.setValue(pacientImpl.getBuilding());
+        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacientImpl.getConstruction());
+        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacientImpl.getAppartment());
+        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacientImpl.getEntrance()));
+        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacientImpl.getCodedomophone());
+        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacientImpl.getFloor()));
         return this;
     }
 
     @Step("телефон")
     private CreateCallPageBase telephone() {
         try {
-            if (!pacient.getPhone().equals(null)) {
-                $(By.id("phone")).setValue(pacient.getPhone());
+            if (!pacientImpl.getPhone().equals(null)) {
+                $(By.id("phone")).setValue(pacientImpl.getPhone());
             }
-            if (pacient.getPhone().equals("")) {
+            if (pacientImpl.getPhone().equals("")) {
                 $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
             }
         } catch (Exception e) {
@@ -297,10 +298,10 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("пол")
     private CreateCallPageBase gender() {
-        if (pacient.getGender() == 1) {
+        if (pacientImpl.getGender() == 1) {
             $(By.id("sex1")).click();
         }
-        if (pacient.getGender() == 2) {
+        if (pacientImpl.getGender() == 2) {
             $(By.id("sex2")).click();
         }
         return this;
@@ -310,43 +311,43 @@ public class CreateCallPageBase extends PageBase {
     private CreateCallPageBase complaint() throws InterruptedException {
         SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
+        jse.executeScript("arguments[0].value='" + pacientImpl.getComplaint() + "';", complaint);
         complaint.sendKeys(Keys.SPACE);
 
         $(By.xpath("//span[contains(text(),'диатез')]")).click();
-        $(By.xpath("//div[contains(text(),'" + pacient.getComplaint() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//div[contains(text(),'" + pacientImpl.getComplaint() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("полис")
     private CreateCallPageBase polis() {
-        if (pacient.getSeriespol() != null && pacient.getSeriespol() != "") {
-            $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
+        if (pacientImpl.getSeriespol() != null && pacientImpl.getSeriespol() != "") {
+            $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacientImpl.getSeriespol()));
         }
-        if (pacient.getNumberpol() != null && pacient.getNumberpol() != "") {
-            $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacient.getNumberpol()));
+        if (pacientImpl.getNumberpol() != null && pacientImpl.getNumberpol() != "") {
+            $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacientImpl.getNumberpol()));
         }
         return this;
     }
 
     @Step("фио")
     private CreateCallPageBase FIO() {
-        if (pacient.getFamily() != null) {
-            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
+        if (pacientImpl.getFamily() != null) {
+            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacientImpl.getFamily());
         }
-        if (pacient.getName() != null) {
-            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacient.getName());
+        if (pacientImpl.getName() != null) {
+            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacientImpl.getName());
         }
-        if (pacient.getOt() != null) {
-            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacient.getOt());
+        if (pacientImpl.getOt() != null) {
+            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacientImpl.getOt());
         }
         return this;
     }
 
     @Step("день рождения")
     private CreateCallPageBase birthDay() {
-        if (pacient.getBirthdate("") != null)
-            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
+        if (pacientImpl.getBirthdate("") != null)
+            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacientImpl.getBirthdate("dd-MM-yyyy"));
         return this;
     }
 
@@ -356,7 +357,7 @@ public class CreateCallPageBase extends PageBase {
         vKat.click();
 
         Date newData = new Date();
-        Date bd = pacient.getBirthdate();
+        Date bd = pacientImpl.getBirthdate();
         int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
         if (years > 18) {
             $(By.xpath("//span[contains(.,'Взрослые')]")).click();
@@ -369,7 +370,7 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("фио вызывающего")
     private CreateCallPageBase caller() {
-        if (pacient.getSource() == 2) {
+        if (pacientImpl.getSource() == 2) {
             $(By.id("sourceSmp")).setValue("Супер станция");
             $(By.id("callFamily")).setValue("ФамилияВызывающего");
             $(By.id("callName")).setValue("ИмяВызывающего");
@@ -389,7 +390,7 @@ public class CreateCallPageBase extends PageBase {
     @Step("количество лет")
     public int years() {
         Date newData = new Date();
-        Date bd = pacient.getBirthdate();
+        Date bd = pacientImpl.getBirthdate();
         int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
         return years;
     }
@@ -416,24 +417,24 @@ public class CreateCallPageBase extends PageBase {
     }
 
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPageBase verifyCallProfile1(Pacient pacient) {
-        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
-        Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
-        Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
-        Assert.assertEquals(fam.getAttribute("value"), pacient.getFamily(), "Фамилия некорректная");
-        Assert.assertEquals(name.getAttribute("value"), pacient.getName(), "Имя некорректное");
-        Assert.assertEquals(otchestvo.getAttribute("value"), pacient.getOt(), "Отчество некорректное");
-        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
+    public CreateCallPageBase verifyCallProfile1(PacientImpl pacientImpl) {
+        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacientImpl), "Номер телефона некорректный");
+        Assert.assertEquals(nomerPol.getAttribute("value"), pacientImpl.getNumberpol(), "Номер полиса некорректный");
+        Assert.assertEquals(seriyaPol.getAttribute("value"), pacientImpl.getSeriespol(), "Серия полса некорректная");
+        Assert.assertEquals(fam.getAttribute("value"), pacientImpl.getFamily(), "Фамилия некорректная");
+        Assert.assertEquals(name.getAttribute("value"), pacientImpl.getName(), "Имя некорректное");
+        Assert.assertEquals(otchestvo.getAttribute("value"), pacientImpl.getOt(), "Отчество некорректное");
+        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacientImpl.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
 //        Assert.assertEquals(age.getAttribute("value"), pacient.getAge(), "Возраст некорректный");
 //        Assert.assertEquals(vKat.getAttribute("value"), pacient.getVkat(), "Возрастная категория некорректная");
-        assertThat("Адрес некорректный", pacient.getAddress(), containsString(adress.getAttribute("value")));
-        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
-        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
-        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
-        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
-        Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
-        Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
-        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
+        assertThat("Адрес некорректный", pacientImpl.getAddress(), containsString(adress.getAttribute("value")));
+        Assert.assertEquals(dom.getAttribute("value"), pacientImpl.getNumber(), "Номер дома некорректный");
+        Assert.assertEquals(korpus.getAttribute("value"), pacientImpl.getBuilding(), "Номер корпуса некорректный");
+        Assert.assertEquals(stroenie.getAttribute("value"), pacientImpl.getConstruction(), "Номер строения некорректный");
+        Assert.assertEquals(kvartira.getAttribute("value"), pacientImpl.getAppartment(), "Номер квартиры некорректный");
+        Assert.assertEquals(pd.getAttribute("value"), pacientImpl.getEntrance(), "Номер подъезда некорректный");
+        Assert.assertEquals(dfon.getAttribute("value"), pacientImpl.getCodedomophone(), "Номер домофона некорректный");
+        Assert.assertEquals(etazh.getAttribute("value"), pacientImpl.getFloor(), "Номер этажа некорректный");
         LOGGER.info("Проверка данных на странице редактирования выполнена!");
         return this;
     }

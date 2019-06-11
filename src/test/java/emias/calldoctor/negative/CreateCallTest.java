@@ -1,6 +1,6 @@
 package emias.calldoctor.negative;
 
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.TestMethodCapture;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
@@ -22,11 +22,11 @@ public class CreateCallTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile1");
+        PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient)
+        page.createCallPage(pacientImpl)
                 .addNewCall()
-                .list_first_container(pacient.getAddress2());
-        $x("//input[@placeholder='Адрес']").getValue().contains(pacient.getAddress2());
+                .list_first_container(pacientImpl.getAddress2());
+        $x("//input[@placeholder='Адрес']").getValue().contains(pacientImpl.getAddress2());
     }
 }

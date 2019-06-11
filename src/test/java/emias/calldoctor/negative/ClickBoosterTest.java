@@ -1,7 +1,7 @@
 package emias.calldoctor.negative;
 
 import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -21,12 +21,12 @@ public class ClickBoosterTest extends TestBase {
     @Epic("Негативные тесты")
     @RetryCountIfFailed(2)
     public void testAppendTomorrowClickBooster() throws Exception {
-        Pacient pacient = new Pacient("Profile3_Kladr");
+        PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         Doctor doctor = new Doctor("MokovStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacient);
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.dashboardPage().openNewCallDash(pacientImpl);
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().chooseDoctorTodayBooster(doctor);
         //нет проверки и зависает
         throw new AssertionFailure("сделай нормальную проверку");
@@ -37,13 +37,13 @@ public class ClickBoosterTest extends TestBase {
     @Epic("Негативные тесты")
     @RetryCountIfFailed(2)
     public void testZapisatClickBooster() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacient = new Pacient("Profile0_1");
+        PacientImpl pacientImpl = new PacientImpl("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
-        page.createCallPage(pacient).createCall();
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.createCallPage(pacientImpl).createCall();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatClickBooster(doctor);
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
         throw new AssertionFailure("сделай нормальную проверку");
@@ -53,14 +53,14 @@ public class ClickBoosterTest extends TestBase {
     @Epic("Негативные тесты")
     @RetryCountIfFailed(2)
     public void testZapisatDobavitClickBooster() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacient = new Pacient("Profile0_1");
+        PacientImpl pacientImpl = new PacientImpl("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.loginPage().calldoctor();
 //        page.createCallPage().createCall(pacient);
-        page.createCallPage(pacient).createCall_Api();
-        page.fullCardPage(pacient, testName()).chooseDoctorBtn();
+        page.createCallPage(pacientImpl).createCall_Api();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatDobavitClickBooster(doctor);
-        page.fullCardPage(pacient, testName())
+        page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
         throw new AssertionFailure("сделай нормальную проверку");

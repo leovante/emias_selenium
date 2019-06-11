@@ -1,7 +1,7 @@
 package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.pacients.Pacient;
+import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.switchTo;
 public class JournalTest extends TestBase {
 
     @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по номеру через профиль")
+    @Test(groups = "disp", description = "поиск карты по номеру через профиль", enabled = false)
     @RetryCountIfFailed(2)
     public void testSearchCard1() {
         page.loginPage().dispCard();
@@ -28,7 +28,7 @@ public class JournalTest extends TestBase {
     }
 
     @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по полису")
+    @Test(groups = "disp", description = "поиск карты по полису", enabled = false)
     @RetryCountIfFailed(2)
     public void testSearchCard2() {
         page.loginPage().dispCard();
@@ -39,7 +39,7 @@ public class JournalTest extends TestBase {
     }
 
     @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по ФИО")
+    @Test(groups = "disp", description = "поиск карты по ФИО", enabled = false)
     @RetryCountIfFailed(2)
     public void testSearchCard3() {
         page.loginPage().dispCard();
@@ -55,7 +55,7 @@ public class JournalTest extends TestBase {
     public void testSearchCard4() throws InterruptedException {
         page.loginPage().dispJournal();
         page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(3059);
+        page.journalPage().searchByCardNumber(1649);
         page.journalPage().clickSearchBtn();
         page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
     }
@@ -63,23 +63,25 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
-    public void testSearchCard5() throws InterruptedException {
+    public void testSearchCard5() throws InterruptedException, IOException, JSONException {
+        PacientImpl pac = new PacientImpl("Temnikov94");
         page.loginPage().dispJournal();
         page.journalPage().journalMenuBtn();
-        page.journalPage().searchByPolNumber(7654321);
+        page.journalPage().searchByPolNumber(Integer.parseInt(pac.getNumberpol()));
         page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
+        page.journalPage().fioIsVisible(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
     }
 
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
-    public void testSearchCard6() throws InterruptedException {
+    public void testSearchCard6() throws InterruptedException, IOException, JSONException {
+        PacientImpl pac = new PacientImpl("Temnikov94");
         page.loginPage().dispJournal();
         page.journalPage().journalMenuBtn();
-        page.journalPage().searchByFio("Темников Дмитрий Олегович");
+        page.journalPage().searchByFio(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
         page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
+        page.journalPage().fioIsVisible(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
     }
 
     @Epic("Журнал диспансеризации")
@@ -98,14 +100,15 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через мкаб")
     @RetryCountIfFailed(2)
-    public void verifyMeasurePatternFromMkab() throws InterruptedException {
+    public void verifyMeasurePatternFromMkab() throws InterruptedException, IOException, JSONException {
         // TODO: 5/28/2019 объект с данными пациента
+        PacientImpl pac = new PacientImpl("Temnikov94");
         page.loginPage().loginMis();
         page.homePageMis().mkabBtn();
         page.mkabPage()
-                .fio("Темников Дмитрий Олегович")
+                .fio(pac.getFamily() + " " + pac.getName() + " " + pac.getOt())
                 .serchBtn()
-                .openMkab("Темников Дмитрий Олегович");
+                .openMkab(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
         $(By.id("jqContextMenu"))
                 .$(By.id("MkabGridcontextmenuitem0"))
                 .click();
@@ -124,7 +127,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через ячейку расписания", enabled = false)
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
-        Pacient pacient = new Pacient("Temnikov94");
+        PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         page.loginPage().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
 //        page.raspisaniePriemaPage().createDispMl(pacient);
@@ -156,13 +159,13 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверяю что мероприятие открывается у подписанной карты")
     @RetryCountIfFailed(2)
-    public void openClosedCard() throws InterruptedException, IOException, JSONException {
+    public void openClosedCard() throws InterruptedException {
         page.loginPage().dispJournal();
         page.journalPage()
                 .journalMenuBtn()
-                .searchByCardNumber(454)
+                .searchByCardNumber(1652)
                 .clickSearchBtn()
-                .editCardBtn(165734);
+                .editCardBtn(334438);
         page.exampPage()
                 .switchAllServicesTap()
                 .viewFlurography();
