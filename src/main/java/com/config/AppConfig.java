@@ -21,7 +21,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.system.repositories")
-@ComponentScan(basePackages = {"com.system"})
+@ComponentScan(basePackages = {"com.system", "com.pages.calldoctor.pacients"})
 @PropertySource(value = {"classpath:application.properties"})
 public class AppConfig implements TransactionManagementConfigurer {
 

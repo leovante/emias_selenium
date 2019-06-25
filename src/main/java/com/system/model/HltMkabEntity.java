@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "hlt_MKAB", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
 public class HltMkabEntity {
-    private int mkabid;
+    private long mkabid;
     private int xEdition;
     private byte xStatus;
     private String family;
@@ -101,11 +101,11 @@ public class HltMkabEntity {
     @Id
     @GeneratedValue
     @Column(name = "MKABID", nullable = false)
-    public int getMkabid() {
+    public long getMkabid() {
         return mkabid;
     }
 
-    public void setMkabid(int mkabid) {
+    public void setMkabid(long mkabid) {
         this.mkabid = mkabid;
     }
 

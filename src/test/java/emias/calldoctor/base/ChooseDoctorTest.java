@@ -50,7 +50,7 @@ public class ChooseDoctorTest extends TestBase {
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
 
-//    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
+    //    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
 //    @Epic("Назначить врача")
 //    @RetryCountIfFailed(2)
 //    public void testAppendDoctorToCall_Portal() throws Exception {
@@ -74,6 +74,26 @@ public class ChooseDoctorTest extends TestBase {
 //                .clearAllFilters()
 //                .verifyActiveDocGroup(pacient, doctor);
 //    }
+    @Test(groups = "CD", description = "назначить участкового врача на сегодня")
+    @Epic("Назначить врача")
+    @RetryCountIfFailed(2)
+    public void testAppendUchastkoviyDoctor() throws Exception {
+        PacientImpl pacientImpl = new PacientImpl("Profile2");
+        Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
+        page.loginPage().calldoctor();
+        page.createCallPage(pacientImpl)
+                .createCall()
+                .saveBtn();
+        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctorPage().chooseDoctorToday(doctor);
+        page.fullCardPage(pacientImpl, testName())
+                .verifyActivCall(pacientImpl)
+                .closeCardBtn();
+        page.dashboardPage()
+                .clearAllFilters()
+//                .searchFilterDoctor(doctor)
+                .verifyActiveDocGroup(pacientImpl, doctor);
+    }
 
     // TODO: 13.08.2018 тест назначить врача вызову из КЦ
 }

@@ -1,14 +1,17 @@
 package com.system.service;
 
 import com.system.model.HltMkabEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public interface HltMkabService<T> {
 
-    Optional<HltMkabEntity> findById(int id);
+    Optional<HltMkabEntity> findById(long id);
 
-    HltMkabEntity findRandom();
+    Optional<HltMkabEntity> findRandom();
+
 
 //    List findByIdList(int id);
 

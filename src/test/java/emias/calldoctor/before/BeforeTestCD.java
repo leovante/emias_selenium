@@ -18,6 +18,7 @@ public class BeforeTestCD extends TestBase {
     public void run() throws IOException, ParseException {
         updateStend();
         cleanOperatorCalls();
+        doctorsPreset();
     }
 
     public void updateStend() throws IOException, ParseException {
@@ -39,5 +40,9 @@ public class BeforeTestCD extends TestBase {
 
     public void cleanOperatorCalls() {
         DBScripts.finalizeCallsOperatorTemnikov();
+    }
+
+    public void doctorsPreset() {
+
     }
 }

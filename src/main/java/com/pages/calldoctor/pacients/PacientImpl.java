@@ -13,7 +13,6 @@ import java.util.Date;
 
 public class PacientImpl implements Pacient {
     String pacient;
-    String path = "src\\main\\java\\com\\pages\\calldoctor\\pacients\\" + pacient + ".json";
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int source;
     private int type;
@@ -225,6 +224,7 @@ public class PacientImpl implements Pacient {
 
     public PacientImpl(String pacient) throws IOException, JSONException {
         this.pacient = pacient;
+        String path = "src\\main\\java\\com\\pages\\calldoctor\\pacients\\" + pacient + ".json";
         JSONObject jsonOb;
         File reader2 = new File(path);
         if (reader2.exists()) {

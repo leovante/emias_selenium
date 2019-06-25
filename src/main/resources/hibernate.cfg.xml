@@ -24,5 +24,7 @@
         <mapping class="com.system.model.KlaKlAdrEntity"/>
         <mapping class="com.system.model.HltMkabEntity"/>
         <mapping class="com.system.model.OmsDocumentHistory"/>
+        <mapping class="com.system.model.OmsPrvd"/>
+        <mapping class="com.system.model.OmsPrvs"/>
     </session-factory>
 </hibernate-configuration>

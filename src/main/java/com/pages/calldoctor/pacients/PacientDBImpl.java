@@ -1,22 +1,18 @@
 package com.pages.calldoctor.pacients;
 
 import com.system.model.HltMkabEntity;
-import com.system.service.HltMkabServiceImpl;
+import com.system.service.HltMkabService;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 public class PacientDBImpl implements Pacient {
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private int source;
-    private int type;
-    private String complaint;
-    private String diagnosis;
     private int gender;
     private Timestamp birthdate;
     private String seriespol;
@@ -26,6 +22,10 @@ public class PacientDBImpl implements Pacient {
     private String name;
     private String family;
     private String ot;
+    private int source;
+    private int type;
+    private String complaint;
+    private String diagnosis;
     private String entrance;//подьезд
     private String floor;//этаж
     private String number;//номер дома
@@ -37,9 +37,7 @@ public class PacientDBImpl implements Pacient {
     private String sourceCode;
     private JSONObject kladraddress;
     private String addressStringMin;
-
-    @Autowired
-    HltMkabServiceImpl mkb;
+    private HltMkabService mksb;
 
     public String getAddressStringMin() {
         return addressStringMin;
@@ -92,10 +90,9 @@ public class PacientDBImpl implements Pacient {
     }
 
     @Override
-    public Date getBirthdate() {
-        return null;
+    public Timestamp getBirthdate() {
+        return birthdate;
     }
-
 
     public String getBirthdate(String format) {
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
@@ -219,19 +216,21 @@ public class PacientDBImpl implements Pacient {
         return null;
     }
 
-    public PacientDBImpl() throws IOException, JSONException {
-        HltMkabEntity mke = mkb.findRandom();
-        this.seriespol = mke.getsPol();
-        this.numberpol = mke.getnPol();
-        this.gender = mke.getW();
-        this.name = mke.getName();
-        this.ot = mke.getOt();
-        this.family = mke.getFamily();
-        this.address = mke.getAdres();
-        this.address = mke.getAdres();
-        this.phone = mke.getPhoneHome();
-        this.birthdate = mke.getDateBd();
-
-
+    public PacientDBImpl(HltMkabService hltMkabService) throws IOException, JSONException {
+        this.mksb = hltMkabService;
+        Optional<HltMkabEntity> mk = mksb.findRandom();
+        System.out.println();
+        mk.ifPresent(HltMkabEntity -> {
+            this.seriespol = HltMkabEntity.getsPol();
+            this.numberpol = HltMkabEntity.getnPol();
+            this.gender = HltMkabEntity.getW();
+            this.name = HltMkabEntity.getName();
+            this.ot = HltMkabEntity.getOt();
+            this.family = HltMkabEntity.getFamily();
+            this.address = HltMkabEntity.getAdres();
+            this.address = HltMkabEntity.getAdres();
+            this.phone = HltMkabEntity.getPhoneHome();
+            this.birthdate = HltMkabEntity.getDateBd();
+        });
     }
 }
