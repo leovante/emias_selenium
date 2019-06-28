@@ -6,12 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="tests_project" />
+        <module name="regress_tests" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="regress_tests" target="10" />
-      <module name="tests_project" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>
