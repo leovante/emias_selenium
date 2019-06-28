@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="regress_tests" />
+        <module name="tests_project" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="regress_tests" target="10" />
+      <module name="tests_project" target="10" />
     </bytecodeTargetLevel>
   </component>
 </project>

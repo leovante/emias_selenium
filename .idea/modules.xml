@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/regress_tests.iml" filepath="$PROJECT_DIR$/regress_tests.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tests_project.iml" filepath="$PROJECT_DIR$/tests_project.iml" />
     </modules>
   </component>
 </project>
