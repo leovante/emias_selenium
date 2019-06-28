@@ -154,12 +154,7 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-        <!--other-->
-        <dependency>
-            <groupId>net.lightbody.bmp</groupId>
-            <artifactId>browsermob-core</artifactId>
-            <version>2.1.5</version>
-        </dependency>
+        <!--logger-->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -169,6 +164,12 @@
             <groupId>com.epam.reportportal</groupId>
             <artifactId>logger-java-logback</artifactId>
             <version>4.0.2</version>
+        </dependency>
+        <!--other-->
+        <dependency>
+            <groupId>net.lightbody.bmp</groupId>
+            <artifactId>browsermob-core</artifactId>
+            <version>2.1.5</version>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
@@ -219,10 +220,10 @@
                             <name>usedefaultlisteners</name>
                             <value>false</value> <!-- disabling default listeners is optional -->
                         </property>
-                        <!--<property>-->
-                        <!--<name>listener</name>-->
-                        <!--<value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>-->
-                        <!--</property>-->
+                        <property>
+                            <name>listener</name>
+                            <value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>
+                        </property>
                     </properties>
                 </configuration>
                 <!--<dependencies>-->
