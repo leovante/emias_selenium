@@ -97,7 +97,7 @@ public class CreateCallPageBase extends PageBase {
     @Step("создаю вызов через api")
     public void createCall_Api() throws JSONException {
 //        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
-// TODO: 5/16/2019 мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
+        // TODO: 5/16/2019 мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
         HttpResponse hr = new CallDoctorHttp(pacientImpl).execute();
         if (hr.getStatusLine().getStatusCode() != 200)
             throw new SkipException("Вызов не создан\n" + hr);

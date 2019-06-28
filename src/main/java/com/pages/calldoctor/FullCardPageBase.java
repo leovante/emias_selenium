@@ -115,7 +115,7 @@ public class FullCardPageBase extends PageBase {
 
     @Step("проверяю время из списка")
     void assertTimeContains(ArrayList curTime, String expTime) {
-        LOGGER.info("curTime: " + curTime + "\n" + "expTime: " + expTime);
+        LOGGER.info("curTime: " + curTime + " " + "expTime: " + expTime);
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 

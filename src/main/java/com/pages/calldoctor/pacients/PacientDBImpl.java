@@ -22,7 +22,7 @@ public class PacientDBImpl implements Pacient {
     private String name;
     private String family;
     private String ot;
-    private int source;
+    private int source = 2;
     private int type;
     private String complaint;
     private String diagnosis;
@@ -65,6 +65,7 @@ public class PacientDBImpl implements Pacient {
         return null;
     }
 
+    @Override
     public int getSource() {
         return source;
     }

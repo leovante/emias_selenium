@@ -2,6 +2,7 @@ package emias;
 
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.config.AppConfig;
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
@@ -25,7 +26,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.text.ParseException;
 
-@Listeners({TestMethodCapture.class, CustomListner1.class})
+@Listeners({TestMethodCapture.class, CustomListner1.class, ReportPortalTestNGListener.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;

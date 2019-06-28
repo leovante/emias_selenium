@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.Optional;
 
 @Service
@@ -25,15 +26,10 @@ public class HltMkabServiceImpl implements HltMkabService {
 
     @Override
     public Optional<HltMkabEntity> findRandom() {
-        long me = hltMkabRepository.count();
-        int idx = (int) (Math.random() * me);
-
         String query = "select mk from HltMkabEntity mk where mkabid > 0 order by RAND(1)";
-        return em.createQuery(query, HltMkabEntity.class)
-                .setMaxResults(idx)
-                .getResultList()
-                .stream()
-                .findFirst();
-        // TODO: 6/17/2019 бесконечно генерит
+        Query q = em.createQuery(query, HltMkabEntity.class);
+        q.setMaxResults(1);
+        HltMkabEntity mk = (HltMkabEntity) q.getSingleResult();
+        return Optional.ofNullable(mk);
     }
 }

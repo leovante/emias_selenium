@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Supplier;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -27,7 +26,7 @@ public class DoctorMethods extends PageBase {
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "Ай Бо ЛитАвтоТест", "null");
         dontUseNames.add(docName);
-        LOGGER.info((Supplier<String>) dontUseNames);
+//        LOGGER.info((Supplier<String>) dontUseNames);
         String doctorStringName = docName;
         List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
@@ -79,7 +78,7 @@ public class DoctorMethods extends PageBase {
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ай Бо ЛитАвтоТест", "Ар Ти Шок", "test test testovych", "null");
         dontUseNames.add(docName);
-        LOGGER.info((Supplier<String>) dontUseNames);
+//        LOGGER.info((Supplier<String>) dontUseNames);
         String doctorStringName = docName;
         List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу

@@ -64,6 +64,7 @@ public class AppConfig implements TransactionManagementConfigurer {
 //        jpaProperties.setProperty("spring.main.allow-bean-definition-overriding", "true");
 //        jpaProperties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
 //        jpaProperties.setProperty("showSql", "true");
+
         jpaProperties.setProperty("hibernate.show_sql", "true");
         jpaProperties.setProperty("hibernate.format_sql", "true");
         entityManagerFactoryBean.setJpaProperties(jpaProperties);

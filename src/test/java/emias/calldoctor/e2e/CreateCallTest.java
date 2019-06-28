@@ -27,8 +27,7 @@ public class CreateCallTest extends TestBase {
 
         page.loginPage().calldoctor();
         page.createCallPage(pacientImpl)
-                .createCall()
-                .saveBtn();
+                .createCall_Api();
         page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
