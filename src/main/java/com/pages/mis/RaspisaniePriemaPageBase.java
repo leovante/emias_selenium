@@ -110,7 +110,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
     }
 
     public void lastDispPacientCell_kartaProfOsmotra() throws NoSuchFieldException {
-        $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div")).shouldBe(Condition.visible);
+        $x("//div[@id='schedule']/div/div/div/div[3]/div/div").shouldBe(Condition.visible);
         ElementsCollection cells =
                 $$(By.xpath("//div[@style='background-color:#AC6060;border-color:#AC6060;color:#FFFFFF']" +
                         "//div[contains(text(),'" + terapevtTime + "')]"));
@@ -134,7 +134,9 @@ public class RaspisaniePriemaPageBase extends PageBase {
                 .$x(".//*[contains(text(),'" + pacientImpl.getNumberpol() + "')]")
                 .click();
         selectPatientButton.click();
-        $x("//*[contains(text(),'Модель пациента: ')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'Модели:')]").shouldBe(Condition.visible);
+        $x("//span[@ng-click='btnGenerateRouteCard()']").shouldBe(Condition.visible).click();
+        $x("//*[contains(text(),'Модели:')]").shouldBe(Condition.visible);
         $x("//span[@ng-click='btnGenerateRouteCard()']").click();
         for (int i = 0; i < 5; i++) {
             if (proverkaKvot.isDisplayed()) {
@@ -154,7 +156,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
     }
 
     public RaspisaniePriemaPageBase getTerapevtTime() {
-        terapevtTime = $(By.xpath("//*[contains(text(),'Прием врача-терапевта')]/../../div[6]/span")).getText();
+        terapevtTime = $x("//*[contains(text(),'Прием врача-терапевта')]/../../div[7]/span").getText();
 //        terapevtName = $(By.xpath("//*[contains(text(),'Прием врача-терапевта')]/../../div[8]/span[2]")).getText();
         return this;
     }
