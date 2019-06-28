@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Condition.enabled;
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.close;
 import static org.testng.Assert.assertTrue;
 
@@ -126,7 +125,6 @@ public class RecordDoctorPage extends AbstractPage {
         return this;
 
     }
-
     public RecordDoctorPage assertDoc() throws InterruptedException {
         Thread.sleep(2000);
         SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));

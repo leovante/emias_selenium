@@ -5,8 +5,6 @@ import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
-import static com.codeborne.selenide.Selenide.$;
-
 
 public class FindPatientPage extends AbstractPage {
     private Pacient pacient;

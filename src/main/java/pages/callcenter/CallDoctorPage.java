@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class CallDoctorPage extends AbstractPage {
     private Pacient pacient;
-
     public CallDoctorPage() {
     }
 

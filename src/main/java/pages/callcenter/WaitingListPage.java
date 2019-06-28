@@ -6,8 +6,6 @@ import org.openqa.selenium.By;
 import pages.AbstractPage;
 import pages.calldoctor.profiles_interfaces.Pacient;
 
-import static com.codeborne.selenide.Selenide.$;
-
 public class WaitingListPage extends AbstractPage {
     private Pacient pacient;
     SelenideElement waitspec = $(By.xpath("//div[@id='department-12102']/button[1]"));

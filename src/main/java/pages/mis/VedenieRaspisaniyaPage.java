@@ -14,8 +14,6 @@ import pages.AbstractPage;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$;
-
 public class VedenieRaspisaniyaPage extends AbstractPage {
 
     SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));

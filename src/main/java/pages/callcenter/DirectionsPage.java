@@ -4,8 +4,6 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import pages.AbstractPage;
 
-import static com.codeborne.selenide.Selenide.$;
-
 public class DirectionsPage extends AbstractPage {
     SelenideElement closemodal = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button"));
 //    @FindBy(xpath = "//*[@id='direction-list-tab']")
