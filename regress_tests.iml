@@ -3,10 +3,7 @@
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
       <configuration>
-        <fileset id="fileset" name="Mvc Dispatcher Servlet" removed="false">
-          <file>file://$MODULE_DIR$/src/main/WEB-INF/mvc-dispatcher-servlet</file>
-          <file>file://$MODULE_DIR$/src/main/resources/Beans.xml</file>
-        </fileset>
+        <fileset id="fileset" name="Mvc Dispatcher Servlet" removed="false" />
       </configuration>
     </facet>
     <facet type="web" name="Web">

@@ -12,7 +12,7 @@ public class SeleniumGrid extends PageBase {
     static boolean grid = false;
     static boolean working = false;
     static int count = 10;
-    static String command = "cmd /c start cmd.exe /K \"cd src/main/resources/selenium_grid && start run_grid.bat && exit\"";
+    static String command = "cmd /c start cmd.exe /K \"cd %userprofile%/Google Drive/chromedriver && start run_grid.bat && exit\"";
 
     private static void checkStatus() throws InterruptedException, IOException, JSONException {
         status = Status.checkRunningStatus();

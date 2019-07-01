@@ -26,7 +26,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.text.ParseException;
 
-@Listeners({TestMethodCapture.class, CustomListner1.class, ReportPortalTestNGListener.class})
+@Listeners({TestMethodCapture.class, /*CustomListner1.class, ReportPortalTestNGListener.class*/})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
@@ -61,7 +61,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public void setUp(@Optional String browser) throws IOException {
         driverInst = new WebDriverInstansiator(browser);
         driverInst.setDriver();
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
+//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
     }
 

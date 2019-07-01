@@ -1,7 +1,3 @@
-/**
- * тут проверяем всякую мелочь
- */
-
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
@@ -76,7 +72,7 @@ public class PerehodyServisovTest extends TestBase {
 
     @Test(groups = "CD", description = "выход из диспетчера в МИС")
     @Epic("Переходы")
-    @Issue("EMIAS-658")
+//    @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
     public void testExitToMis() {
         page.loginPage().calldoctor();

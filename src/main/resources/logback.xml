@@ -4,7 +4,7 @@
     <!--Аппендеры -->
     <!--Файловый аппендер -->
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>log.log</file>
+        <file>target/log.log</file>
         <append>true</append>
         <!--<encoder>-->
         <!--<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>-->

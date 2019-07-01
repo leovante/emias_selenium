@@ -3,6 +3,7 @@ package com.utils;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.config.ConfigFile;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
@@ -37,11 +38,12 @@ public class WebDriverInstansiator {
         //ручной запуск
         ChromeOptions chromeOptions;
         if (browser == null) {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/selenium_grid/chromedriver.exe");
-            new ChromeDriverService.Builder()
-                    .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
-                    .usingAnyFreePort()
-                    .build();
+//            System.setProperty("webdriver.chrome.driver", "%userprofile%/Google Drive/chromedriver/chromedriver.exe");
+//            new ChromeDriverService.Builder()
+//                    .usingDriverExecutable(new File("%userprofile%/Google Drive/chromedriver/chromedriver.exe"))
+//                    .usingAnyFreePort()
+//                    .build();
+            WebDriverManager.chromedriver().setup();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
             chromeOptions.setHeadless(false);
@@ -55,8 +57,8 @@ public class WebDriverInstansiator {
         else {
             switch (browser) {
                 case "firefox":
-                    System.setProperty("webdriver.gecko.remoteDriver", "src/main/resources/selenium_grid/geckodriver.exe");
-                    System.setProperty("webdriver.gecko.driver", "src/main/resources/selenium_grid/geckodriver.exe");
+                    System.setProperty("webdriver.gecko.remoteDriver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");
+                    System.setProperty("webdriver.gecko.driver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");
 
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
 //                    firefoxOptions.setHeadless(conf.getHeadless());
