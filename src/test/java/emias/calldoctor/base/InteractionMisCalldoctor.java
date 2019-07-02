@@ -10,13 +10,13 @@ public class InteractionMisCalldoctor extends TestBase {
 //    public void testAppendDoctorToCall_Registr() throws Exception {
 //        Pacient pacient = new Pacient("Profile1");
 //        Doctor doctor = new Doctor("SerovaStendTestovoe");
-//        page.loginPage().calldoctor();
+//        page.misHomePage().calldoctor();
 //        page.createCallPage(pacient).createCall();
 //        page.fullCardPage(testName()).chooseDoctorBtn();
 //        page.setDoctorPage().chooseDoctorToday(doctor);
 //        page.fullCardPage(testName()).verifyActivCall(pacient);
 //
-//        page.loginPage().calldoctor();
+//        page.misHomePage().calldoctor();
 //        page.homePageMis().raspisaniPriemaBtn();
 //        page.doctorMethods().selectDoctor(doctor);
 //    }

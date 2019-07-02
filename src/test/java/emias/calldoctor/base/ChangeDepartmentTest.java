@@ -25,7 +25,7 @@ public class ChangeDepartmentTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -45,7 +45,7 @@ public class ChangeDepartmentTest extends TestBase {
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -68,7 +68,7 @@ public class ChangeDepartmentTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
         Doctor depDoc = new Doctor("TemnikovVzroslayaTerapev");
         Doctor urDoc = new Doctor("TemnikovStend");
-        page.loginPage().calldoctorVzroslaya();
+        page.misHomePage().calldoctorVzroslaya();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -100,20 +100,19 @@ public class ChangeDepartmentTest extends TestBase {
 //        page.fullCardPage().verifyDepartment("firstDepart");
     }
 
-    @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у взрослого вызова не отображается детская поликлиника и наоборот")
+    @Test(groups = "CD", description = "проверить что на странице передачи в другое подр. у взрослого вызова отображается взрослое и не отображается детское")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacientImpl, testName()).transferToDepartBtn();
-        $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldBe(Condition.visible);
-        Thread.sleep(1000);
-        $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldNotBe(Condition.visible);
+        page.fullCardPage(pacientImpl, testName())
+                .transferToDepartBtn();
+        page.setLpuPage().validateViewToAdult();
     }
 
     @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у детского вызова не отображается взрослая поликлиника и наоборот")
@@ -121,7 +120,7 @@ public class ChangeDepartmentTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();

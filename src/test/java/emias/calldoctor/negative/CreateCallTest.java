@@ -23,7 +23,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .addNewCall()
                 .list_first_container(pacientImpl.getAddress2());

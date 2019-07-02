@@ -10,21 +10,26 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class NavigationTest extends TestBase {
 
-    @Test(groups = "disp", description = "проверка редиректа к блоку заключение при редактировании МЛ")
-    @RetryCountIfFailed(3)
+    @Test(groups = "disp", description = "проверка автоскролла бокового меню к блоку заключение при редактировании МЛ")
+    @RetryCountIfFailed(2)
     public void testFillExamp1() {
-        page.loginPage().dispCard();
-        page.exampPage().zakluchenieMenuBtn();
-        $(By.xpath("//*[@placeholder='Основной диагноз']")).shouldBe(Condition.visible);
+        page.misHomePage().dispCard();
+        page.exampPage()
+                .switchAllServicesTap()
+                .zakluchenieMenuBtn()
+                .validateZakluchenieBorder();
     }
 
-    @org.testng.annotations.Test(groups = "disp", description = "проверка редиректа к блоку заключение при просмотре МЛ из журнала")
-    @RetryCountIfFailed(3)
+    @Test(groups = "disp", description = "проверка редиректа к блоку заключение при просмотре МЛ из журнала")
+    @RetryCountIfFailed(2)
     public void testFillExamp2() {
-        page.loginPage().dispCard();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().openCardByPolis(7654321);
-        page.exampPage().zakluchenieMenuBtn();
-        $(By.xpath("//*[@placeholder='Основной диагноз']")).shouldBe(Condition.visible);
+        page.misHomePage().dispJournal();
+        page.journalPage()
+                .journalMenuBtn()
+                .openCardByNumber(180);
+        page.exampPage()
+                .switchAllServicesTap()
+                .zakluchenieMenuBtn()
+                .validateZakluchenieBorder();
     }
 }

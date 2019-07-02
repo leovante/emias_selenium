@@ -28,7 +28,7 @@ public class DoctorsListTest extends TestBase {
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -49,7 +49,7 @@ public class DoctorsListTest extends TestBase {
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -70,7 +70,7 @@ public class DoctorsListTest extends TestBase {
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -92,7 +92,7 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -116,7 +116,7 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -139,7 +139,7 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -162,7 +162,7 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -182,7 +182,7 @@ public class DoctorsListTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor operator = new Doctor("Operator");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -203,7 +203,7 @@ public class DoctorsListTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("ProfileDetkina");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacientImpl)
@@ -221,7 +221,7 @@ public class DoctorsListTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile19");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
@@ -235,7 +235,7 @@ public class DoctorsListTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -255,7 +255,7 @@ public class DoctorsListTest extends TestBase {
     public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         PacientImpl pacientImpl2 = new PacientImpl("Profile0_2");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
@@ -282,7 +282,7 @@ public class DoctorsListTest extends TestBase {
     public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         PacientImpl pacientImpl2 = new PacientImpl("Profile0_2");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();

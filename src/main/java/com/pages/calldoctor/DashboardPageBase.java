@@ -16,14 +16,14 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPageBase extends PageBase {
 
-    private SelenideElement exitToMis = $(By.xpath("//mat-icon[contains(text(),'more_vert')]"));
-    private SelenideElement exitBtn = $(By.xpath("//*[contains(text(),'Выход')]"));
+    private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
+    private SelenideElement exitBtn = $x("//span[contains(text(),'Выход')]");
+    private SelenideElement instructionBtn = $x("//span[contains(text(),'Инструкция')]");
     private SelenideElement filter_all = $(By.xpath("//*[text()='Все']"));
     private SelenideElement filter_today = $(By.xpath("//*[text()='Сегодня']"));
     private SelenideElement filter_tomorrow = $(By.xpath("//*[text()='Завтра']"));
     private SelenideElement filterTodayViz = /*$(By.id("mCSB_5_container")).*/$(By.xpath("//span[contains(text(),'Сегодня')]"));
     private SelenideElement filterTomorrowViz = /*$(By.id("mCSB_5_container")).*/$(By.xpath("//span[contains(text(),'Завтра')]"));
-    private SelenideElement instructionBtn = $(By.xpath("//*[contains(text(),'Инструкция')]"));
     private SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
     private SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
     private SelenideElement typeCall = $(By.xpath("//*[text()='Вид вызова']"));

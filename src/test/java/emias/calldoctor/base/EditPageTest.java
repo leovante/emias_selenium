@@ -26,7 +26,7 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testVerifyEditPage() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -39,7 +39,7 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testVerifyEditPage_2() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -56,7 +56,7 @@ public class EditPageTest extends TestBase {
     public void testEditCall() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         PacientImpl pacientImpl2 = new PacientImpl("Profile2");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -79,7 +79,7 @@ public class EditPageTest extends TestBase {
     public void testValidationAddressAfterSaveEditedCall() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         PacientImpl pacientImpl2 = new PacientImpl("Profile0_3");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
@@ -96,7 +96,7 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName()).verifyNewCall();

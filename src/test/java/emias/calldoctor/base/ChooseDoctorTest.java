@@ -15,7 +15,7 @@ public class ChooseDoctorTest extends TestBase {
     public void testAppendDoctorToCall_Registr() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -35,7 +35,7 @@ public class ChooseDoctorTest extends TestBase {
     public void testAppendDoctorToCall_SMP() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -58,7 +58,7 @@ public class ChooseDoctorTest extends TestBase {
 //        Doctor doctor = new Doctor("MokovStendTestovoe");
 //        enter.enterPortal();
 //        page.portalDashboard().createCall(pacient);
-//        page.loginPage().calldoctor();
+//        page.misHomePage().calldoctor();
 //        page.dashboardPage()
 //                .clearAllFilters()
 //                .openNewCallDash(pacient);
@@ -80,7 +80,7 @@ public class ChooseDoctorTest extends TestBase {
     public void testAppendUchastkoviyDoctor() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();

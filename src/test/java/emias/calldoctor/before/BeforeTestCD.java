@@ -28,8 +28,8 @@ public class BeforeTestCD extends TestBase {
         LPUDoctor.put(2924, 2091);//Серова
         LPUDoctor.put(1856, 2042);//Немцова
         LPUDoctor.put(3074, 2134);//Гинекологов
-//        LPUDoctor.put(1941, 1005);//Юдина
-//        LPUDoctor.put(2062, 1202);//Зайцева
+        LPUDoctor.put(3078, 2162);//Зайцева
+        LPUDoctor.put(3079, 2164);//Юдина
         Iterator<Map.Entry<Integer, Integer>> it = LPUDoctor.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<Integer, Integer> pair = it.next();

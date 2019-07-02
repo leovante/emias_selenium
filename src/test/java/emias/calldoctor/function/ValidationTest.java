@@ -24,7 +24,7 @@ public class ValidationTest extends TestBase {
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         PacientImpl pacientImpl2 = new PacientImpl("Profile2_0");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -42,7 +42,7 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName()).verifyNewCall();
@@ -59,7 +59,7 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -73,7 +73,7 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -88,7 +88,7 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();

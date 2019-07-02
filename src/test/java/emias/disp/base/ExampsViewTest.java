@@ -13,7 +13,7 @@ public class ExampsViewTest extends TestBase {
     @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года", enabled = false)
     @RetryCountIfFailed(3)
     public void testFillExamp() throws InterruptedException {
-        page.loginPage().dispJournal();
+        page.misHomePage().dispJournal();
         page.exampPage().fillTemnikov();
         $(By.xpath("//*[contains(text(),'(100%)')]")).shouldBe(Condition.visible);
     }

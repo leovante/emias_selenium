@@ -23,8 +23,8 @@ public class Pages extends PageBase {
         return page(HomePageBase.class);
     }
 
-    public LoginPageBase loginPage() {
-        return page(LoginPageBase.class);
+    public MisHomePage misHomePage() {
+        return page(MisHomePage.class);
     }
 
     public NapravlenieNaIssledovanie napravlenieNaIssledovanie() {

@@ -18,7 +18,7 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile6");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName())

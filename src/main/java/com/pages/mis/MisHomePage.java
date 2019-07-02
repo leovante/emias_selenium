@@ -1,5 +1,6 @@
 package com.pages.mis;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.config.ConfigFile;
@@ -7,14 +8,16 @@ import com.pages.PageBase;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginPageBase extends PageBase {
+public class MisHomePage extends PageBase {
     ConfigFile conf;
 
-    public LoginPageBase() {
+    public MisHomePage() {
         conf = new ConfigFile();
     }
 
@@ -61,6 +64,7 @@ public class LoginPageBase extends PageBase {
     @Step("Вход в карту диспансеризации")
     public void dispCard() {
         open(conf.getDispCard());
+        LOGGER.info("Открыл карту диспансеризации: \n" + conf.getDispCard());
     }
 
     @Step("Вход в карту диспансеризации")
@@ -73,5 +77,17 @@ public class LoginPageBase extends PageBase {
         pass.val("ccg123");
         loginButton.click();
         open("http://call.emias.mosreg.ru/call2_dev/to_work//");
+    }
+
+    @Step("Валидация страницы логина")
+    public void validateLoginPage() {
+        SelenideElement se = $x("//*[contains(.,'Вход в систему')]").shouldBe(Condition.visible);
+        Assert.assertTrue(se.isDisplayed(),"Страница логина не отображается");
+    }
+
+    @Step("Валидация инструкции на форуме")
+    public void validateForumInstruction() {
+        SelenideElement se = $x("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]").shouldBe(Condition.visible);
+        Assert.assertTrue(se.isDisplayed(),"Инструкция пользователя диспетчером не найдена на странице");
     }
 }

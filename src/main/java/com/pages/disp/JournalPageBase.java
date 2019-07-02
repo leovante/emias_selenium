@@ -9,8 +9,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class JournalPageBase extends PageBase {
-    SelenideElement cardNumber = $x("//*[@placeholder='№ Карты']");
-    SelenideElement polNumber = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
+    SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
+    SelenideElement pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
     SelenideElement fioField = $(By.xpath("//*[@placeholder='ФИО пациента']"));
     SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search']"));
     SelenideElement journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]"));
@@ -31,12 +31,12 @@ public class JournalPageBase extends PageBase {
     }
 
     public JournalPageBase searchByCardNumber(int number) {
-        cardNumber.val(String.valueOf(number));
+        cardNumberFiled.val(String.valueOf(number));
         return this;
     }
 
     public void searchByPolNumber(int number) {
-        polNumber.val(String.valueOf(number));
+        pol_nField.val(String.valueOf(number));
     }
 
     public void fioIsVisible(String fio) {
@@ -53,9 +53,17 @@ public class JournalPageBase extends PageBase {
     }
 
     public JournalPageBase openCardByPolis(int number) {
-        polNumber.val(String.valueOf(number));
+        pol_nField.val(String.valueOf(number));
         searchBtn.click();
         grida.$x(".//*[contains(.,'" + number + "')]").click();
+        openCard.click();
+        return this;
+    }
+
+    public JournalPageBase openCardByNumber(int number) {
+        cardNumberFiled.val(String.valueOf(number));
+        searchBtn.click();
+        grida.click();
         openCard.click();
         return this;
     }
@@ -89,7 +97,8 @@ public class JournalPageBase extends PageBase {
     }
 
     public JournalPageBase changeCardStatus_toClosed() {
-        $x("//*[contains(text(),'Статус карты')]").click();
+        $x("//*[@aria-label='Статус карты']").click();
+//        $x("//*[contains(text(),'Статус карты')]").click();
         $x("//*[contains(text(),'Закрытая')]").click();
         return this;
     }

@@ -27,7 +27,7 @@ public class CreateCallTestRandom extends TestBase {
     @RetryCountIfFailed(0)
     public void testCall() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacientImpl = new PacientDBImpl(mksb);
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall();
         page.fullCardPage(pacientImpl, testName())
                 .verifyNewCall()

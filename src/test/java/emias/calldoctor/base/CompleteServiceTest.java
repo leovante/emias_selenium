@@ -15,7 +15,7 @@ public class CompleteServiceTest extends TestBase {
     public void testCompleteCallRegistr() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();

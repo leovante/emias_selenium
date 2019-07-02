@@ -9,7 +9,6 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.json.JSONException;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class PerehodyServisovTest extends TestBase {
     public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -44,7 +43,7 @@ public class PerehodyServisovTest extends TestBase {
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
@@ -62,30 +61,30 @@ public class PerehodyServisovTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() throws IOException {
         Doctor operator = new Doctor("Operator");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         $x("//header[@class='header']").$x(".//*[contains(.,'" + operator.getFamily() + " " + operator.getName() + "')]").shouldBe(Condition.visible);
         switchTo().window(0);
-        page.loginPage().calldoctorFromMis();
+        page.misHomePage().calldoctorFromMis();
         $x("//*[contains(text(),'Вызов врача на дом')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'" + operator.getFamily() + " " + operator.getName() + "')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "выход из диспетчера в МИС")
     @Epic("Переходы")
-//    @Issue("EMIAS-658")
+    @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
     public void testExitToMis() {
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage().exitToMis();
-        $(By.xpath("//span[contains(text(),'Расписание приёма')]")).shouldBe(Condition.visible);
+        page.misHomePage().validateLoginPage();
     }
 
     @Test(groups = "CD", description = "проверка перехода на сайт с инструкцией")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testInstruction() {
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage().instructionTab();
-        $(By.xpath("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]")).shouldBe(Condition.visible);
+        page.misHomePage().validateForumInstruction();
     }
 }

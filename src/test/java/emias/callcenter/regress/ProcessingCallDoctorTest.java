@@ -18,7 +18,7 @@ public class ProcessingCallDoctorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallDoctorMKAB() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().callCenter();
+        page.misHomePage().callCenter();
         page.callDoctorPage().calldoctor(pacientImpl);
     }
 
@@ -27,7 +27,7 @@ public class ProcessingCallDoctorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallDoctorSMP() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().callCenter();
+        page.misHomePage().callCenter();
         page.callDoctorPage().calldoctorSMP(pacientImpl);
     }
 }

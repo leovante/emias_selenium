@@ -9,7 +9,7 @@ public class backLogTests {
         Pacient pacient = new Pacient("Profile4");
         enter.enterPortal();
         page.portalDashboard().createCall(pacient);
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage()
                 .clearAllFilters()
                 .openNewCallDash(pacient);
@@ -21,7 +21,7 @@ public class backLogTests {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile20");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(pacient, testName()).verifyNewCall(pacient);
@@ -35,7 +35,7 @@ public class backLogTests {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile14");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacient).createCall_Api();
         page.dashboardPage().openNewCallDash(pacient);
         page.fullCardPage(pacient, testName()).verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка

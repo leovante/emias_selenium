@@ -22,7 +22,7 @@ public class UchastoksAddressTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile15");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -36,7 +36,7 @@ public class UchastoksAddressTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile16");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -54,7 +54,7 @@ public class UchastoksAddressTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile17");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -72,7 +72,7 @@ public class UchastoksAddressTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile18");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -90,7 +90,7 @@ public class UchastoksAddressTest extends TestBase {
     public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab");
         page.createCallPage(pacientImpl).createCall_Api();
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacientImpl)
                 .openNewCallDash(pacientImpl);
@@ -104,7 +104,7 @@ public class UchastoksAddressTest extends TestBase {
     public void testUchastokNotSet() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab_neformal");
         page.createCallPage(pacientImpl).createCall_Api();
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage()
                 .searchFilterFio_Fam(pacientImpl)
                 .openNewCallDash(pacientImpl);
@@ -117,7 +117,7 @@ public class UchastoksAddressTest extends TestBase {
     public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException, ParseException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
         page.createCallPage(pacientImpl).createCall_Api();
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage().openNewCallDash(pacientImpl);
         $(By.xpath("//*[contains(text(),'КТО ОБСЛУЖИВАЕТ')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);

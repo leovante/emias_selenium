@@ -18,7 +18,7 @@ public class ProcessingVisitDoctorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().callCenter();
+        page.misHomePage().callCenter();
         page.recordDoctorPage().visitDoctorAssertTalon(pacientImpl);
     }
 
@@ -27,7 +27,7 @@ public class ProcessingVisitDoctorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testRewritableVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().callCenter();
+        page.misHomePage().callCenter();
         page.recordDoctorPage().visitDoctorRewritable(pacientImpl);
     }
 
@@ -36,7 +36,7 @@ public class ProcessingVisitDoctorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testDeleteVisitDoctor() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().callCenter();
+        page.misHomePage().callCenter();
         page.recordDoctorPage().deleteVisitDoctor(pacientImpl);
     }
 

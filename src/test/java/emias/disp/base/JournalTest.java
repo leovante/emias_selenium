@@ -20,7 +20,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "поиск карты по номеру через профиль", enabled = false)
     @RetryCountIfFailed(2)
     public void testSearchCard1() {
-        page.loginPage().dispCard();
+        page.misHomePage().dispCard();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(3059);
         page.journalPage().clickSearchBtn();
@@ -31,7 +31,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "поиск карты по полису", enabled = false)
     @RetryCountIfFailed(2)
     public void testSearchCard2() {
-        page.loginPage().dispCard();
+        page.misHomePage().dispCard();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByPolNumber(7654321);
         page.journalPage().clickSearchBtn();
@@ -42,7 +42,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "поиск карты по ФИО", enabled = false)
     @RetryCountIfFailed(2)
     public void testSearchCard3() {
-        page.loginPage().dispCard();
+        page.misHomePage().dispCard();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByFio("Темников Дмитрий Олегович");
         page.journalPage().clickSearchBtn();
@@ -53,7 +53,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
     public void testSearchCard4() throws InterruptedException {
-        page.loginPage().dispJournal();
+        page.misHomePage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(1649);
         page.journalPage().clickSearchBtn();
@@ -65,7 +65,7 @@ public class JournalTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testSearchCard5() throws InterruptedException, IOException, JSONException {
         PacientImpl pac = new PacientImpl("Temnikov94");
-        page.loginPage().dispJournal();
+        page.misHomePage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByPolNumber(Integer.parseInt(pac.getNumberpol()));
         page.journalPage().clickSearchBtn();
@@ -77,7 +77,7 @@ public class JournalTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testSearchCard6() throws InterruptedException, IOException, JSONException {
         PacientImpl pac = new PacientImpl("Temnikov94");
-        page.loginPage().dispJournal();
+        page.misHomePage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByFio(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
         page.journalPage().clickSearchBtn();
@@ -88,7 +88,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() throws InterruptedException {
-        page.loginPage().dispJournal();
+        page.misHomePage().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(1594);
         page.journalPage().clickSearchBtn();
@@ -103,7 +103,7 @@ public class JournalTest extends TestBase {
     public void verifyMeasurePatternFromMkab() throws InterruptedException, IOException, JSONException {
         // TODO: 5/28/2019 объект с данными пациента
         PacientImpl pac = new PacientImpl("Temnikov94");
-        page.loginPage().loginMis();
+        page.misHomePage().loginMis();
         page.homePageMis().mkabBtn();
         page.mkabPage()
                 .fio(pac.getFamily() + " " + pac.getName() + " " + pac.getOt())
@@ -128,7 +128,7 @@ public class JournalTest extends TestBase {
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
-        page.loginPage().loginMis();
+        page.misHomePage().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
 //        page.raspisaniePriemaPage().createDispMl(pacient);
         page.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");
@@ -160,7 +160,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "проверяю что мероприятие открывается у подписанной карты")
     @RetryCountIfFailed(2)
     public void openClosedCard() throws InterruptedException {
-        page.loginPage().dispJournal();
+        page.misHomePage().dispJournal();
         page.journalPage()
                 .journalMenuBtn()
                 .searchByCardNumber(1652)
@@ -176,7 +176,7 @@ public class JournalTest extends TestBase {
     @RetryCountIfFailed(2)
     public void closeCard() {
         hltDispCardServiceImpl.setIsClosedFalse(180);
-        page.loginPage().dispJournal();
+        page.misHomePage().dispJournal();
         page.journalPage()
                 .journalMenuBtn()
                 .searchByCardNumber(180)
@@ -184,10 +184,10 @@ public class JournalTest extends TestBase {
                 .closeCardBtn(165734)
                 .setCloseReasonDeath()
                 .setCloseReasonDescription()
-                .closeCard2();
-        page.journalPage()
+                .closeCard2()
                 .changeCardStatus_toClosed()
                 .clickSearchBtn()
                 .openCardByPolis(165734);
+        page.exampPage().validateCardIsDisable();
     }
 }

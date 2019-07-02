@@ -23,7 +23,7 @@ public class ClickBoosterTest extends TestBase {
     public void testAppendTomorrowClickBooster() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         Doctor doctor = new Doctor("MokovStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
@@ -39,7 +39,7 @@ public class ClickBoosterTest extends TestBase {
     public void testZapisatClickBooster() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall();
         page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().zapisatClickBooster(doctor);
@@ -55,7 +55,7 @@ public class ClickBoosterTest extends TestBase {
     public void testZapisatDobavitClickBooster() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
 //        page.createCallPage().createCall(pacient);
         page.createCallPage(pacientImpl).createCall_Api();
         page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();

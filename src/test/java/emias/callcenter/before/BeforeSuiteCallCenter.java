@@ -11,7 +11,7 @@ public class BeforeSuiteCallCenter extends TestBase {
 //        deleteShedule();
 //        createShedule();
 
-//        page.loginPage().loginMis(site, loginMis, pass);
+//        page.misHomePage().loginMis(site, loginMis, pass);
 //        switchTo().window(0);
 //        page.homePageMis().vedenieRaspisaniyaBtn();
 //        createDoctorShedule();

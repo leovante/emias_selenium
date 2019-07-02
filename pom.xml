@@ -220,10 +220,10 @@
                             <name>usedefaultlisteners</name>
                             <value>false</value> <!-- disabling default listeners is optional -->
                         </property>
-                        <property>
-                            <name>listener</name>
-                            <value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>
-                        </property>
+                        <!--<property>-->
+                            <!--<name>listener</name>-->
+                            <!--<value>com.epam.reportportal.testng.ReportPortalTestNGListener</value>-->
+                        <!--</property>-->
                     </properties>
                 </configuration>
                 <!--<dependencies>-->

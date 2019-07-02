@@ -24,7 +24,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -39,7 +39,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacientImpl = new PacientImpl("Profile0_3");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall_Mkab();
         as.isVisibleText(pacientImpl.getAddress());
@@ -50,7 +50,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallRegistr() throws Exception {
         Pacient pacientImpl = new PacientImpl("Profile1");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -65,7 +65,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() throws Exception {
         Pacient pacientImpl = new PacientImpl("Profile2");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -80,7 +80,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacientImpl = new PacientImpl("Profile3");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName()).verifyNewCall();
@@ -91,7 +91,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
         Pacient pacientImpl = new PacientImpl("Profile6");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall_Api();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName())
@@ -105,7 +105,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testFormalizeAddress() throws Exception {
         Pacient pacientImpl = new PacientImpl("Profile2");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .addNewCall()
                 .searchField();
@@ -117,7 +117,7 @@ public class CreateCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testNotformalizeAddress() throws Exception {
         Pacient pacientImpl = new PacientImpl("AdressNeformal");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .addNewCall()
                 .searchField();

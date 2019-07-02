@@ -25,7 +25,7 @@ public class CreateCallTest extends TestBase {
     public void testHiber() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
         Pacient pacientImpl = new PacientDBImpl(hltMkabService);
 
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall_Api();
         page.fullCardPage(pacientImpl, testName())

@@ -19,7 +19,7 @@ public class FilterTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -35,7 +35,7 @@ public class FilterTest extends TestBase {
     public void testFilterDoctor() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn();
@@ -54,7 +54,7 @@ public class FilterTest extends TestBase {
     public void testTypeCall() throws InterruptedException, IOException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile3_1");
         page.createCallPage(pacientImpl).createCall_Api();
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage().openNewCallDash(pacientImpl);
         page.fullCardPage(pacientImpl, testName()).closeCardBtn();
         page.dashboardPage()
@@ -69,7 +69,7 @@ public class FilterTest extends TestBase {
     public void testFilterActiveGroup() throws InterruptedException, IOException, JSONException, ParseException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()

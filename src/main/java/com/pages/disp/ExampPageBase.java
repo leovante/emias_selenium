@@ -22,7 +22,8 @@ public class ExampPageBase extends PageBase implements Services {
     SelenideElement OpredelenieOtnositelnogoSSR = $(By.xpath("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")).$(By.xpath("../../."));
     SelenideElement OsmotrTerapevta = $(By.xpath("//*[contains(text(),'Прием (осмотр) врача-терапевта')]")).$(By.xpath("../../."));
     /*остальное*/
-    SelenideElement Zakluchenie = $(By.xpath("//*[contains(text(),'Заключение')]"));
+    SelenideElement Zakluchenie = $x("//a[contains(text(),'Заключение')]");
+    SelenideElement ZakluchenieBorder = $x("//h1[contains(text(),'Заключение')]");
     SelenideElement VidOplati = $(By.xpath("//*[@placeholder='Вид оплаты']"));
     SelenideElement CelPosesheniya = $(By.xpath("//*[@placeholder='Цель посещения']"));
     SelenideElement MestoObsluzhivaniya = $(By.xpath("//*[@placeholder='Место обслуживания']"));
@@ -486,7 +487,7 @@ public class ExampPageBase extends PageBase implements Services {
 
     /* меню слева*/
     public ExampPageBase zakluchenieMenuBtn() {
-        $(By.id("mCSB_1_container")).$(By.xpath(".//*[contains(text(),'Заключение')]")).click();
+        Zakluchenie.click();
         return this;
     }
 
@@ -543,9 +544,23 @@ public class ExampPageBase extends PageBase implements Services {
     public ExampPageBase validateParamNotOpen() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
-        Thread.sleep(2000);//
-        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
-        $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
+        Thread.sleep(2000);
+        OpredelenieOtnositelnogoSSR.$x("//mat-checkbox[@formcontrolname='withoutDeviations']").click();
+        Assert.assertTrue($x("//*[contains(text(),'В мероприятии ошибка!')]").is(Condition.visible), "Ошибка не появилась");
+        return this;
+    }
+
+    @Step("Валидация что карта заблокирована")
+    public ExampPageBase validateCardIsDisable() {
+        Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled),"Кнопка сохранить не задизеблина");
+//        Assert.assertTrue(PodvalPodpisatBtn.is(Condition.disabled), "Кнопка подписать не задизеблина");
+        return this;
+    }
+
+
+    @Step("Валидация что заключение отображается")
+    public ExampPageBase validateZakluchenieBorder() {
+        Assert.assertTrue(ZakluchenieBorder.is(Condition.visible),"Заключение не отображается");
         return this;
     }
 }

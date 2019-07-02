@@ -23,7 +23,7 @@ public class PrintFormTest extends TestBase {
     @Epic("Печать")
     @RetryCountIfFailed(2)
     public void testPrintAllDoctors() {
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.dashboardPage().printActionColumn();
         switchTo().window(1);
         $x("//*[contains(text(),'Отчет по состоянию')]").shouldBe(Condition.visible);
@@ -34,7 +34,7 @@ public class PrintFormTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testPrintCard() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -49,7 +49,7 @@ public class PrintFormTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testPrintOneDoctor() throws IOException, JSONException, ParseException, InterruptedException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().calldoctor();
+        page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl).createCall();
         page.fullCardPage(pacientImpl, testName()).printBtn();
         switchTo().window(1);
