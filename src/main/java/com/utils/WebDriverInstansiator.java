@@ -50,7 +50,7 @@ public class WebDriverInstansiator {
             driver = new ChromeDriver(chromeOptions);
             driver.manage().window().setPosition(new Point(0, 0));
             WebDriverRunner.setWebDriver(driver);
-            Configuration.timeout = 30000;
+            Configuration.timeout = 20000;
             Configuration.savePageSource = false;
         }
         //селениум грид
