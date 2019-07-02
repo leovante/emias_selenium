@@ -236,7 +236,10 @@ public class DoctorsListTest extends TestBase {
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
         page.loginPage().calldoctor();
-        page.createCallPage(pacientImpl).createCall();
+        page.createCallPage(pacientImpl)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
         page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);
