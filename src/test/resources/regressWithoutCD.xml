@@ -7,6 +7,7 @@
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
         <listener class-name="com.utils.CustomListner1"/>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
     <!--Диспетчер-->
     <!--<test name="TestCD_Chrome" verbose="1" parallel="true">-->
