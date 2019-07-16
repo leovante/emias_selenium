@@ -249,5 +249,14 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
         <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="hlt_pod_gdp1_360701@192.168.7.48" uuid="7d0be042-a1e5-4bae-b628-f1d1726ac60a">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14334/hlt_pod_gdp1_360701</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

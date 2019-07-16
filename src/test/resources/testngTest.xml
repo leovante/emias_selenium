@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Name suite - Test" thread-count="5" parallel="classes">
+<suite name="Name suite - Test" thread-count="1" parallel="classes">
     <parameter name="gridRun" value="true"/>
+    <parameter name="testng" value="true"/>
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>

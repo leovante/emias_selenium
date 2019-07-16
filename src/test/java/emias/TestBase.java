@@ -53,7 +53,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
 
     @AfterSuite(alwaysRun = true)
     public void afterSuite() throws IOException, JSONException, InterruptedException {
-        SeleniumGrid.stop();
+//        SeleniumGrid.stop();
     }
 
     @Parameters({"browser"})

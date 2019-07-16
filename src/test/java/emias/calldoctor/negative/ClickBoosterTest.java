@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.text.ParseException;
 
-@Ignore
+//@Ignore
 public class ClickBoosterTest extends TestBase {
 
     @Test(groups = "test", description = "закликивание кнопки 'назначить на сегодня' что бы проверить что не создаются дубликаты", enabled = false)
