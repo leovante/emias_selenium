@@ -25,6 +25,7 @@ public class MisHomePage extends PageBase {
         $(By.id("Login")).setValue(conf.getLogin());
         $(By.id("Password")).setValue(conf.getPassword());
         $(By.id("loginBtn")).click();
+        LOGGER.info("Открыл дашборд МИС " + conf.getUrl());
     }
 
     @Step("изменяю куки для входа под юр.лицом")
@@ -38,11 +39,13 @@ public class MisHomePage extends PageBase {
     @Step("Вход в модуль диспетчер")
     public void calldoctor() {
         open(conf.getCalldoctor());
+        LOGGER.info("Открыл модуль диспетчер по прямой ссылке " + conf.getCalldoctor());
     }
 
     @Step("Вход в модуль диспетчер от взрослой поликлиникой")
     public void calldoctorVzroslaya() {
         open(conf.getCalldoctorVz());
+        LOGGER.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения " + conf.getCalldoctorVz());
     }
 
     @Step("Захожу в диспетчер через МИС под админом")
@@ -58,12 +61,13 @@ public class MisHomePage extends PageBase {
     @Step("Вход в модуль диспансеризация через журнал")
     public void dispJournal() {
         open(conf.getDispJournal());
+        LOGGER.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
     }
 
     @Step("Вход в карту диспансеризации")
     public void dispCard() {
         open(conf.getDispCard());
-        LOGGER.info("Открыл карту диспансеризации: \n" + conf.getDispCard());
+        LOGGER.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
     }
 
     @Step("Вход в карту диспансеризации")

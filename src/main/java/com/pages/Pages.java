@@ -63,8 +63,8 @@ public class Pages extends PageBase {
         return page(SetDoctorPageBase.class);
     }
 
-    public FullCardPageBase fullCardPage(Pacient pacientImpl, String s) {
-        return new FullCardPageBase(pacientImpl, s);
+    public FullCardPage fullCardPage(Pacient pacientImpl, String s) {
+        return new FullCardPage(pacientImpl, s);
     }
 
     public PrintFormPageBase printFormPage(PacientImpl pacientImpl, String s) {
