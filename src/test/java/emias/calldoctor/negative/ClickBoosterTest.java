@@ -14,12 +14,11 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.text.ParseException;
 
-//@Ignore
 public class ClickBoosterTest extends TestBase {
 
     @Test(groups = "test", description = "закликивание кнопки 'назначить на сегодня' что бы проверить что не создаются дубликаты", enabled = false)
     @Epic("Негативные тесты")
-    @RetryCountIfFailed(2)
+    @RetryCountIfFailed(0)
     public void testAppendTomorrowClickBooster() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         Doctor doctor = new Doctor("MokovStendTestovoe");

@@ -18,13 +18,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class ChangeDepartmentTest extends TestBase {
 
-    @Test(groups = "CD", description = "передача вызова из Юр лица в подразделение")
+    @Test(groups = {"CD", "test"}, description = "передача вызова из Юр лица в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Depart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
-        Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
+        Doctor doctor2 = new Doctor("YudinaVzroslayaTerapev");
         page.misHomePage().calldoctor();
         page.createCallPage(pacientImpl)
                 .createCall()
@@ -34,7 +34,8 @@ public class ChangeDepartmentTest extends TestBase {
                 .verifyDepartment(doctor)
                 .transferToDepartBtn();
         page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(pacientImpl, testName()).verifyDepartment(doctor2);
+        page.fullCardPage(pacientImpl, testName())
+                .verifyDepartment(doctor2);
     }
 
     @Test(groups = "CD", description = "передача вызова из подразделения в подразделение")

@@ -1,16 +1,12 @@
 package emias.disp.base;
 
-import com.codeborne.selenide.Condition;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
-import static com.codeborne.selenide.Selenide.$;
 
 public class NavigationTest extends TestBase {
 
-    @Test(groups = "disp", description = "проверка автоскролла бокового меню к блоку заключение при редактировании МЛ")
+    @Test(groups = "disp", description = "проверка автоскролла бокового меню к блоку заключение при редактировании МЛ", enabled = false)
     @RetryCountIfFailed(2)
     public void testFillExamp1() {
         page.misHomePage().dispCard();
@@ -20,7 +16,7 @@ public class NavigationTest extends TestBase {
                 .validateZakluchenieBorder();
     }
 
-    @Test(groups = "disp", description = "проверка редиректа к блоку заключение при просмотре МЛ из журнала")
+    @Test(groups = "disp", description = "проверка редиректа к блоку заключение при просмотре МЛ из журнала", enabled = false)
     @RetryCountIfFailed(2)
     public void testFillExamp2() {
         page.misHomePage().dispJournal();

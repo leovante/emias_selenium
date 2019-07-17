@@ -42,6 +42,7 @@
     <root>
         <appender-ref ref="ReportPortalAppender"/>
     </root>
+
     <!-- Логгер нашего класса  -->
     <logger name="logging.logback.LoggingLogback" level="info">
         <appender-ref ref="sout"/>

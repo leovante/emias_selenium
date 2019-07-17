@@ -7,6 +7,7 @@
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
         <listener class-name="com.utils.CustomListner1"/>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
 
     <test name="ChromeTest" verbose="1" parallel="true">
@@ -17,7 +18,7 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.calldoctor.negative.ClickBoosterTest"/>
+            <class name="emias.calldoctor.base.ChangeDepartmentTest"/>
         </classes>
         <!--<packages>-->
         <!--<package name="emias.calldoctor22.base"/>-->

@@ -16,8 +16,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class SetLpuPageBase extends PageBase {
     @Step("Передаю в другое подразделение на страинце поиска ЛПУ")
     public void transfer(Doctor doctor) throws IOException, InterruptedException {
-//        $x("//*[text()='" + doctor.getDepartment() + "']").click();
-        $x("//*[contains(text(),'" + doctor.getDepartment() + "')]")
+        $x("//*[text()='" + doctor.getDepartment() + "']")
                 .hover()
                 .click();
         $x("//*[contains(text(),'Передать')]")

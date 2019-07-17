@@ -1,13 +1,10 @@
 package emias;
 
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.config.AppConfig;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
 import com.utils.CallDoctorCards;
-import com.utils.CustomListner1;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.TestMethodCapture;
 import com.utils.WebDriverInstansiator;
@@ -15,7 +12,6 @@ import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

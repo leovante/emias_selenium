@@ -50,8 +50,6 @@ public class WebDriverInstansiator {
             driver = new ChromeDriver(chromeOptions);
             driver.manage().window().setPosition(new Point(0, 0));
             WebDriverRunner.setWebDriver(driver);
-            Configuration.timeout = 20000;
-            Configuration.savePageSource = false;
         }
         //селениум грид
         else {
@@ -77,7 +75,6 @@ public class WebDriverInstansiator {
                     remoteDriver.manage().window().setSize(new Dimension(1919, 1079));
                     remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
-                    Configuration.timeout = 20000;
                     break;
                 case "chrome":
                     chromeOptions = new ChromeOptions();
@@ -86,7 +83,6 @@ public class WebDriverInstansiator {
                     remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
                     remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
-                    Configuration.timeout = 20000;
                     break;
             }
         }
@@ -101,9 +97,10 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + conf.getHeadless() + "; ");
         }
-
+        Configuration.timeout = 20000;
         Configuration.reportsFolder = "target/test-result/reports";
-        LOGGER.info("Тест начинается!");
+        Configuration.savePageSource = false;
+        LOGGER.info("Selenium driver is ready");
     }
 
     public void driverClose() {
@@ -114,6 +111,6 @@ public class WebDriverInstansiator {
         if (remoteDriver != null) {
             WebDriverRunner.closeWebDriver();
         }
-        LOGGER.info("Тест завершен!");
+        LOGGER.info("Selenium driver is close");
     }
 }
