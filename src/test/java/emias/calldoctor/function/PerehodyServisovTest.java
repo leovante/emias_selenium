@@ -56,17 +56,24 @@ public class PerehodyServisovTest extends TestBase {
                 .closeCardBtn();
     }
 
-    @Test(groups = "CD", description = "проверка учетки врача при перезаходе под другим логином и паролем")
+    @Test(groups = "CD", description = "проверка изменения врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() throws IOException {
         Doctor operator = new Doctor("Operator");
         page.misHomePage().calldoctor();
-        $x("//header[@class='header']").$x(".//*[contains(.,'" + operator.getFamily() + " " + operator.getName() + "')]").shouldBe(Condition.visible);
+        $x("//header")
+                .$x(".//*[contains(.,'" + operator.getFamily() + " " + operator.getName() + "')]")
+                .shouldBe(Condition.visible);
         switchTo().window(0);
         page.misHomePage().calldoctorFromMis();
-        $x("//*[contains(text(),'Вызов врача на дом')]").shouldBe(Condition.visible);
-        $x("//*[contains(text(),'" + operator.getFamily() + " " + operator.getName() + "')]").shouldNotBe(Condition.visible);
+        switchTo().window("Медицинская Информационная Система");
+        $x("//header")
+                .$x(".//*[contains(.,'Вызов врача на дом')]")
+                .shouldBe(Condition.visible);
+        $x("//header")
+                .$x(".//*[contains(.,'" + operator.getFamily() + " " + operator.getName() + "')]")
+                .shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "выход из диспетчера в МИС")
