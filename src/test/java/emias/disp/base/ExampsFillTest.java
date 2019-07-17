@@ -21,5 +21,7 @@ public class ExampsFillTest extends TestBase {
         page.exampPage().saveBtn();
         page.exampPage().podpisatBtn();
     }
+
+
     // TODO: 04.09.2018 для второго этапа добавить карту женщины 30 лет что бы в мероприятиях был врач окушер фельдшер. Т.к. там есть заключение
 }

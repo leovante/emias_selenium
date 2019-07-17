@@ -4,9 +4,9 @@ import com.pages.callcenter.*;
 import com.pages.calldoctor.*;
 import com.pages.calldoctor.pacients.Pacient;
 import com.pages.calldoctor.pacients.PacientImpl;
-import com.pages.disp.ExampPageBase;
-import com.pages.disp.JournalPageBase;
-import com.pages.disp.KvotyPageBase;
+import com.pages.disp.ExampPage;
+import com.pages.disp.JournalPage;
+import com.pages.disp.KvotyPage;
 import com.pages.kladr.Kladr;
 import com.pages.medicalrecords.NewMRPage;
 import com.pages.mis.*;
@@ -88,16 +88,16 @@ public class Pages extends PageBase {
         return page(PortalDashboard.class);
     }
 
-    public ExampPageBase exampPage() {
-        return page(ExampPageBase.class);
+    public ExampPage exampPage() {
+        return page(ExampPage.class);
     }
 
-    public JournalPageBase journalPage() {
-        return page(JournalPageBase.class);
+    public JournalPage journalPage() {
+        return page(JournalPage.class);
     }
 
-    public KvotyPageBase kvotyPage() {
-        return page(KvotyPageBase.class);
+    public KvotyPage kvotyPage() {
+        return page(KvotyPage.class);
     }
 
     //CallCenter

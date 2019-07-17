@@ -2,6 +2,8 @@ package com.pages;
 
 import com.dataGenerator.ModuleData;
 import com.pages.calldoctor.pacients.Pacient;
+import com.pages.disp.measureBlock.Examps;
+import com.pages.disp.measureBlock.ExampsImpl;
 import com.utils.CallDoctorCards;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
@@ -9,6 +11,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +29,9 @@ public class PageBase {
     public static Logger LOGGER = LoggerFactory.getLogger("myapp");
     public static int callNumber;
 //    public static Map<String, Integer> cardMap = new HashMap();
+
+    @Autowired
+    public Examps examps = new ExampsImpl();
 
     public PageBase() {
         this.driver = getWebDriver();

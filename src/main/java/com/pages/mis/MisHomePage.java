@@ -10,9 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class MisHomePage extends PageBase {
     ConfigFile conf;
@@ -53,7 +51,8 @@ public class MisHomePage extends PageBase {
         $(By.id("Login")).setValue(conf.getAdminLogin());
         $(By.id("Password")).setValue(conf.getAdminPassword());
         $(By.id("loginBtn")).click();
-        $(By.xpath("//span[contains(.,'Диспетчер')]")).click();
+        $x("//span[contains(.,'Диспетчер')]").click();
+        switchTo().window("Медицинская Информационная Система");
     }
 
     @Step("Вход в модуль диспансеризация через журнал")

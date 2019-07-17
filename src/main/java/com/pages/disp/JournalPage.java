@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class JournalPageBase extends PageBase {
+public class JournalPage extends PageBase {
     SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
     SelenideElement pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
     SelenideElement fioField = $(By.xpath("//*[@placeholder='ФИО пациента']"));
@@ -22,15 +22,15 @@ public class JournalPageBase extends PageBase {
     SelenideElement oprosMeasureExamp = $(By.xpath("//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]"));
     SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
 
-    public JournalPageBase() {
+    public JournalPage() {
     }
 
-    public JournalPageBase journalMenuBtn() {
+    public JournalPage journalMenuBtn() {
         journalBtn.click();
         return this;
     }
 
-    public JournalPageBase searchByCardNumber(int number) {
+    public JournalPage searchByCardNumber(int number) {
         cardNumberFiled.val(String.valueOf(number));
         return this;
     }
@@ -47,12 +47,12 @@ public class JournalPageBase extends PageBase {
         fioField.val(String.valueOf(fio));
     }
 
-    public JournalPageBase clickSearchBtn() {
+    public JournalPage clickSearchBtn() {
         searchBtn.click();
         return this;
     }
 
-    public JournalPageBase openCardByPolis(int number) {
+    public JournalPage openCardByPolis(int number) {
         pol_nField.val(String.valueOf(number));
         searchBtn.click();
         grida.$x(".//*[contains(.,'" + number + "')]").click();
@@ -60,7 +60,7 @@ public class JournalPageBase extends PageBase {
         return this;
     }
 
-    public JournalPageBase openCardByNumber(int number) {
+    public JournalPage openCardByNumber(int number) {
         cardNumberFiled.val(String.valueOf(number));
         searchBtn.click();
         grida.click();
@@ -68,35 +68,35 @@ public class JournalPageBase extends PageBase {
         return this;
     }
 
-    public JournalPageBase editCardBtn(int numberPol) {
+    public JournalPage editCardBtn(int numberPol) {
         grida2.$x(".//div[contains(.,'" + numberPol + "')]").click();
         openCard.click();
         return this;
     }
 
-    public JournalPageBase closeCardBtn(int numberPol) {
+    public JournalPage closeCardBtn(int numberPol) {
         grida2.$x(".//div[contains(.,'" + numberPol + "')]").click();
         closeCard.click();
         return this;
     }
 
-    public JournalPageBase setCloseReasonDeath() {
+    public JournalPage setCloseReasonDeath() {
         grida2.$x(".//*[contains(text(),'Причина закрытия')]").click();
         $x("//*[contains(text(),'Смерть')]").click();
         return this;
     }
 
-    public JournalPageBase setCloseReasonDescription() {
+    public JournalPage setCloseReasonDescription() {
         grida2.$x(".//*[@placeholder='Примечание']").val("Подавился печенькой");
         return this;
     }
 
-    public JournalPageBase closeCard2() {
+    public JournalPage closeCard2() {
         $x("//*[contains(text(),'Закрыть')]").click();
         return this;
     }
 
-    public JournalPageBase changeCardStatus_toClosed() {
+    public JournalPage changeCardStatus_toClosed() {
         $x("//*[@aria-label='Статус карты']").click();
 //        $x("//*[contains(text(),'Статус карты')]").click();
         $x("//*[contains(text(),'Закрытая')]").click();

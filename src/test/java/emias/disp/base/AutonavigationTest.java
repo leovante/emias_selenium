@@ -4,7 +4,7 @@ import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import org.testng.annotations.Test;
 
-public class NavigationTest extends TestBase {
+public class AutonavigationTest extends TestBase {
 
     @Test(groups = "disp", description = "проверка автоскролла бокового меню к блоку заключение при редактировании МЛ", enabled = false)
     @RetryCountIfFailed(2)

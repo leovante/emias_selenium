@@ -67,7 +67,6 @@ public class PerehodyServisovTest extends TestBase {
                 .shouldBe(Condition.visible);
         switchTo().window(0);
         page.misHomePage().calldoctorFromMis();
-        switchTo().window("Медицинская Информационная Система");
         $x("//header")
                 .$x(".//*[contains(.,'Вызов врача на дом')]")
                 .shouldBe(Condition.visible);

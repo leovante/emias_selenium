@@ -3,13 +3,16 @@ package com.pages.disp;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
+import com.pages.disp.measureBlock.Examps;
+import com.pages.disp.measureBlock.ExampsImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class ExampPageBase extends PageBase implements Services {
+public class ExampPage extends PageBase implements Services{
     /*мероприятия*/
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
     SelenideElement ArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
@@ -19,7 +22,7 @@ public class ExampPageBase extends PageBase implements Services {
     SelenideElement OpredelenieLvlGlukozi = $(By.xpath("//*[contains(text(),'Определение уровня глюкозы в крови экспресс-методом (допускается лабораторный метод)')]")).$(By.xpath("../../."));
     SelenideElement OpredelenieLvlHolesterina = $(By.xpath("//*[contains(text(),'Определение уровня общего холестерина в крови (допускается экспресс-метод)')]")).$(By.xpath("../../."));
     SelenideElement Flura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
-    SelenideElement OpredelenieOtnositelnogoSSR = $(By.xpath("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")).$(By.xpath("../../."));
+    SelenideElement OpredelenieOtnositelnogoSSR = $x("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")/*.$x("../../.")*/;//убрал, потому что не нажималось
     SelenideElement OsmotrTerapevta = $(By.xpath("//*[contains(text(),'Прием (осмотр) врача-терапевта')]")).$(By.xpath("../../."));
     /*остальное*/
     SelenideElement Zakluchenie = $x("//a[contains(text(),'Заключение')]");
@@ -36,17 +39,20 @@ public class ExampPageBase extends PageBase implements Services {
     SelenideElement ALARMA_PODPISANA = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
     SelenideElement elem;
 
+    void a (){
+//        examps.oprosAnketirovanie().
+    }
 
-    public ExampPageBase openService(String service) throws InterruptedException {
+    public ExampPage openService(String service) throws InterruptedException {
         this.elem = $x("//*[contains(text(),'" + service + "')]").$x("../../.");
         this.elem.$x("../.").hover();
         this.elem.click();
         return this;
     }
 
-    public ExampPageBase signService() throws InterruptedException {
+    public ExampPage signService() throws InterruptedException {
         $x("//*[contains(text(),'" + elem + "')]")
-                .$(By.xpath("../tr[3]//*[contains(text(),'Подписать')]")).hover().click();
+                .$x("../tr[3]//*[contains(text(),'Подписать')]").hover().click();
         return this;
     }
 
@@ -64,12 +70,12 @@ public class ExampPageBase extends PageBase implements Services {
                 .fillZakluchenie();
     }
 
-    public ExampPageBase switchAllServicesTap() {
+    public ExampPage switchAllServicesTap() {
         AllServicesTap.click();
         return this;
     }
 
-    public ExampPageBase fillArtPressure() throws InterruptedException {
+    public ExampPage fillArtPressure() throws InterruptedException {
         Thread.sleep(4000);
         ArtPressure.$(By.xpath("../.")).hover();
         ArtPressure.click();
@@ -79,7 +85,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillOpros_Anketirovanie() throws InterruptedException {
+    public ExampPage fillOpros_Anketirovanie() throws InterruptedException {
         Thread.sleep(4000);
         Opros_Anketirovanie.$(By.xpath("../.")).hover();
         Opros_Anketirovanie.click();
@@ -100,7 +106,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillAntropometriya() throws InterruptedException {
+    public ExampPage fillAntropometriya() throws InterruptedException {
         Thread.sleep(4000);
         Antropometriya.$(By.xpath("../.")).hover();
         Antropometriya.click();
@@ -120,7 +126,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillIndividProfConsulting() throws InterruptedException {
+    public ExampPage fillIndividProfConsulting() throws InterruptedException {
         Thread.sleep(4000);
         IndividualnoeProfConsulting.$(By.xpath("../.")).hover();
         IndividualnoeProfConsulting.click();
@@ -143,7 +149,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillOpredelenieLvlGlukozi() throws InterruptedException {
+    public ExampPage fillOpredelenieLvlGlukozi() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlGlukozi.$(By.xpath("../.")).hover();
         OpredelenieLvlGlukozi.click();
@@ -153,7 +159,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillOpredelenieLvlHolesterina() throws InterruptedException {
+    public ExampPage fillOpredelenieLvlHolesterina() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlHolesterina.$(By.xpath("../.")).hover();
         OpredelenieLvlHolesterina.click();
@@ -163,7 +169,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillFlurography() throws InterruptedException {
+    public ExampPage fillFlurography() throws InterruptedException {
         Thread.sleep(4000);
         Flura.$(By.xpath("../.")).hover();
         Thread.sleep(1000);
@@ -191,7 +197,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillOpredelenieOtnositSummSSR() throws InterruptedException {
+    public ExampPage fillOpredelenieOtnositSummSSR() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -200,7 +206,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillPriem_OsmotrTerapevta() throws InterruptedException {
+    public ExampPage fillPriem_OsmotrTerapevta() throws InterruptedException {
         Thread.sleep(4000);
         OsmotrTerapevta.$(By.xpath("../.")).hover();
         OsmotrTerapevta.click();
@@ -255,7 +261,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase fillZakluchenie() throws InterruptedException {
+    public ExampPage fillZakluchenie() throws InterruptedException {
         Thread.sleep(4000);
         Zakluchenie.$(By.xpath("../../conclusion")).hover();
         Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
@@ -289,7 +295,7 @@ public class ExampPageBase extends PageBase implements Services {
                 .viewZakluchenie();
     }
 
-    public ExampPageBase viewMeasureArtPressure() throws InterruptedException {
+    public ExampPage viewMeasureArtPressure() throws InterruptedException {
         Thread.sleep(4000);
         ArtPressure.hover().click();
         ArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
@@ -298,7 +304,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewMeasureOpros_Anketirovanie() throws InterruptedException {
+    public ExampPage viewMeasureOpros_Anketirovanie() throws InterruptedException {
         Thread.sleep(4000);
         Opros_Anketirovanie.hover().click();
         Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover().click();
@@ -317,7 +323,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewAntropometriya() throws InterruptedException {
+    public ExampPage viewAntropometriya() throws InterruptedException {
         Thread.sleep(4000);
         Antropometriya.hover().click();
         Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover().click();
@@ -334,7 +340,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewIndividProfConsulting() throws InterruptedException {
+    public ExampPage viewIndividProfConsulting() throws InterruptedException {
         Thread.sleep(4000);
         IndividualnoeProfConsulting.hover().click();
         IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover().click();
@@ -355,7 +361,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewOpredelenieLvlGlukozi() throws InterruptedException {
+    public ExampPage viewOpredelenieLvlGlukozi() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlGlukozi.click();
         OpredelenieLvlGlukozi.$(By.xpath("td[4]/mat-checkbox")).click();
@@ -363,7 +369,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewOpredelenieLvlHolesterina() throws InterruptedException {
+    public ExampPage viewOpredelenieLvlHolesterina() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieLvlHolesterina.click();
         OpredelenieLvlHolesterina.$(By.xpath("td[4]/mat-checkbox")).click();
@@ -371,7 +377,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewFlurography() throws InterruptedException {
+    public ExampPage viewFlurography() throws InterruptedException {
         Thread.sleep(4000);
         Flura.$(By.xpath("../.")).hover();
         Thread.sleep(1000);
@@ -387,7 +393,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewOpredelenieOtnositSummSSR() throws InterruptedException {
+    public ExampPage viewOpredelenieOtnositSummSSR() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../tr[2]")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -396,7 +402,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewPriem_OsmotrTerapevta() throws InterruptedException {
+    public ExampPage viewPriem_OsmotrTerapevta() throws InterruptedException {
         Thread.sleep(4000);
         OsmotrTerapevta.$(By.xpath("../tr[2]")).hover();
         OsmotrTerapevta.click();
@@ -449,7 +455,7 @@ public class ExampPageBase extends PageBase implements Services {
         return this;
     }
 
-    public ExampPageBase viewZakluchenie() throws InterruptedException {
+    public ExampPage viewZakluchenie() throws InterruptedException {
         Thread.sleep(4000);
         Zakluchenie.$(By.xpath("../../conclusion")).hover();
         Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
@@ -468,31 +474,31 @@ public class ExampPageBase extends PageBase implements Services {
     }
 
     /*уведомления*/
-    public ExampPageBase validateServiceIsSign() {
+    public ExampPage validateServiceIsSign() {
         $(By.xpath("//*[contains(text(),'Мероприятие успешно подписано')]")).shouldBe(Condition.visible);
         return this;
     }
 
-    public ExampPageBase saveBtn() {
+    public ExampPage saveBtn() {
         PodvalSaveBtn.click();
         $(By.xpath("//*[contains(text(),'Карта успешно сохранена')]")).shouldBe(Condition.visible);
         return this;
     }
 
-    public ExampPageBase podpisatBtn() {
+    public ExampPage podpisatBtn() {
         PodvalPodpisatBtn.click();
         $(By.xpath("//*[contains(text(),'Карта успешно подписана')]")).shouldBe(Condition.visible);
         return this;
     }
 
     /* меню слева*/
-    public ExampPageBase zakluchenieMenuBtn() {
+    public ExampPage zakluchenieMenuBtn() {
         Zakluchenie.click();
         return this;
     }
 
     /* всякие заполнения */
-    public ExampPageBase validateFieldParamIsEmpy() throws InterruptedException {
+    public ExampPage validateFieldParamIsEmpy() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -507,7 +513,7 @@ public class ExampPageBase extends PageBase implements Services {
     }
 
     @Step("Проверяю валидацию поля параметров с пробелом")
-    public ExampPageBase validateFieldParamWithSpace() throws InterruptedException {
+    public ExampPage validateFieldParamWithSpace() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -524,7 +530,7 @@ public class ExampPageBase extends PageBase implements Services {
     }
 
     @Step("Проверяю валидацию поля параметров с дефолтным значением")
-    public ExampPageBase validateDefaultParamWithSpace() throws InterruptedException {
+    public ExampPage validateDefaultParamWithSpace() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -534,14 +540,14 @@ public class ExampPageBase extends PageBase implements Services {
 //                .$(By.xpath("../../../."))
 //                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
 //                .$(By.xpath(".//input[@formcontrolname='value']")).setValue(" ");
-        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
+        OpredelenieOtnositelnogoSSR.$x("td[4]/mat-checkbox").click();
         OpredelenieOtnositelnogoSSR.click();
         $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("Проверяю валидацию поля параметров с дефолтным значением")
-    public ExampPageBase validateParamNotOpen() throws InterruptedException {
+    public ExampPage validateParamNotOpen() throws InterruptedException {
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         Thread.sleep(2000);
@@ -551,7 +557,7 @@ public class ExampPageBase extends PageBase implements Services {
     }
 
     @Step("Валидация что карта заблокирована")
-    public ExampPageBase validateCardIsDisable() {
+    public ExampPage validateCardIsDisable() {
         Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled),"Кнопка сохранить не задизеблина");
 //        Assert.assertTrue(PodvalPodpisatBtn.is(Condition.disabled), "Кнопка подписать не задизеблина");
         return this;
@@ -559,7 +565,7 @@ public class ExampPageBase extends PageBase implements Services {
 
 
     @Step("Валидация что заключение отображается")
-    public ExampPageBase validateZakluchenieBorder() {
+    public ExampPage validateZakluchenieBorder() {
         Assert.assertTrue(ZakluchenieBorder.is(Condition.visible),"Заключение не отображается");
         return this;
     }

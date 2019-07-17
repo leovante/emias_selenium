@@ -6,10 +6,10 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class KvotyPageBase extends PageBase {
+public class KvotyPage extends PageBase {
     SelenideElement kvotyNumber = $(By.xpath("//*[contains(text(),'Квоты')]"));
 
-    public KvotyPageBase() {
+    public KvotyPage() {
     }
 
     public void kvotyBtn() {

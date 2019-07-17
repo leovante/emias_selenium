@@ -1,6 +1,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
 import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.except.NoticeException;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class DoctorsListTest extends TestBase {
 
@@ -235,18 +237,19 @@ public class DoctorsListTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
-        page.misHomePage().calldoctor();
+        page.misHomePage().calldoctorVzroslaya();
         page.createCallPage(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Темников')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Моков')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Серова')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Немцова')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldNotBe(Condition.visible);
+        SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
+        doctorsBlock.$x(".//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Темников')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Моков')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Серова')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Немцова')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
@@ -267,12 +270,13 @@ public class DoctorsListTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
         page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctorPage().saveAddress();
-        $(By.xpath("//*[contains(text(),'Юдина')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Темников')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Моков')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Серова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Немцова')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Зайцева')]")).shouldBe(Condition.visible);
+        SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
+        doctorsBlock.$x("//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
+        doctorsBlock.$x("//*[contains(text(),'Темников')]").shouldBe(Condition.visible);
+        doctorsBlock.$x("//*[contains(text(),'Моков')]").shouldBe(Condition.visible);
+        doctorsBlock.$x("//*[contains(text(),'Серова')]").shouldBe(Condition.visible);
+        doctorsBlock.$x("//*[contains(text(),'Немцова')]").shouldBe(Condition.visible);
+        doctorsBlock.$x("//*[contains(text(),'Зайцева')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "проверяю что после редактирования карты и изменения адреса пропадает привязка к старому участку")

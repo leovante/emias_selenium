@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class HltCallDoctorServiceImpl {
 
-
     @Autowired
     private HltCallDoctorRepository hltCallDoctorRepository;
 
