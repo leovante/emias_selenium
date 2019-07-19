@@ -22,7 +22,7 @@ public class SetDoctorPageBase extends PageBase {
     @CacheLookup
     SelenideElement zapisatDobavit = $(By.xpath("//span[contains(text(),'Записать и добавить')]"));
 
-    public SetDoctorPageBase() {
+    public SetDoctorPageBase() throws IOException {
     }
 
     @Step("назначиь врача на сегодня")

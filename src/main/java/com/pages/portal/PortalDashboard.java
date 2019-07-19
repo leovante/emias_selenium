@@ -9,6 +9,8 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class PortalDashboard extends PageBase {
@@ -29,6 +31,9 @@ public class PortalDashboard extends PageBase {
 
     @Autowired
     public HltCallDoctorServiceImpl hltCallDoctorService;
+
+    public PortalDashboard() throws IOException {
+    }
 
     @Step("создаю вызов через портал")
     public void createCall(PacientImpl pacientImpl) {

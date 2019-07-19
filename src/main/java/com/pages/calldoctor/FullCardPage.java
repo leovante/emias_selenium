@@ -33,12 +33,12 @@ public class FullCardPage extends PageBase {
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cardNumber = $x("//div[contains(text(),'Карта вызова №')]");
 
-    public FullCardPage(String testName) {
+    public FullCardPage(String testName) throws IOException {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         LOGGER.info("Открыл карту вызова url " + url());
     }
 
-    public FullCardPage(Pacient pacientImpl, String testName) {
+    public FullCardPage(Pacient pacientImpl, String testName) throws IOException {
         this.pacientImpl = pacientImpl;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));

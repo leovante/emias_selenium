@@ -8,6 +8,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +18,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class DoctorMethods extends PageBase {
     SelenideElement doctorRow = $(By.xpath("//tr[@role='row'][@tabindex='-1']"));
 
-    public DoctorMethods() {
+    public DoctorMethods() throws IOException {
     }
 
     @Step("получить уникального врача")

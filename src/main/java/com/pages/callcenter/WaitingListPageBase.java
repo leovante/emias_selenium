@@ -6,6 +6,8 @@ import com.pages.calldoctor.pacients.PacientImpl;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class WaitingListPageBase extends PageBase {
@@ -17,7 +19,7 @@ public class WaitingListPageBase extends PageBase {
 //    @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
 //    WebElement lpu;
 
-    public WaitingListPageBase() {
+    public WaitingListPageBase() throws IOException {
     }
 
     public WaitingListPageBase waitingList(PacientImpl pacientImpl) {

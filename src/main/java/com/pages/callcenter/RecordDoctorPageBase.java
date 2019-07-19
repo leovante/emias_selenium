@@ -47,6 +47,9 @@ public class RecordDoctorPageBase extends PageBase {
     String time2;
     String number2;
 
+    public RecordDoctorPageBase() throws IOException {
+    }
+
     public RecordDoctorPageBase visitDoctor(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
         this.pacientImpl = pacientImpl;
         recordDoctor2();

@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class BeforeWork extends PageBase {
@@ -23,8 +25,9 @@ public class BeforeWork extends PageBase {
     SelenideElement pickTime_okon = $(By.id("pickTime_okon"));
     SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
 
-    public BeforeWork() {
+    public BeforeWork() throws IOException {
     }
+
 
     @Step("установить время календаря")
     public void setTimeCalendar(String a, String b) throws InterruptedException {

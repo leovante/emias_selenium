@@ -4,6 +4,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class DirectionsPageBase extends PageBase {
@@ -12,7 +14,7 @@ public class DirectionsPageBase extends PageBase {
 //    WebElement apo;
 //    JavascriptExecutor js = (JavascriptExecutor) remoteDriver;
 
-    public DirectionsPageBase() {
+    public DirectionsPageBase() throws IOException {
     }
 
     public void eqNapr(String arg0, String arg1, String arg2){

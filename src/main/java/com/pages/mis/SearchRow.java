@@ -9,6 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+
 public class SearchRow extends PageBase {
     private WebDriver webDriver;
     private WebDriverWait wait;
@@ -46,7 +48,7 @@ public class SearchRow extends PageBase {
     @FindBy(linkText="Первичный")
     WebElement click_six;
 
-    public SearchRow(WebDriver driver) {
+    public SearchRow(WebDriver driver) throws IOException {
         webDriver = driver;
         wait = new WebDriverWait(webDriver, 60);
         PageFactory.initElements(webDriver, this);

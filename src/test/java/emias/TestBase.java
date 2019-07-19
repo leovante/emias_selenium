@@ -1,6 +1,7 @@
 package emias;
 
 import com.config.AppConfig;
+import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
@@ -21,8 +22,11 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
-@Listeners({TestMethodCapture.class, /*CustomListner1.class,*/ /*ReportPortalTestNGListener.class*/})
+import static com.pages.PageBase.LOGGER;
+
+@Listeners({TestMethodCapture.class, /*CustomListner1.class,*/ ReportPortalTestNGListener.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
@@ -63,6 +67,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
+        LOGGER.info("RP_MESSAGE#BASE64#BASE_64_REPRESENTATION#MESSAGE_TEST");
         driverInst.driverClose();
     }
 

@@ -5,10 +5,11 @@ import com.pages.PageBase;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class HomePageBase extends PageBase {
-
     SelenideElement homePageBtn = $(By.xpath("//span[contains(.,'ЕМИАС Московской области')]"));
     SelenideElement timeTableBtn = $(By.xpath("//span[contains(.,'Ведение расписания')]"));
     SelenideElement admissionScheduleBtn = $(By.xpath("//span[contains(.,'Расписание приёма')]"));
@@ -16,7 +17,7 @@ public class HomePageBase extends PageBase {
     SelenideElement callDoctorBtn = $(By.xpath("//span[contains(.,'Диспетчер')]"));
     SelenideElement napravlenieNaIssledovanie = $(By.xpath("//span[contains(.,'Направления на исследование')]"));
 
-    public HomePageBase() {
+    public HomePageBase() throws IOException {
     }
 
     @Step("Захожу в ведение расписания")
@@ -70,7 +71,7 @@ public class HomePageBase extends PageBase {
     }
 
     @Step("Сделать запись")
-    public void createSomeRecords(int i) throws InterruptedException {
+    public void createSomeRecords(int i) throws InterruptedException, IOException {
         int n = 1;
         while (n <= i) {
             LOGGER.info("Обрабатываю врача №: " + n);

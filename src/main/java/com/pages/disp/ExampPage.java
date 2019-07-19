@@ -10,6 +10,8 @@ import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class ExampPage extends PageBase implements Services{
@@ -38,6 +40,9 @@ public class ExampPage extends PageBase implements Services{
     SelenideElement ALARMA_SAVE = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно сохранена.')]"));
     SelenideElement ALARMA_PODPISANA = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
     SelenideElement elem;
+
+    public ExampPage() throws IOException {
+    }
 
     void a (){
 //        examps.oprosAnketirovanie().

@@ -5,8 +5,9 @@ import com.pages.PageBase;
 import com.pages.calldoctor.pacients.PacientImpl;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
+import java.io.IOException;
 
+import static com.codeborne.selenide.Selenide.$;
 
 public class FindPatientPageBase extends PageBase {
     private PacientImpl pacientImpl;
@@ -18,7 +19,7 @@ public class FindPatientPageBase extends PageBase {
     SelenideElement fio = $(By.name("surnameNamePatronymic"));
     SelenideElement birthday = $(By.name("birthday"));
 
-    public FindPatientPageBase() {
+    public FindPatientPageBase() throws IOException {
     }
 
     public FindPatientPageBase findByPolis(PacientImpl pacientImpl) {

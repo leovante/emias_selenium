@@ -8,12 +8,14 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class CallDoctorPageBase extends PageBase {
     private PacientImpl pacientImpl;
 
-    public CallDoctorPageBase() {
+    public CallDoctorPageBase() throws IOException {
     }
 
     public CallDoctorPageBase calldoctor(PacientImpl pacientImpl) throws InterruptedException {

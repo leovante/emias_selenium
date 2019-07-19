@@ -11,6 +11,7 @@ import com.pages.calldoctor.pacients.PacientImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
     SelenideElement kvotyCount = $(By.xpath("//*[@class='ng-binding'][@ng-hide='!data.IsQuotaDispType']"));
 
 
-    public RaspisaniePriemaPageBase() {
+    public RaspisaniePriemaPageBase() throws IOException {
     }
 
     @Step("Сделать запись")

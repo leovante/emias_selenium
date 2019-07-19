@@ -16,12 +16,14 @@ import java.text.ParseException;
 import java.util.List;
 
 public class DBScripts extends PageBase {
-
     private static String connectionUrl = "jdbc:sqlserver://192.168.7.253:64783";
     private static String databaseName = "test_mo_hlt_Taldom_CRB_20190129";
     private static String userName = "mis";
     private static String password = "sagfhjkzYES!";
     private static List<File> lst;
+
+    public DBScripts() throws IOException {
+    }
 
     @Step("удаляю расписание этого врача")
     public static void deleteShedule(String fam) {

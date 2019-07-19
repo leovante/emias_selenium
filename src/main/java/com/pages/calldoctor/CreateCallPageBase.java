@@ -59,7 +59,7 @@ public class CreateCallPageBase extends PageBase {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
 
-    public CreateCallPageBase(Pacient pacientImpl) {
+    public CreateCallPageBase(Pacient pacientImpl) throws IOException {
         this.pacientImpl = pacientImpl;
     }
 

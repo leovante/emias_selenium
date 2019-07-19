@@ -12,10 +12,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPageBase extends PageBase {
-
     private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
     private SelenideElement exitBtn = $x("//span[contains(text(),'Выход')]");
     private SelenideElement instructionBtn = $x("//span[contains(text(),'Инструкция')]");
@@ -33,6 +34,9 @@ public class DashboardPageBase extends PageBase {
     private SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
     private SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
     private SelenideElement cancelCall = $(By.id("cancelcall"));
+
+    public DashboardPageBase() throws IOException {
+    }
 
     @Step("вышел в мис")
     public void exitToMis() {

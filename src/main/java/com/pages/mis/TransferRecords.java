@@ -11,6 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -23,7 +24,7 @@ public class TransferRecords extends PageBase {
     SelenideElement doctors_record = $(By.xpath("//table[@id='collision_item_grid']/tbody/tr[2]"));
     SelenideElement recordElement = $(By.xpath("//div[@style='background-color:#DB3F23;border-color:#DB3F23;color:#FFFFFF']"));
 
-    public TransferRecords() {
+    public TransferRecords() throws IOException {
     }
 
     @Step("перенести запись")

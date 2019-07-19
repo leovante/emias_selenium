@@ -12,10 +12,13 @@ import com.pages.medicalrecords.NewMRPage;
 import com.pages.mis.*;
 import com.pages.portal.PortalDashboard;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.page;
 
 public class Pages extends PageBase {
-    public Pages() {
+
+    public Pages() throws IOException {
     }
 
     //MIS
@@ -51,11 +54,11 @@ public class Pages extends PageBase {
         return page(DoctorMethods.class);
     }
 
-    public CreateCallPageBase createCallPage(Pacient pacientImpl) {
+    public CreateCallPageBase createCallPage(Pacient pacientImpl) throws IOException {
         return new CreateCallPageBase(pacientImpl);
     }
 
-    public MkabPage mkabPage() {
+    public MkabPage mkabPage() throws IOException {
         return new MkabPage();
     }
 
@@ -63,11 +66,11 @@ public class Pages extends PageBase {
         return page(SetDoctorPageBase.class);
     }
 
-    public FullCardPage fullCardPage(Pacient pacientImpl, String s) {
+    public FullCardPage fullCardPage(Pacient pacientImpl, String s) throws IOException {
         return new FullCardPage(pacientImpl, s);
     }
 
-    public PrintFormPageBase printFormPage(PacientImpl pacientImpl, String s) {
+    public PrintFormPageBase printFormPage(PacientImpl pacientImpl, String s) throws IOException {
         return new PrintFormPageBase(pacientImpl, s);
     }
 

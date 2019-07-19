@@ -14,6 +14,9 @@ public class SeleniumGrid extends PageBase {
     static int count = 10;
     static String command = "cmd /c start cmd.exe /K \"cd C:/chromedriver && start run_grid.bat && exit\"";
 
+    public SeleniumGrid() throws IOException {
+    }
+
     private static void checkStatus() throws InterruptedException, IOException, JSONException {
         status = Status.checkRunningStatus();
         if (status)

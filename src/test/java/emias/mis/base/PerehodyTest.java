@@ -31,7 +31,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
-    public void transitionCDmkab() {
+    public void transitionCDmkab() throws IOException {
         page.misHomePage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
@@ -92,7 +92,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
-    public void transitionDispMkab() {
+    public void transitionDispMkab() throws IOException {
         page.misHomePage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
@@ -129,7 +129,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
-    public void transitionMedMkab() {
+    public void transitionMedMkab() throws IOException {
         page.misHomePage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
@@ -145,7 +145,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в Медзаписи из Тап")
     @Epic("Переходы")
     @RetryCountIfFailed(3)
-    public void transitionMedTap() {
+    public void transitionMedTap() throws IOException {
         page.misHomePage().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");

@@ -1,6 +1,7 @@
 package com.pages;
 
 import com.dataGenerator.ModuleData;
+import com.epam.reportportal.message.ReportPortalMessage;
 import com.pages.calldoctor.pacients.Pacient;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;
@@ -8,11 +9,13 @@ import com.utils.CallDoctorCards;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.WebDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -24,16 +27,19 @@ public class PageBase {
     public CallDoctorCards callDoctorCards;
     public WebDriver driver;
     public Assistance as = new AssistanceImpl();
-    //    public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-//    public org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(LoggingLogback.class);
-    public static Logger LOGGER = LoggerFactory.getLogger("myapp");
     public static int callNumber;
-//    public static Map<String, Integer> cardMap = new HashMap();
+    public static Logger LOGGER;
+
+    public String screenshot_file_path = "demoScreenshoot.png";
+    public String rp_message = "test message for Report Portal";
+    public ReportPortalMessage message = new ReportPortalMessage(new File(screenshot_file_path), rp_message);
+
+
 
     @Autowired
     public Examps examps = new ExampsImpl();
 
-    public PageBase() {
+    public PageBase() throws IOException {
         this.driver = getWebDriver();
     }
 

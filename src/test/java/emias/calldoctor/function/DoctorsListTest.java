@@ -20,7 +20,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class DoctorsListTest extends TestBase {
-
     @Test(groups = "CD", description = "пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)

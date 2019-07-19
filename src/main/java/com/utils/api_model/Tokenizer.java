@@ -20,7 +20,7 @@ public class Tokenizer extends PageBase {
     public static String token;
     HttpResponse response;
 
-    public Tokenizer() {
+    public Tokenizer() throws IOException {
         configFile = new ConfigFile();
     }
 

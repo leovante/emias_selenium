@@ -4,12 +4,14 @@ import com.pages.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class NapravlenieNaIssledovanie extends PageBase {
 
-    public NapravlenieNaIssledovanie() {
+    public NapravlenieNaIssledovanie() throws IOException {
     }
 
     public void addNapravlenie() {

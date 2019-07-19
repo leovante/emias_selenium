@@ -36,11 +36,11 @@ public class PrintFormPageBase extends PageBase {
     @Autowired
     public CallDoctorCards callDoctorCards;
 
-    public PrintFormPageBase(String testName) {
+    public PrintFormPageBase(String testName) throws IOException {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public PrintFormPageBase(PacientImpl pacientImpl, String testName) {
+    public PrintFormPageBase(PacientImpl pacientImpl, String testName) throws IOException {
         this.pacientImpl = pacientImpl;
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }

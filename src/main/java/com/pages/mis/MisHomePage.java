@@ -10,12 +10,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class MisHomePage extends PageBase {
     ConfigFile conf;
 
-    public MisHomePage() {
+    public MisHomePage() throws IOException {
         conf = new ConfigFile();
     }
 

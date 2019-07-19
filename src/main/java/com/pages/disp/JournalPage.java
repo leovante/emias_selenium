@@ -5,6 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -22,7 +24,7 @@ public class JournalPage extends PageBase {
     SelenideElement oprosMeasureExamp = $(By.xpath("//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]"));
     SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
 
-    public JournalPage() {
+    public JournalPage() throws IOException {
     }
 
     public JournalPage journalMenuBtn() {

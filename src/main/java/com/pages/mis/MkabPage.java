@@ -3,12 +3,13 @@ package com.pages.mis;
 import com.pages.PageBase;
 import org.openqa.selenium.By;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.$;
 
 public class MkabPage extends PageBase {
 
-    public MkabPage() {
-
+    public MkabPage() throws IOException {
     }
 
     public MkabPage fio(String fio) {

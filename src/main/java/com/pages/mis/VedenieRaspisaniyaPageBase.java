@@ -12,12 +12,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 
+import java.io.IOException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class VedenieRaspisaniyaPageBase extends PageBase {
-
     SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
     SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
     SelenideElement createShedule = $(By.xpath("//button[@id='btn_create']/span[2]"));
@@ -34,6 +34,9 @@ public class VedenieRaspisaniyaPageBase extends PageBase {
     SelenideElement row_doctorOnBoln = $(By.xpath("//div[@id='radio_busy']/label[2]/span/span"));
     SelenideElement saveBtn = $(By.xpath("//button[@id='btn_busy_save']/span"));
     SelenideElement copyShedule = $(By.xpath("//button[@id='btn_copy']/span[2]"));
+
+    public VedenieRaspisaniyaPageBase() throws IOException {
+    }
 
     @Step("Создать расписание")
     public void createShedule() throws InterruptedException {
