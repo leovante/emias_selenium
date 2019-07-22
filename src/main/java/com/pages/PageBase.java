@@ -1,7 +1,6 @@
 package com.pages;
 
 import com.dataGenerator.ModuleData;
-import com.epam.reportportal.message.ReportPortalMessage;
 import com.pages.calldoctor.pacients.Pacient;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;
@@ -10,11 +9,10 @@ import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.logging.log4j.LogManager;
-import org.openqa.selenium.WebDriver;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,13 +26,7 @@ public class PageBase {
     public WebDriver driver;
     public Assistance as = new AssistanceImpl();
     public static int callNumber;
-    public static Logger LOGGER;
-
-    public String screenshot_file_path = "demoScreenshoot.png";
-    public String rp_message = "test message for Report Portal";
-    public ReportPortalMessage message = new ReportPortalMessage(new File(screenshot_file_path), rp_message);
-
-
+    public static Logger LOGGER = LogManager.getLogger();
 
     @Autowired
     public Examps examps = new ExampsImpl();

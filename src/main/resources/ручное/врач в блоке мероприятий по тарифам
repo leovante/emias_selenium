@@ -9,6 +9,7 @@ where spm.IsRequiredSM = 1 and card.disp_CardID = 2201
 
 
 
+
 declare @ress varchar(5000), @date date
     set @date = '2019-01-06'
     exec hlt_getDocPRVDFilter 0, 0, 0, 11, 2, 13163, @date, @ress output

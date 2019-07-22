@@ -43,4 +43,6 @@ public class CreateMRTest extends TestBase {
         $x("//*[contains(text(),'Подписать')]").click();
         $x("//*[contains(text(),'Медицинская запись успешно подписана')]").shouldBe(Condition.visible);
     }
+
+    // TODO: 7/19/2019 для старой медзаписи гастроэнторологии нажать сохранить -> редактировать ->  просмотреть -> сохранить(сейчас не работает)
 }

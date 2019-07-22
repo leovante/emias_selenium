@@ -5,10 +5,8 @@ import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
-import com.utils.CallDoctorCards;
+import com.utils.*;
 import com.utils.Selenium.SeleniumGrid;
-import com.utils.TestMethodCapture;
-import com.utils.WebDriverInstansiator;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
 import emias.calldoctor.before.BeforeTestCD;
@@ -26,7 +24,7 @@ import java.util.logging.Logger;
 
 import static com.pages.PageBase.LOGGER;
 
-@Listeners({TestMethodCapture.class, /*CustomListner1.class,*/ ReportPortalTestNGListener.class})
+@Listeners({TestMethodCapture.class, CustomListner1.class, ReportPortalTestNGListener.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
@@ -67,7 +65,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
 
     @AfterMethod(alwaysRun = true)
     public void afterMethod() {
-        LOGGER.info("RP_MESSAGE#BASE64#BASE_64_REPRESENTATION#MESSAGE_TEST");
+//        new Logging();
         driverInst.driverClose();
     }
 
