@@ -1,4 +1,4 @@
-package com.dataGenerator;
+package com.Datas;
 
 import org.springframework.stereotype.Service;
 

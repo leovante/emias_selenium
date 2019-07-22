@@ -1,4 +1,4 @@
-package com.dataGenerator;
+package com.Datas;
 
 import com.utils.HibernateSessionFactory;
 import org.hibernate.Session;

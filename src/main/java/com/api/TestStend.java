@@ -1,5 +1,6 @@
 package com.api;
 
+import com.codeborne.selenide.Condition;
 import com.config.ConfigFile;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -8,21 +9,26 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.junit.Assert;
 
 import java.io.IOException;
+
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 public class TestStend {
     private ConfigFile configFile = new ConfigFile();
 
-    public Boolean checkCreateCall() throws IOException {
-        HttpUriRequest request = new HttpGet("http://192.168.7.24/test/api/kladrsave/find");
-        HttpResponse response = HttpClientBuilder.create().build().execute(request);
-        // TODO: 5/23/2019 доделать
-        return true;
+    public Boolean call_doctor_ef_api() throws IOException {
+        HttpUriRequest request = new HttpGet(configFile.getUrlServices() + "/call/call_doctor_ef_api/ping");
+        HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
+        if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
+            return true;
+        return false;
     }
 
-    public Boolean checkKladrFind() throws IOException {
-        HttpPost request = new HttpPost(configFile.getUrlKladr() + "/api/kladrsave/find");
+    public Boolean kladrsave() throws IOException {
+        HttpPost request = new HttpPost(configFile.getUrlServices() + "/api/kladrsave/find");
         String body = "{\"code\":\"5000002713600\",\"query\":\"заречная\"}";
 
         request.addHeader("Content-Type", "application/json");
@@ -31,6 +37,41 @@ public class TestStend {
 
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
         if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
+            return true;
+        return false;
+    }
+
+    public Boolean ehr_medrecords() throws IOException {
+        open(configFile.getMr_tap());
+        if ($x("//*[contains(text(),'Медицинские записи')]").is(Condition.visible))
+            return true;
+        return false;
+    }
+
+    public Boolean disp_journal() throws IOException {
+        open(configFile.getDispJournal());
+        if ($x("//*[contains(text(),'Журнал')]").is(Condition.visible))
+            return true;
+        return false;
+    }
+
+    public Boolean disp_card() throws IOException {
+        open(configFile.getDispCard());
+        if ($x("//*[contains(text(),'Карта мероприятий')]").is(Condition.visible))
+            return true;
+        return false;
+    }
+
+    public Boolean calldoctor() throws IOException {
+        open(configFile.getCalldoctor());
+        if ($x("//*[contains(.,'Добавить вызов')]").is(Condition.visible))
+            return true;
+        return false;
+    }
+
+    public Boolean calldoctorVz() throws IOException {
+        open(configFile.getCalldoctorVz());
+        if ($x("//*[contains(.,'Взрослая поликлиника')]").is(Condition.visible))
             return true;
         return false;
     }

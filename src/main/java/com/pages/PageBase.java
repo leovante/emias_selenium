@@ -1,6 +1,6 @@
 package com.pages;
 
-import com.dataGenerator.ModuleData;
+import com.Datas.ModuleData;
 import com.pages.calldoctor.pacients.Pacient;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;

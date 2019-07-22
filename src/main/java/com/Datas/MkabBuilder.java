@@ -1,4 +1,4 @@
-package com.dataGenerator;
+package com.Datas;
 
 public class MkabBuilder {
     private String sPol;

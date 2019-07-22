@@ -1,5 +1,6 @@
 package com.pages;
 
+import com.Datas.Datas;
 import com.pages.callcenter.*;
 import com.pages.calldoctor.*;
 import com.pages.calldoctor.pacients.Pacient;
@@ -8,7 +9,7 @@ import com.pages.disp.ExampPage;
 import com.pages.disp.JournalPage;
 import com.pages.disp.KvotyPage;
 import com.pages.kladr.Kladr;
-import com.pages.medicalrecords.NewMRPage;
+import com.pages.medicalrecords.Ehr_medicalrecords;
 import com.pages.mis.*;
 import com.pages.portal.PortalDashboard;
 
@@ -129,7 +130,7 @@ public class Pages extends PageBase {
     }
 
     //MedicalRecords
-    public NewMRPage newMRPage() {
-        return new NewMRPage();
+    public Ehr_medicalrecords ehr_medicalrecords(Datas d) {
+        return new Ehr_medicalrecords(d);
     }
 }

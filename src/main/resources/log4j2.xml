@@ -9,7 +9,7 @@
         </ReportPortalLog4j2Appender>
     </appenders>
     <loggers>
-        <root level="all">
+        <root level="info">
             <appender-ref ref="ReportPortalAppender"/>
         </root>
     </loggers>

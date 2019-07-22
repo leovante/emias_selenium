@@ -121,6 +121,4 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
 
         page.transferRecords().verifyTransferShedule();
     }
-// TODO: 8/24/2018 сделать тест переходов на различные сервисы
-// TODO: 8/24/2018 сделать тест переходов на различные сервисы
 }

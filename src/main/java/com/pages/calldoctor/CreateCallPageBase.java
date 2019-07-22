@@ -29,7 +29,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
 public class CreateCallPageBase extends PageBase {
-    private Pacient pacientImpl;
+    private Pacient pacient;
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
     SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
@@ -59,8 +59,8 @@ public class CreateCallPageBase extends PageBase {
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
 
-    public CreateCallPageBase(Pacient pacientImpl) throws IOException {
-        this.pacientImpl = pacientImpl;
+    public CreateCallPageBase(Pacient pacient) throws IOException {
+        this.pacient = pacient;
     }
 
     protected static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
@@ -98,14 +98,14 @@ public class CreateCallPageBase extends PageBase {
     public void createCall_Api() throws JSONException {
 //        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
         // TODO: 5/16/2019 мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
-        HttpResponse hr = new CallDoctorHttp(pacientImpl).execute();
+        HttpResponse hr = new CallDoctorHttp(pacient).execute();
         if (hr.getStatusLine().getStatusCode() != 200)
             throw new SkipException("Вызов не создан\n" + hr);
     }
 
     @Step("редактирую вызов")
     public CreateCallPageBase editCallPage(PacientImpl pacientImpl) throws IOException, ParseException, InterruptedException {
-        this.pacientImpl = pacientImpl;
+        this.pacient = pacientImpl;
         sourceCall()
                 .sourceCall()
                 .address()
@@ -123,7 +123,7 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("редактирую вызов с МКАБ + СМП")
     public CreateCallPageBase editCallPage_Mkab(PacientImpl pacientImpl) throws InterruptedException {
-        this.pacientImpl = pacientImpl;
+        this.pacient = pacientImpl;
         sourceCall()
                 .searchField()
                 .addressPlus()
@@ -178,10 +178,10 @@ public class CreateCallPageBase extends PageBase {
     @Step("выбор источника вызова")
     private CreateCallPageBase sourceCall() {
         try {
-            if (pacientImpl.getSource() == 1) {
+            if (pacient.getSource() == 1) {
                 sourceReg.click();
             }
-            if (pacientImpl.getSource() == 2) {
+            if (pacient.getSource() == 2) {
                 sourceSmp.click();
             }
         } catch (Exception e) {
@@ -192,35 +192,35 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("поиск МКАБ")
     public CreateCallPageBase searchField() {
-        $(By.id("findPatientInput")).setValue(String.valueOf(pacientImpl.getNumberpol()));
-        $(By.xpath("//mat-option/span[contains(text(),'" + pacientImpl.getFamily() + "')]")).click();
+        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
+        $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
         return this;
     }
 
     @Step("ввод адреса")
     private CreateCallPageBase address() throws InterruptedException {
-        if (pacientImpl.getAddress1() != null && pacientImpl.getAddress1() != "") {
+        if (pacient.getAddress1() != null && pacient.getAddress1() != "") {
             clearAddress();
-            list_first_container(pacientImpl.getAddress1());
+            list_first_container(pacient.getAddress1());
         }
-        if (pacientImpl.getAddress2() != null && pacientImpl.getAddress2() != "") {
-            if (pacientImpl.getAddress2adv() != null && pacientImpl.getAddress2adv() != "") {
+        if (pacient.getAddress2() != null && pacient.getAddress2() != "") {
+            if (pacient.getAddress2adv() != null && pacient.getAddress2adv() != "") {
                 Thread.sleep(1000);
-                adress.sendKeys(pacientImpl.getAddress3());
-                $(By.xpath("//mat-option/span[contains(text(),'" + pacientImpl.getAddress2adv() + "')]")).click();
+                adress.sendKeys(pacient.getAddress3());
+                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress2adv() + "')]")).click();
             } else
-                list_first_container(pacientImpl.getAddress2());
+                list_first_container(pacient.getAddress2());
         }
-        if (pacientImpl.getAddress3() != null && pacientImpl.getAddress3() != "") {
-            if (pacientImpl.getAddress3adv() != null && pacientImpl.getAddress3adv() != "") {
+        if (pacient.getAddress3() != null && pacient.getAddress3() != "") {
+            if (pacient.getAddress3adv() != null && pacient.getAddress3adv() != "") {
                 Thread.sleep(1000);
-                adress.sendKeys(pacientImpl.getAddress3());
-                $(By.xpath("//mat-option/span[contains(text(),'" + pacientImpl.getAddress3adv() + "')]")).click();
+                adress.sendKeys(pacient.getAddress3());
+                $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getAddress3adv() + "')]")).click();
             } else
-                list_first_container(pacientImpl.getAddress3());
+                list_first_container(pacient.getAddress3());
         }
-        if (pacientImpl.getNumber() != null && pacientImpl.getNumber() != "") {
-            $(By.xpath("//input[@placeholder='Дом']")).setValue(pacientImpl.getNumber());
+        if (pacient.getNumber() != null && pacient.getNumber() != "") {
+            $(By.xpath("//input[@placeholder='Дом']")).setValue(pacient.getNumber());
         }
         addressPlus();
         return this;
@@ -265,29 +265,28 @@ public class CreateCallPageBase extends PageBase {
                 Thread.sleep(1000);
                 i++;
             } while (!adress.getValue().equals("Московская обл.,") && i < 10);
-            // TODO: 5/22/2019 эта проверка отображения элемента, нужна проверка по апи перед запуском тестов
             Assert.assertTrue(adress.getValue().equals("Московская обл.,"), "адрес не загрузился");
         }
     }
 
     @Step("уточняю адрес")
     private CreateCallPageBase addressPlus() {
-        korpus.setValue(pacientImpl.getBuilding());
-        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacientImpl.getConstruction());
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacientImpl.getAppartment());
-        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacientImpl.getEntrance()));
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacientImpl.getCodedomophone());
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacientImpl.getFloor()));
+        korpus.setValue(pacient.getBuilding());
+        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
+        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
+        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
+        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
+        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
         return this;
     }
 
     @Step("телефон")
     private CreateCallPageBase telephone() {
         try {
-            if (!pacientImpl.getPhone().equals(null)) {
-                $(By.id("phone")).setValue(pacientImpl.getPhone());
+            if (!pacient.getPhone().equals(null)) {
+                $(By.id("phone")).setValue(pacient.getPhone());
             }
-            if (pacientImpl.getPhone().equals("")) {
+            if (pacient.getPhone().equals("")) {
                 $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
             }
         } catch (Exception e) {
@@ -298,10 +297,10 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("пол")
     private CreateCallPageBase gender() {
-        if (pacientImpl.getGender() == 1) {
+        if (pacient.getGender() == 1) {
             $(By.id("sex1")).click();
         }
-        if (pacientImpl.getGender() == 2) {
+        if (pacient.getGender() == 2) {
             $(By.id("sex2")).click();
         }
         return this;
@@ -311,43 +310,43 @@ public class CreateCallPageBase extends PageBase {
     private CreateCallPageBase complaint() throws InterruptedException {
         SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
         JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + pacientImpl.getComplaint() + "';", complaint);
+        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
         complaint.sendKeys(Keys.SPACE);
 
         $(By.xpath("//span[contains(text(),'диатез')]")).click();
-        $(By.xpath("//div[contains(text(),'" + pacientImpl.getComplaint() + "')]")).shouldBe(Condition.visible);
+        $(By.xpath("//div[contains(text(),'" + pacient.getComplaint() + "')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("полис")
     private CreateCallPageBase polis() {
-        if (pacientImpl.getSeriespol() != null && pacientImpl.getSeriespol() != "") {
-            $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacientImpl.getSeriespol()));
+        if (pacient.getSeriespol() != null && pacient.getSeriespol() != "") {
+            $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
         }
-        if (pacientImpl.getNumberpol() != null && pacientImpl.getNumberpol() != "") {
-            $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacientImpl.getNumberpol()));
+        if (pacient.getNumberpol() != null && pacient.getNumberpol() != "") {
+            $(By.xpath("//input[@placeholder='Номер полиса']")).setValue(String.valueOf(pacient.getNumberpol()));
         }
         return this;
     }
 
     @Step("фио")
     private CreateCallPageBase FIO() {
-        if (pacientImpl.getFamily() != null) {
-            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacientImpl.getFamily());
+        if (pacient.getFamily() != null) {
+            $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
         }
-        if (pacientImpl.getName() != null) {
-            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacientImpl.getName());
+        if (pacient.getName() != null) {
+            $(By.xpath("//input[@placeholder='Имя']")).setValue(pacient.getName());
         }
-        if (pacientImpl.getOt() != null) {
-            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacientImpl.getOt());
+        if (pacient.getOt() != null) {
+            $(By.xpath("//input[@placeholder='Отчество']")).setValue(pacient.getOt());
         }
         return this;
     }
 
     @Step("день рождения")
     private CreateCallPageBase birthDay() {
-        if (pacientImpl.getBirthdate("") != null)
-            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacientImpl.getBirthdate("dd-MM-yyyy"));
+        if (pacient.getBirthdate("") != null)
+            $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
         return this;
     }
 
@@ -357,7 +356,7 @@ public class CreateCallPageBase extends PageBase {
         vKat.click();
 
         Date newData = new Date();
-        Date bd = pacientImpl.getBirthdate();
+        Date bd = pacient.getBirthdate();
         int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
         if (years > 18) {
             $(By.xpath("//span[contains(.,'Взрослые')]")).click();
@@ -370,7 +369,7 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("фио вызывающего")
     private CreateCallPageBase caller() {
-        if (pacientImpl.getSource() == 2) {
+        if (pacient.getSource() == 2) {
             $(By.id("sourceSmp")).setValue("Супер станция");
             $(By.id("callFamily")).setValue("ФамилияВызывающего");
             $(By.id("callName")).setValue("ИмяВызывающего");
@@ -390,7 +389,7 @@ public class CreateCallPageBase extends PageBase {
     @Step("количество лет")
     public int years() {
         Date newData = new Date();
-        Date bd = pacientImpl.getBirthdate();
+        Date bd = pacient.getBirthdate();
         int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
         return years;
     }

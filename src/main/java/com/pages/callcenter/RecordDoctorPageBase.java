@@ -270,7 +270,6 @@ public class RecordDoctorPageBase extends PageBase {
         lpu.click();
         SelenideElement spec = $(By.xpath("//button[@data-department-name='Терапия']"));
         spec.click();
-        // TODO: 11.09.2018 переделать
         SelenideElement fastDoc =
                 $(By.xpath("//*[contains(text(),'"+arg0+"')]"))
                         .$(By.xpath("../../."))

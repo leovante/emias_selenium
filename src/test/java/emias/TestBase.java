@@ -1,6 +1,7 @@
 package emias;
 
 import com.config.AppConfig;
+import com.config.ConfigFile;
 import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
@@ -20,11 +21,8 @@ import org.testng.annotations.*;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.logging.Logger;
 
-import static com.pages.PageBase.LOGGER;
-
-@Listeners({TestMethodCapture.class, CustomListner1.class, ReportPortalTestNGListener.class})
+@Listeners({TestMethodCapture.class, /*FirstListner.class, */ReportPortalTestNGListener.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
@@ -32,6 +30,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public static Pages page;
     public String testName;
     protected Assistance as = new AssistanceImpl();
+    public ConfigFile configFile = new ConfigFile();
 
     @Autowired
     public HltCallDoctorServiceImpl hltCallDoctorService;
@@ -46,6 +45,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String gridRun) throws Exception {
+        new FirstListner(gridRun);
         SeleniumGrid.run(gridRun);
     }
 

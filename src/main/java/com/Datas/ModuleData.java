@@ -1,4 +1,4 @@
-package com.dataGenerator;
+package com.Datas;
 
 
 import com.system.model.HltMkabEntity;
