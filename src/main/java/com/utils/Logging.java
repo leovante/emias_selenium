@@ -1,21 +1,7 @@
 package com.utils;
 
-import com.codeborne.selenide.Driver;
-import com.codeborne.selenide.Screenshots;
-import com.codeborne.selenide.ex.UIAssertionError;
-import com.codeborne.selenide.impl.ScreenShotLaboratory;
-import com.codeborne.selenide.testng.ScreenShooter;
-import com.epam.reportportal.message.ReportPortalMessage;
 import org.apache.logging.log4j.Logger;
-import org.testng.ITestResult;
-import org.testng.annotations.Listeners;
 import org.testng.reporters.ExitCodeListener;
-
-import java.io.File;
-import java.io.IOException;
-
-import static com.codeborne.selenide.WebDriverRunner.driver;
-import static com.codeborne.selenide.ex.ErrorMessages.screenshot;
 
 //@Listeners({ScreenShooter.class})
 public class Logging extends ExitCodeListener {

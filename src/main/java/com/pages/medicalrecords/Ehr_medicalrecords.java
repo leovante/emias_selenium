@@ -1,6 +1,6 @@
 package com.pages.medicalrecords;
 
-import com.Datas.Datas;
+import com.datas.Datas;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.Assert;

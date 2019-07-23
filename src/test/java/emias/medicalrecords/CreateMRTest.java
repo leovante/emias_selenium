@@ -1,6 +1,6 @@
 package emias.medicalrecords;
 
-import com.Datas.Datas;
+import com.datas.Datas;
 import com.utils.TestMethodCapture;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;

@@ -10,6 +10,7 @@ import com.utils.*;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.override.Assistance;
 import com.utils.override.AssistanceImpl;
+import emias.beforeRun.BeforeRun;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
 import org.json.JSONException;
@@ -22,7 +23,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.text.ParseException;
 
-@Listeners({TestMethodCapture.class, /*FirstListner.class, */ReportPortalTestNGListener.class})
+@Listeners({TestMethodCapture.class, ReportPortalTestNGListener.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
@@ -45,7 +46,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String gridRun) throws Exception {
-        new FirstListner(gridRun);
+        new BeforeRun();
         SeleniumGrid.run(gridRun);
     }
 
@@ -59,7 +60,6 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public void setUp(@Optional String browser) throws IOException {
         driverInst = new WebDriverInstansiator(browser);
         driverInst.setDriver();
-//        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         page = new Pages();
     }
 

@@ -56,7 +56,7 @@ public class AppConfig implements TransactionManagementConfigurer {
     public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(configureDataSource());
-        entityManagerFactoryBean.setPackagesToScan("com.system", "com.Datas");
+        entityManagerFactoryBean.setPackagesToScan("com.system", "com.datas");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties jpaProperties = new Properties();

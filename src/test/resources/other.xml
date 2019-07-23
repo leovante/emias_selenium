@@ -6,7 +6,6 @@
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
-        <listener class-name="com.utils.FirstListner"/>
     </listeners>
     <!--Медицинские записи-->
     <test name="TestMR_Chrome" verbose="1">

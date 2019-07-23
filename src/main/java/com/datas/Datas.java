@@ -1,4 +1,4 @@
-package com.Datas;
+package com.datas;
 
 public class Datas {
     private String medicar_record;

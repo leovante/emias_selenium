@@ -1,18 +1,13 @@
-package com.utils;
+package emias.beforeRun;
 
 import com.api.TestStend;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
-import org.testng.IInvokedMethod;
-import org.testng.IInvokedMethodListener;
-import org.testng.ITestResult;
+import com.codeborne.selenide.WebDriverRunner;
+import org.springframework.boot.test.autoconfigure.properties.SkipPropertyMapping;
 import org.testng.SkipException;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 
 import java.io.IOException;
 
-public class FirstListner{
+public class BeforeRun {
     TestStend testStend = new TestStend();
     boolean checkCreateCall;
     boolean checkKladrFind;
@@ -22,19 +17,23 @@ public class FirstListner{
     boolean calldoctor;
     boolean calldoctorVz;
 
-    public FirstListner(String gridRun) throws IOException {
-        if (Boolean.parseBoolean(gridRun)) {
-            checkCreateCall = testStend.call_doctor_ef_api();
-            checkKladrFind = testStend.kladrsave();
-            ehr_medrecords = testStend.ehr_medrecords();
-            disp_journal = testStend.disp_journal();
-            disp_card = testStend.disp_card();
-            calldoctor = testStend.calldoctor();
-            calldoctorVz = testStend.calldoctorVz();
-        }
+    public BeforeRun() throws IOException {
+        instasiator();
+        validator();
     }
 
-    public void beforeInvocation(IInvokedMethod iInvokedMethod, ITestResult iTestResult) {
+    void instasiator() throws IOException {
+        checkCreateCall = testStend.call_doctor_ef_api();
+        checkKladrFind = testStend.kladrsave();
+        ehr_medrecords = testStend.ehr_medrecords();
+        disp_journal = testStend.disp_journal();
+        disp_card = testStend.disp_card();
+        calldoctor = testStend.calldoctor();
+        calldoctorVz = testStend.calldoctorVz();
+        new WebDriverRunner().closeWebDriver();
+    }
+
+    void validator() {
         if (!checkCreateCall |
                 !checkKladrFind |
                 !ehr_medrecords |
@@ -52,6 +51,5 @@ public class FirstListner{
                             "\nдиспетчер взрослая поликлиника: " + calldoctorVz
             );
         }
-
     }
 }

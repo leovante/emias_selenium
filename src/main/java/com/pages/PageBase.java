@@ -1,6 +1,6 @@
 package com.pages;
 
-import com.Datas.ModuleData;
+import com.datas.ModuleData;
 import com.pages.calldoctor.pacients.Pacient;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;
@@ -26,7 +26,7 @@ public class PageBase {
     public WebDriver driver;
     public Assistance as = new AssistanceImpl();
     public static int callNumber;
-    public static Logger LOGGER = LogManager.getLogger();
+    public static Logger LOGGER = LogManager.getRootLogger();
 
     @Autowired
     public Examps examps = new ExampsImpl();
