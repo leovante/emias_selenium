@@ -55,32 +55,32 @@ public class Pages extends PageBase {
         return page(DoctorMethods.class);
     }
 
-    public CreateCallPageBase createCallPage(Pacient pacientImpl) throws IOException {
-        return new CreateCallPageBase(pacientImpl);
+    public CreateCallPage createCallPage(Pacient pacientImpl) throws IOException {
+        return new CreateCallPage(pacientImpl);
     }
 
     public MkabPage mkabPage() throws IOException {
         return new MkabPage();
     }
 
-    public SetDoctorPageBase setDoctorPage() {
-        return page(SetDoctorPageBase.class);
+    public SetDoctorPage setDoctorPage() {
+        return page(SetDoctorPage.class);
     }
 
     public FullCardPage fullCardPage(Pacient pacientImpl, String s) throws IOException {
         return new FullCardPage(pacientImpl, s);
     }
 
-    public PrintFormPageBase printFormPage(PacientImpl pacientImpl, String s) throws IOException {
-        return new PrintFormPageBase(pacientImpl, s);
+    public PrintFormPage printFormPage(PacientImpl pacientImpl, String s) throws IOException {
+        return new PrintFormPage(pacientImpl, s);
     }
 
-    public DashboardPageBase dashboardPage() {
-        return page(DashboardPageBase.class);
+    public DashboardPage dashboardPage() {
+        return page(DashboardPage.class);
     }
 
-    public SetLpuPageBase setLpuPage() {
-        return page(SetLpuPageBase.class);
+    public SetLpuPage setLpuPage() {
+        return page(SetLpuPage.class);
     }
 
     public BeforeWork beforeWork() {

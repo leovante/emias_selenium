@@ -129,7 +129,7 @@ public class DBScripts extends PageBase {
                                 " where dc.disp_CardID = '" + cardID + "'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("Card: " + cardID + " is default!");
+                    LOGGER.info("card: " + cardID + " is default!");
                 }
             }
         } catch (Exception e) {

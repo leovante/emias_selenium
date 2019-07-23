@@ -91,7 +91,7 @@ public class EditPageTest extends TestBase {
         $(By.xpath("//simple-snack-bar[contains(.,'Не указан адрес')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "подтягивание неформализованного мкаб на странице редактирования")
+    @Test(groups = "CD", description = "формализация неформализованного адреса на странице редактирования")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
@@ -103,6 +103,4 @@ public class EditPageTest extends TestBase {
         page.createCallPage(pacientImpl).editCallBtn();
         $(By.xpath("//*[contains(.,'" + pacientImpl.getAddress3adv() + "')]")).shouldBe(Condition.visible);
     }
-
-    // TODO: 1/21/2019 добавить тест, вводить новый адрес английскими буквами
 }

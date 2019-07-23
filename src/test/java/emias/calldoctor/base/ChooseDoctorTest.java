@@ -56,7 +56,7 @@ public class ChooseDoctorTest extends TestBase {
 //    public void testAppendDoctorToCall_Portal() throws Exception {
 //        Pacient pacient = new Pacient("Profile4");
 //        Doctor doctor = new Doctor("MokovStendTestovoe");
-//        enter.enterPortal();
+//        select.enterPortal();
 //        page.portalDashboard().createCall(pacient);
 //        page.misHomePage().calldoctor();
 //        page.dashboardPage()

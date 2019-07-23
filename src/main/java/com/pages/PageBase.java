@@ -1,6 +1,7 @@
 package com.pages;
 
 import com.datas.ModuleData;
+import com.pages.calldoctor.controllers.StAddress;
 import com.pages.calldoctor.pacients.Pacient;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;
@@ -22,6 +23,7 @@ import java.util.Date;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class PageBase {
+    public StAddress stAddress;
     public CallDoctorCards callDoctorCards;
     public WebDriver driver;
     public Assistance as = new AssistanceImpl();

@@ -16,7 +16,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class DashboardPageBase extends PageBase {
+public class DashboardPage extends PageBase {
     private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
     private SelenideElement exitBtn = $x("//span[contains(text(),'Выход')]");
     private SelenideElement instructionBtn = $x("//span[contains(text(),'Инструкция')]");
@@ -35,7 +35,7 @@ public class DashboardPageBase extends PageBase {
     private SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
     private SelenideElement cancelCall = $(By.id("cancelcall"));
 
-    public DashboardPageBase() throws IOException {
+    public DashboardPage() throws IOException {
     }
 
     @Step("вышел в мис")
@@ -59,7 +59,7 @@ public class DashboardPageBase extends PageBase {
 //    }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPageBase searchFilterFio_Fam(PacientImpl pacientImpl) throws InterruptedException {
+    public DashboardPage searchFilterFio_Fam(PacientImpl pacientImpl) throws InterruptedException {
         fioFilter.click();
         fioFilter.setValue(pacientImpl.getFamily());
         Thread.sleep(2000);
@@ -67,7 +67,7 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPageBase searchFilterDoctor(Doctor doctor) throws InterruptedException {
+    public DashboardPage searchFilterDoctor(Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         docFilter.hover().click();
         Thread.sleep(1000);
@@ -83,14 +83,14 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPageBase searchFilterTypeCallNeotlozhniy() {
+    public DashboardPage searchFilterTypeCallNeotlozhniy() {
         typeCall.click();
         typeCallFilterNeotlozhniy.click();
         return this;
     }
 
     @Step("очистить фильтр подразделение")
-    public DashboardPageBase clearAllFilters() {
+    public DashboardPage clearAllFilters() {
         ElementsCollection closeList = $$(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (SelenideElement closeBtn : closeList) {
             closeBtn.click();
@@ -99,14 +99,14 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("Переключить фильтр все-завтра")
-    public DashboardPageBase filter_all_tomorrow() {
+    public DashboardPage filter_all_tomorrow() {
         filter_all.click();
         filterTomorrowViz.click();
         return this;
     }
 
     @Step("Переключить фильтр завтра-сегодня")
-    public DashboardPageBase filter_tomorrow_today() {
+    public DashboardPage filter_tomorrow_today() {
         filter_tomorrow.click();
         filterTodayViz.click();
         return this;
@@ -144,7 +144,7 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPageBase verifyActiveDocGroup(PacientImpl pacientImpl, Doctor doctor) throws InterruptedException {
+    public DashboardPage verifyActiveDocGroup(PacientImpl pacientImpl, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
@@ -161,7 +161,7 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("проверяю на дашборде запись не отображается у врача в группе активные")
-    public DashboardPageBase verifyActiveDocGroupNotVisible(PacientImpl pacientImpl, Doctor doctor) throws InterruptedException {
+    public DashboardPage verifyActiveDocGroupNotVisible(PacientImpl pacientImpl, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock =
                 $(By.xpath("//*[contains(text(),'Активные')]"))
@@ -264,7 +264,7 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPageBase cancelNewCallDash(PacientImpl pacientImpl) throws InterruptedException {
+    public DashboardPage cancelNewCallDash(PacientImpl pacientImpl) throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         Thread.sleep(4000);
@@ -288,7 +288,7 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("отменяю вызов в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPageBase deleteNewCallProgressFrame(PacientImpl pacientImpl) {
+    public DashboardPage deleteNewCallProgressFrame(PacientImpl pacientImpl) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
@@ -308,7 +308,7 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("валидация что вызов не отменился на странице редактирования")
-    public DashboardPageBase verifyCancellCallValidation() throws InterruptedException {
+    public DashboardPage verifyCancellCallValidation() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
@@ -316,14 +316,14 @@ public class DashboardPageBase extends PageBase {
     }
 
     @Step("валидация что вызов не отменился на дашборде")
-    public DashboardPageBase verifyCancellCallValidation_Dash() throws InterruptedException {
+    public DashboardPage verifyCancellCallValidation_Dash() throws InterruptedException {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         Thread.sleep(2000);
         return this;
     }
 
     @Step("кнопка печати группы активные")
-    public DashboardPageBase printActionColumn() {
+    public DashboardPage printActionColumn() {
         $x("//div[@id='activeCallAllCount']/../div[6]/mat-icon").click();
         return this;
     }

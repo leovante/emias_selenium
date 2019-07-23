@@ -13,8 +13,8 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class SetLpuPageBase extends PageBase {
-    public SetLpuPageBase() throws IOException {
+public class SetLpuPage extends PageBase {
+    public SetLpuPage() throws IOException {
     }
 
     @Step("Передаю в другое подразделение на страинце поиска ЛПУ")

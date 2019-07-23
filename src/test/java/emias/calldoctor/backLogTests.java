@@ -7,7 +7,7 @@ public class backLogTests {
     @RetryCountIfFailed(2)
     public void testCallPortal() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile4");
-        enter.enterPortal();
+        select.enterPortal();
         page.portalDashboard().createCall(pacient);
         page.misHomePage().calldoctor();
         page.dashboardPage()

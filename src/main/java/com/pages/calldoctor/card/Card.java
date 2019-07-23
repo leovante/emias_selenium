@@ -1,4 +1,4 @@
-package com.pages.calldoctor.Card;
+package com.pages.calldoctor.card;
 
 public class Card {
     private String methosName;
