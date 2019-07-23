@@ -26,7 +26,7 @@ public class PageBase {
     public WebDriver driver;
     public Assistance as = new AssistanceImpl();
     public static int callNumber;
-    public static Logger LOGGER = LogManager.getRootLogger();
+    public static Logger LOGGER = LogManager.getLogger();
 
     @Autowired
     public Examps examps = new ExampsImpl();

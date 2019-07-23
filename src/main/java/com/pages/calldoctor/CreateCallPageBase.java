@@ -75,7 +75,6 @@ public class CreateCallPageBase extends PageBase {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-
     public CreateCallPageBase createCall() throws IOException, InterruptedException, ParseException {
         addNewCall()
                 .sourceCall()

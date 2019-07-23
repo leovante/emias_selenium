@@ -23,7 +23,7 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.text.ParseException;
 
-@Listeners({TestMethodCapture.class, ReportPortalTestNGListener.class})
+@Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;

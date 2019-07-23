@@ -3,11 +3,8 @@ package com.pages.disp;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
-import com.pages.disp.measureBlock.Examps;
-import com.pages.disp.measureBlock.ExampsImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 
 import java.io.IOException;

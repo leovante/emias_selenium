@@ -16,7 +16,6 @@ import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-@Listeners(TestMethodCapture.class)
 public class CreateCallTest extends TestBase {
 
     @Test(groups = "CD", description = "пустой вызов")

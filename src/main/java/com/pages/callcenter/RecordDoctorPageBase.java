@@ -14,15 +14,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.close;
 import static org.testng.Assert.assertTrue;
 
-;
-
-
 public class RecordDoctorPageBase extends PageBase {
     private PacientImpl pacientImpl;
     private Doctor doctor;
     SelenideElement allrecord = $(By.xpath("//*[@id='all-patient-records-tab']"));
     SelenideElement reschedule = $(By.xpath("//button[@title='Перенести запись']"));
-    SelenideElement recordDate = $(By.xpath("//tr[contains(.,'Ай Бо Лит')]//button[@class='btn btn-little btn-block btn-success']"));//*[@id='week-doc-schedule-table-body']/tr[2]/td[7]/button
+    SelenideElement recordDate = $(By.xpath("//tr[contains(.,'Ай Бо Лит')]//button[@class='btn btn-little btn-block btn-success']"));
     SelenideElement recordTime = $(By.xpath("//*[@id='day-doc-schedule']/div/div/div[2]/button[17]"));
     SelenideElement recordTimeRandom = $(By.xpath("//*[@id='day-doc-schedule']/div/div/div[2]/button[@class='btn btn-success']"));
     SelenideElement rerecord = $(By.xpath("//*[@id='record-to-doc-form']/div/div[2]/button"));

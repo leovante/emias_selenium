@@ -43,35 +43,45 @@ public class TestStend {
 
     public Boolean ehr_medrecords() throws IOException {
         open(configFile.getMr_tap());
-        if ($x("//*[contains(text(),'Медицинские записи')]").is(Condition.visible))
+        if ($x("//*[contains(text(),'Медицинские записи')]")
+                .shouldBe(Condition.visible)
+                .is(Condition.visible))
             return true;
         return false;
     }
 
     public Boolean disp_journal() throws IOException {
         open(configFile.getDispJournal());
-        if ($x("//*[contains(text(),'Журнал')]").is(Condition.visible))
+        if ($x("//*[contains(text(),'Журнал')]")
+                .shouldBe(Condition.visible)
+                .is(Condition.visible))
             return true;
         return false;
     }
 
     public Boolean disp_card() throws IOException {
         open(configFile.getDispCard());
-        if ($x("//*[contains(text(),'Карта мероприятий')]").is(Condition.visible))
+        if ($x("//*[contains(text(),'Карта мероприятий')]")
+                .shouldBe(Condition.visible)
+                .is(Condition.visible))
             return true;
         return false;
     }
 
     public Boolean calldoctor() throws IOException {
         open(configFile.getCalldoctor());
-        if ($x("//*[contains(.,'Добавить вызов')]").is(Condition.visible))
+        if ($x("//*[contains(.,'Добавить вызов')]")
+                .shouldBe(Condition.visible)
+                .is(Condition.visible))
             return true;
         return false;
     }
 
     public Boolean calldoctorVz() throws IOException {
         open(configFile.getCalldoctorVz());
-        if ($x("//*[contains(.,'Взрослая поликлиника')]").is(Condition.visible))
+        if ($x("//*[contains(.,'Взрослая поликлиника')]")
+                .shouldBe(Condition.visible)
+                .is(Condition.visible))
             return true;
         return false;
     }
