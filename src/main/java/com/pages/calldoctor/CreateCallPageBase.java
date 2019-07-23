@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
@@ -32,7 +33,7 @@ public class CreateCallPageBase extends PageBase {
     private Pacient pacient;
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
-    SelenideElement adress = $(By.xpath("//input[@placeholder='Адрес']"));
+    SelenideElement adress = $x("//input[@placeholder='Адрес']");
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
     SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
     SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
@@ -58,6 +59,12 @@ public class CreateCallPageBase extends PageBase {
     SelenideElement cancelBtn = $(By.id("cancelCall"));
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
+    SelenideElement kto_pacient_header = $x("//*[contains(text(),'КТО ПАЦИЕНТ')]");
+    SelenideElement new_call_header = $x("//*[contains(text(),'Новый вызов')]");
+    SelenideElement male = $(By.id("sex1"));
+    SelenideElement female = $(By.id("sex2"));
+    SelenideElement edit_call = $x("//*[contains(text(),'Редактирование вызова')]");
+    SelenideElement reason_cancel_call_validator = $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"));
 
     public CreateCallPageBase(Pacient pacient) throws IOException {
         this.pacient = pacient;
@@ -248,7 +255,6 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("очистить поле с адресом")
     void clearAddress() throws InterruptedException {
-        $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
         addressLoadWaiter();
         for (int k = 0; k < 10 && !adress.getValue().equals(""); k++) {
             cancelAdress.shouldBe(Condition.visible).click();
@@ -258,25 +264,26 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("жду загрузку адреса")
     void addressLoadWaiter() throws InterruptedException {
-        if ($(By.xpath("//*[contains(text(),'Новый вызов')]")).isDisplayed()) {
+        kto_pacient_header.shouldBe(Condition.visible);
+        if (new_call_header.isDisplayed()) {
             int i = 0;
             do {
                 LOGGER.info("жду загрузку адреса");
                 Thread.sleep(1000);
                 i++;
-            } while (!adress.getValue().equals("Московская обл.,") && i < 10);
-            Assert.assertTrue(adress.getValue().equals("Московская обл.,"), "адрес не загрузился");
+            } while (!adress.$x("..//mat-chip[contains(text(),'Московская обл.,')]").is(Condition.visible) && i < 10);
+            Assert.assertTrue(adress.$x("..//mat-chip[contains(text(),'Московская обл.,')]").is(Condition.visible), "адрес не загрузился");
         }
     }
 
     @Step("уточняю адрес")
     private CreateCallPageBase addressPlus() {
         korpus.setValue(pacient.getBuilding());
-        $(By.xpath("//input[@placeholder='Строение']")).setValue(pacient.getConstruction());
-        $(By.xpath("//input[@placeholder='Квартира']")).setValue(pacient.getAppartment());
-        $(By.xpath("//input[@placeholder='П-д']")).setValue(String.valueOf(pacient.getEntrance()));
-        $(By.xpath("//input[@placeholder='Д-фон']")).setValue(pacient.getCodedomophone());
-        $(By.xpath("//input[@placeholder='Этаж']")).setValue(String.valueOf(pacient.getFloor()));
+        stroenie.setValue(pacient.getConstruction());
+        kvartira.setValue(pacient.getAppartment());
+        pd.setValue(String.valueOf(pacient.getEntrance()));
+        dfon.setValue(pacient.getCodedomophone());
+        etazh.setValue(String.valueOf(pacient.getFloor()));
         return this;
     }
 
@@ -284,7 +291,7 @@ public class CreateCallPageBase extends PageBase {
     private CreateCallPageBase telephone() {
         try {
             if (!pacient.getPhone().equals(null)) {
-                $(By.id("phone")).setValue(pacient.getPhone());
+                phone.setValue(pacient.getPhone());
             }
             if (pacient.getPhone().equals("")) {
                 $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
@@ -297,11 +304,11 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("пол")
     private CreateCallPageBase gender() {
-        if (pacient.getGender() == 1) {
-            $(By.id("sex1")).click();
-        }
-        if (pacient.getGender() == 2) {
-            $(By.id("sex2")).click();
+        switch (pacient.getGender()) {
+            case (1):
+                male.click();
+            case (2):
+                female.click();
         }
         return this;
     }
@@ -461,15 +468,15 @@ public class CreateCallPageBase extends PageBase {
 
     @Step("валидация что вызов не отменился на странице редактирования")
     public CreateCallPageBase verifyCancellCallValidation() throws InterruptedException {
-        $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
+        reason_cancel_call_validator.shouldBe(Condition.visible);
         Thread.sleep(2000);
-        $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
+        kto_pacient_header.shouldBe(Condition.visible);
         return this;
     }
 
     @Step("отменить вызов")
     public CreateCallPageBase cancelOnFullCardBtn(String reason) {
-        $(By.xpath("//*[contains(text(),'Редактирование вызова')]")).shouldBe(Condition.visible);
+        edit_call.shouldBe(Condition.visible);
         cancelBtn.click();
         cancelField.setValue(reason);
         cancelCall.click();

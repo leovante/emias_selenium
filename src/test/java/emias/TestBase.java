@@ -27,11 +27,11 @@ import java.text.ParseException;
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
-    public CallDoctorCards callDoctorCards;
+    private CallDoctorCards callDoctorCards;
+    public ConfigFile configFile = new ConfigFile();
     public static Pages page;
     public String testName;
     protected Assistance as = new AssistanceImpl();
-    public ConfigFile configFile = new ConfigFile();
 
     @Autowired
     public HltCallDoctorServiceImpl hltCallDoctorService;
@@ -46,12 +46,12 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite(@Optional String gridRun) throws Exception {
-        new BeforeRun();
+        new BeforeRun(gridRun);
         SeleniumGrid.run(gridRun);
     }
 
     @AfterSuite(alwaysRun = true)
-    public void afterSuite() throws IOException, JSONException, InterruptedException {
+    public void afterSuite() {
 //        SeleniumGrid.stop();
     }
 
@@ -82,8 +82,8 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @AfterMethod(groups = "CD", alwaysRun = true)
     public void afterMethodCD(ITestResult result) {//работает только с afterMethod
         String testName1 = result.getMethod().getMethodName();
-        if (callDoctorCards.getCardMap(testName1) != null) {
-            int id = callDoctorCards.getCardMap(testName1);
+        if (this.callDoctorCards.getCardMap(testName1) != null) {
+            int id = this.callDoctorCards.getCardMap(testName1);
             hltCallDoctorService.cancelById(id);
         }
     }

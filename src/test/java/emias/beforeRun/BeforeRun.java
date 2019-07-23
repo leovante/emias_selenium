@@ -8,21 +8,23 @@ import org.testng.SkipException;
 import java.io.IOException;
 
 public class BeforeRun {
-    TestStend testStend = new TestStend();
-    boolean checkCreateCall;
-    boolean checkKladrFind;
-    boolean ehr_medrecords;
-    boolean disp_journal;
-    boolean disp_card;
-    boolean calldoctor;
-    boolean calldoctorVz;
+    private TestStend testStend = new TestStend();
+    private boolean checkCreateCall;
+    private boolean checkKladrFind;
+    private boolean ehr_medrecords;
+    private boolean disp_journal;
+    private boolean disp_card;
+    private boolean calldoctor;
+    private boolean calldoctorVz;
 
-    public BeforeRun() throws IOException {
-        instasiator();
-        validator();
+    public BeforeRun(String grid) throws IOException {
+        if (Boolean.parseBoolean(grid)) {
+            instasiator();
+            validator();
+        }
     }
 
-    void instasiator() throws IOException {
+    private void instasiator() throws IOException {
         checkCreateCall = testStend.call_doctor_ef_api();
         checkKladrFind = testStend.kladrsave();
         ehr_medrecords = testStend.ehr_medrecords();
@@ -33,7 +35,7 @@ public class BeforeRun {
         new WebDriverRunner().closeWebDriver();
     }
 
-    void validator() {
+    private void validator() {
         if (!checkCreateCall |
                 !checkKladrFind |
                 !ehr_medrecords |
