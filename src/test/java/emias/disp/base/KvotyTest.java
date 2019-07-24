@@ -13,7 +13,7 @@ public class KvotyTest extends TestBase {
     @Test(groups = "disp", description = "проверка что открываются квоты")
     @RetryCountIfFailed(3)
     public void testSearchCard1() {
-        page.misHomePage().dispJournal();
+        page.misHome().dispJournal();
         page.kvotyPage().kvotyBtn();
         $(By.xpath("//*[contains(.,'Квоты диспансеризации')]")).shouldBe(Condition.visible);
     }

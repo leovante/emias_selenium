@@ -17,19 +17,19 @@ public class ChangeDoctorTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacientImpl, testName()).changeDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor2);
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor);
+        page.fullCard(pacientImpl, testName()).changeDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor2);
+        page.fullCard(pacientImpl, testName())
                 .verifyActivCall(pacientImpl)
                 .verifyDoctor(doctor2)
                 .closeCardBtn();
-        page.dashboardPage()
+        page.dashboard()
                 .clearAllFilters()
                 .verifyActiveDocGroup(pacientImpl, doctor2);
     }

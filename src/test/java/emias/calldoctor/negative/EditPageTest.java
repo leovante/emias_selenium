@@ -18,13 +18,13 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile6");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacientImpl);
-        page.fullCardPage(pacientImpl, testName())
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl).createCall_Api();
+        page.dashboard().openNewCallDash(pacientImpl);
+        page.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .editCallBtn();
-        page.createCallPage(pacientImpl).saveBtn();
+        page.createCall(pacientImpl).saveBtn();
         as.isNotVisibleText("Редактирование вызова № 0");
     }
 }

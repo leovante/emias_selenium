@@ -103,7 +103,7 @@ public class CreateCallPage extends PageBase {
 
     @Step("создаю вызов через api")
     public void createCall_Api() throws JSONException {
-//        DBScripts.finalizeCall_NPol(pacient.getNumberpol());
+//        DBScripts.finalizeCall_NPol(doctor.getNumberpol());
         // TODO: 5/16/2019 мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
         HttpResponse hr = new CallDoctorHttp(pacient).execute();
         if (hr.getStatusLine().getStatusCode() != 200)
@@ -388,8 +388,8 @@ public class CreateCallPage extends PageBase {
         Assert.assertEquals(name.getAttribute("value"), pacientImpl.getName(), "Имя некорректное");
         Assert.assertEquals(otchestvo.getAttribute("value"), pacientImpl.getOt(), "Отчество некорректное");
         Assert.assertEquals(birthDateTemp.getAttribute("value"), pacientImpl.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
-//        Assert.assertEquals(age.getAttribute("value"), pacient.getAge(), "Возраст некорректный");
-//        Assert.assertEquals(vKat.getAttribute("value"), pacient.getVkat(), "Возрастная категория некорректная");
+//        Assert.assertEquals(age.getAttribute("value"), doctor.getAge(), "Возраст некорректный");
+//        Assert.assertEquals(vKat.getAttribute("value"), doctor.getVkat(), "Возрастная категория некорректная");
         assertThat("Адрес некорректный", pacientImpl.getAddress(), containsString(stAddress.getAddressSE().getAttribute("value")));
         Assert.assertEquals(dom.getAttribute("value"), pacientImpl.getNumber(), "Номер дома некорректный");
         Assert.assertEquals(korpus.getAttribute("value"), pacientImpl.getBuilding(), "Номер корпуса некорректный");

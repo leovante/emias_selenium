@@ -14,7 +14,7 @@ public class JournalPage extends PageBase {
     SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
     SelenideElement pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
     SelenideElement fioField = $(By.xpath("//*[@placeholder='ФИО пациента']"));
-    SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search']"));
+    SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search_lpu']"));
     SelenideElement journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]"));
     SelenideElement grida = $x("//datatable-body-row[@class='datatable-body-row datatable-row-even ng-star-inserted']");
     SelenideElement grida2 = $x("//datatable-body[@class='datatable-body']");

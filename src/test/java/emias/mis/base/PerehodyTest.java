@@ -24,7 +24,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDdashboard() {
-        page.misHomePage().calldoctor();
+        page.misHome().calldoctor();
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
     }
 
@@ -32,7 +32,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDmkab() throws IOException {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -57,7 +57,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDjournal() {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         $(By.xpath("//span[contains(text(),'Вызов врача на дом')]")).click();
         $(By.id("add_doc_house_btn")).click();
         switchTo().window(1);
@@ -68,7 +68,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionCDlk() {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         $(By.xpath("//span[contains(text(),'Личный кабинет')]")).click();
         $(By.id("MyCallTab")).click();
         $(By.id("add_doc_house_btn")).click();
@@ -83,7 +83,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispDash() throws InterruptedException {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         page.homePageMis().dispCardJournalBtn();
         switchTo().window("Медицинская Информационная Система");
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
@@ -93,7 +93,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionDispMkab() throws IOException {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -112,7 +112,7 @@ public class PerehodyTest extends TestBase {
     public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         Doctor doctor = new Doctor("Dispanserizatov");
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
         page.raspisaniePriemaPage()
                 .generateML(pacientImpl)
@@ -130,7 +130,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedMkab() throws IOException {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -146,7 +146,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(3)
     public void transitionMedTap() throws IOException {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();

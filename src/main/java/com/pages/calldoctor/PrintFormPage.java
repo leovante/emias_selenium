@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.pages.PageBase;
 import com.pages.calldoctor.doctors_interfaces.Doctor;
+import com.pages.calldoctor.pacients.Pacient;
 import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.CallDoctorCards;
 import io.qameta.allure.Step;
@@ -18,7 +19,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
 public class PrintFormPage extends PageBase {
-    PacientImpl pacientImpl;
+    Pacient pacient;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
     SelenideElement mat_calendar_header = $(By.id(""));
@@ -40,8 +41,8 @@ public class PrintFormPage extends PageBase {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public PrintFormPage(PacientImpl pacientImpl, String testName) throws IOException {
-        this.pacientImpl = pacientImpl;
+    public PrintFormPage(Pacient pacient, String testName) throws IOException {
+        this.pacient = pacient;
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
@@ -56,7 +57,7 @@ public class PrintFormPage extends PageBase {
         elements.add("Источник");
         elements.add("КТО ПАЦИЕНТ");
         elements.add("Возраст");
-        if (pacientImpl.getGender() != 0)
+        if (pacient.getGender() != 0)
             elements.add("Пол");
         elements.add("АДРЕС");
         elements.add("ЖАЛОБЫ");
@@ -73,22 +74,22 @@ public class PrintFormPage extends PageBase {
 
     @Step("проверяю наличие базовых элементов пациента")
     public void basePacient() {
-        isVisibleText(pacientImpl.getAddress());
-        isVisibleText(pacientImpl.getComplaint());
-        isVisibleText(pacientImpl.getCodedomophone());
-        isVisibleText(parseTelephone(pacientImpl));
-        isVisibleText(String.valueOf(pacientImpl.getEntrance()));
-        isVisibleText(String.valueOf(pacientImpl.getFloor()));
-        isVisibleText(pacientImpl.getName());
-        isVisibleText(pacientImpl.getFamily());
-        isVisibleText(pacientImpl.getOt());
-        isVisibleText(String.valueOf(pacientImpl.getBirthdate("dd.MM.yyyy")));
-        isVisibleText(String.valueOf(pacientImpl.getSeriespol()));
-        isVisibleText(String.valueOf(pacientImpl.getNumberpol()));
-        if (pacientImpl.getKladraddress() != null) {
-            isVisibleText(pacientImpl.getAppartment());
-            isVisibleText(pacientImpl.getBuilding());
-            isVisibleText(pacientImpl.getConstruction());
+        isVisibleText(pacient.getAddress());
+        isVisibleText(pacient.getComplaint());
+        isVisibleText(pacient.getCodedomophone());
+        isVisibleText(parseTelephone(pacient));
+        isVisibleText(String.valueOf(pacient.getEntrance()));
+        isVisibleText(String.valueOf(pacient.getFloor()));
+        isVisibleText(pacient.getName());
+        isVisibleText(pacient.getFamily());
+        isVisibleText(pacient.getOt());
+        isVisibleText(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
+        isVisibleText(String.valueOf(pacient.getSeriespol()));
+        isVisibleText(String.valueOf(pacient.getNumberpol()));
+        if (pacient.getKladraddress() != null) {
+            isVisibleText(pacient.getAppartment());
+            isVisibleText(pacient.getBuilding());
+            isVisibleText(pacient.getConstruction());
         }
     }
 

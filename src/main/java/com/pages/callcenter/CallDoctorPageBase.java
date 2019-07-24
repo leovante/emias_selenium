@@ -23,12 +23,12 @@ public class CallDoctorPageBase extends PageBase {
         Thread.sleep(2000);
         $(By.xpath("//div[@class='fast-buttons']//button[text()='Вызов врача']")).click();
         Thread.sleep(2000);
-        $(By.id("search-patient")).click();
+        $(By.id("search_lpu-patient")).click();
         Thread.sleep(2000);
         $(By.xpath("//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")).click();
         $(By.name("snPol")).sendKeys("38-09 560219");
         $(By.name("birthday")).sendKeys("30111975");
-        $(By.xpath("//button[@id='search-patient']")).click();
+        $(By.xpath("//button[@id='search_lpu-patient']")).click();
         //Thread.sleep(2000);
         $(By.name("address")).sendKeys("адрес");
         Thread.sleep(2000);

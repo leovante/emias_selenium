@@ -18,7 +18,7 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends PageBase {
-    Pacient pacientImpl;
+    Pacient pacient;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
     SelenideElement mat_calendar_header = $(By.id(""));
@@ -38,8 +38,8 @@ public class FullCardPage extends PageBase {
         LOGGER.info("Открыл карту вызова url " + url());
     }
 
-    public FullCardPage(Pacient pacientImpl, String testName) throws IOException {
-        this.pacientImpl = pacientImpl;
+    public FullCardPage(Pacient pacient, String testName) throws IOException {
+        this.pacient = pacient;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         } catch (NullPointerException e) {
@@ -59,7 +59,7 @@ public class FullCardPage extends PageBase {
         elements.add("Источник");
         elements.add("КТО ПАЦИЕНТ");
         elements.add("Возраст");
-        if (pacientImpl.getGender() != 0)
+        if (pacient.getGender() != 0)
             elements.add("Пол");
         elements.add("АДРЕС");
         elements.add("ЖАЛОБЫ");
@@ -81,22 +81,22 @@ public class FullCardPage extends PageBase {
 
     @Step("проверяю наличие базовых элементов пациента")
     public void basePacient() {
-        isVisibleText(pacientImpl.getAddress());
-        isVisibleText(pacientImpl.getComplaint());
-        isVisibleText(pacientImpl.getCodedomophone());
-        isVisibleText(parseTelephone(pacientImpl));
-        isVisibleText(String.valueOf(pacientImpl.getEntrance()));
-        isVisibleText(String.valueOf(pacientImpl.getFloor()));
-        isVisibleText(pacientImpl.getName());
-        isVisibleText(pacientImpl.getFamily());
-        isVisibleText(pacientImpl.getOt());
-        isVisibleText(String.valueOf(pacientImpl.getBirthdate("dd.MM.yyyy")));
-        isVisibleText(String.valueOf(pacientImpl.getSeriespol()));
-        isVisibleText(String.valueOf(pacientImpl.getNumberpol()));
-        if (pacientImpl.getKladraddress() != null) {
-            isVisibleText(pacientImpl.getAppartment());
-            isVisibleText(pacientImpl.getBuilding());
-            isVisibleText(pacientImpl.getConstruction());
+        isVisibleText(pacient.getAddress());
+        isVisibleText(pacient.getComplaint());
+        isVisibleText(pacient.getCodedomophone());
+        isVisibleText(parseTelephone(pacient));
+        isVisibleText(String.valueOf(pacient.getEntrance()));
+        isVisibleText(String.valueOf(pacient.getFloor()));
+        isVisibleText(pacient.getName());
+        isVisibleText(pacient.getFamily());
+        isVisibleText(pacient.getOt());
+        isVisibleText(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
+        isVisibleText(String.valueOf(pacient.getSeriespol()));
+        isVisibleText(String.valueOf(pacient.getNumberpol()));
+        if (pacient.getKladraddress() != null) {
+            isVisibleText(pacient.getAppartment());
+            isVisibleText(pacient.getBuilding());
+            isVisibleText(pacient.getConstruction());
         }
     }
 
@@ -244,7 +244,7 @@ public class FullCardPage extends PageBase {
     }
 
     @Step("передать в другое ЛПУ через подробную карту вызова")
-    public FullCardPage transferToDepartBtn() {
+    public FullCardPage transfer_to_depart() {
         toLpu.click();
         $(By.xpath("//*[contains(text(),'Выберите куда передать вызов')]")).shouldBe(Condition.visible);
         return this;

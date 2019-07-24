@@ -3,8 +3,8 @@ package com.pages;
 import com.datas.Datas;
 import com.pages.callcenter.*;
 import com.pages.calldoctor.*;
+import com.pages.calldoctor.doctors_interfaces.Doctor;
 import com.pages.calldoctor.pacients.Pacient;
-import com.pages.calldoctor.pacients.PacientImpl;
 import com.pages.disp.ExampPage;
 import com.pages.disp.JournalPage;
 import com.pages.disp.KvotyPage;
@@ -22,12 +22,14 @@ public class Pages extends PageBase {
     public Pages() throws IOException {
     }
 
-    //MIS
+    /**
+     * MIS
+     */
     public HomePageBase homePageMis() {
         return page(HomePageBase.class);
     }
 
-    public MisHomePage misHomePage() {
+    public MisHomePage misHome() {
         return page(MisHomePage.class);
     }
 
@@ -55,7 +57,10 @@ public class Pages extends PageBase {
         return page(DoctorMethods.class);
     }
 
-    public CreateCallPage createCallPage(Pacient pacientImpl) throws IOException {
+    /**
+     *Calldoctor
+     */
+    public CreateCallPage createCall(Pacient pacientImpl) throws IOException {
         return new CreateCallPage(pacientImpl);
     }
 
@@ -63,33 +68,37 @@ public class Pages extends PageBase {
         return new MkabPage();
     }
 
-    public SetDoctorPage setDoctorPage() {
+    public SetDoctorPage setDoctor() {
         return page(SetDoctorPage.class);
     }
 
-    public FullCardPage fullCardPage(Pacient pacientImpl, String s) throws IOException {
-        return new FullCardPage(pacientImpl, s);
+    public FullCardPage fullCard(Pacient pacient, String s) throws IOException {
+        return new FullCardPage(pacient, s);
     }
 
-    public PrintFormPage printFormPage(PacientImpl pacientImpl, String s) throws IOException {
-        return new PrintFormPage(pacientImpl, s);
+    public PrintFormPage printForm(Pacient pacient, String s) throws IOException {
+        return new PrintFormPage(pacient, s);
     }
 
-    public DashboardPage dashboardPage() {
-        return page(DashboardPage.class);
+    public DashboardPage dashboard() throws IOException {
+        return new DashboardPage();
     }
 
-    public SetLpuPage setLpuPage() {
-        return page(SetLpuPage.class);
+    public PassLpuPage passLpu(Doctor doctor) throws IOException {
+        return new PassLpuPage(doctor);
     }
 
-    public BeforeWork beforeWork() {
-        return page(BeforeWork.class);
+    public PassLpuPage passLpu() throws IOException {
+        return new PassLpuPage();
+    }
+
+    public BeforeWork beforeWork() throws IOException {
+        return new BeforeWork();
     }
 
     // PORTAL
-    public PortalDashboard portalDashboard() {
-        return page(PortalDashboard.class);
+    public PortalDashboard portalDashboard() throws IOException {
+        return new PortalDashboard();
     }
 
     public ExampPage exampPage() {
@@ -104,7 +113,9 @@ public class Pages extends PageBase {
         return page(KvotyPage.class);
     }
 
-    //CallCenter
+    /**
+     *CallCenter
+     */
     public RecordDoctorPageBase recordDoctorPage() {
         return page(RecordDoctorPageBase.class);
     }

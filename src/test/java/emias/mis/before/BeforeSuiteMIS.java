@@ -16,7 +16,7 @@ public class BeforeSuiteMIS extends TestBase {
     @org.testng.annotations.Test(groups = "mis", description = "Cоздаю новое расписание у врачей на сегодня", enabled = false)
     @RetryCountIfFailed(2)
     public void cleanBeforeWork() throws InterruptedException, IOException {
-        page.misHomePage().loginMis();
+        page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         page.homePageMis().createSomeRecords(15);
         page.homePageMis().logoHomeBtn();

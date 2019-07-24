@@ -32,7 +32,7 @@ public class StAddress {
     }
 
     public StAddress write(String txt, String dop) throws InterruptedException {
-        if (txt != null && txt != "" && dop != null && dop != "") {
+        if (dop != null && dop != "") {
             addressBlock.shouldBe(Condition.visible);
             adress.sendKeys(txt);
             $x("//mat-option/span[contains(text(),'" + dop + "')]")
@@ -59,21 +59,23 @@ public class StAddress {
     }
 
     public StAddress list_first_container(String address) throws InterruptedException {
-        adress.hover();
-        Thread.sleep(1000);
-        WebDriver driver = getWebDriver();
-        WebDriverWait wait = new WebDriverWait(driver, 10);
+        if (address != null && address != "") {
+            adress.hover();
+            Thread.sleep(1000);
+            WebDriver driver = getWebDriver();
+            WebDriverWait wait = new WebDriverWait(driver, 10);
 
-        WebElement address1 = driver.findElement(By.xpath("//input[@placeholder='Адрес']"));
-        address1.sendKeys(address);
-        Thread.sleep(1000);
-        korpus.hover();
-        Thread.sleep(1000);
-        adress.hover();
-        address1.sendKeys(" ");
-        $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
-                .shouldBe(Condition.visible)
-                .click();
+            WebElement address1 = driver.findElement(By.xpath("//input[@placeholder='Адрес']"));
+            address1.sendKeys(address);
+            Thread.sleep(1000);
+            korpus.hover();
+            Thread.sleep(1000);
+            adress.hover();
+            address1.sendKeys(" ");
+            $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
+                    .shouldBe(Condition.visible)
+                    .click();
+        }
         return this;
     }
 

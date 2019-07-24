@@ -15,7 +15,7 @@ public class ExampsFillTest extends TestBase {
     @RetryCountIfFailed(3)
     public void testFillExamp() throws InterruptedException {
         DBScripts.setDefaultServices("3169");
-        page.misHomePage().dispCard();
+        page.misHome().dispCard();
         page.exampPage().fillTemnikov();
         $(By.xpath("//div[@mattooltip='Процент завершенности диспансеризации'][contains(.,'(100%)')]")).shouldBe(Condition.visible);
         page.exampPage().saveBtn();

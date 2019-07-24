@@ -15,16 +15,16 @@ public class ChooseDoctorTest extends TestBase {
     public void testAppendDoctorToCall_Registr() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor);
+        page.fullCard(pacientImpl, testName())
                 .verifyActivCall(pacientImpl)
                 .closeCardBtn();
-        page.dashboardPage()
+        page.dashboard()
                 .clearAllFilters()
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
@@ -35,16 +35,16 @@ public class ChooseDoctorTest extends TestBase {
     public void testAppendDoctorToCall_SMP() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor);
+        page.fullCard(pacientImpl, testName())
                 .verifyActivCall(pacientImpl)
                 .closeCardBtn();
-        page.dashboardPage()
+        page.dashboard()
                 .clearAllFilters()
 //                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacientImpl, doctor);
@@ -58,19 +58,19 @@ public class ChooseDoctorTest extends TestBase {
 //        Doctor doctor = new Doctor("MokovStendTestovoe");
 //        select.enterPortal();
 //        page.portalDashboard().createCall(pacient);
-//        page.misHomePage().calldoctor();
-//        page.dashboardPage()
+//        page.misHome().calldoctor();
+//        page.dashboard()
 //                .clearAllFilters()
 //                .openNewCallDash(pacient);
-//        page.fullCardPage(testName()).verifyNewCall(pacient);
-//        page.fullCardPage(testName()).chooseDoctorBtn();
-//        page.setDoctorPage()
+//        page.fullCard(testName()).verifyNewCall(pacient);
+//        page.fullCard(testName()).chooseDoctorBtn();
+//        page.setDoctor()
 //                .saveAddress()
 //                .chooseDoctorToday(doctor);
-//        page.fullCardPage(testName())
+//        page.fullCard(testName())
 //                .verifyActivCall(pacient)
 //                .closeCardBtn();
-//        page.dashboardPage()
+//        page.dashboard()
 //                .clearAllFilters()
 //                .verifyActiveDocGroup(pacient, doctor);
 //    }
@@ -80,16 +80,16 @@ public class ChooseDoctorTest extends TestBase {
     public void testAppendUchastkoviyDoctor() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor);
+        page.fullCard(pacientImpl, testName())
                 .verifyActivCall(pacientImpl)
                 .closeCardBtn();
-        page.dashboardPage()
+        page.dashboard()
                 .clearAllFilters()
 //                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacientImpl, doctor);

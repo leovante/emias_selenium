@@ -15,17 +15,17 @@ public class CompleteServiceTest extends TestBase {
     public void testCompleteCallRegistr() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor);
+        page.fullCard(pacientImpl, testName())
                 .completeServiceBtn()
                 .verifyDoneCall(doctor)
                 .closeCardBtn();
-        page.dashboardPage()
+        page.dashboard()
                 .clearAllFilters()
                 .verifyDoneDocGroup(pacientImpl, doctor);
     }

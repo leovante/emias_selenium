@@ -24,13 +24,13 @@ public class PerehodyServisovTest extends TestBase {
     public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor);
+        page.fullCard(pacientImpl, testName())
                 .completeServiceBtn()
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
@@ -43,13 +43,13 @@ public class PerehodyServisovTest extends TestBase {
     public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorToday(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorToday(doctor);
+        page.fullCard(pacientImpl, testName())
                 .completeServiceBtn()
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
@@ -61,12 +61,12 @@ public class PerehodyServisovTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() throws IOException {
         Doctor operator = new Doctor("Operator");
-        page.misHomePage().calldoctor();
+        page.misHome().calldoctor();
         $x("//header")
                 .$x(".//*[contains(.,'" + operator.getFamily() + " " + operator.getName() + "')]")
                 .shouldBe(Condition.visible);
         switchTo().window(0);
-        page.misHomePage().calldoctorFromMis();
+        page.misHome().calldoctorFromMis();
         $x("//header")
                 .$x(".//*[contains(.,'Вызов врача на дом')]")
                 .shouldBe(Condition.visible);
@@ -79,18 +79,18 @@ public class PerehodyServisovTest extends TestBase {
     @Epic("Переходы")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
-    public void testExitToMis() {
-        page.misHomePage().calldoctor();
-        page.dashboardPage().exitToMis();
-        page.misHomePage().validateLoginPage();
+    public void testExitToMis() throws IOException {
+        page.misHome().calldoctor();
+        page.dashboard().exitToMis();
+        page.misHome().validateLoginPage();
     }
 
     @Test(groups = "CD", description = "проверка перехода на сайт с инструкцией")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void testInstruction() {
-        page.misHomePage().calldoctor();
-        page.dashboardPage().instructionTab();
-        page.misHomePage().validateForumInstruction();
+    public void testInstruction() throws IOException {
+        page.misHome().calldoctor();
+        page.dashboard().instructionTab();
+        page.misHome().validateForumInstruction();
     }
 }

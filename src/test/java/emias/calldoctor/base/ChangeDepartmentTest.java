@@ -17,7 +17,6 @@ import java.text.ParseException;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ChangeDepartmentTest extends TestBase {
-
     @Test(groups = {"CD", "test"}, description = "передача вызова из Юр лица в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
@@ -25,16 +24,16 @@ public class ChangeDepartmentTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("YudinaVzroslayaTerapev");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName())
                 .verifyDepartment(doctor)
-                .transferToDepartBtn();
-        page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(pacientImpl, testName())
+                .transfer_to_depart();
+        page.passLpu(doctor2).transfer();
+        page.fullCard(pacientImpl, testName())
                 .verifyDepartment(doctor2);
     }
 
@@ -46,20 +45,20 @@ public class ChangeDepartmentTest extends TestBase {
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName())
                 .verifyDepartment(doctor)
-                .transferToDepartBtn();
-        page.setLpuPage().transfer(doctor2);
-        page.fullCardPage(pacientImpl, testName())
+                .transfer_to_depart();
+        page.passLpu(doctor2).transfer();
+        page.fullCard(pacientImpl, testName())
                 .verifyDepartment(doctor2)
-                .transferToDepartBtn();
-        page.setLpuPage().transfer(doctor3);
-        page.fullCardPage(pacientImpl, testName()).verifyDepartment(doctor3);
+                .transfer_to_depart();
+        page.passLpu(doctor3).transfer();
+        page.fullCard(pacientImpl, testName()).verifyDepartment(doctor3);
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
@@ -67,65 +66,71 @@ public class ChangeDepartmentTest extends TestBase {
     @RetryCountIfFailed(3)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
-        Doctor depDoc = new Doctor("TemnikovVzroslayaTerapev");
-        Doctor urDoc = new Doctor("TemnikovStend");
-        page.misHomePage().calldoctorVzroslaya();
-        page.createCallPage(pacientImpl)
+        Doctor dep_doc = new Doctor("TemnikovVzroslayaTerapev");
+        Doctor lpu_doc = new Doctor("TemnikovStend");
+        page.misHome().calldoctorVzroslaya();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacientImpl, testName())
-                .verifyDepartment(depDoc)
-                .transferToDepartBtn();
-        page.setLpuPage().transfer(urDoc);
-        page.fullCardPage(pacientImpl, testName())
-                .verifyDepartment(urDoc);
+        page.fullCard(pacientImpl, testName())
+                .verifyDepartment(dep_doc)
+                .transfer_to_depart();
+        page.passLpu(lpu_doc).transfer();
+        page.fullCard(pacientImpl, testName())
+                .verifyDepartment(lpu_doc);
     }
 
-    // TODO: 12/27/2018 сделать тест передачи вызова из лпу в лпу
     @Test(groups = "CD", description = "передача вызова из ЛПУ в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testTransferCallLpu_Lpu() {
-//        open(curUrlCalldoctor);
-//        page.createCallPage()
-//                .createCall("ProfileTransferDep-Dep", nameGen, "n");
-//        page.fullCardPage()
-//                .verifyDepartment("firstDepart")
-//                .transferToDepartBtn();
-//        page.setLpuPage().transfer("ProfileTransferLpu-Dep", "detskayaPol");
-//        page.fullCardPage()
-//                .verifyDepartment("detskayaPol")
-//                .transferToDepartBtn();
-//        page.setLpuPage().transfer("ProfileTransferDep-Dep", "firstDepart");
-//        page.fullCardPage().verifyDepartment("firstDepart");
+    public void testTransferCallLpu_Lpu() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
+        PacientImpl pacient = new PacientImpl("ProfileTransferLpu-Dep");
+        Doctor doctor = new Doctor("TemnikovStend");
+        Doctor doctor2 = new Doctor("TemnikovHimkiStend");
+        page.misHome().calldoctor();
+        page.createCall(pacient)
+                .createCall()
+                .saveBtn()
+                .allertBtn();
+        page.fullCard(pacient, testName())
+                .verifyDepartment(doctor)
+                .transfer_to_depart();
+        page.passLpu(doctor2)
+                .search_lpu()
+                .transfer();
+        page.fullCard(pacient, testName())
+                .verifyDepartment(doctor2);
+        // TODO: 7/24/2019 доделать проверку на стороне Химок
     }
 
     @Test(groups = "CD", description = "проверить что на странице передачи в другое подр. у взрослого вызова отображается взрослое и не отображается детское")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
-        PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        PacientImpl pacient = new PacientImpl("ProfileTransferDep-Lpu");
+        page.misHome().calldoctor();
+        page.createCall(pacient)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
-        page.fullCardPage(pacientImpl, testName())
-                .transferToDepartBtn();
-        page.setLpuPage().validateViewToAdult();
+        page.fullCard(pacient, testName())
+                .transfer_to_depart();
+        page.passLpu()
+                .validate_view_to_adult();
     }
 
     @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у детского вызова не отображается взрослая поликлиника и наоборот")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() throws Exception {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        PacientImpl pacient = new PacientImpl("Profile2");
+        page.misHome().calldoctor();
+        page.createCall(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).transferToDepartBtn();
+        page.fullCard(pacient, testName())
+                .transfer_to_depart();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);

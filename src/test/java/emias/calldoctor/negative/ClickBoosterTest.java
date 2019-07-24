@@ -8,7 +8,6 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.hibernate.AssertionFailure;
 import org.json.JSONException;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -22,11 +21,11 @@ public class ClickBoosterTest extends TestBase {
     public void testAppendTomorrowClickBooster() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         Doctor doctor = new Doctor("MokovStendTestovoe");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacientImpl);
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().chooseDoctorTodayBooster(doctor);
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl).createCall_Api();
+        page.dashboard().openNewCallDash(pacientImpl);
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().chooseDoctorTodayBooster(doctor);
         //нет проверки и зависает
         throw new AssertionFailure("сделай нормальную проверку");
         // TODO: 12/6/2018 тут нужно как-то прикрутить прокси и запускать тест при слабом интернете
@@ -38,11 +37,11 @@ public class ClickBoosterTest extends TestBase {
     public void testZapisatClickBooster() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl).createCall();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().zapisatClickBooster(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl).createCall();
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().zapisatClickBooster(doctor);
+        page.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
         throw new AssertionFailure("сделай нормальную проверку");
@@ -54,12 +53,12 @@ public class ClickBoosterTest extends TestBase {
     public void testZapisatDobavitClickBooster() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHomePage().calldoctor();
-//        page.createCallPage().createCall(pacient);
-        page.createCallPage(pacientImpl).createCall_Api();
-        page.fullCardPage(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctorPage().zapisatDobavitClickBooster(doctor);
-        page.fullCardPage(pacientImpl, testName())
+        page.misHome().calldoctor();
+//        page.createCall().createCall(pacient);
+        page.createCall(pacientImpl).createCall_Api();
+        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.setDoctor().zapisatDobavitClickBooster(doctor);
+        page.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
         throw new AssertionFailure("сделай нормальную проверку");

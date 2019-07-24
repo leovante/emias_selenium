@@ -26,8 +26,8 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testVerifyEditPage() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .editCallBtn()
@@ -39,8 +39,8 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testVerifyEditPage_2() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .editCallBtn()
@@ -56,18 +56,18 @@ public class EditPageTest extends TestBase {
     public void testEditCall() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         PacientImpl pacientImpl2 = new PacientImpl("Profile2");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .editCallBtn()
                 .setDeafult()
                 .editCallPage_Mkab(pacientImpl2)
                 .saveBtn();
-        page.fullCardPage(pacientImpl2, testName())
+        page.fullCard(pacientImpl2, testName())
                 .verifyNewCall()
                 .closeCardBtn();
-        page.dashboardPage()
+        page.dashboard()
                 .clearAllFilters()
                 .verifyNewCallGroup(pacientImpl2);
     }
@@ -79,12 +79,12 @@ public class EditPageTest extends TestBase {
     public void testValidationAddressAfterSaveEditedCall() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         PacientImpl pacientImpl2 = new PacientImpl("Profile0_3");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).editCallBtn();
-        page.createCallPage(pacientImpl)
+        page.fullCard(pacientImpl, testName()).editCallBtn();
+        page.createCall(pacientImpl)
                 .setDeafult()
                 .editCallPage(pacientImpl2)
                 .saveBtn();
@@ -96,11 +96,11 @@ public class EditPageTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
-        page.misHomePage().calldoctor();
-        page.createCallPage(pacientImpl).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacientImpl);
-        page.fullCardPage(pacientImpl, testName()).verifyNewCall();
-        page.createCallPage(pacientImpl).editCallBtn();
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl).createCall_Api();
+        page.dashboard().openNewCallDash(pacientImpl);
+        page.fullCard(pacientImpl, testName()).verifyNewCall();
+        page.createCall(pacientImpl).editCallBtn();
         $(By.xpath("//*[contains(.,'" + pacientImpl.getAddress3adv() + "')]")).shouldBe(Condition.visible);
     }
 }

@@ -15,7 +15,7 @@ public class FindPatientPageBase extends PageBase {
     SelenideElement fondPatient2 = $(By.xpath("//*[@id='fond-patients']/tr/td[3]"));
     SelenideElement fondPatient3 = $(By.xpath("//*[@id='fond-patients']/tr/td[4]"));
     SelenideElement polis = $(By.name("snPol"));
-    SelenideElement find = $(By.xpath("//button[@id='search-patient']"));
+    SelenideElement find = $(By.xpath("//button[@id='search_lpu-patient']"));
     SelenideElement fio = $(By.name("surnameNamePatronymic"));
     SelenideElement birthday = $(By.name("birthday"));
 

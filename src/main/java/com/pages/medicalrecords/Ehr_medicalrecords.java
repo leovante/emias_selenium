@@ -13,7 +13,7 @@ public class Ehr_medicalrecords {
     SelenideElement new_mr = $x("//*[contains(text(),'Новая медицинская запись')]");
     SelenideElement vse_shabloni = $x("//*[contains(text(),'Все шаблоны')]");
     SelenideElement searchPattern = $x("//*[@placeholder = 'Поиск шаблона по номеру, наименованию и специализации']");
-    SelenideElement search = $x("//i[@class = 'zmdi zmdi-search']");
+    SelenideElement search = $x("//i[@class = 'zmdi zmdi-search_lpu']");
     SelenideElement prosmotret = $x("//*[contains(text(),'Просмотреть')]");
     SelenideElement edit = $x("//*[contains(text(),'Редактировать')]");
     SelenideElement all_actions = $x("//*[contains(text(),'Все действия')]");
