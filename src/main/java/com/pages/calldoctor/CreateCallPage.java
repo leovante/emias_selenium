@@ -66,6 +66,8 @@ public class CreateCallPage extends PageBase {
     SelenideElement female = $(By.id("sex2"));
     SelenideElement edit_call = $x("//*[contains(text(),'Редактирование вызова')]");
     SelenideElement reason_cancel_call_validator = $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"));
+    SelenideElement unpin_mkab = $x("//img[@src='./assets/img/close.png']");
+    ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
 
     public CreateCallPage(Pacient pacient) throws IOException {
         this.pacient = pacient;
@@ -90,9 +92,32 @@ public class CreateCallPage extends PageBase {
         return this;
     }
 
+    public CreateCallPage createCall_2() throws IOException, InterruptedException, ParseException {
+        sourceCall()
+                .address()
+                .birthDay()
+                .gender()
+                .complaint()
+                .polis()
+                .FIO()
+                .caller()
+                .telephone();
+        return this;
+    }
+
     public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
         addNewCall()
                 .sourceCall()
+                .searchField()
+                .addressPlus()
+                .complaint()
+                .caller()
+                .telephone();
+        return this;
+    }
+
+    public CreateCallPage createCall_Mkab_2() throws IOException, InterruptedException, ParseException {
+        sourceCall()
                 .searchField()
                 .addressPlus()
                 .complaint()
@@ -111,8 +136,7 @@ public class CreateCallPage extends PageBase {
     }
 
     @Step("редактирую вызов")
-    public CreateCallPage editCallPage(PacientImpl pacientImpl) throws IOException, ParseException, InterruptedException {
-        this.pacient = pacientImpl;
+    public CreateCallPage editCallPage() throws IOException, ParseException, InterruptedException {
         sourceCall()
                 .sourceCall()
                 .address()
@@ -129,8 +153,7 @@ public class CreateCallPage extends PageBase {
     }
 
     @Step("редактирую вызов с МКАБ + СМП")
-    public CreateCallPage editCallPage_Mkab(PacientImpl pacientImpl) throws InterruptedException {
-        this.pacient = pacientImpl;
+    public CreateCallPage editCallPage_Mkab() throws InterruptedException {
         sourceCall()
                 .searchField()
                 .addressPlus()
@@ -143,35 +166,33 @@ public class CreateCallPage extends PageBase {
 
     @Step("очищаю все поля у карты")
     public CreateCallPage setDeafult() {
-        $(By.id("source1")).click();
-
+        sourceReg.click();
+        if(unpin_mkab.is(Condition.visible)){
+            unpin_mkab.click();
+        }
         Actions actions = new Actions(driver);
         actions.sendKeys(Keys.ESCAPE).perform();
-
-        ElementsCollection selenideElements = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
-
-        for (SelenideElement element : selenideElements) {
+        for (SelenideElement element : close_collections) {
             if (element.isDisplayed())
                 element.click();
             actions.sendKeys(Keys.ESCAPE).perform();
         }
-
-        //        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
-        $(By.xpath("//input[@placeholder='Дом']")).clear();
-        $(By.id("phone")).clear();
+//        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
+        dom.clear();
+        phone.clear();
 //        $(By.xpath("//label[@class='mat-checkbox-layout']")).clear();
-        $(By.xpath("//input[@placeholder='Корпус']")).clear();
-        $(By.xpath("//input[@placeholder='Строение']")).clear();
-        $(By.xpath("//input[@placeholder='Квартира']")).clear();
-        $(By.xpath("//input[@placeholder='П-д']")).clear();
-        $(By.xpath("//input[@placeholder='Д-фон']")).clear();
-        $(By.xpath("//input[@placeholder='Этаж']")).clear();
-        $(By.xpath("//input[@placeholder='Серия']")).clear();
-        $(By.xpath("//input[@placeholder='Номер полиса']")).clear();
-        $(By.xpath("//input[@placeholder='Фамилия']")).clear();
-        $(By.xpath("//input[@placeholder='Имя']")).clear();
-        $(By.xpath("//input[@placeholder='Отчество']")).clear();
-        $(By.xpath("//input[@placeholder='Дата рождения']")).clear();
+        korpus.clear();
+        stroenie.clear();
+        kvartira.clear();
+        pd.clear();
+        dfon.clear();
+        etazh.clear();
+        seriyaPol.clear();
+        nomerPol.clear();
+        fam.clear();
+        name.clear();
+        otchestvo.clear();
+        birthDateTemp.clear();
         LOGGER.info("Карта вызова очищена для редактирования!");
         return this;
     }

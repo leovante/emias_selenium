@@ -22,16 +22,16 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
-        PacientImpl pacientImpl2 = new PacientImpl("Profile2_0");
+        PacientImpl pacient = new PacientImpl("Profile2");
+        PacientImpl pacient2 = new PacientImpl("Profile2_0");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        page.createCall(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCard(pacientImpl, testName()).editCallBtn();
-        page.createCall(pacientImpl)
+        page.fullCard(pacient, testName()).editCallBtn();
+        page.createCall(pacient2)
                 .setDeafult()
-                .editCallPage(pacientImpl2)
+                .editCallPage()
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Не указан адрес')]")).shouldBe(Condition.visible);
     }

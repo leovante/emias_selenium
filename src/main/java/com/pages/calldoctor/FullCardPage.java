@@ -32,6 +32,9 @@ public class FullCardPage extends PageBase {
     SelenideElement cancelField = $x("//input[@placeholder='Причина отмены вызова']");
     SelenideElement cancelCall = $(By.id("cancelCall"));
     SelenideElement cardNumber = $x("//div[contains(text(),'Карта вызова №')]");
+    SelenideElement status_new = $x("//*[contains(.,'Новый')]");
+    SelenideElement status_active = $(By.xpath("//*[contains(.,'Активный')]"));
+    SelenideElement status_done = $(By.xpath("//*[contains(.,'Обслуженный')]"));
 
     public FullCardPage(String testName) throws IOException {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
@@ -124,7 +127,7 @@ public class FullCardPage extends PageBase {
 
     @Step("проверяю новый вызов")
     public FullCardPage verifyNewCall() throws IOException {
-        $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
+        status_new.shouldBe(Condition.visible);
         baseElements();
         basePacient();
         verifyTime();
@@ -134,7 +137,7 @@ public class FullCardPage extends PageBase {
 
     @Step("проверяю новый вызов")
     public FullCardPage verifyActivCall(PacientImpl pacientImpl) throws IOException {
-        $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
+        status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();
         LOGGER.info("Подробная карта вызова проверена!");
@@ -144,7 +147,7 @@ public class FullCardPage extends PageBase {
     @Step("проверяю обслуженный вызов")
     public FullCardPage verifyDoneCall(Doctor doctor) throws IOException {
         refresh();
-        $(By.xpath("//*[contains(.,'Обслуженный')]")).shouldBe(Condition.visible);
+        status_done.shouldBe(Condition.visible);
         baseElements();
         basePacient();
         baseDoctor(doctor);

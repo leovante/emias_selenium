@@ -254,19 +254,19 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
-        PacientImpl pacientImpl2 = new PacientImpl("Profile0_2");
+        PacientImpl pacient = new PacientImpl("Profile2");
+        PacientImpl pacient2 = new PacientImpl("Profile0_2");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        page.createCall(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCard(pacientImpl, testName()).editCallBtn();
-        page.createCall(pacientImpl)
+        page.fullCard(pacient, testName()).editCallBtn();
+        page.createCall(pacient2)
                 .setDeafult()
-                .editCallPage(pacientImpl2)
+                .editCallPage()
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().saveAddress();
         SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
         doctorsBlock.$x("//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
@@ -282,16 +282,16 @@ public class DoctorsListTest extends TestBase {
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
     public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
-        PacientImpl pacientImpl2 = new PacientImpl("Profile0_2");
+        PacientImpl pacient = new PacientImpl("Profile2");
+        PacientImpl pacient2 = new PacientImpl("Profile0_2");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        page.createCall(pacient)
                 .createCall_Mkab()
                 .saveBtn();
-        page.fullCard(pacientImpl, testName()).editCallBtn();
-        page.createCall(pacientImpl)
+        page.fullCard(pacient, testName()).editCallBtn();
+        page.createCall(pacient2)
                 .setDeafult()
-                .editCallPage_Mkab(pacientImpl2)
+                .editCallPage_Mkab()
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
     }
