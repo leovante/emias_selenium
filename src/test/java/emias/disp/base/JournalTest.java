@@ -175,7 +175,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "закрытие карты диспансеризации с проставлением причины")
     @RetryCountIfFailed(2)
     public void closeCard() {
-        hltDispCardServiceImpl.setIsClosedFalse(180);
+        hltDispCardServiceImpl.unclose(180);
         page.misHome().dispJournal();
         page.journalPage()
                 .journalMenuBtn()

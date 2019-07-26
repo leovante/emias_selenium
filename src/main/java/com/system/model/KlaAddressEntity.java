@@ -7,7 +7,6 @@ import java.util.Set;
 @Entity
 @Table(name = "kla_Address", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
 public class KlaAddressEntity {
-
     private int addressId;
     private int xEdition;
     private byte xStatus;

@@ -6,6 +6,7 @@ import com.epam.reportportal.testng.ReportPortalTestNGListener;
 import com.pages.Pages;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
+import com.system.service.HltDispExamServiceImpl;
 import com.utils.*;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.override.Assistance;
@@ -38,6 +39,9 @@ public class TestBase extends AbstractTestNGSpringContextTests {
 
     @Autowired
     public HltDispCardServiceImpl hltDispCardServiceImpl;
+
+    @Autowired
+    public HltDispExamServiceImpl hltDispExamServiceImpl;
 
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();

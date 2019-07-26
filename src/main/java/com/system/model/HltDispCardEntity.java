@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "hlt_disp_Card", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
@@ -14,20 +15,20 @@ public class HltDispCardEntity {
     private Timestamp dateAccept;
     private Timestamp dateClose;
     private Timestamp dateOpen;
-    private int dispCardId;
+    private long dispCardId;
     private int dopPriznak;
     private int flags;
-    private String guid;
+    private UUID guid;
     private boolean isClosed;
     private boolean isOtkaz;
     private String number;
-    private String rfDispTypeGuid;
-    private String rfMainCardGuid;
-    private String rfMkabGuid;
+    private UUID rfDispTypeGuid;
+    private UUID rfMainCardGuid;
+    private UUID rfMkabGuid;
     private int xEdition;
     private byte xStatus;
-    private String rfPatientModelGuid;
-    private String rfLpuGuid;
+    private UUID rfPatientModelGuid;
+    private UUID rfLpuGuid;
     private Timestamp dateStatus;
     private boolean isPay;
     private String uin;
@@ -67,11 +68,11 @@ public class HltDispCardEntity {
     @Id
     @GeneratedValue
     @Column(name = "disp_CardID", nullable = false)
-    public int getDispCardId() {
+    public long getDispCardId() {
         return dispCardId;
     }
 
-    public void setDispCardId(int dispCardId) {
+    public void setDispCardId(long dispCardId) {
         this.dispCardId = dispCardId;
     }
 
@@ -97,11 +98,11 @@ public class HltDispCardEntity {
 
     @Basic
     @Column(name = "Guid", nullable = false)
-    public String getGuid() {
+    public UUID getGuid() {
         return guid;
     }
 
-    public void setGuid(String guid) {
+    public void setGuid(UUID guid) {
         this.guid = guid;
     }
 
@@ -143,31 +144,31 @@ public class HltDispCardEntity {
 
     @Basic
     @Column(name = "rf_DispTypeGuid", nullable = false)
-    public String getRfDispTypeGuid() {
+    public UUID getRfDispTypeGuid() {
         return rfDispTypeGuid;
     }
 
-    public void setRfDispTypeGuid(String rfDispTypeGuid) {
+    public void setRfDispTypeGuid(UUID rfDispTypeGuid) {
         this.rfDispTypeGuid = rfDispTypeGuid;
     }
 
     @Basic
     @Column(name = "rf_MainCardGuid", nullable = false)
-    public String getRfMainCardGuid() {
+    public UUID getRfMainCardGuid() {
         return rfMainCardGuid;
     }
 
-    public void setRfMainCardGuid(String rfMainCardGuid) {
+    public void setRfMainCardGuid(UUID rfMainCardGuid) {
         this.rfMainCardGuid = rfMainCardGuid;
     }
 
     @Basic
     @Column(name = "rf_MkabGuid", nullable = false)
-    public String getRfMkabGuid() {
+    public UUID getRfMkabGuid() {
         return rfMkabGuid;
     }
 
-    public void setRfMkabGuid(String rfMkabGuid) {
+    public void setRfMkabGuid(UUID rfMkabGuid) {
         this.rfMkabGuid = rfMkabGuid;
     }
 
@@ -193,21 +194,21 @@ public class HltDispCardEntity {
 
     @Basic
     @Column(name = "rf_PatientModelGuid", nullable = false)
-    public String getRfPatientModelGuid() {
+    public UUID getRfPatientModelGuid() {
         return rfPatientModelGuid;
     }
 
-    public void setRfPatientModelGuid(String rfPatientModelGuid) {
+    public void setRfPatientModelGuid(UUID rfPatientModelGuid) {
         this.rfPatientModelGuid = rfPatientModelGuid;
     }
 
     @Basic
     @Column(name = "rf_LpuGuid", nullable = false)
-    public String getRfLpuGuid() {
+    public UUID getRfLpuGuid() {
         return rfLpuGuid;
     }
 
-    public void setRfLpuGuid(String rfLpuGuid) {
+    public void setRfLpuGuid(UUID rfLpuGuid) {
         this.rfLpuGuid = rfLpuGuid;
     }
 
@@ -294,4 +295,6 @@ public class HltDispCardEntity {
     public int hashCode() {
         return Objects.hash(dateAccept, dateClose, dateOpen, dispCardId, dopPriznak, flags, guid, isClosed, isOtkaz, number, rfDispTypeGuid, rfMainCardGuid, rfMkabGuid, xEdition, xStatus, rfPatientModelGuid, rfLpuGuid, dateStatus, isPay, uin, uinState, rfDocPrvdid);
     }
+
+
 }

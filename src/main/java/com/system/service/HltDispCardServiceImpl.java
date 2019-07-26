@@ -11,7 +11,7 @@ public class HltDispCardServiceImpl {
     @Autowired
     private HltDispCardRepository hltDispCardRepository;
 
-    public void setIsClosedFalse(int cardNum) {
+    public void unclose(long cardNum) {
         HltDispCardEntity card = hltDispCardRepository.getByDispCardId(cardNum);
         card.setClosed(false);
         hltDispCardRepository.save(card);

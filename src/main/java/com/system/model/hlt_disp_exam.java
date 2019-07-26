@@ -1,18 +1,18 @@
 package com.system.model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
-//<!--правка hibernate-->
-//<!--правка hibernate-->
 @Entity
-@Table(name = "hlt_disp_Exam", schema = "dbo", catalog = "test_mo_hlt_Taldom_CRB_20190129")
-public class HltDispExamEntity {
+public class hlt_disp_exam {
     private Timestamp dateExam;
     private Timestamp dateOtkaz;
-    private long dispExamId;
+    private int dispExamId;
     private int dopPriznak;
     private int flags;
     private UUID guid;
@@ -27,7 +27,7 @@ public class HltDispExamEntity {
     private boolean isSigned;
     private UUID rfServicePmGuid;
     private UUID rfTapGuid;
-
+    private boolean isBefore;
 
     @Basic
     @Column(name = "DateExam", nullable = false)
@@ -50,13 +50,12 @@ public class HltDispExamEntity {
     }
 
     @Id
-    @GeneratedValue
     @Column(name = "disp_ExamID", nullable = false)
-    public long getDispExamId() {
+    public int getDispExamId() {
         return dispExamId;
     }
 
-    public void setDispExamId(long dispExamId) {
+    public void setDispExamId(int dispExamId) {
         this.dispExamId = dispExamId;
     }
 
@@ -119,14 +118,6 @@ public class HltDispExamEntity {
     public void setRfCardGuid(UUID rfCardGuid) {
         this.rfCardGuid = rfCardGuid;
     }
-
-//    @ManyToOne
-//    @JoinColumn(name="Guid")
-//    private HltDispCardEntity guid;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Guid", nullable = false)
-    private HltDispCardEntity hltDispCardEntity;
 
     @Basic
     @Column(name = "rf_DocPrvdGuid", nullable = false)
@@ -208,11 +199,21 @@ public class HltDispExamEntity {
         this.rfTapGuid = rfTapGuid;
     }
 
+    @Basic
+    @Column(name = "IsBefore", nullable = false)
+    public boolean isBefore() {
+        return isBefore;
+    }
+
+    public void setBefore(boolean before) {
+        isBefore = before;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        HltDispExamEntity that = (HltDispExamEntity) o;
+        hlt_disp_exam that = (hlt_disp_exam) o;
         return dispExamId == that.dispExamId &&
                 dopPriznak == that.dopPriznak &&
                 flags == that.flags &&
@@ -221,6 +222,7 @@ public class HltDispExamEntity {
                 xEdition == that.xEdition &&
                 xStatus == that.xStatus &&
                 isSigned == that.isSigned &&
+                isBefore == that.isBefore &&
                 Objects.equals(dateExam, that.dateExam) &&
                 Objects.equals(dateOtkaz, that.dateOtkaz) &&
                 Objects.equals(guid, that.guid) &&
@@ -234,6 +236,6 @@ public class HltDispExamEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(dateExam, dateOtkaz, dispExamId, dopPriznak, flags, guid, isDeviation, isOtkaz, rfCardGuid, rfDocPrvdGuid, rfDvtGuid, rfServiceGuid, xEdition, xStatus, isSigned, rfServicePmGuid, rfTapGuid);
+        return Objects.hash(dateExam, dateOtkaz, dispExamId, dopPriznak, flags, guid, isDeviation, isOtkaz, rfCardGuid, rfDocPrvdGuid, rfDvtGuid, rfServiceGuid, xEdition, xStatus, isSigned, rfServicePmGuid, rfTapGuid, isBefore);
     }
 }

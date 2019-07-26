@@ -5,12 +5,14 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.config.ConfigFile;
 import com.pages.PageBase;
+import com.utils.DispUrlParser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -73,6 +75,12 @@ public class MisHomePage extends PageBase {
     }
 
     @Step("Вход в карту диспансеризации")
+    public Integer getDispCardNumber() throws MalformedURLException {
+        DispUrlParser dp = new DispUrlParser(conf.getDispCard());
+        return dp.getCardNumber();
+    }
+
+    @Step("Вход в карту диспансеризации")
     public void callCenter() {
         SelenideElement log = $(By.id("USER_LOGIN"));
         SelenideElement pass = $(By.id("USER_PASSWORD"));
@@ -87,12 +95,12 @@ public class MisHomePage extends PageBase {
     @Step("Валидация страницы логина")
     public void validateLoginPage() {
         SelenideElement se = $x("//*[contains(.,'Вход в систему')]").shouldBe(Condition.visible);
-        Assert.assertTrue(se.isDisplayed(),"Страница логина не отображается");
+        Assert.assertTrue(se.isDisplayed(), "Страница логина не отображается");
     }
 
     @Step("Валидация инструкции на форуме")
     public void validateForumInstruction() {
         SelenideElement se = $x("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]").shouldBe(Condition.visible);
-        Assert.assertTrue(se.isDisplayed(),"Инструкция пользователя диспетчером не найдена на странице");
+        Assert.assertTrue(se.isDisplayed(), "Инструкция пользователя диспетчером не найдена на странице");
     }
 }
