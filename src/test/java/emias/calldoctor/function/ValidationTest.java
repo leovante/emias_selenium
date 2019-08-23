@@ -1,7 +1,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.pacients.PacientImpl;
+import com.datas.calldoctor.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -22,16 +22,16 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
-        PacientImpl pacientImpl2 = new PacientImpl("Profile2_0");
-        page.loginPage().calldoctor();
-        page.createCallPage(pacientImpl)
+        PacientImpl pacient = new PacientImpl("Profile2");
+        PacientImpl pacient2 = new PacientImpl("Profile2_0");
+        page.misHome().calldoctor();
+        page.createCall(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).editCallBtn();
-        page.createCallPage(pacientImpl)
+        page.fullCard(pacient, testName()).editCallBtn();
+        page.createCall(pacient2)
                 .setDeafult()
-                .editCallPage(pacientImpl2)
+                .editCallPage()
                 .saveBtn();
         $(By.xpath("//*[contains(text(),'Не указан адрес')]")).shouldBe(Condition.visible);
     }
@@ -42,12 +42,12 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
-        page.loginPage().calldoctor();
-        page.createCallPage(pacientImpl).createCall_Api();
-        page.dashboardPage().openNewCallDash(pacientImpl);
-        page.fullCardPage(pacientImpl, testName()).verifyNewCall();
-        page.fullCardPage(pacientImpl, testName()).editCallBtn();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl).createCall_Api();
+        page.dashboard().openNewCallDash(pacientImpl);
+        page.fullCard(pacientImpl, testName()).verifyNewCall();
+        page.fullCard(pacientImpl, testName()).editCallBtn();
+        page.createCall(pacientImpl)
                 .fillSourceSmp()
                 .deleteWhoCallFIO()
                 .saveBtn();
@@ -59,11 +59,11 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.loginPage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName())
+        page.fullCard(pacientImpl, testName())
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -73,12 +73,12 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.loginPage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).editCallBtn();
-        page.createCallPage(pacientImpl)
+        page.fullCard(pacientImpl, testName()).editCallBtn();
+        page.createCall(pacientImpl)
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -88,12 +88,12 @@ public class ValidationTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.loginPage().calldoctor();
-        page.createCallPage(pacientImpl)
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn();
-        page.fullCardPage(pacientImpl, testName()).closeCardBtn();
-        page.dashboardPage()
+        page.fullCard(pacientImpl, testName()).closeCardBtn();
+        page.dashboard()
                 .cancelNewCallDash(pacientImpl)
                 .verifyCancellCallValidation_Dash()
                 .verifyCallIsNotCancelFromDashboard(pacientImpl);

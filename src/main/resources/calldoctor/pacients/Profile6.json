@@ -1,0 +1,26 @@
+{
+  "source": "2",
+  "seriespol": "14-59",
+  "numberpol": "951852648",
+  "name": "Тест1",
+  "family": "Тестов2",
+  "ot": "Тестович3",
+  "birthdate": "2000-01-01",
+  "gender": "2",
+  "complaint": "автотест",
+  "diagnosis": "j20",
+  "type": "4",
+  "codedomophone": "1515",
+  "phone": "+79606223551",
+  "entrance": "1212",
+  "floor": "515",
+  "kladraddress": {
+    "addressString": "Белгородская обл., г. Белгород, ул. Есенина, д.11а, стр.2, корп.3, кв.4",
+    "addressStringMin": "Белгородская обл., г. Белгород, ул. Есенина",
+    "appartment": "4",
+    "building": "3",
+    "code": "31000001000007700",
+    "construction": "2",
+    "number": "11а"
+  }
+}

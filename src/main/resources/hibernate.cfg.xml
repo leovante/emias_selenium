@@ -17,10 +17,10 @@
         <property name="generate_statistics">true</property>
         <property name="max_fetch_depth">1</property>
 
-        <mapping class="system.model.HltDispExamEntity"/>
-        <mapping class="system.model.KlaAddressEntity"/>
-        <mapping class="system.model.HltDispCardEntity"/>
-        <mapping class="system.model.KlaStreetEntity"/>
-        <mapping class="system.model.KlaKlAdrEntity"/>
+        <mapping class="com.system.model.HltDispExamEntity"/>
+        <mapping class="com.system.model.KlaAddressEntity"/>
+        <mapping class="com.system.model.HltDispCardEntity"/>
+        <mapping class="com.system.model.KlaStreetEntity"/>
+        <mapping class="com.system.model.KlaKlAdrEntity"/>
     </session-factory>
 </hibernate-configuration>

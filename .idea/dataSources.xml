@@ -212,5 +212,66 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
         <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="test_mo_hlt_Taldom_CRB_20190129@192.168.7.253" uuid="889db42a-c187-4689-b166-e0cf37d83466">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://192.168.7.253:64783;database=test_mo_hlt_Taldom_CRB_20190129</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+        <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="dev_mo_cod_NSI_20190129@192.168.7.253" uuid="5330155c-3239-4420-b1a2-232afe3f41da">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.253:49199/dev_mo_cod_NSI_20190129</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="dev_mo_cod_NSI_20170917@192.168.7.253" uuid="61f87a75-3531-451d-a2fa-28aea3bb72e6">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.253:49199/dev_mo_cod_NSI_20170917</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="dev_mo_hlt_Himki_CGB_20190129@192.168.7.253" uuid="985db3b7-c52f-4876-90e8-995f0a08217e">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.253:64783/dev_mo_hlt_Himki_CGB_20190129</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_pod_gdp1_360701@192.168.7.48" uuid="7d0be042-a1e5-4bae-b628-f1d1726ac60a">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.48:14334/hlt_pod_gdp1_360701</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_orel_det_pol1@192.168.7.53" uuid="3b2840f7-48f5-4604-8c10-1f152ef3c658">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.53:59036/hlt_orel_det_pol1</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="postgres@localhost" uuid="b08543ed-3392-4bdb-8781-b06ae3f63748">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+    </data-source>
   </component>
 </project>

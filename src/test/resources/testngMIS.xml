@@ -5,7 +5,6 @@
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
-        <listener class-name="com.utils.CustomListner1"/>
     </listeners>
 
     <test name="BeforeTest" verbose="1">

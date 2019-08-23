@@ -3,6 +3,7 @@ package com.utils;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.config.ConfigFile;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
@@ -37,26 +38,25 @@ public class WebDriverInstansiator {
         //ручной запуск
         ChromeOptions chromeOptions;
         if (browser == null) {
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/selenium_grid/chromedriver.exe");
-            new ChromeDriverService.Builder()
-                    .usingDriverExecutable(new File("src/main/resources/selenium_grid/chromedriver.exe"))
-                    .usingAnyFreePort()
-                    .build();
+//            System.setProperty("webdriver.chrome.driver", "%userprofile%/Google Drive/chromedriver/chromedriver.exe");
+//            new ChromeDriverService.Builder()
+//                    .usingDriverExecutable(new File("%userprofile%/Google Drive/chromedriver/chromedriver.exe"))
+//                    .usingAnyFreePort()
+//                    .build();
+            WebDriverManager.chromedriver().setup();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
             chromeOptions.setHeadless(false);
             driver = new ChromeDriver(chromeOptions);
             driver.manage().window().setPosition(new Point(0, 0));
             WebDriverRunner.setWebDriver(driver);
-            Configuration.timeout = 30000;
-            Configuration.savePageSource = false;
         }
         //селениум грид
         else {
             switch (browser) {
                 case "firefox":
-                    System.setProperty("webdriver.gecko.remoteDriver", "src/main/resources/selenium_grid/geckodriver.exe");
-                    System.setProperty("webdriver.gecko.driver", "src/main/resources/selenium_grid/geckodriver.exe");
+                    System.setProperty("webdriver.gecko.remoteDriver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");
+                    System.setProperty("webdriver.gecko.driver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");
 
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
 //                    firefoxOptions.setHeadless(conf.getHeadless());
@@ -75,7 +75,6 @@ public class WebDriverInstansiator {
                     remoteDriver.manage().window().setSize(new Dimension(1919, 1079));
                     remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
-                    Configuration.timeout = 20000;
                     break;
                 case "chrome":
                     chromeOptions = new ChromeOptions();
@@ -84,7 +83,6 @@ public class WebDriverInstansiator {
                     remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
                     remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
-                    Configuration.timeout = 20000;
                     break;
             }
         }
@@ -99,9 +97,10 @@ public class WebDriverInstansiator {
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + conf.getHeadless() + "; ");
         }
-
+        Configuration.timeout = 20000;
         Configuration.reportsFolder = "target/test-result/reports";
-        LOGGER.info("Тест начинается!");
+        Configuration.savePageSource = false;
+        LOGGER.info("Selenium driver is ready");
     }
 
     public void driverClose() {
@@ -112,6 +111,6 @@ public class WebDriverInstansiator {
         if (remoteDriver != null) {
             WebDriverRunner.closeWebDriver();
         }
-        LOGGER.info("Тест завершен!");
+        LOGGER.info("Selenium driver is close");
     }
 }

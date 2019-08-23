@@ -5,7 +5,6 @@
 
     <listeners>
         <listener class-name="com.utils.testngRetryCount.AnnotationTransformer"/>
-        <!--<listener class-name="com.example.MyListener" />-->
         <!--<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
     </listeners>
 

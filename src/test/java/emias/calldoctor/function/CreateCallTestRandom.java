@@ -1,7 +1,7 @@
 package emias.calldoctor.function;
 
-import com.pages.calldoctor.pacients.Pacient;
-import com.pages.calldoctor.pacients.PacientDBImpl;
+import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.PacientDBImpl;
 import com.system.service.HltMkabService;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -27,9 +27,9 @@ public class CreateCallTestRandom extends TestBase {
     @RetryCountIfFailed(0)
     public void testCall() throws IOException, InterruptedException, ParseException, JSONException {
         Pacient pacientImpl = new PacientDBImpl(mksb);
-        page.loginPage().calldoctor();
-        page.createCallPage(pacientImpl).createCall();
-        page.fullCardPage(pacientImpl, testName())
+        page.misHome().calldoctor();
+        page.createCall(pacientImpl).createCall();
+        page.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
     }

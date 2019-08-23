@@ -1,6 +1,6 @@
 package emias.callcenter.regress;
 
-import com.pages.calldoctor.pacients.PacientImpl;
+import com.datas.calldoctor.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -18,7 +18,7 @@ public class ProcessingCallDoctorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallDoctorMKAB() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().callCenter();
+        page.misHome().callCenter();
         page.callDoctorPage().calldoctor(pacientImpl);
     }
 
@@ -27,7 +27,7 @@ public class ProcessingCallDoctorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallDoctorSMP() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.loginPage().callCenter();
+        page.misHome().callCenter();
         page.callDoctorPage().calldoctorSMP(pacientImpl);
     }
 }
