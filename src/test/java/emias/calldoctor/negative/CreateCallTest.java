@@ -1,7 +1,7 @@
 package emias.calldoctor.negative;
 
+import com.datas.calldoctor.PacientImpl;
 import com.pages.calldoctor.controllers.StAddress;
-import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.TestMethodCapture;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;

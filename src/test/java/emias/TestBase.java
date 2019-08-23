@@ -38,10 +38,10 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public HltCallDoctorServiceImpl hltCallDoctorService;
 
     @Autowired
-    public HltDispCardServiceImpl hltDispCardServiceImpl;
+    public HltDispCardServiceImpl hltDispCardService;
 
     @Autowired
-    public HltDispExamServiceImpl hltDispExamServiceImpl;
+    public HltDispExamServiceImpl hltDispExamService;
 
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();
@@ -79,7 +79,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public void beforeTest(@Optional String testng) throws IOException, ParseException {
         if (testng != null) {
             new BeforeTestCD().run();
-            new BeforeTestDisp().run();
+            new BeforeTestDisp();
         }
     }
 

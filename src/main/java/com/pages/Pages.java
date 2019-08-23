@@ -1,10 +1,10 @@
 package com.pages;
 
 import com.datas.Datas;
+import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
 import com.pages.callcenter.*;
 import com.pages.calldoctor.*;
-import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
 import com.pages.disp.ExampPage;
 import com.pages.disp.JournalPage;
 import com.pages.disp.KvotyPage;

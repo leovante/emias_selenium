@@ -1,9 +1,9 @@
 package com.utils.api_model;
 
 import com.config.ConfigFile;
+import com.datas.calldoctor.PacientImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pages.PageBase;
-import com.pages.calldoctor.pacients.PacientImpl;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;

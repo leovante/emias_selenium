@@ -2,7 +2,6 @@ package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.utils.DispUrlParser;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import org.testng.Assert;
@@ -66,7 +65,7 @@ public class RouteListTest extends TestBase {
     @RetryCountIfFailed(2)
     public void validateKallMeasure() throws InterruptedException, MalformedURLException {
         long a = page.misHome().getDispCardNumber();
-        hltDispExamServiceImpl.resetCardExams(a);
+        hltDispExamService.resetCardExams(a);
         page.misHome().dispCard();
         page.exampPage()
                 .switchAllServicesTap()

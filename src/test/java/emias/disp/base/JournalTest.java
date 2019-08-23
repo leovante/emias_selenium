@@ -1,7 +1,7 @@
 package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.pacients.PacientImpl;
+import com.datas.calldoctor.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class JournalTest extends TestBase {
-
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по номеру через профиль", enabled = false)
     @RetryCountIfFailed(2)
@@ -175,7 +174,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "закрытие карты диспансеризации с проставлением причины")
     @RetryCountIfFailed(2)
     public void closeCard() {
-        hltDispCardServiceImpl.unclose(180);
+        hltDispCardService.unClose(180);
         page.misHome().dispJournal();
         page.journalPage()
                 .journalMenuBtn()

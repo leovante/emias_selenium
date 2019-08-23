@@ -2,8 +2,8 @@ package com.pages.portal;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.datas.calldoctor.PacientImpl;
 import com.pages.PageBase;
-import com.pages.calldoctor.pacients.PacientImpl;
 import com.system.service.HltCallDoctorServiceImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;

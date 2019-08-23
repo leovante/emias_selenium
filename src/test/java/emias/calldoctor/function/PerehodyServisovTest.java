@@ -1,8 +1,8 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.PacientImpl;
+import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -14,7 +14,8 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.text.ParseException;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyServisovTest extends TestBase {
 

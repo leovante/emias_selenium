@@ -1,8 +1,8 @@
 package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
+import com.datas.calldoctor.PacientImpl;
 import com.pages.PageBase;
-import com.pages.calldoctor.pacients.PacientImpl;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

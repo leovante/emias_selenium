@@ -3,10 +3,10 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.PacientImpl;
 import com.pages.PageBase;
-import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.Pacient;
-import com.pages.calldoctor.pacients.PacientImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -59,9 +59,9 @@ public class DashboardPage extends PageBase {
 //    }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio_Fam(PacientImpl pacientImpl) throws InterruptedException {
+    public DashboardPage searchFilterFio_Fam(Pacient pacient) throws InterruptedException {
         fioFilter.click();
-        fioFilter.setValue(pacientImpl.getFamily());
+        fioFilter.setValue(pacient.getFamily());
         Thread.sleep(2000);
         return this;
     }
@@ -144,7 +144,7 @@ public class DashboardPage extends PageBase {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(PacientImpl pacientImpl, Doctor doctor) throws InterruptedException {
+    public DashboardPage verifyActiveDocGroup(Pacient pacientImpl, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
         docFamBlock.click();
@@ -161,7 +161,7 @@ public class DashboardPage extends PageBase {
     }
 
     @Step("проверяю на дашборде запись не отображается у врача в группе активные")
-    public DashboardPage verifyActiveDocGroupNotVisible(PacientImpl pacientImpl, Doctor doctor) throws InterruptedException {
+    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacientImpl, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement docFamBlock =
                 $(By.xpath("//*[contains(text(),'Активные')]"))

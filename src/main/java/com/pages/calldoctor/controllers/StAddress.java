@@ -2,7 +2,7 @@ package com.pages.calldoctor.controllers;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.calldoctor.pacients.Pacient;
+import com.datas.calldoctor.Pacient;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

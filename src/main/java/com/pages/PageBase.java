@@ -1,8 +1,8 @@
 package com.pages;
 
 import com.datas.ModuleData;
+import com.datas.calldoctor.Pacient;
 import com.pages.calldoctor.controllers.StAddress;
-import com.pages.calldoctor.pacients.Pacient;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;
 import com.utils.CallDoctorCards;

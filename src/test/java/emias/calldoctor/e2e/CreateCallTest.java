@@ -1,7 +1,7 @@
 package emias.calldoctor.e2e;
 
-import com.pages.calldoctor.pacients.Pacient;
-import com.pages.calldoctor.pacients.PacientDBImpl;
+import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.PacientDBImpl;
 import com.system.service.HltMkabService;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;

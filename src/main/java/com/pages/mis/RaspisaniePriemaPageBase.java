@@ -5,9 +5,9 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import com.codeborne.selenide.commands.PressEscape;
+import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
 import com.pages.PageBase;
-import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.PacientImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -124,15 +124,15 @@ public class RaspisaniePriemaPageBase extends PageBase {
         switchTo().window("Медицинская Информационная Система");
     }
 
-    public RaspisaniePriemaPageBase generateML(PacientImpl pacientImpl) throws InterruptedException {
+    public RaspisaniePriemaPageBase generateML(Pacient pacient) throws InterruptedException {
         ml.click();
         sinpmkabScheduleGrid.setValue(
-                pacientImpl.getFamily() + " " +
-                        pacientImpl.getName() + " " +
-                        pacientImpl.getOt());
+                pacient.getFamily() + " " +
+                        pacient.getName() + " " +
+                        pacient.getOt());
         mlSearchBtn.click();
         $(By.id("gview_mkabScheduleGrid"))
-                .$x(".//*[contains(text(),'" + pacientImpl.getNumberpol() + "')]")
+                .$x(".//*[contains(text(),'" + pacient.getNumberpol() + "')]")
                 .click();
         selectPatientButton.click();
         $x("//*[contains(text(),'Модели:')]").shouldBe(Condition.visible);

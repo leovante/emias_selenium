@@ -3,18 +3,20 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.PacientImpl;
 import com.pages.PageBase;
 import com.pages.calldoctor.controllers.StAddress;
-import com.pages.calldoctor.pacients.Pacient;
-import com.pages.calldoctor.pacients.PacientImpl;
 import com.utils.api_model.CallDoctorHttp;
 import com.utils.except.NoticeException;
 import io.qameta.allure.Step;
 import org.apache.http.HttpResponse;
 import org.json.JSONException;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.InvalidArgumentException;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.SkipException;
 
@@ -23,10 +25,7 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 

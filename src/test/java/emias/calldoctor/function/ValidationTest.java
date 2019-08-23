@@ -1,7 +1,7 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import com.pages.calldoctor.pacients.PacientImpl;
+import com.datas.calldoctor.PacientImpl;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;

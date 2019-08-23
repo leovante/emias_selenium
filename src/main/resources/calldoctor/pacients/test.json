@@ -1,0 +1,97 @@
+{
+  /*
+  * Прямой доступ к сервисам для петли
+  */
+  "CurrentUrl": {
+    "Terminology": "http://192.168.7.24/test/epmr/terminology"
+  },
+  /*
+  *Общие настройки авторизации
+  */
+  "Ticket": {
+    "TicketMode": true,
+    "Auth": {
+      "Url": "http://192.168.7.54:5002/"
+    },
+    "DataCenter": {
+      "Url": "http://192.168.7.54:5001/"
+    }
+  },
+  /*
+  * Конфигурации баз данных
+  */
+  "Data": {
+    "CallDoctor": {
+      "Default": "Data Source= tcp:192.168.7.196,49199,49199;Initial Catalog=dev_mo_hlt_Kashira_20180109;Integrated Security=False;User ID=whc;password=sagfhjkzYES!;Language=english;",
+      "RTRS": "Data Source= tcp:192.168.7.253,49199,1433;Initial Catalog=dev_mo_TSDB_20170917;Integrated Security=False;User ID=whc;password=sagfhjkzYES!;Language=english;",
+      "CODNSI": "Data Source= tcp:192.168.7.253,49199;Initial Catalog=dev_mo_cod_NSI_20190129;Integrated Security=False;User ID=whc;password=sagfhjkzYES!;Language=english;"
+    },
+    "Kladr": {
+      "Default": "Data Source=tcp:192.168.7.253,49199;Initial Catalog=dev_mo_hlt_Kashira_20180109;Integrated Security=False;User ID=whc;password=sagfhjkzYES!;Language=english;"
+    },
+    "DispInspection": {
+      "UseDefaultConnection": false,
+      "DefaultConnection": "Data Source=tcp:192.168.7.196,49199;Initial Catalog=dev_mo_hlt_Kashira_20180109;Integrated Security=False;User ID=whc;password=sagfhjkzYES!;Language=english;"
+    },
+    "WhcNetCore": {
+      "UseDefaultConnection": false,
+      // не используется
+      "DefaultConnection": {
+        "ConnectionString": "Data Source=tcp:192.168.7.196,49199;Initial Catalog=dev_mo_hlt_Kashira_20180109;Integrated Security=False;User ID=whc;password=sagfhjkzYES!;Language=english;"
+      },
+      // коннекшн к ЦОДу
+      "CODConnection": {
+        "ConnectionString": "Data Source=192.168.7.133,49249;Initial Catalog=db_mis_Taldom_CRB_470101;Integrated Security=False;User ID=sa;password=sql2014;Language=english;"
+      },
+      //коннекшн к Мастер Индексу Персон
+      "MIPConnection": {
+        "ConnectionString": "Data Source=192.168.7.210,22224;Initial Catalog=cod_person;Integrated Security=False;User ID=sa;password=sa_MIAC;Language=english;"
+      },
+      // сервис отчётов и протоколов, внешний адрес
+      "ReportService": {
+        "Url": "http://192.168.7.54:5100/Interface/"
+      },
+      // сервис выписки
+      "StatementService": {
+        "Url": ""
+      }
+    },
+    "Demography": {
+      "Default": "Data Source= tcp:192.168.7.196,49199,49199;Initial Catalog=dev_mo_hlt_Kashira_20180109;Integrated Security=False;User ID=whc;password=sagfhjkzYES!;Language=english;"
+    }
+  },
+  "ParseAddressService": {
+    "Url": "http://192.168.7.54:9999/soap/IIpaa"
+  },
+  "ExternalServices": {
+    "WhcNetCore": {
+      "PersonInfoService": {
+        "Url": "http://192.168.7.239:85/PersonInfoServiceRest.svc",
+        "TimeOut": "30",
+        "isActive": true
+      },
+      "ReportService": {
+        "Url": "http://192.168.7.54:5100/Interface/"
+      },
+      "PharmacyClient": {
+        "Url": ""
+      }
+    },
+    "MrStarter": {
+      "Addo": {
+        "Url": "http://192.168.7.54:8012/"
+      },
+      "Regs": {
+        "Url": "http://192.168.7.141:8080/regs/"
+      },
+      "TemplateCompiloator": {
+        "Url": "http://192.168.7.54:5011/"
+      }
+    },
+    "Kladr": {
+      "ParseAddressService": {
+        "Url": "http://192.168.7.48:50019/soap/IIpaa"
+      }
+    }
+  }
+}

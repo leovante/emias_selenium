@@ -1,9 +1,9 @@
 package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
+import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.PacientImpl;
 import com.pages.PageBase;
-import com.pages.calldoctor.doctors_interfaces.Doctor;
-import com.pages.calldoctor.pacients.PacientImpl;
 import org.openqa.selenium.By;
 
 import java.io.IOException;

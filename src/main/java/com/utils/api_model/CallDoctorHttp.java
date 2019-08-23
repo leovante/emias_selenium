@@ -1,7 +1,7 @@
 package com.utils.api_model;
 
 import com.config.ConfigFile;
-import com.pages.calldoctor.pacients.Pacient;
+import com.datas.calldoctor.Pacient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
