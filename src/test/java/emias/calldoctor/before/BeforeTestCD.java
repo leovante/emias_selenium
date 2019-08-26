@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class BeforeTestCD extends TestBase {
 
-    @Test(description = "Создаю новое расписание на сегодня")
+    @Test(description = "Создаю новое расписание на сегодня")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
     public void run() throws IOException, ParseException {
         updateStend();

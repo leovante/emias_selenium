@@ -17,7 +17,10 @@ import java.util.Map;
 
 @Ignore
 public class BeforeTestDisp extends TestBase {
-    public BeforeTestDisp() throws IOException, ParseException {
+
+    @Test(description = "Подготовка БД")//сделано тестом что бы запускать отдельно
+    @RetryCountIfFailed(2)
+    public void run() throws IOException, ParseException {
         setDefaultCard();//обнулить карты
 //        setTestServices();//тестовые ресурсы мероприятий
 //        createShedule();//создание нового расписания у врачей
@@ -30,8 +33,6 @@ public class BeforeTestDisp extends TestBase {
         for (String cards : cardID) {
             DBScripts.setDefaultServices(cards);
         }
-
-
     }
 
     @Step("Подготовка мероприятий")
