@@ -162,13 +162,15 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.misHome().calldoctor();
+        page.misHome()
+                .calldoctor();
         page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
                 .allertBtn();
         as.isVisibleText(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacientImpl, testName())
+                .chooseDoctorBtn();
         as.isVisibleText(mokov.getUchastocs());
         as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         as.isVisibleText(nemcova.getUchastocs());
