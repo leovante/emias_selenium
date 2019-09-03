@@ -64,9 +64,13 @@ public class CreateCallPage extends PageBase {
     SelenideElement male = $(By.id("sex1"));
     SelenideElement female = $(By.id("sex2"));
     SelenideElement edit_call = $x("//*[contains(text(),'Редактирование вызова')]");
+    SelenideElement change_call = $(By.id("change"));
     SelenideElement reason_cancel_call_validator = $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"));
     SelenideElement unpin_mkab = $x("//img[@src='./assets/img/close.png']");
     ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
+//    SelenideElement complaint = $x("//tag-input-form[@ng-reflect-placeholder='Введите текст жалобы'] | //tag-input-form[@ng-reflect-placeholder='Добавить жалобу']");
+    SelenideElement complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']");
+    SelenideElement allertCloseDialog_Yes = $(By.xpath("//button/span[contains(text(),'Да')]"));
 
     public CreateCallPage(Pacient pacient) throws IOException {
         this.pacient = pacient;
@@ -166,7 +170,7 @@ public class CreateCallPage extends PageBase {
     @Step("очищаю все поля у карты")
     public CreateCallPage setDeafult() {
         sourceReg.click();
-        if(unpin_mkab.is(Condition.visible)){
+        if (unpin_mkab.is(Condition.visible)) {
             unpin_mkab.click();
         }
         Actions actions = new Actions(driver);
@@ -292,13 +296,14 @@ public class CreateCallPage extends PageBase {
 
     @Step("жалоба")
     private CreateCallPage complaint() throws InterruptedException {
-        SelenideElement complaint = $(By.xpath("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"));
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "';", complaint);
-        complaint.sendKeys(Keys.SPACE);
-
-        $(By.xpath("//span[contains(text(),'диатез')]")).click();
-        $(By.xpath("//div[contains(text(),'" + pacient.getComplaint() + "')]")).shouldBe(Condition.visible);
+//        JavascriptExecutor jse = (JavascriptExecutor) driver;
+//        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "'", complaint);
+//        complaint.sendKeys(Keys.ENTER);
+//        complaint.sendKeys("123");
+        String a = pacient.getComplaint();
+        complaint.sendKeys(a);
+        $x("//span[contains(text(),'диатез')]").click();
+        $x("//div[contains(text(),'" + pacient.getComplaint() + "')]").shouldBe(Condition.visible);
         return this;
     }
 
@@ -388,14 +393,13 @@ public class CreateCallPage extends PageBase {
 
     @Step("кнопка сохранить")
     public CreateCallPage allertBtn() throws InterruptedException, NoticeException {
-        SelenideElement allert = $(By.xpath("//button[@aria-label='Close dialog']"));
-        allert.click();
+        allertCloseDialog_Yes.click();
         return this;
     }
 
     @Step("кнопка редактировать")
     public CreateCallPage editCallBtn() {
-        $(By.id("change")).click();
+        change_call.click();
         return this;
     }
 

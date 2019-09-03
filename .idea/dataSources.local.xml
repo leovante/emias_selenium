@@ -93,7 +93,12 @@
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
     </data-source>
     <data-source name="dev_mo_hlt_Himki_CGB_20190129@192.168.7.253" uuid="985db3b7-c52f-4876-90e8-995f0a08217e">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
+      <database-info product="Microsoft SQL Server" version="13.00.4001" jdbc-version="3.0" driver-name="jTDS Type 4 JDBC Driver for MS SQL Server and Sybase" driver-version="1.3.1" family="MSSQL" exact-version="13.0.400">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <user-name>mis</user-name>
     </data-source>
     <data-source name="hlt_pod_gdp1_360701@192.168.7.48" uuid="7d0be042-a1e5-4bae-b628-f1d1726ac60a">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
@@ -101,8 +106,19 @@
     <data-source name="hlt_orel_det_pol1@192.168.7.53" uuid="3b2840f7-48f5-4604-8c10-1f152ef3c658">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
     </data-source>
-    <data-source name="postgres@localhost" uuid="b08543ed-3392-4bdb-8781-b06ae3f63748">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="POSTGRES" exact-version="0.0" />
+    <data-source name="postgres@46.183.163.33" uuid="b08543ed-3392-4bdb-8781-b06ae3f63748">
+      <database-info product="PostgreSQL" version="9.2.24" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" family="POSTGRES" exact-version="9.2.24">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>postgres</user-name>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <proxy-host>46.183.163.33</proxy-host>
+        <user>root</user>
+        <use-password>true</use-password>
+        <auth-type>PASSWORD</auth-type>
+      </ssh-properties>
     </data-source>
   </component>
 </project>
