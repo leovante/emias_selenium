@@ -84,5 +84,4 @@ public class FilterTest extends TestBase {
                 .filter_tomorrow_today()
                 .verifyActiveDocGroupNotVisible(pacientImpl, doctor);
     }
-    // TODO: 13.08.2018 сделать тест отображение вызовов в различных подразделениях и группах
 }

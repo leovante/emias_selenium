@@ -160,7 +160,7 @@ public class DBScripts extends PageBase {
 
     @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
     public static void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
-        String request = new DateGenerator().doctorShedule_Disp(LPUDoctorID, DocPRVDID);
+        String request = new DateGenerator().Shedule_Disp(LPUDoctorID, DocPRVDID);
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -179,8 +179,8 @@ public class DBScripts extends PageBase {
     }
 
     @Step("Создаю расписание для врача")
-    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
-        String request = new DateGenerator().doctorShedule_CD(LPUDoctorID, DocPRVDID);
+    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID) throws ParseException {
+        String request = new DateGenerator().shedule_CD(LPUDoctorID, DocPRVDID);
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +

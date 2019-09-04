@@ -35,6 +35,8 @@ public class FullCardPage extends PageBase {
     SelenideElement status_new = $x("//*[contains(.,'Новый')]");
     SelenideElement status_active = $(By.xpath("//*[contains(.,'Активный')]"));
     SelenideElement status_done = $(By.xpath("//*[contains(.,'Обслуженный')]"));
+    SelenideElement timeField = $x("//input[@placeholder='Время']");
+    SelenideElement card = $x("//*[contains(text(),'Карта вызова')]");
 
     public FullCardPage(String testName) throws IOException {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
@@ -157,7 +159,7 @@ public class FullCardPage extends PageBase {
 
     @Step("отменить вызов")
     public FullCardPage cancelOnFullCardBtn(String reason) {
-        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         cancelBtn.click();
         cancelField.setValue(reason);
         cancelCall.click();
@@ -181,7 +183,7 @@ public class FullCardPage extends PageBase {
 
     @Step("назначить врача")
     public FullCardPage chooseDoctorBtn() {
-        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         $(By.xpath("//span[contains(text(),'Назначить')]")).shouldBe(Condition.visible);
         appoindDoctorBtn.hover().click();
         return this;
@@ -189,25 +191,22 @@ public class FullCardPage extends PageBase {
 
     @Step("завершить обслуживание")
     public FullCardPage completeServiceBtn() throws InterruptedException {
-        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         completeServiceBtn.click();
-//        mat_calendar_header.click();
-//        new PressEnter();
         doneCall.click();
-        Thread.sleep(1000);
         return this;
     }
 
     @Step("отмена вызов на странице редактирвоания")
     public FullCardPage editCallBtn() {
-        $(By.xpath("//*[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         change.click();
         return this;
     }
 
     @Step("закрыть подробную карту")
     public FullCardPage closeCardBtn() {
-        $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
         LOGGER.info("Карта закрыта!");
@@ -216,7 +215,7 @@ public class FullCardPage extends PageBase {
 
     @Step("проверяем что кнопка МКАБ не активна")
     public FullCardPage verifyMkabIconDisable() {
-        $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         SelenideElement mkabTxt = $(By.xpath("//div[contains(text(),'МКАБ')]"));
         mkabTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']"));
         return this;
@@ -224,7 +223,7 @@ public class FullCardPage extends PageBase {
 
     @Step("проверяем что кнопка МКАБ активна")
     public FullCardPage verifyMkabIconEnable() {
-        $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         SelenideElement mkabTxt = $(By.xpath("//div[contains(text(),'МКАБ')]"));
         mkabTxt.$(By.xpath("../.")).$(By.xpath(".//*[@class='mat-icon call-doctor-red-text material-icons']"));
         return this;
@@ -232,7 +231,7 @@ public class FullCardPage extends PageBase {
 
     @Step("проверяем что кнопка ТАП не активна")
     public FullCardPage verifyTapIconDisable() {
-        $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         SelenideElement tapTxt = $(By.xpath("//div[contains(text(),'ТАП')]"));
         tapTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-gray-text material-icons']"));
         return this;
@@ -240,7 +239,7 @@ public class FullCardPage extends PageBase {
 
     @Step("проверяем что кнопка ТАП активна")
     public FullCardPage verifyTapIconEnable() {
-        $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
+        card.shouldBe(Condition.visible);
         SelenideElement tapTxt = $(By.xpath("//div[contains(text(),'ТАП')]"));
         tapTxt.$(By.xpath("../.")).$(By.xpath("//*[@class='mat-icon call-doctor-red-text material-icons']")).click();
         return this;

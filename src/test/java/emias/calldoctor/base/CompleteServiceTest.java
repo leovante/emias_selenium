@@ -1,6 +1,7 @@
 package emias.calldoctor.base;
 
 import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -13,21 +14,21 @@ public class CompleteServiceTest extends TestBase {
     @Epic("Завершить обслуживание")
     @RetryCountIfFailed(2)
     public void testCompleteCallRegistr() throws Exception {
-        PacientImpl pacientImpl = new PacientImpl("Profile1");
+        Pacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
+
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        page.createCall(pacient)
                 .createCall()
                 .saveBtn();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName())
+        page.fullCard(pacient, testName())
                 .completeServiceBtn()
                 .verifyDoneCall(doctor)
                 .closeCardBtn();
         page.dashboard()
                 .clearAllFilters()
-                .verifyDoneDocGroup(pacientImpl, doctor);
+                .verifyDoneDocGroup(pacient, doctor);
     }
-    // TODO: 13.08.2018 завершить обслуживание в мис
 }

@@ -35,7 +35,7 @@ public class HltDoctorTimeTableRepositoryImpl implements CustomizedDoctorTimeTab
 
     @Override
     public void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
-//        String request = new DateGenerator().doctorShedule_CD(LPUDoctorID, DocPRVDID);
+//        String request = new DateGenerator().shedule_CD(LPUDoctorID, DocPRVDID);
 //        em.createQuery("INSERT INTO HltDoctorTimeTableEntity (Begin_Time, End_Time, Date, rf_LPUDoctorID, rf_DocBusyType, FlagAccess, rf_DocPRVDID) VALUES ('2019-05-07 07:00:00.000', '2019-05-07 07:15:00.000', '2019-05-07 00:00:00.000', '1831', '17', '15', '417')");
     }
 }

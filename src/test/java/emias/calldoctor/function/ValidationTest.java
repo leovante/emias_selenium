@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class ValidationTest extends TestBase {
 
@@ -40,7 +41,7 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException, NoticeException {
+    public void smpChildMkab_testCallerFIO() throws IOException, InterruptedException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();
@@ -51,7 +52,7 @@ public class ValidationTest extends TestBase {
                 .fillSourceSmp()
                 .deleteWhoCallFIO()
                 .saveBtn();
-        $(By.xpath("//*[contains(text(),'Карта не валидна')]")).shouldBe(Condition.visible);
+        $x("//*[contains(text(),'Карта не валидна')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "отмена вызова без указания причины на странице подробной карты вызова")

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов ребенка М")
@@ -221,14 +222,14 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адрессу нельзя назначить врача")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
+    public void smpChildMkab_dontChangeDoctor_neformalAddress() throws IOException, InterruptedException, JSONException{
         PacientImpl pacientImpl = new PacientImpl("Profile19");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();
         page.dashboard().openNewCallDash(pacientImpl);
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'Выберите врача')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'Поиск врача')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")

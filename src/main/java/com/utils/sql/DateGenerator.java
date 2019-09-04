@@ -26,24 +26,27 @@ public class DateGenerator {
         date = Calendar.getInstance();
     }
 
-    public String doctorShedule_Disp(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+    public String Shedule_Disp(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
         this.rf_LPUDoctorID = rf_LPUDoctorID;
         this.rf_DocPRVDID = rf_DocPRVDID;
-        cellsGenerator();
+        generator_separete();
         patternSql();
         return sqlRequest;
     }
 
-    public String doctorShedule_CD(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+    public String shedule_CD(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+        this.rf_LPUDoctorID = rf_LPUDoctorID;
+        this.rf_DocPRVDID = rf_DocPRVDID;
         this.rf_DocBusyType = 17;
-        this.rf_LPUDoctorID = rf_LPUDoctorID;
-        this.rf_DocPRVDID = rf_DocPRVDID;
-        cellsGenerator();
+        this.MINUTE_IN_CELL = 930;
+        this.CELL_COUNT = 1;
+        this.DAY_COUNT = 2;
+        generator_separete();
         patternSql();
         return sqlRequest;
     }
 
-    void cellsGenerator() throws ParseException {
+    void generator_separete() throws ParseException {
         for (int i = 0; i < DAY_COUNT; i++) {
             if (!cellList.isEmpty()) {
                 cell = new Cell();
@@ -64,14 +67,15 @@ public class DateGenerator {
                 cell.setEnd_date(formater(date));
                 cellList.add(cell);
             }
-            for (int n = 0; n < CELL_COUNT; n++) {
-                cell = new Cell();
-                date.setTime(parserDate(cellList.get(cellList.size() - 1).getEnd_date()));
-                date.add(Calendar.MINUTE, MINUTE_IN_CELL);
-                cell.setStart_date(cellList.get(cellList.size() - 1).getEnd_date());
-                cell.setEnd_date(formater(date));
-                cellList.add(cell);
-            }
+            if (CELL_COUNT > 1)
+                for (int n = 0; n < CELL_COUNT; n++) {
+                    cell = new Cell();
+                    date.setTime(parserDate(cellList.get(cellList.size() - 1).getEnd_date()));
+                    date.add(Calendar.MINUTE, MINUTE_IN_CELL);
+                    cell.setStart_date(cellList.get(cellList.size() - 1).getEnd_date());
+                    cell.setEnd_date(formater(date));
+                    cellList.add(cell);
+                }
         }
     }
 

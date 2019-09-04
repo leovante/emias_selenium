@@ -34,12 +34,13 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "подтягивание неформализованного мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, ParseException, JSONException {
-        Pacient pacientImpl = new PacientImpl("Profile0_3");
+    public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+        Pacient pacient = new PacientImpl("Profile0_3");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall_Mkab();
-        as.isVisibleText(pacientImpl.getAddress());
+        page.createCall(pacient)
+                .createCall_Mkab()
+                .saveBtn();
+        as.isVisibleText(pacient.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
