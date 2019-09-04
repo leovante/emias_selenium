@@ -428,8 +428,8 @@ public class CreateCallPage extends PageBase {
 
     @Step("нажимаю на выпадающий список участков")
     public CreateCallPage selectUchastokFromNeUdalosOpredelit() {
-        SelenideElement se = $(By.xpath("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]")).shouldBe(Condition.visible);
-        $(By.xpath("//mat-label[contains(text(),'Участок')]/../../..//mat-select")).click();
+        $x("//*[contains(text(),'Не удалось однозначно определить участок для адреса')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'Участок')]").click();
         return this;
     }
 

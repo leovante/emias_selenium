@@ -92,6 +92,8 @@ public class PerehodyServisovTest extends TestBase {
     public void testInstruction() throws IOException {
         page.misHome().calldoctor();
         page.dashboard().instructionTab();
-        page.misHome().validateForumInstruction();
+        page.misHome()
+                .nextPage()
+                .validateForumInstruction();
     }
 }

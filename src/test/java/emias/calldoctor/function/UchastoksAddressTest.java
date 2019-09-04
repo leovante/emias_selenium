@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class UchastoksAddressTest extends TestBase {
 
@@ -27,8 +28,8 @@ public class UchastoksAddressTest extends TestBase {
                 .createCall()
                 .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
-        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
+        $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'6-й Педиатрический')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
@@ -41,12 +42,12 @@ public class UchastoksAddressTest extends TestBase {
                 .createCall()
                 .saveBtn();
         page.createCall(pacientImpl).selectUchastokFromNeUdalosOpredelit();
-        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#4 Терапевтический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'6-й Педиатрический')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'1-й Гинекологический')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'3-й Участок врача общей практики')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'4-й Терапевтический')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'5-й Дерматологический')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
@@ -59,12 +60,12 @@ public class UchastoksAddressTest extends TestBase {
                 .createCall()
                 .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
-        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#4 Терапевтический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'6-й Педиатрический')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'1-й Гинекологический')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'3-й Участок врача общей практики')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'4-й Терапевтический')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'5-й Дерматологический')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")

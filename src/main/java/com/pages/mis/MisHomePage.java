@@ -103,4 +103,10 @@ public class MisHomePage extends PageBase {
         SelenideElement se = $x("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]").shouldBe(Condition.visible);
         Assert.assertTrue(se.isDisplayed(), "Инструкция пользователя диспетчером не найдена на странице");
     }
+
+    @Step("Следующая страница на форуме тех.поддержки")
+    public MisHomePage nextPage(){
+        $x("//a[contains(text(),'След.')]").click();
+        return this;
+    }
 }
