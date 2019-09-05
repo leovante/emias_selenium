@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class KvotyTest extends TestBase {
 
     @Test(groups = "disp", description = "проверка что открываются квоты")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void testSearchCard1() {
         page.misHome().dispJournal();
         page.kvotyPage().kvotyBtn();

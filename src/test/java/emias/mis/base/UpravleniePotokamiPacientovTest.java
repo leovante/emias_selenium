@@ -24,7 +24,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
 
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Копировать расписание")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void copyShedule() throws InterruptedException {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
@@ -44,7 +44,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
 
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Указать неприемные дни")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void setNotReceiveDays() {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
@@ -56,7 +56,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
 
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Удалить расписание")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void deleteShedule() throws InterruptedException {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
@@ -82,7 +82,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
 
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Перенести запись")
-    @RetryCountIfFailed(4)
+    @RetryCountIfFailed(2)
     public void surviveShedule() throws InterruptedException {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();

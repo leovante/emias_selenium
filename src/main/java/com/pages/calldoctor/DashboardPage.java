@@ -250,15 +250,21 @@ public class DashboardPage extends PageBase {
     public void openNewCallDash(Pacient pacientImpl) throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]"));
+        SelenideElement address = matExpansionPanel
+                .$x(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]");
         Actions actions = new Actions(driver);
         actions.moveToElement(address).perform();
 
-        SelenideElement smallMenu = address.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
+        SelenideElement smallMenu = address
+                .$x("../../../.")
+                .$x(".//*[contains(text(),'chevron_left')]");
         actions.moveToElement(smallMenu).perform();
-        SelenideElement openCard = address.$(By.xpath("../../../."))
-                .$(By.xpath(".//a[@title='Открыть карту вызова']"))
-                .$(By.xpath(".//mat-icon[contains(text(),'assignment')]"));
+        Thread.sleep(1000);
+
+        SelenideElement openCard = address
+                .$x("../../../.")
+                .$x(".//a[@title='Открыть карту вызова']")
+                .$x(".//mat-icon[contains(text(),'assignment')]");
         Thread.sleep(1000);
         openCard.click();
     }

@@ -63,7 +63,7 @@ public class ChangeDepartmentTest extends TestBase {
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
         Doctor dep_doc = new Doctor("TemnikovVzroslayaTerapev");

@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 public class ValidationTest extends TestBase {
 
     @Test(groups = "disp", description = "значения в показателях")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void testFillExamp() throws InterruptedException {
 
     }
