@@ -7,8 +7,9 @@ public class Datas {
         return medicar_record;
     }
 
-    public void setMedical_record(String medicar_record) {
+    public Datas setMedical_record(String medicar_record) {
         this.medicar_record = medicar_record;
+        return this;
     }
 
     public Datas() {

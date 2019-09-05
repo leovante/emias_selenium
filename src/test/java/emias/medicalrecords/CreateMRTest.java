@@ -16,8 +16,7 @@ public class CreateMRTest extends TestBase {
     @Epic("Создание медзаписи")
     @RetryCountIfFailed(2)
     public void test_sign_old_mr() throws InterruptedException {
-        Datas d = new Datas();
-        d.setMedical_record("Осмотр гастроэнтеролога");
+        Datas d = new Datas().setMedical_record("Осмотр гастроэнтеролога");
 
         open(configFile.getMr_tap());
         page.ehr_medicalrecords(d)
@@ -34,8 +33,7 @@ public class CreateMRTest extends TestBase {
     @Epic("Создание медзаписи")
     @RetryCountIfFailed(2)
     public void test_sign_new_mr() throws InterruptedException {
-        Datas d = new Datas();
-        d.setMedical_record("Консультация врача гастроэнтеролога");
+        Datas d = new Datas().setMedical_record("Консультация врача гастроэнтеролога");
 
         open(configFile.getMr_tap());
         page.ehr_medicalrecords(d)
@@ -52,8 +50,7 @@ public class CreateMRTest extends TestBase {
     @Epic("Создание медзаписи")
     @RetryCountIfFailed(2)
     public void test_edit_mr_after_save() throws Exception {
-        Datas d = new Datas();
-        d.setMedical_record("Осмотр гастроэнтеролога");
+        Datas d = new Datas().setMedical_record("Осмотр гастроэнтеролога");
 
         open(configFile.getMr_tap());
         page.ehr_medicalrecords(d)

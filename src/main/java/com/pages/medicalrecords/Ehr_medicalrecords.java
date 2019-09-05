@@ -3,6 +3,7 @@ package com.pages.medicalrecords;
 import com.datas.Datas;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -13,7 +14,7 @@ public class Ehr_medicalrecords {
     SelenideElement new_mr = $x("//*[contains(text(),'Новая медицинская запись')]");
     SelenideElement vse_shabloni = $x("//*[contains(text(),'Все шаблоны')]");
     SelenideElement searchPattern = $x("//*[@placeholder = 'Поиск шаблона по номеру, наименованию и специализации']");
-    SelenideElement search = $x("//i[@class = 'zmdi zmdi-search_lpu']");
+    SelenideElement search = $x("//i[@class = 'zmdi zmdi-search']");
     SelenideElement prosmotret = $x("//*[contains(text(),'Просмотреть')]");
     SelenideElement edit = $x("//*[contains(text(),'Редактировать')]");
     SelenideElement all_actions = $x("//*[contains(text(),'Все действия')]");
@@ -35,6 +36,7 @@ public class Ehr_medicalrecords {
         return this;
     }
 
+    @Step("поиск медзаписи через строку поиска")
     public Ehr_medicalrecords search_field() {
         searchPattern.setValue(d.getMedicar_record());
         search.click();

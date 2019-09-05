@@ -1,6 +1,7 @@
 package emias.mis.base;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
 import com.utils.testngRetryCount.RetryCountIfFailed;
@@ -8,11 +9,13 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyTest extends TestBase {
@@ -22,7 +25,7 @@ public class PerehodyTest extends TestBase {
      */
     @Test(groups = "mis", description = "Переходы в Диспетчер с дашборда")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionCDdashboard() {
         page.misHome().calldoctor();
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
@@ -30,7 +33,7 @@ public class PerehodyTest extends TestBase {
 
     @Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionCDmkab() throws IOException {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
@@ -55,18 +58,18 @@ public class PerehodyTest extends TestBase {
 
     @Test(groups = "mis", description = "Переходы в Диспетчер из журнала")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionCDjournal() {
         page.misHome().loginMis();
-        $(By.xpath("//span[contains(text(),'Вызов врача на дом')]")).click();
+        $x("//span[contains(text(),'Вызов врача на дом')]").click();
         $(By.id("add_doc_house_btn")).click();
         switchTo().window(1);
-        $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
+        $x("//*[contains(text(),'Новый вызов')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "mis", description = "Переходы в Диспетчер из личного кабинета врача")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionCDlk() {
         page.misHome().loginMis();
         $(By.xpath("//span[contains(text(),'Личный кабинет')]")).click();
@@ -81,7 +84,7 @@ public class PerehodyTest extends TestBase {
      */
     @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionDispDash() throws InterruptedException {
         page.misHome().loginMis();
         page.homePageMis().dispCardJournalBtn();
@@ -91,7 +94,7 @@ public class PerehodyTest extends TestBase {
 
     @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionDispMkab() throws IOException {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
@@ -103,12 +106,13 @@ public class PerehodyTest extends TestBase {
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
         $(By.xpath("//*[contains(text(),'Карты диспансеризации / профосмотры')]")).click();
         switchTo().window("Медицинская Информационная Система");
-        $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
+        SelenideElement se = $(By.xpath("//*[contains(text(),'Журнал')]"));
+        Assert.assertTrue(se.shouldBe(Condition.visible).is(Condition.visible));
     }
 
     @Test(groups = "mis", description = "Переход в Диспансеризацию из ячейки расписание приема")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         Doctor doctor = new Doctor("Dispanserizatov");
@@ -128,7 +132,7 @@ public class PerehodyTest extends TestBase {
      */
     @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionMedMkab() throws IOException {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
@@ -144,7 +148,7 @@ public class PerehodyTest extends TestBase {
 
     @Test(groups = "mis", description = "Переход в Медзаписи из Тап")
     @Epic("Переходы")
-    @RetryCountIfFailed(3)
+    @RetryCountIfFailed(2)
     public void transitionMedTap() throws IOException {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();

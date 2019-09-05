@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/CalldoctorLib.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/Lib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/sql/DateGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/sql/DateGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditPageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +44,8 @@
         <counts>
           <entry key="git.branch.checkout.local" value="8" />
           <entry key="git.branch.create.new" value="4" />
-          <entry key="git.branch.delete.local" value="3" />
+          <entry key="git.branch.delete.local" value="4" />
+          <entry key="git.branch.delete.remote" value="1" />
           <entry key="git.branch.merge" value="11" />
           <entry key="git.branch.rebase" value="1" />
           <entry key="git.branch.rename" value="1" />
@@ -58,7 +56,7 @@
           <entry key="class" value="8" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="622" />
+          <entry key="java" value="632" />
           <entry key="json" value="64" />
           <entry key="log" value="1" />
           <entry key="png" value="8" />
@@ -85,7 +83,7 @@
           <entry key="CLASS" value="8" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="8" />
-          <entry key="JAVA" value="622" />
+          <entry key="JAVA" value="632" />
           <entry key="JSON" value="64" />
           <entry key="PLAIN_TEXT" value="47" />
           <entry key="Properties" value="27" />
@@ -99,11 +97,11 @@
           <entry key="cell" value="173" />
           <entry key="dummy" value="44" />
           <entry key="gitignore" value="13" />
-          <entry key="java" value="12616" />
+          <entry key="java" value="12798" />
           <entry key="json" value="80" />
           <entry key="properties" value="27" />
           <entry key="sql" value="14118" />
-          <entry key="txt" value="641" />
+          <entry key="txt" value="644" />
           <entry key="xml" value="143" />
           <entry key="врач в блоке мероприятий по тарифам" value="9" />
           <entry key="задачи для постмана" value="2" />
@@ -113,9 +111,9 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="12616" />
+          <entry key="JAVA" value="12798" />
           <entry key="JSON" value="80" />
-          <entry key="PLAIN_TEXT" value="711" />
+          <entry key="PLAIN_TEXT" value="714" />
           <entry key="Properties" value="27" />
           <entry key="SQL" value="3" />
           <entry key="Scratch" value="14291" />
@@ -150,20 +148,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="306">
+              <caret line="61" selection-start-line="61" selection-end-line="61" />
             </state>
           </provider>
         </entry>
@@ -196,10 +185,15 @@
       <find>testCallMkabWaitoutAddressID</find>
       <find>testCallRegistr</find>
       <find>testNotformalizeAddress</find>
-      <find>testFilterActiveGroup</find>
       <find>testViewDoctorsListAfterEditChildCard</find>
       <find>testAppendUchastkoviyDoctor</find>
       <find>smpChildMkab_testCallerFIO</find>
+      <find>testFilterActiveGroup</find>
+      <find>testPrintCard</find>
+      <find>testCallMkabWaitoutID</find>
+      <find>transitionCDjournal</find>
+      <find>transitionDispMkab</find>
+      <find>test_edit_mr_after_save</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources</dir>
@@ -216,10 +210,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/CreateCallTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/CreateCallTestRandom.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/TestBase.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/a6f45d47-b250-401d-97fa-316185c7ad44/console.sql" />
@@ -267,6 +257,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/utils/sql/DateGenerator.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditPageTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" />
       </list>
     </option>
   </component>
@@ -479,7 +473,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567672061381" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567679575247" />
     <property name="database.console.LAST_STATE" value="false" />
   </component>
   <component name="RunDashboard">
@@ -494,34 +488,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.ValidationTest.smpChildMkab_testCallerFIO">
-    <configuration name="BeforeTestCD" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.CreateMRTest.test_sign_old_mr">
+    <configuration name="CreateMRTest.test_edit_mr_after_save" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="emias.calldoctor.before.*" />
+          <option name="PATTERN" value="emias.medicalrecords.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.before" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.before.BeforeTestCD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BeforeTestCD.run" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="regress_tests" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emias.calldoctor.before.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.before" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.before.BeforeTestCD" />
-      <option name="METHOD_NAME" value="run" />
+      <option name="PACKAGE_NAME" value="emias.medicalrecords" />
+      <option name="MAIN_CLASS_NAME" value="emias.medicalrecords.CreateMRTest" />
+      <option name="METHOD_NAME" value="test_edit_mr_after_save" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -529,7 +507,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="CreateMRTest.test_sign_old_mr" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="regress_tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="emias.medicalrecords.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="emias.medicalrecords" />
+      <option name="MAIN_CLASS_NAME" value="emias.medicalrecords.CreateMRTest" />
+      <option name="METHOD_NAME" value="test_sign_old_mr" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EditPageTest.testCallMkabWaitoutID" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
         <pattern>
@@ -538,8 +534,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="emias.calldoctor.base" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.base.ChooseDoctorTest" />
-      <option name="METHOD_NAME" value="testAppendUchastkoviyDoctor" />
+      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.base.EditPageTest" />
+      <option name="METHOD_NAME" value="testCallMkabWaitoutID" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -547,17 +543,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DoctorsListTest.testViewDoctorsListAfterEditChildCard" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="PerehodyTest.transitionCDjournal" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="emias.calldoctor.function.*" />
+          <option name="PATTERN" value="emias.mis.base.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.function" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.function.DoctorsListTest" />
-      <option name="METHOD_NAME" value="testViewDoctorsListAfterEditChildCard" />
+      <option name="PACKAGE_NAME" value="emias.mis.base" />
+      <option name="MAIN_CLASS_NAME" value="emias.mis.base.PerehodyTest" />
+      <option name="METHOD_NAME" value="transitionCDjournal" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -565,17 +561,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidationTest.smpChildMkab_testCallerFIO" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="PerehodyTest.transitionDispMkab" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="emias.calldoctor.function.*" />
+          <option name="PATTERN" value="emias.mis.base.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.function" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.function.ValidationTest" />
-      <option name="METHOD_NAME" value="smpChildMkab_testCallerFIO" />
+      <option name="PACKAGE_NAME" value="emias.mis.base" />
+      <option name="MAIN_CLASS_NAME" value="emias.mis.base.PerehodyTest" />
+      <option name="METHOD_NAME" value="transitionDispMkab" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -584,19 +580,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="TestNG.DoctorsListTest.testViewDoctorsListAfterEditChildCard" />
-      <item itemvalue="TestNG.ChooseDoctorTest.testAppendUchastkoviyDoctor" />
-      <item itemvalue="TestNG.BeforeTestCD" />
-      <item itemvalue="TestNG.BeforeTestCD.run" />
-      <item itemvalue="TestNG.ValidationTest.smpChildMkab_testCallerFIO" />
+      <item itemvalue="TestNG.EditPageTest.testCallMkabWaitoutID" />
+      <item itemvalue="TestNG.PerehodyTest.transitionCDjournal" />
+      <item itemvalue="TestNG.PerehodyTest.transitionDispMkab" />
+      <item itemvalue="TestNG.CreateMRTest.test_edit_mr_after_save" />
+      <item itemvalue="TestNG.CreateMRTest.test_sign_old_mr" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.ValidationTest.smpChildMkab_testCallerFIO" />
-        <item itemvalue="TestNG.ChooseDoctorTest.testAppendUchastkoviyDoctor" />
-        <item itemvalue="TestNG.BeforeTestCD.run" />
-        <item itemvalue="TestNG.BeforeTestCD" />
-        <item itemvalue="TestNG.DoctorsListTest.testViewDoctorsListAfterEditChildCard" />
+        <item itemvalue="TestNG.CreateMRTest.test_sign_old_mr" />
+        <item itemvalue="TestNG.CreateMRTest.test_edit_mr_after_save" />
+        <item itemvalue="TestNG.PerehodyTest.transitionDispMkab" />
+        <item itemvalue="TestNG.PerehodyTest.transitionCDjournal" />
+        <item itemvalue="TestNG.EditPageTest.testCallMkabWaitoutID" />
       </list>
     </recent_temporary>
   </component>
@@ -768,7 +764,7 @@
       <workItem from="1567076295497" duration="8232000" />
       <workItem from="1567165149067" duration="4111000" />
       <workItem from="1567403462368" duration="256000" />
-      <workItem from="1567405850966" duration="47979000" />
+      <workItem from="1567405850966" duration="52616000" />
     </task>
     <task id="LOCAL-00583" summary="промежуточное">
       <created>1558521889761</created>
@@ -987,12 +983,12 @@
       <option name="project" value="LOCAL" />
       <updated>1567609343938</updated>
     </task>
-    <task id="LOCAL-00007" summary="правки селениум грид">
-      <created>1563256731777</created>
+    <task id="LOCAL-00007" summary="правки тестов 2.1">
+      <created>1567672083148</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1563256731778</updated>
+      <updated>1567672083152</updated>
     </task>
     <task id="LOCAL-00008" summary="Диспетчер. Подправил два теста проверки передачи в другое подр.">
       <created>1563344656255</created>
@@ -1113,46 +1109,47 @@
       <option name="project" value="LOCAL" />
       <updated>1566564292145</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BeforeTestCD_run - 2019.09.05 at 10h 12m 20s.xml">
-      <configuration name="BeforeTestCD.run" configurationId="TestNG" />
+    <history-entry file="PerehodyTest_transitionDispMkab - 2019.09.05 at 12h 13m 33s.xml">
+      <configuration name="PerehodyTest.transitionDispMkab" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="BeforeTestCD_run - 2019.09.05 at 10h 13m 22s.xml">
-      <configuration name="BeforeTestCD.run" configurationId="TestNG" />
+    <history-entry file="PerehodyTest_transitionDispMkab - 2019.09.05 at 12h 15m 14s.xml">
+      <configuration name="PerehodyTest.transitionDispMkab" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ChooseDoctorTest_testAppendUchastkoviyDoctor - 2019.09.05 at 10h 16m 20s.xml">
-      <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" configurationId="TestNG" />
+    <history-entry file="PerehodyTest_transitionDispMkab - 2019.09.05 at 12h 18m 18s.xml">
+      <configuration name="PerehodyTest.transitionDispMkab" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ChooseDoctorTest_testAppendUchastkoviyDoctor - 2019.09.05 at 10h 25m 40s.xml">
-      <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" configurationId="TestNG" />
+    <history-entry file="CreateMRTest_test_edit_mr_after_save - 2019.09.05 at 12h 21m 23s.xml">
+      <configuration name="CreateMRTest.test_edit_mr_after_save" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ChooseDoctorTest_testAppendUchastkoviyDoctor - 2019.09.05 at 10h 28m 20s.xml">
-      <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" configurationId="TestNG" />
+    <history-entry file="CreateMRTest_test_edit_mr_after_save - 2019.09.05 at 12h 22m 42s.xml">
+      <configuration name="CreateMRTest.test_edit_mr_after_save" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ChooseDoctorTest_testAppendUchastkoviyDoctor - 2019.09.05 at 11h 04m 33s.xml">
-      <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" configurationId="TestNG" />
+    <history-entry file="CreateMRTest_test_edit_mr_after_save - 2019.09.05 at 12h 25m 32s.xml">
+      <configuration name="CreateMRTest.test_edit_mr_after_save" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ChooseDoctorTest_testAppendUchastkoviyDoctor - 2019.09.05 at 11h 09m 51s.xml">
-      <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" configurationId="TestNG" />
+    <history-entry file="CreateMRTest_test_edit_mr_after_save - 2019.09.05 at 13h 22m 33s.xml">
+      <configuration name="CreateMRTest.test_edit_mr_after_save" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ChooseDoctorTest_testAppendUchastkoviyDoctor - 2019.09.05 at 11h 14m 40s.xml">
-      <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" configurationId="TestNG" />
+    <history-entry file="CreateMRTest_test_edit_mr_after_save - 2019.09.05 at 13h 25m 24s.xml">
+      <configuration name="CreateMRTest.test_edit_mr_after_save" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ChooseDoctorTest_testAppendUchastkoviyDoctor - 2019.09.05 at 11h 22m 20s.xml">
-      <configuration name="ChooseDoctorTest.testAppendUchastkoviyDoctor" configurationId="TestNG" />
+    <history-entry file="CreateMRTest_test_edit_mr_after_save - 2019.09.05 at 13h 27m 26s.xml">
+      <configuration name="CreateMRTest.test_edit_mr_after_save" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="ValidationTest_smpChildMkab_testCallerFIO - 2019.09.05 at 11h 25m 46s.xml">
-      <configuration name="ValidationTest.smpChildMkab_testCallerFIO" configurationId="TestNG" />
+    <history-entry file="CreateMRTest_test_edit_mr_after_save - 2019.09.05 at 13h 32m 29s.xml">
+      <configuration name="CreateMRTest.test_edit_mr_after_save" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="383545000" />
+    <option name="totallyTimeSpent" value="388182000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1974" y="55" width="1234" height="1040" extended-state="7" />
+    <frame x="1974" y="55" width="1234" height="1040" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -1160,7 +1157,7 @@
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.54590166" side_tool="true" weight="0.22330096" />
-      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.67197454" weight="0.21039182" />
+      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.67197454" visible="true" weight="0.21039182" />
       <window_info id="Persistence" order="7" sideWeight="0.3280255" side_tool="true" weight="0.17537314" />
       <window_info id="Java Enterprise" order="8" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
       <window_info id="Web" order="9" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
@@ -1354,87 +1351,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="dbSrc:///e39cb85f/889db42a-c187-4689-b166-e0cf37d83466/database/test_mo_hlt_taldom_crb_20190129/schema/dbo/routine/hlt_getdocprvdfilter.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ручное/связь мероприятие-специальность-тариф">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="52" column="85" selection-start-line="52" selection-start-column="85" selection-end-line="52" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/задачи для постмана">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/sql/disp/test hlt_disp_ServiceDocPrvd_192.168.7.54.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="35" selection-end-line="132" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/985db3b7-c52f-4876-90e8-995f0a08217e/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="56" column="45" lean-forward="true" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
-          <folding>
-            <element signature="e#1552#1736#0" />
-            <element signature="e#2000#2113#0" />
-            <element signature="e#2119#2223#0" />
-            <element signature="e#2384#2701#0" />
-            <element signature="e#2707#2823#0" />
-            <element signature="e#2829#2945#0" />
-            <element signature="e#2951#3061#0" />
-            <element signature="e#3067#3180#0" />
-            <element signature="e#3186#3299#0" />
-            <element signature="e#3305#3418#0" />
-            <element signature="e#3424#3540#0" />
-            <element signature="e#3546#3662#0" />
-            <element signature="e#3668#3772#0" />
-            <element signature="e#3778#3879#0" />
-            <element signature="e#3885#3992#0" />
-            <element signature="e#3998#4093#0" />
-            <element signature="e#4099#4206#0" />
-            <element signature="e#4212#4325#0" />
-            <element signature="e#4331#4456#0" />
-            <element signature="e#4462#4581#0" />
-            <element signature="e#4587#4715#0" />
-            <element signature="e#4721#4840#0" />
-            <element signature="e#4846#4965#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datas/calldoctor/Pacient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="35" column="11" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/pacients/Profile0.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1611,13 +1527,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/concurrent/ConcurrentHashMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -1709,6 +1618,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="101" column="28" lean-forward="true" selection-start-line="101" selection-start-column="28" selection-end-line="101" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1716,10 +1632,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="101" selection-start-line="101" selection-end-line="101" />
+        <state relative-caret-position="357">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditPageTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1679">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/net/SocketInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="108" column="25" selection-start-line="108" selection-start-column="25" selection-end-line="108" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/testng/testng/6.14.3/testng-6.14.3-sources.jar!/org/testng/internal/MethodInvocationHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="231" selection-start-line="231" selection-end-line="231" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/nio/Buffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="289" selection-start-line="289" selection-end-line="289" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="71" column="88" selection-start-line="71" selection-start-column="65" selection-end-line="71" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="61" selection-start-line="61" selection-end-line="61" />
         </state>
       </provider>
     </entry>

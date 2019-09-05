@@ -112,7 +112,7 @@ public class EditPageTest extends TestBase {
                 .setDeafult()
                 .editCallPage()
                 .saveBtn();
-        $(By.xpath("//simple-snack-bar[contains(.,'Не указан адрес')]")).shouldBe(Condition.visible);
+        $x("//simple-snack-bar[contains(.,'Не указан адрес')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "формализация неформализованного адреса на странице редактирования")
@@ -125,6 +125,6 @@ public class EditPageTest extends TestBase {
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).verifyNewCall();
         page.createCall(pacient).editCallBtn();
-        $(By.xpath("//*[contains(.,'" + pacient.getAddress3adv() + "')]")).shouldBe(Condition.visible);
+        $x("//*[contains(.,'" + pacient.getAddress3adv() + "')]").shouldBe(Condition.visible);
     }
 }
