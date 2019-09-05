@@ -146,16 +146,16 @@ public class DashboardPage extends PageBase {
     @Step("проверяю на дашборде запись у врача в группе активные")
     public DashboardPage verifyActiveDocGroup(Pacient pacientImpl, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
-        SelenideElement docFamBlock = $x("//span[contains(text(),'" + doctor.getFamily() + "')]");
+        SelenideElement docFamBlock = $x("//span[contains(text(),'" + doctor.getFamily() + "')]").$x("../../.");
         docFamBlock.click();
 
-        SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[@id='order']")).click();
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacientImpl.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).shouldBe(Condition.visible);
+        SelenideElement docBlock = docFamBlock.$x("../../../.");
+        docBlock.$x(".//*[contains(text(),'Ожидают обработки')]")
+                .$x("../.")
+                .$x(".//mat-icon[@id='order']").click();
+        docBlock.$x(".//*[contains(text(),'Ожидают обработки')]").click();
+        $x("//*[contains(text(),'" + pacientImpl.getAddress() + "')]").click();
+        $x("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]").shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
         return this;
     }

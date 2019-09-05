@@ -21,6 +21,7 @@ public class DateGenerator {
     Calendar date;
     Cell cell;
     List<Cell> cellList = new ArrayList<>();
+    int PlanUE = 1;
 
     public DateGenerator() {
         date = Calendar.getInstance();
@@ -41,6 +42,7 @@ public class DateGenerator {
         this.MINUTE_IN_CELL = 930;
         this.CELL_COUNT = 1;
         this.DAY_COUNT = 2;
+        this.PlanUE = 99;//количество талонов
         generator_separete();
         patternSql();
         return sqlRequest;
@@ -100,7 +102,7 @@ public class DateGenerator {
     }
 
     void patternSql() throws ParseException {
-        String header = "insert into hlt_DoctorTimeTable (Begin_Time, End_Time, Date, rf_LPUDoctorID, rf_DocBusyType, FlagAccess, rf_DocPRVDID) values";
+        String header = "insert into hlt_DoctorTimeTable (Begin_Time, End_Time, Date, rf_LPUDoctorID, rf_DocBusyType, FlagAccess, rf_DocPRVDID, PlanUE) values";
         String value = patternSqlValue();
         this.sqlRequest = header + value;
     }
@@ -108,9 +110,8 @@ public class DateGenerator {
     String patternSqlValue() throws ParseException {
         String value = "";
         for (Cell cellCur : cellList) {
-
             date.setTime(parserDate(cellCur.getStart_date()));
-            String body = " ('" + cellCur.getStart_date() + "', '" + cellCur.getEnd_date() + "', '" + formaterZero(date) + "', '" + rf_LPUDoctorID + "', '" + rf_DocBusyType + "', '" + FlagAccess + "', '" + rf_DocPRVDID + "')";
+            String body = " ('" + cellCur.getStart_date() + "', '" + cellCur.getEnd_date() + "', '" + formaterZero(date) + "', '" + rf_LPUDoctorID + "', '" + rf_DocBusyType + "', '" + FlagAccess + "', '" + rf_DocPRVDID + "', '" + PlanUE + "')";
             value = value + body + ",";
         }
         StringBuilder builder = new StringBuilder(value);

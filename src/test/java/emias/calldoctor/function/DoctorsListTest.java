@@ -267,8 +267,9 @@ public class DoctorsListTest extends TestBase {
         page.createCall(pacient2)
                 .setDeafult()
                 .editCallPage()
-                .saveBtn();
-        $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
+                .saveBtn()
+                .allertBtn();
+        $x("//*[contains(text(),'Без возрастной категории')]").shouldBe(Condition.visible);
         page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().saveAddress();
         SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");

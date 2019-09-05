@@ -74,6 +74,7 @@ public class ChooseDoctorTest extends TestBase {
 //                .clearAllFilters()
 //                .verifyActiveDocGroup(pacient, doctor);
 //    }
+
     @Test(groups = "CD", description = "назначить участкового врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
@@ -94,6 +95,4 @@ public class ChooseDoctorTest extends TestBase {
 //                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
-
-    // TODO: 13.08.2018 тест назначить врача вызову из КЦ
 }
