@@ -16,42 +16,9 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по номеру через профиль", enabled = false)
-    @RetryCountIfFailed(2)
-    public void testSearchCard1() {
-        page.misHome().dispCard();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(3059);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
-    }
-
-    @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по полису", enabled = false)
-    @RetryCountIfFailed(2)
-    public void testSearchCard2() {
-        page.misHome().dispCard();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByPolNumber(7654321);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
-    }
-
-    @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по ФИО", enabled = false)
-    @RetryCountIfFailed(2)
-    public void testSearchCard3() {
-        page.misHome().dispCard();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByFio("Темников Дмитрий Олегович");
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
-    }
-
-    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
-    public void testSearchCard4() throws InterruptedException {
+    public void testSearchCardByCardNumber() throws InterruptedException {
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(1649);
@@ -62,7 +29,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
-    public void testSearchCard5() throws InterruptedException, IOException, JSONException {
+    public void testSearchCardByPolNumber() throws InterruptedException, IOException, JSONException {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
@@ -74,7 +41,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
-    public void testSearchCard6() throws InterruptedException, IOException, JSONException {
+    public void testSearchCardByFio() throws InterruptedException, IOException, JSONException {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();

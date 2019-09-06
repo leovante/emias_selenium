@@ -44,7 +44,8 @@ public class Ehr_medicalrecords {
     }
 
     public Ehr_medicalrecords open_MR() {
-        SelenideElement osmotr_gastroenterolga = $x("//span[@title = '" + d.getMedicar_record() + "']");
+        SelenideElement osmotr_gastroenterolga =
+                $x("//span[contains(text(),'" + d.getMedicar_record() + "')]");
         osmotr_gastroenterolga.doubleClick();
         return this;
     }
@@ -88,7 +89,8 @@ public class Ehr_medicalrecords {
 
     public Ehr_medicalrecords validate_iframe() throws InterruptedException {
         switchTo().frame($x("//iframe"));
-        $x("//center[contains(text(),'" + d.getMedicar_record() + "')]").shouldBe(Condition.visible);
+        $x("//center[contains(text(),'" + d.getMedicar_record() + "')]")
+                .shouldBe(Condition.visible);
         switchTo().defaultContent();
         Thread.sleep(1000);
         return this;

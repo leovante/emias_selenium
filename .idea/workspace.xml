@@ -2,24 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/Alarms.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/calldoctor/Calldoctor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/disp/Disp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/disp/DispAlarms.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lib/CalldoctorLib.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lib/Lib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lib/Lib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/PageBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/PageBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/disp/ExampPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/disp/ExampPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backLogTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backLogTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditPageTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/disp/JournalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/disp/JournalPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,12 +60,12 @@
           <entry key="class" value="8" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="675" />
+          <entry key="java" value="681" />
           <entry key="json" value="64" />
           <entry key="log" value="1" />
           <entry key="png" value="8" />
           <entry key="postgres" value="1" />
-          <entry key="properties" value="29" />
+          <entry key="properties" value="31" />
           <entry key="sql" value="95" />
           <entry key="sql заключение диспы" value="4" />
           <entry key="sql заключение диспы2" value="1" />
@@ -101,10 +87,10 @@
           <entry key="CLASS" value="8" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="8" />
-          <entry key="JAVA" value="675" />
+          <entry key="JAVA" value="681" />
           <entry key="JSON" value="64" />
           <entry key="PLAIN_TEXT" value="47" />
-          <entry key="Properties" value="29" />
+          <entry key="Properties" value="31" />
           <entry key="SQL" value="7" />
           <entry key="Scratch" value="89" />
           <entry key="XML" value="61" />
@@ -115,11 +101,11 @@
           <entry key="cell" value="183" />
           <entry key="dummy" value="44" />
           <entry key="gitignore" value="13" />
-          <entry key="java" value="14528" />
+          <entry key="java" value="14573" />
           <entry key="json" value="80" />
           <entry key="properties" value="27" />
           <entry key="sql" value="14451" />
-          <entry key="txt" value="653" />
+          <entry key="txt" value="656" />
           <entry key="xml" value="143" />
           <entry key="врач в блоке мероприятий по тарифам" value="9" />
           <entry key="задачи для постмана" value="2" />
@@ -129,9 +115,9 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="14528" />
+          <entry key="JAVA" value="14573" />
           <entry key="JSON" value="80" />
-          <entry key="PLAIN_TEXT" value="723" />
+          <entry key="PLAIN_TEXT" value="726" />
           <entry key="Properties" value="27" />
           <entry key="SQL" value="3" />
           <entry key="Scratch" value="14634" />
@@ -167,41 +153,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="20" column="10" selection-start-line="20" selection-start-column="8" selection-end-line="28" selection-end-column="34" />
+            <state relative-caret-position="222">
+              <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="97" column="9" lean-forward="true" selection-start-line="97" selection-start-column="9" selection-end-line="97" selection-end-column="9" />
-              <folding>
-                <element signature="e#2135#2184#0" />
-                <element signature="e#2190#2298#0" />
-                <element signature="e#2304#2465#0" />
-                <element signature="e#2467#2501#0" />
-                <element signature="e#2916#3627#0" />
-                <element signature="e#4125#4302#0" />
-                <element signature="e#4308#4493#0" />
-                <element signature="e#4495#4552#0" />
-                <element signature="e#7388#8832#0" />
-                <element signature="e#9801#11055#0" />
-                <element signature="e#11061#12314#0" />
-              </folding>
+            <state relative-caret-position="444">
+              <caret line="13" column="736" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="736" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lib/calldoctor/Calldoctor.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+            <state relative-caret-position="360">
+              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -218,7 +191,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>ModuleData</find>
       <find>testCancelCallFrom_Registr</find>
       <find>автотест</find>
       <find>call_noAge_noGender</find>
@@ -240,14 +212,15 @@
       <find>test_edit_mr_after_save</find>
       <find>test_sign_old_mr</find>
       <find>RetryCountIfFailed(3)</find>
-      <find>test_sign_new_mr</find>
       <find>smpChildMkab_testCallerFIO</find>
       <find>testPrintCard</find>
       <find>testCallMkabWaitoutID</find>
       <find>testCallSmpChildMkab</find>
-      <find>testDefaultValidationFieldParams</find>
       <find>testCompleteCallRegistr</find>
       <find>press</find>
+      <find>testSearchCard5</find>
+      <find>testDefaultValidationFieldParams</find>
+      <find>test_sign_new_mr</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources</dir>
@@ -264,8 +237,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/sql/disp/test hlt_disp_ServiceDocPrvd_192.168.7.54.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/card/Card.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/card/CardInter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/Pages.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datas/ModuleData.java" />
@@ -295,7 +266,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/lib/CalldoctorLib.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/utils/sql/DateGenerator.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datas/Datas.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_1.sql" />
@@ -315,6 +285,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/lib/calldoctor/Calldoctor.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pages/disp/JournalPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" />
       </list>
     </option>
   </component>
@@ -341,8 +314,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1805" />
-    <option name="y" value="44" />
+    <option name="x" value="1960" />
+    <option name="y" value="43" />
     <option name="width" value="1197" />
     <option name="height" value="965" />
   </component>
@@ -403,26 +376,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emias_selenium" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="calldoctor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="emias_selenium" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="disp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
@@ -547,7 +500,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567779892382" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1567782092634" />
     <property name="database.console.LAST_STATE" value="false" />
   </component>
   <component name="RunDashboard">
@@ -562,7 +515,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.CompleteServiceTest.testCompleteCallRegistr">
+  <component name="RunManager" selected="TestNG.CreateMRTest.test_sign_new_mr">
     <configuration name="CompleteServiceTest.testCompleteCallRegistr" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
@@ -581,17 +534,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CreateCallTest.testCallSmpChildMkab" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="CreateMRTest.test_sign_new_mr" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="emias.calldoctor.base.*" />
+          <option name="PATTERN" value="emias.medicalrecords.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.base" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.base.CreateCallTest" />
-      <option name="METHOD_NAME" value="testCallSmpChildMkab" />
+      <option name="PACKAGE_NAME" value="emias.medicalrecords" />
+      <option name="MAIN_CLASS_NAME" value="emias.medicalrecords.CreateMRTest" />
+      <option name="METHOD_NAME" value="test_sign_new_mr" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -599,17 +552,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EditPageTest.testCallMkabWaitoutID" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="JournalTest.testSearchCardByCardNumber" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="emias.calldoctor.base.*" />
+          <option name="PATTERN" value="emias.disp.base.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.base" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.base.EditPageTest" />
-      <option name="METHOD_NAME" value="testCallMkabWaitoutID" />
+      <option name="PACKAGE_NAME" value="emias.disp.base" />
+      <option name="MAIN_CLASS_NAME" value="emias.disp.base.JournalTest" />
+      <option name="METHOD_NAME" value="testSearchCardByCardNumber" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JournalTest.testSearchCardByPolNumber" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="regress_tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="emias.disp.base.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="emias.disp.base" />
+      <option name="MAIN_CLASS_NAME" value="emias.disp.base.JournalTest" />
+      <option name="METHOD_NAME" value="testSearchCardByPolNumber" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -635,38 +606,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidationTest.smpChildMkab_testCallerFIO" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="regress_tests" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emias.calldoctor.function.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.function" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.function.ValidationTest" />
-      <option name="METHOD_NAME" value="smpChildMkab_testCallerFIO" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="TestNG.ValidationTest.smpChildMkab_testCallerFIO" />
       <item itemvalue="TestNG.RouteListTest.testDefaultValidationFieldParams" />
-      <item itemvalue="TestNG.EditPageTest.testCallMkabWaitoutID" />
-      <item itemvalue="TestNG.CreateCallTest.testCallSmpChildMkab" />
       <item itemvalue="TestNG.CompleteServiceTest.testCompleteCallRegistr" />
+      <item itemvalue="TestNG.JournalTest.testSearchCardByPolNumber" />
+      <item itemvalue="TestNG.JournalTest.testSearchCardByCardNumber" />
+      <item itemvalue="TestNG.CreateMRTest.test_sign_new_mr" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.CompleteServiceTest.testCompleteCallRegistr" />
+        <item itemvalue="TestNG.CreateMRTest.test_sign_new_mr" />
         <item itemvalue="TestNG.RouteListTest.testDefaultValidationFieldParams" />
-        <item itemvalue="TestNG.CreateCallTest.testCallSmpChildMkab" />
-        <item itemvalue="TestNG.EditPageTest.testCallMkabWaitoutID" />
-        <item itemvalue="TestNG.ValidationTest.smpChildMkab_testCallerFIO" />
+        <item itemvalue="TestNG.JournalTest.testSearchCardByCardNumber" />
+        <item itemvalue="TestNG.JournalTest.testSearchCardByPolNumber" />
+        <item itemvalue="TestNG.CompleteServiceTest.testCompleteCallRegistr" />
       </list>
     </recent_temporary>
   </component>
@@ -838,7 +791,7 @@
       <workItem from="1567076295497" duration="8232000" />
       <workItem from="1567165149067" duration="4111000" />
       <workItem from="1567403462368" duration="256000" />
-      <workItem from="1567405850966" duration="77480000" />
+      <workItem from="1567405850966" duration="78951000" />
     </task>
     <task id="LOCAL-00583" summary="промежуточное">
       <created>1558521889761</created>
@@ -1078,12 +1031,12 @@
       <option name="project" value="LOCAL" />
       <updated>1567695716459</updated>
     </task>
-    <task id="LOCAL-00010" summary="Диспетчер. Исправил тесты отображения врачей в для операторов">
-      <created>1563363187403</created>
+    <task id="LOCAL-00010" summary="правки тестов 2.1">
+      <created>1567779914050</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1563363187405</updated>
+      <updated>1567779914055</updated>
     </task>
     <task id="LOCAL-00011" summary="Медзаписи. Подправил тесты подписания старых записей и новых шаблонов">
       <created>1563372998191</created>
@@ -1183,25 +1136,10 @@
       <option name="project" value="LOCAL" />
       <updated>1566564292145</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CompleteServiceTest_testCompleteCallRegistr - 2019.09.06 at 15h 44m 28s.xml">
-      <configuration name="CompleteServiceTest.testCompleteCallRegistr" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="CompleteServiceTest_testCompleteCallRegistr - 2019.09.06 at 16h 30m 53s.xml">
-      <configuration name="CompleteServiceTest.testCompleteCallRegistr" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="CompleteServiceTest_testCompleteCallRegistr - 2019.09.06 at 16h 46m 16s.xml">
-      <configuration name="CompleteServiceTest.testCompleteCallRegistr" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="CompleteServiceTest_testCompleteCallRegistr - 2019.09.06 at 16h 49m 36s.xml">
-      <configuration name="CompleteServiceTest.testCompleteCallRegistr" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="CompleteServiceTest_testCompleteCallRegistr - 2019.09.06 at 16h 57m 07s.xml">
-      <configuration name="CompleteServiceTest.testCompleteCallRegistr" configurationId="TestNG" />
-    </history-entry>
     <history-entry file="CompleteServiceTest_testCompleteCallRegistr - 2019.09.06 at 17h 13m 32s.xml">
       <configuration name="CompleteServiceTest.testCompleteCallRegistr" configurationId="TestNG" />
     </history-entry>
@@ -1217,9 +1155,24 @@
     <history-entry file="CompleteServiceTest_testCompleteCallRegistr - 2019.09.06 at 17h 23m 34s.xml">
       <configuration name="CompleteServiceTest.testCompleteCallRegistr" configurationId="TestNG" />
     </history-entry>
+    <history-entry file="JournalTest_testSearchCard5 - 2019.09.06 at 17h 48m 10s.xml">
+      <configuration name="JournalTest.testSearchCard5" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="JournalTest_testSearchCard5 - 2019.09.06 at 17h 51m 18s.xml">
+      <configuration name="JournalTest.testSearchCard5" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="JournalTest_testSearchCardByCardNumber - 2019.09.06 at 17h 53m 08s.xml">
+      <configuration name="JournalTest.testSearchCardByCardNumber" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="RouteListTest_testDefaultValidationFieldParams - 2019.09.06 at 17h 56m 45s.xml">
+      <configuration name="RouteListTest.testDefaultValidationFieldParams" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="CreateMRTest_test_sign_new_mr - 2019.09.06 at 17h 58m 21s.xml">
+      <configuration name="CreateMRTest.test_sign_new_mr" configurationId="TestNG" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="413046000" />
+    <option name="totallyTimeSpent" value="414517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1974" y="55" width="1234" height="1040" extended-state="6" />
@@ -1231,18 +1184,18 @@
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.54590166" side_tool="true" weight="0.22330096" />
-      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.67197454" visible="true" weight="0.25298128" />
+      <window_info active="true" content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.67197454" visible="true" weight="0.25298128" />
       <window_info id="Persistence" order="7" sideWeight="0.3280255" side_tool="true" weight="0.17537314" />
       <window_info id="Java Enterprise" order="8" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
       <window_info id="Web" order="9" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
       <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49328858" weight="0.35633484" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.31108597" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49307036" weight="0.29298642" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49307036" visible="true" weight="0.29298642" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.2857143" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" visible="true" weight="0.2963801" />
+      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" weight="0.2963801" />
       <window_info anchor="bottom" id="Structure" order="8" sideWeight="0.5008091" side_tool="true" weight="0.27172717" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5072707" side_tool="true" weight="0.63914025" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4904051" weight="0.20638297" />
@@ -1424,20 +1377,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/pacients/Profile16.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="78" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/ручное/сертификаты подписи.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1560,13 +1499,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="71" column="88" selection-start-line="71" selection-start-column="65" selection-end-line="71" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/datas/Datas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1592,13 +1524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="243" column="23" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
@@ -1705,43 +1630,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="10" column="670" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="670" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/disp/ExampPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-238">
           <caret line="503" column="64" selection-start-line="503" selection-start-column="64" selection-end-line="503" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="49" column="31" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="31" />
-          <folding>
-            <element signature="e#541#548#0" />
-            <element signature="method#testCancelTerapevt#0;class#RouteListTest#0" />
-            <element signature="e#1131#1209#0" />
-            <element signature="method#testEmpyFieldParams#0;class#RouteListTest#0" />
-            <element signature="e#1404#1487#0" />
-            <element signature="method#testSpaceValidationFieldParams#0;class#RouteListTest#0" />
-            <element signature="e#1696#1793#0" />
-            <element signature="e#2006#2135#0" />
-            <element signature="method#validateParamNotOpen#0;class#RouteListTest#0" />
-            <element signature="e#2383#2417#0" />
-            <element signature="e#2518#2631#0" />
-            <element signature="method#validateKallMeasure#0;class#RouteListTest#0" />
-            <element signature="e#3080#3212#0" />
-            <element signature="e#3328#3451#0" />
-            <element signature="method#viewSSRinZakluchenieOlder42#0;class#RouteListTest#0" />
-            <element signature="e#5127#5245#0" />
-            <element signature="method#viewSSRinZakluchenieLater42#0;class#RouteListTest#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1802,13 +1694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" column="10" selection-start-line="20" selection-start-column="8" selection-end-line="28" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
@@ -1826,6 +1711,74 @@
             <element signature="e#9801#11055#0" />
             <element signature="e#11061#12314#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="8" selection-end-line="28" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/disp/JournalPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="16" column="84" selection-start-line="16" selection-start-column="84" selection-end-line="16" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="142" column="26" selection-start-line="142" selection-start-column="26" selection-end-line="142" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="e#541#548#0" />
+            <element signature="method#testCancelTerapevt#0;class#RouteListTest#0" />
+            <element signature="e#1131#1209#0" />
+            <element signature="method#testEmpyFieldParams#0;class#RouteListTest#0" />
+            <element signature="e#1404#1487#0" />
+            <element signature="method#testSpaceValidationFieldParams#0;class#RouteListTest#0" />
+            <element signature="e#1696#1793#0" />
+            <element signature="e#1995#2124#0" />
+            <element signature="method#validateParamNotOpen#0;class#RouteListTest#0" />
+            <element signature="e#2372#2406#0" />
+            <element signature="e#2507#2620#0" />
+            <element signature="method#validateKallMeasure#0;class#RouteListTest#0" />
+            <element signature="e#3069#3201#0" />
+            <element signature="e#3317#3440#0" />
+            <element signature="method#viewSSRinZakluchenieOlder42#0;class#RouteListTest#0" />
+            <element signature="e#5116#5234#0" />
+            <element signature="method#viewSSRinZakluchenieLater42#0;class#RouteListTest#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="34" column="16" selection-start-line="34" selection-start-column="16" selection-end-line="34" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="13" column="736" lean-forward="true" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="736" />
         </state>
       </provider>
     </entry>
