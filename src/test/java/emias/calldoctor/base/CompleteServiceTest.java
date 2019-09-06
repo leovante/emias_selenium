@@ -18,7 +18,7 @@ public class CompleteServiceTest extends TestBase {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
 
         page.misHome().calldoctor();
-        page.createCall(pacient)
+        /*page.createCall(pacient)
                 .createCall()
                 .saveBtn();
         page.fullCard(pacient, testName()).chooseDoctorBtn();
@@ -26,9 +26,9 @@ public class CompleteServiceTest extends TestBase {
         page.fullCard(pacient, testName())
                 .completeServiceBtn()
                 .verifyDoneCall(doctor)
-                .closeCardBtn();
+                .closeCardBtn();*/
         page.dashboard()
-                .clearAllFilters()
-                .verifyDoneDocGroup(pacient, doctor);
+                .clearFilterDepart()
+                .verifyPacientNumberInServe(pacient, doctor);
     }
 }

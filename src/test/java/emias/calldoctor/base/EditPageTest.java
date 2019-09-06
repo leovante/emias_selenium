@@ -3,18 +3,15 @@ package emias.calldoctor.base;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.json.JSONException;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
@@ -69,7 +66,7 @@ public class EditPageTest extends TestBase {
                 .verifyNewCall()
                 .closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .verifyNewCallGroup(pacient2);
     }
 
@@ -92,7 +89,7 @@ public class EditPageTest extends TestBase {
                 .verifyNewCall()
                 .closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .verifyNewCallGroup(pacient2);
     }
 
@@ -118,13 +115,13 @@ public class EditPageTest extends TestBase {
     @Test(groups = "CD", description = "формализация неформализованного адреса на странице редактирования")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testCallMkabWaitoutID() throws IOException, InterruptedException, JSONException {
         PacientImpl pacient = new PacientImpl("Profile0_3_1");
         page.misHome().calldoctor();
         page.createCall(pacient).createCall_Api();
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).verifyNewCall();
         page.createCall(pacient).editCallBtn();
-        $x("//*[contains(.,'" + pacient.getAddress3adv() + "')]").shouldBe(Condition.visible);
+        as.isVisibleText(pacient.getAddress3adv());
     }
 }

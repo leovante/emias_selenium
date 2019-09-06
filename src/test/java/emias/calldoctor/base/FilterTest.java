@@ -43,7 +43,7 @@ public class FilterTest extends TestBase {
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
@@ -78,7 +78,7 @@ public class FilterTest extends TestBase {
         page.setDoctor().chooseDoctorTomorrow(doctor);
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .filter_all_tomorrow()
                 .verifyActiveDocGroup(pacientImpl, doctor)
                 .filter_tomorrow_today()

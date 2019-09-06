@@ -28,6 +28,7 @@ public class PrintFormTest extends TestBase {
         $x("//*[contains(text(),'Отчет по состоянию')]").shouldBe(Condition.visible);
     }
 
+/*
     @Ignore//не появляется доп. окно
     @Test(groups = "CD", description = "проверка формы печати на странице карты вызова")
     @Epic("Печать")
@@ -43,6 +44,7 @@ public class PrintFormTest extends TestBase {
         switchTo().window(1);
         $x("//*[contains(.,'Карта вызова')]").shouldBe(Condition.visible);
     }
+*/
 
     @Ignore
     @Test(groups = "CD", description = "проверка формы печати одного врача", enabled = false)

@@ -30,7 +30,7 @@ public class ChangeDoctorTest extends TestBase {
                 .verifyDoctor(doctor2)
                 .closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .verifyActiveDocGroup(pacientImpl, doctor2);
     }
 }

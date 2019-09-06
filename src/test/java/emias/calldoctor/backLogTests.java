@@ -11,7 +11,7 @@ public class backLogTests {
         page.portalDashboard().createCall(pacient);
         page.misHome().calldoctor();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .openNewCallDash(pacient);
         page.fullCard(testName()).verifyNewCall(pacient);
     }

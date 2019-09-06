@@ -2,6 +2,8 @@ package com.pages;
 
 import com.datas.ModuleData;
 import com.datas.calldoctor.Pacient;
+import com.lib.Lib;
+import com.lib.Alarms;
 import com.pages.calldoctor.controllers.StAddress;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;
@@ -27,6 +29,8 @@ public class PageBase {
     public CallDoctorCards callDoctorCards;
     public WebDriver driver;
     public Assistance as = new AssistanceImpl();
+    public Alarms alarms;
+    public Lib lib = new Lib();
     public static int callNumber;
     public static Logger LOGGER = LogManager.getLogger();
 

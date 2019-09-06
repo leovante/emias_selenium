@@ -47,7 +47,7 @@ public class RouteListTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testDefaultValidationFieldParams() throws InterruptedException {
         page.misHome().dispCard();
-        page.exampPage().validateDefaultParamWithSpace();
+        page.exampPage().validateClearParam();
     }
 
     @Test(groups = "disp", description = "пустое мероприятие не должно промаркироваться, даже если его не раскрыли", enabled = false)

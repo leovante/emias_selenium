@@ -25,7 +25,7 @@ public class ChooseDoctorTest extends TestBase {
                 .verifyActivCall(pacientImpl)
                 .closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
 
@@ -45,7 +45,7 @@ public class ChooseDoctorTest extends TestBase {
                 .verifyActivCall(pacientImpl)
                 .closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
 //                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
@@ -60,7 +60,7 @@ public class ChooseDoctorTest extends TestBase {
 //        page.portalDashboard().createCall(pacient);
 //        page.misHome().calldoctor();
 //        page.dashboard()
-//                .clearAllFilters()
+//                .clearFilterDepart()
 //                .openNewCallDash(pacient);
 //        page.fullCard(testName()).verifyNewCall(pacient);
 //        page.fullCard(testName()).chooseDoctorBtn();
@@ -71,7 +71,7 @@ public class ChooseDoctorTest extends TestBase {
 //                .verifyActivCall(pacient)
 //                .closeCardBtn();
 //        page.dashboard()
-//                .clearAllFilters()
+//                .clearFilterDepart()
 //                .verifyActiveDocGroup(pacient, doctor);
 //    }
 
@@ -91,7 +91,7 @@ public class ChooseDoctorTest extends TestBase {
                 .verifyActivCall(pacientImpl)
                 .closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
 //                .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }

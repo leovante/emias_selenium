@@ -3,6 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.commands.PressEscape;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
@@ -90,11 +91,13 @@ public class DashboardPage extends PageBase {
     }
 
     @Step("очистить фильтр подразделение")
-    public DashboardPage clearAllFilters() {
+    public DashboardPage clearFilterDepart() {
         ElementsCollection closeList = $$(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (SelenideElement closeBtn : closeList) {
             closeBtn.click();
         }
+        fioFilter.clear();
+        fioFilter.click();
         return this;
     }
 
@@ -189,18 +192,13 @@ public class DashboardPage extends PageBase {
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(Pacient pacient, Doctor doctor) {
-        SelenideElement doneFrame = $(By.xpath("//*[contains(text(),'Обслуженные')]")).$(By.xpath("../../."));
-        SelenideElement docFamBlock = doneFrame.$(By.xpath(".//span[contains(text(),'" + doctor.getFamily() + "')]"));
-        docFamBlock.click();
-
-        SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[@id='order']")).click();
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).shouldBe(Condition.visible);
+    public void verifyPacientNumberInServe(Pacient pacient, Doctor doctor) {
+        lib.calldoctor(pacient,doctor)
+                .expandDoctorInServe()
+                .sortInProgress()
+                .expandInProgress()
+                .expandPacient();
+        $x("//*[contains(text(),'" + parseTelephone(pacient) + "')]").shouldBe(Condition.visible);
         LOGGER.info("Краткая карта вызова проверена!");
     }
 
