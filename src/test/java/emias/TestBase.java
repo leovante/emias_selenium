@@ -29,7 +29,7 @@ public class TestBase extends AbstractTestNGSpringContextTests{
     private CallDoctorCards callDoctorCards;
     public ConfigFile configFile = new ConfigFile();
     public String testName;
-    protected Assistance as = new AssistanceImpl();
+    protected Assistance assistance = new AssistanceImpl();
 
     @Autowired
     public Page page;

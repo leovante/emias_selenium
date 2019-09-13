@@ -69,7 +69,6 @@ public class CreateCallPage extends BasePage {
     SelenideElement reason_cancel_call_validator = $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"));
     SelenideElement unpin_mkab = $x("//img[@src='./assets/img/close.png']");
     ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
-//    SelenideElement complaint = $x("//tag-input-form[@ng-reflect-placeholder='Введите текст жалобы'] | //tag-input-form[@ng-reflect-placeholder='Добавить жалобу']");
     SelenideElement complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']");
     SelenideElement allertCloseDialog_Yes = $(By.xpath("//button/span[contains(text(),'Да')]"));
 
@@ -82,7 +81,7 @@ public class CreateCallPage extends BasePage {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    public CreateCallPage createCall() throws  InterruptedException {
+    public CreateCallPage createCall() throws InterruptedException, NoticeException {
         addNewCall()
                 .sourceCall()
                 .address()
@@ -90,20 +89,23 @@ public class CreateCallPage extends BasePage {
                 .gender()
                 .complaint()
                 .polis()
-                .FIO()
+                .fio()
                 .telephone()
-                .caller();
+                .caller()
+                .saveBtn()
+                .allertBtn();
         return this;
     }
 
-    public CreateCallPage createCall_Mkab() throws InterruptedException {
+    public CreateCallPage createCall_Mkab() throws InterruptedException, NoticeException {
         addNewCall()
                 .sourceCall()
                 .searchField()
                 .addressPlus()
                 .complaint()
                 .telephone()
-                .caller();
+                .caller()
+                .saveBtn();
         return this;
     }
 
@@ -126,7 +128,7 @@ public class CreateCallPage extends BasePage {
                 .addressPlus()
                 .complaint()
                 .polis()
-                .FIO()
+                .fio()
                 .caller()
                 .telephone();
         LOGGER.info("Вызов отредактирован! " + driver.getCurrentUrl());
@@ -297,7 +299,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("фио")
-    private CreateCallPage FIO() {
+    private CreateCallPage fio() {
         if (pacient.getFamily() != null) {
             $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
         }

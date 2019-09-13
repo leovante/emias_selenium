@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class EditPageTest extends TestBase {
+public class EditTest extends TestBase {
 
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
     @Epic("Редактирование вызова")
@@ -26,7 +26,6 @@ public class EditPageTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacient)
                 .createCall()
-                .saveBtn()
                 .editCallBtn()
                 .verifyCallProfile1(pacient);
     }
@@ -39,7 +38,6 @@ public class EditPageTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacient)
                 .createCall()
-                .saveBtn()
                 .editCallBtn()
                 .saveBtn();
         $x("//*[contains(.,'Карта создана')]").shouldBe(Condition.visible);
@@ -54,9 +52,7 @@ public class EditPageTest extends TestBase {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile1");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall_Mkab()
-                .saveBtn();
+        page.createCall(pacient).createCall_Mkab();
         page.createCall(pacient2)
                 .editCallBtn()
                 .setDeafult()
@@ -77,9 +73,7 @@ public class EditPageTest extends TestBase {
         PacientImpl pacient = new PacientImpl("Profile1");
         PacientImpl pacient2 = new PacientImpl("Profile2");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacient).createCall();
         page.createCall(pacient2)
                 .editCallBtn()
                 .setDeafult()
@@ -101,9 +95,7 @@ public class EditPageTest extends TestBase {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile0_3");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall_Mkab()
-                .saveBtn();
+        page.createCall(pacient).createCall_Mkab();
         page.fullCard(pacient, testName()).editCallBtn();
         page.createCall(pacient2)
                 .setDeafult()
@@ -122,6 +114,6 @@ public class EditPageTest extends TestBase {
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).verifyNewCall();
         page.createCall(pacient).editCallBtn();
-        as.isVisibleText(pacient.getAddress3adv());
+        assistance.isVisibleText(pacient.getAddress3adv());
     }
 }

@@ -26,9 +26,7 @@ public class ValidationTest extends TestBase {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile2_0");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacient).createCall();
         page.fullCard(pacient, testName()).editCallBtn();
         page.createCall(pacient2)
                 .setDeafult()
@@ -61,9 +59,7 @@ public class ValidationTest extends TestBase {
     public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName())
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
@@ -75,9 +71,7 @@ public class ValidationTest extends TestBase {
     public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).editCallBtn();
         page.createCall(pacientImpl)
                 .cancelOnFullCardBtn("")
@@ -90,9 +84,7 @@ public class ValidationTest extends TestBase {
     public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
                 .cancelNewCallDash(pacientImpl)

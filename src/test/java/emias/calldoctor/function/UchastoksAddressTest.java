@@ -27,7 +27,6 @@ public class UchastoksAddressTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
                 .createCall()
-                .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'6-й Педиатрический')]").shouldBe(Condition.visible);
@@ -41,7 +40,6 @@ public class UchastoksAddressTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
                 .createCall()
-                .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'6-й Педиатрический')]").shouldBe(Condition.visible);
@@ -59,7 +57,6 @@ public class UchastoksAddressTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
                 .createCall()
-                .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'6-й Педиатрический')]").shouldBe(Condition.visible);
@@ -77,7 +74,6 @@ public class UchastoksAddressTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
                 .createCall()
-                .saveBtn()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'#6 Педиатрический')]").shouldNotBe(Condition.visible);
         $x("//*[contains(text(),'#2 Педиатрический')]").shouldNotBe(Condition.visible);

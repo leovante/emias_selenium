@@ -20,9 +20,7 @@ public class FilterTest extends TestBase {
     public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
@@ -36,9 +34,7 @@ public class FilterTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacientImpl, testName()).closeCardBtn();
@@ -70,10 +66,7 @@ public class FilterTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorTomorrow(doctor);
         page.fullCard(pacientImpl, testName()).closeCardBtn();

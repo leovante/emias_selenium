@@ -1,11 +1,12 @@
 package com.pages;
 
 import com.pages.callcenter.*;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import static com.codeborne.selenide.Selenide.page;
 
-@Repository
+@Component
 public interface CallCenterPage {
     default RecordDoctorBasePage recordDoctorPage() {
         return page(RecordDoctorBasePage.class);

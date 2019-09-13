@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -26,7 +25,7 @@ public class FormalizatorTest extends TestBase {
         page.createCall(pacientImpl)
                 .addNewCall()
                 .searchField();
-        as.isVisibleText(pacientImpl.getAddress3adv());
+        assistance.isVisibleText(pacientImpl.getAddress3adv());
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api с неформализованным адресом. Проверка окна формализации при назначении врача.")

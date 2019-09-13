@@ -23,9 +23,7 @@ public class CompleteServiceTest extends TestBase {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
 
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacient).createCall();
         page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacient, testName())
@@ -45,9 +43,7 @@ public class CompleteServiceTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacientImpl, testName())
@@ -64,9 +60,7 @@ public class CompleteServiceTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall_Mkab()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall_Mkab();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacientImpl, testName())

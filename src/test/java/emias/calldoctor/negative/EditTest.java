@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class EditPageTest extends TestBase {
+public class EditTest extends TestBase {
 
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что на странице редактирования id карты не стирается")
     @Epic("Создание вызова")
@@ -24,6 +24,6 @@ public class EditPageTest extends TestBase {
                 .verifyNewCall()
                 .editCallBtn();
         page.createCall(pacientImpl).saveBtn();
-        as.isNotVisibleText("Редактирование вызова № 0");
+        assistance.isNotVisibleText("Редактирование вызова № 0");
     }
 }

@@ -50,7 +50,7 @@ public class PrintFormTest extends TestBase {
     @Test(groups = "CD", description = "проверка формы печати одного врача", enabled = false)
     @Epic("Печать")
     @RetryCountIfFailed(2)
-    public void testPrintOneDoctor() throws IOException, JSONException, ParseException, InterruptedException {
+    public void testPrintOneDoctor() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();

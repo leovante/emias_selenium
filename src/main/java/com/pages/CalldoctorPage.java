@@ -5,13 +5,14 @@ import com.datas.calldoctor.Pacient;
 import com.pages.calldoctor.*;
 import com.pages.mis.BeforeWork;
 import com.pages.mis.MkabPage;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.page;
 
-@Repository
+@Component
 public interface CalldoctorPage {
     default CreateCallPage createCall(Pacient pacientImpl) throws IOException {
         return new CreateCallPage(pacientImpl);

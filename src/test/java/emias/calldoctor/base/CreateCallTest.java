@@ -12,21 +12,16 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.text.ParseException;
 
-import static com.codeborne.selenide.Selenide.$x;
-
 public class CreateCallTest extends TestBase {
 
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacientImpl = new PacientImpl("Profile0");
+    public void testCallRegistrEmpy() throws IOException, InterruptedException, JSONException, NoticeException {
+        Pacient pacient = new PacientImpl("Profile0");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        page.fullCard(pacientImpl, testName())
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName())
                 .verifyNewCall()
                 .closeCardBtn();
     }
@@ -34,13 +29,11 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "подтягивание неформализованного мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, JSONException, NoticeException {
         Pacient pacient = new PacientImpl("Profile0_3");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall_Mkab()
-                .saveBtn();
-        as.isVisibleText(pacient.getAddress());
+        page.createCall(pacient).createCall_Mkab();
+        assistance.isVisibleText(pacient.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
@@ -64,9 +57,7 @@ public class CreateCallTest extends TestBase {
     public void testCallRegistrMkab() throws Exception {
         Pacient pacientImpl = new PacientImpl("Profile2");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();

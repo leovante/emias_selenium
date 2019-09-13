@@ -25,10 +25,7 @@ public class ChangeDepartmentTest extends TestBase {
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("YudinaVzroslayaTerapev");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName())
                 .verifyDepartment(doctor)
                 .transfer_to_depart();
@@ -46,10 +43,7 @@ public class ChangeDepartmentTest extends TestBase {
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName())
                 .verifyDepartment(doctor)
                 .transfer_to_depart();
@@ -69,10 +63,7 @@ public class ChangeDepartmentTest extends TestBase {
         Doctor dep_doc = new Doctor("TemnikovVzroslayaTerapev");
         Doctor lpu_doc = new Doctor("TemnikovStend");
         page.misHome().calldoctorVzroslaya();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName())
                 .verifyDepartment(dep_doc)
                 .transfer_to_depart();
@@ -89,10 +80,7 @@ public class ChangeDepartmentTest extends TestBase {
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("TemnikovHimkiStend");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacient).createCall();
         page.fullCard(pacient, testName())
                 .verifyDepartment(doctor)
                 .transfer_to_depart();
@@ -110,10 +98,7 @@ public class ChangeDepartmentTest extends TestBase {
     public void testshowMeYourAdultPoliklinika() throws Exception {
         PacientImpl pacient = new PacientImpl("ProfileTransferDep-Lpu");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacient).createCall();
         page.fullCard(pacient, testName())
                 .transfer_to_depart();
         page.passLpu()
@@ -126,11 +111,8 @@ public class ChangeDepartmentTest extends TestBase {
     public void testshowMeYourKidPoliklinika() throws Exception {
         PacientImpl pacient = new PacientImpl("Profile2");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall_Mkab()
-                .saveBtn();
-        page.fullCard(pacient, testName())
-                .transfer_to_depart();
+        page.createCall(pacient).createCall_Mkab();
+        page.fullCard(pacient, testName()).transfer_to_depart();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
         Thread.sleep(1000);
         $(By.xpath("//*[contains(text(),'Взрослая поликлиника')]")).shouldNotBe(Condition.visible);

@@ -18,9 +18,7 @@ public class ChangeDoctorTest extends TestBase {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacientImpl, testName()).changeDoctorBtn();
