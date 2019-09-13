@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class ValidationTest extends TestBase {
 
-    @Test(groups = "CD", description = "проверка что вызов не сохраняется с пустым полем адрес после редактирования вызова")
+    @Test(groups = "CD", description = "вызов не сохраняется с пустым полем адрес после редактирования вызова")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
@@ -37,7 +37,7 @@ public class ValidationTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Не указан адрес')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Проверка что валидация ФИО кто вызвал не пропадает на странице редактирования")
+    @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Валидация ФИО кто вызвал не пропадает на странице редактирования")
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)

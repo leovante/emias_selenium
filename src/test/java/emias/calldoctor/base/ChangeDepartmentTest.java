@@ -104,7 +104,7 @@ public class ChangeDepartmentTest extends TestBase {
         // TODO: 7/24/2019 доделать проверку на стороне Химок
     }
 
-    @Test(groups = "CD", description = "проверить что на странице передачи в другое подр. у взрослого вызова отображается взрослое и не отображается детское")
+    @Test(groups = "CD", description = "На странице передачи в другое подр. у взрослого вызова отображается взрослое и не отображается детское")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() throws Exception {
@@ -120,7 +120,7 @@ public class ChangeDepartmentTest extends TestBase {
                 .validate_view_to_adult();
     }
 
-    @Test(groups = "CD", description = "проверить что на странице передачи в другое лпу у детского вызова не отображается взрослая поликлиника и наоборот")
+    @Test(groups = "CD", description = "На странице передачи в другое лпу у детского вызова не отображается взрослая поликлиника и наоборот")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() throws Exception {

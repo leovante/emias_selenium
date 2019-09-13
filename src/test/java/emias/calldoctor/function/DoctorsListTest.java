@@ -219,24 +219,11 @@ public class DoctorsListTest extends TestBase {
         as.isVisibleText(mokov.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адрессу нельзя назначить врача")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void smpChildMkab_dontChangeDoctor_neformalAddress() throws IOException, InterruptedException, JSONException{
-        PacientImpl pacientImpl = new PacientImpl("Profile19");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall_Api();
-        page.dashboard().openNewCallDash(pacientImpl);
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        $x("//*[contains(text(),'Выберите врача')]").shouldNotBe(Condition.visible);
-        $x("//*[contains(text(),'Поиск врача')]").shouldNotBe(Condition.visible);
-    }
-
-    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Test(groups = "CD", description = "оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void viewDoctorList_OnlyFromCurrentDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
         page.misHome().calldoctorVzroslaya();
         page.createCall(pacientImpl)
@@ -253,7 +240,7 @@ public class DoctorsListTest extends TestBase {
         doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
+    @Test(groups = "CD", description = "после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
@@ -281,7 +268,7 @@ public class DoctorsListTest extends TestBase {
         doctorsBlock.$x("//*[contains(text(),'Зайцева')]").shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю что после редактирования карты и изменения адреса пропадает привязка к старому участку")
+    @Test(groups = "CD", description = "после редактирования карты и изменения адреса пропадает привязка к старому участку")
     @Epic("Создание вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
@@ -297,6 +284,6 @@ public class DoctorsListTest extends TestBase {
                 .setDeafult()
                 .editCallPage_Mkab()
                 .saveBtn();
-        $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'#1 Гинекологический')]").shouldNotBe(Condition.visible);
     }
 }

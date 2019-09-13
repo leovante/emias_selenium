@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class ChooseDoctorTest extends TestBase {
 
-    @Test(groups = "CD", description = "назначить вызову из регистратуры врача на сегодня")
+    @Test(groups = "CD", description = "вызов из регистратуры. назначить врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_Registr() throws Exception {
@@ -29,7 +29,7 @@ public class ChooseDoctorTest extends TestBase {
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
 
-    @Test(groups = "CD", description = "назначить врача вызову из СМП на сегодня")
+    @Test(groups = "CD", description = "вызов из СМП. назначить врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
     public void testAppendDoctorToCall_SMP() throws Exception {

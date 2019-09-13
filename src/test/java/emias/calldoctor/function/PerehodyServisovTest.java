@@ -19,44 +19,6 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyServisovTest extends TestBase {
 
-    @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
-    @Epic("Проверка иконок МКАБ и ТАП")
-    @RetryCountIfFailed(2)
-    public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        PacientImpl pacientImpl = new PacientImpl("Profile1");
-        Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName())
-                .completeServiceBtn()
-                .verifyMkabIconDisable()
-                .verifyTapIconDisable()
-                .closeCardBtn();
-    }
-
-    @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
-    @Epic("Проверка иконок МКАБ и ТАП")
-    @RetryCountIfFailed(2)
-    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
-        Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall_Mkab()
-                .saveBtn();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName())
-                .completeServiceBtn()
-                .verifyMkabIconEnable()
-                .verifyTapIconDisable()
-                .closeCardBtn();
-    }
-
     @Test(groups = "CD", description = "проверка изменения врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
