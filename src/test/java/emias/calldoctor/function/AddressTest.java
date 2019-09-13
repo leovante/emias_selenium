@@ -51,16 +51,4 @@ public class AddressTest extends TestBase {
                 .searchField();
         $x("//*[@placeholder='Адрес']").getText().equals(pacientImpl.getAddress3adv());
     }
-
-    @Test(groups = "CD", description = "проверка заполнения неформализованного адреса при выборе мкаб на странице создания вызова")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testNotformalizeAddress() throws Exception {
-        Pacient pacientImpl = new PacientImpl("AdressNeformal");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .addNewCall()
-                .searchField();
-        as.isVisibleText(pacientImpl.getAddress3adv());
-    }
 }

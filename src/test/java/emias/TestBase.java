@@ -2,19 +2,17 @@ package emias;
 
 import com.config.AppConfig;
 import com.config.ConfigFile;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
-import com.pages.Pages;
+import com.pages.Page;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
 import com.system.service.HltDispExamServiceImpl;
 import com.utils.*;
 import com.utils.Selenium.SeleniumGrid;
-import com.utils.override.Assistance;
-import com.utils.override.AssistanceImpl;
+import com.utils.assistance.Assistance;
+import com.utils.assistance.AssistanceImpl;
 import emias.beforeRun.BeforeRun;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -26,13 +24,15 @@ import java.text.ParseException;
 
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
-public class TestBase extends AbstractTestNGSpringContextTests {
+public class TestBase extends AbstractTestNGSpringContextTests{
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;
     public ConfigFile configFile = new ConfigFile();
-    public static Pages page;
     public String testName;
     protected Assistance as = new AssistanceImpl();
+
+    @Autowired
+    public Page page;
 
     @Autowired
     public HltCallDoctorServiceImpl hltCallDoctorService;
@@ -64,7 +64,6 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public void setUp(@Optional String browser) throws IOException {
         driverInst = new WebDriverInstansiator(browser);
         driverInst.setDriver();
-        page = new Pages();
     }
 
     @AfterMethod(alwaysRun = true)

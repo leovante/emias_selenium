@@ -2,6 +2,7 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.PacientImpl;
+import com.lib.calldoctor.UchastokValidator;
 import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
@@ -40,8 +41,8 @@ public class UchastoksAddressTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
                 .createCall()
-                .saveBtn();
-        page.createCall(pacientImpl).selectUchastokFromNeUdalosOpredelit();
+                .saveBtn()
+                .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'6-й Педиатрический')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'1-й Гинекологический')]").shouldNotBe(Condition.visible);
@@ -71,17 +72,18 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile18");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
                 .createCall()
-                .saveBtn();
-        $(By.xpath("//*[contains(text(),'#6 Педиатрический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#3 Участок врача общей практики')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#4 Терапевтический')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'#5 Дерматологический')]")).shouldNotBe(Condition.visible);
+                .saveBtn()
+                .selectUchastokFromNeUdalosOpredelit();
+        $x("//*[contains(text(),'#6 Педиатрический')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'#2 Педиатрический')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'#3 Участок врача общей практики')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'#4 Терапевтический')]").shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'#5 Дерматологический')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "создаю вызов через СМП, что бы проверить " +
@@ -95,7 +97,8 @@ public class UchastoksAddressTest extends TestBase {
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
                 .openNewCallDash(pacientImpl);
-        $(By.xpath("//*[contains(text(),'#2 Педиатрический')]")).shouldBe(Condition.visible);
+        page.createCall(pacientImpl).selectUchastokFromNeUdalosOpredelit();
+        $x("//*[contains(text(),'#2 Педиатрический')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "создаю вызов через СМП, что бы проверить " +

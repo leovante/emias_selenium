@@ -3,11 +3,10 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.commands.PressEscape;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -17,7 +16,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class DashboardPage extends PageBase {
+public class DashboardPage extends BasePage {
     private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
     private SelenideElement exitBtn = $x("//span[contains(text(),'Выход')]");
     private SelenideElement instructionBtn = $x("//span[contains(text(),'Инструкция')]");

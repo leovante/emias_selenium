@@ -1,13 +1,13 @@
 package com.utils.Selenium;
 
-import com.pages.PageBase;
+import com.pages.BasePage;
 import org.json.JSONException;
 import org.testng.SkipException;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class SeleniumGrid extends PageBase {
+public class SeleniumGrid extends BasePage {
     static boolean status = false;
     static boolean grid = false;
     static boolean working = false;

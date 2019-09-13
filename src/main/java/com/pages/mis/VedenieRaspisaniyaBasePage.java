@@ -3,7 +3,7 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class VedenieRaspisaniyaPageBase extends PageBase {
+public class VedenieRaspisaniyaBasePage extends BasePage {
     SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
     SelenideElement deleteSheduleBtnWindow = $(By.id("btn_delete_schedule"));
     SelenideElement createShedule = $(By.xpath("//button[@id='btn_create']/span[2]"));
@@ -35,7 +35,7 @@ public class VedenieRaspisaniyaPageBase extends PageBase {
     SelenideElement saveBtn = $(By.xpath("//button[@id='btn_busy_save']/span"));
     SelenideElement copyShedule = $(By.xpath("//button[@id='btn_copy']/span[2]"));
 
-    public VedenieRaspisaniyaPageBase() throws IOException {
+    public VedenieRaspisaniyaBasePage() throws IOException {
     }
 
     @Step("Создать расписание")
@@ -61,7 +61,7 @@ public class VedenieRaspisaniyaPageBase extends PageBase {
     }
 
     @Step("задать неприемные дни")
-    public VedenieRaspisaniyaPageBase setNotReceiveDays(String firstDoctor) {
+    public VedenieRaspisaniyaBasePage setNotReceiveDays(String firstDoctor) {
 //        waitAllEmias();
 //        Keyboard keyboard = ((HasInputDevices) remoteDriver).getKeyboard();
 
@@ -103,7 +103,7 @@ public class VedenieRaspisaniyaPageBase extends PageBase {
     }
 
     @Step("удалить расписание")
-    public VedenieRaspisaniyaPageBase deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
+    public VedenieRaspisaniyaBasePage deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
 //        Keyboard keyboard = ((HasInputDevices) remoteDriver).getKeyboard();
 //        waitAllEmias();
 
@@ -143,7 +143,7 @@ public class VedenieRaspisaniyaPageBase extends PageBase {
     }
 
     @Step("проверить неприемные дни")
-    public VedenieRaspisaniyaPageBase verifyNotReceiveDays() {
+    public VedenieRaspisaniyaBasePage verifyNotReceiveDays() {
 //        waitAllEmias();
         $(By.xpath("//div[@id='schedule']/div/div/div"))
                 .$(By.xpath("span[contains(text(),'Врач на больничном')]"))
@@ -153,7 +153,7 @@ public class VedenieRaspisaniyaPageBase extends PageBase {
     }
 
     @Step("проверить удаление расписания")
-    public VedenieRaspisaniyaPageBase verifyDeletedShedle() {
+    public VedenieRaspisaniyaBasePage verifyDeletedShedle() {
         if (!$(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .findElements(By.xpath("//div[@style='background-color:#83B465;border-color:#83B465;color:#FFFFFF']")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
@@ -174,7 +174,7 @@ public class VedenieRaspisaniyaPageBase extends PageBase {
     }
 
     @Step("проверка создания распсиания")
-    public VedenieRaspisaniyaPageBase verifyCreatedShedule(String nameDoctor) throws InterruptedException {
+    public VedenieRaspisaniyaBasePage verifyCreatedShedule(String nameDoctor) throws InterruptedException {
         Thread.sleep(2000);
         $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .$(By.xpath("//*[contains(text(),'23:44 ')]"));

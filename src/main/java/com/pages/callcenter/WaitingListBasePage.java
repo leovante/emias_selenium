@@ -2,7 +2,7 @@ package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class WaitingListPageBase extends PageBase {
+public class WaitingListBasePage extends BasePage {
     private PacientImpl pacientImpl;
     SelenideElement waitspec = $(By.xpath("//div[@id='department-12102']/button[1]"));
     SelenideElement waitbutton = $(By.xpath("//*[contains(text(),'Записать в лист ожидания')]"));
@@ -19,10 +19,10 @@ public class WaitingListPageBase extends PageBase {
 //    @FindBy(xpath = "//button[@title='СТЕНД ЕМИАС МО; Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5']")
 //    WebElement lpu;
 
-    public WaitingListPageBase() throws IOException {
+    public WaitingListBasePage() throws IOException {
     }
 
-    public WaitingListPageBase waitingList(PacientImpl pacientImpl) {
+    public WaitingListBasePage waitingList(PacientImpl pacientImpl) {
         $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]")).click();
         waitspec.click();
         waitbutton.click();

@@ -8,7 +8,6 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,12 +15,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.SkipException;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.pages.PageBase.LOGGER;
+import static com.pages.BasePage.LOGGER;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;

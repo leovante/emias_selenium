@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import com.utils.CallDoctorCards;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -17,7 +17,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
-public class PrintFormPage extends PageBase {
+public class PrintFormPage extends BasePage {
     Pacient pacient;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");

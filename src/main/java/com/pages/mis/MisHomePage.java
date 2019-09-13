@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.config.ConfigFile;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import com.utils.DispUrlParser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -16,7 +16,7 @@ import java.net.MalformedURLException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class MisHomePage extends PageBase {
+public class MisHomePage extends BasePage {
     ConfigFile conf;
 
     public MisHomePage() throws IOException {

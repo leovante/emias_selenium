@@ -5,7 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import com.pages.calldoctor.controllers.StAddress;
 import com.utils.api_model.CallDoctorHttp;
 import com.utils.except.NoticeException;
@@ -14,7 +14,6 @@ import org.apache.http.HttpResponse;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -29,7 +28,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
-public class CreateCallPage extends PageBase {
+public class CreateCallPage extends BasePage {
     private Pacient pacient;
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
@@ -56,6 +55,8 @@ public class CreateCallPage extends PageBase {
     SelenideElement sourceSmp2 = $(By.id("sourceSmp"));
     SelenideElement sourceReg = $(By.id("source1"));
     SelenideElement callerType = $(By.xpath("//mat-select[@aria-label='Тип вызывающего']"));
+    SelenideElement callerType_pacient = $(By.xpath("//span[contains(.,'Пациент')]"));
+    SelenideElement callerType_predstavitel = $(By.xpath("//span[contains(.,'Представитель')]"));
     SelenideElement cancelBtn = $(By.id("cancelCall"));
     SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
     SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
@@ -81,7 +82,7 @@ public class CreateCallPage extends PageBase {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    public CreateCallPage createCall() throws IOException, InterruptedException, ParseException {
+    public CreateCallPage createCall() throws  InterruptedException {
         addNewCall()
                 .sourceCall()
                 .address()
@@ -90,42 +91,19 @@ public class CreateCallPage extends PageBase {
                 .complaint()
                 .polis()
                 .FIO()
-                .caller()
-                .telephone();
+                .telephone()
+                .caller();
         return this;
     }
 
-    public CreateCallPage createCall_2() throws IOException, InterruptedException, ParseException {
-        sourceCall()
-                .address()
-                .birthDay()
-                .gender()
-                .complaint()
-                .polis()
-                .FIO()
-                .caller()
-                .telephone();
-        return this;
-    }
-
-    public CreateCallPage createCall_Mkab() throws IOException, InterruptedException, ParseException {
+    public CreateCallPage createCall_Mkab() throws InterruptedException {
         addNewCall()
                 .sourceCall()
                 .searchField()
                 .addressPlus()
                 .complaint()
-                .caller()
-                .telephone();
-        return this;
-    }
-
-    public CreateCallPage createCall_Mkab_2() throws IOException, InterruptedException, ParseException {
-        sourceCall()
-                .searchField()
-                .addressPlus()
-                .complaint()
-                .caller()
-                .telephone();
+                .telephone()
+                .caller();
         return this;
     }
 
@@ -340,7 +318,7 @@ public class CreateCallPage extends PageBase {
     }
 
     @Step("возрастная категория")
-    public CreateCallPage vozrastKat() {
+    private CreateCallPage vozrastKat() {
         $(By.xpath("//button[2]/span/mat-icon")).click();
         vKat.click();
 
@@ -366,17 +344,17 @@ public class CreateCallPage extends PageBase {
         } else {
             if (years() > 18) {
                 callerType.click();
-                $(By.xpath("//span[contains(.,'Пациент')]")).click();
+                callerType_pacient.click();
             } else {
                 callerType.click();
-                $(By.xpath("//span[contains(.,'Представитель')]")).click();
+                callerType_predstavitel.click();
             }
         }
         return this;
     }
 
     @Step("количество лет")
-    public int years() {
+    private int years() {
         Date newData = new Date();
         Date bd = pacient.getBirthdate();
         int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;

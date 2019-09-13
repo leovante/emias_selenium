@@ -1,54 +1,33 @@
-package com.pages;
+package com.utils.assistance;
 
+import com.codeborne.selenide.Condition;
 import com.datas.ModuleData;
 import com.datas.calldoctor.Pacient;
-import com.lib.Lib;
-import com.lib.Alarms;
-import com.pages.calldoctor.controllers.StAddress;
-import com.pages.disp.measureBlock.Examps;
-import com.pages.disp.measureBlock.ExampsImpl;
-import com.utils.CallDoctorCards;
-import com.utils.override.Assistance;
-import com.utils.override.AssistanceImpl;
 import org.apache.commons.lang3.time.DateUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.Selenide.$x;
 
-public class PageBase {
-    public StAddress stAddress;
-    public CallDoctorCards callDoctorCards;
-    public WebDriver driver;
-    public Assistance as = new AssistanceImpl();
-    public Alarms alarms;
-    public Lib lib = new Lib();
-    public static int callNumber;
-    public static Logger LOGGER = LogManager.getLogger();
+public class AssistanceImpl implements Assistance {
 
-    @Autowired
-    public Examps examps = new ExampsImpl();
-
-    public PageBase() throws IOException {
-        this.driver = getWebDriver();
-    }
-
+    @Override
     public void isVisibleText(String text) {
-        as.isVisibleText(text);
+        $x("//*[contains(.,'" + text + "')]").shouldBe(Condition.visible);
     }
 
+    @Override
     public void isNotVisibleText(String text) {
-        as.isNotVisibleText(text);
+        $x("//*[contains(.,'" + text + "')]").shouldNotBe(Condition.visible);
     }
 
+    @Override
+    public void isContains(String text) {
+    }
+    @Override
     public String parseTelephone(ModuleData mData) {
         String telephone = mData.getMkab().getContactMPhone();
         if (mData.getSource() == "СМП") {
@@ -67,7 +46,7 @@ public class PageBase {
         }
         return telephone;
     }
-
+    @Override
     public String parseTelephone(Pacient pacientImpl) {
         String telephone = pacientImpl.getPhone();
         if (pacientImpl.getSource() == 4) {
@@ -86,15 +65,7 @@ public class PageBase {
         }
         return telephone;
     }
-
-    /*public String currentTime(String format) {
-        String time;
-        SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
-        Date date = Calendar.getInstance().getTime();
-        time = simpleDateFormatEdit.format(date);
-        return time;
-    }*/
-
+    @Override
     public ArrayList currentTimeList(String format) {
         ArrayList dateList = new ArrayList();
         SimpleDateFormat simpleDateFormatEdit = new SimpleDateFormat(format);
@@ -107,12 +78,7 @@ public class PageBase {
         dateList.add(simpleDateFormatEdit.format(date2));
         return dateList;
     }
-
-//    public void cardNumberParser(String text) {
-//        String strNew = text.replace("Карта вызова № ", "");
-//        this.callNumber = Integer.valueOf(strNew);
-//    }
-
+    @Override
     public Integer cardNumberParser(String text) {
         String strNew = text.replace("Карта вызова № ", "");
         return Integer.valueOf(strNew);

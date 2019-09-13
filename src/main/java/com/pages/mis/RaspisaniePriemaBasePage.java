@@ -7,7 +7,7 @@ import com.codeborne.selenide.commands.PressEnter;
 import com.codeborne.selenide.commands.PressEscape;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class RaspisaniePriemaPageBase extends PageBase {
+public class RaspisaniePriemaBasePage extends BasePage {
     static String terapevtTime;
     static String terapevtName;
 
@@ -44,7 +44,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
     SelenideElement kvotyCount = $(By.xpath("//*[@class='ng-binding'][@ng-hide='!data.IsQuotaDispType']"));
 
 
-    public RaspisaniePriemaPageBase() throws IOException {
+    public RaspisaniePriemaBasePage() throws IOException {
     }
 
     @Step("Сделать запись")
@@ -74,7 +74,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
         }
     }
 
-    public RaspisaniePriemaPageBase createDispMl(String pacient, String bd) {
+    public RaspisaniePriemaBasePage createDispMl(String pacient, String bd) {
         ml.click();
         mkabSearch.val(pacient);
         mlSearchBtn.click();
@@ -86,12 +86,12 @@ public class RaspisaniePriemaPageBase extends PageBase {
         return this;
     }
 
-    public RaspisaniePriemaPageBase saveAndClose() {
+    public RaspisaniePriemaBasePage saveAndClose() {
         $(By.xpath("//*[contains(text(),'Сохранить и закрыть')]")).click();
         return this;
     }
 
-    public RaspisaniePriemaPageBase generateML() throws InterruptedException {
+    public RaspisaniePriemaBasePage generateML() throws InterruptedException {
         String i = kvotyCount.getText();
         $(By.id("patientModelList-button")).$x(".//span").getValue();
         $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
@@ -124,7 +124,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
         switchTo().window("Медицинская Информационная Система");
     }
 
-    public RaspisaniePriemaPageBase generateML(Pacient pacient) throws InterruptedException {
+    public RaspisaniePriemaBasePage generateML(Pacient pacient) throws InterruptedException {
         ml.click();
         sinpmkabScheduleGrid.setValue(
                 pacient.getFamily() + " " +
@@ -156,18 +156,18 @@ public class RaspisaniePriemaPageBase extends PageBase {
         return this;
     }
 
-    public RaspisaniePriemaPageBase getTerapevtTime() {
+    public RaspisaniePriemaBasePage getTerapevtTime() {
         terapevtTime = $x("//*[contains(text(),'Прием врача-терапевта')]/../../div[7]/span").getText();
 //        terapevtName = $(By.xpath("//*[contains(text(),'Прием врача-терапевта')]/../../div[8]/span[2]")).getText();
         return this;
     }
 
-    public RaspisaniePriemaPageBase saveAndCloseBtn() {
+    public RaspisaniePriemaBasePage saveAndCloseBtn() {
         applyBtn.click();
         return this;
     }
 
-    public RaspisaniePriemaPageBase selectDoctor(Doctor doctor) {
+    public RaspisaniePriemaBasePage selectDoctor(Doctor doctor) {
         $(By.xpath("//td/div/span[contains(text(),'" +
                 doctor.getFamily() + " " +
                 doctor.getName() + " " +
@@ -176,7 +176,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
         return this;
     }
 
-    public RaspisaniePriemaPageBase disableIPK() {
+    public RaspisaniePriemaBasePage disableIPK() {
         $(By.xpath("//*[contains(text(),'Индивидуальное профилактическое консультирование')]"))
                 .$(By.xpath("./../..//div[13]/span[2]"))//[@ng-click='CancelService(exam)'][@ng-model='exam']
                 .scrollTo()
@@ -188,7 +188,7 @@ public class RaspisaniePriemaPageBase extends PageBase {
         return this;
     }
 
-    public RaspisaniePriemaPageBase validateTerapevtLast() {
+    public RaspisaniePriemaBasePage validateTerapevtLast() {
         $$(By.xpath("//div[class='examListBody']")).last()
                 .$(By.xpath(".//*[contains(text(),'Прием врача-терапевта')]"))
                 .scrollTo()

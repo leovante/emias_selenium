@@ -3,7 +3,7 @@ package com.pages.portal;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import com.system.service.HltCallDoctorServiceImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class PortalDashboard extends PageBase {
+public class PortalDashboard extends BasePage {
     SelenideElement enterRegister = $(By.xpath("//a[@class='b-btn b-btn--red b-registry-form__btn c-registry-form__btn']"));
     SelenideElement numberPolise = $(By.xpath("//input[@name='nPol']"));
     SelenideElement birthdate = $(By.xpath("//input[@name='birthday']"));

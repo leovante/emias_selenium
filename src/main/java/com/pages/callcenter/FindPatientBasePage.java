@@ -2,14 +2,14 @@ package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class FindPatientPageBase extends PageBase {
+public class FindPatientBasePage extends BasePage {
     private PacientImpl pacientImpl;
     SelenideElement fondPatient1 = $(By.xpath("//*[@id='fond-patients']/tr/td[2]"));
     SelenideElement fondPatient2 = $(By.xpath("//*[@id='fond-patients']/tr/td[3]"));
@@ -19,16 +19,16 @@ public class FindPatientPageBase extends PageBase {
     SelenideElement fio = $(By.name("surnameNamePatronymic"));
     SelenideElement birthday = $(By.name("birthday"));
 
-    public FindPatientPageBase() throws IOException {
+    public FindPatientBasePage() throws IOException {
     }
 
-    public FindPatientPageBase findByPolis(PacientImpl pacientImpl) {
+    public FindPatientBasePage findByPolis(PacientImpl pacientImpl) {
         this.pacientImpl = pacientImpl;
         findPatient(pacientImpl);
         return this;
     }
 
-    public FindPatientPageBase findByFio(PacientImpl pacientImpl) {
+    public FindPatientBasePage findByFio(PacientImpl pacientImpl) {
         this.pacientImpl = pacientImpl;
         findFio(pacientImpl);
         return this;

@@ -1,11 +1,10 @@
 package emias.beforeRun;
 
 import com.api.TestStend;
-import com.codeborne.selenide.WebDriverRunner;
 
 import java.io.IOException;
 
-import static com.pages.PageBase.LOGGER;
+import static com.pages.BasePage.LOGGER;
 
 public class BeforeRun {
     private TestStend testStend = new TestStend();
