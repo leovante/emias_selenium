@@ -1,4 +1,4 @@
-package com.pages;
+package com.pages.mis;
 
 import com.pages.mis.*;
 import org.springframework.stereotype.Component;

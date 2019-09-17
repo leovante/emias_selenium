@@ -3,6 +3,7 @@ package emias.calldoctor.backlog;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientDBImpl;
 import com.system.service.HltMkabService;
+import com.utils.except.NoticeException;
 import com.utils.testngRetryCount.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -25,7 +26,7 @@ public class CreateCallTestRandom extends TestBase {
     @Test(groups = "CD", description = "", enabled = false)
     @Epic("Создание рандомного вызова")
     @RetryCountIfFailed(0)
-    public void testCall() throws IOException, InterruptedException, ParseException, JSONException {
+    public void testCall() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         Pacient pacientImpl = new PacientDBImpl(mksb);
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();

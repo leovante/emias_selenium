@@ -1,4 +1,4 @@
-package com.pages;
+package com.pages.kladr;
 
 import com.pages.callcenter.*;
 import com.pages.kladr.Kladr;

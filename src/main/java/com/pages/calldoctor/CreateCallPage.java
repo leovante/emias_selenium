@@ -68,19 +68,15 @@ public class CreateCallPage extends BasePage {
     SelenideElement change_call = $(By.id("change"));
     SelenideElement reason_cancel_call_validator = $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"));
     SelenideElement unpin_mkab = $x("//img[@src='./assets/img/close.png']");
-    ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
     SelenideElement complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']");
     SelenideElement allertCloseDialog_Yes = $(By.xpath("//button/span[contains(text(),'Да')]"));
+    ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
 
     public CreateCallPage(Pacient pacient) throws IOException {
         this.pacient = pacient;
     }
 
-    protected static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-        long diffInMillies = date2.getTime() - date1.getTime();
-        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
-    }
-
+    @Step("создаю вызов")
     public CreateCallPage createCall() throws InterruptedException, NoticeException {
         addNewCall()
                 .sourceCall()
@@ -97,6 +93,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
+    @Step("создаю вызов с привязкой мкаб")
     public CreateCallPage createCall_Mkab() throws InterruptedException, NoticeException {
         addNewCall()
                 .sourceCall()
@@ -186,6 +183,13 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
+    @Step("поиск МКАБ")
+    public CreateCallPage searchField() {
+        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
+        $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
+        return this;
+    }
+
     @Step("выбор источника вызова")
     private CreateCallPage sourceCall() {
         try {
@@ -201,13 +205,6 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("поиск МКАБ")
-    public CreateCallPage searchField() {
-        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
-        $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
-        return this;
-    }
-
     @Step("ввод адреса")
     private CreateCallPage address() throws InterruptedException {
         stAddress = new StAddress(pacient);
@@ -219,23 +216,6 @@ public class CreateCallPage extends BasePage {
         addressPlus();
         return this;
     }
-
-
-
-
-    /*@Step("жду загрузку адреса")
-    void addressLoadWaiter() throws InterruptedException {
-        kto_pacient_header.shouldBe(Condition.visible);
-        if (new_call_header.isDisplayed()) {
-            int i = 0;
-            do {
-                LOGGER.info("жду загрузку адреса");
-                Thread.sleep(1000);
-                i++;
-            } while (!adress.$x("..//mat-chip[contains(text(),'Московская обл.,')]").is(Condition.visible) && i < 10);
-            Assert.assertTrue(adress.$x("..//mat-chip[contains(text(),'Московская обл.,')]").is(Condition.visible), "адрес не загрузился");
-        }
-    }*/
 
     @Step("уточняю адрес")
     private CreateCallPage addressPlus() {
@@ -326,7 +306,7 @@ public class CreateCallPage extends BasePage {
 
         Date newData = new Date();
         Date bd = pacient.getBirthdate();
-        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        int years = (int) assistance.getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
         if (years > 18) {
             $(By.xpath("//span[contains(.,'Взрослые')]")).click();
         }
@@ -344,7 +324,7 @@ public class CreateCallPage extends BasePage {
             $(By.id("callName")).setValue("ИмяВызывающего");
             $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
         } else {
-            if (years() > 18) {
+            if (assistance.years(pacient) > 18) {
                 callerType.click();
                 callerType_pacient.click();
             } else {
@@ -355,16 +335,8 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("количество лет")
-    private int years() {
-        Date newData = new Date();
-        Date bd = pacient.getBirthdate();
-        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
-        return years;
-    }
-
     @Step("кнопка сохранить")
-    public CreateCallPage saveBtn() throws InterruptedException, NoticeException {
+    public CreateCallPage saveBtn() throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement save = $(By.id("save"));
         save.click();
@@ -372,7 +344,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("кнопка сохранить")
-    public CreateCallPage allertBtn() throws InterruptedException, NoticeException {
+    public CreateCallPage allertBtn() {
         allertCloseDialog_Yes.click();
         return this;
     }

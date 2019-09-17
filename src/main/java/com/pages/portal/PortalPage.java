@@ -1,4 +1,4 @@
-package com.pages;
+package com.pages.portal;
 
 import com.pages.mis.*;
 import com.pages.portal.PortalDashboard;

@@ -1,4 +1,4 @@
-package com.pages;
+package com.pages.calldoctor;
 
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;

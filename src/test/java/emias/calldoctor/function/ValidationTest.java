@@ -22,7 +22,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "вызов не сохраняется с пустым полем адрес после редактирования вызова")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void callNotSaveWithoutAddressAfterEdit() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile2_0");
         page.misHome().calldoctor();

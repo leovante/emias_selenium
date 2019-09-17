@@ -14,7 +14,6 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-@Listeners(TestMethodCapture.class)
 public class CreateCallTest extends TestBase {
 
     @Test(groups = "CD", description = "сразу при вводе адреса должна быть выпадашка")

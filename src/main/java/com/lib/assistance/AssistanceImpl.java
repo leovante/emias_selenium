@@ -1,14 +1,16 @@
-package com.utils.assistance;
+package com.lib.assistance;
 
 import com.codeborne.selenide.Condition;
 import com.datas.ModuleData;
 import com.datas.calldoctor.Pacient;
+import io.qameta.allure.Step;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -82,5 +84,19 @@ public class AssistanceImpl implements Assistance {
     public Integer cardNumberParser(String text) {
         String strNew = text.replace("Карта вызова № ", "");
         return Integer.valueOf(strNew);
+    }
+
+    @Override
+    public long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
+        long diffInMillies = date2.getTime() - date1.getTime();
+        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+    }
+
+    @Override
+    public int years(Pacient pacient) {
+        Date newData = new Date();
+        Date bd = pacient.getBirthdate();
+        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        return years;
     }
 }

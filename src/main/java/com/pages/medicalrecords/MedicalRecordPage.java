@@ -1,4 +1,4 @@
-package com.pages;
+package com.pages.medicalrecords;
 
 import com.datas.Datas;
 import com.pages.disp.ExampPage;

@@ -17,7 +17,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException, InterruptedException, JSONException, NoticeException {
+    public void callRegistrEmpy() throws IOException, InterruptedException, JSONException, NoticeException {
         Pacient pacient = new PacientImpl("Profile0");
         page.misHome().calldoctor();
         page.createCall(pacient).createCall();
@@ -42,9 +42,7 @@ public class CreateCallTest extends TestBase {
     public void testCallRegistr() throws Exception {
         Pacient pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();

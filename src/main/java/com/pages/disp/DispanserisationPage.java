@@ -1,4 +1,4 @@
-package com.pages;
+package com.pages.disp;
 
 import com.pages.disp.ExampPage;
 import com.pages.disp.JournalPage;

@@ -1,4 +1,4 @@
-package com.pages;
+package com.pages.callcenter;
 
 import com.pages.callcenter.*;
 import org.springframework.stereotype.Component;
