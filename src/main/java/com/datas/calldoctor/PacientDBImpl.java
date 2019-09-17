@@ -220,7 +220,6 @@ public class PacientDBImpl implements Pacient {
     public PacientDBImpl(HltMkabService hltMkabService) throws IOException, JSONException {
         this.mksb = hltMkabService;
         Optional<HltMkabEntity> mk = mksb.findRandom();
-        System.out.println();
         mk.ifPresent(HltMkabEntity -> {
             this.seriespol = HltMkabEntity.getsPol();
             this.numberpol = HltMkabEntity.getnPol();

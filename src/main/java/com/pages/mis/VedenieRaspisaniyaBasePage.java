@@ -148,7 +148,7 @@ public class VedenieRaspisaniyaBasePage extends BasePage {
         $(By.xpath("//div[@id='schedule']/div/div/div"))
                 .$(By.xpath("span[contains(text(),'Врач на больничном')]"))
                 .shouldBe(Condition.visible);//это название заголовка
-        LOGGER.info("Проверка наличия заголовка форс-мажора");
+        logger2.info("Проверка наличия заголовка форс-мажора");
         return this;
     }
 
@@ -178,7 +178,7 @@ public class VedenieRaspisaniyaBasePage extends BasePage {
         Thread.sleep(2000);
         $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .$(By.xpath("//*[contains(text(),'23:44 ')]"));
-        LOGGER.info("Проверил что для доктора " + nameDoctor + " создано расписание!");
+        logger2.info("Проверил что для доктора " + nameDoctor + " создано расписание!");
         return this;
     }
 }

@@ -15,7 +15,7 @@ public class Logging extends ExitCodeListener {
 //        if (!(result.getThrowable() instanceof UIAssertionError)) {
 //            try {
 //                ReportPortalMessage message = new ReportPortalMessage(new File(screenshot(driver())), rp_message);
-//                LOGGER.info(message);
+//                logger2.info(message);
 //            } catch (IOException e) {
 //                e.printStackTrace();
 //            }

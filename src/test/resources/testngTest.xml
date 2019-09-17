@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Name suite - Test" thread-count="1" parallel="classes">
+<suite name="Suite - Test" thread-count="1" parallel="classes">
     <parameter name="gridRun" value="true"/>
     <parameter name="testng" value="true"/>
 
@@ -17,7 +17,7 @@
             </run>
         </groups>
         <classes>
-            <class name="emias.calldoctor.base.ChangeDepartmentTest"/>
+            <class name="emias.calldoctor.backlog.CreateCall"/>
         </classes>
         <!--<packages>-->
         <!--<package name="emias.calldoctor22.base"/>-->

@@ -72,18 +72,18 @@ public class SearchRow extends BasePage {
         if (!webDriver.findElements(By.id("loaderleftspacer")).isEmpty()) {
             wait.until(ExpectedConditions.stalenessOf(webDriver.findElement(By.id("loaderleftspacer"))));
         }
-        LOGGER.info("click callDoctorSearchBtn");
+        logger2.info("click callDoctorSearchBtn");
         callDoctorSearchBtn.click();
     }
 
     public void waitForSearchResults() {
-        //LOGGER.info("waitClickableJS why table appeared");
+        //logger2.info("waitClickableJS why table appeared");
         wait.until(ExpectedConditions.elementToBeClickable(tableGrid));
-        //LOGGER.info("the table appeared");
+        //logger2.info("the table appeared");
     }
 
     public void verificationTableGridNull() {
-        //LOGGER.info("Проверка что таблицы нет");
+        //logger2.info("Проверка что таблицы нет");
         if (!webDriver.findElements(By.xpath("//table[@id='call_doc_house_grid']/tbody/tr[2]/td")).isEmpty()) {
             throw new NullPointerException("Ошибка, Таблица загрузилась!");
         }

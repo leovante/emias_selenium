@@ -74,7 +74,7 @@ public class HomeBasePage extends BasePage {
     public void createSomeRecords(int i) throws InterruptedException, IOException {
         int n = 1;
         while (n <= i) {
-            LOGGER.info("Обрабатываю врача №: " + n);
+            logger2.info("Обрабатываю врача №: " + n);
             String doctor_num = new DoctorMethods().getUnicalDoctor3(n);
             String doctor_num_fam = VedenieRaspisaniyaBasePage.getSecondName(doctor_num);
 //            SQLDemonstration.deleteShedule(doctor_num_fam);

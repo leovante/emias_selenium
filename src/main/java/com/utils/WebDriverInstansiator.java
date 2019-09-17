@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.pages.BasePage.LOGGER;
+import static com.pages.BasePage.logger2;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;
@@ -90,7 +90,7 @@ public class WebDriverInstansiator {
         if (!String.valueOf(dimension).equals("(1919, 1079)")) {
             throw new SkipException("Ошибка. Размер окна браузера некорректный!" + dimension);
         } else {
-            LOGGER.info(
+            logger2.info(
                     "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + conf.getHeadless() + "; ");
@@ -98,7 +98,7 @@ public class WebDriverInstansiator {
         Configuration.timeout = 20000;
         Configuration.reportsFolder = "target/test-result/reports";
         Configuration.savePageSource = false;
-        LOGGER.info("Selenium driver is ready");
+        logger2.info("Selenium driver is ready");
     }
 
     public void driverClose() {
@@ -109,6 +109,6 @@ public class WebDriverInstansiator {
         if (remoteDriver != null) {
             WebDriverRunner.closeWebDriver();
         }
-        LOGGER.info("Selenium driver is close");
+        logger2.info("Selenium driver is close");
     }
 }

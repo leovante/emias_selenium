@@ -3,10 +3,10 @@ package com.pages.callcenter;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.PacientImpl;
 import com.pages.BasePage;
-import org.junit.Assert;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.testng.Assert;
 
 import java.io.IOException;
 
@@ -107,23 +107,23 @@ public class CallDoctorBasePage extends BasePage {
         String complaint=com.getText();
 
         Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
-        LOGGER.info(lpu + " есть");
+        logger2.info(lpu + " есть");
         Assert.assertTrue(arg2.contains(fio));
-        LOGGER.info(fio + " есть");
+        logger2.info(fio + " есть");
         Assert.assertTrue(arg3.contains(birthday));
-        LOGGER.info(birthday + " есть");
+        logger2.info(birthday + " есть");
         Assert.assertTrue(arg4.contains(adress));
-        LOGGER.info(adress + " есть");
+        logger2.info(adress + " есть");
         Assert.assertTrue(arg5.contains(porch));
-        LOGGER.info(porch + " есть");
+        logger2.info(porch + " есть");
         Assert.assertTrue(arg6.contains(floor));
-        LOGGER.info(floor + " есть");
+        logger2.info(floor + " есть");
         Assert.assertTrue(arg7.contains(intercom));
-        LOGGER.info(intercom + " есть");
+        logger2.info(intercom + " есть");
         Assert.assertTrue(arg8.contains(phone));
-        LOGGER.info(phone + " есть");
+        logger2.info(phone + " есть");
         Assert.assertTrue(arg9.contains(complaint));
-        LOGGER.info(complaint + " есть");
+        logger2.info(complaint + " есть");
         return this;
     }
 
@@ -149,23 +149,23 @@ public class CallDoctorBasePage extends BasePage {
         String complaint=com.getText();
 
         Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
-        LOGGER.info(lpu + " есть");
+        logger2.info(lpu + " есть");
         Assert.assertTrue(arg1.contains(fio));
-        LOGGER.info(fio + " есть");
+        logger2.info(fio + " есть");
         Assert.assertTrue(birthday.contains(""));
-        LOGGER.info(birthday + " есть");
+        logger2.info(birthday + " есть");
         Assert.assertTrue(arg3.contains(adress));
-        LOGGER.info(adress + " есть");
+        logger2.info(adress + " есть");
         Assert.assertTrue(porch.contains(""));
-        LOGGER.info(porch + " есть");
+        logger2.info(porch + " есть");
         Assert.assertTrue(floor.contains(""));
-        LOGGER.info(floor + " есть");
+        logger2.info(floor + " есть");
         Assert.assertTrue(intercom.contains(""));
-        LOGGER.info(intercom + " есть");
+        logger2.info(intercom + " есть");
         Assert.assertTrue(arg4.contains(phone));
-        LOGGER.info(phone + " есть");
+        logger2.info(phone + " есть");
         Assert.assertTrue(arg5.contains(complaint));
-        LOGGER.info(complaint + " есть");
+        logger2.info(complaint + " есть");
         return this;
     }
 

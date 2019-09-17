@@ -40,7 +40,7 @@ public class FullCardPage extends BasePage {
 
     public FullCardPage(String testName) throws IOException {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
-        LOGGER.info("Открыл карту вызова url " + url());
+        logger2.info("Открыл карту вызова url " + url());
     }
 
     public FullCardPage(Pacient pacient, String testName) throws IOException {
@@ -50,7 +50,7 @@ public class FullCardPage extends BasePage {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        LOGGER.info("Открыл карту вызова url " + url());
+        logger2.info("Открыл карту вызова url " + url());
     }
 
     @Step("проверяю наличие базовых элементов карты вызова")
@@ -123,7 +123,7 @@ public class FullCardPage extends BasePage {
 
     @Step("проверяю время из списка")
     void assertTimeContains(ArrayList curTime, String expTime) {
-        LOGGER.info("curTime: " + curTime + " " + "expTime: " + expTime);
+        logger2.info("curTime: " + curTime + " " + "expTime: " + expTime);
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 
@@ -133,7 +133,7 @@ public class FullCardPage extends BasePage {
         baseElements();
         basePacient();
         verifyTime();
-        LOGGER.info("Подробная карта вызова проверена!");
+        logger2.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -142,7 +142,7 @@ public class FullCardPage extends BasePage {
         status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();
-        LOGGER.info("Подробная карта вызова проверена!");
+        logger2.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -153,7 +153,7 @@ public class FullCardPage extends BasePage {
         baseElements();
         basePacient();
         baseDoctor(doctor);
-        LOGGER.info("Подробная карта вызова проверена!");
+        logger2.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -209,7 +209,7 @@ public class FullCardPage extends BasePage {
         card.shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
-        LOGGER.info("Карта закрыта!");
+        logger2.info("Карта закрыта!");
         return this;
     }
 

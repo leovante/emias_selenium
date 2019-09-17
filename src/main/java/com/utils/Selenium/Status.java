@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import static com.pages.BasePage.LOGGER;
+import static com.pages.BasePage.logger2;
 
 public class Status {
     static String URL = "http://localhost:4444/grid/api/hub";
@@ -25,12 +25,12 @@ public class Status {
 
     /*при запуске проекта первое обращение на адрес селениума, проверка что он запущен*/
     static boolean checkRunningStatus() throws JSONException, InterruptedException, IOException {
-        LOGGER.info("Проверка запущен ли селениум");
+        logger2.info("Проверка запущен ли селениум");
         if (response()) {
-            LOGGER.info("Проверка показала что селениум уже запущен!");
+            logger2.info("Проверка показала что селениум уже запущен!");
             return true;
         }
-        LOGGER.info("Проверка показала что селениум не запущен...");
+        logger2.info("Проверка показала что селениум не запущен...");
         return false;
     }
 
@@ -51,11 +51,11 @@ public class Status {
             entity = httpResponse.getEntity();
             responseString = EntityUtils.toString(entity, "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            LOGGER.info("Не могу подключиться. Код ошибки - 1!");
+            logger2.info("Не могу подключиться. Код ошибки - 1!");
         } catch (ClientProtocolException e) {
-            LOGGER.info("Не могу подключиться. Код ошибки - 2!");
+            logger2.info("Не могу подключиться. Код ошибки - 2!");
         } catch (IOException e) {
-            LOGGER.info("Не могу подключиться. Код ошибки - 3!");
+            logger2.info("Не могу подключиться. Код ошибки - 3!");
         }
         if (httpResponse != null
                 && httpResponse.getStatusLine().getStatusCode() == 200

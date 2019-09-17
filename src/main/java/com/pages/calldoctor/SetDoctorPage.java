@@ -29,7 +29,7 @@ public class SetDoctorPage extends BasePage {
     public SetDoctorPage chooseDoctorToday(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
-        LOGGER.info("Врач выбран!");
+        logger2.info("Врач выбран!");
         return this;
     }
 
@@ -38,9 +38,9 @@ public class SetDoctorPage extends BasePage {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         for (int i = 1; appenToday.isDisplayed(); i++) {
             appenToday.click();
-            LOGGER.info("нажал на кнопку " + i + " раз");
+            logger2.info("нажал на кнопку " + i + " раз");
         }
-        LOGGER.info("Врач выбран!");
+        logger2.info("Врач выбран!");
         return this;
     }
 
@@ -48,7 +48,7 @@ public class SetDoctorPage extends BasePage {
     public SetDoctorPage chooseDoctorTomorrow(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenTomorrow.click();
-        LOGGER.info("Врач выбран!");
+        logger2.info("Врач выбран!");
         return this;
     }
 
@@ -75,7 +75,7 @@ public class SetDoctorPage extends BasePage {
         zapisat.click();
         for (int i = 1; zapisat.isDisplayed() && i < 100; i++) {
             zapisat.click();
-            LOGGER.info("Я нажал на эту кнопку " + i + " раз");
+            logger2.info("Я нажал на эту кнопку " + i + " раз");
         }
         return this;
     }
@@ -87,7 +87,7 @@ public class SetDoctorPage extends BasePage {
         zapisatDobavit.click();
         for (int i = 1; zapisatDobavit.isDisplayed() && i < 100; i++) {
             zapisatDobavit.click();
-            LOGGER.info("Я нажал на эту кнопку " + i + " раз");
+            logger2.info("Я нажал на эту кнопку " + i + " раз");
         }
         return this;
     }

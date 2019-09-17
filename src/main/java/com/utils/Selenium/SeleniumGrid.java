@@ -38,9 +38,9 @@ public class SeleniumGrid extends BasePage {
                 }
                 Thread.sleep(1000);
             }
-            LOGGER.info("Selenium Grid запущен!");
+            logger2.info("Selenium Grid запущен!");
         } else {
-            LOGGER.info("Selenium Grid не запускался!");
+            logger2.info("Selenium Grid не запускался!");
         }
     }
 
@@ -51,11 +51,11 @@ public class SeleniumGrid extends BasePage {
             urlHub.openConnection().getInputStream();
             URL urlNode = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
             urlNode.openConnection().getInputStream();
-            LOGGER.info("Остановил хаб Selenium grid");
+            logger2.info("Остановил хаб Selenium grid");
         } else {
-            LOGGER.info("Селениум грид работает, остановка невозможна!");
+            logger2.info("Селениум грид работает, остановка невозможна!");
         }
-        LOGGER.info("Тестирование закончено!");
+        logger2.info("Тестирование закончено!");
     }
 
     // TODO: 11/2/2018 сделать параллельный запуск старой версии хрома

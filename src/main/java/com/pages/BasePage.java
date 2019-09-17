@@ -1,5 +1,6 @@
 package com.pages;
 
+import com.config.ConfigFile;
 import com.datas.ModuleData;
 import com.datas.calldoctor.Pacient;
 import com.lib.Lib;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BasePage {
+    public ConfigFile conf;
     public StAddress stAddress;
     public CallDoctorCards callDoctorCards;
     public WebDriver driver;
@@ -28,13 +30,14 @@ public class BasePage {
     public Alarms alarms;
     public Lib lib = new Lib();
     public static int callNumber;
-    public static Logger LOGGER = LogManager.getLogger();
+    public static Logger logger2 = LogManager.getLogger();
 
     @Autowired
     public Examps examps = new ExampsImpl();
 
     public BasePage() throws IOException {
         this.driver = getWebDriver();
+        this.conf = new ConfigFile();
     }
 
     public void isVisibleText(String text) {

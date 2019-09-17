@@ -3,10 +3,11 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.config.ConfigFile;
 import com.pages.BasePage;
 import com.utils.DispUrlParser;
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
@@ -17,10 +18,8 @@ import java.net.MalformedURLException;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MisHomePage extends BasePage {
-    ConfigFile conf;
 
     public MisHomePage() throws IOException {
-        conf = new ConfigFile();
     }
 
     @Step("Открываю стенд")
@@ -29,7 +28,7 @@ public class MisHomePage extends BasePage {
         $(By.id("Login")).setValue(conf.getLogin());
         $(By.id("Password")).setValue(conf.getPassword());
         $(By.id("loginBtn")).click();
-        LOGGER.info("Открыл дашборд МИС " + conf.getUrl());
+        logger2.info("Открыл дашборд МИС " + conf.getUrl());
     }
 
     @Step("изменяю куки для входа под юр.лицом")
@@ -43,13 +42,13 @@ public class MisHomePage extends BasePage {
     @Step("Вход в модуль диспетчер")
     public void calldoctor() {
         open(conf.getCalldoctor());
-        LOGGER.info("Открыл модуль диспетчер по прямой ссылке " + conf.getCalldoctor());
+        logger2.debug("Открыл модуль диспетчер по прямой ссылке: " + conf.getCalldoctor());
     }
 
     @Step("Вход в модуль диспетчер от взрослой поликлиникой")
     public void calldoctorVzroslaya() {
         open(conf.getCalldoctorVz());
-        LOGGER.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения " + conf.getCalldoctorVz());
+        logger2.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
     }
 
     @Step("Захожу в диспетчер через МИС под админом")
@@ -65,13 +64,13 @@ public class MisHomePage extends BasePage {
     @Step("Вход в модуль диспансеризация через журнал")
     public void dispJournal() {
         open(conf.getDispJournal());
-        LOGGER.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
+        logger2.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
     }
 
     @Step("Вход в карту диспансеризации")
     public void dispCard() {
         open(conf.getDispCard());
-        LOGGER.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
+        logger2.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
     }
 
     @Step("Вход в карту диспансеризации")

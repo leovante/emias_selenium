@@ -32,7 +32,7 @@ public class DBScripts extends BasePage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger2.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -41,7 +41,7 @@ public class DBScripts extends BasePage {
                                 "AND ldoc.FAM_V = '" + fam + "'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("Table DTT is clean.");
+                    logger2.info("Table DTT is clean.");
                     statement.close();
                 }
             }
@@ -57,7 +57,7 @@ public class DBScripts extends BasePage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger2.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -67,14 +67,14 @@ public class DBScripts extends BasePage {
                                 "  AND dtt.rf_LPUDoctorID = " + LPUDoctorID;
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("Table DTT is clean.");
+                    logger2.info("Table DTT is clean.");
 //                    statement.close();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LOGGER.info("Удалил расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
+        logger2.info("Удалил расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
     }
 
     @Step("завершаю вызовы оператора Темников")
@@ -91,7 +91,7 @@ public class DBScripts extends BasePage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger2.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor " +
@@ -102,7 +102,7 @@ public class DBScripts extends BasePage {
                                 "and cl.rf_calldoctorstatusid in (2, 5, 7)";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("Finalize is done.");
+                    logger2.info("Finalize is done.");
                 }
             }
         } catch (Exception e) {
@@ -117,7 +117,7 @@ public class DBScripts extends BasePage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger2.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_disp_Exam" +
@@ -129,7 +129,7 @@ public class DBScripts extends BasePage {
                                 " where dc.disp_CardID = '" + cardID + "'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("card: " + cardID + " is default!");
+                    logger2.info("card: " + cardID + " is default!");
                 }
             }
         } catch (Exception e) {
@@ -146,11 +146,11 @@ public class DBScripts extends BasePage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger2.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(script);
-                    LOGGER.info("SQL scripst " + sql + " Complete!");
+                    logger2.info("SQL scripst " + sql + " Complete!");
                 }
             }
         } catch (Exception e) {
@@ -166,11 +166,11 @@ public class DBScripts extends BasePage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger2.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(request);
-                    LOGGER.info("Complete!");
+                    logger2.info("Complete!");
                 }
             }
         } catch (Exception e) {
@@ -186,12 +186,11 @@ public class DBScripts extends BasePage {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
-            System.out.print(url);
+            logger2.info("Connecting to SQL Server ... " + url);
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(request);
-                    System.out.println("Complete!");
+                    logger2.info("Complete!");
                 }
             }
         } catch (Exception e) {
@@ -206,17 +205,17 @@ public class DBScripts extends BasePage {
 //                ";user=" + userName +
 //                ";password=" + password;
 //        try {
-//            LOGGER.info("Connecting to SQL Server ... ");
+//            logger2.info("Connecting to SQL Server ... ");
 //            try (Connection connection = DriverManager.getConnection(url)) {
 //                String sql =
 //                        "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + cardMap.get(methodName);
 //                if (cardMap.get(methodName) != null && cardMap.get(methodName) > 0) {
 //                    try (Statement statement = connection.createStatement()) {
 //                        statement.executeUpdate(sql);
-//                        LOGGER.info("Вызов взят из стека и отменён!");
+//                        logger2.info("Вызов взят из стека и отменён!");
 //                    }
 //                } else {
-//                    LOGGER.info("вызов не отменен!: " + cardMap.get(methodName));
+//                    logger2.info("вызов не отменен!: " + cardMap.get(methodName));
 //                }
 //            }
 //        } catch (Exception e) {

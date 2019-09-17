@@ -128,7 +128,7 @@ public class CreateCallPage extends BasePage {
                 .fio()
                 .caller()
                 .telephone();
-        LOGGER.info("Вызов отредактирован! " + driver.getCurrentUrl());
+        logger2.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -140,7 +140,7 @@ public class CreateCallPage extends BasePage {
                 .complaint()
                 .caller()
                 .telephone();
-        LOGGER.info("Вызов отредактирован! " + driver.getCurrentUrl());
+        logger2.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
 
@@ -173,7 +173,7 @@ public class CreateCallPage extends BasePage {
         name.clear();
         otchestvo.clear();
         birthDateTemp.clear();
-        LOGGER.info("Карта вызова очищена для редактирования!");
+        logger2.info("Карта вызова очищена для редактирования!");
         return this;
     }
 
@@ -374,7 +374,7 @@ public class CreateCallPage extends BasePage {
         Assert.assertEquals(pd.getAttribute("value"), pacientImpl.getEntrance(), "Номер подъезда некорректный");
         Assert.assertEquals(dfon.getAttribute("value"), pacientImpl.getCodedomophone(), "Номер домофона некорректный");
         Assert.assertEquals(etazh.getAttribute("value"), pacientImpl.getFloor(), "Номер этажа некорректный");
-        LOGGER.info("Проверка данных на странице редактирования выполнена!");
+        logger2.info("Проверка данных на странице редактирования выполнена!");
         return this;
     }
 

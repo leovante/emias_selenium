@@ -129,7 +129,7 @@ public class DashboardPage extends BasePage {
 //            $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
 //            $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
 //        }
-//        LOGGER.info("Краткая карта вызова проверена!");
+//        logger2.info("Краткая карта вызова проверена!");
 //    }
 
     @Step("проверяю на дашборде запись в группе новые")
@@ -142,7 +142,7 @@ public class DashboardPage extends BasePage {
         $(By.xpath("//*[contains(text(),'" + pacientImpl.getFamily() + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).shouldBe(Condition.visible);
-        LOGGER.info("Краткая карта вызова проверена!");
+        logger2.info("Краткая карта вызова проверена!");
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
@@ -158,7 +158,7 @@ public class DashboardPage extends BasePage {
         docBlock.$x(".//*[contains(text(),'Ожидают обработки')]").click();
         $x("//*[contains(text(),'" + pacientImpl.getAddress() + "')]").click();
         $x("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]").shouldBe(Condition.visible);
-        LOGGER.info("Краткая карта вызова проверена!");
+        logger2.info("Краткая карта вызова проверена!");
         return this;
     }
 
@@ -186,7 +186,7 @@ public class DashboardPage extends BasePage {
         } else {
             docFamBlock.shouldNotBe(Condition.visible);
         }
-        LOGGER.info("Краткая карта вызова проверена!");
+        logger2.info("Краткая карта вызова проверена!");
         return this;
     }
 
@@ -198,7 +198,7 @@ public class DashboardPage extends BasePage {
                 .expandInProgress()
                 .expandPacient();
         $x("//*[contains(text(),'" + parseTelephone(pacient) + "')]").shouldBe(Condition.visible);
-        LOGGER.info("Краткая карта вызова проверена!");
+        logger2.info("Краткая карта вызова проверена!");
     }
 
     @Step("Проверка что запись удалена с дашборда")
@@ -215,10 +215,10 @@ public class DashboardPage extends BasePage {
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).isDisplayed());
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).isDisplayed());
             } else {
-                LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
+                logger2.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
         } else {
-            LOGGER.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
+            logger2.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
         }
     }
 
@@ -236,10 +236,10 @@ public class DashboardPage extends BasePage {
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).isDisplayed());
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).isDisplayed());
             } else {
-                LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
+                logger2.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
         } else {
-            LOGGER.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
+            logger2.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
         }
     }
 
