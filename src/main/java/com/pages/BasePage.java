@@ -3,6 +3,7 @@ package com.pages;
 import com.config.ConfigFile;
 import com.datas.ModuleData;
 import com.datas.calldoctor.Pacient;
+import com.epam.reportportal.message.ReportPortalMessage;
 import com.lib.Lib;
 import com.lib.Alarms;
 import com.pages.calldoctor.controllers.StAddress;
@@ -16,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 

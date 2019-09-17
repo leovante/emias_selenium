@@ -2,12 +2,10 @@ package emias.calldoctor.negative;
 
 import com.datas.calldoctor.PacientImpl;
 import com.pages.calldoctor.controllers.StAddress;
-import com.utils.TestMethodCapture;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.io.IOException;

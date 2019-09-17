@@ -1,7 +1,7 @@
 package emias.mis.base;
 
 import com.utils.sql.DBScripts;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 

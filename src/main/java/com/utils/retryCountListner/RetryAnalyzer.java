@@ -1,4 +1,4 @@
-package com.utils.testngRetryCount;
+package com.utils.retryCountListner;
 
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;

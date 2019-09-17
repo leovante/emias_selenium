@@ -2,7 +2,7 @@ package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;

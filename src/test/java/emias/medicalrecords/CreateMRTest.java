@@ -2,7 +2,7 @@ package emias.medicalrecords;
 
 import com.datas.Datas;
 import com.utils.TestMethodCapture;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Listeners;
