@@ -43,8 +43,8 @@ public class Tokenizer extends BasePage {
             token = proData.get("token");
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger2.info("Ответ:\n" + response.getEntity().getContent());
-            logger2.info("Ошибка. Не удается подключиться!");
+            logger.info("Ответ:\n" + response.getEntity().getContent());
+            logger.info("Ошибка. Не удается подключиться!");
         }
         return token;
     }

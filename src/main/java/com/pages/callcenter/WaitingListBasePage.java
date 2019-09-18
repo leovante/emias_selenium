@@ -32,7 +32,7 @@ public class WaitingListBasePage extends BasePage {
     }
 
     public void assertWL(String arg0, String arg1, String arg2){
-        logger2.info("Код гавно2");
+        logger.info("Код гавно2");
         SelenideElement lpuName2 = $(By.xpath("//*[@id='waiting-list']/tr[2]/td[1]/div[1]/ul/li/div/h4"));
         SelenideElement adress = $(By.xpath("//*[@id='waiting-list']/tr[2]/td[1]/div[1]/ul/li/div/p[1]"));
         SelenideElement istok = $(By.xpath("//*[@id='waiting-list']/tr[2]/td[1]/div[1]/ul/li/div/p[3]"));
@@ -45,17 +45,17 @@ public class WaitingListBasePage extends BasePage {
         String eq4 = createData.getText();
 
         Assert.assertTrue(eq1.contains(arg0));
-        logger2.info(eq1 + " есть");
+        logger.info(eq1 + " есть");
         Assert.assertTrue(arg1.contains(eq2));
-        logger2.info(eq2 + " есть");
+        logger.info(eq2 + " есть");
         Assert.assertTrue(eq3.contains(arg2));
-        logger2.info(eq3 + " есть");
+        logger.info(eq3 + " есть");
         Assert.assertTrue(eq4 != null);
-        logger2.info(eq4 + " есть");
+        logger.info(eq4 + " есть");
     }
 
     public void assertWLHis(){
-        logger2.info("Код гавно2");
+        logger.info("Код гавно2");
 
         SelenideElement autor = $(By.xpath("//*[@id='waiting-list-history']/table/tbody[2]/tr/td[2]"));
         SelenideElement changes = $(By.xpath("//*[@id='waiting-list-history']/table/tbody[2]/tr/td[3]"));
@@ -65,15 +65,15 @@ public class WaitingListBasePage extends BasePage {
         String eq3 = changes.getText();
         String eq4 = stat.getText();
 
-        logger2.info(eq2);
-        logger2.info(eq3);
-        logger2.info(eq4);
+        logger.info(eq2);
+        logger.info(eq3);
+        logger.info(eq4);
 
         Assert.assertTrue(eq2.contains("Колл-центр"));
-        logger2.info(eq2 + " есть");
+        logger.info(eq2 + " есть");
         Assert.assertTrue(eq3.contains("Статус"));
-        logger2.info(eq3 + " есть");
+        logger.info(eq3 + " есть");
         Assert.assertTrue(eq4.contains("Создана"));
-        logger2.info(eq4 + " есть");
+        logger.info(eq4 + " есть");
     }
 }

@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static com.pages.BasePage.logger2;
+import static com.pages.BasePage.logger;
 
 public class ConfigFile {
     private String url;
@@ -52,7 +52,7 @@ public class ConfigFile {
             codeLpu = property.getProperty("st.mis.codeLpu");
             mr_tap = property.getProperty("st.mis.url.MRTAP");
         } catch (IOException e) {
-            logger2.error("ОШИБКА: Файл свойств отсуствует!");
+            logger.error("ОШИБКА: Файл свойств отсуствует!");
         }
     }
 

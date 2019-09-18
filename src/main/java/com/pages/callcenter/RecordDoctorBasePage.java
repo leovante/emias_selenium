@@ -98,7 +98,7 @@ public class RecordDoctorBasePage extends BasePage {
         Thread.sleep(2000);
         SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));
         String spec1= specialist.getText();
-        logger2.info(spec1);
+        logger.info(spec1);
         String eq1 = lpuName.getText();
         String eq2 = specName.getText();
         String eq3 = doctorFIO.getText();
@@ -106,23 +106,23 @@ public class RecordDoctorBasePage extends BasePage {
         String eq5 = dateTicket.getText();
         String eq6 = timeTicket.getText();
 
-        logger2.info("Код гавно2");
+        logger.info("Код гавно2");
 
-        logger2.info("текст в lpu и eq1 = " + lpu + " и " + eq1);
-        logger2.info("текст в фио док и eq3 = " + fioDoc + " и " + eq3);
+        logger.info("текст в lpu и eq1 = " + lpu + " и " + eq1);
+        logger.info("текст в фио док и eq3 = " + fioDoc + " и " + eq3);
 
         assertTrue(eq1.contains("Стенд ЕМИАС МО | Московская область, г. Неизвестный, ул. Светлая, д. 5"));
-        logger2.info("Лпу есть");
+        logger.info("Лпу есть");
         assertTrue(eq2.contains(special));
-        logger2.info("Специальность есть");
+        logger.info("Специальность есть");
         assertTrue(eq3.contains(fioDoc));
-        logger2.info(eq3 + " есть");
+        logger.info(eq3 + " есть");
         assertTrue(kab.contains(eq4));
-        logger2.info(eq4 + " есть");
+        logger.info(eq4 + " есть");
         assertTrue(eq5 != null);
-        logger2.info(eq5 + " есть");
+        logger.info(eq5 + " есть");
         assertTrue(eq6 != null);
-        logger2.info(eq6 + " есть");
+        logger.info(eq6 + " есть");
         return this;
 
     }
@@ -131,7 +131,7 @@ public class RecordDoctorBasePage extends BasePage {
         Thread.sleep(2000);
         SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));
         String spec1= specialist.getText();
-        logger2.info(spec1);
+        logger.info(spec1);
         String eq1 = lpuName.getText();
         String eq2 = specName.getText();
         String eq3 = doctorFIO.getText();
@@ -140,31 +140,31 @@ public class RecordDoctorBasePage extends BasePage {
         String eq6 = timeTicket.getText();
         String eq7 = numTicket.getText();
 
-        logger2.info("Код гавно2");
+        logger.info("Код гавно2");
 
-//        logger2.info("текст в lpu и eq1 = "+lpu+" и "+eq1);
+//        logger.info("текст в lpu и eq1 = "+lpu+" и "+eq1);
 
 //        assertThat(lpu).isEqualToIgnoringCase(eq1);
         assertTrue(eq1.contains("Стенд ЕМИАС МО Московская область, г. Неизвестный, ул. Светлая, д. 5"));
-        logger2.info("Лпу есть");
+        logger.info("Лпу есть");
         assertTrue(eq2.contains("Терапевты"));
-        logger2.info("Специальность есть");
+        logger.info("Специальность есть");
         assertTrue(eq3.contains(doctor.getName()));
-        logger2.info(eq3 + " есть");
+        logger.info(eq3 + " есть");
         assertTrue(eq4.contains(doctor.getCabinet()));
-        logger2.info(eq4 + " есть");
+        logger.info(eq4 + " есть");
         assertTrue(eq5 != null);
-        logger2.info(eq5 + " есть");
+        logger.info(eq5 + " есть");
         assertTrue(eq6 != null);
-        logger2.info(eq6 + " есть");
+        logger.info(eq6 + " есть");
         assertTrue(eq7 != null);
-        logger2.info(eq7 + " есть");
+        logger.info(eq7 + " есть");
         closemodal.click();
         return this;
     }
 
     public RecordDoctorBasePage EqualDoc() throws InterruptedException {
-        logger2.info("метка1");
+        logger.info("метка1");
         String eq1 = lpuName.getText();
         String eq2 = specName.getText();
         String eq3 = doctorFIO.getText();
@@ -174,7 +174,7 @@ public class RecordDoctorBasePage extends BasePage {
         String eq7 = numTicket.getText();
         closemodal.click();
 
-        logger2.info("метка2");
+        logger.info("метка2");
         Thread.sleep(2000);
 
         allrecord.click();
@@ -186,18 +186,18 @@ public class RecordDoctorBasePage extends BasePage {
         String equal6 = $(By.xpath("//*[@id='talon-list']/tr/td[7]")).getText();
         String istok = $(By.xpath("//*[@id='talon-list']/tr/td[5]")).getText();
         String equal5 = $(By.xpath("//*[@id='talon-list']/tr/td[6]")).getText();
-        logger2.info("Код гавно2");
+        logger.info("Код гавно2");
 
         assertTrue(equal2.contains("Терапия"));
-        logger2.info(eq2 + " есть");
+        logger.info(eq2 + " есть");
         assertTrue(equal3.contains("Ай Бо Лит"));
-        logger2.info(eq3 + " есть");
+        logger.info(eq3 + " есть");
         assertTrue(equal6.contains(eq6));
-        logger2.info(eq6 + " есть");
+        logger.info(eq6 + " есть");
         assertTrue(equal7.contains(eq7));
-        logger2.info(eq7 + " есть");
+        logger.info(eq7 + " есть");
         assertTrue(istok.contains("Колл-центр"));
-        logger2.info("Код гавно3");
+        logger.info("Код гавно3");
         return this;
     }
 
@@ -209,13 +209,13 @@ public class RecordDoctorBasePage extends BasePage {
 //        String equal9 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[4]")).getText();
 //        String istok = $(By.xpath("//*[@id='talon-list']/tr/td[5]")).getText();
 //
-//        logger2.info("Код гавно3");
+//        logger.info("Код гавно3");
 //
 //        assertTrue(istok.contains("Колл-центр"));
 //        assertTrue(equal8.contains(eq1));
-//        logger2.info(eq1+" есть");
+//        logger.info(eq1+" есть");
 //        assertTrue(istok.contains(equal9));
-//        logger2.info(" есть");
+//        logger.info(" есть");
         SelenideElement lpuName2 = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/h4"));
         //*[@id="talon-list"]/tr/td[1]/div/ul/li/div/h4
         SelenideElement adress = $(By.xpath("//*[@id='talon-list']/tr/td[1]/div/ul/li/div/p[1]"));
@@ -229,13 +229,13 @@ public class RecordDoctorBasePage extends BasePage {
         String eq4 = createData.getText();
 
         assertTrue(eq1.contains("Стенд ЕМИАС МО"));
-        logger2.info(eq1 + " есть");
+        logger.info(eq1 + " есть");
         assertTrue(eq2.contains("Адрес: Московская область, г. Неизвестный, ул. Светлая, д. 5"));
-        logger2.info(eq2 + " есть");
+        logger.info(eq2 + " есть");
         assertTrue(eq3.contains("Источник: Колл-центр"));
-        logger2.info(eq3 + " есть");
+        logger.info(eq3 + " есть");
         assertTrue(eq4 != null);
-        logger2.info(eq4 + " есть");
+        logger.info(eq4 + " есть");
         return this;
     }
 
@@ -286,7 +286,7 @@ public class RecordDoctorBasePage extends BasePage {
         name2 = docName2.getText();
         time2 = talonTime2.getAttribute("innerHTML");
         number2 = talonNumber2.getAttribute("innerHTML");
-        logger2.info(name2 + " " + time2 + " " + number2);
+        logger.info(name2 + " " + time2 + " " + number2);
 
     }
 
@@ -300,7 +300,7 @@ public class RecordDoctorBasePage extends BasePage {
     }
 
     public RecordDoctorBasePage deleteRecord() throws InterruptedException {
-        logger2.info("Поехале");
+        logger.info("Поехале");
         allrecord.click();
         delete.click();
         yes.click();

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import static com.pages.BasePage.logger2;
+import static com.pages.BasePage.logger;
 
 public class Formalizer {
     HttpResponse httpResponse;
@@ -33,10 +33,10 @@ public class Formalizer {
             entity = httpResponse.getEntity();
             responseString = EntityUtils.toString(entity, "UTF-8");
             statusBodyResponce(httpResponse);
-            logger2.info("энтити: " + String.valueOf(entity));
+            logger.info("энтити: " + String.valueOf(entity));
         } catch (Exception ex) {
             ex.printStackTrace();
-            logger2.info("Error, " + "Cannot Estabilish Connection");
+            logger.info("Error, " + "Cannot Estabilish Connection");
         }
         return this;
     }
@@ -50,7 +50,7 @@ public class Formalizer {
 
     protected void statusBodyResponce(HttpResponse resp) throws IOException {
         if (resp.getStatusLine().getStatusCode() != 200) {
-            logger2.info("Ошибка! Ответ сервера:\n" + EntityUtils.toString(resp.getEntity(), "UTF-8"));
+            logger.info("Ошибка! Ответ сервера:\n" + EntityUtils.toString(resp.getEntity(), "UTF-8"));
         }
     }
 
@@ -63,7 +63,7 @@ public class Formalizer {
                 .getJSONObject("NS2:TPacketAdr")
                 .getJSONObject("fullKLADRCodeAddress");
         if (responseText.has("#text")) {
-            logger2.info("#text: " + responseText.getString("#text"));
+            logger.info("#text: " + responseText.getString("#text"));
             return responseText.getString("#text");
         }
         return text;

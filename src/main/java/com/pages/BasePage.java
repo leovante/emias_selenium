@@ -9,6 +9,8 @@ import com.lib.Alarms;
 import com.pages.calldoctor.controllers.StAddress;
 import com.pages.disp.measureBlock.Examps;
 import com.pages.disp.measureBlock.ExampsImpl;
+import com.system.repositories.HltCallDoctorRepository;
+import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.CallDoctorCards;
 import com.lib.assistance.Assistance;
 import com.lib.assistance.AssistanceImpl;
@@ -32,10 +34,13 @@ public class BasePage {
     public Alarms alarms;
     public Lib lib = new Lib();
     public static int callNumber;
-    public static Logger logger2 = LogManager.getLogger();
+    public static Logger logger = LogManager.getLogger();
 
     @Autowired
     public Examps examps = new ExampsImpl();
+
+    @Autowired
+    public HltCallDoctorServiceImpl callDoctorService = new HltCallDoctorServiceImpl();
 
     public BasePage() throws IOException {
         this.driver = getWebDriver();

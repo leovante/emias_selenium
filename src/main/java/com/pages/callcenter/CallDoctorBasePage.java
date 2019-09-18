@@ -107,23 +107,23 @@ public class CallDoctorBasePage extends BasePage {
         String complaint=com.getText();
 
         Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
-        logger2.info(lpu + " есть");
+        logger.info(lpu + " есть");
         Assert.assertTrue(arg2.contains(fio));
-        logger2.info(fio + " есть");
+        logger.info(fio + " есть");
         Assert.assertTrue(arg3.contains(birthday));
-        logger2.info(birthday + " есть");
+        logger.info(birthday + " есть");
         Assert.assertTrue(arg4.contains(adress));
-        logger2.info(adress + " есть");
+        logger.info(adress + " есть");
         Assert.assertTrue(arg5.contains(porch));
-        logger2.info(porch + " есть");
+        logger.info(porch + " есть");
         Assert.assertTrue(arg6.contains(floor));
-        logger2.info(floor + " есть");
+        logger.info(floor + " есть");
         Assert.assertTrue(arg7.contains(intercom));
-        logger2.info(intercom + " есть");
+        logger.info(intercom + " есть");
         Assert.assertTrue(arg8.contains(phone));
-        logger2.info(phone + " есть");
+        logger.info(phone + " есть");
         Assert.assertTrue(arg9.contains(complaint));
-        logger2.info(complaint + " есть");
+        logger.info(complaint + " есть");
         return this;
     }
 
@@ -149,23 +149,23 @@ public class CallDoctorBasePage extends BasePage {
         String complaint=com.getText();
 
         Assert.assertTrue(lpu.contains("Стенд ЕМИАС МО"));
-        logger2.info(lpu + " есть");
+        logger.info(lpu + " есть");
         Assert.assertTrue(arg1.contains(fio));
-        logger2.info(fio + " есть");
+        logger.info(fio + " есть");
         Assert.assertTrue(birthday.contains(""));
-        logger2.info(birthday + " есть");
+        logger.info(birthday + " есть");
         Assert.assertTrue(arg3.contains(adress));
-        logger2.info(adress + " есть");
+        logger.info(adress + " есть");
         Assert.assertTrue(porch.contains(""));
-        logger2.info(porch + " есть");
+        logger.info(porch + " есть");
         Assert.assertTrue(floor.contains(""));
-        logger2.info(floor + " есть");
+        logger.info(floor + " есть");
         Assert.assertTrue(intercom.contains(""));
-        logger2.info(intercom + " есть");
+        logger.info(intercom + " есть");
         Assert.assertTrue(arg4.contains(phone));
-        logger2.info(phone + " есть");
+        logger.info(phone + " есть");
         Assert.assertTrue(arg5.contains(complaint));
-        logger2.info(complaint + " есть");
+        logger.info(complaint + " есть");
         return this;
     }
 

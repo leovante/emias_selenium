@@ -14,6 +14,7 @@ public class HltCallDoctorServiceImpl {
     @Autowired
     private HltCallDoctorRepository hltCallDoctorRepository;
 
+    @Step("cancel call by pol number")
     public void cancelByNPol(String number) {
         List<HltCallDoctorEntity> calls = hltCallDoctorRepository.findAllByNumberPol(number);
         for (HltCallDoctorEntity call : calls) {
@@ -21,7 +22,7 @@ public class HltCallDoctorServiceImpl {
         }
     }
 
-    @Step("отменяю созданный вызов")
+    @Step("cancel call by card ID")
     public void cancelById(int id) {
         HltCallDoctorEntity calls = hltCallDoctorRepository.findById(id).get();
         calls.setRfCallDoctorStatusId(4);

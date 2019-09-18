@@ -76,7 +76,7 @@ public class CreateCallPage extends BasePage {
         this.pacient = pacient;
     }
 
-    @Step("создаю вызов")
+    @Step("create simple call")
     public CreateCallPage createCall() throws InterruptedException, NoticeException {
         addNewCall()
                 .sourceCall()
@@ -93,7 +93,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("создаю вызов с привязкой мкаб")
+    @Step("create call with MKAB")
     public CreateCallPage createCall_Mkab() throws InterruptedException, NoticeException {
         addNewCall()
                 .sourceCall()
@@ -106,16 +106,31 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("создаю вызов через api")
-    public void createCall_Api() throws JSONException {
-//        DBScripts.finalizeCall_NPol(doctor.getNumberpol());
-        // TODO: 5/16/2019 мне не нравится что тут очищаем все вызовы оператора, тут нужно чистить вызов этого пациента
-        HttpResponse hr = new CallDoctorHttp(pacient).execute();
-        if (hr.getStatusLine().getStatusCode() != 200)
-            throw new SkipException("Вызов не создан\n" + hr);
+    @Step("create call via API")
+    public void createCall_Api() throws InterruptedException {
+        callDoctorService.cancelByNPol(pacient.getNumberpol());
+        CallDoctorHttp hr;
+        HttpResponse resp;
+
+        try {
+            hr = new CallDoctorHttp(pacient);
+            resp = hr.execute();
+            for (int i = 0; i < 5; i++) {
+                if (resp.getStatusLine().getStatusCode() == 200)
+                    break;
+                Thread.sleep(1000);
+                resp = hr.execute();
+            }
+            if (resp.getStatusLine().getStatusCode() != 200) {
+                logger.error("Call don't create: \n" + hr);
+                throw new SkipException("Call don't create");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Step("редактирую вызов")
+    @Step("edit call")
     public CreateCallPage editCallPage() throws IOException, ParseException, InterruptedException {
         sourceCall()
                 .sourceCall()
@@ -128,11 +143,11 @@ public class CreateCallPage extends BasePage {
                 .fio()
                 .caller()
                 .telephone();
-        logger2.info("Вызов отредактирован! " + driver.getCurrentUrl());
+        logger.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
 
-    @Step("редактирую вызов с МКАБ + СМП")
+    @Step("create call with MKAB from SMP")
     public CreateCallPage editCallPage_Mkab() throws InterruptedException {
         sourceCall()
                 .searchField()
@@ -140,11 +155,11 @@ public class CreateCallPage extends BasePage {
                 .complaint()
                 .caller()
                 .telephone();
-        logger2.info("Вызов отредактирован! " + driver.getCurrentUrl());
+        logger.info("Вызов отредактирован! " + driver.getCurrentUrl());
         return this;
     }
 
-    @Step("очищаю все поля у карты")
+    @Step("clear all field in card")
     public CreateCallPage setDeafult() {
         sourceReg.click();
         if (unpin_mkab.is(Condition.visible)) {
@@ -173,24 +188,24 @@ public class CreateCallPage extends BasePage {
         name.clear();
         otchestvo.clear();
         birthDateTemp.clear();
-        logger2.info("Карта вызова очищена для редактирования!");
+        logger.info("Card is clear!");
         return this;
     }
 
-    @Step("добавить новый вызов")
+    @Step("add new call")
     public CreateCallPage addNewCall() {
         $(By.id("addNewCall")).click();
         return this;
     }
 
-    @Step("поиск МКАБ")
+    @Step("search MKAB")
     public CreateCallPage searchField() {
         $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
-        $(By.xpath("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]")).click();
+        $x("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]").click();
         return this;
     }
 
-    @Step("выбор источника вызова")
+    @Step("shose source call")
     private CreateCallPage sourceCall() {
         try {
             if (pacient.getSource() == 1) {
@@ -200,12 +215,12 @@ public class CreateCallPage extends BasePage {
                 sourceSmp.click();
             }
         } catch (Exception e) {
-            throw new InvalidArgumentException("Ошибка, не найден источник вызова!");
+            throw new InvalidArgumentException("Error. source don't find!");
         }
         return this;
     }
 
-    @Step("ввод адреса")
+    @Step("enter address")
     private CreateCallPage address() throws InterruptedException {
         stAddress = new StAddress(pacient);
         stAddress.clearAddress();
@@ -217,7 +232,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("уточняю адрес")
+    @Step("specify address")
     private CreateCallPage addressPlus() {
         korpus.setValue(pacient.getBuilding());
         stroenie.setValue(pacient.getConstruction());
@@ -228,14 +243,14 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("телефон")
+    @Step("enter telephone")
     private CreateCallPage telephone() {
         try {
             if (!pacient.getPhone().equals(null)) {
                 phone.setValue(pacient.getPhone());
             }
             if (pacient.getPhone().equals("")) {
-                $(By.xpath("//label[@class='mat-checkbox-layout']")).click();
+                $x("//label[@class='mat-checkbox-layout']").click();
             }
         } catch (Exception e) {
             throw new InvalidArgumentException("Ошибка, не найден номер телефона у профиля!");
@@ -243,7 +258,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("пол")
+    @Step("select sex")
     private CreateCallPage gender() {
         switch (pacient.getGender()) {
             case (1):
@@ -254,7 +269,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("жалоба")
+    @Step("complaint")
     private CreateCallPage complaint() throws InterruptedException {
 //        JavascriptExecutor jse = (JavascriptExecutor) driver;
 //        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "'", complaint);
@@ -267,7 +282,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("полис")
+    @Step("enter polis")
     private CreateCallPage polis() {
         if (pacient.getSeriespol() != null && pacient.getSeriespol() != "") {
             $(By.xpath("//input[@placeholder='Серия']")).setValue(String.valueOf(pacient.getSeriespol()));
@@ -278,7 +293,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("фио")
+    @Step("fio")
     private CreateCallPage fio() {
         if (pacient.getFamily() != null) {
             $(By.xpath("//input[@placeholder='Фамилия']")).setValue(pacient.getFamily());
@@ -292,14 +307,14 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("день рождения")
+    @Step("birthday")
     private CreateCallPage birthDay() {
         if (pacient.getBirthdate("") != null)
             $(By.xpath("//input[@placeholder='Дата рождения']")).setValue(pacient.getBirthdate("dd-MM-yyyy"));
         return this;
     }
 
-    @Step("возрастная категория")
+    @Step("age group")
     private CreateCallPage vozrastKat() {
         $(By.xpath("//button[2]/span/mat-icon")).click();
         vKat.click();
@@ -316,7 +331,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("фио вызывающего")
+    @Step("caller fio")
     private CreateCallPage caller() {
         if (pacient.getSource() == 2) {
             $(By.id("sourceSmp")).setValue("Супер станция");
@@ -335,7 +350,7 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("кнопка сохранить")
+    @Step("click save button")
     public CreateCallPage saveBtn() throws InterruptedException {
         Thread.sleep(1000);
         SelenideElement save = $(By.id("save"));
@@ -351,12 +366,13 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("кнопка редактировать")
+    @Step("click edit button")
     public CreateCallPage editCallBtn() {
         change_call.click();
         return this;
     }
 
+    // TODO: 9/18/2019 нужно как то вынести это отдельно и унаследоваться двумя классами
     @Step("проверяю на странице редактирования корректность данных")
     public CreateCallPage verifyCallProfile1(PacientImpl pacientImpl) {
         Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacientImpl), "Номер телефона некорректный");
@@ -376,7 +392,7 @@ public class CreateCallPage extends BasePage {
         Assert.assertEquals(pd.getAttribute("value"), pacientImpl.getEntrance(), "Номер подъезда некорректный");
         Assert.assertEquals(dfon.getAttribute("value"), pacientImpl.getCodedomophone(), "Номер домофона некорректный");
         Assert.assertEquals(etazh.getAttribute("value"), pacientImpl.getFloor(), "Номер этажа некорректный");
-        logger2.info("Проверка данных на странице редактирования выполнена!");
+        logger.info("Проверка данных на странице редактирования выполнена!");
         return this;
     }
 

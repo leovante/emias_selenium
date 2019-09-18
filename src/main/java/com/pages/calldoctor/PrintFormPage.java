@@ -110,7 +110,7 @@ public class PrintFormPage extends BasePage {
 
     @Step("проверяю время из списка")
     void assertTimeContains(ArrayList curTime, String expTime) {
-        logger2.info("curTime: " + curTime + "\n" + "expTime: " + expTime);
+        logger.info("curTime: " + curTime + "\n" + "expTime: " + expTime);
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 
@@ -120,7 +120,7 @@ public class PrintFormPage extends BasePage {
         baseElements();
         basePacient();
         verifyTime();
-        logger2.info("Подробная карта вызова проверена!");
+        logger.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -129,7 +129,7 @@ public class PrintFormPage extends BasePage {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
-        logger2.info("Подробная карта вызова проверена!");
+        logger.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -139,7 +139,7 @@ public class PrintFormPage extends BasePage {
         baseElements();
         basePacient();
         baseDoctor(doctor);
-        logger2.info("Подробная карта вызова проверена!");
+        logger.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -198,7 +198,7 @@ public class PrintFormPage extends BasePage {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
-        logger2.info("Карта закрыта!");
+        logger.info("Карта закрыта!");
         return this;
     }
 

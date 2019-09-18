@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface HltCallDoctorRepository extends JpaRepository<HltCallDoctorEntity, Integer>, CustomHltCallDoctorRepository {
     List<HltCallDoctorEntity> findAllByNumberPol(String number);
+
 }

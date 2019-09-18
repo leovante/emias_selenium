@@ -6,8 +6,6 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.pages.BasePage;
 import com.utils.DispUrlParser;
 import io.qameta.allure.Step;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
@@ -28,7 +26,7 @@ public class MisHomePage extends BasePage {
         $(By.id("Login")).setValue(conf.getLogin());
         $(By.id("Password")).setValue(conf.getPassword());
         $(By.id("loginBtn")).click();
-        logger2.info("Открыл дашборд МИС " + conf.getUrl());
+        logger.info("Открыл дашборд МИС " + conf.getUrl());
     }
 
     @Step("изменяю куки для входа под юр.лицом")
@@ -42,13 +40,13 @@ public class MisHomePage extends BasePage {
     @Step("Open CallDoctor with in URL")
     public void calldoctor() {
         open(conf.getCalldoctor());
-        logger2.debug("Open CallDoctor with in URL: " + conf.getCalldoctor());
+        logger.debug("Open CallDoctor with in URL: " + conf.getCalldoctor());
     }
 
     @Step("Вход в модуль диспетчер от взрослой поликлиникой")
     public void calldoctorVzroslaya() {
         open(conf.getCalldoctorVz());
-        logger2.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
+        logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
     }
 
     @Step("Захожу в диспетчер через МИС под админом")
@@ -64,13 +62,13 @@ public class MisHomePage extends BasePage {
     @Step("Вход в модуль диспансеризация через журнал")
     public void dispJournal() {
         open(conf.getDispJournal());
-        logger2.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
+        logger.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
     }
 
     @Step("Вход в карту диспансеризации")
     public void dispCard() {
         open(conf.getDispCard());
-        logger2.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
+        logger.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
     }
 
     @Step("Вход в карту диспансеризации")

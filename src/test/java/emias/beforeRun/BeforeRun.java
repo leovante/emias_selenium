@@ -4,7 +4,7 @@ import com.api.TestStend;
 
 import java.io.IOException;
 
-import static com.pages.BasePage.logger2;
+import static com.pages.BasePage.logger;
 
 public class BeforeRun {
     private TestStend testStend = new TestStend();
@@ -43,7 +43,7 @@ public class BeforeRun {
                 !disp_card |
                 !calldoctor |
                 !calldoctorVz) {
-            logger2.info(
+            logger.info(
                     "\nпроверка api диспетчера: " + checkCreateCall +
                             "\nпроверка api КЛАДР: " + checkKladrFind +
                             "\nпроверка медзаписей: " + ehr_medrecords +
