@@ -3,8 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/repositories/HltCallDoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/repositories/HltCallDoctorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/service/DoctorTimeTableService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/service/DoctorTimeTableService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/service/HltCallDoctorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/service/HltCallDoctorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/service/HltDispCardServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/service/HltDispCardServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/WebDriverInstansiator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/WebDriverInstansiator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/before/BeforeSuiteCallCenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/before/BeforeSuiteCallCenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,7 +54,7 @@
           <entry key="git.branch.checkout.local" value="8" />
           <entry key="git.branch.create.new" value="4" />
           <entry key="git.branch.delete.local" value="4" />
-          <entry key="git.branch.delete.remote" value="1" />
+          <entry key="git.branch.delete.remote" value="2" />
           <entry key="git.branch.merge" value="11" />
           <entry key="git.branch.rebase" value="1" />
           <entry key="git.branch.rename" value="1" />
@@ -59,14 +65,14 @@
           <entry key="class" value="17" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="956" />
-          <entry key="json" value="74" />
+          <entry key="java" value="985" />
+          <entry key="json" value="75" />
           <entry key="log" value="3" />
           <entry key="png" value="9" />
           <entry key="pom" value="27" />
           <entry key="postgres" value="1" />
           <entry key="properties" value="41" />
-          <entry key="sql" value="104" />
+          <entry key="sql" value="106" />
           <entry key="sql заключение диспы" value="4" />
           <entry key="sql заключение диспы2" value="1" />
           <entry key="sql шаблоны медзаписей" value="1" />
@@ -88,12 +94,12 @@
           <entry key="CLASS" value="17" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="9" />
-          <entry key="JAVA" value="956" />
-          <entry key="JSON" value="74" />
+          <entry key="JAVA" value="985" />
+          <entry key="JSON" value="75" />
           <entry key="PLAIN_TEXT" value="47" />
           <entry key="Properties" value="41" />
           <entry key="SQL" value="7" />
-          <entry key="Scratch" value="98" />
+          <entry key="Scratch" value="100" />
           <entry key="XML" value="104" />
         </counts>
       </usages-collector>
@@ -102,11 +108,11 @@
           <entry key="cell" value="200" />
           <entry key="dummy" value="118" />
           <entry key="gitignore" value="13" />
-          <entry key="java" value="16881" />
+          <entry key="java" value="18354" />
           <entry key="json" value="116" />
           <entry key="properties" value="78" />
-          <entry key="sql" value="16674" />
-          <entry key="txt" value="783" />
+          <entry key="sql" value="16787" />
+          <entry key="txt" value="837" />
           <entry key="xml" value="278" />
           <entry key="врач в блоке мероприятий по тарифам" value="9" />
           <entry key="задачи для постмана" value="2" />
@@ -116,12 +122,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="16881" />
+          <entry key="JAVA" value="18354" />
           <entry key="JSON" value="116" />
-          <entry key="PLAIN_TEXT" value="927" />
+          <entry key="PLAIN_TEXT" value="981" />
           <entry key="Properties" value="78" />
           <entry key="SQL" value="3" />
-          <entry key="Scratch" value="16874" />
+          <entry key="Scratch" value="16987" />
           <entry key="XML" value="278" />
         </counts>
       </usages-collector>
@@ -156,22 +162,13 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="347" column="22" selection-start-line="347" selection-start-column="22" selection-end-line="347" selection-end-column="22" />
+            <state relative-caret-position="102">
+              <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="32" />
               <folding>
-                <element signature="e#5188#5646#0" />
-                <element signature="e#5276#5337#0" />
+                <element signature="docComment;method#updateStend#0;class#BeforeTestCD#0" />
+                <element signature="method#updateStend#0;class#BeforeTestCD#0" />
               </folding>
             </state>
           </provider>
@@ -189,16 +186,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>smpChildMkab_testCallerFIO</find>
-      <find>testPrintCard</find>
-      <find>testCallMkabWaitoutID</find>
-      <find>testCompleteCallRegistr</find>
-      <find>press</find>
       <find>testSearchCard5</find>
       <find>testDefaultValidationFieldParams</find>
       <find>test_sign_new_mr</find>
       <find>testPrintAllDoctors</find>
-      <find>testCallSmpAdultKladr</find>
       <find>Neformal</find>
       <find>AdressNef</find>
       <find>spring</find>
@@ -219,9 +210,16 @@
       <find>allure</find>
       <find>testCallSmpChildMkab</find>
       <find>testCancelCallFrom_DashBoard</find>
+      <find>skipexception</find>
+      <find>UchastoksAddressTest</find>
+      <find>testUchastokPoAdresuANeMkab</find>
+      <find>skipe</find>
+      <find>testCallSmpAdultKladr</find>
+      <find>Query</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources</dir>
+      <dir>C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\calldoctor\pacients</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -235,12 +233,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/system/service/HltDispExamServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/Page.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/PageImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/config/AppConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/PageBase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/override/AssistanceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/CallCenterPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/DispanserisationPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/KladrPage.java" />
@@ -266,12 +258,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/lib/assistance/AssistanceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lib/assistance/Assistance.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTestRandom.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console.sql" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/CreateCallTest.java" />
         <option value="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/AdressNeformal.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/callcenter/WaitingListBasePage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/callcenter/CallDoctorBasePage.java" />
@@ -280,12 +270,20 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_1.sql" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCall.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/BasePage.java" />
         <option value="$PROJECT_DIR$/src/test/resources/testngTest.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/api/TestStend.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pages/BasePage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/utils/Selenium/SeleniumGrid.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/system/repositories/HltCallDoctorRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/system/service/HltCallDoctorServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/system/service/HltDispCardServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/system/service/DoctorTimeTableService.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" />
       </list>
     </option>
   </component>
@@ -319,10 +317,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1974" />
-    <option name="y" value="55" />
-    <option name="width" value="1234" />
-    <option name="height" value="1040" />
+    <option name="x" value="589" />
+    <option name="y" value="-16" />
+    <option name="width" value="1197" />
+    <option name="height" value="965" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -390,7 +388,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
@@ -399,8 +397,18 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="screenshotsListner" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="repositories" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emias_selenium" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
@@ -533,7 +541,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568785465207" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1568792265759" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -561,7 +569,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.CancelCallTest.testCancelCallFrom_DashBoard">
+  <component name="RunManager" selected="TestNG.BeforeTestCD.run">
     <configuration name="AddressTest.testCallSmpChildMkab" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
@@ -573,6 +581,24 @@
       <option name="PACKAGE_NAME" value="emias.calldoctor.function" />
       <option name="MAIN_CLASS_NAME" value="emias.calldoctor.function.AddressTest" />
       <option name="METHOD_NAME" value="testCallSmpChildMkab" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BeforeTestCD.run" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="regress_tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="emias.calldoctor.before.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="emias.calldoctor.before" />
+      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.before.BeforeTestCD" />
+      <option name="METHOD_NAME" value="run" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -608,24 +634,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FormalizatorTest.smpChildMkab_dontChoseDoctor_neformalAddress" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="regress_tests" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emias.calldoctor.function.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.function" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.function.FormalizatorTest" />
-      <option name="METHOD_NAME" value="smpChildMkab_dontChoseDoctor_neformalAddress" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FormalizatorTest.testNotformalizeAddress" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
@@ -645,19 +653,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="TestNG.FormalizatorTest.smpChildMkab_dontChoseDoctor_neformalAddress" />
       <item itemvalue="TestNG.FormalizatorTest.testNotformalizeAddress" />
       <item itemvalue="TestNG.C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngTest.xml" />
       <item itemvalue="TestNG.AddressTest.testCallSmpChildMkab" />
       <item itemvalue="TestNG.CancelCallTest.testCancelCallFrom_DashBoard" />
+      <item itemvalue="TestNG.BeforeTestCD.run" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.BeforeTestCD.run" />
         <item itemvalue="TestNG.CancelCallTest.testCancelCallFrom_DashBoard" />
         <item itemvalue="TestNG.AddressTest.testCallSmpChildMkab" />
         <item itemvalue="TestNG.C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngTest.xml" />
         <item itemvalue="TestNG.FormalizatorTest.testNotformalizeAddress" />
-        <item itemvalue="TestNG.FormalizatorTest.smpChildMkab_dontChoseDoctor_neformalAddress" />
       </list>
     </recent_temporary>
   </component>
@@ -833,7 +841,7 @@
       <workItem from="1568211744434" duration="1490000" />
       <workItem from="1568275426126" duration="10746000" />
       <workItem from="1568355591615" duration="25176000" />
-      <workItem from="1568619174659" duration="19719000" />
+      <workItem from="1568619174659" duration="26341000" />
     </task>
     <task id="LOCAL-00583" summary="промежуточное">
       <created>1558521889761</created>
@@ -1130,18 +1138,18 @@
       <updated>1568722768569</updated>
     </task>
     <task id="LOCAL-00018" summary="правки">
-      <created>1563873243957</created>
+      <created>1568785492756</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1563873243960</updated>
+      <updated>1568785492759</updated>
     </task>
-    <task id="LOCAL-00019" summary="правки">
-      <created>1563893125947</created>
+    <task id="LOCAL-00019" summary="добавил повторную отправку вызова по API">
+      <created>1568788888638</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1563893125957</updated>
+      <updated>1568788888641</updated>
     </task>
     <task id="LOCAL-00020" summary="добавил тест передачи вызова в другое лпу">
       <created>1563960906012</created>
@@ -1178,22 +1186,10 @@
       <option name="project" value="LOCAL" />
       <updated>1566564292145</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_testngTest_xml - 2019.09.17 at 12h 30m 41s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngTest.xml" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_testngTest_xml - 2019.09.17 at 13h 35m 55s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngTest.xml" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_testngTest_xml - 2019.09.17 at 13h 42m 43s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngTest.xml" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_testngTest_xml - 2019.09.17 at 14h 01m 45s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngTest.xml" configurationId="TestNG" />
-    </history-entry>
     <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_testngTest_xml - 2019.09.17 at 14h 13m 37s.xml">
       <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngTest.xml" configurationId="TestNG" />
     </history-entry>
@@ -1212,12 +1208,24 @@
     <history-entry file="CancelCallTest_testCancelCallFrom_DashBoard - 2019.09.18 at 08h 42m 01s.xml">
       <configuration name="CancelCallTest.testCancelCallFrom_DashBoard" configurationId="TestNG" />
     </history-entry>
+    <history-entry file="BeforeTestCD_run - 2019.09.18 at 10h 09m 06s.xml">
+      <configuration name="BeforeTestCD.run" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="BeforeTestCD_run - 2019.09.18 at 10h 14m 00s.xml">
+      <configuration name="BeforeTestCD.run" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="BeforeTestCD_run - 2019.09.18 at 10h 33m 00s.xml">
+      <configuration name="BeforeTestCD.run" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="BeforeTestCD_run - 2019.09.18 at 10h 35m 00s.xml">
+      <configuration name="BeforeTestCD.run" configurationId="TestNG" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="496919000" />
+    <option name="totallyTimeSpent" value="503541000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1974" y="55" width="1234" height="1040" extended-state="6" />
+    <frame x="80" y="-8" width="1848" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" order="0" />
@@ -1226,18 +1234,18 @@
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.54590166" side_tool="true" weight="0.22330096" />
-      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.67197454" visible="true" weight="0.27001703" />
+      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.67197454" visible="true" weight="0.17729306" />
       <window_info id="Persistence" order="7" sideWeight="0.3280255" side_tool="true" weight="0.17537314" />
       <window_info id="Java Enterprise" order="8" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
       <window_info id="Web" order="9" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
-      <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49328858" weight="0.23755656" />
+      <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49328858" weight="0.25638297" />
       <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.30995476" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49307036" visible="true" weight="0.29072398" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.30957446" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.49307036" visible="true" weight="0.27340424" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.2857143" />
-      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" weight="0.37330317" />
+      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" weight="0.3723404" />
       <window_info anchor="bottom" id="Structure" order="8" sideWeight="0.5008091" side_tool="true" weight="0.27172717" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5072707" side_tool="true" weight="0.63914025" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4904051" weight="0.20588236" />
@@ -1305,13 +1313,14 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="правки" />
     <MESSAGE value="правки тестов 2.1" />
     <MESSAGE value="рефакторинг" />
     <MESSAGE value="правки тестов" />
     <MESSAGE value="исправил логгер. Удалил лишние библиотеки" />
     <MESSAGE value="добавил в листнер прикрепление скриншота" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавил в листнер прикрепление скриншота" />
+    <MESSAGE value="правки" />
+    <MESSAGE value="добавил повторную отправку вызова по API" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил повторную отправку вызова по API" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1377,107 +1386,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="62" column="36" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="80" column="36" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" column="44" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/allure.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;method#updateStend#0;class#BeforeTestCD#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/sql/DateGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/reportportal.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/maven/lib/maven.jar!/schemas/maven-4.0.0.xsd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="282" column="12" selection-start-line="282" selection-start-column="12" selection-end-line="282" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-starter-data-jpa/2.1.3.RELEASE/spring-boot-starter-data-jpa-2.1.3.RELEASE.pom">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25" />
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-api/2.12.1/log4j-api-2.12.1.jar!/org/apache/logging/log4j/LogManager.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar!/org/slf4j/Logger.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$MAVEN_REPOSITORY$/com/zaxxer/HikariCP/3.3.1/HikariCP-3.3.1.pom">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -1577,13 +1485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/test-result/reports/1568702519882.0.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1662,17 +1563,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/BasePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="34" column="58" lean-forward="true" selection-start-line="34" selection-start-column="58" selection-end-line="34" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#BasePage#0;class#BasePage#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/api/TestStend.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
@@ -1707,28 +1597,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
-          <folding>
-            <element signature="method#afterSuite#0;class#TestBase#0" />
-            <element signature="method#setUp#0;class#TestBase#0" />
-            <element signature="method#afterMethod#0;class#TestBase#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/testngTest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
@@ -1755,21 +1626,169 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="85" column="24" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/BasePage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="42" column="53" selection-start-line="42" selection-start-column="36" selection-end-line="42" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#BasePage#0;class#BasePage#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/pacients/ProfileAdressNeIzMkab.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="347" column="22" selection-start-line="347" selection-start-column="22" selection-end-line="347" selection-end-column="22" />
-          <folding>
-            <element signature="e#5188#5646#0" />
-            <element signature="e#5276#5337#0" />
-          </folding>
+        <state relative-caret-position="5481">
+          <caret line="374" column="89" selection-start-line="374" selection-start-column="89" selection-end-line="374" selection-end-column="89" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
+        <state relative-caret-position="372">
+          <caret line="42" lean-forward="true" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="89" column="53" lean-forward="true" selection-start-line="89" selection-start-column="53" selection-end-line="89" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/Selenium/SeleniumGrid.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1377">
+          <caret line="81" selection-start-line="81" selection-end-line="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/model/HltCallDoctorEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+          <folding>
+            <element signature="e#3764#3765#0" expanded="true" />
+            <element signature="e#3828#3829#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="37" column="25" lean-forward="true" selection-start-line="37" selection-start-column="25" selection-end-line="37" selection-end-column="25" />
+          <folding>
+            <element signature="method#afterSuite#0;class#TestBase#0" />
+            <element signature="method#setUp#0;class#TestBase#0" />
+            <element signature="method#afterMethod#0;class#TestBase#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/function/Consumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="48" column="9" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/repositories/HltCallDoctorRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/service/HltCallDoctorServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="39" column="44" lean-forward="true" selection-start-line="39" selection-start-column="44" selection-end-line="39" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/service/HltDispCardServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/service/DoctorTimeTableService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/service/HltDispExamServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/service/HltMkabServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/system/service/HltMkabService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="264" selection-start-line="264" selection-end-line="264" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="32" />
+          <folding>
+            <element signature="docComment;method#updateStend#0;class#BeforeTestCD#0" />
+            <element signature="method#updateStend#0;class#BeforeTestCD#0" />
+          </folding>
         </state>
       </provider>
     </entry>

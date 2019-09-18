@@ -13,11 +13,11 @@ import java.util.Map;
 
 public class BeforeTestCD extends TestBase {
 
-    @Test(description = "Создаю новое расписание на сегодня")//сделано тестом что бы запускать отдельно
+    @Test(description = "Prepare data base")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
     public void run() throws IOException, ParseException {
         updateStend();
-        cleanOperatorCalls();
+        cancelCalls();
         doctorsPreset();
     }
 
@@ -31,7 +31,7 @@ public class BeforeTestCD extends TestBase {
      *                                                                 and OT_V like 'Д%')
      *   and D_END > getdate()
      * */
-    public void updateStend() throws IOException, ParseException {
+    public void updateStend() throws ParseException {
         Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
         LPUDoctor.put(3068, 2123);//Темников Дмитрий
         LPUDoctor.put(1831, 417);//Моков
@@ -71,11 +71,12 @@ public class BeforeTestCD extends TestBase {
         }
     }
 
-    public void cleanOperatorCalls() {
-        DBScripts.finalizeCallsOperatorTemnikov();
+    public void cancelCalls() {
+        // DBScripts.finalizeCallsOperatorTemnikov(); //это для стенда МИАЦ
+        hltCallDoctorService.cancelNotClosedCards();
     }
 
     public void doctorsPreset() {
-
+        // TODO: 9/18/2019 сделать скрипты для предварительной настройки врачей
     }
 }

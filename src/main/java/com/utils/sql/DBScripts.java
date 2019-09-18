@@ -79,13 +79,6 @@ public class DBScripts extends BasePage {
 
     @Step("завершаю вызовы оператора Темников")
     public static void finalizeCallsOperatorTemnikov() {
-//        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-//        Session session = sessionFactory.openSession();
-//        session.createQuery(
-//                "update HltCallDoctorEntity " +
-//                        "set rfCallDoctorStatusId = 3 " +
-//                        " ");
-
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +

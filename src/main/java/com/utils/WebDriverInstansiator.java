@@ -88,6 +88,7 @@ public class WebDriverInstansiator {
         Dimension dimension = getWebDriver().manage().window().getSize();
 
         if (!String.valueOf(dimension).equals("(1919, 1079)")) {
+            logger.error("Error. Incorrect windows size dimension");
             throw new SkipException("Ошибка. Размер окна браузера некорректный!" + dimension);
         } else {
             logger.info(
