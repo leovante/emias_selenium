@@ -44,13 +44,18 @@ public class HltCallDoctorServiceImpl {
         }
     }
 
-    @Transactional
+//    @Transactional
     @Step("cancel call by card ID")
     public void cancelNotClosedCards() {
+        try{
         Stream<HltCallDoctorEntity> calls = hltCallDoctorRepository.findAllNotClosed();
         calls.forEach(call -> {
             call.setRfCallDoctorStatusId(4);
             call.setCauseCancel("Canceled before autotests framework run. By DTemnikov");
         });
+        }catch (NullPointerException e){
+            logger.error("Error of close cards");
+            e.printStackTrace();
+        }
     }
 }

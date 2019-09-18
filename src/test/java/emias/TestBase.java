@@ -27,7 +27,7 @@ import java.text.ParseException;
 public class TestBase extends AbstractTestNGSpringContextTests{
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;
-    public ConfigFile configFile = new ConfigFile();
+    protected ConfigFile configFile = new ConfigFile();
     public String testName;
     protected Assistance assistance = new AssistanceImpl();
 
@@ -74,10 +74,17 @@ public class TestBase extends AbstractTestNGSpringContextTests{
 
     /* СЕРВИСЫ */
     @Parameters({"testng"})
-    @BeforeTest(alwaysRun = true)
-    public void beforeTest(@Optional String testng) throws IOException, ParseException {
+    @BeforeClass(groups = "CD", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
+    public void beforeClassCD(@Optional String testng) throws ParseException {
         if (testng != null) {
             new BeforeTestCD().run();
+        }
+    }
+
+    @Parameters({"testng"})
+    @BeforeClass(groups = "disp", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
+    public void beforeClassDisp(@Optional String testng) {
+        if (testng != null) {
             new BeforeTestDisp();
         }
     }

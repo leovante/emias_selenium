@@ -15,10 +15,10 @@ public class BeforeTestCD extends TestBase {
 
     @Test(description = "Prepare data base")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
-    public void run() throws IOException, ParseException {
-        updateStend();
+    public void run() throws ParseException {
         cancelCalls();
         doctorsPreset();
+        updateStend();
     }
 
     /**
@@ -73,7 +73,7 @@ public class BeforeTestCD extends TestBase {
 
     public void cancelCalls() {
         // DBScripts.finalizeCallsOperatorTemnikov(); //это для стенда МИАЦ
-        hltCallDoctorService.cancelNotClosedCards();
+        // hltCallDoctorService.cancelNotClosedCards();//spring не видит бин
     }
 
     public void doctorsPreset() {
