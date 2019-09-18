@@ -343,9 +343,11 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("кнопка сохранить")
-    public CreateCallPage allertBtn() {
-        allertCloseDialog_Yes.click();
+    @Step("Address allert dialog - Yes button")
+    public CreateCallPage allertBtn() throws InterruptedException {
+        Thread.sleep(2000);
+        if (allertCloseDialog_Yes.is(Condition.visible))
+            allertCloseDialog_Yes.click();
         return this;
     }
 

@@ -39,10 +39,10 @@ public class MisHomePage extends BasePage {
         WebDriverRunner.getWebDriver().manage().addCookie(department);
     }
 
-    @Step("Вход в модуль диспетчер")
+    @Step("Open CallDoctor with in URL")
     public void calldoctor() {
         open(conf.getCalldoctor());
-        logger2.debug("Открыл модуль диспетчер по прямой ссылке: " + conf.getCalldoctor());
+        logger2.debug("Open CallDoctor with in URL: " + conf.getCalldoctor());
     }
 
     @Step("Вход в модуль диспетчер от взрослой поликлиникой")
