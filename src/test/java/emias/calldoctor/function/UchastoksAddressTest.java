@@ -113,7 +113,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "не отображать участок у вызова с неформализованным адресом")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException, ParseException, NoticeException {
+    public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
         page.createCall(pacientImpl).createCall_Api();
         page.misHome().calldoctor();

@@ -109,22 +109,8 @@ public class CreateCallPage extends BasePage {
     @Step("create call via API")
     public void createCall_Api() throws InterruptedException {
         callDoctorService.cancelByNPol(pacient.getNumberpol());
-        CallDoctorHttp hr;
-        HttpResponse resp;
-
         try {
-            hr = new CallDoctorHttp(pacient);
-            resp = hr.execute();
-            for (int i = 0; i < 5; i++) {
-                if (resp.getStatusLine().getStatusCode() == 200)
-                    break;
-                Thread.sleep(1000);
-                resp = hr.execute();
-            }
-            if (resp.getStatusLine().getStatusCode() != 200) {
-                logger.error("Call don't create: \n" + hr);
-                throw new SkipException("Call don't create");
-            }
+            new CallDoctorHttp(pacient).execute();
         } catch (JSONException e) {
             e.printStackTrace();
         }

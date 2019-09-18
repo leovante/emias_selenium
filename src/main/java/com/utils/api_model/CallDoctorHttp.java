@@ -6,17 +6,23 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.testng.SkipException;
 
 import java.io.IOException;
 
 public class CallDoctorHttp {
+    private static Logger logger = LogManager.getLogger();
     private Pacient pacientImpl;
     private ConfigFile configFile;
-    HttpPost request;
-    JSONObject jsonOb;
+    private HttpPost request;
+    private JSONObject jsonOb;
+    HttpResponse httpResponse = null;
 
     public CallDoctorHttp(Pacient pacientImpl) throws JSONException {
         this.pacientImpl = pacientImpl;
@@ -62,7 +68,7 @@ public class CallDoctorHttp {
             jsonOb.put("kladraddress", pacientImpl.getKladraddress());
     }
 
-    public HttpPost postRequestSMP() {
+    public HttpPost requestSmp() {
         this.request = new HttpPost(configFile.getRequestSmp());
         this.request.addHeader("content-type", "application/json");
         this.request.addHeader("Authorization", configFile.getAuthorization());
@@ -72,7 +78,7 @@ public class CallDoctorHttp {
         return request;
     }
 
-    public HttpPost createPostRequestToken() throws IOException {
+    public HttpPost requestToken() throws IOException {
 //        String token = new Tokenizer().getToken(pacient, clientApplication);
         this.request = new HttpPost(configFile.getRequestSmp());
         request.addHeader("Content-type", "application/json");
@@ -83,22 +89,49 @@ public class CallDoctorHttp {
         return request;
     }
 
-    public HttpResponse execute() {
-        HttpClient httpClient = HttpClients.createDefault();
-        HttpResponse httpResponse = null;
+    public void execute() {
         try {
             if (pacientImpl.getSource() == 2) {//смп
-                httpResponse = httpClient.execute(postRequestSMP());
+                httpResponse = executeRetry(requestSmp());
+
             }
             if (pacientImpl.getSource() == 3) {//кц с авторизацией
-                httpResponse = httpClient.execute(createPostRequestToken());
+                httpResponse = executeRetry(requestToken());
             }
             if (pacientImpl.getSource() != 2 && pacientImpl.getSource() != 3) {
-                throw new NullPointerException("Нет такого источника");
+                logger.error("Can't create request with source " + pacientImpl.getSource());
+                throw new SkipException("Can't create request with source ");
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Error of execute request " + httpResponse);
+            e.printStackTrace();
         }
+    }
+
+    public HttpResponse executeRetry(HttpPost request) throws IOException, InterruptedException {
+        for (int i = 0; i < 5; i++) {
+            logger.info("First attempt to execute request");
+            executeAndGetResponce(request);
+            if (httpResponse.getStatusLine().getStatusCode() == 200){
+                logger.info("Request is success: " + httpResponse.getStatusLine());
+                return httpResponse;
+            }
+            Thread.sleep(1000);
+            logger.info("Repeat attempt to execute request");
+            executeAndGetResponce(request);
+        }
+        if (httpResponse.getStatusLine().getStatusCode() != 200) {
+            String responseString = new BasicResponseHandler().handleResponse(httpResponse);
+            logger.error("Call don't create. Request body is: \n" + responseString);
+            throw new SkipException("Call don't create");
+        }
+        return httpResponse;
+    }
+
+    private HttpResponse executeAndGetResponce(HttpPost request) throws IOException {
+        HttpClient httpClient = HttpClients.createDefault();
+        httpResponse = httpClient.execute(request);
+        logger.info("Status code is: " + httpResponse.getStatusLine().getStatusCode());
         return httpResponse;
     }
 }
