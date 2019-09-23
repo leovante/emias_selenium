@@ -247,23 +247,50 @@ public class DashboardPage extends BasePage {
     public void openNewCallDash(Pacient pacientImpl) throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        SelenideElement address = matExpansionPanel
-                .$x(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]");
+
+        ElementsCollection addressCollection = matExpansionPanel
+                .$$x(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]");
+        SelenideElement address = addressCollection.get(0);
+
+        address.shouldBe(Condition.visible);
         Actions actions = new Actions(driver);
-        actions.moveToElement(address).perform();
+        actions.moveToElement(address).perform();//маленький уголочек
 
         SelenideElement smallMenu = address
                 .$x("../../../.")
                 .$x(".//*[contains(text(),'chevron_left')]");
-        actions.moveToElement(smallMenu).perform();
-        Thread.sleep(1000);
+        smallMenu.shouldBe(Condition.visible);
+        actions.moveToElement(smallMenu).perform();//большая менюшка
 
         SelenideElement openCard = address
                 .$x("../../../.")
                 .$x(".//a[@title='Открыть карту вызова']")
                 .$x(".//mat-icon[contains(text(),'assignment')]");
-        Thread.sleep(1000);
-        openCard.click();
+        address.shouldBe(Condition.visible);
+
+        if(openCard.is(Condition.visible)){
+            openCard.click();
+        }else{
+            for (int i = 0; i < 5; i++) {
+                waitVisible(address);
+                if(openCard.is(Condition.visible))
+                    break;
+                Thread.sleep(1000);
+            }
+            openCard.click();
+        }
+    }
+
+    void waitVisible(SelenideElement address){
+        address.shouldBe(Condition.visible);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(address).perform();//маленький уголочек
+
+        SelenideElement smallMenu = address
+                .$x("../../../.")
+                .$x(".//*[contains(text(),'chevron_left')]");
+        smallMenu.shouldBe(Condition.visible);
+        actions.moveToElement(smallMenu).perform();//большая менюшка
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")

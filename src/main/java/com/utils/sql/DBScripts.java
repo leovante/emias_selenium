@@ -103,6 +103,7 @@ public class DBScripts extends BasePage {
         }
     }
 
+/*
     @Step("Сбросить мероприятия у карты вызова")
     public static void setDefaultServices(String cardID) { // TODO: 04.09.2018 доделать обнуление заключения
         String url = connectionUrl +
@@ -129,6 +130,7 @@ public class DBScripts extends BasePage {
             e.printStackTrace();
         }
     }
+*/
 
     @Step("Запуск скрипта на демонстрейшн")
     public static void runSqlScript(String sql) throws IOException {

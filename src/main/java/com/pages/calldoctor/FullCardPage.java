@@ -40,7 +40,7 @@ public class FullCardPage extends BasePage {
 
     public FullCardPage(String testName) throws IOException {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
-        logger.info("Открыл карту вызова url " + url());
+        logger.info("Open card with url: " + url());
     }
 
     public FullCardPage(Pacient pacient, String testName) throws IOException {

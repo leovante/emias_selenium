@@ -25,7 +25,7 @@ public class FormalizatorTest extends TestBase {
         page.createCall(pacientImpl)
                 .addNewCall()
                 .searchField();
-        assistance.isVisibleText(pacientImpl.getAddress3adv());
+        assistance.isVisibleText(pacientImpl.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api с неформализованным адресом. Проверка окна формализации при назначении врача.")
@@ -49,12 +49,11 @@ public class FormalizatorTest extends TestBase {
     @Test(groups = "CD", description = "вызов по мкаб из мис. Адрес неформал. Проверка окна формализации при назначении врача.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void misNeformalAddress_dontChangeDoctor() throws IOException, InterruptedException, JSONException, NoticeException {
+    public void misNeformalAddress_dontChangeDoctor() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new PacientImpl("AdressNeformal");
         page.misHome().calldoctor();
         page.createCall(pacient)
-                .createCall_Mkab()
-                .saveBtn();
+                .createCall_Mkab();
 
         page.fullCard(pacient, testName()).chooseDoctorBtn();
         $x("//*[contains(text(),'Производится попытка формализации адреса')]")

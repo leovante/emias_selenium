@@ -21,19 +21,20 @@ public class BeforeTestDisp extends TestBase {
     @Test(description = "Подготовка БД")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
     public void run() throws IOException, ParseException {
-        setDefaultCard();//обнулить карты
+        cleanTestCard();
+//        setDefaultCard();//обнулить карты
 //        setTestServices();//тестовые ресурсы мероприятий
 //        createShedule();//создание нового расписания у врачей
     }
 
-    @Step("Обнуляю карты диспансеризации")
-    void setDefaultCard() {
-        ArrayList<String> cardID = new ArrayList<>();
-        cardID.add("3059");
-        for (String cards : cardID) {
-            DBScripts.setDefaultServices(cards);
-        }
-    }
+//    @Step("Обнуляю карты диспансеризации")
+//    void setDefaultCard() {
+//        ArrayList<String> cardID = new ArrayList<>();
+//        cardID.add("3059");
+//        for (String cards : cardID) {
+//            DBScripts.setDefaultServices(cards);
+//        }
+//    }
 
     @Step("Подготовка мероприятий")
     void setTestServices() throws IOException {
@@ -52,5 +53,10 @@ public class BeforeTestDisp extends TestBase {
             DBScripts.deleteShedule(pair.getKey(), pair.getValue());
             DBScripts.createShedule(pair.getKey(), pair.getValue());
         }
+    }
+
+    @Step("Очистка тестовой карты диспансеризации")
+    void cleanTestCard() throws IOException {
+        DBScripts.runSqlScript("clear_card");
     }
 }

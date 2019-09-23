@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class JournalTest extends TestBase {
@@ -56,11 +57,12 @@ public class JournalTest extends TestBase {
     public void verifyMeasurePattern() throws InterruptedException {
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(1594);
+        page.journalPage().searchByCardNumber(418);
         page.journalPage().clickSearchBtn();
-        page.journalPage().editCardBtn(7654321);
+        page.journalPage().editCardBtn(165734);
         page.exampPage().viewFlurography();
-        $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'Не удается открыть медицинскую запись')]")
+                .shouldNotBe(Condition.visible);
     }
 
     @Epic("Журнал диспансеризации")

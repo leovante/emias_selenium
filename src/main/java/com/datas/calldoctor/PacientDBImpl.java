@@ -24,6 +24,7 @@ public class PacientDBImpl implements Pacient {
     private String ot;
     private int source = 2;
     private int type;
+    private int callPersonType;
     private String complaint;
     private String diagnosis;
     private String entrance;//подьезд
@@ -215,6 +216,11 @@ public class PacientDBImpl implements Pacient {
     @Override
     public String getAddress3() {
         return null;
+    }
+
+    @Override
+    public int getCallPersonType() {
+        return callPersonType;
     }
 
     public PacientDBImpl(HltMkabService hltMkabService) throws IOException, JSONException {

@@ -68,7 +68,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, JSONException, NoticeException {
+    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile18");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -81,19 +81,19 @@ public class UchastoksAddressTest extends TestBase {
         $x("//*[contains(text(),'#5 Дерматологический')]").shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю вызов через СМП, что бы проверить " +
+    @Test(groups = "CD", description = "создаю авторизованный вызов через СМП, что бы проверить " +
             "что участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab");
-        page.createCall(pacientImpl).createCall_Api();
+        page.createCall(pacientImpl).createCall_Api_Auth();
         page.misHome().calldoctor();
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
                 .openNewCallDash(pacientImpl);
         page.createCall(pacientImpl).selectUchastokFromNeUdalosOpredelit();
-        $x("//*[contains(text(),'#2 Педиатрический')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "создаю вызов через СМП, что бы проверить " +

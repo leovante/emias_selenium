@@ -1,0 +1,34 @@
+BEGIN TRANSACTION
+declare @card int
+begin
+set @card = 418
+
+update hlt_disp_Card
+set IsClosed = 0,
+    IsOtkaz = 0
+where disp_CardID = @card
+
+update hlt_disp_Exam
+set IsSigned = 0,
+    IsDeviation = 0,
+    IsOtkaz = 0,
+    IsBefore = 0
+from hlt_disp_Card as dc
+       inner join hlt_disp_Exam de on de.rf_CardGuid = dc.Guid
+where dc.disp_CardID = @card
+
+delete hlt_disp_ExamMR
+from hlt_disp_Card dc
+       join hlt_disp_Exam de on de.rf_CardGuid=dc.Guid
+       join hlt_disp_ExamMR emr on emr.rf_ExamGuid=de.Guid
+where dc.disp_CardID = @card
+
+delete hlt_disp_ExamSM
+from hlt_disp_Card dc
+       join hlt_disp_Exam de on de.rf_CardGuid=dc.Guid
+       left join hlt_disp_ExamMR emr on emr.rf_ExamGuid=de.Guid
+       left join ehr_MedRecord mr on mr.Guid=emr.EhrMedRecordGuid
+       join hlt_disp_ExamSM esm on esm.rf_ExamGuid=de.guid
+where dc.disp_CardID = @card
+end
+COMMIT

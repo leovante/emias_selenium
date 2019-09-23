@@ -39,7 +39,7 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
-    public void smpChildMkab_testCallerFIO() throws IOException, InterruptedException, JSONException, NoticeException {
+    public void smpChildMkab_testCallerFIO() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();

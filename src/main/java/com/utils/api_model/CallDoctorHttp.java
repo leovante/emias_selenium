@@ -4,9 +4,11 @@ import com.config.ConfigFile;
 import com.datas.calldoctor.Pacient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +17,7 @@ import org.json.JSONObject;
 import org.testng.SkipException;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class CallDoctorHttp {
     private static Logger logger = LogManager.getLogger();
@@ -24,6 +27,7 @@ public class CallDoctorHttp {
     private JSONObject jsonOb;
     HttpResponse httpResponse = null;
 
+    // TODO: 9/20/2019 навести порядок
     public CallDoctorHttp(Pacient pacientImpl) throws JSONException {
         this.pacientImpl = pacientImpl;
         this.jsonOb = new JSONObject();
@@ -66,6 +70,8 @@ public class CallDoctorHttp {
             jsonOb.put("floor", pacientImpl.getFloor());
         if (pacientImpl.getKladraddress() != null && pacientImpl.getKladraddress() != "")
             jsonOb.put("kladraddress", pacientImpl.getKladraddress());
+        if (pacientImpl.getCallPersonType() != 0)
+            jsonOb.put("callPersonType", pacientImpl.getCallPersonType());
     }
 
     public HttpPost requestSmp() {
@@ -78,7 +84,7 @@ public class CallDoctorHttp {
         return request;
     }
 
-    public HttpPost requestToken() throws IOException {
+    public HttpPost requestToken() {
 //        String token = new Tokenizer().getToken(pacient, clientApplication);
         this.request = new HttpPost(configFile.getRequestSmp());
         request.addHeader("Content-type", "application/json");
@@ -89,11 +95,20 @@ public class CallDoctorHttp {
         return request;
     }
 
+    public HttpPost requestTokenAuth() throws IOException {
+//        String token = new Tokenizer().getToken(pacient, clientApplication);
+        this.request = new HttpPost(configFile.getRequestSmpAuth());
+        request.addHeader("Content-type", "application/json");
+//        request.addHeader("Authorization", "Bearer " + token);
+        StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
+        request.setEntity(params);
+        return request;
+    }
+
     public void execute() {
         try {
             if (pacientImpl.getSource() == 2) {//смп
                 httpResponse = executeRetry(requestSmp());
-
             }
             if (pacientImpl.getSource() == 3) {//кц с авторизацией
                 httpResponse = executeRetry(requestToken());
@@ -108,30 +123,55 @@ public class CallDoctorHttp {
         }
     }
 
+    public void executeAuth() {
+        try {
+            httpResponse = executeRetry(requestTokenAuth());
+        } catch (Exception e) {
+            logger.error("Error of execute request " + httpResponse);
+            e.printStackTrace();
+        }
+    }
+
     public HttpResponse executeRetry(HttpPost request) throws IOException, InterruptedException {
         for (int i = 0; i < 5; i++) {
-            logger.info("First attempt to execute request");
+            logger.info("Execute request");
             executeAndGetResponce(request);
-            if (httpResponse.getStatusLine().getStatusCode() == 200){
-                logger.info("Request is success: " + httpResponse.getStatusLine());
-                return httpResponse;
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                logger.info("Request is success");
+                return message(httpResponse);
             }
             Thread.sleep(1000);
-            logger.info("Repeat attempt to execute request");
-            executeAndGetResponce(request);
         }
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            String responseString = new BasicResponseHandler().handleResponse(httpResponse);
-            logger.error("Call don't create. Request body is: \n" + responseString);
+            message(httpResponse);
             throw new SkipException("Call don't create");
         }
+        return message(httpResponse);
+    }
+
+    public HttpResponse message(HttpResponse httpResponse) throws IOException {
+        String responseString = new BasicResponseHandler().handleResponse(httpResponse);
+        logger.info("Request status line is : " + httpResponse.getStatusLine());
+        logger.error("Request body is: \n" + responseString);
         return httpResponse;
     }
 
     private HttpResponse executeAndGetResponce(HttpPost request) throws IOException {
-        HttpClient httpClient = HttpClients.createDefault();
-        httpResponse = httpClient.execute(request);
-        logger.info("Status code is: " + httpResponse.getStatusLine().getStatusCode());
-        return httpResponse;
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpResponse hr;
+        try {
+            hr = httpClient.execute(request);
+            try{
+                Scanner sc = new Scanner(hr.getEntity().getContent());
+                while(sc.hasNext()) {
+                    logger.info(sc.nextLine());
+                }
+            }finally {
+                hr.close();
+            }
+        }finally {
+            httpClient.close();
+        }
+        return httpResponse = hr;
     }
 }

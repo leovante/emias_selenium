@@ -273,5 +273,14 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="hlt_db_lpu10@192.168.7.210" uuid="b35eb2fc-0a00-426e-8e51-4f4ae4df88e2">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.210:55602/hlt_db_lpu10</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

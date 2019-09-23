@@ -191,6 +191,11 @@ public class DoctorsListTest extends TestBase {
                 .verifyNewCall()
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
+        page.createCall(pacientImpl)
+                .selectUchastokFromNeUdalosOpredelit();
+        $x("//*[contains(text(),'" + mokov.getUchastocs() + "')]").click();
+        $x("//*[contains(text(),'Сохранить')]").click();
+        $x("//*[contains(text(),'Выберите врача')]").click();
         assistance.isVisibleText(mokov.getUchastocs());
     }
 
@@ -198,7 +203,7 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
-    public void viewDoctorList_OnlyFromCurrentDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void viewDoctorList_OnlyFromCurrentDepart() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
         page.misHome().calldoctorVzroslaya();
         page.createCall(pacientImpl).createCall();
@@ -215,7 +220,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile0_2");
         page.misHome().calldoctor();

@@ -99,10 +99,8 @@ public class ChangeDepartmentTest extends TestBase {
         PacientImpl pacient = new PacientImpl("ProfileTransferDep-Lpu");
         page.misHome().calldoctor();
         page.createCall(pacient).createCall();
-        page.fullCard(pacient, testName())
-                .transfer_to_depart();
-        page.passLpu()
-                .validate_view_to_adult();
+        page.fullCard(pacient, testName()).transfer_to_depart();
+        page.passLpu().validate_view_to_adult();
     }
 
     @Test(groups = "CD", description = "На странице передачи в другое лпу у детского вызова не отображается взрослая поликлиника и наоборот")

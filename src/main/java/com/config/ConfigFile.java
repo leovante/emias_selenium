@@ -23,6 +23,8 @@ public class ConfigFile {
     private String clientApplication;
     private String authorization;
     private String requestSmp;
+    private String requestSmpAuth;
+    private String token;
 
     private String mr_tap;
 
@@ -49,6 +51,8 @@ public class ConfigFile {
             clientApplication = property.getProperty("st.api.clientApplication");
             authorization = property.getProperty("st.api.authorization");
             requestSmp = property.getProperty("st.api.requestSmp");
+            requestSmpAuth = property.getProperty("st.api.requestSmpAuth");
+            token = property.getProperty("st.api.token");
             codeLpu = property.getProperty("st.mis.codeLpu");
             mr_tap = property.getProperty("st.mis.url.MRTAP");
         } catch (IOException e) {
@@ -118,6 +122,14 @@ public class ConfigFile {
 
     public String getRequestSmp() {
         return requestSmp;
+    }
+
+    public String getRequestSmpAuth() {
+        return requestSmpAuth;
+    }
+
+    public String getToken() {
+        return token;
     }
 
     public String getCodeLpu() {

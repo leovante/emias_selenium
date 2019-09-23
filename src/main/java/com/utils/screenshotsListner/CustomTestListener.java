@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class CustomTestListener extends TestListenerAdapter {
     public static Logger logger = LogManager.getLogger();
-    public String rp_message = "test message for Report Portal";
+    public String rp_message = "create screenshot to reportportal";
 
     @Override
     public void onTestStart(ITestResult result) {

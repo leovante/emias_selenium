@@ -77,7 +77,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create simple call")
-    public CreateCallPage createCall() throws InterruptedException, NoticeException {
+    public CreateCallPage createCall() throws InterruptedException {
         addNewCall()
                 .sourceCall()
                 .address()
@@ -94,7 +94,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create call with MKAB")
-    public CreateCallPage createCall_Mkab() throws InterruptedException, NoticeException {
+    public CreateCallPage createCall_Mkab() throws InterruptedException {
         addNewCall()
                 .sourceCall()
                 .searchField()
@@ -107,8 +107,8 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create call via API")
-    public void createCall_Api() throws InterruptedException {
-        callDoctorService.cancelByNPol(pacient.getNumberpol());
+    public void createCall_Api()   {
+//        callDoctorService.cancelByNPol(pacient.getNumberpol());
         try {
             new CallDoctorHttp(pacient).execute();
         } catch (JSONException e) {
@@ -116,8 +116,18 @@ public class CreateCallPage extends BasePage {
         }
     }
 
+    @Step("create authorize call via API")
+    public void createCall_Api_Auth()   {
+//        callDoctorService.cancelByNPol(pacient.getNumberpol());
+        try {
+            new CallDoctorHttp(pacient).executeAuth();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Step("edit call")
-    public CreateCallPage editCallPage() throws IOException, ParseException, InterruptedException {
+    public CreateCallPage editCallPage() throws InterruptedException {
         sourceCall()
                 .sourceCall()
                 .address()

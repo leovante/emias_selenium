@@ -17,6 +17,7 @@ public class PacientImpl implements Pacient {
     private int source;
     private int type;
     private int gender;
+    private int callPersonType;
     private String birthdate_string;
     private Date birthdate;
     private String seriespol;
@@ -64,6 +65,9 @@ public class PacientImpl implements Pacient {
 
         if (jsonOb.has("type") && !jsonOb.get("type").equals(""))
             this.type = jsonOb.getInt("type");
+
+        if (jsonOb.has("callPersonType") && !jsonOb.get("callPersonType").equals(""))
+            this.type = jsonOb.getInt("callPersonType");
 
         if (jsonOb.has("seriespol") && !jsonOb.get("seriespol").equals(""))
             this.seriespol = jsonOb.getString("seriespol");
@@ -181,6 +185,10 @@ public class PacientImpl implements Pacient {
 
     public int getType() {
         return type;
+    }
+
+    public int getCallPersonType() {
+        return callPersonType;
     }
 
     public String getEntrance() {

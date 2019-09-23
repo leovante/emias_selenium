@@ -64,4 +64,6 @@ public interface Pacient {
     String getAddress2();
 
     String getAddress3();
+
+    int getCallPersonType();
 }

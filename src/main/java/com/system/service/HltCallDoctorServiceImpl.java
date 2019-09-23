@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 @Service
@@ -22,8 +23,13 @@ public class HltCallDoctorServiceImpl {
     @Step("cancel call by pol number")
     public void cancelByNPol(String number) {
         try {
-            Stream<HltCallDoctorEntity> calls = hltCallDoctorRepository.findAllByNumberPolAndRfCallDoctorStatusId(number);
-            calls.forEach(call -> {
+            Optional<HltCallDoctorEntity> calls = hltCallDoctorRepository
+                    .findAllByNumberPolAndRfCallDoctorStatusId(number);
+//            calls.forEach(call -> {
+//                call.setRfCallDoctorStatusId(4);
+//            });
+
+            calls.ifPresent(call -> {
                 call.setRfCallDoctorStatusId(4);
             });
         } catch (NullPointerException e) {
