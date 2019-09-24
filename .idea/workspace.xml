@@ -2,37 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/datas/disp/PacientDispImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/disp/pacients/Temnikov.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sql/disp/clear_card" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/ConfigFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/ConfigFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/Pacient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/Pacient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientDBImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientDBImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/FullCardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/FullCardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/repositories/HltCallDoctorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/repositories/HltCallDoctorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/service/HltCallDoctorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/service/HltCallDoctorServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/Logging.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/AdressNeformal.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/AdressNeformal.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/Profile3_Kladr.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/Profile3_Kladr.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/ProfileAdressNeIzMkab.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/ProfileAdressNeIzMkab.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/FormalizatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/FormalizatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsFillTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsFillTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -204,11 +176,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="314">
-              <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+              <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
               <folding>
                 <element signature="method#CallDoctorHttp#0;class#CallDoctorHttp#0" />
                 <element signature="method#requestSmp#0;class#CallDoctorHttp#0" />
@@ -218,7 +190,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/Tokenizer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
@@ -533,12 +505,17 @@
     <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569250562479" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569304809560" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.41379312" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="Push.Settings">
+    <force-push-targets>
+      <force-push-target remote-path="origin" branch="2.1" />
+    </force-push-targets>
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -848,7 +825,7 @@
       <workItem from="1568275426126" duration="10746000" />
       <workItem from="1568355591615" duration="25176000" />
       <workItem from="1568619174659" duration="46906000" />
-      <workItem from="1568892394503" duration="32926000" />
+      <workItem from="1568892394503" duration="33590000" />
     </task>
     <task id="LOCAL-00583" summary="промежуточное">
       <created>1558521889761</created>
@@ -1179,12 +1156,12 @@
       <option name="project" value="LOCAL" />
       <updated>1568807966513</updated>
     </task>
-    <task id="LOCAL-00023" summary="правки">
-      <created>1566551675236</created>
+    <task id="LOCAL-00023" summary="временно отключил предварительную очистку">
+      <created>1569250592789</created>
       <option name="number" value="00023" />
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
-      <updated>1566551675241</updated>
+      <updated>1569250592791</updated>
     </task>
     <task id="LOCAL-00024" summary="Merge branch '2.1-1'&#10;&#10;# Conflicts:&#10;#&#9;.idea/dataSources.xml&#10;#&#9;.idea/dataSources/746674ce-b2f9-4fad-9cc9-adc5a0845d18.xml&#10;#&#9;.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466/storage_v2/_src_/database/test_mo_hlt_Taldom_CRB_20190129.t61c3w/schema/dbo.sYMBAA.meta&#10;#&#9;.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466/storage_v2/_src_/database/test_mo_hlt_taldom_crb_20190129.tw2isA/schema/dbo.sYMBAA.zip&#10;#&#9;.idea/libraries/Maven__com_epam_reportportal_client_java_4_0_10.xml&#10;#&#9;.idea/libraries/Maven__com_epam_reportportal_commons_model_4_2_0.xml&#10;#&#9;.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_4_1.xml&#10;#&#9;.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_25.xml&#10;#&#9;src/main/java/com/api/TestStend.java&#10;#&#9;src/main/java/com/config/AppConfig.java&#10;#&#9;src/main/java/com/config/ConfigFile.java&#10;#&#9;src/main/java/com/datas/UserData.java&#10;#&#9;src/main/java/com/datas/calldoctor/Doctor.java&#10;#&#9;src/main/java/com/datas/calldoctor/Pacient.java&#10;#&#9;src/main/java/com/datas/calldoctor/PacientDBImpl.java&#10;#&#9;src/main/java/com/datas/calldoctor/PacientImpl.java&#10;#&#9;src/main/java/com/pages/Pages.java&#10;#&#9;src/main/java/com/pages/callcenter/FindPatientPageBase.java&#10;#&#9;src/main/java/com/pages/callcenter/PatientRecordsPageBase.java&#10;#&#9;src/main/java/com/pages/calldoctor/Card/Card.java&#10;#&#9;src/main/java/com/pages/calldoctor/Card/CardInter.java&#10;#&#9;src/main/java/com/pages/calldoctor/CreateCallPage.java&#10;#&#9;src/main/java/com/pages/calldoctor/CreateCallPageBase.java&#10;#&#9;src/main/java/com/pages/calldoctor/DashboardPage.java&#10;#&#9;src/main/java/com/pages/calldoctor/DashboardPageBase.java&#10;#&#9;src/main/java/com/pages/calldoctor/FullCardPage.java&#10;#&#9;src/main/java/com/pages/calldoctor/PrintFormPage.java&#10;#&#9;src/main/java/com/pages/calldoctor/PrintFormPageBase.java&#10;#&#9;src/main/java/com/pages/calldoctor/SetDoctorPage.java&#10;#&#9;src/main/java/com/pages/calldoctor/SetDoctorPageBase.java&#10;#&#9;src/main/java/com/pages/calldoctor/card/Card.java&#10;#&#9;src/main/java/com/pages/calldoctor/card/CardInter.java&#10;#&#9;src/main/java/com/pages/calldoctor/doctors_interfaces/AiBoLitAutoTest.json&#10;#&#9;src/main/java/com/pages/calldoctor/doctors_interfaces/Doctor.java&#10;#&#9;src/main/java/com/pages/calldoctor/doctors_interfaces/TemnikovStend.json&#10;#&#9;src/main/java/com/pages/calldoctor/doctors_interfaces/TemnikovVzroslayaTerapev.json&#10;#&#9;src/main/java/com/pages/calldoctor/doctors_interfaces/YudinaVzroslayaTerapev.json&#10;#&#9;src/main/java/com/pages/calldoctor/doctors_interfaces/ZaycevaDetskayaOftalmol.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/PacientImpl.java&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile0.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile0_1.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile0_2.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile0_CancelValidation.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile1.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile10.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile11.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile12.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile13.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile14.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile15.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile16.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile17.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile18.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile19.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile1_1.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile2.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile20.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile2_1.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile2_2.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile3.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile3_1.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile3_Kladr.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile4.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile5.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile6.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile7.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile8.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Profile9.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/ProfileAdressNeIzMkab.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/ProfileAdressNeIzMkab_neformal.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/ProfileDetkina.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/ProfileTransferDep-Lpu.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/ProfileTransferLpu-Dep.json&#10;#&#9;src/main/java/com/pages/calldoctor/pacients/Temnikov94.json&#10;#&#9;src/main/java/com/pages/calldoctor/whoIsCall_interfaces/MokovSmp.json&#10;#&#9;src/main/java/com/pages/disp/ExampPage.java&#10;#&#9;src/main/java/com/pages/disp/ExampPageBase.java&#10;#&#9;src/main/java/com/pages/disp/JournalPage.java&#10;#&#9;src/main/java/com/pages/disp/KvotyPage.java&#10;#&#9;src/main/java/com/pages/disp/KvotyPageBase.java&#10;#&#9;src/main/java/com/pages/mis/MisHomePage.java&#10;#&#9;src/main/java/com/pages/mis/MkabPage.java&#10;#&#9;src/main/java/com/system/repositories/HltDispCardRepository.java&#10;#&#9;src/main/java/com/system/service/HltCallDoctorServiceImpl.java&#10;#&#9;src/main/java/com/system/service/HltDispCardServiceImpl.java&#10;#&#9;src/main/java/com/utils/Selenium/SeleniumGrid.java&#10;#&#9;src/main/java/com/utils/api_model/CallDoctorHttp.java&#10;#&#9;src/main/java/pages/AbstractPage.java&#10;#&#9;src/main/java/pages/Main.java&#10;#&#9;src/main/java/pages/callcenter/CallDoctorPage.java&#10;#&#9;src/main/java/pages/callcenter/DirectionsPage.java&#10;#&#9;src/main/java/pages/callcenter/RecordDoctorPage.java&#10;#&#9;src/main/java/pages/callcenter/WaitingListPage.java&#10;#&#9;src/main/java/pages/calldoctor/Card/Card.java&#10;#&#9;src/main/java/pages/calldoctor/Card/CardInter.java&#10;#&#9;src/main/java/pages/calldoctor/CreateCallPage.java&#10;#&#9;src/main/java/pages/calldoctor/DashboardPage.java&#10;#&#9;src/main/java/pages/calldoctor/FullCardPage.java&#10;#&#9;src/main/java/pages/calldoctor/SetDoctorPage.java&#10;#&#9;src/main/java/pages/calldoctor/SetLpuPage.java&#10;#&#9;src/main/java/pages/calldoctor/doctors_interfaces/AiBoLitAutoTest.json&#10;#&#9;src/main/java/pages/calldoctor/doctors_interfaces/Doctor.java&#10;#&#9;src/main/java/pages/calldoctor/doctors_interfaces/TemnikovStend.json&#10;#&#9;src/main/java/pages/calldoctor/doctors_interfaces/TemnikovVzroslayaTerapev.json&#10;#&#9;src/main/java/pages/calldoctor/doctors_interfaces/YudinaVzroslayaTerapev.json&#10;#&#9;src/main/java/pages/calldoctor/doctors_interfaces/ZaycevaDetskayaOftalmol.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Pacient.java&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile0.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile0_1.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile0_2.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile0_CancelValidation.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile1.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile10.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile11.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile12.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile13.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile14.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile15.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile16.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile17.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile18.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile19.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile1_1.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile2.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile20.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile2_1.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile2_2.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile3.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile3_1.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile3_Kladr.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile4.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile5.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile6.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile7.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile8.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Profile9.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/ProfileAdressNeIzMkab.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/ProfileAdressNeIzMkab_neformal.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/ProfileDetkina.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/ProfileTransferDep-Dep.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/ProfileTransferDep-Lpu.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/ProfileTransferLpu-Dep.json&#10;#&#9;src/main/java/pages/calldoctor/profiles_interfaces/Temnikov94.json&#10;#&#9;src/main/java/pages/calldoctor/whoIsCall_interfaces/MokovSmp.json&#10;#&#9;src/main/java/pages/disp/ExampPage.java&#10;#&#9;src/main/java/pages/disp/KvotyPage.java&#10;#&#9;src/main/java/pages/mis/DoctorMethods.java&#10;#&#9;src/main/java/pages/mis/HomePage.java&#10;#&#9;src/main/java/pages/mis/SearchRow.java&#10;#&#9;src/main/java/pages/mis/VedenieRaspisaniyaPage.java&#10;#&#9;src/main/java/pages/portal/PortalDashboard.java&#10;#&#9;src/main/java/pages/sql/SQLDemonstration.java&#10;#&#9;src/main/java/utilities/api_model/Tokenizer.java&#10;#&#9;src/main/resources/application.properties&#10;#&#9;src/main/resources/calldoctor/caller/MokovSmp.json&#10;#&#9;src/main/resources/calldoctor/doctors/AiBoLitAutoTest.json&#10;#&#9;src/main/resources/calldoctor/doctors/Dispanserizatov.json&#10;#&#9;src/main/resources/calldoctor/doctors/GinekologTestovayaGinekologi.json&#10;#&#9;src/main/resources/calldoctor/doctors/MokovStendTestovoe.json&#10;#&#9;src/main/resources/calldoctor/doctors/NemcovaVzroslRegistratura.json&#10;#&#9;src/main/resources/calldoctor/doctors/Operator.json&#10;#&#9;src/main/resources/calldoctor/doctors/SerovaStendTestovoe.json&#10;#&#9;src/main/resources/calldoctor/doctors/TemnikovAmbulatoriyaTerapiya.json&#10;#&#9;src/main/resources/calldoctor/doctors/TemnikovStend.json&#10;#&#9;src/main/resources/calldoctor/doctors/TemnikovVzroslayaTerapev.json&#10;#&#9;src/main/resources/calldoctor/doctors/YudinaVzroslayaTerapev.json&#10;#&#9;src/main/resources/calldoctor/doctors/ZaycevaDetskayaOftalmol.json&#10;#&#9;src/main/resources/calldoctor/pacients/AdressNeformal.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile0.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile0_1.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile0_2.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile0_3.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile0_3_1.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile0_CancelValidation.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile1.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile10.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile11.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile12.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile13.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile14.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile15.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile16.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile17.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile18.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile19.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile1_1.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile2.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile20.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile2_0.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile2_1.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile2_2.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile3.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile3_1.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile3_Kladr.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile4.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile5.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile6.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile7.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile8.json&#10;#&#9;src/main/resources/calldoctor/pacients/Profile9.json&#10;#&#9;src/main/resources/calldoctor/pacients/ProfileAdressNeIzMkab.json&#10;#&#9;src/main/resources/calldoctor/pacients/ProfileAdressNeIzMkab_neformal.json&#10;#&#9;src/main/resources/calldoctor/pacients/ProfileDetkina.json&#10;#&#9;src/main/resources/calldoctor/pacients/ProfileTransferDep-Lpu.json&#10;#&#9;src/main/resources/calldoctor/pacients/ProfileTransferLpu-Dep.json&#10;#&#9;src/main/resources/calldoctor/pacients/Temnikov94.json&#10;#&#9;src/main/resources/calldoctor/pacients/test.json&#10;#&#9;src/main/resources/config.properties&#10;#&#9;src/main/resources/sql/disp/test hlt_disp_ServiceDocPrvd_192.168.7.54.txt&#10;#&#9;src/test/java/emias/TestBase.java&#10;#&#9;src/test/java/emias/calldoctor/backLogTests.java&#10;#&#9;src/test/java/emias/calldoctor/base/CancelCallTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/ChangeDoctorTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/ChooseDoctorTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/CompleteServiceTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/CreateCallTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/EditPageTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/FilterTest.java&#10;#&#9;src/test/java/emias/calldoctor/base/InteractionMisCalldoctor.java&#10;#&#9;src/test/java/emias/calldoctor/base/PrintFormTest.java&#10;#&#9;src/test/java/emias/calldoctor/before/BeforeTestCD.java&#10;#&#9;src/test/java/emias/calldoctor/e2e/CreateCallTest.java&#10;#&#9;src/test/java/emias/calldoctor/negative/CreateCallTest.java&#10;#&#9;src/test/java/emias/calldoctor/negative/EditPageTest.java&#10;#&#9;src/test/java/emias/disp/base/ExampsFillTest.java&#10;#&#9;src/test/java/emias/disp/base/ExampsViewTest.java&#10;#&#9;src/test/java/emias/disp/base/JournalTest.java&#10;#&#9;src/test/java/emias/disp/base/KvotyTest.java&#10;#&#9;src/test/java/emias/disp/base/RouteListTest.java&#10;#&#9;src/test/java/emias/disp/before/BeforeTestDisp.java&#10;#&#9;src/test/java/emias/medicalrecords/CreateMRTest.java&#10;#&#9;src/test/java/emias/mis/base/PerehodyTest.java&#10;#&#9;src/test/java/emias/mis/base/UpravleniePotokamiPacientovTest.java">
       <created>1566564292142</created>
@@ -1193,7 +1170,7 @@
       <option name="project" value="LOCAL" />
       <updated>1566564292145</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1229,7 +1206,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="557032000" />
+    <option name="totallyTimeSpent" value="557696000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1974" y="55" width="1234" height="1040" extended-state="6" />
@@ -1816,22 +1793,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/Tokenizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="27" column="59" lean-forward="true" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
-          <caret line="98" column="45" selection-start-line="98" selection-start-column="45" selection-end-line="98" selection-end-column="45" />
+          <caret line="98" column="49" selection-start-line="98" selection-start-column="49" selection-end-line="98" selection-end-column="49" />
           <folding>
             <element signature="method#CallDoctorHttp#0;class#CallDoctorHttp#0" />
             <element signature="method#requestSmp#0;class#CallDoctorHttp#0" />
             <element signature="method#execute#0;class#CallDoctorHttp#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/api_model/Tokenizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="27" column="59" lean-forward="true" selection-start-line="27" selection-start-column="59" selection-end-line="27" selection-end-column="59" />
         </state>
       </provider>
     </entry>

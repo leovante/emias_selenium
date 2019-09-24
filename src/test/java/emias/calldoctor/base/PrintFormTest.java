@@ -18,7 +18,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PrintFormTest extends TestBase {
 
-    @Test(groups = "CD", description = "проверка формы печати группы активные")
+    @Test(groups = "CD", description = "проверка формы печати группы активные", enabled = false)
     @Epic("Печать")
     @RetryCountIfFailed(2)
     public void testPrintAllDoctors() throws IOException {

@@ -161,15 +161,15 @@ public class CallDoctorHttp {
         CloseableHttpResponse hr;
         try {
             hr = httpClient.execute(request);
-            try{
+            try {
                 Scanner sc = new Scanner(hr.getEntity().getContent());
-                while(sc.hasNext()) {
+                while (sc.hasNext()) {
                     logger.info(sc.nextLine());
                 }
-            }finally {
+            } finally {
                 hr.close();
             }
-        }finally {
+        } finally {
             httpClient.close();
         }
         return httpResponse = hr;
