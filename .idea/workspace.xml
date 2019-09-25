@@ -2,35 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/disp/OpredelenieOtnositelnogoSSR.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/disp/Parameters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/disp/ParametersImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lib/disp/RouteList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecordsMkab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/sql/calldoctor/preapreBD" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/SearchMR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/ConfigFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/config/ConfigFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lib/Lib.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lib/Lib.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lib/disp/Disp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lib/disp/Disp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/disp/ExampPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/disp/ExampPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/MedicalRecordPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/MedicalRecordPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/api_model/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/api_model/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/disp/clear_card" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/disp/clear_card" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,7 +61,7 @@
           <entry key="clear_card" value="7" />
           <entry key="gitignore" value="2" />
           <entry key="iml" value="1" />
-          <entry key="java" value="1153" />
+          <entry key="java" value="1157" />
           <entry key="json" value="88" />
           <entry key="log" value="3" />
           <entry key="png" value="9" />
@@ -116,7 +91,7 @@
           <entry key="CLASS" value="19" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="9" />
-          <entry key="JAVA" value="1153" />
+          <entry key="JAVA" value="1157" />
           <entry key="JSON" value="88" />
           <entry key="PLAIN_TEXT" value="49" />
           <entry key="Properties" value="53" />
@@ -131,12 +106,12 @@
           <entry key="clear_card" value="25" />
           <entry key="dummy" value="118" />
           <entry key="gitignore" value="13" />
-          <entry key="java" value="23615" />
+          <entry key="java" value="24812" />
           <entry key="json" value="123" />
           <entry key="preapreBD" value="193" />
           <entry key="properties" value="151" />
           <entry key="sql" value="19324" />
-          <entry key="txt" value="1008" />
+          <entry key="txt" value="1132" />
           <entry key="xml" value="280" />
           <entry key="врач в блоке мероприятий по тарифам" value="9" />
           <entry key="задачи для постмана" value="2" />
@@ -146,9 +121,9 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="23615" />
+          <entry key="JAVA" value="24812" />
           <entry key="JSON" value="123" />
-          <entry key="PLAIN_TEXT" value="1152" />
+          <entry key="PLAIN_TEXT" value="1276" />
           <entry key="Properties" value="151" />
           <entry key="SQL" value="221" />
           <entry key="Scratch" value="19536" />
@@ -186,30 +161,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+              <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+            <state relative-caret-position="229">
+              <caret line="163" selection-start-line="163" selection-end-line="163" />
               <folding>
                 <element signature="method#newMrMenuBtn#0;class#Ehr_medicalrecords#0" />
+                <element signature="method#medicalRecordsMenuBtn#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#allPatternsBtn#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#searchField#0;class#Ehr_medicalrecords#0" />
+                <element signature="method#openMr#0;class#Ehr_medicalrecords#0" />
+                <element signature="method#podpisanaSortColumn#0;class#Ehr_medicalrecords#0" />
+                <element signature="method#view#0;class#Ehr_medicalrecords#0" />
+                <element signature="method#cancelBtn#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#edit#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#allActions#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#save#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#podpisat#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#validateMrIsExistOnSearchResult#0;class#Ehr_medicalrecords#0" />
                 <element signature="method#assertSignSuccesfull#0;class#Ehr_medicalrecords#0" />
+                <element signature="method#validateIframe#0;class#Ehr_medicalrecords#0" />
+                <element signature="method#waitLoadGrid#0;class#Ehr_medicalrecords#0" />
+                <element signature="e#5736#5737#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -227,8 +210,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logg</find>
-      <find>spring-boot-starter-logging</find>
       <find>junit</find>
       <find>slf</find>
       <find>apa</find>
@@ -257,6 +238,8 @@
       <find>SkipEx</find>
       <find>testEmpyFieldParams</find>
       <find>Определение от</find>
+      <find>elementcol</find>
+      <find>ElementsCollection</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources</dir>
@@ -274,7 +257,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/datas/disp/Disp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/datas/disp/PacientDispImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/AdressNeformal.json" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" />
@@ -319,12 +301,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/config/ConfigFile.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateMRTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/MedicalRecordPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecordsMkab.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/medicalrecords/SearchMR.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java" />
       </list>
     </option>
   </component>
@@ -558,7 +541,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/dtemnikov/.IntelliJIdea2018.2/config/consoles/db/d3ca9510-eb2c-4afa-852a-6b8d001b0463/console.sql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569405154582" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569421285449" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -599,7 +582,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.BasicFunction.cancelBtnOnOldMR">
+  <component name="RunManager">
     <configuration name="BasicFunction.cancelBtnOnOldMR" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <extension name="coverage">
@@ -629,6 +612,24 @@
       <option name="PACKAGE_NAME" value="emias.medicalrecords" />
       <option name="MAIN_CLASS_NAME" value="emias.medicalrecords.CreateTest" />
       <option name="METHOD_NAME" value="test_sign_old_mr" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DeleteTest.deleteMR" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="regress_tests" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="emias.medicalrecords.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="emias.medicalrecords" />
+      <option name="MAIN_CLASS_NAME" value="emias.medicalrecords.DeleteTest" />
+      <option name="METHOD_NAME" value="deleteMR" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -672,38 +673,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UchastoksAddressTest.testUchastokPoAdresuANeMkab" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="regress_tests" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="emias.calldoctor.function.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="emias.calldoctor.function" />
-      <option name="MAIN_CLASS_NAME" value="emias.calldoctor.function.UchastoksAddressTest" />
-      <option name="METHOD_NAME" value="testUchastokPoAdresuANeMkab" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="TestNG.UchastoksAddressTest.testUchastokPoAdresuANeMkab" />
       <item itemvalue="TestNG.RouteListTest.testEmpyFieldParams" />
       <item itemvalue="TestNG.CreateTest.test_sign_old_mr" />
       <item itemvalue="TestNG.SearchMR.test_sign_old_mr" />
       <item itemvalue="TestNG.BasicFunction.cancelBtnOnOldMR" />
+      <item itemvalue="TestNG.DeleteTest.deleteMR" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.DeleteTest.deleteMR" />
         <item itemvalue="TestNG.BasicFunction.cancelBtnOnOldMR" />
         <item itemvalue="TestNG.SearchMR.test_sign_old_mr" />
         <item itemvalue="TestNG.CreateTest.test_sign_old_mr" />
         <item itemvalue="TestNG.RouteListTest.testEmpyFieldParams" />
-        <item itemvalue="TestNG.UchastoksAddressTest.testUchastokPoAdresuANeMkab" />
       </list>
     </recent_temporary>
   </component>
@@ -882,14 +865,7 @@
       <workItem from="1568619174659" duration="46906000" />
       <workItem from="1568892394503" duration="56721000" />
       <workItem from="1569391791439" duration="2172000" />
-      <workItem from="1569398711595" duration="6361000" />
-    </task>
-    <task id="LOCAL-00583" summary="промежуточное">
-      <created>1558521889761</created>
-      <option name="number" value="00583" />
-      <option name="presentableId" value="LOCAL-00583" />
-      <option name="project" value="LOCAL" />
-      <updated>1558521889763</updated>
+      <workItem from="1569398711595" duration="17227000" />
     </task>
     <task id="LOCAL-00584" summary="промежуточное">
       <created>1558522165527</created>
@@ -1227,43 +1203,50 @@
       <option name="project" value="LOCAL" />
       <updated>1569304960850</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="добавил тесты для медзаписей. Поиск медзаписи на странице мкаб. Проверка кнопки отменить у старых медзаписей.">
+      <created>1569405324569</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1569405324571</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="RouteListTest_testEmpyFieldParams - 2019.09.24 at 16h 54m 36s.xml">
-      <configuration name="RouteListTest.testEmpyFieldParams" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 16h 21m 59s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="CreateTest_test_sign_old_mr - 2019.09.25 at 11h 50m 47s.xml">
-      <configuration name="CreateTest.test_sign_old_mr" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 16h 25m 54s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="SearchMR_test_sign_old_mr - 2019.09.25 at 12h 20m 01s.xml">
-      <configuration name="SearchMR.test_sign_old_mr" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 16h 27m 42s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="SearchMR_test_sign_old_mr - 2019.09.25 at 12h 22m 40s.xml">
-      <configuration name="SearchMR.test_sign_old_mr" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 16h 29m 17s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="BasicFunction_cancelBtnOnOldMR - 2019.09.25 at 12h 33m 36s.xml">
-      <configuration name="BasicFunction.cancelBtnOnOldMR" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 16h 32m 01s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="BasicFunction_cancelBtnOnOldMR - 2019.09.25 at 12h 43m 51s.xml">
-      <configuration name="BasicFunction.cancelBtnOnOldMR" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 16h 43m 31s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="BasicFunction_cancelBtnOnOldMR - 2019.09.25 at 12h 45m 44s.xml">
-      <configuration name="BasicFunction.cancelBtnOnOldMR" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 17h 08m 13s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="BasicFunction_cancelBtnOnOldMR - 2019.09.25 at 12h 47m 53s.xml">
-      <configuration name="BasicFunction.cancelBtnOnOldMR" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 17h 12m 22s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="BasicFunction_cancelBtnOnOldMR - 2019.09.25 at 12h 49m 39s.xml">
-      <configuration name="BasicFunction.cancelBtnOnOldMR" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 17h 15m 47s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="BasicFunction_cancelBtnOnOldMR - 2019.09.25 at 12h 53m 40s.xml">
-      <configuration name="BasicFunction.cancelBtnOnOldMR" configurationId="TestNG" />
+    <history-entry file="DeleteTest_deleteMR - 2019.09.25 at 17h 18m 12s.xml">
+      <configuration name="DeleteTest.deleteMR" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="589360000" />
+    <option name="totallyTimeSpent" value="600226000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1974" y="55" width="1234" height="1040" extended-state="6" />
@@ -1286,7 +1269,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.2857143" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" visible="true" weight="0.3178733" />
+      <window_info active="true" anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" visible="true" weight="0.27941176" />
       <window_info anchor="bottom" id="Structure" order="8" sideWeight="0.5008091" side_tool="true" weight="0.27172717" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5076661" side_tool="true" weight="0.3484163" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4904051" weight="0.20588236" />
@@ -1364,7 +1347,8 @@
     <MESSAGE value="правки. правка повторной отправки вызова по API" />
     <MESSAGE value="временно отключил предварительную очистку" />
     <MESSAGE value="правки" />
-    <option name="LAST_COMMIT_MESSAGE" value="правки" />
+    <MESSAGE value="добавил тесты для медзаписей. Поиск медзаписи на странице мкаб. Проверка кнопки отменить у старых медзаписей." />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил тесты для медзаписей. Поиск медзаписи на странице мкаб. Проверка кнопки отменить у старых медзаписей." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1392,6 +1376,24 @@
           <line>525</line>
           <properties />
           <option name="timeStamp" value="293" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java</url>
+          <line>163</line>
+          <properties />
+          <option name="timeStamp" value="300" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java</url>
+          <line>176</line>
+          <properties />
+          <option name="timeStamp" value="301" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java</url>
+          <line>172</line>
+          <properties />
+          <option name="timeStamp" value="303" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1442,13 +1444,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/pacients/Profile6.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/system/repositories/HltCallDoctorRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1596,13 +1591,6 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/b08543ed-3392-4bdb-8781-b06ae3f63748/console_1.sql" />
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/io/FileInputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="243" column="23" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/sql/disp/clear_card">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -1774,13 +1762,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/SearchMR.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -1788,28 +1769,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="243" column="23" selection-start-line="243" selection-start-column="23" selection-end-line="243" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/medicalrecords/Ehr_medicalrecords.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="50" column="22" selection-start-line="50" selection-start-column="22" selection-end-line="50" selection-end-column="22" />
+        <state relative-caret-position="229">
+          <caret line="163" selection-start-line="163" selection-end-line="163" />
           <folding>
             <element signature="method#newMrMenuBtn#0;class#Ehr_medicalrecords#0" />
+            <element signature="method#medicalRecordsMenuBtn#0;class#Ehr_medicalrecords#0" />
             <element signature="method#allPatternsBtn#0;class#Ehr_medicalrecords#0" />
             <element signature="method#searchField#0;class#Ehr_medicalrecords#0" />
+            <element signature="method#openMr#0;class#Ehr_medicalrecords#0" />
+            <element signature="method#podpisanaSortColumn#0;class#Ehr_medicalrecords#0" />
+            <element signature="method#view#0;class#Ehr_medicalrecords#0" />
+            <element signature="method#cancelBtn#0;class#Ehr_medicalrecords#0" />
             <element signature="method#edit#0;class#Ehr_medicalrecords#0" />
             <element signature="method#allActions#0;class#Ehr_medicalrecords#0" />
             <element signature="method#save#0;class#Ehr_medicalrecords#0" />
             <element signature="method#podpisat#0;class#Ehr_medicalrecords#0" />
             <element signature="method#validateMrIsExistOnSearchResult#0;class#Ehr_medicalrecords#0" />
             <element signature="method#assertSignSuccesfull#0;class#Ehr_medicalrecords#0" />
+            <element signature="method#validateIframe#0;class#Ehr_medicalrecords#0" />
+            <element signature="method#waitLoadGrid#0;class#Ehr_medicalrecords#0" />
+            <element signature="e#5736#5737#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
         </state>
       </provider>
     </entry>
