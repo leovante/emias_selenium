@@ -212,7 +212,7 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
         <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="test_mo_hlt_Taldom_CRB_20190129@192.168.7.253" uuid="889db42a-c187-4689-b166-e0cf37d83466">
+    <data-source source="LOCAL" name="test_Taldom" uuid="889db42a-c187-4689-b166-e0cf37d83466">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>

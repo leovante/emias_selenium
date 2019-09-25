@@ -12,7 +12,11 @@ import static com.codeborne.selenide.Selenide.page;
 
 @Component
 public interface MedicalRecordPage {
-    default Ehr_medicalrecords ehr_medicalrecords(Datas d) {
+    default Ehr_medicalrecords ehrMedicalrecords(Datas d) {
         return new Ehr_medicalrecords(d);
+    }
+
+    default Ehr_medicalrecordsMkab ehr_medicalrecordsMKAB(Datas d) {
+        return new Ehr_medicalrecordsMkab(d);
     }
 }

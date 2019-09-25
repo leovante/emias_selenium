@@ -30,5 +30,14 @@ from hlt_disp_Card dc
        left join ehr_MedRecord mr on mr.Guid=emr.EhrMedRecordGuid
        join hlt_disp_ExamSM esm on esm.rf_ExamGuid=de.guid
 where dc.disp_CardID = @card
+
+delete from oms_ParamValue
+where GUIDParamValue in (select rf_ParamValuedGuid
+                         from hlt_disp_ExamParamValue
+                         where rf_ExamGuid in(select guid
+                                              from hlt_disp_Exam de
+                                              where rf_CardGuid = (select guid
+                                                                   from hlt_disp_card
+                                                                   where disp_CardID = 418)))
 end
 COMMIT

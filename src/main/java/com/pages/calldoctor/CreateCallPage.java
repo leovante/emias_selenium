@@ -108,20 +108,24 @@ public class CreateCallPage extends BasePage {
 
     @Step("create call via API")
     public void createCall_Api()   {
-//        callDoctorService.cancelByNPol(pacient.getNumberpol());
         try {
+            callDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).execute();
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }
 
     @Step("create authorize call via API")
-    public void createCall_Api_Auth()   {
-//        callDoctorService.cancelByNPol(pacient.getNumberpol());
+    public void createCall_Api_Auth() throws IOException, InterruptedException {
         try {
+            callDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).executeAuth();
         } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }

@@ -75,7 +75,7 @@ public class TestBase extends AbstractTestNGSpringContextTests{
     /* СЕРВИСЫ */
     @Parameters({"testng"})
     @BeforeClass(groups = "CD", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
-    public void beforeClassCD(@Optional String testng) throws ParseException {
+    public void beforeClassCD(@Optional String testng) throws ParseException, IOException {
         if (testng != null) {
             new BeforeTestCD().run();
         }

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class ExampPage extends BasePage implements Services{
+public class ExampPage extends BasePage implements Services {
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
     SelenideElement ArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
     SelenideElement Opros_Anketirovanie = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]")).$(By.xpath("../../."));
@@ -42,7 +42,7 @@ public class ExampPage extends BasePage implements Services{
         alarms = new DispAlarms();
     }
 
-    void a (){
+    void a() {
 //        examps.oprosAnketirovanie().
     }
 
@@ -500,18 +500,15 @@ public class ExampPage extends BasePage implements Services{
         return this;
     }
 
-    /* всякие заполнения */
-    // TODO: 9/6/2019 изменить на проверку дефолтного показателя
     public ExampPage validateFieldParamIsEmpy() throws InterruptedException {
-        Thread.sleep(4000);
-        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
-        OpredelenieOtnositelnogoSSR.click();
-        Thread.sleep(2000);//
-        String i = OpredelenieOtnositelnogoSSR
-                .$(By.xpath("//th[contains(text(),'Показатели')]"))
-                .$(By.xpath("../../../."))
-                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
-                .$(By.xpath(".//input[@formcontrolname='value']")).getValue();
+        lib.disp()
+                .routeList()
+                .opredelenieOtnositelnogoSSR()
+                .click();
+        String i = lib.disp()
+                .routeList()
+                .opredelenieOtnositelnogoSSR()
+                .getValue();
         Assert.assertEquals(i, "", "поле показателей должно быть пустым");
         return this;
     }
@@ -548,7 +545,7 @@ public class ExampPage extends BasePage implements Services{
 
     @Step("Валидация что карта заблокирована")
     public ExampPage validateCardIsDisable() {
-        Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled),"Кнопка сохранить не задизеблина");
+        Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled), "Кнопка сохранить не задизеблина");
 //        Assert.assertTrue(PodvalPodpisatBtn.is(Condition.disabled), "Кнопка подписать не задизеблина");
         return this;
     }
@@ -556,7 +553,7 @@ public class ExampPage extends BasePage implements Services{
 
     @Step("Валидация что заключение отображается")
     public ExampPage validateZakluchenieBorder() {
-        Assert.assertTrue(ZakluchenieBorder.is(Condition.visible),"Заключение не отображается");
+        Assert.assertTrue(ZakluchenieBorder.is(Condition.visible), "Заключение не отображается");
         return this;
     }
 }

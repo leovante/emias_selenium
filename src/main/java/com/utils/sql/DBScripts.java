@@ -153,6 +153,27 @@ public class DBScripts extends BasePage {
         }
     }
 
+    @Step("Запуск скрипта на демонстрейшн")
+    public static void runSqlScriptCD(String sql) throws IOException {
+        InputStream is = new FileInputStream("src/main/resources/sql/calldoctor/" + sql);
+        String script = IOUtil.toString(is, "UTF-8");
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            logger.info("Connecting to SQL Server ... ");
+            try (Connection connection = DriverManager.getConnection(url)) {
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(script);
+                    logger.info("SQL scripst " + sql + " Complete!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
     public static void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
         String request = new DateGenerator().Shedule_Disp(LPUDoctorID, DocPRVDID);

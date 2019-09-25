@@ -1,0 +1,27 @@
+BEGIN TRANSACTION
+if (exists(select *
+           from [hlt_mkab]
+           where [uguid] = '777B2615-5715-421A-90C8-517AA1C47E59'))
+  begin
+    update [hlt_mkab]
+    set NAME             = 'Адрес',
+        FAMILY           = 'Неиз',
+        OT               = 'Мкаб',
+        n_pol            = 1641981121736114,
+        rf_AddressWorkID = 0,
+        rf_AddressLiveID = 1000016076,
+        rf_AddressRegID  = 1000016076
+    where [uguid] = '777B2615-5715-421A-90C8-517AA1C47E59'
+  end
+else
+  begin
+    INSERT INTO [dbo].[hlt_mkab] (name, FAMILY, OT, N_POL, rf_AddressWorkID, rf_AddressLiveID, rf_AddressRegID)
+    VALUES ('Адрес',
+            'Неиз',
+            'Мкаб',
+            1641981121736114,
+            0,
+            1000016076,
+            1000016076)
+  end
+COMMIT

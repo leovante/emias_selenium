@@ -71,6 +71,18 @@ public class MisHomePage extends BasePage {
         logger.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
     }
 
+    @Step("Медзаписи через ТАП")
+    public void mr_tap() {
+        open(conf.getMr_tap());
+        logger.info("Открыл модуль медзаписей через ТАП по прямой ссылке " + conf.getMr_tap());
+    }
+
+    @Step("Медзаписи через МКАБ")
+    public void mr_mkab() {
+        open(conf.getMr_mkab());
+        logger.info("Открыл модуль медзаписей через МКАБ по прямой ссылке " + conf.getMr_mkab());
+    }
+
     @Step("Вход в карту диспансеризации")
     public Integer getDispCardNumber() throws MalformedURLException {
         DispUrlParser dp = new DispUrlParser(conf.getDispCard());

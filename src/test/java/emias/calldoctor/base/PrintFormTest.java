@@ -18,6 +18,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class PrintFormTest extends TestBase {
 
+    // TODO: 9/24/2019  при запуске в ТС зависает навечно.
     @Test(groups = "CD", description = "проверка формы печати группы активные", enabled = false)
     @Epic("Печать")
     @RetryCountIfFailed(2)

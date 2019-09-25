@@ -3,7 +3,7 @@ package com.utils.api_model;
 import com.config.ConfigFile;
 import com.datas.calldoctor.Pacient;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -17,6 +17,8 @@ import org.json.JSONObject;
 import org.testng.SkipException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CallDoctorHttp {
@@ -25,9 +27,8 @@ public class CallDoctorHttp {
     private ConfigFile configFile;
     private HttpPost request;
     private JSONObject jsonOb;
-    HttpResponse httpResponse = null;
 
-    // TODO: 9/20/2019 навести порядок
+    // TODO: 9/24/2019 навести порядок
     public CallDoctorHttp(Pacient pacientImpl) throws JSONException {
         this.pacientImpl = pacientImpl;
         this.jsonOb = new JSONObject();
@@ -74,7 +75,7 @@ public class CallDoctorHttp {
             jsonOb.put("callPersonType", pacientImpl.getCallPersonType());
     }
 
-    public HttpPost requestSmp() {
+    private HttpPost requestSmp() {
         this.request = new HttpPost(configFile.getRequestSmp());
         this.request.addHeader("content-type", "application/json");
         this.request.addHeader("Authorization", configFile.getAuthorization());
@@ -84,28 +85,27 @@ public class CallDoctorHttp {
         return request;
     }
 
-    public HttpPost requestToken() {
-//        String token = new Tokenizer().getToken(pacient, clientApplication);
+    private HttpPost requestToken() {
         this.request = new HttpPost(configFile.getRequestSmp());
         request.addHeader("Content-type", "application/json");
-//        request.addHeader("Authorization", "Bearer " + token);
         request.addHeader("ClientApplication", configFile.getClientApplication());
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
         return request;
     }
 
-    public HttpPost requestTokenAuth() throws IOException {
-//        String token = new Tokenizer().getToken(pacient, clientApplication);
+    private HttpPost requestTokenAuth() throws IOException {
+        String token = new Tokenizer(pacientImpl).getToken();
         this.request = new HttpPost(configFile.getRequestSmpAuth());
         request.addHeader("Content-type", "application/json");
-//        request.addHeader("Authorization", "Bearer " + token);
+        request.addHeader("Authorization", "Bearer " + token);
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
         return request;
     }
 
     public void execute() {
+        HttpResponse httpResponse = null;
         try {
             if (pacientImpl.getSource() == 2) {//смп
                 httpResponse = executeRetry(requestSmp());
@@ -115,7 +115,7 @@ public class CallDoctorHttp {
             }
             if (pacientImpl.getSource() != 2 && pacientImpl.getSource() != 3) {
                 logger.error("Can't create request with source " + pacientImpl.getSource());
-                throw new SkipException("Can't create request with source ");
+                throw new SkipException("Error. Can't create request");
             }
         } catch (Exception e) {
             logger.error("Error of execute request " + httpResponse);
@@ -123,36 +123,23 @@ public class CallDoctorHttp {
         }
     }
 
-    public void executeAuth() {
-        try {
-            httpResponse = executeRetry(requestTokenAuth());
-        } catch (Exception e) {
-            logger.error("Error of execute request " + httpResponse);
-            e.printStackTrace();
-        }
+    public void executeAuth() throws IOException, InterruptedException {
+        executeRetry(requestTokenAuth());
     }
 
-    public HttpResponse executeRetry(HttpPost request) throws IOException, InterruptedException {
+    private HttpResponse executeRetry(HttpPost request) throws IOException, InterruptedException {
+        HttpResponse httpResponse = null;
         for (int i = 0; i < 5; i++) {
-            logger.info("Execute request");
-            executeAndGetResponce(request);
+            httpResponse = executeAndGetResponce(request);
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
                 logger.info("Request is success");
-                return message(httpResponse);
+                return httpResponse;
             }
             Thread.sleep(1000);
         }
         if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            message(httpResponse);
             throw new SkipException("Call don't create");
         }
-        return message(httpResponse);
-    }
-
-    public HttpResponse message(HttpResponse httpResponse) throws IOException {
-        String responseString = new BasicResponseHandler().handleResponse(httpResponse);
-        logger.info("Request status line is : " + httpResponse.getStatusLine());
-        logger.error("Request body is: \n" + responseString);
         return httpResponse;
     }
 
@@ -160,11 +147,14 @@ public class CallDoctorHttp {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse hr;
         try {
+            logger.info("Execute request");
             hr = httpClient.execute(request);
             try {
+                logger.info("Request status line is : " + hr.getStatusLine());
+                logger.info("Request body is: \n" + hr);
                 Scanner sc = new Scanner(hr.getEntity().getContent());
                 while (sc.hasNext()) {
-                    logger.info(sc.nextLine());
+                    logger.info("Entity.Content: " + sc.nextLine());
                 }
             } finally {
                 hr.close();
@@ -172,6 +162,6 @@ public class CallDoctorHttp {
         } finally {
             httpClient.close();
         }
-        return httpResponse = hr;
+        return hr;
     }
 }

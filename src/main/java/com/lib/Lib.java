@@ -18,4 +18,8 @@ public class Lib {
     public Disp disp(SelenideElement se) {
         return new Disp(se);
     }
+
+    public Disp disp() {
+        return new Disp();
+    }
 }

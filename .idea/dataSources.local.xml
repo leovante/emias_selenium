@@ -76,7 +76,7 @@
     <data-source name="dev_bel_cod_person_20170803@192.168.7.196" uuid="e335d483-148c-4b58-830c-dc3e1d95a16c">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
     </data-source>
-    <data-source name="test_mo_hlt_Taldom_CRB_20190129@192.168.7.253" uuid="889db42a-c187-4689-b166-e0cf37d83466">
+    <data-source name="test_Taldom" uuid="889db42a-c187-4689-b166-e0cf37d83466">
       <database-info product="Microsoft SQL Server" version="13.00.4001" jdbc-version="4.2" driver-name="Microsoft JDBC Driver 7.2 for SQL Server" driver-version="7.2.1.0" family="MSSQL" exact-version="13.0.400">
         <extra-name-characters>$#@</extra-name-characters>
         <identifier-quote-string>&quot;</identifier-quote-string>
@@ -98,6 +98,7 @@
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
       <user-name>mis</user-name>
     </data-source>
     <data-source name="hlt_pod_gdp1_360701@192.168.7.48" uuid="7d0be042-a1e5-4bae-b628-f1d1726ac60a">

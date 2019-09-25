@@ -16,6 +16,7 @@ public class Ehr_medicalrecords {
     SelenideElement searchPattern = $x("//*[@placeholder = 'Поиск шаблона по номеру, наименованию и специализации']");
     SelenideElement search = $x("//i[@class = 'zmdi zmdi-search']");
     SelenideElement prosmotret = $x("//*[contains(text(),'Просмотреть')]");
+    SelenideElement cancel = $x("//*[contains(text(),'Отменить')]");
     SelenideElement edit = $x("//*[contains(text(),'Редактировать')]");
     SelenideElement all_actions = $x("//*[contains(text(),'Все действия')]");
     SelenideElement save = $x("//*[contains(text(),'Сохранить')]");
@@ -26,68 +27,84 @@ public class Ehr_medicalrecords {
         this.d = d;
     }
 
-    public Ehr_medicalrecords new_mr_menuBtn() {
+    public Ehr_medicalrecords newMrMenuBtn() {
         new_mr.click();
         return this;
     }
 
-    public Ehr_medicalrecords all_patterns() {
+    public Ehr_medicalrecords allPatternsBtn() {
         vse_shabloni.click();
         return this;
     }
 
     @Step("поиск медзаписи через строку поиска")
-    public Ehr_medicalrecords search_field() {
+    public Ehr_medicalrecords searchField() {
         searchPattern.setValue(d.getMedicar_record());
         search.click();
         return this;
     }
 
-    public Ehr_medicalrecords open_MR() {
+    public Ehr_medicalrecords openMr() throws InterruptedException {
         SelenideElement osmotr_gastroenterolga =
                 $x("//span[contains(text(),'" + d.getMedicar_record() + "')]");
         osmotr_gastroenterolga.doubleClick();
+        validateIframe();
         return this;
     }
 
-    public Ehr_medicalrecords prosmotret() throws InterruptedException {
-        validate_iframe();
+    public Ehr_medicalrecords view() throws InterruptedException {
+        validateIframe();
         prosmotret.click();
         return this;
     }
 
+    public Ehr_medicalrecords cancelBtn() throws InterruptedException {
+        cancel.click();
+        return this;
+    }
+
     public Ehr_medicalrecords edit() throws InterruptedException {
-        validate_iframe();
+        validateIframe();
         edit.click();
         return this;
     }
 
-    public Ehr_medicalrecords all_actions() throws InterruptedException {
-        validate_iframe();
+    public Ehr_medicalrecords allActions() throws InterruptedException {
+        validateIframe();
         all_actions.click();
         return this;
     }
 
     public Ehr_medicalrecords save() throws InterruptedException {
-        validate_iframe();
+        validateIframe();
         save.shouldNotBe(Condition.disabled);//добавил для теста test_edit_mr_after_save
         save.click();
         return this;
     }
 
     public Ehr_medicalrecords podpisat() throws InterruptedException {
-        validate_iframe();
+        validateIframe();
         podpisat.click();
         return this;
     }
 
-    public Ehr_medicalrecords assert_sign_succesfull() {
+    @Step("проверка что медзапись отображается в результате поиска")
+    public Ehr_medicalrecords validateMrIsExistOnSearchResult() {
+        Assert.assertTrue(
+                $x("//ngx-datatable")
+                        .$x(".//*[contains(text(),'" + d.getMedicar_record() + "')]")
+                        .shouldBe(Condition.visible)
+                        .isDisplayed());
+        return this;
+    }
+
+    public Ehr_medicalrecords assertSignSuccesfull() {
         msg_mr_podpisana.shouldBe(Condition.visible);
         Assert.assertTrue(msg_mr_podpisana.is(Condition.visible));
         return this;
     }
 
-    public Ehr_medicalrecords validate_iframe() throws InterruptedException {
+    public Ehr_medicalrecords validateIframe() throws InterruptedException {
         switchTo().frame($x("//iframe"));
         $x("//center[contains(text(),'" + d.getMedicar_record() + "')]")
                 .shouldBe(Condition.visible);

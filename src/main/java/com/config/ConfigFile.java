@@ -25,8 +25,12 @@ public class ConfigFile {
     private String requestSmp;
     private String requestSmpAuth;
     private String token;
-
+    private String urlApi;
+    private String lpuGuid;
     private String mr_tap;
+    private String mr_mkab;
+
+
 
     public ConfigFile() {
         FileInputStream fis;
@@ -55,6 +59,9 @@ public class ConfigFile {
             token = property.getProperty("st.api.token");
             codeLpu = property.getProperty("st.mis.codeLpu");
             mr_tap = property.getProperty("st.mis.url.MRTAP");
+            mr_mkab = property.getProperty("st.mis.url.MRMKAB");
+            urlApi = property.getProperty("st.api.urlApi");
+            lpuGuid = property.getProperty("st.api.lpuGuid");
         } catch (IOException e) {
             logger.error("ОШИБКА: Файл свойств отсуствует!");
         }
@@ -134,6 +141,18 @@ public class ConfigFile {
 
     public String getCodeLpu() {
         return codeLpu;
+    }
+
+    public String getUrlApi() {
+        return urlApi;
+    }
+
+    public String getLpuGuid() {
+        return lpuGuid;
+    }
+
+    public String getMr_mkab() {
+        return mr_mkab;
     }
 }
 

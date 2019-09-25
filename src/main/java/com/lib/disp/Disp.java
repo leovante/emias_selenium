@@ -3,12 +3,26 @@ package com.lib.disp;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 public class Disp {
-    SelenideElement se;
+    SelenideElement se = $x("//*");
 
     public Disp(SelenideElement se) {
         this.se = se;
     }
+
+    public Disp() {
+    }
+
+    public RouteList routeList(){
+        return new RouteList(se);
+    }
+
+
+
+
+
 
     public Disp setValue(String a) {
         SelenideElement row = se

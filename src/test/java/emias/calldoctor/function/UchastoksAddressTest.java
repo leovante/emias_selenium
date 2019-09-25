@@ -21,7 +21,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokBezDomov() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testUchastokBezDomov() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile15");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -34,7 +34,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_unikDom_3() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testUchastok_unikDom_3() throws IOException, InterruptedException,  JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile16");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -51,7 +51,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile17");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -81,8 +81,7 @@ public class UchastoksAddressTest extends TestBase {
         $x("//*[contains(text(),'#5 Дерматологический')]").shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "создаю авторизованный вызов через СМП, что бы проверить " +
-            "что участок определился по адресу вызова, а не мкаб")
+    @Test(groups = "CD", description = "авторизованный вызов от СМП, участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
@@ -92,7 +91,7 @@ public class UchastoksAddressTest extends TestBase {
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
                 .openNewCallDash(pacientImpl);
-        page.createCall(pacientImpl).selectUchastokFromNeUdalosOpredelit();
+        $x("//*[contains(text(),'Интернет')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
     }
 
@@ -107,7 +106,7 @@ public class UchastoksAddressTest extends TestBase {
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
                 .openNewCallDash(pacientImpl);
-        $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'Участок')]").shouldNotBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "не отображать участок у вызова с неформализованным адресом")
@@ -118,8 +117,8 @@ public class UchastoksAddressTest extends TestBase {
         page.createCall(pacientImpl).createCall_Api();
         page.misHome().calldoctor();
         page.dashboard().openNewCallDash(pacientImpl);
-        $(By.xpath("//*[contains(text(),'КТО ОБСЛУЖИВАЕТ')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Участок')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'КТО ОБСЛУЖИВАЕТ')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'Участок')]").shouldNotBe(Condition.visible);
     }
     // TODO: 12/3/2018 сделать тест проверки списка участков при привязке адреса к участку на педиатр/взрослый
 }

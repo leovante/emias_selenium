@@ -15,9 +15,9 @@ public class BeforeTestCD extends TestBase {
 
     @Test(description = "Prepare data base")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
-    public void run() throws ParseException {
+    public void run() throws ParseException, IOException {
         cancelCalls();
-        doctorsPreset();
+        scripts();
         updateStend();
     }
 
@@ -76,7 +76,7 @@ public class BeforeTestCD extends TestBase {
         // hltCallDoctorService.cancelNotClosedCards();//spring не видит бин
     }
 
-    public void doctorsPreset() {
-        // TODO: 9/18/2019 сделать скрипты для предварительной настройки врачей
+    public void scripts() throws IOException {
+        DBScripts.runSqlScriptCD("preapreBD");
     }
 }
