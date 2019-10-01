@@ -1,51 +1,90 @@
 package com.utils.api_model;
 
 import com.config.ConfigFile;
-import com.datas.calldoctor.PacientImpl;
+import com.datas.calldoctor.Pacient;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.protocol.HttpContext;
 import org.testng.Assert;
+import org.testng.SkipException;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
-public class Tokenizer extends PageBase {
-    ConfigFile configFile;
-    public static String token;
-    HttpResponse response;
+public class Tokenizer extends BasePage {
+    private Pacient pacient;
+    private ConfigFile config;
 
-    public Tokenizer() throws IOException {
-        configFile = new ConfigFile();
+    public Tokenizer(Pacient pacientImpl) throws IOException {
+        this.config = new ConfigFile();
+        this.pacient = pacientImpl;
     }
 
-    public String getToken(PacientImpl pacientImpl, String ClientApplication) throws IOException {
-        String bd = pacientImpl.getBirthdate("yyyy-MM-dd");
-        String spol = pacientImpl.getSeriespol();
-        String npol = pacientImpl.getNumberpol();
-        HttpClient httpClient = HttpClients.createDefault();
-        try {
-            HttpGet request = new HttpGet("http://rpgu.emias.mosreg.ru/api/v2/auth/a7f391d4-d5d8-44d5-a770-f7b527bb1233/token?Birthday=" + bd + "&s_pol=" + spol + "&n_pol=" + npol);
-            request.addHeader("ClientApplication", ClientApplication);
+    public String getToken() throws IOException {
+        HttpGet request = new HttpGet(
+                requestBuilder(config.getUrlApi(),
+                        config.getLpuGuid(),
+                        pacient.getBirthdate("yyyy-MM-dd"),
+                        pacient.getSeriespol(),
+                        pacient.getNumberpol()));
+        Map<String, String> responseMap = requestRun(request);
+        Map<String, String> proData = new ObjectMapper().readValue(responseMap.get("body"), Map.class);
+        return proData.get("token");
+    }
 
-            ResponseHandler<String> handler = new BasicResponseHandler();
-            String jString = httpClient.execute(request, handler);
-
-            this.response = httpClient.execute(request);
-            Assert.assertEquals(response.getStatusLine().getStatusCode(), 200, "Не удаётся получить токен для создания вызова!");
-
-            Map<String, String> proData = new ObjectMapper().readValue(jString, Map.class);
-            token = proData.get("token");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            LOGGER.info("Ответ:\n" + response.getEntity().getContent());
-            LOGGER.info("Ошибка. Не удается подключиться!");
+    private String requestBuilder(String urlApi, String lpuGuid, String birthdate, String seriespol, String numberpol) {
+        String url = "http://";
+        if (urlApi.equals("") ||
+                lpuGuid.equals("") ||
+                birthdate.equals("") ||
+                seriespol.equals("") &&
+                        numberpol.equals("")) {
+            logger.error(
+                    "urlApi is :" + urlApi +
+                            "lpuGuid is: " + lpuGuid +
+                            "birthdate is: " + birthdate +
+                            "seriespol is: " + seriespol +
+                            "numberpol is: " + numberpol);
+            throw new SkipException("Error. Arguments not valid");
+        } else {
+            url += urlApi + "/auth/" + lpuGuid + "/token?Birthday=" + birthdate + "&n_pol=" + numberpol;
+            if (!seriespol.equals(""))
+                url += "&s_pol=" + seriespol;
         }
-        return token;
+        return url;
+    }
+
+    private Map requestRun(HttpGet request) throws IOException {
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpResponse hr;
+        Map<String, String> responseMap = new HashMap<String, String>();
+        try {
+            hr = httpClient.execute(request);
+            ResponseHandler<String> handler = new BasicResponseHandler();
+            String body = handler.handleResponse(hr);
+            responseMap.put("body", body);
+            try {
+                Scanner sc = new Scanner(hr.getEntity().getContent());
+                while (sc.hasNext()) {
+                    logger.info(sc.nextLine());
+                }
+            } finally {
+                hr.close();
+            }
+        } finally {
+            httpClient.close();
+        }
+        return responseMap;
     }
 }

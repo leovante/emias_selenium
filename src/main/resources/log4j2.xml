@@ -1,16 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="info">
-    <properties>
+<Configuration status="WARN">
+    <Properties>
         <property name="pattern">[%d{HH:mm:ss}] %-5p (%F:%L) - %m%n</property>
-    </properties>
-    <appenders>
+        <property name="filename">target/test.log</property>
+    </Properties>
+    <Appenders>
         <ReportPortalLog4j2Appender name="ReportPortalAppender">
             <PatternLayout pattern="${pattern}"/>
         </ReportPortalLog4j2Appender>
-    </appenders>
+
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern="${pattern}"/>
+        </Console>
+
+        <File name="File" filename="${filename}">
+            <PatternLayout pattern="${pattern}"/>
+        </File>
+    </Appenders>
     <loggers>
-        <root level="info">
+        <root level="all">
             <appender-ref ref="ReportPortalAppender"/>
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="File"/>
         </root>
+        <Logger level="FATAL">
+            <appender-ref ref="STDOUT"/>
+        </Logger>
+        <Logger name="org.hibernate.type.descriptor.sql" level="trace"/>
     </loggers>
 </Configuration>

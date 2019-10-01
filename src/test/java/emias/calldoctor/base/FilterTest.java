@@ -3,7 +3,7 @@ package emias.calldoctor.base;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
 import com.utils.except.NoticeException;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
@@ -20,9 +20,7 @@ public class FilterTest extends TestBase {
     public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
@@ -36,14 +34,12 @@ public class FilterTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .searchFilterDoctor(doctor)
                 .verifyActiveDocGroup(pacientImpl, doctor);
     }
@@ -70,19 +66,15 @@ public class FilterTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorTomorrow(doctor);
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .filter_all_tomorrow()
                 .verifyActiveDocGroup(pacientImpl, doctor)
                 .filter_tomorrow_today()
                 .verifyActiveDocGroupNotVisible(pacientImpl, doctor);
     }
-    // TODO: 13.08.2018 сделать тест отображение вызовов в различных подразделениях и группах
 }

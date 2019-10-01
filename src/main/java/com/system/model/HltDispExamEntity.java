@@ -119,10 +119,6 @@ public class HltDispExamEntity {
         this.rfCardGuid = rfCardGuid;
     }
 
-//    @ManyToOne
-//    @JoinColumn(name="Guid")
-//    private HltDispCardEntity guid;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Guid", nullable = false)
     private HltDispCardEntity hltDispCardEntity;

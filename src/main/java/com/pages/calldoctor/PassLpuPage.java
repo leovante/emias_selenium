@@ -3,7 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class PassLpuPage extends PageBase {
+public class PassLpuPage extends BasePage {
     Doctor doctor;
 
     public PassLpuPage() throws IOException {

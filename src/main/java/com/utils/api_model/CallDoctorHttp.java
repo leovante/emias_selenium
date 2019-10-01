@@ -3,21 +3,32 @@ package com.utils.api_model;
 import com.config.ConfigFile;
 import com.datas.calldoctor.Pacient;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.testng.SkipException;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 public class CallDoctorHttp {
+    private static Logger logger = LogManager.getLogger();
     private Pacient pacientImpl;
     private ConfigFile configFile;
-    HttpPost request;
-    JSONObject jsonOb;
+    private HttpPost request;
+    private JSONObject jsonOb;
 
+    // TODO: 9/24/2019 навести порядок
     public CallDoctorHttp(Pacient pacientImpl) throws JSONException {
         this.pacientImpl = pacientImpl;
         this.jsonOb = new JSONObject();
@@ -60,9 +71,11 @@ public class CallDoctorHttp {
             jsonOb.put("floor", pacientImpl.getFloor());
         if (pacientImpl.getKladraddress() != null && pacientImpl.getKladraddress() != "")
             jsonOb.put("kladraddress", pacientImpl.getKladraddress());
+        if (pacientImpl.getCallPersonType() != 0)
+            jsonOb.put("callPersonType", pacientImpl.getCallPersonType());
     }
 
-    public HttpPost postRequestSMP() {
+    private HttpPost requestSmp() {
         this.request = new HttpPost(configFile.getRequestSmp());
         this.request.addHeader("content-type", "application/json");
         this.request.addHeader("Authorization", configFile.getAuthorization());
@@ -72,33 +85,83 @@ public class CallDoctorHttp {
         return request;
     }
 
-    public HttpPost createPostRequestToken() throws IOException {
-//        String token = new Tokenizer().getToken(pacient, clientApplication);
+    private HttpPost requestToken() {
         this.request = new HttpPost(configFile.getRequestSmp());
         request.addHeader("Content-type", "application/json");
-//        request.addHeader("Authorization", "Bearer " + token);
         request.addHeader("ClientApplication", configFile.getClientApplication());
         StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
         request.setEntity(params);
         return request;
     }
 
-    public HttpResponse execute() {
-        HttpClient httpClient = HttpClients.createDefault();
+    private HttpPost requestTokenAuth() throws IOException {
+        String token = new Tokenizer(pacientImpl).getToken();
+        this.request = new HttpPost(configFile.getRequestSmpAuth());
+        request.addHeader("Content-type", "application/json");
+        request.addHeader("Authorization", "Bearer " + token);
+        StringEntity params = new StringEntity(jsonOb.toString(), "UTF-8");
+        request.setEntity(params);
+        return request;
+    }
+
+    public void execute() {
         HttpResponse httpResponse = null;
         try {
             if (pacientImpl.getSource() == 2) {//смп
-                httpResponse = httpClient.execute(postRequestSMP());
+                httpResponse = executeRetry(requestSmp());
             }
             if (pacientImpl.getSource() == 3) {//кц с авторизацией
-                httpResponse = httpClient.execute(createPostRequestToken());
+                httpResponse = executeRetry(requestToken());
             }
             if (pacientImpl.getSource() != 2 && pacientImpl.getSource() != 3) {
-                throw new NullPointerException("Нет такого источника");
+                logger.error("Can't create request with source " + pacientImpl.getSource());
+                throw new SkipException("Error. Can't create request");
             }
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            logger.error("Error of execute request " + httpResponse);
+            e.printStackTrace();
+        }
+    }
+
+    public void executeAuth() throws IOException, InterruptedException {
+        executeRetry(requestTokenAuth());
+    }
+
+    private HttpResponse executeRetry(HttpPost request) throws IOException, InterruptedException {
+        HttpResponse httpResponse = null;
+        for (int i = 0; i < 5; i++) {
+            httpResponse = executeAndGetResponce(request);
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                logger.info("Request is success");
+                return httpResponse;
+            }
+            Thread.sleep(1000);
+        }
+        if (httpResponse.getStatusLine().getStatusCode() != 200) {
+            throw new SkipException("Call don't create");
         }
         return httpResponse;
+    }
+
+    private HttpResponse executeAndGetResponce(HttpPost request) throws IOException {
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        CloseableHttpResponse hr;
+        try {
+            logger.info("Execute request");
+            hr = httpClient.execute(request);
+            try {
+                logger.info("Request status line is : " + hr.getStatusLine());
+                logger.info("Request body is: \n" + hr);
+                Scanner sc = new Scanner(hr.getEntity().getContent());
+                while (sc.hasNext()) {
+                    logger.info("Entity.Content: " + sc.nextLine());
+                }
+            } finally {
+                hr.close();
+            }
+        } finally {
+            httpClient.close();
+        }
+        return hr;
     }
 }

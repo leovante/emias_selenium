@@ -1,15 +1,15 @@
 package com.pages.mis;
 
+import com.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import com.pages.AbstractPage;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class NapravlenieNaIssledovanie extends AbstractPage {
+public class NapravlenieNaIssledovanie extends BasePage {
 
     public NapravlenieNaIssledovanie() throws IOException {
     }
@@ -36,8 +36,8 @@ public class NapravlenieNaIssledovanie extends AbstractPage {
         $(By.id("sinpLabResearchDialog_DocPRVDSelector")).sendKeys(Keys.ENTER);
         $(By.xpath("//*[contains(text(),'Чернова')]")).click();
         $(By.id("btnselLabResearchDialog_DocPRVDSelector")).$(By.xpath("*[contains(text(),'Выбрать')]")).click();
-//        driver.findElement(By.xpath("//tr[@id='1003']/td[2]/div/span[2]")).click();
-//        driver.findElement(By.xpath("//button[@id='btnselLabResearchDialog_DocPRVDSelector']/span")).click();
+//        remoteDriver.findElement(By.xpath("//tr[@id='1003']/td[2]/div/span[2]")).click();
+//        remoteDriver.findElement(By.xpath("//button[@id='btnselLabResearchDialog_DocPRVDSelector']/span")).click();
         $(By.xpath("//a[@id='LabResearchCause-button']/span")).click();
         $(By.xpath("//a[contains(text(),'Направление из стационара')]")).click();
         $(By.id("LabResearchTarget-button")).click();

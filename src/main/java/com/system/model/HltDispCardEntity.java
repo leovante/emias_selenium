@@ -108,7 +108,7 @@ public class HltDispCardEntity {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "Guid")
-    private Set<HltDispExamEntity> guids = new LinkedHashSet<>();
+    private Set<HltDispExamEntity> HltDispExamGuids = new LinkedHashSet<>();
 
 
     @Basic

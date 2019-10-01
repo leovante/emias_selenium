@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import com.utils.CallDoctorCards;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -17,7 +17,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.*;
 import static org.testng.Assert.assertTrue;
 
-public class PrintFormPage extends PageBase {
+public class PrintFormPage extends BasePage {
     Pacient pacient;
     SelenideElement doneCall = $(By.id("doneCall"));
     SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
@@ -110,7 +110,7 @@ public class PrintFormPage extends PageBase {
 
     @Step("проверяю время из списка")
     void assertTimeContains(ArrayList curTime, String expTime) {
-        LOGGER.info("curTime: " + curTime + "\n" + "expTime: " + expTime);
+        logger.info("curTime: " + curTime + "\n" + "expTime: " + expTime);
         assertTrue(curTime.contains(expTime), "Время вызова не корректно!");
     }
 
@@ -120,7 +120,7 @@ public class PrintFormPage extends PageBase {
         baseElements();
         basePacient();
         verifyTime();
-        LOGGER.info("Подробная карта вызова проверена!");
+        logger.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -129,7 +129,7 @@ public class PrintFormPage extends PageBase {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
-        LOGGER.info("Подробная карта вызова проверена!");
+        logger.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -139,7 +139,7 @@ public class PrintFormPage extends PageBase {
         baseElements();
         basePacient();
         baseDoctor(doctor);
-        LOGGER.info("Подробная карта вызова проверена!");
+        logger.info("Подробная карта вызова проверена!");
         return this;
     }
 
@@ -198,7 +198,7 @@ public class PrintFormPage extends PageBase {
         $(By.xpath("//div[contains(text(),'" + "Карта вызова" + "')]")).shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
         $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
-        LOGGER.info("Карта закрыта!");
+        logger.info("Карта закрыта!");
         return this;
     }
 

@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class DashboardPage extends PageBase {
+public class DashboardPage extends BasePage {
     private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
     private SelenideElement exitBtn = $x("//span[contains(text(),'Выход')]");
     private SelenideElement instructionBtn = $x("//span[contains(text(),'Инструкция')]");
@@ -90,11 +90,13 @@ public class DashboardPage extends PageBase {
     }
 
     @Step("очистить фильтр подразделение")
-    public DashboardPage clearAllFilters() {
+    public DashboardPage clearFilterDepart() {
         ElementsCollection closeList = $$(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408"));
         for (SelenideElement closeBtn : closeList) {
             closeBtn.click();
         }
+        fioFilter.clear();
+        fioFilter.click();
         return this;
     }
 
@@ -127,7 +129,7 @@ public class DashboardPage extends PageBase {
 //            $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
 //            $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
 //        }
-//        LOGGER.info("Краткая карта вызова проверена!");
+//        logger.info("Краткая карта вызова проверена!");
 //    }
 
     @Step("проверяю на дашборде запись в группе новые")
@@ -140,23 +142,23 @@ public class DashboardPage extends PageBase {
         $(By.xpath("//*[contains(text(),'" + pacientImpl.getFamily() + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).shouldBe(Condition.visible);
         $(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).shouldBe(Condition.visible);
-        LOGGER.info("Краткая карта вызова проверена!");
+        logger.info("Краткая карта вызова проверена!");
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
     public DashboardPage verifyActiveDocGroup(Pacient pacientImpl, Doctor doctor) throws InterruptedException {
         Thread.sleep(1000);
-        SelenideElement docFamBlock = $(By.xpath("//span[contains(text(),'" + doctor.getFamily() + "')]"));
+        SelenideElement docFamBlock = $x("//span[contains(text(),'" + doctor.getFamily() + "')]").$x("../../.");
         docFamBlock.click();
 
-        SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[@id='order']")).click();
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacientImpl.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).shouldBe(Condition.visible);
-        LOGGER.info("Краткая карта вызова проверена!");
+        SelenideElement docBlock = docFamBlock.$x("../../../.");
+        docBlock.$x(".//*[contains(text(),'Ожидают обработки')]")
+                .$x("../.")
+                .$x(".//mat-icon[@id='order']").click();
+        docBlock.$x(".//*[contains(text(),'Ожидают обработки')]").click();
+        $x("//*[contains(text(),'" + pacientImpl.getAddress() + "')]").click();
+        $x("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]").shouldBe(Condition.visible);
+        logger.info("Краткая карта вызова проверена!");
         return this;
     }
 
@@ -184,24 +186,19 @@ public class DashboardPage extends PageBase {
         } else {
             docFamBlock.shouldNotBe(Condition.visible);
         }
-        LOGGER.info("Краткая карта вызова проверена!");
+        logger.info("Краткая карта вызова проверена!");
         return this;
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyDoneDocGroup(PacientImpl pacientImpl, Doctor doctor) {
-        SelenideElement doneFrame = $(By.xpath("//*[contains(text(),'Обслуженные')]")).$(By.xpath("../../."));
-        SelenideElement docFamBlock = doneFrame.$(By.xpath(".//span[contains(text(),'" + doctor.getFamily() + "')]"));
-        docFamBlock.click();
-
-        SelenideElement docBlock = docFamBlock.$(By.xpath("../../../../../."));
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]"))
-                .$(By.xpath("../."))
-                .$(By.xpath(".//*[@id='order']")).click();
-        docBlock.$(By.xpath(".//*[contains(text(),'Ожидают обработки')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacientImpl.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).shouldBe(Condition.visible);
-        LOGGER.info("Краткая карта вызова проверена!");
+    public void verifyPacientNumberInServe(Pacient pacient, Doctor doctor) {
+        lib.calldoctor(pacient,doctor)
+                .expandDoctorInServe()
+                .sortInProgress()
+                .expandInProgress()
+                .expandPacient();
+        $x("//*[contains(text(),'" + parseTelephone(pacient) + "')]").shouldBe(Condition.visible);
+        logger.info("Краткая карта вызова проверена!");
     }
 
     @Step("Проверка что запись удалена с дашборда")
@@ -218,10 +215,10 @@ public class DashboardPage extends PageBase {
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).isDisplayed());
                 Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).isDisplayed());
             } else {
-                LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
+                logger.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
         } else {
-            LOGGER.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
+            logger.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
         }
     }
 
@@ -239,10 +236,10 @@ public class DashboardPage extends PageBase {
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).isDisplayed());
                 Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).isDisplayed());
             } else {
-                LOGGER.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
+                logger.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
         } else {
-            LOGGER.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
+            logger.info("Проверка выполнена. Группа 'ожидают обработки' не найдена!");
         }
     }
 
@@ -250,17 +247,50 @@ public class DashboardPage extends PageBase {
     public void openNewCallDash(Pacient pacientImpl) throws InterruptedException {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]"));
-        Actions actions = new Actions(driver);
-        actions.moveToElement(address).perform();
 
-        SelenideElement smallMenu = address.$(By.xpath("../../../.")).$(By.xpath(".//*[contains(text(),'chevron_left')]"));
-        actions.moveToElement(smallMenu).perform();
-        SelenideElement openCard = address.$(By.xpath("../../../."))
-                .$(By.xpath(".//a[@title='Открыть карту вызова']"))
-                .$(By.xpath(".//mat-icon[contains(text(),'assignment')]"));
-        Thread.sleep(1000);
-        openCard.click();
+        ElementsCollection addressCollection = matExpansionPanel
+                .$$x(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]");
+        SelenideElement address = addressCollection.get(0);
+
+        address.shouldBe(Condition.visible);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(address).perform();//маленький уголочек
+
+        SelenideElement smallMenu = address
+                .$x("../../../.")
+                .$x(".//*[contains(text(),'chevron_left')]");
+        smallMenu.shouldBe(Condition.visible);
+        actions.moveToElement(smallMenu).perform();//большая менюшка
+
+        SelenideElement openCard = address
+                .$x("../../../.")
+                .$x(".//a[@title='Открыть карту вызова']")
+                .$x(".//mat-icon[contains(text(),'assignment')]");
+        address.shouldBe(Condition.visible);
+
+        if(openCard.is(Condition.visible)){
+            openCard.click();
+        }else{
+            for (int i = 0; i < 5; i++) {
+                waitVisible(address);
+                if(openCard.is(Condition.visible))
+                    break;
+                Thread.sleep(1000);
+            }
+            openCard.click();
+        }
+    }
+
+    void waitVisible(SelenideElement address){
+        address.shouldBe(Condition.visible);
+        Actions actions = new Actions(driver);
+        actions.moveToElement(address).perform();//маленький уголочек
+
+        SelenideElement smallMenu = address
+                .$x("../../../.")
+                .$x(".//*[contains(text(),'chevron_left')]");
+        smallMenu.shouldBe(Condition.visible);
+        actions.moveToElement(smallMenu).perform();//большая менюшка
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")

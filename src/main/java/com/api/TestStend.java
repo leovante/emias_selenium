@@ -2,6 +2,7 @@ package com.api;
 
 import com.codeborne.selenide.Condition;
 import com.config.ConfigFile;
+import com.pages.BasePage;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
@@ -9,7 +10,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.junit.Assert;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import rp.org.apache.http.conn.HttpHostConnectException;
 
 import java.io.IOException;
 
@@ -17,11 +20,18 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
 public class TestStend {
+    private static Logger logger = LogManager.getLogger();
     private ConfigFile configFile = new ConfigFile();
 
     public Boolean call_doctor_ef_api() throws IOException {
         HttpUriRequest request = new HttpGet(configFile.getUrlServices() + "/call/call_doctor_ef_api/ping");
         HttpResponse httpResponse = HttpClientBuilder.create().build().execute(request);
+        try {
+            httpResponse = HttpClientBuilder.create().build().execute(request);
+        } catch (HttpHostConnectException e) {
+            logger.error("Не удалось подключиться к " + request);
+            e.printStackTrace();
+        }
         if (httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK)
             return true;
         return false;

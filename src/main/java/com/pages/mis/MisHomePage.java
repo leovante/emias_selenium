@@ -3,8 +3,7 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.config.ConfigFile;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import com.utils.DispUrlParser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -16,11 +15,9 @@ import java.net.MalformedURLException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class MisHomePage extends PageBase {
-    ConfigFile conf;
+public class MisHomePage extends BasePage {
 
     public MisHomePage() throws IOException {
-        conf = new ConfigFile();
     }
 
     @Step("Открываю стенд")
@@ -29,7 +26,7 @@ public class MisHomePage extends PageBase {
         $(By.id("Login")).setValue(conf.getLogin());
         $(By.id("Password")).setValue(conf.getPassword());
         $(By.id("loginBtn")).click();
-        LOGGER.info("Открыл дашборд МИС " + conf.getUrl());
+        logger.info("Открыл дашборд МИС " + conf.getUrl());
     }
 
     @Step("изменяю куки для входа под юр.лицом")
@@ -40,16 +37,16 @@ public class MisHomePage extends PageBase {
         WebDriverRunner.getWebDriver().manage().addCookie(department);
     }
 
-    @Step("Вход в модуль диспетчер")
+    @Step("Open CallDoctor with in URL")
     public void calldoctor() {
         open(conf.getCalldoctor());
-        LOGGER.info("Открыл модуль диспетчер по прямой ссылке " + conf.getCalldoctor());
+        logger.debug("Open CallDoctor with in URL: " + conf.getCalldoctor());
     }
 
     @Step("Вход в модуль диспетчер от взрослой поликлиникой")
     public void calldoctorVzroslaya() {
         open(conf.getCalldoctorVz());
-        LOGGER.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения " + conf.getCalldoctorVz());
+        logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
     }
 
     @Step("Захожу в диспетчер через МИС под админом")
@@ -65,13 +62,25 @@ public class MisHomePage extends PageBase {
     @Step("Вход в модуль диспансеризация через журнал")
     public void dispJournal() {
         open(conf.getDispJournal());
-        LOGGER.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
+        logger.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
     }
 
     @Step("Вход в карту диспансеризации")
     public void dispCard() {
         open(conf.getDispCard());
-        LOGGER.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
+        logger.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
+    }
+
+    @Step("Медзаписи через ТАП")
+    public void mr_tap() {
+        open(conf.getMr_tap());
+        logger.info("Открыл модуль медзаписей через ТАП по прямой ссылке " + conf.getMr_tap());
+    }
+
+    @Step("Медзаписи через МКАБ")
+    public void mr_mkab() {
+        open(conf.getMr_mkab());
+        logger.info("Открыл модуль медзаписей через МКАБ по прямой ссылке " + conf.getMr_mkab());
     }
 
     @Step("Вход в карту диспансеризации")
@@ -102,5 +111,11 @@ public class MisHomePage extends PageBase {
     public void validateForumInstruction() {
         SelenideElement se = $x("//span[contains(text(),'Инструкция диспетчера по вызову врача на дом.pdf')]").shouldBe(Condition.visible);
         Assert.assertTrue(se.isDisplayed(), "Инструкция пользователя диспетчером не найдена на странице");
+    }
+
+    @Step("Следующая страница на форуме тех.поддержки")
+    public MisHomePage nextPage(){
+        $x("//a[contains(text(),'След.')]").click();
+        return this;
     }
 }

@@ -3,7 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.CacheLookup;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class SetDoctorPage extends PageBase {
+public class SetDoctorPage extends BasePage {
     @CacheLookup
     SelenideElement appenToday = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
     SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
@@ -29,7 +29,7 @@ public class SetDoctorPage extends PageBase {
     public SetDoctorPage chooseDoctorToday(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
-        LOGGER.info("Врач выбран!");
+        logger.info("Врач выбран!");
         return this;
     }
 
@@ -38,9 +38,9 @@ public class SetDoctorPage extends PageBase {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         for (int i = 1; appenToday.isDisplayed(); i++) {
             appenToday.click();
-            LOGGER.info("нажал на кнопку " + i + " раз");
+            logger.info("нажал на кнопку " + i + " раз");
         }
-        LOGGER.info("Врач выбран!");
+        logger.info("Врач выбран!");
         return this;
     }
 
@@ -48,7 +48,7 @@ public class SetDoctorPage extends PageBase {
     public SetDoctorPage chooseDoctorTomorrow(Doctor doctor) throws IOException {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenTomorrow.click();
-        LOGGER.info("Врач выбран!");
+        logger.info("Врач выбран!");
         return this;
     }
 
@@ -75,7 +75,7 @@ public class SetDoctorPage extends PageBase {
         zapisat.click();
         for (int i = 1; zapisat.isDisplayed() && i < 100; i++) {
             zapisat.click();
-            LOGGER.info("Я нажал на эту кнопку " + i + " раз");
+            logger.info("Я нажал на эту кнопку " + i + " раз");
         }
         return this;
     }
@@ -87,7 +87,7 @@ public class SetDoctorPage extends PageBase {
         zapisatDobavit.click();
         for (int i = 1; zapisatDobavit.isDisplayed() && i < 100; i++) {
             zapisatDobavit.click();
-            LOGGER.info("Я нажал на эту кнопку " + i + " раз");
+            logger.info("Я нажал на эту кнопку " + i + " раз");
         }
         return this;
     }

@@ -1,8 +1,10 @@
 package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
+import com.datas.Datas;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.system.model.HltDispCardEntity;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
@@ -12,46 +14,14 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по номеру через профиль", enabled = false)
-    @RetryCountIfFailed(2)
-    public void testSearchCard1() {
-        page.misHome().dispCard();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(3059);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
-    }
-
-    @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по полису", enabled = false)
-    @RetryCountIfFailed(2)
-    public void testSearchCard2() {
-        page.misHome().dispCard();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByPolNumber(7654321);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
-    }
-
-    @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "поиск карты по ФИО", enabled = false)
-    @RetryCountIfFailed(2)
-    public void testSearchCard3() {
-        page.misHome().dispCard();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByFio("Темников Дмитрий Олегович");
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
-    }
-
-    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
-    public void testSearchCard4() throws InterruptedException {
+    public void testSearchCardByCardNumber() {
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(1649);
@@ -62,7 +32,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
-    public void testSearchCard5() throws InterruptedException, IOException, JSONException {
+    public void testSearchCardByPolNumber() throws IOException, JSONException {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
@@ -74,7 +44,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
-    public void testSearchCard6() throws InterruptedException, IOException, JSONException {
+    public void testSearchCardByFio() throws IOException, JSONException {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
@@ -89,37 +59,33 @@ public class JournalTest extends TestBase {
     public void verifyMeasurePattern() throws InterruptedException {
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(1594);
+        page.journalPage().searchByCardNumber(418);
         page.journalPage().clickSearchBtn();
-        page.journalPage().editCardBtn(7654321);
+        page.journalPage().editCardBtn(165734);
         page.exampPage().viewFlurography();
-        $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'Не удается открыть медицинскую запись')]")
+                .shouldNotBe(Condition.visible);
     }
 
     @Epic("Журнал диспансеризации")
-    @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через мкаб")
+    @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия")
     @RetryCountIfFailed(2)
-    public void verifyMeasurePatternFromMkab() throws InterruptedException, IOException, JSONException {
+    public void verifyMeasurePatternFromMkab() throws InterruptedException {
         // TODO: 5/28/2019 объект с данными пациента
-        PacientImpl pac = new PacientImpl("Temnikov94");
-        page.misHome().loginMis();
-        page.homePageMis().mkabBtn();
-        page.mkabPage()
-                .fio(pac.getFamily() + " " + pac.getName() + " " + pac.getOt())
-                .serchBtn()
-                .openMkab(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
-        $(By.id("jqContextMenu"))
-                .$(By.id("MkabGridcontextmenuitem0"))
-                .click();
-        $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
-        $(By.xpath("//*[contains(text(),'Карты диспансеризации')]")).click();
-        switchTo().window(1);
+        Datas d = new Datas(){
+          int a = 1;
+        };
+        //get на карту диспы
+//        HltDispCardEntity card = hltDispCardService.getCardWithFluorography();
+
+        page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(1594);
         page.journalPage().clickSearchBtn();
         page.journalPage().editCardBtn(7654321);
         page.exampPage().viewFlurography();
-        $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'Не удается открыть медицинскую запись')]")
+                .shouldNotBe(Condition.visible);
     }
 
     @Epic("Журнал диспансеризации")
@@ -129,10 +95,7 @@ public class JournalTest extends TestBase {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         page.misHome().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
-//        page.raspisaniePriemaPage().createDispMl(pacient);
         page.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");
-//        page.raspisaniePriemaPage().selectCell();
-
         page.homePageMis().mkabBtn();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
@@ -153,7 +116,7 @@ public class JournalTest extends TestBase {
         page.exampPage().viewFlurography();
         $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
     }
-    //проверить отображение шаблона через мкаб и через ячейку расписания
+    // TODO: 9/26/2019 проверить отображение шаблона через мкаб и через ячейку расписания
 
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверяю что мероприятие открывается у подписанной карты")

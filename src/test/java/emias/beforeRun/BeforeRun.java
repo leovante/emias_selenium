@@ -1,11 +1,10 @@
 package emias.beforeRun;
 
 import com.api.TestStend;
-import com.codeborne.selenide.WebDriverRunner;
 
 import java.io.IOException;
 
-import static com.pages.PageBase.LOGGER;
+import static com.pages.BasePage.logger;
 
 public class BeforeRun {
     private TestStend testStend = new TestStend();
@@ -44,7 +43,7 @@ public class BeforeRun {
                 !disp_card |
                 !calldoctor |
                 !calldoctorVz) {
-            LOGGER.info(
+            logger.info(
                     "\nпроверка api диспетчера: " + checkCreateCall +
                             "\nпроверка api КЛАДР: " + checkKladrFind +
                             "\nпроверка медзаписей: " + ehr_medrecords +

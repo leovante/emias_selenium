@@ -1,0 +1,9 @@
+http://template-v2.softrust.ru:444/
+supp@softrust.ru
+56owP*@amgwr
+
+select * from ehr_Template
+where name like '%Осмотр терапевтом%'
+
+select * from ehr_PredefinedVariables
+where rf_TemplateID = 25

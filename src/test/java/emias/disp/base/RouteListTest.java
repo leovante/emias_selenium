@@ -2,7 +2,7 @@ package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
@@ -47,7 +47,7 @@ public class RouteListTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testDefaultValidationFieldParams() throws InterruptedException {
         page.misHome().dispCard();
-        page.exampPage().validateDefaultParamWithSpace();
+        page.exampPage().validateClearParam();
     }
 
     @Test(groups = "disp", description = "пустое мероприятие не должно промаркироваться, даже если его не раскрыли", enabled = false)

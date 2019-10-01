@@ -2,19 +2,20 @@ package emias;
 
 import com.config.AppConfig;
 import com.config.ConfigFile;
-import com.epam.reportportal.testng.ReportPortalTestNGListener;
-import com.pages.Pages;
+import com.pages.Page;
+import com.system.model.HltDispServiceDocPrvd;
+import com.system.repositories.HltDispServiceDocPrvdRepository;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
 import com.system.service.HltDispExamServiceImpl;
+import com.system.service.HltDispServiceDocPrvdServiceImpl;
 import com.utils.*;
 import com.utils.Selenium.SeleniumGrid;
-import com.utils.override.Assistance;
-import com.utils.override.AssistanceImpl;
+import com.lib.assistance.Assistance;
+import com.lib.assistance.AssistanceImpl;
 import emias.beforeRun.BeforeRun;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
-import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -26,13 +27,15 @@ import java.text.ParseException;
 
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
-public class TestBase extends AbstractTestNGSpringContextTests {
+public class TestBase extends AbstractTestNGSpringContextTests{
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;
-    public ConfigFile configFile = new ConfigFile();
-    public static Pages page;
+    protected ConfigFile configFile = new ConfigFile();
     public String testName;
-    protected Assistance as = new AssistanceImpl();
+    protected Assistance assistance = new AssistanceImpl();
+
+    @Autowired
+    public Page page;
 
     @Autowired
     public HltCallDoctorServiceImpl hltCallDoctorService;
@@ -42,6 +45,9 @@ public class TestBase extends AbstractTestNGSpringContextTests {
 
     @Autowired
     public HltDispExamServiceImpl hltDispExamService;
+
+    @Autowired
+    public HltDispServiceDocPrvdServiceImpl hltDispServiceDocPrvdService;
 
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();
@@ -64,7 +70,6 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     public void setUp(@Optional String browser) throws IOException {
         driverInst = new WebDriverInstansiator(browser);
         driverInst.setDriver();
-        page = new Pages();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -75,10 +80,17 @@ public class TestBase extends AbstractTestNGSpringContextTests {
 
     /* СЕРВИСЫ */
     @Parameters({"testng"})
-    @BeforeTest(alwaysRun = true)
-    public void beforeTest(@Optional String testng) throws IOException, ParseException {
+    @BeforeClass(groups = "CD", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
+    public void beforeClassCD(@Optional String testng) throws ParseException, IOException {
         if (testng != null) {
             new BeforeTestCD().run();
+        }
+    }
+
+    @Parameters({"testng"})
+    @BeforeClass(groups = "disp", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
+    public void beforeClassDisp(@Optional String testng) {
+        if (testng != null) {
             new BeforeTestDisp();
         }
     }

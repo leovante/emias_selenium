@@ -2,7 +2,7 @@ package emias.calldoctor.base;
 
 import com.datas.calldoctor.PacientImpl;
 import com.utils.except.NoticeException;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
@@ -19,9 +19,7 @@ public class CancelCallTest extends TestBase {
     public void testCancelCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).cancelOnFullCardBtn("отмена автотестом");
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
@@ -34,9 +32,7 @@ public class CancelCallTest extends TestBase {
     public void testCancelEmpyCallFrom_Registr() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName())
                 .editCallBtn()
                 .cancelOnChangePageBtn();
@@ -51,9 +47,7 @@ public class CancelCallTest extends TestBase {
     public void testCancelCallFrom_DashBoard() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)

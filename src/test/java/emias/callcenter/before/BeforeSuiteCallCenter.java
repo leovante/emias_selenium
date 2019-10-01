@@ -6,7 +6,7 @@ public class BeforeSuiteCallCenter extends TestBase {
 
 //    @Test(description = "Создаю новое расписание на сегодня")
 //    @RetryCountIfFailed(2)
-//    public void cleanOperatorCalls() throws InterruptedException, IOException, ParseException {
+//    public void cancelCalls() throws InterruptedException, IOException, ParseException {
 //        updateDB();
 //        deleteShedule();
 //        createShedule();

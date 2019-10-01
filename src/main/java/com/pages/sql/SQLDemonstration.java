@@ -1,6 +1,6 @@
 package com.utils.sql;
 
-import com.pages.PageBase;
+import com.pages.BasePage;
 import com.utils.HibernateSessionFactory;
 import io.qameta.allure.Step;
 import org.codehaus.plexus.util.IOUtil;
@@ -15,7 +15,7 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.List;
 
-public class DBScripts extends PageBase {
+public class DBScripts extends BasePage {
     private static String connectionUrl = "jdbc:sqlserver://192.168.7.253:64783";
     private static String databaseName = "test_mo_hlt_Taldom_CRB_20190129";
     private static String userName = "mis";
@@ -32,7 +32,7 @@ public class DBScripts extends PageBase {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -41,7 +41,7 @@ public class DBScripts extends PageBase {
                                 "AND ldoc.FAM_V = '" + fam + "'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("Table DTT is clean.");
+                    logger.info("Table DTT is clean.");
                     statement.close();
                 }
             }
@@ -57,7 +57,7 @@ public class DBScripts extends PageBase {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "delete hlt_DoctorTimeTable from hlt_DoctorTimeTable dtt left outer join hlt_LPUDoctor ldoc " +
@@ -67,31 +67,24 @@ public class DBScripts extends PageBase {
                                 "  AND dtt.rf_LPUDoctorID = " + LPUDoctorID;
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("Table DTT is clean.");
+                    logger.info("Table DTT is clean.");
 //                    statement.close();
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        LOGGER.info("Удалил расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
+        logger.info("Удалил расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
     }
 
     @Step("завершаю вызовы оператора Темников")
     public static void finalizeCallsOperatorTemnikov() {
-//        SessionFactory sessionFactory = HibernateSessionFactory.getSessionFactory();
-//        Session session = sessionFactory.openSession();
-//        session.createQuery(
-//                "update HltCallDoctorEntity " +
-//                        "set rfCallDoctorStatusId = 3 " +
-//                        " ");
-
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_calldoctor " +
@@ -102,7 +95,7 @@ public class DBScripts extends PageBase {
                                 "and cl.rf_calldoctorstatusid in (2, 5, 7)";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("Finalize is done.");
+                    logger.info("Finalize is done.");
                 }
             }
         } catch (Exception e) {
@@ -110,6 +103,7 @@ public class DBScripts extends PageBase {
         }
     }
 
+/*
     @Step("Сбросить мероприятия у карты вызова")
     public static void setDefaultServices(String cardID) { // TODO: 04.09.2018 доделать обнуление заключения
         String url = connectionUrl +
@@ -117,7 +111,7 @@ public class DBScripts extends PageBase {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 String sql =
                         "update hlt_disp_Exam" +
@@ -129,13 +123,14 @@ public class DBScripts extends PageBase {
                                 " where dc.disp_CardID = '" + cardID + "'";
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(sql);
-                    LOGGER.info("card: " + cardID + " is default!");
+                    logger.info("card: " + cardID + " is default!");
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+*/
 
     @Step("Запуск скрипта на демонстрейшн")
     public static void runSqlScript(String sql) throws IOException {
@@ -146,11 +141,11 @@ public class DBScripts extends PageBase {
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(script);
-                    LOGGER.info("SQL scripst " + sql + " Complete!");
+                    logger.info("SQL scripst " + sql + " Complete!");
                 }
             }
         } catch (Exception e) {
@@ -158,19 +153,20 @@ public class DBScripts extends PageBase {
         }
     }
 
-    @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
-    public static void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
-        String request = new DateGenerator().doctorShedule_Disp(LPUDoctorID, DocPRVDID);
+    @Step("Запуск скрипта на демонстрейшн")
+    public static void runSqlScriptCD(String sql) throws IOException {
+        InputStream is = new FileInputStream("src/main/resources/sql/calldoctor/" + sql);
+        String script = IOUtil.toString(is, "UTF-8");
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            LOGGER.info("Connecting to SQL Server ... ");
+            logger.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(request);
-                    LOGGER.info("Complete!");
+                    statement.executeUpdate(script);
+                    logger.info("SQL scripst " + sql + " Complete!");
                 }
             }
         } catch (Exception e) {
@@ -179,19 +175,38 @@ public class DBScripts extends PageBase {
     }
 
     @Step("Создаю расписание для врача")
-    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
-        String request = new DateGenerator().doctorShedule_CD(LPUDoctorID, DocPRVDID);
+    public static void createSheduleDisp(int LPUDoctorID, int DocPRVDID) throws ParseException {
+        String request = new DateGenerator().Shedule_Disp(LPUDoctorID, DocPRVDID);
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
                 ";password=" + password;
         try {
-            System.out.print("Connecting to SQL Server ... ");
-            System.out.print(url);
+            logger.info("Connecting to SQL Server ... ");
             try (Connection connection = DriverManager.getConnection(url)) {
                 try (Statement statement = connection.createStatement()) {
                     statement.executeUpdate(request);
-                    System.out.println("Complete!");
+                    logger.info("Complete!");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Step("Создаю расписание для врача")
+    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID) throws ParseException {
+        String request = new DateGenerator().shedule_CD(LPUDoctorID, DocPRVDID);
+        String url = connectionUrl +
+                ";databaseName=" + databaseName +
+                ";user=" + userName +
+                ";password=" + password;
+        try {
+            logger.info("Connecting to SQL Server ... " + url);
+            try (Connection connection = DriverManager.getConnection(url)) {
+                try (Statement statement = connection.createStatement()) {
+                    statement.executeUpdate(request);
+                    logger.info("Complete!");
                 }
             }
         } catch (Exception e) {
@@ -206,17 +221,17 @@ public class DBScripts extends PageBase {
 //                ";user=" + userName +
 //                ";password=" + password;
 //        try {
-//            LOGGER.info("Connecting to SQL Server ... ");
+//            logger.info("Connecting to SQL Server ... ");
 //            try (Connection connection = DriverManager.getConnection(url)) {
 //                String sql =
 //                        "update hlt_calldoctor set rf_calldoctorstatusid = 4 where CallDoctorID = " + cardMap.get(methodName);
 //                if (cardMap.get(methodName) != null && cardMap.get(methodName) > 0) {
 //                    try (Statement statement = connection.createStatement()) {
 //                        statement.executeUpdate(sql);
-//                        LOGGER.info("Вызов взят из стека и отменён!");
+//                        logger.info("Вызов взят из стека и отменён!");
 //                    }
 //                } else {
-//                    LOGGER.info("вызов не отменен!: " + cardMap.get(methodName));
+//                    logger.info("вызов не отменен!: " + cardMap.get(methodName));
 //                }
 //            }
 //        } catch (Exception e) {

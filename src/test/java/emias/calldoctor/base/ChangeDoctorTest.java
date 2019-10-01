@@ -3,7 +3,7 @@ package emias.calldoctor.base;
 
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
@@ -18,9 +18,7 @@ public class ChangeDoctorTest extends TestBase {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
         page.fullCard(pacientImpl, testName()).changeDoctorBtn();
@@ -30,7 +28,7 @@ public class ChangeDoctorTest extends TestBase {
                 .verifyDoctor(doctor2)
                 .closeCardBtn();
         page.dashboard()
-                .clearAllFilters()
+                .clearFilterDepart()
                 .verifyActiveDocGroup(pacientImpl, doctor2);
     }
 }

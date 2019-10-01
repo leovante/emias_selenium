@@ -1,16 +1,20 @@
 package com.datas;
 
 public class Datas {
-    private String medicar_record;
+    private String medical_record;
 
-    public String getMedicar_record() {
-        return medicar_record;
+
+
+    public String getMedical_record() {
+        return medical_record;
     }
 
-    public void setMedical_record(String medicar_record) {
-        this.medicar_record = medicar_record;
+    public Datas setMedical_record(String medicar_record) {
+        this.medical_record = medicar_record;
+        return this;
     }
 
     public Datas() {
+
     }
 }

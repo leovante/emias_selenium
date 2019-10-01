@@ -8,7 +8,6 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -16,12 +15,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.SkipException;
 
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.pages.PageBase.LOGGER;
+import static com.pages.BasePage.logger;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;
@@ -90,9 +88,10 @@ public class WebDriverInstansiator {
         Dimension dimension = getWebDriver().manage().window().getSize();
 
         if (!String.valueOf(dimension).equals("(1919, 1079)")) {
+            logger.error("Error. Incorrect windows size dimension");
             throw new SkipException("Ошибка. Размер окна браузера некорректный!" + dimension);
         } else {
-            LOGGER.info(
+            logger.info(
                     "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
                             "Browser resolution: " + dimension + "; " +
                             "Headless: " + conf.getHeadless() + "; ");
@@ -100,7 +99,7 @@ public class WebDriverInstansiator {
         Configuration.timeout = 20000;
         Configuration.reportsFolder = "target/test-result/reports";
         Configuration.savePageSource = false;
-        LOGGER.info("Selenium driver is ready");
+        logger.info("Selenium driver is ready");
     }
 
     public void driverClose() {
@@ -111,6 +110,6 @@ public class WebDriverInstansiator {
         if (remoteDriver != null) {
             WebDriverRunner.closeWebDriver();
         }
-        LOGGER.info("Selenium driver is close");
+        logger.info("Selenium driver is close");
     }
 }

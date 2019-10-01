@@ -3,7 +3,7 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class DoctorMethods extends PageBase {
+public class DoctorMethods extends BasePage {
     SelenideElement doctorRow = $(By.xpath("//tr[@role='row'][@tabindex='-1']"));
 
     public DoctorMethods() throws IOException {
@@ -27,7 +27,7 @@ public class DoctorMethods extends PageBase {
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ар Ти Шок", "test test testovych", "Ай Бо ЛитАвтоТест", "null");
         dontUseNames.add(docName);
-//        LOGGER.info((Supplier<String>) dontUseNames);
+//        logger.info((Supplier<String>) dontUseNames);
         String doctorStringName = docName;
         List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='schw_docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу
@@ -79,7 +79,7 @@ public class DoctorMethods extends PageBase {
         List<String> dontUseNames = new ArrayList<String>();
         Collections.addAll(dontUseNames, "Ай Бо Лит", "Ай Бо ЛитАвтоТест", "Ар Ти Шок", "test test testovych", "null");
         dontUseNames.add(docName);
-//        LOGGER.info((Supplier<String>) dontUseNames);
+//        logger.info((Supplier<String>) dontUseNames);
         String doctorStringName = docName;
         List<WebElement> doctorList = driver
                 .findElement(By.xpath("//table[@id='docprvdgrid1'][@role='grid']/tbody"))//нашел таблицу

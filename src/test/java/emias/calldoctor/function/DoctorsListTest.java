@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
 import com.utils.except.NoticeException;
-import com.utils.testngRetryCount.RetryCountIfFailed;
+import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов ребенка М")
@@ -29,15 +30,12 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        as.isVisibleText(operator.getDepartment());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        as.isVisibleText(mokov.getUchastocs());
-        as.isVisibleText(nemcova.getUchastocs());
-        as.isNotVisibleText(serova.getUchastocs());
+        assistance.isVisibleText(mokov.getUchastocs());
+        assistance.isVisibleText(nemcova.getUchastocs());
+        assistance.isNotVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов ребенка Ж")
@@ -50,15 +48,12 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        as.isVisibleText(operator.getDepartment());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        as.isVisibleText(mokov.getUchastocs());
-        as.isVisibleText(nemcova.getUchastocs());
-        as.isNotVisibleText(serova.getUchastocs());
+        assistance.isVisibleText(mokov.getUchastocs());
+        assistance.isVisibleText(nemcova.getUchastocs());
+        assistance.isNotVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов ребенка без пола")
@@ -71,15 +66,12 @@ public class DoctorsListTest extends TestBase {
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        as.isVisibleText(operator.getDepartment());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        as.isVisibleText(mokov.getUchastocs());
-        as.isVisibleText(nemcova.getUchastocs());
-        as.isNotVisibleText(serova.getUchastocs());
+        assistance.isVisibleText(mokov.getUchastocs());
+        assistance.isVisibleText(nemcova.getUchastocs());
+        assistance.isNotVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов взрослого М")
@@ -93,17 +85,14 @@ public class DoctorsListTest extends TestBase {
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        as.isVisibleText(operator.getDepartment());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
 
-        as.isNotVisibleText(mokov.getUchastocs());
-        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
-        as.isVisibleText(nemcova.getUchastocs());
-        as.isVisibleText(serova.getUchastocs());
+        assistance.isNotVisibleText(mokov.getUchastocs());
+        assistance.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        assistance.isVisibleText(nemcova.getUchastocs());
+        assistance.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов взрослого Ж")
@@ -117,16 +106,13 @@ public class DoctorsListTest extends TestBase {
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        as.isVisibleText(operator.getDepartment());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        as.isNotVisibleText(mokov.getUchastocs());
-        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
-        as.isVisibleText(nemcova.getUchastocs());
-        as.isVisibleText(serova.getUchastocs());
+        assistance.isNotVisibleText(mokov.getUchastocs());
+        assistance.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        assistance.isVisibleText(nemcova.getUchastocs());
+        assistance.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов взрослого без пола")
@@ -140,16 +126,13 @@ public class DoctorsListTest extends TestBase {
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        as.isVisibleText(operator.getDepartment());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        as.isNotVisibleText(mokov.getUchastocs());
-        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
-        as.isVisibleText(nemcova.getUchastocs());
-        as.isVisibleText(serova.getUchastocs());
+        assistance.isNotVisibleText(mokov.getUchastocs());
+        assistance.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        assistance.isVisibleText(nemcova.getUchastocs());
+        assistance.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов Без Возр Кат, Без Пола, СМП")
@@ -163,16 +146,13 @@ public class DoctorsListTest extends TestBase {
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
-        as.isVisibleText(operator.getDepartment());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        as.isVisibleText(mokov.getUchastocs());
-        as.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
-        as.isVisibleText(nemcova.getUchastocs());
-        as.isVisibleText(serova.getUchastocs());
+        assistance.isVisibleText(mokov.getUchastocs());
+        assistance.isNotVisibleText(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
+        assistance.isVisibleText(nemcova.getUchastocs());
+        assistance.isVisibleText(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "проверка что отобразился участковый")
@@ -183,14 +163,12 @@ public class DoctorsListTest extends TestBase {
         Doctor operator = new Doctor("Operator");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn();
-        as.isVisibleText(operator.getDepartment());
-        as.isVisibleText(nemcova.getUchastocs());
+        page.createCall(pacientImpl).createCall();
+        assistance.isVisibleText(operator.getDepartment());
+        assistance.isVisibleText(nemcova.getUchastocs());
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        as.isVisibleText("УЧАСТКОВЫЙ ВРАЧ");
-        as.isVisibleText(nemcova.getUchastocs());
+        assistance.isVisibleText("УЧАСТКОВЫЙ ВРАЧ");
+        assistance.isVisibleText(nemcova.getUchastocs());
     }
 
     /**
@@ -208,38 +186,27 @@ public class DoctorsListTest extends TestBase {
         page.dashboard()
                 .searchFilterFio_Fam(pacientImpl)
                 .openNewCallDash(pacientImpl);
-        as.isVisibleText(operator.getDepartment());
+        assistance.isVisibleText(operator.getDepartment());
         page.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
-        as.isVisibleText(mokov.getUchastocs());
+        page.createCall(pacientImpl)
+                .selectUchastokFromNeUdalosOpredelit();
+        $x("//*[contains(text(),'" + mokov.getUchastocs() + "')]").click();
+        $x("//*[contains(text(),'Сохранить')]").click();
+        $x("//*[contains(text(),'Выберите врача')]").click();
+        assistance.isVisibleText(mokov.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "вызов от СМП по api, проверка что неформализованному адрессу нельзя назначить врача")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
-        PacientImpl pacientImpl = new PacientImpl("Profile19");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall_Api();
-        page.dashboard().openNewCallDash(pacientImpl);
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
-        $(By.xpath("//*[contains(text(),'Выберите врача')]")).shouldNotBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'Поиск врача')]")).shouldNotBe(Condition.visible);
-    }
-
-    @Test(groups = "CD", description = "проверяю что оператор из подразделения видит только своих врачей")
+    @Test(groups = "CD", description = "оператор из подразделения видит только своих врачей")
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListFromDepart() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void viewDoctorList_OnlyFromCurrentDepart() throws IOException, InterruptedException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
         page.misHome().calldoctorVzroslaya();
-        page.createCall(pacientImpl)
-                .createCall()
-                .saveBtn()
-                .allertBtn();
+        page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
         doctorsBlock.$x(".//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
@@ -250,22 +217,21 @@ public class DoctorsListTest extends TestBase {
         doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю что после редактирования карты на профиль без возрастной категории отобразятся все врачи")
+    @Test(groups = "CD", description = "после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile0_2");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall_Mkab()
-                .saveBtn();
+        page.createCall(pacient).createCall_Mkab();
         page.fullCard(pacient, testName()).editCallBtn();
         page.createCall(pacient2)
                 .setDeafult()
                 .editCallPage()
-                .saveBtn();
-        $(By.xpath("//*[contains(text(),'Без возрастной категории')]")).shouldBe(Condition.visible);
+                .saveBtn()
+                .allertBtn();
+        $x("//*[contains(text(),'Без возрастной категории')]").shouldBe(Condition.visible);
         page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().saveAddress();
         SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
@@ -277,7 +243,7 @@ public class DoctorsListTest extends TestBase {
         doctorsBlock.$x("//*[contains(text(),'Зайцева')]").shouldBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "проверяю что после редактирования карты и изменения адреса пропадает привязка к старому участку")
+    @Test(groups = "CD", description = "после редактирования карты и изменения адреса пропадает привязка к старому участку")
     @Epic("Создание вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
@@ -285,14 +251,12 @@ public class DoctorsListTest extends TestBase {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile0_2");
         page.misHome().calldoctor();
-        page.createCall(pacient)
-                .createCall_Mkab()
-                .saveBtn();
+        page.createCall(pacient).createCall_Mkab();
         page.fullCard(pacient, testName()).editCallBtn();
         page.createCall(pacient2)
                 .setDeafult()
                 .editCallPage_Mkab()
                 .saveBtn();
-        $(By.xpath("//*[contains(text(),'#1 Гинекологический')]")).shouldNotBe(Condition.visible);
+        $x("//*[contains(text(),'#1 Гинекологический')]").shouldNotBe(Condition.visible);
     }
 }

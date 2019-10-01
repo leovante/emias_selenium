@@ -21,29 +21,34 @@ public class DateGenerator {
     Calendar date;
     Cell cell;
     List<Cell> cellList = new ArrayList<>();
+    int PlanUE = 1;
 
     public DateGenerator() {
         date = Calendar.getInstance();
     }
 
-    public String doctorShedule_Disp(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+    public String Shedule_Disp(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
         this.rf_LPUDoctorID = rf_LPUDoctorID;
         this.rf_DocPRVDID = rf_DocPRVDID;
-        cellsGenerator();
+        generator_separete();
         patternSql();
         return sqlRequest;
     }
 
-    public String doctorShedule_CD(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+    public String shedule_CD(int rf_LPUDoctorID, int rf_DocPRVDID) throws ParseException {
+        this.rf_LPUDoctorID = rf_LPUDoctorID;
+        this.rf_DocPRVDID = rf_DocPRVDID;
         this.rf_DocBusyType = 17;
-        this.rf_LPUDoctorID = rf_LPUDoctorID;
-        this.rf_DocPRVDID = rf_DocPRVDID;
-        cellsGenerator();
+        this.MINUTE_IN_CELL = 930;
+        this.CELL_COUNT = 1;
+        this.DAY_COUNT = 2;
+        this.PlanUE = 99;//количество талонов
+        generator_separete();
         patternSql();
         return sqlRequest;
     }
 
-    void cellsGenerator() throws ParseException {
+    void generator_separete() throws ParseException {
         for (int i = 0; i < DAY_COUNT; i++) {
             if (!cellList.isEmpty()) {
                 cell = new Cell();
@@ -64,14 +69,15 @@ public class DateGenerator {
                 cell.setEnd_date(formater(date));
                 cellList.add(cell);
             }
-            for (int n = 0; n < CELL_COUNT; n++) {
-                cell = new Cell();
-                date.setTime(parserDate(cellList.get(cellList.size() - 1).getEnd_date()));
-                date.add(Calendar.MINUTE, MINUTE_IN_CELL);
-                cell.setStart_date(cellList.get(cellList.size() - 1).getEnd_date());
-                cell.setEnd_date(formater(date));
-                cellList.add(cell);
-            }
+            if (CELL_COUNT > 1)
+                for (int n = 0; n < CELL_COUNT; n++) {
+                    cell = new Cell();
+                    date.setTime(parserDate(cellList.get(cellList.size() - 1).getEnd_date()));
+                    date.add(Calendar.MINUTE, MINUTE_IN_CELL);
+                    cell.setStart_date(cellList.get(cellList.size() - 1).getEnd_date());
+                    cell.setEnd_date(formater(date));
+                    cellList.add(cell);
+                }
         }
     }
 
@@ -96,7 +102,7 @@ public class DateGenerator {
     }
 
     void patternSql() throws ParseException {
-        String header = "insert into hlt_DoctorTimeTable (Begin_Time, End_Time, Date, rf_LPUDoctorID, rf_DocBusyType, FlagAccess, rf_DocPRVDID) values";
+        String header = "insert into hlt_DoctorTimeTable (Begin_Time, End_Time, Date, rf_LPUDoctorID, rf_DocBusyType, FlagAccess, rf_DocPRVDID, PlanUE) values";
         String value = patternSqlValue();
         this.sqlRequest = header + value;
     }
@@ -104,9 +110,8 @@ public class DateGenerator {
     String patternSqlValue() throws ParseException {
         String value = "";
         for (Cell cellCur : cellList) {
-
             date.setTime(parserDate(cellCur.getStart_date()));
-            String body = " ('" + cellCur.getStart_date() + "', '" + cellCur.getEnd_date() + "', '" + formaterZero(date) + "', '" + rf_LPUDoctorID + "', '" + rf_DocBusyType + "', '" + FlagAccess + "', '" + rf_DocPRVDID + "')";
+            String body = " ('" + cellCur.getStart_date() + "', '" + cellCur.getEnd_date() + "', '" + formaterZero(date) + "', '" + rf_LPUDoctorID + "', '" + rf_DocBusyType + "', '" + FlagAccess + "', '" + rf_DocPRVDID + "', '" + PlanUE + "')";
             value = value + body + ",";
         }
         StringBuilder builder = new StringBuilder(value);

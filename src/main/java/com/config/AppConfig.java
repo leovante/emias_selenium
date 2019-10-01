@@ -21,9 +21,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.system.repositories")
-@ComponentScan(basePackages = {
-        "com.system",
-        "com.pages"})
+@ComponentScan(basePackages = {"com.system", "com.pages", "com.datas"})
 @PropertySource(value = {"classpath:application.properties"})
 public class AppConfig implements TransactionManagementConfigurer {
 
@@ -56,7 +54,7 @@ public class AppConfig implements TransactionManagementConfigurer {
     public LocalContainerEntityManagerFactoryBean configureEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(configureDataSource());
-        entityManagerFactoryBean.setPackagesToScan("com.com.system", "com.datas");
+        entityManagerFactoryBean.setPackagesToScan("com.pages", "com.system", "com.datas");
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties jpaProperties = new Properties();
@@ -67,8 +65,8 @@ public class AppConfig implements TransactionManagementConfigurer {
 //        jpaProperties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
 //        jpaProperties.setProperty("showSql", "true");
 
-        jpaProperties.setProperty("hibernate.show_sql", "true");
-        jpaProperties.setProperty("hibernate.format_sql", "true");
+        jpaProperties.setProperty("hibernate.show_sql", "false");
+        jpaProperties.setProperty("hibernate.format_sql", "false");
         entityManagerFactoryBean.setJpaProperties(jpaProperties);
         return entityManagerFactoryBean;
     }

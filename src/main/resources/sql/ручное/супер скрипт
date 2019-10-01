@@ -1,0 +1,33 @@
+declare @tableName varchar(128),@sql varchar(100)
+
+set @tableName = 'oms_ParamValue'
+set @sql='select * from '+@tableName
+
+select * from x_docTypeDef where HeadTable = @tableName
+select * from x_DocElemDef where docTypeDefID =(select DocTypeDefID from x_docTypeDef where HeadTable = @tableName)
+order by name
+
+exec sp_sqlexec @sql
+
+--на кого сссылаемся
+select  ldtd.HeadTable 'На кого ссылаемся',ded.name,ded.caption,
+'select * from '+ldtd.HeadTable+' where '+ldtd.PK_NAME+'>0',
+
+'SET IDENTITY_INSERT  stt_stend.dbo.'+ldtd.HeadTable+' ON
+insert into stt_stend.dbo.'+ldtd.HeadTable+'('+ldtd.pk_name+',Code,Name)
+select '+ldtd.pk_name+',Code,Name from db_hlt_habarovsk.dbo.'+ldtd.HeadTable+'  where '+ldtd.pk_name+'>0
+SET IDENTITY_INSERT  stt_stend.dbo.'+ldtd.HeadTable+' OFF'
+
+from x_DocTypeDef dtd
+inner join x_docElemDef ded on ded.DocTypeDefID=dtd.DocTypeDefID
+inner join x_DocTypeDef ldtd on ded.LinkedDocTypeDefID = ldtd.DocTypeDefID
+where ded.ElemType=2 and dtd.HeadTable like @tableName
+
+-- кто ссылается на таблицы
+select  ldtd.HeadTable 'На нас ссылается',ded.name,ded.caption,
+'select * from '+ ldtd.HeadTable +' where '+ded.name +' in
+(select '+dtd.PK_Name +' from '+dtd.HeadTable+' where '+dtd.PK_Name +'>0  ) and '+ldtd.PK_Name+' >0 ' as 'Данные ссылаюся а нас'
+from x_DocTypeDef dtd
+inner join x_docElemDef ded on ded.LinkedDocTypeDefID=dtd.DocTypeDefID
+inner join x_DocTypeDef ldtd on ded.DocTypeDefID = ldtd.DocTypeDefID
+where ded.ElemType=2 and dtd.HeadTable like @tableName

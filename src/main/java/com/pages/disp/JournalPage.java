@@ -2,7 +2,7 @@ package com.pages.disp;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.PageBase;
+import com.pages.BasePage;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
@@ -10,11 +10,11 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class JournalPage extends PageBase {
+public class JournalPage extends BasePage {
     SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
     SelenideElement pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
     SelenideElement fioField = $(By.xpath("//*[@placeholder='ФИО пациента']"));
-    SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search_lpu']"));
+    SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search search-icon']"));
     SelenideElement journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]"));
     SelenideElement grida = $x("//datatable-body-row[@class='datatable-body-row datatable-row-even ng-star-inserted']");
     SelenideElement grida2 = $x("//datatable-body[@class='datatable-body']");

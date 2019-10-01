@@ -2,7 +2,8 @@ package com.pages.disp;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.PageBase;
+import com.lib.disp.DispAlarms;
+import com.pages.BasePage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -11,8 +12,7 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class ExampPage extends PageBase implements Services{
-    /*мероприятия*/
+public class ExampPage extends BasePage implements Services {
     SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
     SelenideElement ArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
     SelenideElement Opros_Anketirovanie = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]")).$(By.xpath("../../."));
@@ -39,9 +39,10 @@ public class ExampPage extends PageBase implements Services{
     SelenideElement elem;
 
     public ExampPage() throws IOException {
+        alarms = new DispAlarms();
     }
 
-    void a (){
+    void a() {
 //        examps.oprosAnketirovanie().
     }
 
@@ -499,52 +500,36 @@ public class ExampPage extends PageBase implements Services{
         return this;
     }
 
-    /* всякие заполнения */
     public ExampPage validateFieldParamIsEmpy() throws InterruptedException {
-        Thread.sleep(4000);
-        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
-        OpredelenieOtnositelnogoSSR.click();
-        Thread.sleep(2000);//
-        String i = OpredelenieOtnositelnogoSSR
-                .$(By.xpath("//th[contains(text(),'Показатели')]"))
-                .$(By.xpath("../../../."))
-                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
-                .$(By.xpath(".//input[@formcontrolname='value']")).getValue();
+        lib.disp()
+                .routeList()
+                .opredelenieOtnositelnogoSSR()
+                .click();
+        String i = lib.disp()
+                .routeList()
+                .opredelenieOtnositelnogoSSR()
+                .getValue();
         Assert.assertEquals(i, "", "поле показателей должно быть пустым");
         return this;
     }
 
-    @Step("Проверяю валидацию поля параметров с пробелом")
+    @Step("Проверяю валидацию показателя, если поле параметра с пробелом")
     public ExampPage validateFieldParamWithSpace() throws InterruptedException {
-        Thread.sleep(4000);
-        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
-        OpredelenieOtnositelnogoSSR.click();
-        Thread.sleep(2000);//
-        OpredelenieOtnositelnogoSSR
-                .$(By.xpath("//th[contains(text(),'Показатели')]"))
-                .$(By.xpath("../../../."))
-                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
-                .$(By.xpath(".//input[@formcontrolname='value']")).setValue(" ");
-        OpredelenieOtnositelnogoSSR.$(By.xpath("td[4]/mat-checkbox")).click();
-        OpredelenieOtnositelnogoSSR.click();
-        $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
+        lib.disp(OpredelenieOtnositelnogoSSR)
+                .expand()
+                .setValue(" ")
+                .signWithoutDeviations_topBtn();
+        alarms.exampError();
         return this;
     }
 
-    @Step("Проверяю валидацию поля параметров с дефолтным значением")
-    public ExampPage validateDefaultParamWithSpace() throws InterruptedException {
-        Thread.sleep(4000);
-        OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
-        OpredelenieOtnositelnogoSSR.click();
-        Thread.sleep(2000);//
-//        OpredelenieOtnositelnogoSSR
-//                .$(By.xpath("//th[contains(text(),'Показатели')]"))
-//                .$(By.xpath("../../../."))
-//                .$(By.xpath(".//mat-form-field[@formgroupname='paramValue']"))
-//                .$(By.xpath(".//input[@formcontrolname='value']")).setValue(" ");
-        OpredelenieOtnositelnogoSSR.$x("td[4]/mat-checkbox").click();
-        OpredelenieOtnositelnogoSSR.click();
-        $(By.xpath("//*[contains(text(),'В мероприятии ошибка!')]")).shouldBe(Condition.visible);
+    @Step("Проверяю валидацию показателя, если поле параметра пустое")
+    public ExampPage validateClearParam() throws InterruptedException {
+        lib.disp(OpredelenieOtnositelnogoSSR)
+                .expand()
+                .setValue("")
+                .signWithoutDeviations_topBtn();
+        alarms.exampError();
         return this;
     }
 
@@ -553,14 +538,14 @@ public class ExampPage extends PageBase implements Services{
         Thread.sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         Thread.sleep(2000);
-        OpredelenieOtnositelnogoSSR.$x("//mat-checkbox[@formcontrolname='withoutDeviations']").click();
+        OpredelenieOtnositelnogoSSR.$x("//mat-checkbox[@formcontrolname='signWithoutDeviations_topBtn']").click();
         Assert.assertTrue($x("//*[contains(text(),'В мероприятии ошибка!')]").is(Condition.visible), "Ошибка не появилась");
         return this;
     }
 
     @Step("Валидация что карта заблокирована")
     public ExampPage validateCardIsDisable() {
-        Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled),"Кнопка сохранить не задизеблина");
+        Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled), "Кнопка сохранить не задизеблина");
 //        Assert.assertTrue(PodvalPodpisatBtn.is(Condition.disabled), "Кнопка подписать не задизеблина");
         return this;
     }
@@ -568,7 +553,7 @@ public class ExampPage extends PageBase implements Services{
 
     @Step("Валидация что заключение отображается")
     public ExampPage validateZakluchenieBorder() {
-        Assert.assertTrue(ZakluchenieBorder.is(Condition.visible),"Заключение не отображается");
+        Assert.assertTrue(ZakluchenieBorder.is(Condition.visible), "Заключение не отображается");
         return this;
     }
 }

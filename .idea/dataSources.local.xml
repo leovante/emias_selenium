@@ -78,6 +78,7 @@
     </data-source>
     <data-source name="test_mo_hlt_Taldom_CRB_20190129@192.168.7.253" uuid="889db42a-c187-4689-b166-e0cf37d83466">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
+      <introspection-schemas>@:@</introspection-schemas>
     </data-source>
     <data-source name="dev_mo_cod_NSI_20190129@192.168.7.253" uuid="5330155c-3239-4420-b1a2-232afe3f41da">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
@@ -96,6 +97,16 @@
     </data-source>
     <data-source name="postgres@localhost" uuid="b08543ed-3392-4bdb-8781-b06ae3f63748">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="POSTGRES" exact-version="0.0" />
+      <introspection-schemas>@:@,information_schema,pg_catalog,pg_temp_1,pg_toast,pg_toast_temp_1</introspection-schemas>
+    </data-source>
+    <data-source name="hlt_db_lpu10@192.168.7.210" uuid="b35eb2fc-0a00-426e-8e51-4f4ae4df88e2">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
+    </data-source>
+    <data-source name="Taldom_CRB@192.168.7.48" uuid="e3a24f9d-90ea-4d6c-96a7-fc426bcd3a0c">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
+    </data-source>
+    <data-source name="hlt_orel_det_pol1@192.168.7.53 [2]" uuid="1142e8d7-075b-4519-b9e3-4882380634f5">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="MSSQL" exact-version="0.0" />
     </data-source>
   </component>
 </project>

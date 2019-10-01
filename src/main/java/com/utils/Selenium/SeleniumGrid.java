@@ -1,13 +1,13 @@
 package com.utils.Selenium;
 
-import com.pages.PageBase;
+import com.pages.BasePage;
 import org.json.JSONException;
 import org.testng.SkipException;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class SeleniumGrid extends PageBase {
+public class SeleniumGrid extends BasePage {
     static boolean status = false;
     static boolean grid = false;
     static boolean working = false;
@@ -38,9 +38,9 @@ public class SeleniumGrid extends PageBase {
                 }
                 Thread.sleep(1000);
             }
-            LOGGER.info("Selenium Grid запущен!");
+            logger.info("Selenium Grid запущен!");
         } else {
-            LOGGER.info("Selenium Grid не запускался!");
+            logger.info("Selenium Grid не запускался!");
         }
     }
 
@@ -51,11 +51,11 @@ public class SeleniumGrid extends PageBase {
             urlHub.openConnection().getInputStream();
             URL urlNode = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
             urlNode.openConnection().getInputStream();
-            LOGGER.info("Остановил хаб Selenium grid");
+            logger.info("Остановил хаб Selenium grid");
         } else {
-            LOGGER.info("Селениум грид работает, остановка невозможна!");
+            logger.info("Селениум грид работает, остановка невозможна!");
         }
-        LOGGER.info("Тестирование закончено!");
+        logger.info("Тестирование закончено!");
     }
 
     // TODO: 11/2/2018 сделать параллельный запуск старой версии хрома
