@@ -1,0 +1,4 @@
+update x_UserSettings
+set ValueInt = 1
+where rf_UserID = (select userid from x_user where generallogin  = 'Admin')
+  and property like '%validat%'

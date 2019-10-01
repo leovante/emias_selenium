@@ -49,7 +49,7 @@ public class Ehr_medicalrecords {
     @Step("поиск медзаписи через строку поиска")
     public Ehr_medicalrecords searchField() {
         waitLoadGrid();
-        searchPattern.setValue(d.getMedicar_record());
+        searchPattern.setValue(d.getMedical_record());
         search.click();
         waitLoadGrid();
         return this;
@@ -58,7 +58,7 @@ public class Ehr_medicalrecords {
     @Step("поиск медзаписи через строку поиска")
     public Ehr_medicalrecords searchMR() {
         waitLoadGrid();
-        searchMR.setValue(d.getMedicar_record());
+        searchMR.setValue(d.getMedical_record());
         search.click();
         waitLoadGrid();
         return this;
@@ -66,7 +66,7 @@ public class Ehr_medicalrecords {
 
     public Ehr_medicalrecords openMr() throws InterruptedException {
         SelenideElement osmotr_gastroenterolga =
-                $x("//span[contains(text(),'" + d.getMedicar_record() + "')]");
+                $x("//span[contains(text(),'" + d.getMedical_record() + "')]");
         osmotr_gastroenterolga.doubleClick();
         validateIframe();
         return this;
@@ -134,7 +134,7 @@ public class Ehr_medicalrecords {
     public Ehr_medicalrecords validateMrIsExistOnSearchResult() {
         Assert.assertTrue(
                 $x("//ngx-datatable")
-                        .$x(".//*[contains(text(),'" + d.getMedicar_record() + "')]")
+                        .$x(".//*[contains(text(),'" + d.getMedical_record() + "')]")
                         .shouldBe(Condition.visible)
                         .isDisplayed());
         return this;
@@ -148,7 +148,7 @@ public class Ehr_medicalrecords {
 
     private Ehr_medicalrecords validateIframe() throws InterruptedException {
         switchTo().frame($x("//iframe"));
-        $x("//center[contains(text(),'" + d.getMedicar_record() + "')]")
+        $x("//*[contains(text(),'" + d.getMedical_record() + "')]")
                 .shouldBe(Condition.visible);
         switchTo().defaultContent();
         Thread.sleep(1000);

@@ -1,6 +1,0 @@
-select *
-from hlt_disp_ServiceTemplate as sTemplate
-       join ehr_Template as templ on sTemplate.EhrTemplateGuid = templ.Guid
-       join hlt_disp_Service as s on sTemplate.rf_ServiceGuid = s.Guid
-       join hlt_disp_Exam as exam on s.Guid = exam.rf_ServiceGuid
-where exam.Guid = 'e9ef22e8-2f70-4e9d-8edf-e2613fddc4a0'

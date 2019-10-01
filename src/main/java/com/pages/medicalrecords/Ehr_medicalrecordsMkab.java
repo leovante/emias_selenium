@@ -7,7 +7,6 @@ import io.qameta.allure.Step;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
 
 public class Ehr_medicalrecordsMkab {
     Datas d;
@@ -21,7 +20,7 @@ public class Ehr_medicalrecordsMkab {
 
     @Step("поиск медзаписи через строку поиска")
     public Ehr_medicalrecordsMkab searchField() {
-        searchPattern.setValue(d.getMedicar_record());
+        searchPattern.setValue(d.getMedical_record());
         search.click();
         return this;
     }
@@ -30,7 +29,7 @@ public class Ehr_medicalrecordsMkab {
     public Ehr_medicalrecordsMkab validateMrIsExistOnSearchResult() {
     Assert.assertTrue(
         $x("//ngx-datatable")
-            .$x(".//*[contains(text(),'" + d.getMedicar_record() + "')]")
+            .$x(".//*[contains(text(),'" + d.getMedical_record() + "')]")
                 .shouldBe(Condition.visible)
                 .isDisplayed());
         return this;

@@ -3,9 +3,12 @@ package emias;
 import com.config.AppConfig;
 import com.config.ConfigFile;
 import com.pages.Page;
+import com.system.model.HltDispServiceDocPrvd;
+import com.system.repositories.HltDispServiceDocPrvdRepository;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.system.service.HltDispCardServiceImpl;
 import com.system.service.HltDispExamServiceImpl;
+import com.system.service.HltDispServiceDocPrvdServiceImpl;
 import com.utils.*;
 import com.utils.Selenium.SeleniumGrid;
 import com.lib.assistance.Assistance;
@@ -42,6 +45,9 @@ public class TestBase extends AbstractTestNGSpringContextTests{
 
     @Autowired
     public HltDispExamServiceImpl hltDispExamService;
+
+    @Autowired
+    public HltDispServiceDocPrvdServiceImpl hltDispServiceDocPrvdService;
 
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();

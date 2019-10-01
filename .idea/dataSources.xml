@@ -282,5 +282,24 @@ C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/main/resources/hibernate_dev.
         <property name="appName" value="DataGrip" />
       </driver-properties>
     </data-source>
+    <data-source source="LOCAL" name="Taldom_CRB@192.168.7.48" uuid="e3a24f9d-90ea-4d6c-96a7-fc426bcd3a0c">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:14338</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+        <property name="applicationName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="hlt_orel_det_pol1@192.168.7.53 [2]" uuid="1142e8d7-075b-4519-b9e3-4882380634f5">
+      <driver-ref>sqlserver.jtds</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>net.sourceforge.jtds.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:jtds:sqlserver://192.168.7.53:59036/hlt_orel_det_pol1</jdbc-url>
+      <driver-properties>
+        <property name="appName" value="DataGrip" />
+      </driver-properties>
+    </data-source>
   </component>
 </project>

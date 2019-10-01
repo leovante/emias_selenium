@@ -174,8 +174,8 @@ public class DBScripts extends BasePage {
         }
     }
 
-    @Step("Создаю расписание для врача {docprvdid} (Ай Бо Лит АвтоТест)")
-    public static void createShedule(int LPUDoctorID, int DocPRVDID) throws FileNotFoundException, ParseException {
+    @Step("Создаю расписание для врача")
+    public static void createSheduleDisp(int LPUDoctorID, int DocPRVDID) throws ParseException {
         String request = new DateGenerator().Shedule_Disp(LPUDoctorID, DocPRVDID);
         String url = connectionUrl +
                 ";databaseName=" + databaseName +

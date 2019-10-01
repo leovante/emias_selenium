@@ -1,0 +1,14 @@
+select * from hlt_disp_PatientModel where name like '%24%'
+select * from hlt_disp_ServicePM where rf_PatientModelGuid = '091966B4-8F08-49E2-B931-B39BF086E0B6' and rf_ServiceGuid = '2BB6BA4B-DD4D-4FD5-8542-ED68AD79AE48'
+select * from hlt_disp_Servicesm where rf_PatientModelGuid = '091966B4-8F08-49E2-B931-B39BF086E0B6' and rf_ServiceGuid = '2BB6BA4B-DD4D-4FD5-8542-ED68AD79AE48'
+
+
+select * from hlt_disp_PatientModel where guid ='091966B4-8F08-49E2-B931-B39BF086E0B6'
+select * from hlt_disp_ServicePM  where rf_PatientModelGuid = '091966B4-8F08-49E2-B931-B39BF086E0B6' and rf_ServiceGuid = '2BB6BA4B-DD4D-4FD5-8542-ED68AD79AE48'
+select * from hlt_disp_Servicesm where rf_PatientModelGuid = '091966B4-8F08-49E2-B931-B39BF086E0B6' and rf_ServiceGuid = '2BB6BA4B-DD4D-4FD5-8542-ED68AD79AE48'
+update hlt_disp_ServicePM set IsRequiredSM = 0 where Guid =  '6D9219B3-4E38-4C6B-B0CD-75643D4DB8D7'
+
+delete from hlt_disp_Servicesm where Guid = '58E2D377-1ED2-43CD-B3C3-8AB1DFE31940'
+
+insert into hlt_disp_Servicesm (guid, rf_OmsServiceMedicalGuid, rf_PatientModelGuid, rf_ServiceGuid)
+select guid, rf_OmsServiceMedicalGuid, rf_PatientModelGuid, rf_ServiceGuid from life_hlt_disp_Servicesm where disp_ServiceSMLifeID = 973

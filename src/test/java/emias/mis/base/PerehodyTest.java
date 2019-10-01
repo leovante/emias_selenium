@@ -19,11 +19,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
 
 public class PerehodyTest extends TestBase {
-
-    /**
-     * переходы в диспетчер
-     */
-    @Test(groups = "mis", description = "Переходы в Диспетчер с дашборда")
+    @Test(groups = "mis", description = "Переход в диспетчер с дашборда МИС")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDdashboard() {
@@ -31,7 +27,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переходы в Диспетчер из мкаб")
+    @Test(groups = "mis", description = "Переход в диспетчер из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDmkab() throws IOException {
@@ -40,7 +36,6 @@ public class PerehodyTest extends TestBase {
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
         page.mkabPage().openMkab("Темников Дмитрий Олегович");
-//        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
         $(By.id("jqContextMenu"))
                 .$(By.id("MkabGridcontextmenuitem0"))
                 .click();
@@ -56,7 +51,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переходы в Диспетчер из журнала")
+    @Test(groups = "mis", description = "Переход в диспетчер из журнала вызовы на дом")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDjournal() {
@@ -67,7 +62,7 @@ public class PerehodyTest extends TestBase {
         $x("//*[contains(text(),'Новый вызов')]").shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переходы в Диспетчер из личного кабинета врача")
+    @Test(groups = "mis", description = "Переход в диспетчер из личного кабинета врача")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDlk() {
@@ -79,10 +74,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Новый вызов')]")).shouldBe(Condition.visible);
     }
 
-    /**
-     * переходы в диспансеризацию
-     */
-    @Test(groups = "mis", description = "Переход в Карты диспансеризации из дашборда")
+    @Test(groups = "mis", description = "Переход в журнал диспансеризации из дашборда МИС")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionDispDash() throws InterruptedException {
@@ -92,7 +84,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Карты диспансеризации из МКАБ")
+    @Test(groups = "mis", description = "Переход в журнал диспансеризации из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionDispMkab() throws IOException {
@@ -101,7 +93,6 @@ public class PerehodyTest extends TestBase {
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
         page.mkabPage().openMkab("Темников Дмитрий Олегович");
-//        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
         $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
         $(By.xpath("//*[contains(text(),'Карты диспансеризации / профосмотры')]")).click();
@@ -110,7 +101,7 @@ public class PerehodyTest extends TestBase {
         Assert.assertTrue(se.shouldBe(Condition.visible).is(Condition.visible));
     }
 
-    @Test(groups = "mis", description = "Переход в Диспансеризацию из ячейки расписание приема")
+    @Test(groups = "mis", description = "Переход в маршрутный лист диспансеризации из ячейки расписания")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
@@ -127,10 +118,7 @@ public class PerehodyTest extends TestBase {
         $(By.xpath("//*[contains(text(),'Карта мероприятий')]")).shouldBe(Condition.visible);
     }
 
-    /**
-     * переходы в медзаписи
-     */
-    @Test(groups = "mis", description = "Переход в Медзаписи из Мкаб")
+    @Test(groups = "mis", description = "Переход в медзаписи из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionMedMkab() throws IOException {
@@ -139,14 +127,13 @@ public class PerehodyTest extends TestBase {
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
         page.mkabPage().openMkab("Темников Дмитрий Олегович");
-//        $(By.id("MkabGrid")).$(By.xpath(".//*[@id='2723314']")).$(By.xpath(".//*[@class='ui-icon ui-icon-carat-1-s contextmenucolumn']")).click();
         $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Мед. записи →')]")).click();
         switchTo().window(1);
         $(By.xpath("//*[@placeholder='Поиск медицинской записи по наименованию']")).shouldBe(Condition.visible);
     }
 
-    @Test(groups = "mis", description = "Переход в Медзаписи из Тап")
+    @Test(groups = "mis", description = "Переход в медзаписи из ТАП")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionMedTap() throws IOException {

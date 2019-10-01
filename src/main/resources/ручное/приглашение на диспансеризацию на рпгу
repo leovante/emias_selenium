@@ -1,2 +1,0 @@
-update oms_pr_ProfPlan set Quarter = 2 where MkabGuid = '07AB5803-7B02-4405-835E-06F54F9779B9'
-3148400841000101 08.11.1995
