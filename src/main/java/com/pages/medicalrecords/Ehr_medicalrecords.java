@@ -7,13 +7,15 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 
+import java.util.NoSuchElementException;
+
 import static com.codeborne.selenide.Selenide.*;
 
 public class Ehr_medicalrecords {
+    int mrCount;
     Datas d;
     SelenideElement new_mr = $x("//*[contains(text(),'Новая медицинская запись')]");
-    SelenideElement mr = $x("//st-accordion-menu-click")
-            .$x(".//*[contains(text(),'Медицинские записи')]");
+    SelenideElement mr = $x("//st-accordion-menu-click").$x(".//*[contains(text(),'Медицинские записи')]");
     SelenideElement vse_shabloni = $x("//*[contains(text(),'Все шаблоны')]");
     SelenideElement searchPattern = $x("//*[@placeholder = 'Поиск шаблона по номеру, наименованию и специализации']");
     SelenideElement searchMR = $x("//*[@placeholder = 'Поиск медицинской записи по наименованию']");
@@ -25,7 +27,6 @@ public class Ehr_medicalrecords {
     SelenideElement save = $x("//*[contains(text(),'Сохранить')]");
     SelenideElement podpisat = $x("//*[contains(text(),'Подписать')]");
     SelenideElement msg_mr_podpisana = $x("//*[contains(.,'Медицинская запись успешно подписана')]");
-    int mrCount;
 
     public Ehr_medicalrecords(Datas d) {
         this.d = d;
@@ -46,27 +47,23 @@ public class Ehr_medicalrecords {
         return this;
     }
 
-    @Step("поиск медзаписи через строку поиска")
     public Ehr_medicalrecords searchField() {
-        waitLoadGrid();
-        searchPattern.setValue(d.getMedical_record());
+        $x("//datatable-row-wrapper[@class='datatable-row-wrapper ng-star-inserted']").shouldBe(Condition.visible);
+        searchPattern.setValue(d.getMedicalRecord());
         search.click();
-        waitLoadGrid();
         return this;
     }
 
-    @Step("поиск медзаписи через строку поиска")
     public Ehr_medicalrecords searchMR() {
-        waitLoadGrid();
-        searchMR.setValue(d.getMedical_record());
+        $x("//datatable-row-wrapper[@class='datatable-row-wrapper ng-star-inserted']").shouldBe(Condition.visible);
+        searchMR.setValue(d.getMedicalRecord());
         search.click();
-        waitLoadGrid();
         return this;
     }
 
     public Ehr_medicalrecords openMr() throws InterruptedException {
         SelenideElement osmotr_gastroenterolga =
-                $x("//span[contains(text(),'" + d.getMedical_record() + "')]");
+                $x("//span[contains(text(),'" + d.getMedicalRecord() + "')]");
         osmotr_gastroenterolga.doubleClick();
         validateIframe();
         return this;
@@ -93,30 +90,30 @@ public class Ehr_medicalrecords {
         return this;
     }
 
-    public Ehr_medicalrecords view() throws InterruptedException {
+    public Ehr_medicalrecords view()   {
         validateIframe();
         prosmotret.click();
         return this;
     }
 
-    public Ehr_medicalrecords cancelBtn() throws InterruptedException {
+    public Ehr_medicalrecords cancelBtn()   {
         cancel.click();
         return this;
     }
 
-    public Ehr_medicalrecords edit() throws InterruptedException {
+    public Ehr_medicalrecords edit()   {
         validateIframe();
         edit.click();
         return this;
     }
 
-    public Ehr_medicalrecords allActions() throws InterruptedException {
+    public Ehr_medicalrecords allActions()   {
         validateIframe();
         all_actions.click();
         return this;
     }
 
-    public Ehr_medicalrecords save() throws InterruptedException {
+    public Ehr_medicalrecords save()   {
         validateIframe();
         save.shouldNotBe(Condition.disabled);//добавил для теста test_edit_mr_after_save
         save.click();
@@ -124,17 +121,16 @@ public class Ehr_medicalrecords {
         return this;
     }
 
-    public Ehr_medicalrecords podpisat() throws InterruptedException {
+    public Ehr_medicalrecords podpisat()   {
         validateIframe();
         podpisat.click();
         return this;
     }
 
-    @Step("проверка что медзапись отображается в результате поиска")
     public Ehr_medicalrecords validateMrIsExistOnSearchResult() {
         Assert.assertTrue(
                 $x("//ngx-datatable")
-                        .$x(".//*[contains(text(),'" + d.getMedical_record() + "')]")
+                        .$x(".//*[contains(text(),'" + d.getMedicalRecord() + "')]")
                         .shouldBe(Condition.visible)
                         .isDisplayed());
         return this;
@@ -146,18 +142,13 @@ public class Ehr_medicalrecords {
         return this;
     }
 
-    private Ehr_medicalrecords validateIframe() throws InterruptedException {
-        switchTo().frame($x("//iframe"));
-        $x("//*[contains(text(),'" + d.getMedical_record() + "')]")
-                .shouldBe(Condition.visible);
+    private Ehr_medicalrecords validateIframe() {
+        SelenideElement iframe = $x("//iframe[@class='template ng-star-inserted']").shouldBe(Condition.visible);
+        switchTo().frame(iframe);
+        $x("//body").$x(".//*[contains(text(),'" + d.getMedicalRecord() + "')]").shouldBe(Condition.visible);
         switchTo().defaultContent();
-        Thread.sleep(1000);
-        return this;
-    }
-
-    private void waitLoadGrid() {
-        $x("//datatable-progress").$x(".//div[@class='bar']").shouldBe(Condition.visible);
-        $x("//datatable-progress").$x(".//div[@class='bar']").shouldNotBe(Condition.visible);
+        sleep(1000);
+        return this;//<title displayed:false></title>
     }
 
     public void verifyMrIsDeleted() {

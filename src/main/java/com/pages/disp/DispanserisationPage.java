@@ -6,13 +6,28 @@ import com.pages.disp.KvotyPage;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.io.IOException;
+
 import static com.codeborne.selenide.Selenide.page;
 
 @Component
 public interface DispanserisationPage {
 
+    default ExampPage exampPage(String text) {
+        try {
+            return new ExampPage(text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     default ExampPage exampPage() {
-        return page(ExampPage.class);
+        try {
+            return new ExampPage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     default JournalPage journalPage() {

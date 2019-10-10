@@ -36,7 +36,14 @@ public class ExampPage extends BasePage implements Services {
     SelenideElement PodvalPodpisatBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Подписать')]"));
     SelenideElement ALARMA_SAVE = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно сохранена.')]"));
     SelenideElement ALARMA_PODPISANA = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
-    SelenideElement elem;
+    SelenideElement exam;
+    SelenideElement exampsBlock = $x("//app-disp-exams-map");
+    String examName;
+
+    public ExampPage(String examName) throws IOException {
+        this.examName = examName;
+        alarms = new DispAlarms();
+    }
 
     public ExampPage() throws IOException {
         alarms = new DispAlarms();
@@ -46,15 +53,29 @@ public class ExampPage extends BasePage implements Services {
 //        examps.oprosAnketirovanie().
     }
 
-    public ExampPage openService(String service) throws InterruptedException {
-        this.elem = $x("//*[contains(text(),'" + service + "')]").$x("../../.");
-        this.elem.$x("../.").hover();
-        this.elem.click();
+    public ExampPage openMeasure() {
+        this.exam = exampsBlock.$x(".//*[contains(text(),'" + examName + "')]");
+        this.exam.$x("../../../.").hover();
+        this.exam.click();
+        sleep(1000);
+        this.exam.$x("../../../.").hover();
+        this.exam.$x("../../../.").$x(".//app-medical-records-list").shouldBe(Condition.visible);
         return this;
     }
 
-    public ExampPage signService() throws InterruptedException {
-        $x("//*[contains(text(),'" + elem + "')]")
+    public ExampPage openService() {
+        sleep(1000);
+        exam.$x("../../../.").hover();
+        exam.$x("../../../.")
+                .$x(".//span[@ng-reflect-ng-class='enebled-med-record']")
+                .click();
+        sleep(1000);
+        exam.$x("../../../.").hover();
+        return this;
+    }
+
+    public ExampPage signService() {
+        $x("//*[contains(text(),'" + exam + "')]")
                 .$x("../tr[3]//*[contains(text(),'Подписать')]").hover().click();
         return this;
     }
@@ -545,8 +566,8 @@ public class ExampPage extends BasePage implements Services {
 
     @Step("Валидация что карта заблокирована")
     public ExampPage validateCardIsDisable() {
+        PodvalSaveBtn.shouldBe(Condition.visible);
         Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled), "Кнопка сохранить не задизеблина");
-//        Assert.assertTrue(PodvalPodpisatBtn.is(Condition.disabled), "Кнопка подписать не задизеблина");
         return this;
     }
 

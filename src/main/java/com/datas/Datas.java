@@ -5,7 +5,7 @@ public class Datas {
 
 
 
-    public String getMedical_record() {
+    public String getMedicalRecord() {
         return medical_record;
     }
 

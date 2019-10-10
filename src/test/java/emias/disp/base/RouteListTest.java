@@ -63,13 +63,14 @@ public class RouteListTest extends TestBase {
 
     @Test(groups = "disp", description = "отображение кнопки просмотреть у мероприятия без маркировок. И подписание")
     @RetryCountIfFailed(2)
-    public void validateKallMeasure() throws InterruptedException, MalformedURLException {
+    public void validateKallMeasure() throws  MalformedURLException {
         long a = page.misHome().getDispCardNumber();
         hltDispExamService.resetCardExams(a);
-        page.misHome().dispCard();
-        page.exampPage()
+        page.misHome().dispCard42();
+        page.exampPage(issledovanieKala)
                 .switchAllServicesTap()
-                .openService(issledovanieKala)
+                .openMeasure()
+                .openService()
                 .signService()
                 .validateServiceIsSign();
     }

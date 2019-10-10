@@ -21,7 +21,7 @@ public class SearchMR extends TestBase {
     @Test(groups = "MR", description = "поиск медзаписей на странице ТАП")
     @Epic("Поиск медзаписи")
     @RetryCountIfFailed(2)
-    public void cancelBtnOnOldMR() {
+    public void searchMROnPageTap() {
         Datas d = new Datas().setMedical_record("Осмотр гастроэнтеролога");
         page.misHome().mr_tap();
         page.ehrMedicalrecords(d)

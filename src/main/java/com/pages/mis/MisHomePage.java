@@ -71,6 +71,12 @@ public class MisHomePage extends BasePage {
         logger.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard());
     }
 
+    @Step("Вход в карту диспансеризации")
+    public void dispCard42() {
+        open(conf.getDispCard42());
+        logger.info("Открыл модуль диспансеризация на странице карты по прямой ссылке " + conf.getDispCard42());
+    }
+
     @Step("Медзаписи через ТАП")
     public void mr_tap() {
         open(conf.getMr_tap());

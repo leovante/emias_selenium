@@ -95,6 +95,7 @@ public class JournalPage extends BasePage {
 
     public JournalPage closeCard2() {
         $x("//*[contains(text(),'Закрыть')]").click();
+        $x("//*[contains(text(),'Карта подписана')]").shouldBe(Condition.visible);
         return this;
     }
 
