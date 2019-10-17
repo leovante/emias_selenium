@@ -15,6 +15,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static com.lib.assistance.Assistance.*;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends BasePage {
@@ -86,32 +87,32 @@ public class FullCardPage extends BasePage {
 
     @Step("проверяю наличие базовых элементов пациента")
     public void basePacient() {
-        isVisibleText(pacient.getAddress());
-        isVisibleText(pacient.getComplaint());
-        isVisibleText(pacient.getCodedomophone());
-        isVisibleText(parseTelephone(pacient));
-        isVisibleText(String.valueOf(pacient.getEntrance()));
-        isVisibleText(String.valueOf(pacient.getFloor()));
-        isVisibleText(pacient.getName());
-        isVisibleText(pacient.getFamily());
-        isVisibleText(pacient.getOt());
-        isVisibleText(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
-        isVisibleText(String.valueOf(pacient.getSeriespol()));
-        isVisibleText(String.valueOf(pacient.getNumberpol()));
+        visible(pacient.getAddress());
+        visible(pacient.getComplaint());
+        visible(pacient.getCodedomophone());
+        visible(parseTelephone(pacient));
+        visible(String.valueOf(pacient.getEntrance()));
+        visible(String.valueOf(pacient.getFloor()));
+        visible(pacient.getName());
+        visible(pacient.getFamily());
+        visible(pacient.getOt());
+        visible(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
+        visible(String.valueOf(pacient.getSeriespol()));
+        visible(String.valueOf(pacient.getNumberpol()));
         if (pacient.getKladraddress() != null) {
-            isVisibleText(pacient.getAppartment());
-            isVisibleText(pacient.getBuilding());
-            isVisibleText(pacient.getConstruction());
+            visible(pacient.getAppartment());
+            visible(pacient.getBuilding());
+            visible(pacient.getConstruction());
         }
     }
 
     @Step("проверяю наличие базовых элементов врача")
     public void baseDoctor(Doctor doctor) {
-        isVisibleText(doctor.getName());
-        isVisibleText(doctor.getFamily());
-        isVisibleText(doctor.getOt());
-        isVisibleText(doctor.getDepartment());
-        isVisibleText(doctor.getUchastocs());
+        visible(doctor.getName());
+        visible(doctor.getFamily());
+        visible(doctor.getOt());
+        visible(doctor.getDepartment());
+        visible(doctor.getUchastocs());
     }
 
     @Step("проверка времени")

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -19,11 +20,12 @@ public class HltDispExamServiceImpl {
     @Autowired
     private HltDispExamRepository hltDispExamRepository;
 
-    @Transactional(readOnly = true)
-    public void resetCardExams(Long num) {
-        UUID uuid = hltDispCardRepository.findById(num).get().getGuid();
-        try (Stream<HltDispExamEntity> exam = hltDispExamRepository.findByRfCardGuid(uuid)) {
-            exam.forEach(e -> e.setOtkaz(false));
+    @Transactional
+    public void resetCardExams(long ID) {
+        UUID uuid = hltDispCardRepository.findById(ID).get().getGuid();
+        List<HltDispExamEntity> exams = hltDispExamRepository.findByRfCardGuid(uuid);
+        for (HltDispExamEntity exam : exams) {
+            exam.setSigned(false);
         }
     }
 }

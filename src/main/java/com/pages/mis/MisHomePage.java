@@ -10,14 +10,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.lib.assistance.Assistance.visible;
 
 public class MisHomePage extends BasePage {
 
-    public MisHomePage() throws IOException {
+    public MisHomePage()   {
     }
 
     @Step("Открываю стенд")
@@ -49,7 +49,7 @@ public class MisHomePage extends BasePage {
         logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
     }
 
-    @Step("Захожу в диспетчер через МИС под админом")
+    @Step("Вход в диспетчер через МИС под админом")
     public void calldoctorFromMis() {
         open(conf.getUrl());
         $(By.id("Login")).setValue(conf.getAdminLogin());
@@ -62,6 +62,7 @@ public class MisHomePage extends BasePage {
     @Step("Вход в модуль диспансеризация через журнал")
     public void dispJournal() {
         open(conf.getDispJournal());
+        visible("Журнал");
         logger.info("Открыл модуль диспансеризация на странице журнала по прямой ссылке " + conf.getDispJournal());
     }
 
@@ -78,9 +79,9 @@ public class MisHomePage extends BasePage {
     }
 
     @Step("Медзаписи через ТАП")
-    public void mr_tap() {
-        open(conf.getMr_tap());
-        logger.info("Открыл модуль медзаписей через ТАП по прямой ссылке " + conf.getMr_tap());
+    public void mrFromTap() {
+        open(conf.getMrFromTap());
+        logger.info("Открыл модуль медзаписей через ТАП по прямой ссылке " + conf.getMrFromTap());
     }
 
     @Step("Медзаписи через МКАБ")

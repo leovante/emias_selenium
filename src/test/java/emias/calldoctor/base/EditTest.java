@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.lib.assistance.Assistance.visible;
 
 public class EditTest extends TestBase {
 
@@ -114,6 +115,6 @@ public class EditTest extends TestBase {
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).verifyNewCall();
         page.createCall(pacient).editCallBtn();
-        assistance.isVisibleText(pacient.getAddress3adv());
+        visible(pacient.getAddress3adv());
     }
 }

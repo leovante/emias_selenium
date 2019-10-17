@@ -1,20 +1,27 @@
 package com.pages.disp;
 
-import com.codeborne.selenide.SelenideElement;
 import com.pages.BasePage;
-import org.openqa.selenium.By;
 
-import java.io.IOException;
+import static com.lib.assistance.Assistance.placeholder;
+import static com.lib.assistance.Assistance.visible;
 
-import static com.codeborne.selenide.Selenide.$;
-
-public class KvotyPage extends BasePage {
-    SelenideElement kvotyNumber = $(By.xpath("//*[contains(text(),'Квоты')]"));
-
-    public KvotyPage() throws IOException {
+public class KvotyPage extends BasePage implements KvotyPageElem{
+    public KvotyPage() {
     }
 
-    public void kvotyBtn() {
-        kvotyNumber.click();
+    public KvotyPage kvotyBtn() {
+        kvotyMenuBtn.click();
+        return this;
+    }
+
+    public KvotyPage validKvotyElements(){
+        visible(header);
+        visible(placeholder(num));
+        visible(period);
+        visible(clean);
+        visible(journalMenuBtn);
+        visible(kvotyMenuBtn);
+        visible(planGraphMenuBtn);
+        return this;
     }
 }

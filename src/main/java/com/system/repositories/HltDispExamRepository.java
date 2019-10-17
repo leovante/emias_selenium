@@ -1,6 +1,5 @@
 package com.system.repositories;
 
-import com.system.model.HltDispCardEntity;
 import com.system.model.HltDispExamEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -11,5 +10,5 @@ import java.util.stream.Stream;
 
 @Repository
 public interface HltDispExamRepository extends JpaRepository<HltDispExamEntity, Long> {
-    Stream<HltDispExamEntity> findByRfCardGuid(UUID rfCardGuid);
+    List<HltDispExamEntity> findByRfCardGuid(UUID rfCardGuid);
 }

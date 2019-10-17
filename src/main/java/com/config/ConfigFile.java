@@ -69,7 +69,7 @@ public class ConfigFile {
         }
     }
 
-    public String getMr_tap() {
+    public String getMrFromTap() {
         return mr_tap;
     }
 

@@ -15,6 +15,7 @@ import org.testng.Assert;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.lib.assistance.Assistance.parseTelephone;
 
 public class DashboardPage extends BasePage {
     private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");

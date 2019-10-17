@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static com.lib.assistance.Assistance.notVisible;
+
 public class EditTest extends TestBase {
 
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что на странице редактирования id карты не стирается")
@@ -24,6 +26,6 @@ public class EditTest extends TestBase {
                 .verifyNewCall()
                 .editCallBtn();
         page.createCall(pacientImpl).saveBtn();
-        assistance.isNotVisibleText("Редактирование вызова № 0");
+        notVisible("Редактирование вызова № 0");
     }
 }

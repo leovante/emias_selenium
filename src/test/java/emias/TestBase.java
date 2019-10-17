@@ -1,18 +1,12 @@
 package emias;
 
 import com.config.AppConfig;
-import com.config.ConfigFile;
 import com.pages.Page;
-import com.system.model.HltDispServiceDocPrvd;
-import com.system.repositories.HltDispServiceDocPrvdRepository;
-import com.system.service.HltCallDoctorServiceImpl;
-import com.system.service.HltDispCardServiceImpl;
-import com.system.service.HltDispExamServiceImpl;
-import com.system.service.HltDispServiceDocPrvdServiceImpl;
-import com.utils.*;
+import com.system.service.*;
+import com.utils.CallDoctorCards;
 import com.utils.Selenium.SeleniumGrid;
-import com.lib.assistance.Assistance;
-import com.lib.assistance.AssistanceImpl;
+import com.utils.TestMethodCapture;
+import com.utils.WebDriverInstansiator;
 import emias.beforeRun.BeforeRun;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
@@ -30,9 +24,7 @@ import java.text.ParseException;
 public class TestBase extends AbstractTestNGSpringContextTests{
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;
-    protected ConfigFile configFile = new ConfigFile();
     public String testName;
-    protected Assistance assistance = new AssistanceImpl();
 
     @Autowired
     public Page page;
@@ -47,6 +39,12 @@ public class TestBase extends AbstractTestNGSpringContextTests{
     public HltDispExamServiceImpl hltDispExamService;
 
     @Autowired
+    public HltDispExamMrServiceImpl hltDispExamMrService;
+
+    @Autowired
+    public HltDispExamSmServiceImpl hltDispExamSmService;
+
+    @Autowired
     public HltDispServiceDocPrvdServiceImpl hltDispServiceDocPrvdService;
 
     public String testName() {
@@ -55,7 +53,7 @@ public class TestBase extends AbstractTestNGSpringContextTests{
 
     @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String gridRun) throws Exception {
+    public void beforeSuite(@Optional String gridRun)   {
         new BeforeRun(gridRun);
         SeleniumGrid.run(gridRun);
     }
@@ -67,7 +65,7 @@ public class TestBase extends AbstractTestNGSpringContextTests{
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
-    public void setUp(@Optional String browser) throws IOException {
+    public void setUp(@Optional String browser)  {
         driverInst = new WebDriverInstansiator(browser);
         driverInst.setDriver();
     }
@@ -81,7 +79,7 @@ public class TestBase extends AbstractTestNGSpringContextTests{
     /* СЕРВИСЫ */
     @Parameters({"testng"})
     @BeforeClass(groups = "CD", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
-    public void beforeClassCD(@Optional String testng) throws ParseException, IOException {
+    public void beforeClassCD(@Optional String testng) {
         if (testng != null) {
             new BeforeTestCD().run();
         }
@@ -91,7 +89,7 @@ public class TestBase extends AbstractTestNGSpringContextTests{
     @BeforeClass(groups = "disp", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
     public void beforeClassDisp(@Optional String testng) {
         if (testng != null) {
-            new BeforeTestDisp();
+            new BeforeTestDisp().run();
         }
     }
 

@@ -14,10 +14,10 @@ public class BasicFunction extends TestBase {
     @Test(groups = "MR", description = "Работоспособность кнопки отменить у старой медзаписи")
     @Epic("Базовая работа компонентов")
     @RetryCountIfFailed(2)
-    public void cancelBtnOnOldMR() throws InterruptedException {
-        Datas d = new Datas().setMedical_record("Осмотр гастроэнтеролога");
-        page.misHome().mr_tap();
-        page.ehrMedicalrecords(d)
+    public void cancelBtnOnOldMR() {
+        Datas data = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
+        page.misHome().mrFromTap();
+        page.ehrMedrecords(data)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()

@@ -25,6 +25,9 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.lib.assistance.Assistance.getDateDiff;
+import static com.lib.assistance.Assistance.parseTelephone;
+import static com.lib.assistance.Assistance.years;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
@@ -321,7 +324,7 @@ public class CreateCallPage extends BasePage {
 
         Date newData = new Date();
         Date bd = pacient.getBirthdate();
-        int years = (int) assistance.getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
         if (years > 18) {
             $(By.xpath("//span[contains(.,'Взрослые')]")).click();
         }
@@ -339,7 +342,7 @@ public class CreateCallPage extends BasePage {
             $(By.id("callName")).setValue("ИмяВызывающего");
             $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
         } else {
-            if (assistance.years(pacient) > 18) {
+            if (years(pacient) > 18) {
                 callerType.click();
                 callerType_pacient.click();
             } else {

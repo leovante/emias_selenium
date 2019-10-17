@@ -11,6 +11,8 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static com.lib.assistance.Assistance.visible;
+
 public class CreateCallTest extends TestBase {
 
     @Test(groups = "CD", description = "пустой вызов")
@@ -32,7 +34,7 @@ public class CreateCallTest extends TestBase {
         Pacient pacient = new PacientImpl("Profile0_3");
         page.misHome().calldoctor();
         page.createCall(pacient).createCall_Mkab();
-        assistance.isVisibleText(pacient.getAddress());
+        visible(pacient.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")

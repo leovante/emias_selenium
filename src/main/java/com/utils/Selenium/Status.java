@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.pages.BasePage.logger;
 
 public class Status {
@@ -24,7 +25,7 @@ public class Status {
     final static int SEC_COUNT = 10;
 
     /*при запуске проекта первое обращение на адрес селениума, проверка что он запущен*/
-    static boolean checkRunningStatus() throws JSONException, InterruptedException, IOException {
+    static boolean checkRunningStatus()   {
         logger.info("Проверка запущен ли селениум");
         if (response()) {
             logger.info("Проверка показала что селениум уже запущен!");
@@ -34,18 +35,24 @@ public class Status {
         return false;
     }
 
-    static boolean checkWorkStatus() throws InterruptedException, JSONException {
+    static boolean checkWorkStatus()  {
         for (int i = 1; i <= SEC_COUNT; i++) {
-            int free = Integer.parseInt(new JSONObject(responseString).getJSONObject("slotCounts").getString("free"));
-            int total = Integer.parseInt(new JSONObject(responseString).getJSONObject("slotCounts").getString("total"));
+            int free = 0;
+            int total = 0;
+            try {
+                free = Integer.parseInt(new JSONObject(responseString).getJSONObject("slotCounts").getString("free"));
+                total = Integer.parseInt(new JSONObject(responseString).getJSONObject("slotCounts").getString("total"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             if (free == total)
                 return true;
-            Thread.sleep(1000);
+            sleep(1000);
         }
         return false;
     }
 
-    static boolean response() throws JSONException {
+    static boolean response()   {
         try {
             httpResponse = httpClient.execute(new HttpGet(URL));
             entity = httpResponse.getEntity();
@@ -57,10 +64,14 @@ public class Status {
         } catch (IOException e) {
             logger.info("Не могу подключиться. Код ошибки - 3!");
         }
-        if (httpResponse != null
-                && httpResponse.getStatusLine().getStatusCode() == 200
-                && new JSONObject(responseString).getString("success").equals("true"))
-            return true;
+        try {
+            if (httpResponse != null
+                    && httpResponse.getStatusLine().getStatusCode() == 200
+                    && new JSONObject(responseString).getString("success").equals("true"))
+                return true;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 }

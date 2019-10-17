@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.lib.assistance.Assistance.visible;
 
 public class FormalizatorTest extends TestBase {
 
@@ -25,7 +26,7 @@ public class FormalizatorTest extends TestBase {
         page.createCall(pacientImpl)
                 .addNewCall()
                 .searchField();
-        assistance.isVisibleText(pacientImpl.getAddress());
+        visible(pacientImpl.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api с неформализованным адресом. Проверка окна формализации при назначении врача.")

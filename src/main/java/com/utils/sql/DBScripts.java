@@ -22,7 +22,7 @@ public class DBScripts extends BasePage {
     private static String password = "sagfhjkzYES!";
     private static List<File> lst;
 
-    public DBScripts() throws IOException {
+    public DBScripts()  {
     }
 
     @Step("удаляю расписание этого врача")
@@ -103,39 +103,16 @@ public class DBScripts extends BasePage {
         }
     }
 
-/*
-    @Step("Сбросить мероприятия у карты вызова")
-    public static void setDefaultServices(String cardID) { // TODO: 04.09.2018 доделать обнуление заключения
-        String url = connectionUrl +
-                ";databaseName=" + databaseName +
-                ";user=" + userName +
-                ";password=" + password;
+    @Step("Запуск скрипта на демонстрейшн")
+    public static void runSqlScript(String sql) {
+        InputStream is;
+        String script = null;
         try {
-            logger.info("Connecting to SQL Server ... ");
-            try (Connection connection = DriverManager.getConnection(url)) {
-                String sql =
-                        "update hlt_disp_Exam" +
-                                " set IsDeviation = 0," +
-                                " IsOtkaz = 0," +
-                                " IsSigned = 0" +
-                                " from hlt_disp_Card dc" +
-                                " inner join hlt_disp_Exam de on dc.Guid = de.rf_CardGuid" +
-                                " where dc.disp_CardID = '" + cardID + "'";
-                try (Statement statement = connection.createStatement()) {
-                    statement.executeUpdate(sql);
-                    logger.info("card: " + cardID + " is default!");
-                }
-            }
-        } catch (Exception e) {
+            is = new FileInputStream("src/main/resources/sql/disp/" + sql);
+            script = IOUtil.toString(is, "UTF-8");
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-*/
-
-    @Step("Запуск скрипта на демонстрейшн")
-    public static void runSqlScript(String sql) throws IOException {
-        InputStream is = new FileInputStream("src/main/resources/sql/disp/" + sql);
-        String script = IOUtil.toString(is, "UTF-8");
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -154,9 +131,15 @@ public class DBScripts extends BasePage {
     }
 
     @Step("Запуск скрипта на демонстрейшн")
-    public static void runSqlScriptCD(String sql) throws IOException {
-        InputStream is = new FileInputStream("src/main/resources/sql/calldoctor/" + sql);
-        String script = IOUtil.toString(is, "UTF-8");
+    public static void runSqlScriptCD(String sql) {
+        InputStream is;
+        String script = null;
+        try {
+            is = new FileInputStream("src/main/resources/sql/calldoctor/" + sql);
+            script = IOUtil.toString(is, "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -175,8 +158,13 @@ public class DBScripts extends BasePage {
     }
 
     @Step("Создаю расписание для врача")
-    public static void createSheduleDisp(int LPUDoctorID, int DocPRVDID) throws ParseException {
-        String request = new DateGenerator().Shedule_Disp(LPUDoctorID, DocPRVDID);
+    public static void createSheduleDisp(int LPUDoctorID, int DocPRVDID) {
+        String request = null;
+        try {
+            request = new DateGenerator().Shedule_Disp(LPUDoctorID, DocPRVDID);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +
@@ -195,8 +183,13 @@ public class DBScripts extends BasePage {
     }
 
     @Step("Создаю расписание для врача")
-    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID) throws ParseException {
-        String request = new DateGenerator().shedule_CD(LPUDoctorID, DocPRVDID);
+    public static void createSheduleCD(int LPUDoctorID, int DocPRVDID)   {
+        String request = null;
+        try {
+            request = new DateGenerator().shedule_CD(LPUDoctorID, DocPRVDID);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String url = connectionUrl +
                 ";databaseName=" + databaseName +
                 ";user=" + userName +

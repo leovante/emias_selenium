@@ -2,7 +2,6 @@ package com.api;
 
 import com.codeborne.selenide.Condition;
 import com.config.ConfigFile;
-import com.pages.BasePage;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpGet;
@@ -52,7 +51,7 @@ public class TestStend {
     }
 
     public Boolean ehr_medrecords() throws IOException {
-        open(configFile.getMr_tap());
+        open(configFile.getMrFromTap());
         if ($x("//*[contains(text(),'Медицинские записи')]")
                 .shouldBe(Condition.visible)
                 .is(Condition.visible))

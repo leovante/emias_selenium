@@ -15,7 +15,7 @@ public class BeforeTestCD extends TestBase {
 
     @Test(description = "Prepare data base")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
-    public void run() throws ParseException, IOException {
+    public void run()  {
         cancelCalls();
         scripts();
         updateStend();
@@ -31,7 +31,7 @@ public class BeforeTestCD extends TestBase {
      *                                                                 and OT_V like 'Д%')
      *   and D_END > getdate()
      * */
-    public void updateStend() throws ParseException {
+    public void updateStend()   {
         Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
         LPUDoctor.put(3068, 2123);//Темников Дмитрий
         LPUDoctor.put(1831, 417);//Моков
@@ -76,7 +76,7 @@ public class BeforeTestCD extends TestBase {
         // hltCallDoctorService.cancelNotClosedCards();//spring не видит бин
     }
 
-    public void scripts() throws IOException {
+    public void scripts()   {
         DBScripts.runSqlScriptCD("preapreBD");
     }
 }
