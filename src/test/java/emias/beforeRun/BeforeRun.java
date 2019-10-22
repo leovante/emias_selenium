@@ -7,7 +7,6 @@ import java.io.IOException;
 import static com.pages.BasePage.logger;
 
 public class BeforeRun {
-    private TestStend testStend = new TestStend();
     private boolean checkCreateCall = true;
     private boolean checkKladrFind = true;
     private boolean ehr_medrecords = true;
@@ -15,8 +14,10 @@ public class BeforeRun {
     private boolean disp_card = true ;
     private boolean calldoctor = true;
     private boolean calldoctorVz = true;
+    private TestStend testStend;
 
-    public BeforeRun(String grid)   {
+    public BeforeRun(String grid) {
+        testStend = new TestStend();
         if (Boolean.parseBoolean(grid)) {
             instasiator();
             validator();

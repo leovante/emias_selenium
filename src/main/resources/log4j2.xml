@@ -5,9 +5,9 @@
         <property name="filename">target/test.log</property>
     </Properties>
     <Appenders>
-        <ReportPortalLog4j2Appender name="ReportPortalAppender">
+        <!--<ReportPortalLog4j2Appender name="ReportPortalAppender">
             <PatternLayout pattern="${pattern}"/>
-        </ReportPortalLog4j2Appender>
+        </ReportPortalLog4j2Appender>-->
 
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout pattern="${pattern}"/>
@@ -19,7 +19,7 @@
     </Appenders>
     <loggers>
         <root level="all">
-            <appender-ref ref="ReportPortalAppender"/>
+            <!--<appender-ref ref="ReportPortalAppender"/>-->
             <appender-ref ref="STDOUT"/>
             <appender-ref ref="File"/>
         </root>

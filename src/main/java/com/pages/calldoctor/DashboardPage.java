@@ -246,6 +246,7 @@ public class DashboardPage extends BasePage {
 
     @Step("открываю вызов в группе 'Ожидают обработки' через дашбоард")
     public void openNewCallDash(Pacient pacientImpl) throws InterruptedException {
+        refresh();
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 

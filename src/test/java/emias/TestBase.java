@@ -7,11 +7,15 @@ import com.utils.CallDoctorCards;
 import com.utils.Selenium.SeleniumGrid;
 import com.utils.TestMethodCapture;
 import com.utils.WebDriverInstansiator;
+import com.utils.screenshotsListner.CustomTestListener;
 import emias.beforeRun.BeforeRun;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -21,6 +25,9 @@ import java.text.ParseException;
 
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
+//@TestExecutionListeners(inheritListeners = false, listeners =
+//        {DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
+//@TestExecutionListeners(value = CustomTestListener.class, mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS)
 public class TestBase extends AbstractTestNGSpringContextTests{
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;

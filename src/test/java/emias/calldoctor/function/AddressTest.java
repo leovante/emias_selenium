@@ -13,8 +13,6 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class AddressTest extends TestBase {
-
-
     @Test(groups = "CD", description = "вызов от СМП по api от ребенка. Проверяю что адрес подтянулся из вызова.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
@@ -43,7 +41,7 @@ public class AddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка заполнения формализованного адреса при выборе мкаб на странице создания вызова")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testFormalizeAddress() throws Exception {
+    public void testFormalizeAddress() throws IOException {
         Pacient pacientImpl = new PacientImpl("Profile2");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)

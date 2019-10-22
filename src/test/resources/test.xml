@@ -4,8 +4,9 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
+        <!--<listener class-name="com.utils.screenshotsListner.CustomTestListener"/>-->
         <listener class-name="com.utils.retryCountListner.AnnotationTransformer"/>
-        <!--<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
 
     <test name="TestCD_Chrome" verbose="1" parallel="true">

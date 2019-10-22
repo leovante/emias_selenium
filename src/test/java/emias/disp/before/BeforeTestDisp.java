@@ -13,7 +13,7 @@ public class BeforeTestDisp extends TestBase {
     @Test(description = "Подготовка БД")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
     public void run() {
-        cleanTestCard();
+//        cleanTestCard();
         createShedule();//создание нового расписания у врачей
 //        setTestServices();//тестовые ресурсы мероприятий
 //        setDefaultCard();//обнулить карты
@@ -39,7 +39,7 @@ public class BeforeTestDisp extends TestBase {
 
     @Step("Очистка тестовой карты диспансеризации")
     private void cleanTestCard() {
-        hltDispCardService.open(418);
+//        hltDispCardService.open(418);
         hltDispExamService.resetCardExams(418);
         hltDispExamMrService.delete(418);
 //        hltDispExamSmService.delete();

@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.springframework.test.context.TestExecutionListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
@@ -14,9 +15,9 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class CustomTestListener extends TestListenerAdapter {
-    public static Logger logger = LogManager.getLogger();
-    public String rp_message = "create screenshot to reportportal";
+public class CustomTestListener extends TestListenerAdapter implements TestExecutionListener {
+    private static Logger logger = LogManager.getLogger();
+    private String rp_message = "create screenshot to reportportal";
 
     @Override
     public void onTestStart(ITestResult result) {
@@ -52,7 +53,7 @@ public class CustomTestListener extends TestListenerAdapter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        logger.info(message);
+//        logger.info(message);
     }
 }
 
