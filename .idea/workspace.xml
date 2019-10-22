@@ -2,34 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_jul_2_11_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_slf4j_impl_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_to_slf4j_2_11_2.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_jul_to_slf4j_1_7_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_log4j2_2_1_3_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestExecutionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466/storage_v2/_src_/database/test_mo_hlt_Taldom_CRB_20190129.t61c3w/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466/storage_v2/_src_/database/test_mo_hlt_Taldom_CRB_20190129.t61c3w/schema/dbo.sYMBAA.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466/storage_v2/_src_/database/test_mo_hlt_taldom_crb_20190129.tw2isA/schema/dbo.sYMBAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/889db42a-c187-4689-b166-e0cf37d83466/storage_v2/_src_/database/test_mo_hlt_taldom_crb_20190129.tw2isA/schema/dbo.sYMBAA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_epam_reportportal_client_java_4_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_epam_reportportal_client_java_4_0_10.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_epam_reportportal_commons_model_4_0_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_epam_reportportal_commons_model_4_2_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_epam_reportportal_logger_java_log4j_4_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_12_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_api_2_11_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_12_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_logging_log4j_log4j_core_2_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_1_3_RELEASE.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/regress_tests.iml" beforeDir="false" afterPath="$PROJECT_DIR$/regress_tests.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/TestStend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/TestStend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/beforeRun/BeforeRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/beforeRun/BeforeRun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/test.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
@@ -59,20 +39,7 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="hibernate_dev.cfg.xml/Hibernate" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="stend_bel_hlt_gubkinCrb_20171011@192.168.7.210" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="test_mo_hlt_Taldom_CRB_20190129@192.168.7.253" type="feb32156:DbDataSourceImpl" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ExecutionTargetDialog">
@@ -103,7 +70,7 @@
           <entry key="gitignore" value="2" />
           <entry key="hibernate_sequence" value="1" />
           <entry key="iml" value="1" />
-          <entry key="java" value="1456" />
+          <entry key="java" value="1459" />
           <entry key="json" value="88" />
           <entry key="life_mtr_gas" value="1" />
           <entry key="life_mtr_gas_trg" value="1" />
@@ -123,7 +90,7 @@
           <entry key="txt" value="25" />
           <entry key="uuid_generate_v1" value="1" />
           <entry key="uuid_generate_v5" value="1" />
-          <entry key="xml" value="89" />
+          <entry key="xml" value="95" />
           <entry key="xsd" value="1" />
           <entry key="валидаторы тарифов" value="3" />
           <entry key="врач в блоке мероприятий по тарифам" value="7" />
@@ -142,13 +109,13 @@
           <entry key="Database Element" value="3" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="9" />
-          <entry key="JAVA" value="1456" />
+          <entry key="JAVA" value="1459" />
           <entry key="JSON" value="88" />
           <entry key="PLAIN_TEXT" value="52" />
           <entry key="Properties" value="60" />
           <entry key="SQL" value="34" />
           <entry key="Scratch" value="208" />
-          <entry key="XML" value="117" />
+          <entry key="XML" value="123" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -163,7 +130,7 @@
           <entry key="properties" value="157" />
           <entry key="sql" value="32892" />
           <entry key="txt" value="1187" />
-          <entry key="xml" value="285" />
+          <entry key="xml" value="313" />
           <entry key="врач в блоке мероприятий по тарифам" value="9" />
           <entry key="задачи для постмана" value="2" />
           <entry key="связь мероприятие-специальность-тариф" value="2" />
@@ -178,7 +145,7 @@
           <entry key="Properties" value="157" />
           <entry key="SQL" value="228" />
           <entry key="Scratch" value="33227" />
-          <entry key="XML" value="285" />
+          <entry key="XML" value="313" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
@@ -220,53 +187,58 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
+            <state relative-caret-position="187">
               <caret line="63" selection-start-line="63" selection-end-line="63" />
+              <folding>
+                <element signature="e#995#1032#0" />
+                <element signature="e#2159#2183#0" />
+                <element signature="method#afterSuite#0;class#TestBase#0" />
+                <element signature="e#2458#2482#0" />
+                <element signature="method#setUp#0;class#TestBase#0" />
+                <element signature="method#afterMethod#0;class#TestBase#0" />
+                <element signature="e#2821#2844#0" />
+                <element signature="method#beforeClassCD#0;class#TestBase#0" />
+                <element signature="e#3100#3123#0" />
+                <element signature="method#beforeClassDisp#0;class#TestBase#0" />
+                <element signature="method#afterMethodCD#0;class#TestBase#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/emias/beforeRun/BeforeRun.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/resources/test.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
+            <state relative-caret-position="255">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/test.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="182" column="21" lean-forward="true" selection-start-line="182" selection-start-column="21" selection-end-line="182" selection-end-column="21" />
+            <state relative-caret-position="153">
+              <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/api/TestStend.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+            <state relative-caret-position="136">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+              <folding>
+                <element signature="e#838#839#0" expanded="true" />
+                <element signature="e#884#885#0" expanded="true" />
+                <element signature="method#kladrsave#0;class#TestStend#0" />
+                <element signature="method#ehr_medrecords#0;class#TestStend#0" />
+                <element signature="method#disp_journal#0;class#TestStend#0" />
+                <element signature="method#disp_card#0;class#TestStend#0" />
+                <element signature="method#calldoctor#0;class#TestStend#0" />
+                <element signature="method#calldoctorVz#0;class#TestStend#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -378,7 +350,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CalldoctorPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/test.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/api/TestStend.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/beforeRun/BeforeRun.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/TestBase.java" />
@@ -386,6 +357,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/test/resources/test.xml" />
       </list>
     </option>
   </component>
@@ -419,8 +391,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="676" />
-    <option name="y" value="-23" />
+    <option name="x" value="2125" />
+    <option name="y" value="48" />
     <option name="width" value="1197" />
     <option name="height" value="965" />
   </component>
@@ -527,18 +499,7 @@
             </path>
             <path>
               <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-            </path>
-            <path>
-              <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
-            </path>
-            <path>
-              <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
-              <item name="889db42a-c187-4689-b166-e0cf37d83466" type="1e004dc1:ScratchProjectViewPane$MyRootNode$1$1" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -555,7 +516,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/dtemnikov/.IntelliJIdea2018.2/config/consoles/db/d3ca9510-eb2c-4afa-852a-6b8d001b0463/console.sql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571754863091" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1571755596876" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -569,6 +530,17 @@
     </force-push-targets>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\ручное" />
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\disp\pacients" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.lib" />
+    </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="com.system.model" />
+      <recent name="" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.utils.screenshotsListner" />
       <recent name="com.system.service" />
@@ -579,17 +551,6 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql" />
       <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\disp" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.lib" />
-    </key>
-    <key name="ImportMappingsDialog.RecentPackages">
-      <recent name="com.system.model" />
-      <recent name="" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\ручное" />
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\disp\pacients" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -691,8 +652,8 @@
         <item itemvalue="TestNG.C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" />
         <item itemvalue="TestNG.AddressTest.testCallSmpAdultKladr" />
         <item itemvalue="TestNG.C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/regress.xml" />
-        <item itemvalue="TestNG.DeleteTest.deleteMR" />
         <item itemvalue="TestNG.BeforeTestDisp.run" />
+        <item itemvalue="TestNG.DeleteTest.deleteMR" />
       </list>
     </recent_temporary>
   </component>
@@ -1226,18 +1187,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 07m 00s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 08m 02s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 18m 38s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
-    </history-entry>
-    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 18m 40s.xml">
-      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
-    </history-entry>
     <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 19m 58s.xml">
       <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
     </history-entry>
@@ -1256,9 +1205,21 @@
     <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 28m 02s.xml">
       <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
     </history-entry>
+    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 41m 54s.xml">
+      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 43m 16s.xml">
+      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 44m 55s.xml">
+      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
+    </history-entry>
+    <history-entry file="C__Users_dtemnikov_IdeaProjects_emias_selenium_src_test_resources_test_xml - 2019.10.22 at 17h 46m 36s.xml">
+      <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/test.xml" configurationId="TestNG" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="832234000" />
+    <option name="totallyTimeSpent" value="832838000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="80" y="-8" width="1848" height="1096" extended-state="6" />
@@ -1270,7 +1231,7 @@
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.54590166" side_tool="true" weight="0.22330096" />
-      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.7275405" visible="true" weight="0.14988814" />
+      <window_info active="true" content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.7275405" visible="true" weight="0.151566" />
       <window_info id="Persistence" order="7" sideWeight="0.2724595" side_tool="true" weight="0.14653243" />
       <window_info id="Java Enterprise" order="8" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
       <window_info id="Web" order="9" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
@@ -1281,7 +1242,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.2857143" />
-      <window_info active="true" anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" visible="true" weight="0.293617" />
+      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" visible="true" weight="0.31382978" />
       <window_info anchor="bottom" id="Structure" order="8" sideWeight="0.5008091" side_tool="true" weight="0.27172717" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5076661" side_tool="true" weight="0.20957446" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4904051" weight="0.20531915" />
@@ -1303,6 +1264,46 @@
       <window_info anchor="right" id="Coverage" order="11" sideWeight="0.5044405" side_tool="true" weight="0.22087379" />
       <window_info anchor="right" id="Bean Validation" order="12" weight="0.32928804" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Nl-Palette" order="0" />
+      <window_info id="Image Layers" order="1" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" sideWeight="0.54590166" side_tool="true" weight="0.22330096" />
+      <window_info active="true" content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.67197454" visible="true" weight="0.22487223" />
+      <window_info id="Persistence" order="7" sideWeight="0.3280255" side_tool="true" weight="0.17537314" />
+      <window_info id="Java Enterprise" order="8" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
+      <window_info id="Web" order="9" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
+      <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.4923339" weight="0.29864255" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.30882353" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49307036" weight="0.27828056" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.2857143" />
+      <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" weight="0.27941176" />
+      <window_info anchor="bottom" id="Structure" order="8" sideWeight="0.5008091" side_tool="true" weight="0.27172717" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5076661" side_tool="true" weight="0.3484163" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4904051" weight="0.20588236" />
+      <window_info anchor="bottom" id="Database Changes" order="11" weight="0.32446808" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4927293" weight="0.35212767" />
+      <window_info anchor="bottom" id="Spring" order="13" weight="0.32978722" />
+      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49307036" weight="0.2712766" />
+      <window_info anchor="right" id="Dynamic Properties" order="0" />
+      <window_info anchor="right" id="Commander" order="1" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" sideWeight="0.49185187" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Properties" order="5" />
+      <window_info anchor="right" id="Maven Projects" order="6" sideWeight="0.49925926" weight="0.23339012" />
+      <window_info anchor="right" id="Database" order="7" sideWeight="0.4955595" weight="0.22231686" />
+      <window_info anchor="right" id="Capture Analysis" order="8" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" id="Palette&#9;" order="10" />
+      <window_info anchor="right" id="Coverage" order="11" sideWeight="0.5044405" side_tool="true" weight="0.22087379" />
+      <window_info anchor="right" id="Bean Validation" order="12" weight="0.32928804" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1404,16 +1405,16 @@
           <option name="timeStamp" value="305" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/emias/TestBase.java</url>
-          <line>63</line>
-          <properties />
-          <option name="timeStamp" value="333" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/api/TestStend.java</url>
           <line>25</line>
           <properties />
           <option name="timeStamp" value="334" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/emias/beforeRun/BeforeRun.java</url>
+          <line>19</line>
+          <properties />
+          <option name="timeStamp" value="336" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1469,13 +1470,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6f50136e-6bfe-400c-9294-e14b1b494dff/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/function/Consumer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -1634,12 +1628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="571" selection-start-line="571" selection-end-line="571" />
-          <folding>
-            <element signature="e#6971#6972#0" expanded="true" />
-            <element signature="e#7017#7018#0" expanded="true" />
-            <element signature="e#7054#7055#0" expanded="true" />
-            <element signature="e#7121#7122#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1744,10 +1732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
           <caret line="637" column="16" selection-start-line="637" selection-start-column="16" selection-end-line="637" selection-end-column="16" />
-          <folding>
-            <element signature="e#26290#26291#0" expanded="true" />
-            <element signature="e#26333#26334#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1793,6 +1777,103 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="14" column="736" lean-forward="true" selection-start-line="14" selection-start-column="736" selection-end-line="14" selection-end-column="736" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/lang/ref/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="163" column="31" selection-start-line="163" selection-start-column="31" selection-end-line="163" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-187">
+          <caret line="52" column="46" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+          <folding>
+            <element signature="n#properties#0;n#project#0;n#!!top" />
+            <element signature="n#parent#0;n#project#0;n#!!top" />
+            <element signature="n#repositories#0;n#project#0;n#!!top" />
+            <element signature="n#repository#0;n#repositories#0;n#project#0;n#!!top" />
+            <element signature="n#snapshots#0;n#repository#0;n#repositories#0;n#project#0;n#!!top" />
+            <element signature="e#2080#2436#0" />
+            <element signature="e#2223#2414#0" />
+            <element signature="e#2252#2388#0" />
+            <element signature="e#2445#2809#0" />
+            <element signature="e#2588#2787#0" />
+            <element signature="e#2617#2761#0" />
+            <element signature="e#2843#3023#0" />
+            <element signature="e#3032#3211#0" />
+            <element signature="e#3220#3378#0" />
+            <element signature="e#3602#4026#0" />
+            <element signature="e#3805#4004#0" />
+            <element signature="e#3834#3978#0" />
+            <element signature="e#4251#4414#0" />
+            <element signature="e#4423#4591#0" />
+            <element signature="e#4600#4768#0" />
+            <element signature="e#4777#4946#0" />
+            <element signature="e#4955#5117#0" />
+            <element signature="e#5126#5309#0" />
+            <element signature="e#5318#5507#0" />
+            <element signature="e#5516#5692#0" />
+            <element signature="e#5727#5910#0" />
+            <element signature="e#6947#7498#0" />
+            <element signature="e#7111#7476#0" />
+            <element signature="e#7140#7284#0" />
+            <element signature="e#7301#7450#0" />
+            <element signature="e#7507#7878#0" />
+            <element signature="e#7657#7856#0" />
+            <element signature="e#7686#7830#0" />
+            <element signature="e#7887#8052#0" />
+            <element signature="e#8061#8450#0" />
+            <element signature="e#8231#8428#0" />
+            <element signature="e#8260#8402#0" />
+            <element signature="e#8483#8668#0" />
+            <element signature="e#8677#8856#0" />
+            <element signature="e#8865#9051#0" />
+            <element signature="n#build#0;n#project#0;n#!!top" />
+            <element signature="n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#plugin#0;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#configuration#0;n#plugin#0;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#plugin#1;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#configuration#0;n#plugin#1;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#suiteXmlFiles#0;n#configuration#0;n#plugin#1;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#properties#0;n#configuration#0;n#plugin#1;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#property#0;n#properties#0;n#configuration#0;n#plugin#1;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+            <element signature="n#plugin#2;n#plugins#0;n#build#0;n#project#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/beforeRun/BeforeRun.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -1805,10 +1886,8 @@
         <state relative-caret-position="136">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
           <folding>
-            <element signature="e#1060#1061#0" expanded="true" />
-            <element signature="e#1105#1106#0" expanded="true" />
-            <element signature="e#1202#1257#0" />
-            <element signature="e#1742#1790#0" />
+            <element signature="e#838#839#0" expanded="true" />
+            <element signature="e#884#885#0" expanded="true" />
             <element signature="method#kladrsave#0;class#TestStend#0" />
             <element signature="method#ehr_medrecords#0;class#TestStend#0" />
             <element signature="method#disp_journal#0;class#TestStend#0" />
@@ -1819,55 +1898,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="14" column="736" lean-forward="true" selection-start-line="14" selection-start-column="736" selection-end-line="14" selection-end-column="736" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
+        <state relative-caret-position="187">
           <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
+          <folding>
+            <element signature="e#995#1032#0" />
+            <element signature="e#2159#2183#0" />
+            <element signature="method#afterSuite#0;class#TestBase#0" />
+            <element signature="e#2458#2482#0" />
+            <element signature="method#setUp#0;class#TestBase#0" />
+            <element signature="method#afterMethod#0;class#TestBase#0" />
+            <element signature="e#2821#2844#0" />
+            <element signature="method#beforeClassCD#0;class#TestBase#0" />
+            <element signature="e#3100#3123#0" />
+            <element signature="method#beforeClassDisp#0;class#TestBase#0" />
+            <element signature="method#afterMethodCD#0;class#TestBase#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/test.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="182" column="21" lean-forward="true" selection-start-line="182" selection-start-column="21" selection-end-line="182" selection-end-column="21" />
+        <state relative-caret-position="153">
+          <caret line="9" column="16" lean-forward="true" selection-start-line="9" selection-start-column="16" selection-end-line="9" selection-end-column="16" />
         </state>
       </provider>
     </entry>
