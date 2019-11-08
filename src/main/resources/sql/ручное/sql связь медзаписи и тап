@@ -1,0 +1,6 @@
+select * from ehr_Medrecord where rf_EventGuid in (select uguid from hlt_tap where tapid = 2664807)
+
+select * from hlt_MedRecord mr
+join hlt_VisitHistory visit on visit.VisitHistoryID = mr.rf_VisitHistoryID
+join hlt_tap tp on visit.rf_TAPID = tp.TAPID
+where tp.TAPID = 2664807

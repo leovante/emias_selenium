@@ -1,0 +1,7 @@
+delete hlt_disp_ExamMR
+from hlt_disp_ExamMR mr
+join hlt_disp_exam ex on ex.guid = mr.rf_ExamGuid
+join hlt_disp_card dc on ex.rf_CardGuid = dc.guid
+join hlt_disp_service se on se.Guid = ex.rf_ServiceGuid
+where dc.disp_CardID = 2815
+and se.Description = 'Определение суммарного сердечно-сосудистого риска'

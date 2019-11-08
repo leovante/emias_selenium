@@ -23,7 +23,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void childCall_male() throws IOException, InterruptedException,  JSONException {
+    public void childCall_male() {
         PacientImpl pacientImpl = new PacientImpl("Profile7");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -35,13 +35,13 @@ public class DoctorsListTest extends TestBase {
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         visible(mokov.getUchastocs());
         visible(nemcova.getUchastocs());
-        visible(serova.getUchastocs());
+        notVisible(serova.getUchastocs());
     }
 
     @Test(groups = "CD", description = "пустой вызов ребенка Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void childCall_female() throws IOException, InterruptedException,  JSONException {
+    public void childCall_female() {
         PacientImpl pacientImpl = new PacientImpl("Profile8");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -59,7 +59,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов ребенка без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void childCall_noGender() throws IOException, InterruptedException,  JSONException {
+    public void childCall_noGender() {
         PacientImpl pacientImpl = new PacientImpl("Profile9");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -77,7 +77,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void adultCall_male() throws IOException, InterruptedException,  JSONException {
+    public void adultCall_male()  {
         PacientImpl pacientImpl = new PacientImpl("Profile10");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -98,7 +98,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void adultCall_female() throws IOException, InterruptedException,  JSONException {
+    public void adultCall_female()  {
         PacientImpl pacientImpl = new PacientImpl("Profile11");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -118,7 +118,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов взрослого без пола")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void adultCall_noGender() throws IOException, InterruptedException,  JSONException {
+    public void adultCall_noGender() {
         PacientImpl pacientImpl = new PacientImpl("Profile12");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -138,7 +138,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов Без Возр Кат, Без Пола, СМП")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void call_noAge_noGender() throws IOException, InterruptedException,  JSONException {
+    public void call_noAge_noGender() {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -158,7 +158,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "проверка что отобразился участковый")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testPreviewUchDoctorWithKladr() throws Exception {
+    public void testPreviewUchDoctorWithKladr() {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor operator = new Doctor("Operator");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -177,7 +177,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "вызов по api СМП без авторизации. Проверка отображения участкового")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testPreviewUchDoctorWithoutKladrApi() throws IOException, InterruptedException, JSONException {
+    public void testPreviewUchDoctorWithoutKladrApi()  {
         PacientImpl pacientImpl = new PacientImpl("ProfileDetkina");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -203,7 +203,7 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
-    public void viewDoctorList_OnlyFromCurrentDepart() throws IOException, InterruptedException, JSONException {
+    public void viewDoctorList_OnlyFromCurrentDepart() {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
         page.misHome().calldoctorVzroslaya();
         page.createCall(pacientImpl).createCall();
@@ -220,7 +220,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "после редактирования карты на профиль без возрастной категории отобразятся все врачи")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListAfterEditChildCard() throws IOException, InterruptedException,  JSONException {
+    public void testViewDoctorsListAfterEditChildCard() {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile0_2");
         page.misHome().calldoctor();
@@ -247,7 +247,7 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
-    public void testUchastokAfterEditMkabCard() throws IOException, InterruptedException, JSONException {
+    public void testUchastokAfterEditMkabCard() {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile0_2");
         page.misHome().calldoctor();

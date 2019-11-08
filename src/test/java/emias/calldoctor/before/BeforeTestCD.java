@@ -1,12 +1,10 @@
 package emias.calldoctor.before;
 
-import com.utils.sql.DBScripts;
 import com.utils.retryCountListner.RetryCountIfFailed;
+import com.utils.sql.DBScripts;
 import emias.TestBase;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

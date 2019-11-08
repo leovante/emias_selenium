@@ -58,9 +58,14 @@ public class Doctor extends AbstractTestNGSpringContextTests {
         return "";
     }
 
-    public Doctor(String name) throws IOException {
+    public Doctor(String name)   {
         File reader = new File("src\\main\\resources\\calldoctor\\doctors\\" + name + ".json");
-        HashMap<String, Object> proData = new ObjectMapper().readValue(reader, HashMap.class);
+        HashMap<String, Object> proData = null;
+        try {
+            proData = new ObjectMapper().readValue(reader, HashMap.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (proData.get("name") != null && proData.get("name") != "")
             this.name = (String) proData.get("name");
         if (proData.get("family") != null && proData.get("family") != "")

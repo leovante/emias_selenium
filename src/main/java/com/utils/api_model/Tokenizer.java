@@ -26,12 +26,12 @@ public class Tokenizer extends BasePage {
     private Pacient pacient;
     private ConfigFile config;
 
-    public Tokenizer(Pacient pacientImpl) throws IOException {
+    public Tokenizer(Pacient pacientImpl) {
         this.config = new ConfigFile();
         this.pacient = pacientImpl;
     }
 
-    public String getToken() throws IOException {
+    public String getToken() {
         HttpGet request = new HttpGet(
                 requestBuilder(config.getUrlApi(),
                         config.getLpuGuid(),
@@ -39,7 +39,12 @@ public class Tokenizer extends BasePage {
                         pacient.getSeriespol(),
                         pacient.getNumberpol()));
         Map<String, String> responseMap = requestRun(request);
-        Map<String, String> proData = new ObjectMapper().readValue(responseMap.get("body"), Map.class);
+        Map<String, String> proData = null;
+        try {
+            proData = new ObjectMapper().readValue(responseMap.get("body"), Map.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return proData.get("token");
     }
 
@@ -65,26 +70,28 @@ public class Tokenizer extends BasePage {
         return url;
     }
 
-    private Map requestRun(HttpGet request) throws IOException {
+    private Map requestRun(HttpGet request)  {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         CloseableHttpResponse hr;
         Map<String, String> responseMap = new HashMap<String, String>();
         try {
-            hr = httpClient.execute(request);
-            ResponseHandler<String> handler = new BasicResponseHandler();
-            String body = handler.handleResponse(hr);
-            responseMap.put("body", body);
             try {
-                Scanner sc = new Scanner(hr.getEntity().getContent());
-                while (sc.hasNext()) {
-                    logger.info(sc.nextLine());
+                hr = httpClient.execute(request);
+                ResponseHandler<String> handler = new BasicResponseHandler();
+                String body = handler.handleResponse(hr);
+                responseMap.put("body", body);
+                try {
+                    Scanner sc = new Scanner(hr.getEntity().getContent());
+                    while (sc.hasNext()) {
+                        logger.info(sc.nextLine());
+                    }
+                } finally {
+                    hr.close();
                 }
             } finally {
-                hr.close();
+                httpClient.close();
             }
-        } finally {
-            httpClient.close();
-        }
+        }catch (IOException e){}
         return responseMap;
     }
 }

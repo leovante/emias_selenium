@@ -18,7 +18,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void callRegistrEmpy() throws IOException, InterruptedException, JSONException, NoticeException {
+    public void callRegistrEmpy() {
         Pacient pacient = new PacientImpl("Profile0");
         page.misHome().calldoctor();
         page.createCall(pacient).createCall();
@@ -30,7 +30,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "подтягивание неформализованного мкаб")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutAddressID() throws IOException, InterruptedException, JSONException, NoticeException {
+    public void testCallMkabWaitoutAddressID() {
         Pacient pacient = new PacientImpl("Profile0_3");
         page.misHome().calldoctor();
         page.createCall(pacient).createCall_Mkab();
@@ -40,7 +40,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "вызов с иточником Регистратура без МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallRegistr() throws Exception {
+    public void testCallRegistr() {
         Pacient pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();
@@ -53,7 +53,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallRegistrMkab() throws Exception {
+    public void testCallRegistrMkab() {
         Pacient pacientImpl = new PacientImpl("Profile2");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();
@@ -62,5 +62,5 @@ public class CreateCallTest extends TestBase {
                 .closeCardBtn();
         page.dashboard().verifyNewCallGroup(pacientImpl);
     }
-
+    // TODO: 11/8/2019 сделать тест поиск мкаб по серии 4619 Темников
 }

@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class HomeBasePage extends BasePage {
     SelenideElement homePageBtn = $(By.xpath("//span[contains(.,'ЕМИАС Московской области')]"));
@@ -17,7 +18,7 @@ public class HomeBasePage extends BasePage {
     SelenideElement callDoctorBtn = $(By.xpath("//span[contains(.,'Диспетчер')]"));
     SelenideElement napravlenieNaIssledovanie = $(By.xpath("//span[contains(.,'Направления на исследование')]"));
 
-    public HomeBasePage() throws IOException {
+    public HomeBasePage()  {
     }
 
     @Step("Захожу в ведение расписания")
@@ -60,8 +61,8 @@ public class HomeBasePage extends BasePage {
     }
 
     @Step("Нажимаю на Карты диспансеризации")
-    public void dispCardJournalBtn() throws InterruptedException {
-        Thread.sleep(1000);
+    public void dispCardJournalBtn() {
+        sleep(1000);
         $(By.xpath("//span[contains(.,'Карты диспансеризации')]")).click();
     }
 

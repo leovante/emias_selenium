@@ -39,12 +39,12 @@ public class FullCardPage extends BasePage {
     SelenideElement timeField = $x("//input[@placeholder='Время']");
     SelenideElement card = $x("//*[contains(text(),'Карта вызова')]");
 
-    public FullCardPage(String testName) throws IOException {
+    public FullCardPage(String testName)  {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         logger.info("Open card with url: " + url());
     }
 
-    public FullCardPage(Pacient pacient, String testName) throws IOException {
+    public FullCardPage(Pacient pacient, String testName)  {
         this.pacient = pacient;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
@@ -129,7 +129,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyNewCall() throws IOException {
+    public FullCardPage verifyNewCall()  {
         status_new.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -139,7 +139,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(PacientImpl pacientImpl) throws IOException {
+    public FullCardPage verifyActivCall(PacientImpl pacientImpl)  {
         status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -148,7 +148,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю обслуженный вызов")
-    public FullCardPage verifyDoneCall(Doctor doctor) throws IOException {
+    public FullCardPage verifyDoneCall(Doctor doctor) {
         refresh();
         status_done.shouldBe(Condition.visible);
         baseElements();
@@ -191,7 +191,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("завершить обслуживание")
-    public FullCardPage completeServiceBtn() throws InterruptedException {
+    public FullCardPage completeServiceBtn() {
         card.shouldBe(Condition.visible);
         completeServiceBtn.click();
         doneCall.click();
@@ -254,7 +254,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("Проверка текущего подразделения у карты вызова")
-    public FullCardPage verifyDepartment(Doctor doctor) throws IOException {
+    public FullCardPage verifyDepartment(Doctor doctor)  {
         $(By.xpath("//*[contains(.,'" + doctor.getDepartment() + "')]")).shouldBe(Condition.visible);
         return this;
     }
@@ -273,15 +273,15 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("валидация что вызов не отменился на подробной странице")
-    public FullCardPage verifyCancellCallValidation() throws InterruptedException {
+    public FullCardPage verifyCancellCallValidation()  {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
-        Thread.sleep(2000);
+        sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("нажимаю на кнопку печати")
-    public FullCardPage printBtn() throws InterruptedException {
+    public FullCardPage printBtn()  {
         $x("//div[@id='viewPrint']/mat-icon").click();
         return this;
     }

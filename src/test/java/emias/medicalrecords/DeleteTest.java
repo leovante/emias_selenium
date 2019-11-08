@@ -27,5 +27,6 @@ public class DeleteTest extends TestBase {
                 .podpisanaSortColumn()
                 .deleteMR()
                 .verifyMrIsDeleted();
+        // TODO: 10/30/2019 нужно предварительно чистить ТАП от медзаписей
     }
 }

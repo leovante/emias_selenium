@@ -205,6 +205,7 @@ public class DBScripts extends BasePage {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        logger.info("Создал расписание у LPUDoctorID: " + LPUDoctorID + " DocPRVDID: " + DocPRVDID);
     }
 
 //    @Step("отменяю созданный вызов после каждого теста")

@@ -1,0 +1,4 @@
+select * from oms_paramVar where paramVarid in (
+    146,
+    153,
+    173)

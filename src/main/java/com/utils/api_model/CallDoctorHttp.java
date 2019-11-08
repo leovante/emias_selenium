@@ -2,6 +2,7 @@ package com.utils.api_model;
 
 import com.config.ConfigFile;
 import com.datas.calldoctor.Pacient;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -10,6 +11,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
@@ -20,6 +22,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class CallDoctorHttp {
     private static Logger logger = LogManager.getLogger();
@@ -94,7 +98,7 @@ public class CallDoctorHttp {
         return request;
     }
 
-    private HttpPost requestTokenAuth() throws IOException {
+    private HttpPost requestTokenAuth() {
         String token = new Tokenizer(pacientImpl).getToken();
         this.request = new HttpPost(configFile.getRequestSmpAuth());
         request.addHeader("Content-type", "application/json");
@@ -123,22 +127,26 @@ public class CallDoctorHttp {
         }
     }
 
-    public void executeAuth() throws IOException, InterruptedException {
+    public void executeAuth() {
         executeRetry(requestTokenAuth());
     }
 
-    private HttpResponse executeRetry(HttpPost request) throws IOException, InterruptedException {
+    private HttpResponse executeRetry(HttpPost request) {
         HttpResponse httpResponse = null;
-        for (int i = 0; i < 5; i++) {
-            httpResponse = executeAndGetResponce(request);
-            if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                logger.info("Request is success");
-                return httpResponse;
+        try {
+            for (int i = 0; i < 5; i++) {
+                httpResponse = executeAndGetResponce(request);
+                if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                    logger.info("Request is success");
+                    return httpResponse;
+                }
+                sleep(1000);
             }
-            Thread.sleep(1000);
-        }
-        if (httpResponse.getStatusLine().getStatusCode() != 200) {
-            throw new SkipException("Call don't create");
+            if (httpResponse.getStatusLine().getStatusCode() != 200) {
+                throw new SkipException("Call don't create");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return httpResponse;
     }
@@ -154,7 +162,7 @@ public class CallDoctorHttp {
                 logger.info("Request body is: \n" + hr);
                 Scanner sc = new Scanner(hr.getEntity().getContent());
                 while (sc.hasNext()) {
-                    logger.info("Entity.Content: " + sc.nextLine());
+                    logger.info("Body request: " + sc.nextLine());
                 }
             } finally {
                 hr.close();

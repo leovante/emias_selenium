@@ -24,4 +24,106 @@ else
             1000016076,
             1000016076)
   end
+
+
+
+--участки
+  begin INSERT INTO [dbo].[kla_Street] ([socr],
+                                        [code],
+                                        [OCATD],
+                                        [Source],
+                                        [name],
+                                        [gninmb],
+                                        [PostIndex],
+                                        [rf_KlAdrID],
+                                        [AddressString])
+        values ('тер. СНТ',
+                50000045227020100,
+                46466556000,
+                'KL',
+                'Учитель',
+                5075,
+                143130,
+                1000014085,
+                'Московская обл., г. Руза, рп. Тучково, тер. СНТ. Учитель') end
+
+if not exists(select 1
+              from hlt_Uchastok
+              where UchastoCaption = '1-й Терапевтический')
+  begin insert into [dbo].[hlt_Uchastok] (UchastoCaption,
+                                          code,
+                                          rf_LPUDoctorID,
+                                          rf_DocPRVDID,
+                                          rf_kl_TypeUID,
+                                          rf_LPUID,
+                                          DateBegin,
+                                          DateEnd)
+        values ('1-й Терапевтический',
+                '1-Тер',
+                '3068',
+                2119,
+                12,
+                1839,
+                '1900-01-01 00:00:00.000',
+                '2222-01-01 00:00:00.000') end
+
+if not exists(select 1
+              from hlt_Uchastok
+              where UchastoCaption = '1-й Педиатрический')
+  begin insert into [dbo].[hlt_Uchastok] (UchastoCaption,
+                                          code,
+                                          rf_LPUDoctorID,
+                                          rf_DocPRVDID,
+                                          rf_kl_TypeUID,
+                                          rf_LPUID,
+                                          DateBegin,
+                                          DateEnd)
+        values ('1-й Педиатрический',
+                '1-Пед',
+                '3068',
+                2119,
+                12,
+                1839,
+                '1900-01-01 00:00:00.000',
+                '2222-01-01 00:00:00.000') end
+
+
+
+if not exists(select 1
+              from kla_House
+              where code = '50000045227020100'
+                and Number = '232')
+  begin insert into [dbo].[kla_House] (code, number, rf_StreetID)
+        values ('50000045227020100', '232', (select StreetID from kla_Street where code = '50000045227020100')) end
+
+if not exists(select 1
+              from hlt_HouseToUchastok
+              where rf_UchastokID = (select UchastokID from hlt_Uchastok where UchastoCaption = '1-й Терапевтический')
+                and rf_HouseID = (select HouseID
+                                  from kla_House
+                                  where code = '50000045227020100'
+                                    and Number = '232'))
+  begin insert into [dbo].[hlt_HouseToUchastok] (rf_UchastokID, rf_HouseID)
+        values ((select UchastokID from hlt_Uchastok where UchastoCaption = '1-й Терапевтический'),
+                (select HouseID
+                 from kla_House
+                 where code = '50000045227020100'
+                   and Number = '232')) end
+
+if not exists(select 1
+              from hlt_HouseToUchastok
+              where rf_UchastokID = (select UchastokID from hlt_Uchastok where UchastoCaption = '1-й Педиатрический')
+                and rf_HouseID = (select HouseID
+                                  from kla_House
+                                  where code = '50000045227020100'
+                                    and Number = '232'))
+  begin insert into [dbo].[hlt_HouseToUchastok] (rf_UchastokID, rf_HouseID)
+        values ((select UchastokID from hlt_Uchastok where UchastoCaption = '1-й Педиатрический'),
+                (select HouseID
+                 from kla_House
+                 where code = '50000045227020100'
+                   and Number = '232')) end
+
+
+
 COMMIT

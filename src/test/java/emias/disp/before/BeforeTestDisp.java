@@ -44,5 +44,6 @@ public class BeforeTestDisp extends TestBase {
         hltDispExamMrService.delete(418);
 //        hltDispExamSmService.delete();
 //        DBScripts.runSqlScript("clear_card");
+        // TODO: 10/31/2019 сделать очистку карты полностью на репозитории
     }
 }

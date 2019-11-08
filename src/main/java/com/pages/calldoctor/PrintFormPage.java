@@ -41,7 +41,7 @@ public class PrintFormPage extends BasePage {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public PrintFormPage(Pacient pacient, String testName) throws IOException {
+    public PrintFormPage(Pacient pacient, String testName)  {
         this.pacient = pacient;
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }

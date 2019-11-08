@@ -16,7 +16,7 @@ public class AddressTest extends TestBase {
     @Test(groups = "CD", description = "вызов от СМП по api от ребенка. Проверяю что адрес подтянулся из вызова.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab() throws IOException, InterruptedException, JSONException {
+    public void testCallSmpChildMkab()  {
         Pacient pacientImpl = new PacientImpl("Profile3");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();
@@ -27,7 +27,7 @@ public class AddressTest extends TestBase {
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что адрес по кладр.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpAdultKladr() throws IOException, InterruptedException, JSONException {
+    public void testCallSmpAdultKladr() {
         Pacient pacientImpl = new PacientImpl("Profile6");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();
@@ -41,7 +41,7 @@ public class AddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка заполнения формализованного адреса при выборе мкаб на странице создания вызова")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testFormalizeAddress() throws IOException {
+    public void testFormalizeAddress() {
         Pacient pacientImpl = new PacientImpl("Profile2");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)

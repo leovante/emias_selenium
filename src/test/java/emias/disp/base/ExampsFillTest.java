@@ -13,7 +13,7 @@ public class ExampsFillTest extends TestBase {
 
     @Test(groups = "disp", description = "проверка заполнения мероприятий М24", enabled = false)//
     @RetryCountIfFailed(2)
-    public void testFillExamp() throws InterruptedException {
+    public void testFillExamp()  {
 //        DBScripts.setDefaultServices("3169");
         page.misHome().dispCard();
         page.exampPage().fillTemnikov();

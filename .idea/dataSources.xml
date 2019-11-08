@@ -8,17 +8,17 @@
       <jdbc-url>jdbc:sqlserver://192.168.7.48:50004;databaseName=hlt_demonstration</jdbc-url>
       <default-dialect>TSQL</default-dialect>
     </data-source>
-    <data-source source="LOCAL" name="hlt_Krasnogorsk_GB2_200401@12.8.1.62" uuid="b998b3c3-51a8-47ef-8ba3-fbb203abb565">
+    <data-source source="LOCAL" name="hlt_Krasnogorsk_GB2_200401@192.168.7.48" uuid="b998b3c3-51a8-47ef-8ba3-fbb203abb565">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://12.8.1.62;databaseName=hlt_Krasnogorsk_GB2_200401</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:14338;databaseName=hlt_Krasnogorsk_GB2_200401</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="hlt_Voskresensk_1RB_030101@12.8.1.58" uuid="9772543a-224f-4984-a421-7c18b9db44dc">
+    <data-source source="LOCAL" name="hlt_Voskresensk_1RB_030101@192.168.7.48" uuid="9772543a-224f-4984-a421-7c18b9db44dc">
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://12.8.1.58;database=hlt_Voskresensk_1RB_030101</jdbc-url>
+      <jdbc-url>jdbc:sqlserver://192.168.7.48:14331;database=hlt_Voskresensk_1RB_030101</jdbc-url>
       <driver-properties>
         <property name="applicationName" value="DataGrip" />
       </driver-properties>

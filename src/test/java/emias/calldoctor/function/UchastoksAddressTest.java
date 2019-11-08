@@ -2,18 +2,11 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.text.ParseException;
-
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class UchastoksAddressTest extends TestBase {
@@ -21,7 +14,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokBezDomov() throws IOException, InterruptedException, JSONException {
+    public void testUchastokBezDomov() {
         PacientImpl pacientImpl = new PacientImpl("Profile15");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -34,7 +27,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_unikDom_3() throws IOException, InterruptedException,  JSONException {
+    public void testUchastok_unikDom_3() {
         PacientImpl pacientImpl = new PacientImpl("Profile16");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -51,7 +44,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках с домами")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah() throws IOException, InterruptedException, JSONException {
+    public void testUchastok_DomavOboihUchastkah() {
         PacientImpl pacientImpl = new PacientImpl("Profile17");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -68,7 +61,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адреса нет ни в одном из участков")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastok_DomavOboihUchastkah_unikDom() throws IOException, InterruptedException, JSONException {
+    public void testUchastok_DomavOboihUchastkah_unikDom() {
         PacientImpl pacientImpl = new PacientImpl("Profile18");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)
@@ -84,7 +77,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "авторизованный вызов от СМП, участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokPoAdresuANeMkab() throws IOException, InterruptedException, JSONException {
+    public void testUchastokPoAdresuANeMkab() {
         PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab");
         page.createCall(pacientImpl).createCall_Api_Auth();
         page.misHome().calldoctor();
@@ -99,7 +92,7 @@ public class UchastoksAddressTest extends TestBase {
             "что участок не проставляется, если адрес неформализованный")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokNotSet() throws IOException, InterruptedException, JSONException {
+    public void testUchastokNotSet() {
         PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab_neformal");
         page.createCall(pacientImpl).createCall_Api();
         page.misHome().calldoctor();
@@ -112,7 +105,7 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD", description = "не отображать участок у вызова с неформализованным адресом")
     @Epic("Участки")
     @RetryCountIfFailed(2)
-    public void testUchastokWithNullID() throws IOException, InterruptedException, JSONException {
+    public void testUchastokWithNullID() {
         PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
         page.createCall(pacientImpl).createCall_Api();
         page.misHome().calldoctor();

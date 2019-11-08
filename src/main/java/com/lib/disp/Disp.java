@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class Disp {
     SelenideElement se = $x("//*");
@@ -44,11 +45,11 @@ public class Disp {
         return this;
     }
 
-    public Disp expand() throws InterruptedException {
-        Thread.sleep(4000);
+    public Disp expand()  {
+        sleep(4000);
         se.$x("../.").hover();
         se.click();
-        Thread.sleep(2000);
+        sleep(2000);
         return this;
     }
 

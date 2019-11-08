@@ -11,6 +11,7 @@ import org.openqa.selenium.support.CacheLookup;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class SetDoctorPage extends BasePage {
     @CacheLookup
@@ -53,11 +54,11 @@ public class SetDoctorPage extends BasePage {
     }
 
     @Step("назначиь врача")
-    public SetDoctorPage saveAddress() throws InterruptedException {
+    public SetDoctorPage saveAddress() {
         SelenideElement shoseDoctor = $(By.xpath("//*[contains(text(),'Выберите врача')]"));
         SelenideElement adressIsRecognize = $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]"));
         for (int i = 0; i < 10; i++) {
-            Thread.sleep(1000);
+            sleep(1000);
             if (!shoseDoctor.isDisplayed()) {
                 if (adressIsRecognize.isDisplayed()) {
                     $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]")).shouldBe(Condition.visible);

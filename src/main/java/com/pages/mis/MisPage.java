@@ -1,6 +1,5 @@
 package com.pages.mis;
 
-import com.pages.mis.*;
 import org.springframework.stereotype.Component;
 
 import static com.codeborne.selenide.Selenide.page;
@@ -13,7 +12,7 @@ public interface MisPage {
     }
 
     default MisHomePage misHome() {
-        return page(MisHomePage.class);
+        return new MisHomePage();
     }
 
     default NapravlenieNaIssledovanie napravlenieNaIssledovanie() {

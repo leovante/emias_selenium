@@ -42,7 +42,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
-    public void testSearchCardByPolNumber() throws IOException, JSONException {
+    public void testSearchCardByPolNumber() {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
@@ -54,7 +54,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
-    public void testSearchCardByFio() throws IOException, JSONException {
+    public void testSearchCardByFio() {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
@@ -66,7 +66,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
-    public void verifyMeasurePattern() throws InterruptedException {
+    public void verifyMeasurePattern() {
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(418);
@@ -80,7 +80,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия")
     @RetryCountIfFailed(2)
-    public void verifyMeasurePatternFromMkab() throws InterruptedException {
+    public void verifyMeasurePatternFromMkab() {
         // TODO: 5/28/2019 объект с данными пациента
         Datas d = new Datas(){
           int a = 1;
@@ -101,7 +101,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через ячейку расписания", enabled = false)
     @RetryCountIfFailed(2)
-    public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
+    public void verifyMeasurePatternFromSheduleCell() {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         page.misHome().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
@@ -131,7 +131,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверяю что мероприятие открывается у подписанной карты")
     @RetryCountIfFailed(2)
-    public void openClosedCard() throws InterruptedException {
+    public void openClosedCard() {
         page.misHome().dispJournal();
         page.journalPage()
                 .journalMenuBtn()

@@ -2,19 +2,12 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
-import org.json.JSONException;
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-import java.text.ParseException;
-
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class ValidationTest extends TestBase {
@@ -22,7 +15,7 @@ public class ValidationTest extends TestBase {
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
-    public void smpChildMkab_testCallerFIO() throws IOException, InterruptedException, JSONException {
+    public void smpChildMkab_testCallerFIO() {
         PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();
@@ -39,7 +32,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на странице подробной карты вызова")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromFullpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testCancelCallFromFullpage() {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();
@@ -51,7 +44,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на странице редактирования карты")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromEditpage() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testCancelCallFromEditpage() {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();
@@ -64,7 +57,7 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на дашборде")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromDashboard() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testCancelCallFromDashboard() {
         PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();

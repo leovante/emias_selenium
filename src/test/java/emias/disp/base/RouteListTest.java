@@ -19,7 +19,7 @@ public class RouteListTest extends TestBase {
     @Test(groups = "disp", description = "проверка что терапевт в конце МЛ после отмены мероприятия", enabled = false)
 //сейчас даже если терапевт не последний, тап и заключение отображается как надо
     @RetryCountIfFailed(2)
-    public void testCancelTerapevt() throws InterruptedException {
+    public void testCancelTerapevt() {
         page.misHome().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
         page.raspisaniePriemaPage()
@@ -31,28 +31,28 @@ public class RouteListTest extends TestBase {
 
     @Test(groups = "disp", description = "проверка пустых значений в показателях")
     @RetryCountIfFailed(2)
-    public void testEmpyFieldParams() throws InterruptedException {
+    public void testEmpyFieldParams() {
         page.misHome().dispCard();
         page.exampPage().validateFieldParamIsEmpy();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с пробелом")
     @RetryCountIfFailed(2)
-    public void testSpaceValidationFieldParams() throws InterruptedException {
+    public void testSpaceValidationFieldParams() {
         page.misHome().dispCard();
         page.exampPage().validateFieldParamWithSpace();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с дефолтным пустым полем")
     @RetryCountIfFailed(2)
-    public void testDefaultValidationFieldParams() throws InterruptedException {
+    public void testDefaultValidationFieldParams() {
         page.misHome().dispCard();
         page.exampPage().validateClearParam();
     }
 
     @Test(groups = "disp", description = "пустое мероприятие не должно промаркироваться, даже если его не раскрыли", enabled = false)
     @RetryCountIfFailed(2)
-    public void validateParamNotOpen() throws InterruptedException {
+    public void validateParamNotOpen() {
         page.misHome().dispCard();
         page.exampPage()
                 .switchAllServicesTap()
@@ -63,7 +63,7 @@ public class RouteListTest extends TestBase {
 
     @Test(groups = "disp", description = "отображение кнопки просмотреть у мероприятия без маркировок. И подписание")
     @RetryCountIfFailed(2)
-    public void validateKallMeasure() throws  MalformedURLException {
+    public void validateKallMeasure() {
         long a = page.misHome().getDispCardNumber();
         hltDispExamService.resetCardExams(a);
         page.misHome().dispCard42();

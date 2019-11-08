@@ -9,20 +9,11 @@ import static com.codeborne.selenide.Selenide.page;
 @Component
 public interface DispanserisationPage {
     default ExampPage exampPage(String text) {
-        try {
-            return new ExampPage(text);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new ExampPage(text);
     }
+
     default ExampPage exampPage() {
-        try {
-            return new ExampPage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return new ExampPage();
     }
 
     default JournalPage journalPage() {

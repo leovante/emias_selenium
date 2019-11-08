@@ -25,7 +25,7 @@ public class BeforeWork extends BasePage {
     SelenideElement pickTime_okon = $(By.id("pickTime_okon"));
     SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
 
-    public BeforeWork() throws IOException {
+    public BeforeWork()  {
     }
 
 

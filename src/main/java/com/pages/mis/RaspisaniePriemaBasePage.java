@@ -31,7 +31,6 @@ public class RaspisaniePriemaBasePage extends BasePage {
     SelenideElement kvotyYes = proverkaKvot.$(By.xpath("./../..//*[contains(text(),'Да')]"));
     SelenideElement pacientWasDispancered = $(By.xpath("//*[contains(text(),'Проверка перед генерацией маршрутного листа')]"));
     SelenideElement pacientDispanceredYes = pacientWasDispancered.$(By.xpath("./../..//*[contains(text(),'Да')]"));
-
     //    SelenideElement alarmaKvotyLimit = $(By.id("//*[contains(text(),'На текущую дату использованы все квоты, Продолжить?')]"));
     SelenideElement sinpmkabScheduleGrid = $(By.id("sinpmkabScheduleGrid"));
     SelenideElement kartaProfOsmotra = $(By.xpath("//span[contains(text(),'Карта проф. осмотра/дисп.')]"));
@@ -43,18 +42,17 @@ public class RaspisaniePriemaBasePage extends BasePage {
     SelenideElement applyBtn = $(By.id("ApplyBtn"));
     SelenideElement kvotyCount = $(By.xpath("//*[@class='ng-binding'][@ng-hide='!data.IsQuotaDispType']"));
 
-
-    public RaspisaniePriemaBasePage() throws IOException {
+    public RaspisaniePriemaBasePage()  {
     }
 
     @Step("Сделать запись")
-    public void createRecord(String first_doctor_fullname) throws InterruptedException {
+    public void createRecord(String first_doctor_fullname)  {
         String mwh = driver.getWindowHandle();
         RecordsArea.shouldBe(Condition.visible);
         recordElement.shouldBe(Condition.visible);
         recordElement.click();
         new PressEnter();
-        Thread.sleep(2000);
+        sleep(2000);
         selectMkab.click();
         selectVibratBtn.click();
         predvarit.click();
@@ -91,14 +89,14 @@ public class RaspisaniePriemaBasePage extends BasePage {
         return this;
     }
 
-    public RaspisaniePriemaBasePage generateML() throws InterruptedException {
+    public RaspisaniePriemaBasePage generateML() {
         String i = kvotyCount.getText();
         $(By.id("patientModelList-button")).$x(".//span").getValue();
         $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
         if (i.equals("0")) {
             $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']//*[contains(text(),'Да')]")).click();
         }
-        Thread.sleep(1000);
+        sleep(1000);
         $(By.xpath("//*[@aria-labelledby='ui-dialog-title-whcdialog']"))
                 .$(By.xpath(".//*[contains(text(),'Да')]")).click();
         return this;
@@ -110,7 +108,8 @@ public class RaspisaniePriemaBasePage extends BasePage {
         $(By.xpath("//*[contains(.,'" + nameGen + "')]")).shouldBe(Condition.enabled);
     }
 
-    public void lastDispPacientCell_kartaProfOsmotra() throws NoSuchFieldException {
+    public void lastDispPacientCell_kartaProfOsmotra() {
+        try{
         $x("//div[@id='schedule']/div/div/div/div[3]/div/div").shouldBe(Condition.visible);
         ElementsCollection cells =
                 $$(By.xpath("//div[@style='background-color:#AC6060;border-color:#AC6060;color:#FFFFFF']" +
@@ -121,10 +120,11 @@ public class RaspisaniePriemaBasePage extends BasePage {
             throw new NoSuchFieldException("Нет ячеек карты диспансеризациии");
         }
         kartaProfOsmotra.click();
-        switchTo().window("Медицинская Информационная Система");
+        switchTo().window("Медицинская Информационная Система");}
+        catch (NoSuchFieldException e ){e.printStackTrace();}
     }
 
-    public RaspisaniePriemaBasePage generateML(Pacient pacient) throws InterruptedException {
+    public RaspisaniePriemaBasePage generateML(Pacient pacient)  {
         ml.click();
         sinpmkabScheduleGrid.setValue(
                 pacient.getFamily() + " " +
@@ -144,14 +144,14 @@ public class RaspisaniePriemaBasePage extends BasePage {
                 kvotyYes.click();
                 break;
             }
-            Thread.sleep(1000);
+            sleep(1000);
         }
         for (int i = 0; i < 5; i++) {
             if (pacientWasDispancered.isDisplayed()) {
                 pacientDispanceredYes.click();
                 break;
             }
-            Thread.sleep(1000);
+            sleep(1000);
         }
         return this;
     }

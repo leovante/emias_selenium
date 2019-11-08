@@ -91,7 +91,7 @@ public class MisHomePage extends BasePage {
     }
 
     @Step("Вход в карту диспансеризации")
-    public Integer getDispCardNumber() throws MalformedURLException {
+    public Integer getDispCardNumber() {
         DispUrlParser dp = new DispUrlParser(conf.getDispCard());
         return dp.getCardNumber();
     }
