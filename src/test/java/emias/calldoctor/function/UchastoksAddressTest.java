@@ -74,9 +74,10 @@ public class UchastoksAddressTest extends TestBase {
         $x("//*[contains(text(),'#5 Дерматологический')]").shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "авторизованный вызов от СМП, участок определился по адресу вызова, а не мкаб")
     @Epic("Участки")
     @RetryCountIfFailed(2)
+    @Test(groups = "CD",
+            description = "авторизованный вызов от СМП, участок определился по адресу вызова, а не мкаб")
     public void testUchastokPoAdresuANeMkab() {
         PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab");
         page.createCall(pacientImpl).createCall_Api_Auth();

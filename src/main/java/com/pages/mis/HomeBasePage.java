@@ -18,7 +18,7 @@ public class HomeBasePage extends BasePage {
     SelenideElement callDoctorBtn = $(By.xpath("//span[contains(.,'Диспетчер')]"));
     SelenideElement napravlenieNaIssledovanie = $(By.xpath("//span[contains(.,'Направления на исследование')]"));
 
-    public HomeBasePage()  {
+    public HomeBasePage() {
     }
 
     @Step("Захожу в ведение расписания")
@@ -72,18 +72,25 @@ public class HomeBasePage extends BasePage {
     }
 
     @Step("Сделать запись")
-    public void createSomeRecords(int i) throws InterruptedException, IOException {
-        int n = 1;
-        while (n <= i) {
-            logger.info("Обрабатываю врача №: " + n);
-            String doctor_num = new DoctorMethods().getUnicalDoctor3(n);
-            String doctor_num_fam = VedenieRaspisaniyaBasePage.getSecondName(doctor_num);
+    public void createSomeRecords(int i) {
+        try {
+            int n = 1;
+            while (n <= i) {
+                logger.info("Обрабатываю врача №: " + n);
+                String doctor_num = null;
+
+                doctor_num = new DoctorMethods().getUnicalDoctor3(n);
+
+                String doctor_num_fam = VedenieRaspisaniyaBasePage.getSecondName(doctor_num);
 //            SQLDemonstration.deleteShedule(doctor_num_fam);
-            new DoctorMethods().selectDoctor(doctor_num);
-            new BeforeWork().createShedule();
-            new VedenieRaspisaniyaBasePage().verifyCreatedShedule(doctor_num_fam);
-            new DoctorMethods().selectDoctor(doctor_num);
-            n++;
+                new DoctorMethods().selectDoctor(doctor_num);
+                new BeforeWork().createShedule();
+                new VedenieRaspisaniyaBasePage().verifyCreatedShedule(doctor_num_fam);
+                new DoctorMethods().selectDoctor(doctor_num);
+                n++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

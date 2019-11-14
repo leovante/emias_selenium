@@ -3,19 +3,17 @@ package emias.mis.before;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 
-import java.io.IOException;
-
 public class BeforeSuiteMIS extends TestBase {
 
     @org.testng.annotations.Test(groups = "mis", description = "Завершаю все вызовы", enabled = false)
     @RetryCountIfFailed(2)
-    public void finalizeCalls() throws IOException {
+    public void finalizeCalls() {
 //        SQLDemonstration.updateDB();//обновляю базу скриптами из папки
     }
 
     @org.testng.annotations.Test(groups = "mis", description = "Cоздаю новое расписание у врачей на сегодня", enabled = false)
     @RetryCountIfFailed(2)
-    public void cleanBeforeWork() throws InterruptedException, IOException {
+    public void cleanBeforeWork() {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         page.homePageMis().createSomeRecords(15);

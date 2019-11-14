@@ -1,7 +1,7 @@
 package emias.mis.base;
 
-import com.utils.sql.DBScripts;
 import com.utils.retryCountListner.RetryCountIfFailed;
+import com.utils.sql.DBScripts;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 
@@ -10,7 +10,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Создать расписание")
     @RetryCountIfFailed(2)
-    public void createShedule() throws InterruptedException {
+    public void createShedule() {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String docFullName = page.doctorMethods().getUnicalDoctor(null);
@@ -25,7 +25,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Копировать расписание")
     @RetryCountIfFailed(2)
-    public void copyShedule() throws InterruptedException {
+    public void copyShedule() {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String firstDoctor = page.doctorMethods().getUnicalDoctor(null);
@@ -57,7 +57,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Удалить расписание")
     @RetryCountIfFailed(2)
-    public void deleteShedule() throws InterruptedException {
+    public void deleteShedule() {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);
@@ -83,7 +83,7 @@ public class UpravleniePotokamiPacientovTest extends TestBase {
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Перенести запись")
     @RetryCountIfFailed(2)
-    public void surviveShedule() throws InterruptedException {
+    public void surviveShedule() {
         page.misHome().loginMis();
         page.homePageMis().vedenieRaspisaniyaBtn();
         String first_doctor_fullname = page.doctorMethods().getUnicalDoctor(null);

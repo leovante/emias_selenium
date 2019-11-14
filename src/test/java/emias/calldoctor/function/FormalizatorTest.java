@@ -21,7 +21,7 @@ public class FormalizatorTest extends TestBase {
     @Test(groups = "CD", description = "проверка заполнения неформализованного адреса при выборе мкаб на странице создания вызова")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testNotformalizeAddress()  {
+    public void testNotformalizeAddress() {
         Pacient pacientImpl = new PacientImpl("AdressNeformal");
         page.misHome().calldoctor();
         page.createCall(pacientImpl)

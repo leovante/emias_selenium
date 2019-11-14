@@ -63,6 +63,4 @@ public class SeleniumGrid extends BasePage {
         }
         logger.info("Тестирование закончено!");
     }
-
-    // TODO: 11/2/2018 сделать параллельный запуск старой версии хрома
 }

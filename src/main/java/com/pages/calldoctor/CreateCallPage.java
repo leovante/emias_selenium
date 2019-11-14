@@ -88,6 +88,7 @@ public class CreateCallPage extends BasePage {
 
     @Step("create simple call")
     public CreateCallPage createCall()  {
+        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
                 .address()
@@ -105,6 +106,7 @@ public class CreateCallPage extends BasePage {
 
     @Step("create call with MKAB")
     public CreateCallPage createCall_Mkab() {
+        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
                 .searchField()
@@ -124,9 +126,7 @@ public class CreateCallPage extends BasePage {
         try {
             hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).execute();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
         }
     }
@@ -134,11 +134,9 @@ public class CreateCallPage extends BasePage {
     @Step("create authorize call via API")
     public void createCall_Api_Auth()  {
         try {
-//            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
+            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).executeAuth();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
         }
     }

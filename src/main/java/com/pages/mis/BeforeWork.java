@@ -12,6 +12,7 @@ import org.openqa.selenium.interactions.Keyboard;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class BeforeWork extends BasePage {
     SelenideElement createShedule = $(By.xpath("//button[@id='btn_create']/span[2]"));
@@ -25,15 +26,14 @@ public class BeforeWork extends BasePage {
     SelenideElement pickTime_okon = $(By.id("pickTime_okon"));
     SelenideElement pickTime_okonClose = $(By.xpath("(//button[@type='button'])[2]"));
 
-    public BeforeWork()  {
+    public BeforeWork() {
     }
 
-
     @Step("установить время календаря")
-    public void setTimeCalendar(String a, String b) throws InterruptedException {
+    public void setTimeCalendar(String a, String b) {
         pickTime_nach.setValue(a);          //нажимаем на поле начала интервала
         pickTime_nachClose.click();
-        Thread.sleep(500);
+        sleep(500);
         pickTime_okon.setValue(b);          //нажимаем на поле окончание интервала
         pickTime_okonClose.click();      //нажали закрыть календарь
     }
@@ -46,12 +46,14 @@ public class BeforeWork extends BasePage {
     }
 
     @Step("создать расписание")
-    public void createShedule() throws InterruptedException {
+    public void createShedule() {
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
         String a = "0700", b = "2344";
         String c = "2344", d = "2359";
         createShedule.click();
+
         setTimeCalendar(a, b);
+
         setTypeOfReception(priemNaDomu);
         setTimeCalendar(c, d);
         setTypeOfReception(priemPoOcheredi);

@@ -22,7 +22,7 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testVerifyEditPage() throws Exception {
+    public void testVerifyEditPage() {
         PacientImpl pacient = new PacientImpl("Profile1");
         page.misHome().calldoctor();
         page.createCall(pacient)
@@ -34,7 +34,7 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова. После сохранения в истории не должно появиться новых записей")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testVerifyEditPage_2() throws Exception {
+    public void testVerifyEditPage_2() {
         PacientImpl pacient = new PacientImpl("Profile1");
         page.misHome().calldoctor();
         page.createCall(pacient)
@@ -49,7 +49,7 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры. Меняем с мкаб на неформал")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testEditCall_mkab_any() throws Exception {
+    public void testEditCall_mkab_any()  {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile1");
         page.misHome().calldoctor();
@@ -70,7 +70,7 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры. Меняем с неформал на мкаб")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testEditCall_any_mkab() throws Exception {
+    public void testEditCall_any_mkab()  {
         PacientImpl pacient = new PacientImpl("Profile1");
         PacientImpl pacient2 = new PacientImpl("Profile2");
         page.misHome().calldoctor();
@@ -92,7 +92,7 @@ public class EditTest extends TestBase {
     @Epic("Редактирование вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
-    public void testValidationAddressAfterSaveEditedCall() throws Exception {
+    public void testValidationAddressAfterSaveEditedCall()  {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile0_3");
         page.misHome().calldoctor();
@@ -108,7 +108,7 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "формализация неформализованного адреса на странице редактирования")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID() throws IOException, InterruptedException, JSONException {
+    public void testCallMkabWaitoutID()  {
         PacientImpl pacient = new PacientImpl("Profile0_3_1");
         page.misHome().calldoctor();
         page.createCall(pacient).createCall_Api();

@@ -11,7 +11,7 @@ public class BeforeRun {
     private boolean checkKladrFind = true;
     private boolean ehr_medrecords = true;
     private boolean disp_journal = true;
-    private boolean disp_card = true ;
+    private boolean disp_card = true;
     private boolean calldoctor = true;
     private boolean calldoctorVz = true;
     private TestStend testStend;
@@ -24,7 +24,7 @@ public class BeforeRun {
         }
     }
 
-    private void instasiator()   {
+    private void instasiator() {
         try {
             checkCreateCall = testStend.call_doctor_ef_api();
             checkKladrFind = testStend.kladrsave();

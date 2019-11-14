@@ -38,7 +38,7 @@ public class PerehodyServisovTest extends TestBase {
     @Epic("Переходы")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
-    public void testExitToMis()  {
+    public void testExitToMis() {
         page.misHome().calldoctor();
         page.dashboard().exitToMis();
         page.misHome().validateLoginPage();
@@ -47,7 +47,7 @@ public class PerehodyServisovTest extends TestBase {
     @Test(groups = "CD", description = "проверка перехода на сайт с инструкцией")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void testInstruction()  {
+    public void testInstruction() {
         page.misHome().calldoctor();
         page.dashboard().instructionTab();
         page.misHome()

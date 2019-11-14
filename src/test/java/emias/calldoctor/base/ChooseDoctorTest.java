@@ -12,7 +12,7 @@ public class ChooseDoctorTest extends TestBase {
     @Test(groups = "CD", description = "вызов из регистратуры. назначить врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
-    public void testAppendDoctorToCall_Registr() throws Exception {
+    public void testAppendDoctorToCall_Registr() {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
@@ -30,7 +30,7 @@ public class ChooseDoctorTest extends TestBase {
     @Test(groups = "CD", description = "вызов из СМП. назначить врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
-    public void testAppendDoctorToCall_SMP() throws Exception {
+    public void testAppendDoctorToCall_SMP() {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();
@@ -74,7 +74,7 @@ public class ChooseDoctorTest extends TestBase {
     @Test(groups = "CD", description = "назначить участкового врача на сегодня")
     @Epic("Назначить врача")
     @RetryCountIfFailed(2)
-    public void testAppendUchastkoviyDoctor() throws Exception {
+    public void testAppendUchastkoviyDoctor() {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();

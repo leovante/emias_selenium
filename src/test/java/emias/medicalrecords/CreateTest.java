@@ -6,8 +6,6 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class CreateTest extends TestBase {
     @Test(groups = "MR", description = "проверка что подписывается старый шаблон")
     @Epic("Создание медзаписи")
@@ -44,7 +42,7 @@ public class CreateTest extends TestBase {
     @Test(groups = "MR", description = "проверка что медзапись сохраняется после редактирования")
     @Epic("Создание медзаписи")
     @RetryCountIfFailed(2)
-    public void editMrAfterSave()  {
+    public void editMrAfterSave() {
         Datas d = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
         page.misHome().mrFromTap();
         page.ehrMedrecords(d)

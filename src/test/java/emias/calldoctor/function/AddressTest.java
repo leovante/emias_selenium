@@ -16,7 +16,7 @@ public class AddressTest extends TestBase {
     @Test(groups = "CD", description = "вызов от СМП по api от ребенка. Проверяю что адрес подтянулся из вызова.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallSmpChildMkab()  {
+    public void testCallSmpChildMkab() {
         Pacient pacientImpl = new PacientImpl("Profile3");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();

@@ -7,12 +7,9 @@ import com.datas.calldoctor.PacientImpl;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -85,7 +82,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в журнал диспансеризации из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void transitionDispMkab() throws InterruptedException {
+    public void transitionDispMkab() {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");

@@ -29,7 +29,7 @@ public class BeforeTestCD extends TestBase {
      *                                                                 and OT_V like 'Д%')
      *   and D_END > getdate()
      * */
-    public void updateStend()   {
+    public void updateStend() {
         Map<Integer, Integer> LPUDoctor = new <Integer, Integer>HashMap();
         LPUDoctor.put(3068, 2123);//Темников Дмитрий
         LPUDoctor.put(1831, 417);//Моков

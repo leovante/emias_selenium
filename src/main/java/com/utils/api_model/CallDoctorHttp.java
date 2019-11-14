@@ -32,7 +32,6 @@ public class CallDoctorHttp {
     private HttpPost request;
     private JSONObject jsonOb;
 
-    // TODO: 9/24/2019 навести порядок
     public CallDoctorHttp(Pacient pacientImpl) throws JSONException {
         this.pacientImpl = pacientImpl;
         this.jsonOb = new JSONObject();
@@ -162,7 +161,7 @@ public class CallDoctorHttp {
                 logger.info("Request body is: \n" + hr);
                 Scanner sc = new Scanner(hr.getEntity().getContent());
                 while (sc.hasNext()) {
-                    logger.info("Body request: " + sc.nextLine());
+                    logger.info("Тело запроса: " + sc.nextLine());
                 }
             } finally {
                 hr.close();

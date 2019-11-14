@@ -17,7 +17,7 @@ public class CreateCallTest extends TestBase {
     @Test(groups = "CD", description = "сразу при вводе адреса должна быть выпадашка")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testCallRegistrEmpy() throws IOException, InterruptedException, JSONException {
+    public void testCallRegistrEmpy() {
         PacientImpl pacient = new PacientImpl("Profile1");
         StAddress stAddress = new StAddress(pacient);
         page.misHome().calldoctor();

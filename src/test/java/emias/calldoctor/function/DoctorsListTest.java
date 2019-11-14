@@ -77,7 +77,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов взрослого М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void adultCall_male()  {
+    public void adultCall_male() {
         PacientImpl pacientImpl = new PacientImpl("Profile10");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -98,7 +98,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов взрослого Ж")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void adultCall_female()  {
+    public void adultCall_female() {
         PacientImpl pacientImpl = new PacientImpl("Profile11");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
@@ -177,7 +177,7 @@ public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "вызов по api СМП без авторизации. Проверка отображения участкового")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testPreviewUchDoctorWithoutKladrApi()  {
+    public void testPreviewUchDoctorWithoutKladrApi() {
         PacientImpl pacientImpl = new PacientImpl("ProfileDetkina");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");

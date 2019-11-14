@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class VedenieRaspisaniyaBasePage extends BasePage {
     SelenideElement deleteShedule = $(By.xpath("//button[@id='btn_delete']/span[2]"));
@@ -35,11 +36,11 @@ public class VedenieRaspisaniyaBasePage extends BasePage {
     SelenideElement saveBtn = $(By.xpath("//button[@id='btn_busy_save']/span"));
     SelenideElement copyShedule = $(By.xpath("//button[@id='btn_copy']/span[2]"));
 
-    public VedenieRaspisaniyaBasePage() throws IOException {
+    public VedenieRaspisaniyaBasePage() {
     }
 
     @Step("Создать расписание")
-    public void createShedule() throws InterruptedException {
+    public void createShedule() {
 //        waitAllEmias();
 
         Keyboard keyboard = ((HasInputDevices) driver).getKeyboard();
@@ -103,7 +104,7 @@ public class VedenieRaspisaniyaBasePage extends BasePage {
     }
 
     @Step("удалить расписание")
-    public VedenieRaspisaniyaBasePage deleteShedule() throws InterruptedException {//удалить расписание выбранного врача
+    public VedenieRaspisaniyaBasePage deleteShedule() {//удалить расписание выбранного врача
 //        Keyboard keyboard = ((HasInputDevices) remoteDriver).getKeyboard();
 //        waitAllEmias();
 
@@ -112,7 +113,7 @@ public class VedenieRaspisaniyaBasePage extends BasePage {
 //        waitWhileClickable(deleteSheduleBtnWindow);
         deleteSheduleBtnWindow.click();            //подтверждение удаления
 
-        Thread.sleep(1000);
+        sleep(1000);
         new PressEnter();
 //        keyboard.pressKey(Keys.ENTER);
 //        waitAllEmias();
@@ -120,12 +121,12 @@ public class VedenieRaspisaniyaBasePage extends BasePage {
     }
 
     @Step("устанвотиь время в календаре")
-    public void setTimeCalendar(String a, String b) throws InterruptedException {
+    public void setTimeCalendar(String a, String b)  {
 //        waitWhileClickable(pickTime_nach);
         pickTime_nach.sendKeys(a);          //нажимаем на поле начала интервала
 //        waitWhileClickable(pickTime_nachClose);
         pickTime_nachClose.click();
-        Thread.sleep(500);
+        sleep(500);
 //        waitWhileClickable(pickTime_okon);
         pickTime_okon.sendKeys(b);          //нажимаем на поле окончание интервала
 //        waitWhileClickable(pickTime_okonClose);
@@ -174,8 +175,8 @@ public class VedenieRaspisaniyaBasePage extends BasePage {
     }
 
     @Step("проверка создания распсиания")
-    public VedenieRaspisaniyaBasePage verifyCreatedShedule(String nameDoctor) throws InterruptedException {
-        Thread.sleep(2000);
+    public VedenieRaspisaniyaBasePage verifyCreatedShedule(String nameDoctor)  {
+        sleep(2000);
         $(By.xpath("//div[@id='schedule']/div/div/div/div[3]/div/div"))//поле с заявками
                 .$(By.xpath("//*[contains(text(),'23:44 ')]"));
         logger.info("Проверил что для доктора " + nameDoctor + " создано расписание!");
