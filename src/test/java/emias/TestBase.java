@@ -23,12 +23,14 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.text.ParseException;
 
+import static com.utils.WebDriverUtils.killAllRunWebBrowsers;
+
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
 //@TestExecutionListeners(inheritListeners = false, listeners =
 //        {DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
 //@TestExecutionListeners(value = CustomTestListener.class, mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS)
-public class TestBase extends AbstractTestNGSpringContextTests{
+public class TestBase extends AbstractTestNGSpringContextTests {
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;
     public String testName;
@@ -60,19 +62,20 @@ public class TestBase extends AbstractTestNGSpringContextTests{
 
     @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String gridRun)   {
+    public void beforeSuite(@Optional String gridRun) {
         new BeforeRun(gridRun);
         SeleniumGrid.run(gridRun);
     }
 
     @AfterSuite(alwaysRun = true)
     public void afterSuite() {
+        killAllRunWebBrowsers();
 //        SeleniumGrid.stop();
     }
 
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
-    public void setUp(@Optional String browser)  {
+    public void setUp(@Optional String browser) {
         driverInst = new WebDriverInstansiator(browser);
         driverInst.setDriver();
     }

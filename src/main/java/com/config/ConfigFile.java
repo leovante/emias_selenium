@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import static com.pages.BasePage.logger;
+import static com.pages.WebPage.logger;
 
 public class ConfigFile {
     private String url;
@@ -30,7 +30,7 @@ public class ConfigFile {
     private String lpuGuid;
     private String mr_tap;
     private String mr_mkab;
-
+    private boolean cleanBeforeTest;
 
 
     public ConfigFile() {
@@ -64,6 +64,7 @@ public class ConfigFile {
             mr_mkab = property.getProperty("st.mis.url.MRMKAB");
             urlApi = property.getProperty("st.api.urlApi");
             lpuGuid = property.getProperty("st.api.lpuGuid");
+            cleanBeforeTest = Boolean.parseBoolean(property.getProperty("st.test.cleanBeforeTest"));
         } catch (IOException e) {
             logger.error("ОШИБКА: Файл свойств отсуствует!");
         }
@@ -159,6 +160,10 @@ public class ConfigFile {
 
     public String getMr_mkab() {
         return mr_mkab;
+    }
+
+    public boolean isCleanBeforeTest() {
+        return cleanBeforeTest;
     }
 }
 

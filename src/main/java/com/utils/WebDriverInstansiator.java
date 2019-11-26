@@ -15,12 +15,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.SkipException;
 
 import java.awt.*;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.pages.BasePage.logger;
+import static com.pages.WebPage.logger;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;
@@ -48,6 +47,7 @@ public class WebDriverInstansiator {
             chromeOptions.setHeadless(false);
             driver = new ChromeDriver(chromeOptions);
             driver.manage().window().setPosition(new Point(0, 0));
+//            driver.manage().window().maximize();
             WebDriverRunner.setWebDriver(driver);
         }
         //селениум грид

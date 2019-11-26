@@ -3,17 +3,14 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.CacheLookup;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class SetDoctorPage extends BasePage {
+public class SetDoctorPage extends WebPage {
     SelenideElement appenToday = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
     SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
     SelenideElement zapisat = $(By.xpath("//span[contains(text(),'Записать')]"));

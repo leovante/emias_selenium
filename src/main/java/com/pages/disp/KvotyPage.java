@@ -1,11 +1,11 @@
 package com.pages.disp;
 
-import com.pages.BasePage;
+import com.pages.WebPage;
 
 import static com.lib.assistance.Assistance.placeholder;
 import static com.lib.assistance.Assistance.visible;
 
-public class KvotyPage extends BasePage implements KvotyPageElem{
+public class KvotyPage extends WebPage implements KvotyPageElem{
     public KvotyPage() {
     }
 

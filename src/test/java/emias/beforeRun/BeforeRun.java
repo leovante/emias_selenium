@@ -4,7 +4,7 @@ import com.api.TestStend;
 
 import java.io.IOException;
 
-import static com.pages.BasePage.logger;
+import static com.pages.WebPage.logger;
 
 public class BeforeRun {
     private boolean checkCreateCall = true;

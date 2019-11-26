@@ -1,7 +1,7 @@
 package com.pages.mis;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -10,7 +10,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class HomeBasePage extends BasePage {
+public class HomeWebPage extends WebPage {
     SelenideElement homePageBtn = $(By.xpath("//span[contains(.,'ЕМИАС Московской области')]"));
     SelenideElement timeTableBtn = $(By.xpath("//span[contains(.,'Ведение расписания')]"));
     SelenideElement admissionScheduleBtn = $(By.xpath("//span[contains(.,'Расписание приёма')]"));
@@ -18,7 +18,7 @@ public class HomeBasePage extends BasePage {
     SelenideElement callDoctorBtn = $(By.xpath("//span[contains(.,'Диспетчер')]"));
     SelenideElement napravlenieNaIssledovanie = $(By.xpath("//span[contains(.,'Направления на исследование')]"));
 
-    public HomeBasePage() {
+    public HomeWebPage() {
     }
 
     @Step("Захожу в ведение расписания")
@@ -27,25 +27,25 @@ public class HomeBasePage extends BasePage {
     }
 
     @Step("Захожу в расписание приема")
-    public HomeBasePage raspisaniPriemaBtn() {
+    public HomeWebPage raspisaniPriemaBtn() {
         admissionScheduleBtn.click();
         return this;
     }
 
     @Step("Захожу в перенос записей")
-    public HomeBasePage transferRecordsBtn() {
+    public HomeWebPage transferRecordsBtn() {
         transferRecordsBtn.click();
         return this;
     }
 
     @Step("Нажимаю на логотип")
-    public HomeBasePage logoHomeBtn() {
+    public HomeWebPage logoHomeBtn() {
         homePageBtn.click();
         return this;
     }
 
     @Step("Захожу в направление на исследование")
-    public HomeBasePage napravlenieNaIssledovanie() {
+    public HomeWebPage napravlenieNaIssledovanie() {
         napravlenieNaIssledovanie.click();
         return this;
     }
@@ -81,11 +81,11 @@ public class HomeBasePage extends BasePage {
 
                 doctor_num = new DoctorMethods().getUnicalDoctor3(n);
 
-                String doctor_num_fam = VedenieRaspisaniyaBasePage.getSecondName(doctor_num);
+                String doctor_num_fam = VedenieRaspisaniyaWebPage.getSecondName(doctor_num);
 //            SQLDemonstration.deleteShedule(doctor_num_fam);
                 new DoctorMethods().selectDoctor(doctor_num);
                 new BeforeWork().createShedule();
-                new VedenieRaspisaniyaBasePage().verifyCreatedShedule(doctor_num_fam);
+                new VedenieRaspisaniyaWebPage().verifyCreatedShedule(doctor_num_fam);
                 new DoctorMethods().selectDoctor(doctor_num);
                 n++;
             }

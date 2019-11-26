@@ -7,8 +7,8 @@ import static com.codeborne.selenide.Selenide.page;
 @Component
 public interface MisPage {
 
-    default HomeBasePage homePageMis() {
-        return page(HomeBasePage.class);
+    default HomeWebPage homePageMis() {
+        return page(HomeWebPage.class);
     }
 
     default MisHomePage misHome() {
@@ -19,16 +19,16 @@ public interface MisPage {
         return page(NapravlenieNaIssledovanie.class);
     }
 
-    default VedenieRaspisaniyaBasePage manageShedule() {
-        return page(VedenieRaspisaniyaBasePage.class);
+    default VedenieRaspisaniyaWebPage manageShedule() {
+        return page(VedenieRaspisaniyaWebPage.class);
     }
 
     default CreateMedicalCard medicalCard() {
         return page(CreateMedicalCard.class);
     }
 
-    default RaspisaniePriemaBasePage raspisaniePriemaPage() {
-        return page(RaspisaniePriemaBasePage.class);
+    default RaspisaniePriemaWebPage raspisaniePriemaPage() {
+        return page(RaspisaniePriemaWebPage.class);
     }
 
     default TransferRecords transferRecords() {

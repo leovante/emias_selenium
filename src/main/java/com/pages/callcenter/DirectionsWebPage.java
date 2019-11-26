@@ -1,20 +1,20 @@
 package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class DirectionsBasePage extends BasePage {
+public class DirectionsWebPage extends WebPage {
     SelenideElement closemodal = $(By.xpath("//*[@id='ccInfoModal']/div/div/div[3]/button"));
 //    @FindBy(xpath = "//*[@id='direction-list-tab']")
 //    WebElement apo;
 //    JavascriptExecutor js = (JavascriptExecutor) remoteDriver;
 
-    public DirectionsBasePage() throws IOException {
+    public DirectionsWebPage() throws IOException {
     }
 
     public void eqNapr(String arg0, String arg1, String arg2){

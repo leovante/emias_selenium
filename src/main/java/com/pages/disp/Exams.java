@@ -2,68 +2,36 @@ package com.pages.disp;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.datas.disp.measure.MeasureEnum;
 import com.lib.disp.DispAlarms;
-import com.pages.BasePage;
+import com.pages.disp.measure.Blok;
+import com.pages.disp.measure.BlokImpl;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.*;
 
-public class ExampPage extends BasePage implements Services {
-    SelenideElement AllServicesTap = $(By.xpath("//*[contains(text(),'Все мероприятия')]"));
-    SelenideElement ArtPressure = $(By.xpath("//*[contains(text(),'Измерение артериального давления')]")).$(By.xpath("../../."));
-    SelenideElement Opros_Anketirovanie = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]")).$(By.xpath("../../."));
-    SelenideElement Antropometriya = $(By.xpath("//div[contains(text(),'Антропометрия (измерение роста стоя, массы тела, окружности талии), расчет индекса массы тела')]")).$(By.xpath("../../."));
-    SelenideElement IndividualnoeProfConsulting = $(By.xpath("//div[contains(text(),'Индивидуальное профилактическое консультирование')]")).$(By.xpath("../../."));
-    SelenideElement OpredelenieLvlGlukozi = $(By.xpath("//*[contains(text(),'Определение уровня глюкозы в крови экспресс-методом (допускается лабораторный метод)')]")).$(By.xpath("../../."));
-    SelenideElement OpredelenieLvlHolesterina = $(By.xpath("//*[contains(text(),'Определение уровня общего холестерина в крови (допускается экспресс-метод)')]")).$(By.xpath("../../."));
-    SelenideElement Flura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
-    SelenideElement OpredelenieOtnositelnogoSSR = $x("//*[contains(text(),'Определение относительного суммарного сердечно-сосудистого риска')]")/*.$x("../../.")*/;//убрал, потому что не нажималось
-    SelenideElement OsmotrTerapevta = $(By.xpath("//*[contains(text(),'Прием (осмотр) врача-терапевта')]")).$(By.xpath("../../."));
-    /*остальное*/
-    SelenideElement Zakluchenie = $x("//a[contains(text(),'Заключение')]");
-    SelenideElement ZakluchenieBorder = $x("//h1[contains(text(),'Заключение')]");
-    SelenideElement VidOplati = $(By.xpath("//*[@placeholder='Вид оплаты']"));
-    SelenideElement CelPosesheniya = $(By.xpath("//*[@placeholder='Цель посещения']"));
-    SelenideElement MestoObsluzhivaniya = $(By.xpath("//*[@placeholder='Место обслуживания']"));
-    SelenideElement ResultatObrasheniya = $(By.xpath("//*[@placeholder='Результат обращения']"));
-    SelenideElement IshodObrashenia = $(By.xpath("//*[@placeholder='Исход обращения']"));
-    SelenideElement VrachPishetZakluchenie = $(By.xpath("//*[@placeholder='Врач, который пишет заключение']"));
-    SelenideElement PodvalSaveBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Сохранить')]"));
-    SelenideElement PodvalPodpisatBtn = $(By.xpath("//div[@class='fixed-bottom-panel']")).$(By.xpath(".//*[contains(text(),'Подписать')]"));
-    SelenideElement ALARMA_SAVE = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно сохранена.')]"));
-    SelenideElement ALARMA_PODPISANA = $(By.xpath(".//*[contains(text(),'Медицинская запись успешно подписана.')]"));
-    SelenideElement exam;
-    SelenideElement exampsBlock = $x("//app-disp-exams-map");
+public class Exams extends DispaPage {
     String examName;
+    SelenideElement exam;
+    private BlokImpl blok;
 
-    public ExampPage(String examName)  {
+    Exams(String examName) {
         this.examName = examName;
         alarms = new DispAlarms();
     }
 
-    public ExampPage() {
+    Exams() {
         alarms = new DispAlarms();
+        this.blok = new Blok();
     }
 
-    void a() {
-//        examps.oprosAnketirovanie().
+    public void expand(MeasureEnum measure) {
+        blok.expand(measure);
     }
 
-    public ExampPage openMeasure() {
-        this.exam = exampsBlock.$x(".//*[contains(text(),'" + examName + "')]");
-        this.exam.$x("../../../.").hover();
-        this.exam.click();
-        sleep(1000);
-        this.exam.$x("../../../.").hover();
-        this.exam.$x("../../../.").$x(".//app-medical-records-list").shouldBe(Condition.visible);
-        return this;
-    }
-
-    public ExampPage openService() {
+    public Exams openService() {
         sleep(1000);
         exam.$x("../../../.").hover();
         exam.$x("../../../.")
@@ -74,7 +42,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage signService() {
+    public Exams signService() {
         $x("//*[contains(text(),'" + exam + "')]")
                 .$x("../tr[3]//*[contains(text(),'Подписать')]").hover().click();
         return this;
@@ -94,12 +62,12 @@ public class ExampPage extends BasePage implements Services {
                 .fillZakluchenie();
     }
 
-    public ExampPage switchAllServicesTap() {
+    public Exams switchAllServicesTap() {
         AllServicesTap.click();
         return this;
     }
 
-    public ExampPage fillArtPressure() {
+    public Exams fillArtPressure() {
         sleep(4000);
         ArtPressure.$(By.xpath("../.")).hover();
         ArtPressure.click();
@@ -109,7 +77,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillOpros_Anketirovanie() {
+    public Exams fillOpros_Anketirovanie() {
         sleep(4000);
         Opros_Anketirovanie.$(By.xpath("../.")).hover();
         Opros_Anketirovanie.click();
@@ -130,7 +98,8 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillAntropometriya() { sleep(4000);
+    public Exams fillAntropometriya() {
+        sleep(4000);
         Antropometriya.$(By.xpath("../.")).hover();
         Antropometriya.click();
         sleep(1000);
@@ -149,7 +118,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillIndividProfConsulting()  {
+    public Exams fillIndividProfConsulting() {
         sleep(4000);
         IndividualnoeProfConsulting.$(By.xpath("../.")).hover();
         IndividualnoeProfConsulting.click();
@@ -172,7 +141,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillOpredelenieLvlGlukozi()  {
+    public Exams fillOpredelenieLvlGlukozi() {
         sleep(4000);
         OpredelenieLvlGlukozi.$(By.xpath("../.")).hover();
         OpredelenieLvlGlukozi.click();
@@ -182,7 +151,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillOpredelenieLvlHolesterina()  {
+    public Exams fillOpredelenieLvlHolesterina() {
         sleep(4000);
         OpredelenieLvlHolesterina.$(By.xpath("../.")).hover();
         OpredelenieLvlHolesterina.click();
@@ -192,7 +161,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillFlurography()  {
+    public Exams fillFlurography() {
         sleep(4000);
         Flura.$(By.xpath("../.")).hover();
         sleep(1000);
@@ -220,7 +189,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillOpredelenieOtnositSummSSR()  {
+    public Exams fillOpredelenieOtnositSummSSR() {
         sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -229,7 +198,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillPriem_OsmotrTerapevta()  {
+    public Exams fillPriem_OsmotrTerapevta() {
         sleep(4000);
         OsmotrTerapevta.$(By.xpath("../.")).hover();
         OsmotrTerapevta.click();
@@ -284,7 +253,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage fillZakluchenie()  {
+    public Exams fillZakluchenie() {
         sleep(4000);
         Zakluchenie.$(By.xpath("../../conclusion")).hover();
         Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
@@ -304,7 +273,7 @@ public class ExampPage extends BasePage implements Services {
     }
 
     /*тут для тестов по просмотру*/
-    public void viewTemnikov()  {
+    public void viewTemnikov() {
         switchAllServicesTap()
                 .viewMeasureArtPressure()
                 .viewMeasureOpros_Anketirovanie()
@@ -318,7 +287,7 @@ public class ExampPage extends BasePage implements Services {
                 .viewZakluchenie();
     }
 
-    public ExampPage viewMeasureArtPressure() {
+    public Exams viewMeasureArtPressure() {
         sleep(4000);
         ArtPressure.hover().click();
         ArtPressure.$(By.xpath("../..//*[contains(text(),'Показатели')]")).shouldBe(Condition.visible);
@@ -327,7 +296,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewMeasureOpros_Anketirovanie()  {
+    public Exams viewMeasureOpros_Anketirovanie() {
         sleep(4000);
         Opros_Anketirovanie.hover().click();
         Opros_Anketirovanie.$(By.xpath("../tr[3]//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")).hover().click();
@@ -346,7 +315,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewAntropometriya()  {
+    public Exams viewAntropometriya() {
         sleep(4000);
         Antropometriya.hover().click();
         Antropometriya.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Антропометрия')]")).hover().click();
@@ -363,7 +332,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewIndividProfConsulting()  {
+    public Exams viewIndividProfConsulting() {
         sleep(4000);
         IndividualnoeProfConsulting.hover().click();
         IndividualnoeProfConsulting.$(By.xpath("../tr[3]")).$(By.xpath(".//*[contains(text(),'Индивидуальное профилактическое консультирование')]")).hover().click();
@@ -384,7 +353,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewOpredelenieLvlGlukozi()  {
+    public Exams viewOpredelenieLvlGlukozi() {
         sleep(4000);
         OpredelenieLvlGlukozi.click();
         OpredelenieLvlGlukozi.$(By.xpath("td[4]/mat-checkbox")).click();
@@ -392,7 +361,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewOpredelenieLvlHolesterina() {
+    public Exams viewOpredelenieLvlHolesterina() {
         sleep(4000);
         OpredelenieLvlHolesterina.click();
         OpredelenieLvlHolesterina.$(By.xpath("td[4]/mat-checkbox")).click();
@@ -400,7 +369,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewFlurography()  {
+    public Exams viewFlurography() {
         sleep(4000);
         Flura.$(By.xpath("../.")).hover();
         sleep(1000);
@@ -416,7 +385,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewOpredelenieOtnositSummSSR() {
+    public Exams viewOpredelenieOtnositSummSSR() {
         sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../tr[2]")).hover();
         OpredelenieOtnositelnogoSSR.click();
@@ -425,7 +394,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewPriem_OsmotrTerapevta()  {
+    public Exams viewPriem_OsmotrTerapevta() {
         sleep(4000);
         OsmotrTerapevta.$(By.xpath("../tr[2]")).hover();
         OsmotrTerapevta.click();
@@ -478,7 +447,7 @@ public class ExampPage extends BasePage implements Services {
         return this;
     }
 
-    public ExampPage viewZakluchenie()  {
+    public Exams viewZakluchenie() {
         sleep(4000);
         Zakluchenie.$(By.xpath("../../conclusion")).hover();
         Zakluchenie.$(By.xpath("../../conclusion//div[contains(text(),'низкий')]")).click();
@@ -497,30 +466,30 @@ public class ExampPage extends BasePage implements Services {
     }
 
     /*уведомления*/
-    public ExampPage validateServiceIsSign() {
+    public Exams validateServiceIsSign() {
         $(By.xpath("//*[contains(text(),'Мероприятие успешно подписано')]")).shouldBe(Condition.visible);
         return this;
     }
 
-    public ExampPage saveBtn() {
+    public Exams saveBtn() {
         PodvalSaveBtn.click();
         $(By.xpath("//*[contains(text(),'Карта успешно сохранена')]")).shouldBe(Condition.visible);
         return this;
     }
 
-    public ExampPage podpisatBtn() {
+    public Exams podpisatBtn() {
         PodvalPodpisatBtn.click();
         $(By.xpath("//*[contains(text(),'Карта успешно подписана')]")).shouldBe(Condition.visible);
         return this;
     }
 
     /* меню слева*/
-    public ExampPage zakluchenieMenuBtn() {
+    public Exams zakluchenieMenuBtn() {
         Zakluchenie.click();
         return this;
     }
 
-    public ExampPage validateFieldParamIsEmpy() {
+    public Exams validateFieldParamIsEmpy() {
         lib.disp()
                 .routeList()
                 .opredelenieOtnositelnogoSSR()
@@ -534,7 +503,7 @@ public class ExampPage extends BasePage implements Services {
     }
 
     @Step("Проверяю валидацию показателя, если поле параметра с пробелом")
-    public ExampPage validateFieldParamWithSpace()  {
+    public Exams validateFieldParamWithSpace() {
         lib.disp(OpredelenieOtnositelnogoSSR)
                 .expand()
                 .setValue(" ")
@@ -544,7 +513,7 @@ public class ExampPage extends BasePage implements Services {
     }
 
     @Step("Проверяю валидацию показателя, если поле параметра пустое")
-    public ExampPage validateClearParam()  {
+    public Exams validateClearParam() {
         lib.disp(OpredelenieOtnositelnogoSSR)
                 .expand()
                 .setValue("")
@@ -554,7 +523,7 @@ public class ExampPage extends BasePage implements Services {
     }
 
     @Step("Проверяю валидацию поля параметров с дефолтным значением")
-    public ExampPage validateParamNotOpen()  {
+    public Exams validateParamNotOpen() {
         sleep(4000);
         OpredelenieOtnositelnogoSSR.$(By.xpath("../.")).hover();
         sleep(2000);
@@ -564,7 +533,7 @@ public class ExampPage extends BasePage implements Services {
     }
 
     @Step("Валидация что карта заблокирована")
-    public ExampPage validateCardIsDisable() {
+    public Exams validateCardIsDisable() {
         PodvalSaveBtn.shouldBe(Condition.visible);
         Assert.assertTrue(PodvalSaveBtn.is(Condition.disabled), "Кнопка сохранить не задизеблина");
         return this;
@@ -572,7 +541,7 @@ public class ExampPage extends BasePage implements Services {
 
 
     @Step("Валидация что заключение отображается")
-    public ExampPage validateZakluchenieBorder() {
+    public Exams validateZakluchenieBorder() {
         Assert.assertTrue(ZakluchenieBorder.is(Condition.visible), "Заключение не отображается");
         return this;
     }

@@ -7,17 +7,16 @@ import com.codeborne.selenide.commands.PressEnter;
 import com.codeborne.selenide.commands.PressEscape;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.Set;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class RaspisaniePriemaBasePage extends BasePage {
+public class RaspisaniePriemaWebPage extends WebPage {
     static String terapevtTime;
     static String terapevtName;
 
@@ -42,7 +41,7 @@ public class RaspisaniePriemaBasePage extends BasePage {
     SelenideElement applyBtn = $(By.id("ApplyBtn"));
     SelenideElement kvotyCount = $(By.xpath("//*[@class='ng-binding'][@ng-hide='!data.IsQuotaDispType']"));
 
-    public RaspisaniePriemaBasePage()  {
+    public RaspisaniePriemaWebPage()  {
     }
 
     @Step("Сделать запись")
@@ -72,7 +71,7 @@ public class RaspisaniePriemaBasePage extends BasePage {
         }
     }
 
-    public RaspisaniePriemaBasePage createDispMl(String pacient, String bd) {
+    public RaspisaniePriemaWebPage createDispMl(String pacient, String bd) {
         ml.click();
         mkabSearch.val(pacient);
         mlSearchBtn.click();
@@ -84,12 +83,12 @@ public class RaspisaniePriemaBasePage extends BasePage {
         return this;
     }
 
-    public RaspisaniePriemaBasePage saveAndClose() {
+    public RaspisaniePriemaWebPage saveAndClose() {
         $(By.xpath("//*[contains(text(),'Сохранить и закрыть')]")).click();
         return this;
     }
 
-    public RaspisaniePriemaBasePage generateML() {
+    public RaspisaniePriemaWebPage generateML() {
         String i = kvotyCount.getText();
         $(By.id("patientModelList-button")).$x(".//span").getValue();
         $(By.xpath("//span[@ng-click='btnGenerateRouteCard()']")).click();
@@ -124,7 +123,7 @@ public class RaspisaniePriemaBasePage extends BasePage {
         catch (NoSuchFieldException e ){e.printStackTrace();}
     }
 
-    public RaspisaniePriemaBasePage generateML(Pacient pacient)  {
+    public RaspisaniePriemaWebPage generateML(Pacient pacient)  {
         ml.click();
         sinpmkabScheduleGrid.setValue(
                 pacient.getFamily() + " " +
@@ -156,18 +155,18 @@ public class RaspisaniePriemaBasePage extends BasePage {
         return this;
     }
 
-    public RaspisaniePriemaBasePage getTerapevtTime() {
+    public RaspisaniePriemaWebPage getTerapevtTime() {
         terapevtTime = $x("//*[contains(text(),'Прием врача-терапевта')]/../../div[7]/span").getText();
 //        terapevtName = $(By.xpath("//*[contains(text(),'Прием врача-терапевта')]/../../div[8]/span[2]")).getText();
         return this;
     }
 
-    public RaspisaniePriemaBasePage saveAndCloseBtn() {
+    public RaspisaniePriemaWebPage saveAndCloseBtn() {
         applyBtn.click();
         return this;
     }
 
-    public RaspisaniePriemaBasePage selectDoctor(Doctor doctor) {
+    public RaspisaniePriemaWebPage selectDoctor(Doctor doctor) {
         $(By.xpath("//td/div/span[contains(text(),'" +
                 doctor.getFamily() + " " +
                 doctor.getName() + " " +
@@ -176,7 +175,7 @@ public class RaspisaniePriemaBasePage extends BasePage {
         return this;
     }
 
-    public RaspisaniePriemaBasePage disableIPK() {
+    public RaspisaniePriemaWebPage disableIPK() {
         $(By.xpath("//*[contains(text(),'Индивидуальное профилактическое консультирование')]"))
                 .$(By.xpath("./../..//div[13]/span[2]"))//[@ng-click='CancelService(exam)'][@ng-model='exam']
                 .scrollTo()
@@ -188,7 +187,7 @@ public class RaspisaniePriemaBasePage extends BasePage {
         return this;
     }
 
-    public RaspisaniePriemaBasePage validateTerapevtLast() {
+    public RaspisaniePriemaWebPage validateTerapevtLast() {
         $$(By.xpath("//div[class='examListBody']")).last()
                 .$(By.xpath(".//*[contains(text(),'Прием врача-терапевта')]"))
                 .scrollTo()

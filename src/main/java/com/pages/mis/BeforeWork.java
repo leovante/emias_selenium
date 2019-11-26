@@ -1,7 +1,7 @@
 package com.pages.mis;
 
 import com.codeborne.selenide.SelenideElement;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -9,12 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class BeforeWork extends BasePage {
+public class BeforeWork extends WebPage {
     SelenideElement createShedule = $(By.xpath("//button[@id='btn_create']/span[2]"));
     SelenideElement ddlbusytypeButton = $(By.xpath("//a[@id='ddlbusytype-button']/span[2]"));
     SelenideElement pickTime_nach = $(By.id("pickTime_nach"));

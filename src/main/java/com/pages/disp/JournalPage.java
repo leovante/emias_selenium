@@ -2,7 +2,7 @@ package com.pages.disp;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.lib.assistance.Assistance.placeholder;
 import static com.lib.assistance.Assistance.visible;
 
-public class JournalPage extends BasePage implements JournalPageElem{
+public class JournalPage extends WebPage implements JournalPageElem{
     SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
     SelenideElement pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
     SelenideElement fioField = $(By.xpath("//*[@placeholder='ФИО пациента']"));

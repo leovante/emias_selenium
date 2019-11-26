@@ -1,15 +1,15 @@
 package com.pages.callcenter;
 
-import com.pages.BasePage;
+import com.pages.WebPage;
 
 import java.io.IOException;
 
-public class PatientRecordsBasePage extends BasePage {
+public class PatientRecordsWebPage extends WebPage {
     String name2;
     String time2;
     String number2;
 
-    public PatientRecordsBasePage() throws IOException {
+    public PatientRecordsWebPage() throws IOException {
     }
 
     public void asserts() {

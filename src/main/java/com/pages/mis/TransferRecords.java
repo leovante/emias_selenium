@@ -3,7 +3,7 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -16,7 +16,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class TransferRecords extends BasePage {
+public class TransferRecords extends WebPage {
 
     SelenideElement btn_transfer = $(By.xpath("//button[@id='btn_transfer']/span[2]"));
     SelenideElement btn_transfer_schedule = $(By.xpath("//button[@id='btn_transfer_schedule']/span"));

@@ -3,19 +3,17 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import com.utils.DispUrlParser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 
-import java.net.MalformedURLException;
-
 import static com.codeborne.selenide.Selenide.*;
 import static com.lib.assistance.Assistance.visible;
 
-public class MisHomePage extends BasePage {
+public class MisHomePage extends WebPage {
 
     public MisHomePage()   {
     }

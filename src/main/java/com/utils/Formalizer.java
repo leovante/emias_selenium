@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import static com.pages.BasePage.logger;
+import static com.pages.WebPage.logger;
 
 public class Formalizer {
     HttpResponse httpResponse;

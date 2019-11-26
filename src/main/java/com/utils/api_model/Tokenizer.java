@@ -3,26 +3,21 @@ package com.utils.api_model;
 import com.config.ConfigFile;
 import com.datas.calldoctor.Pacient;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pages.BasePage;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
+import com.pages.WebPage;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.protocol.HttpContext;
-import org.testng.Assert;
 import org.testng.SkipException;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Tokenizer extends BasePage {
+public class Tokenizer extends WebPage {
     private Pacient pacient;
     private ConfigFile config;
 

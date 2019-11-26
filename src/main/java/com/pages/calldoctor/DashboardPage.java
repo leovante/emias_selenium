@@ -6,18 +6,16 @@ import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.*;
 import static com.lib.assistance.Assistance.parseTelephone;
 
-public class DashboardPage extends BasePage {
+public class DashboardPage extends WebPage {
     private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
     private SelenideElement exitBtn = $x("//span[contains(text(),'Выход')]");
     private SelenideElement instructionBtn = $x("//span[contains(text(),'Инструкция')]");

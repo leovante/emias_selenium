@@ -1,6 +1,6 @@
 package com.utils.Selenium;
 
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.json.JSONException;
 import org.testng.SkipException;
 
@@ -9,7 +9,7 @@ import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class SeleniumGrid extends BasePage {
+public class SeleniumGrid extends WebPage {
     static boolean status = false;
     static boolean grid = false;
     static boolean working = false;

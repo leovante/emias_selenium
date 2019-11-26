@@ -2,7 +2,7 @@ package com.pages.callcenter;
 
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -12,13 +12,13 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class CallDoctorBasePage extends BasePage {
+public class CallDoctorWebPage extends WebPage {
     private PacientImpl pacientImpl;
 
-    public CallDoctorBasePage() throws IOException {
+    public CallDoctorWebPage() throws IOException {
     }
 
-    public CallDoctorBasePage calldoctor(PacientImpl pacientImpl) throws InterruptedException {
+    public CallDoctorWebPage calldoctor(PacientImpl pacientImpl) throws InterruptedException {
 
         Thread.sleep(2000);
         $(By.xpath("//div[@class='fast-buttons']//button[text()='Вызов врача']")).click();
@@ -55,7 +55,7 @@ public class CallDoctorBasePage extends BasePage {
         return this;
     }
 
-    public CallDoctorBasePage calldoctorSMP(PacientImpl pacientImpl) throws InterruptedException {
+    public CallDoctorWebPage calldoctorSMP(PacientImpl pacientImpl) throws InterruptedException {
         $(By.xpath("//div[@class='fast-buttons']//button[text()='Вызов врача']")).click();
         $(By.xpath("//*[@id='searchLPUForm']/div[1]/div/input")).val("СТЕНД ЕМИАС МО");
         $(By.xpath("//*[@id='patientLpuList']/div[2]/button")).click();
@@ -85,7 +85,7 @@ public class CallDoctorBasePage extends BasePage {
         $(By.name("phone")).val("1234567899");
     }
 
-    public CallDoctorBasePage eqCallDoc(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9) throws InterruptedException {
+    public CallDoctorWebPage eqCallDoc(String arg1, String arg2, String arg3, String arg4, String arg5, String arg6, String arg7, String arg8, String arg9) throws InterruptedException {
         SelenideElement lp = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[1]"));
         SelenideElement fi = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[2]"));
         SelenideElement bir = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[3]"));
@@ -127,7 +127,7 @@ public class CallDoctorBasePage extends BasePage {
         return this;
     }
 
-    public CallDoctorBasePage eqCallDocSMP(String arg1, String arg2, String arg3, String arg4, String arg5) throws InterruptedException {
+    public CallDoctorWebPage eqCallDocSMP(String arg1, String arg2, String arg3, String arg4, String arg5) throws InterruptedException {
         SelenideElement lp = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[1]"));
         SelenideElement fi = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[2]"));
         SelenideElement bir = $(By.xpath("//*[@id='ccIngoModalCont']/dl/dd[3]"));

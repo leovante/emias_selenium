@@ -5,39 +5,29 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import com.pages.calldoctor.controllers.StAddress;
-import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.api_model.CallDoctorHttp;
-import com.utils.except.NoticeException;
 import io.qameta.allure.Step;
-import org.apache.http.HttpResponse;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
-import org.testng.SkipException;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.getDateDiff;
-import static com.lib.assistance.Assistance.parseTelephone;
-import static com.lib.assistance.Assistance.years;
+import static com.lib.assistance.Assistance.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
-public class CreateCallPage extends BasePage {
+public class CreateCallPage extends WebPage {
     private Pacient pacient;
     SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
     SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
-
     SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
     SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
     SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
@@ -77,7 +67,7 @@ public class CreateCallPage extends BasePage {
     SelenideElement allertCloseDialog_Yes = $(By.xpath("//button/span[contains(text(),'Да')]"));
     ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
 
-    public CreateCallPage() {
+    CreateCallPage() {
         super();
     }
 
@@ -87,7 +77,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create simple call")
-    public CreateCallPage createCall()  {
+    public CreateCallPage createCall() {
         hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
@@ -118,13 +108,11 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-//    @Autowired
-//    protected HltCallDoctorServiceImpl hltCallDoctorService;
-
     @Step("create call via API")
-    public void createCall_Api()   {
+    public void createCall_Api() {
         try {
-            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
+            if (conf.isCleanBeforeTest())
+                hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).execute();
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
@@ -132,9 +120,10 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create authorize call via API")
-    public void createCall_Api_Auth()  {
+    public void createCall_Api_Auth() {
         try {
-            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
+            if (conf.isCleanBeforeTest())
+                hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).executeAuth();
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
@@ -142,7 +131,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("edit call")
-    public CreateCallPage editCallPage()  {
+    public CreateCallPage editCallPage() {
         sourceCall()
                 .sourceCall()
                 .address()
@@ -159,7 +148,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create call with MKAB from SMP")
-    public CreateCallPage editCallPage_Mkab()  {
+    public CreateCallPage editCallPage_Mkab() {
         sourceCall()
                 .searchField()
                 .addressPlus()
@@ -429,7 +418,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("валидация что вызов не отменился на странице редактирования")
-    public CreateCallPage verifyCancellCallValidation()  {
+    public CreateCallPage verifyCancellCallValidation() {
         reason_cancel_call_validator.shouldBe(Condition.visible);
         sleep(2000);
         kto_pacient_header.shouldBe(Condition.visible);

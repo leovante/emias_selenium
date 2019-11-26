@@ -1,6 +1,6 @@
 package com.pages.mis;
 
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -9,7 +9,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class NapravlenieNaIssledovanie extends BasePage {
+public class NapravlenieNaIssledovanie extends WebPage {
 
     public NapravlenieNaIssledovanie() throws IOException {
     }

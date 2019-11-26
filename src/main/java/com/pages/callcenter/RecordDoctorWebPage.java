@@ -3,7 +3,7 @@ package com.pages.callcenter;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.close;
 import static org.testng.Assert.assertTrue;
 
-public class RecordDoctorBasePage extends BasePage {
+public class RecordDoctorWebPage extends WebPage {
     private PacientImpl pacientImpl;
     private Doctor doctor;
     SelenideElement allrecord = $(By.xpath("//*[@id='all-patient-records-tab']"));
@@ -44,37 +44,37 @@ public class RecordDoctorBasePage extends BasePage {
     String time2;
     String number2;
 
-    public RecordDoctorBasePage() throws IOException {
+    public RecordDoctorWebPage() throws IOException {
     }
 
-    public RecordDoctorBasePage visitDoctor(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+    public RecordDoctorWebPage visitDoctor(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
         this.pacientImpl = pacientImpl;
         recordDoctor2();
         return this;
     }
 
-    public RecordDoctorBasePage visitDoctorAssertTalon(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+    public RecordDoctorWebPage visitDoctorAssertTalon(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
         this.pacientImpl = pacientImpl;
         recordDoctor2()
                 .assertDoc();
         return this;
     }
 
-    public RecordDoctorBasePage visitDoctorRewritable(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+    public RecordDoctorWebPage visitDoctorRewritable(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
         this.pacientImpl = pacientImpl;
         recordDoctor()
                 .workRecord();
         return this;
     }
 
-    public RecordDoctorBasePage deleteVisitDoctor(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
+    public RecordDoctorWebPage deleteVisitDoctor(PacientImpl pacientImpl) throws IOException, InterruptedException, ParseException {
         this.pacientImpl = pacientImpl;
         recordDoctor()
                 .deleteRecord();
         return this;
     }
 
-    public RecordDoctorBasePage recordDoctor() throws InterruptedException {
+    public RecordDoctorWebPage recordDoctor() throws InterruptedException {
         changeLpu(doctor.getDepartment());
         changeSpec(doctor.getSpecialization());
         changeDoc(doctor.getName());
@@ -84,7 +84,7 @@ public class RecordDoctorBasePage extends BasePage {
         return this;
     }
 
-    public RecordDoctorBasePage recordDoctor2() throws InterruptedException {
+    public RecordDoctorWebPage recordDoctor2() throws InterruptedException {
         changeLpu("СТЕНД ЕМИАС МО");
         changeSpec("Терапия");
         changeDoc(doctor.getName());
@@ -94,7 +94,7 @@ public class RecordDoctorBasePage extends BasePage {
         return this;
     }
 
-    public RecordDoctorBasePage assertDir(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
+    public RecordDoctorWebPage assertDir(String lpu, String special, String fioDoc, String kab) throws InterruptedException {
         Thread.sleep(2000);
         SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));
         String spec1= specialist.getText();
@@ -127,7 +127,7 @@ public class RecordDoctorBasePage extends BasePage {
 
     }
 
-    public RecordDoctorBasePage assertDoc() throws InterruptedException {
+    public RecordDoctorWebPage assertDoc() throws InterruptedException {
         Thread.sleep(2000);
         SelenideElement specialist = $(By.xpath("//*[@id='a7f391d4-d5d8-44d5-a770-f7b527bb12330b58bf2f-b6ff-423e-bff8-018953417c50']/td[1]/br[1]"));
         String spec1= specialist.getText();
@@ -163,7 +163,7 @@ public class RecordDoctorBasePage extends BasePage {
         return this;
     }
 
-    public RecordDoctorBasePage EqualDoc() throws InterruptedException {
+    public RecordDoctorWebPage EqualDoc() throws InterruptedException {
         logger.info("метка1");
         String eq1 = lpuName.getText();
         String eq2 = specName.getText();
@@ -201,7 +201,7 @@ public class RecordDoctorBasePage extends BasePage {
         return this;
     }
 
-    public RecordDoctorBasePage EqualDetal() {
+    public RecordDoctorWebPage EqualDetal() {
 
 //        String eq1 = lpuName.getText();
 //
@@ -261,7 +261,7 @@ public class RecordDoctorBasePage extends BasePage {
         fastDoc.click();
     }
 
-    public RecordDoctorBasePage createNewCall(String arg0) throws IOException {
+    public RecordDoctorWebPage createNewCall(String arg0) throws IOException {
         SelenideElement lpu = $(By.xpath("//button[contains(.,'СТЕНД ЕМИАС МО')]"));
         lpu.hover();
         lpu.click();
@@ -290,7 +290,7 @@ public class RecordDoctorBasePage extends BasePage {
 
     }
 
-    public RecordDoctorBasePage workRecord() {
+    public RecordDoctorWebPage workRecord() {
         allrecord.click();
         reschedule.click();
         recordDate.click();
@@ -299,7 +299,7 @@ public class RecordDoctorBasePage extends BasePage {
         return this;
     }
 
-    public RecordDoctorBasePage deleteRecord() throws InterruptedException {
+    public RecordDoctorWebPage deleteRecord() throws InterruptedException {
         logger.info("Поехале");
         allrecord.click();
         delete.click();

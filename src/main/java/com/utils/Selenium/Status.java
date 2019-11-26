@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import static com.codeborne.selenide.Selenide.sleep;
-import static com.pages.BasePage.logger;
+import static com.pages.WebPage.logger;
 
 public class Status {
     static String URL = "http://localhost:4444/grid/api/hub";

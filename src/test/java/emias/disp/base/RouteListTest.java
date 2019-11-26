@@ -8,11 +8,9 @@ import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
-import static com.pages.disp.Services.issledovanieKala;
+import static com.datas.disp.measure.MeasureEnum.issledovanie_kala;
 
 public class RouteListTest extends TestBase {
     @Ignore
@@ -67,14 +65,13 @@ public class RouteListTest extends TestBase {
         long a = page.misHome().getDispCardNumber();
         hltDispExamService.resetCardExams(a);
         page.misHome().dispCard42();
-        page.exampPage(issledovanieKala)
+        page.exampPage()
                 .switchAllServicesTap()
-                .openMeasure()
-                .openService()
-                .signService()
-                .validateServiceIsSign();
+                .expand(issledovanie_kala);
+//                .openService()
+//                .signService()
+//                .validateServiceIsSign();
     }
-
     // TODO: 5/14/2019 сделать проверку задизеблинной кнопки подписать и сохранить у мероприятия при входе через чужую ячейку расписания
     // TODO: 5/14/2019 сделать проверку отсутствующего тапа в заключении терапевта у врача без должности врач
 

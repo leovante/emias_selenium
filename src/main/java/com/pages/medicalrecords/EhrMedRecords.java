@@ -4,12 +4,12 @@ import com.codeborne.selenide.ElementsCollection;
 import com.datas.Datas;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class EhrMedRecords extends BasePage {
+public class EhrMedRecords extends WebPage {
     int mrCount = 0;
     Datas d;
     SelenideElement new_mr = $x("//*[contains(text(),'Новая медицинская запись')]");

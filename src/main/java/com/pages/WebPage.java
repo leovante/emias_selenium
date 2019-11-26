@@ -9,13 +9,12 @@ import com.utils.CallDoctorCards;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.openqa.selenium.WebElement;
 import org.springframework.context.ApplicationContext;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class BasePage {
+public abstract class WebPage  {
     public static Logger logger = LogManager.getLogger();
     protected ConfigFile conf;
     protected StAddress stAddress;
@@ -26,10 +25,30 @@ public class BasePage {
 
     public HltCallDoctorServiceImpl hltCallDoctorService;
 
-    public BasePage() {
+    public WebPage() {
         ApplicationContext context = SpringContext.getApplicationContext();
         hltCallDoctorService = (HltCallDoctorServiceImpl)context.getBean("HltCallDoctorServiceImpl");
         this.driver = getWebDriver();
         this.conf = new ConfigFile();
     }
+
+
+
+//    public <T extends WebElement> T expand(){
+//        return expand(null);
+//    }
+
+//    @Override
+//    public void click() {
+//
+//    }
+
+//    public <T extends SelenideElement> T expand(){
+//        return expand(null);
+//    }
+
+//    <T extends WebElement> T expand(SelenideElement se){
+//        se.click();
+//        return (T) this;
+//    }
 }
