@@ -2,7 +2,9 @@ package emias.calldoctor.base;
 
 
 import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -14,21 +16,23 @@ public class ChangeDoctorTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() {
-        PacientImpl pacientImpl = new PacientImpl("Profile1");
+        Pacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName()).changeDoctorBtn();
+        page.fullCard(pacient, testName()).changeDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor2);
-        page.fullCard(pacientImpl, testName())
-                .verifyActivCall(pacientImpl)
+        page.fullCard(pacient, testName())
+                .verifyActivCall(pacient)
                 .verifyDoctor(doctor2)
                 .closeCardBtn();
         page.dashboard()
                 .clearFilterDepart()
-                .verifyActiveDocGroup(pacientImpl, doctor2);
+                .verifyActiveDocGroup(pacient, doctor2);
     }
 }

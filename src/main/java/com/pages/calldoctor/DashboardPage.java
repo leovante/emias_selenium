@@ -198,18 +198,18 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyCallIsNotCancelFromDashboard(PacientImpl pacientImpl)  {
+    public void verifyCallIsNotCancelFromDashboard(Pacient pacient)  {
         sleep(5000);
-        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacientImpl.getAddress() + "')]"));
+        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         if (newCallProgressFrame.isDisplayed()) {
             newCallProgressFrame.$(By.id("order")).click();
             newCallProgressFrame.click();
             if (address.isDisplayed()) {
                 address.click();
-                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getName() + "')]")).isDisplayed());
-                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getFamily() + "')]")).isDisplayed());
-                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).isDisplayed());
-                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
+                Assert.assertTrue(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
             } else {
                 logger.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
@@ -269,11 +269,11 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage cancelNewCallDash(PacientImpl pacientImpl)  {
+    public DashboardPage cancelNewCallDash(Pacient pacient)  {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         sleep(4000);
-        SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]"));
+        SelenideElement address = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(address).perform();
 

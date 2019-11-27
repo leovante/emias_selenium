@@ -21,7 +21,7 @@ public class ValidationTest {
     public void callNotSaveWithoutAddressAfterEdit() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacient = new PacientImpl("Profile2");
         PacientImpl pacient2 = new PacientImpl("Profile2_0");
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall();
         page.fullCard(pacient, testName()).editCallBtn();
         page.createCall(pacient2)

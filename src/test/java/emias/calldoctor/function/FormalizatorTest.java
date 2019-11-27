@@ -3,6 +3,7 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -18,20 +19,24 @@ public class FormalizatorTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testNotformalizeAddress() {
-        Pacient pacientImpl = new PacientImpl("AdressNeformal");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        Pacient pacient = new PacientImpl("AdressNeformal");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient)
                 .addNewCall()
                 .searchField();
-        visible(pacientImpl.getAddress());
+        visible(pacient.getAddress());
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api с неформализованным адресом. Проверка окна формализации при назначении врача.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void smpChildMkab_dontChoseDoctor_neformalAddress() {
-        PacientImpl pacient = new PacientImpl("Profile19");
-        page.misHome().calldoctor();
+        Pacient pacient = new PacientImpl("Profile19");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall_Api();
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).chooseDoctorBtn();
@@ -49,7 +54,9 @@ public class FormalizatorTest extends TestBase {
     @RetryCountIfFailed(2)
     public void misNeformalAddress_dontChangeDoctor() {
         Pacient pacient = new PacientImpl("AdressNeformal");
-        page.misHome().calldoctor();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient)
                 .createCall_Mkab();
 

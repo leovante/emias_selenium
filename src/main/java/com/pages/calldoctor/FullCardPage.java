@@ -43,13 +43,18 @@ public class FullCardPage extends WebPage {
         logger.info("Open card with url: " + url());
     }
 
-    public FullCardPage(Pacient pacient, String testName) {
+    FullCardPage(Pacient pacient, String testName) {
         this.pacient = pacient;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        logger.info("Открыл карту вызова url " + url());
+    }
+
+    FullCardPage(Pacient pacient) {
+        this.pacient = pacient;
         logger.info("Открыл карту вызова url " + url());
     }
 
@@ -138,7 +143,7 @@ public class FullCardPage extends WebPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(PacientImpl pacientImpl) {
+    public FullCardPage verifyActivCall(Pacient pacient) {
         status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();

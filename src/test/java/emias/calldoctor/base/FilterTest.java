@@ -1,7 +1,9 @@
 package emias.calldoctor.base;
 
 import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -13,63 +15,71 @@ public class FilterTest extends TestBase {
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterFIO() {
-        PacientImpl pacientImpl = new PacientImpl("Profile1");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).closeCardBtn();
+        Pacient pacient = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).closeCardBtn();
         page.dashboard()
-                .dashFilter_fio(pacientImpl)
-                .verifyNewCallGroup(pacientImpl);
+                .dashFilter_fio(pacient)
+                .verifyNewCallGroup(pacient);
     }
 
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterDoctor() {
-        PacientImpl pacientImpl = new PacientImpl("Profile1");
+        Pacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName()).closeCardBtn();
+        page.fullCard(pacient, testName()).closeCardBtn();
         page.dashboard()
                 .clearFilterDepart()
                 .searchFilterDoctor(doctor)
-                .verifyActiveDocGroup(pacientImpl, doctor);
+                .verifyActiveDocGroup(pacient, doctor);
     }
 
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testTypeCall()  {
-        PacientImpl pacientImpl = new PacientImpl("Profile3_1");
-        page.createCall(pacientImpl).createCall_Api();
-        page.misHome().calldoctor();
-        page.dashboard().openNewCallDash(pacientImpl);
-        page.fullCard(pacientImpl, testName()).closeCardBtn();
+        Pacient pacient = new PacientImpl("Profile3_1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.createCall(pacient).createCall_Api();
+        page.misHome().calldoctorAdminTemnikov();
+        page.dashboard().openNewCallDash(pacient);
+        page.fullCard(pacient, testName()).closeCardBtn();
         page.dashboard()
-                .dashFilter_fio(pacientImpl)
+                .dashFilter_fio(pacient)
                 .searchFilterTypeCallNeotlozhniy()
-                .verifyNewCallGroup(pacientImpl);
+                .verifyNewCallGroup(pacient);
     }
 
     @Test(groups = "CD", description = "фильтр сортировка все|сегодня|завтра")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
     public void testFilterActiveGroup()  {
-        PacientImpl pacientImpl = new PacientImpl("Profile2_2");
+        Pacient pacient = new PacientImpl("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorTomorrow(doctor);
-        page.fullCard(pacientImpl, testName()).closeCardBtn();
+        page.fullCard(pacient, testName()).closeCardBtn();
         page.dashboard()
                 .clearFilterDepart()
                 .filter_all_tomorrow()
-                .verifyActiveDocGroup(pacientImpl, doctor)
+                .verifyActiveDocGroup(pacient, doctor)
                 .filter_tomorrow_today()
-                .verifyActiveDocGroupNotVisible(pacientImpl, doctor);
+                .verifyActiveDocGroupNotVisible(pacient, doctor);
     }
 }

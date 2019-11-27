@@ -3,6 +3,7 @@ package com.datas.calldoctor;
 import org.codehaus.plexus.util.IOUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.testng.SkipException;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -55,7 +56,7 @@ public class PacientImpl implements Pacient {
                 String jsonTxt = IOUtil.toString(is, "UTF-8");
                 jsonOb = new JSONObject(jsonTxt);
             } else {
-                throw new JSONException("Ошибка! Не найден файл пациента.");
+                throw new SkipException("Ошибка! Не найден файл пациента.");
             }
 
             if (jsonOb.has("source") && !jsonOb.get("source").equals(""))
@@ -151,9 +152,7 @@ public class PacientImpl implements Pacient {
                 if (kladraddress.has("addressStringMin") && !kladraddress.get("addressStringMin").equals(""))
                     this.addressStringMin = kladraddress.getString("addressStringMin");
             }
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
         }
     }
 

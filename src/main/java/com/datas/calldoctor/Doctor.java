@@ -59,7 +59,7 @@ public class Doctor extends AbstractTestNGSpringContextTests {
     }
 
     public Doctor(String name)   {
-        File reader = new File("src\\main\\resources\\calldoctor\\doctors\\" + name + ".json");
+        File reader = new File("src\\main\\resources\\calldoctorAdminTemnikov\\doctors\\" + name + ".json");
         HashMap<String, Object> proData = null;
         try {
             proData = new ObjectMapper().readValue(reader, HashMap.class);

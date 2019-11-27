@@ -2,17 +2,12 @@ package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.text.ParseException;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -23,7 +18,7 @@ public class PrintFormTest extends TestBase {
     @Epic("Печать")
     @RetryCountIfFailed(2)
     public void testPrintAllDoctors() {
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.dashboard().printActionColumn();
         switchTo().window(1);
         $x("//*[contains(text(),'Отчет по состоянию')]").shouldBe(Condition.visible);
@@ -36,7 +31,7 @@ public class PrintFormTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testPrintCard() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacientImpl)
                 .createCall()
                 .saveBtn()
@@ -53,7 +48,7 @@ public class PrintFormTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testPrintOneDoctor()  {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).printBtn();
         switchTo().window(1);

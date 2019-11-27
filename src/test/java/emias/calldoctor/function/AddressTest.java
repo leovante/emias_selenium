@@ -2,13 +2,11 @@ package emias.calldoctor.function;
 
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -17,36 +15,42 @@ public class AddressTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() {
-        Pacient pacientImpl = new PacientImpl("Profile3");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall_Api();
-        page.dashboard().openNewCallDash(pacientImpl);
-        page.fullCard(pacientImpl, testName()).verifyNewCall();
+        Pacient pacient = new PacientImpl("Profile3");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall_Api();
+        page.dashboard().openNewCallDash(pacient);
+        page.fullCard(pacient, testName()).verifyNewCall();
     }
 
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что адрес по кладр.")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() {
-        Pacient pacientImpl = new PacientImpl("Profile6");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall_Api();
-        page.dashboard().openNewCallDash(pacientImpl);
-        page.fullCard(pacientImpl, testName())
+        Pacient pacient = new PacientImpl("Profile6");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall_Api();
+        page.dashboard().openNewCallDash(pacient);
+        page.fullCard(pacient, testName())
                 .verifyNewCall()
                 .editCallBtn();
-        $x("//input[@placeholder='Адрес']").getValue().contains(pacientImpl.getAddressStringMin());
+        $x("//input[@placeholder='Адрес']").getValue().contains(pacient.getAddressStringMin());
     }
 
     @Test(groups = "CD", description = "проверка заполнения формализованного адреса при выборе мкаб на странице создания вызова")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testFormalizeAddress() {
-        Pacient pacientImpl = new PacientImpl("Profile2");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        Pacient pacient = new PacientImpl("Profile2");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient)
                 .addNewCall()
                 .searchField();
-        $x("//*[@placeholder='Адрес']").getText().equals(pacientImpl.getAddress3adv());
+        $x("//*[@placeholder='Адрес']").getText().equals(pacient.getAddress3adv());
     }
 }

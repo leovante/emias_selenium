@@ -9,7 +9,7 @@ public class backLogTests {
         Pacient pacient = new Pacient("Profile4");
         select.enterPortal();
         page.portalDashboard().createCall(pacient);
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.dashboard()
                 .clearFilterDepart()
                 .openNewCallDash(pacient);
@@ -21,7 +21,7 @@ public class backLogTests {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab2() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile20");
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall_Api();
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).verifyNewCall(pacient);
@@ -35,7 +35,7 @@ public class backLogTests {
     @RetryCountIfFailed(2)
     public void testCallCenterChildMkab() throws IOException, InterruptedException, JSONException {
         Pacient pacient = new Pacient("Profile14");
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall_Api();
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).verifyNewCall(pacient);//почему-то 2 педиатрический сразу. С Таким адресом два участка
@@ -53,7 +53,7 @@ public class backLogTests {
 //        PacientImpl pacient = new PacientImpl("Profile2");
 //        PacientImpl pacient2 = new PacientImpl("Profile0_2");
 //        page.misHome()
-//                .calldoctor();
+//                .calldoctorAdminTemnikov();
 //        page.createCall(pacient)
 //                .createCall_Mkab();
 //        page.fullCard(pacient, testName())
@@ -75,4 +75,28 @@ public class backLogTests {
 //        doctorsBlock.$x("//*[contains(text(),'Зайцева')]").shouldBe(Condition.visible);
 //    }
 
+    //    @Test(groups = "CD", description = "назначить врача вызову из Интернета на сегодня")
+//    @Epic("Назначить врача")
+//    @RetryCountIfFailed(2)
+//    public void testAppendDoctorToCall_Portal() throws Exception {
+//        Pacient pacient = new Pacient("Profile4");
+//        Doctor doctor = new Doctor("MokovStendTestovoe");
+//        select.enterPortal();
+//        page.portalDashboard().createCall(pacient);
+//        page.misHome().calldoctorAdminTemnikov();
+//        page.dashboard()
+//                .clearFilterDepart()
+//                .openNewCallDash(pacient);
+//        page.fullCard(testName()).verifyNewCall(pacient);
+//        page.fullCard(testName()).chooseDoctorBtn();
+//        page.setDoctor()
+//                .saveAddress()
+//                .chooseDoctorToday(doctor);
+//        page.fullCard(testName())
+//                .verifyActivCall(pacient)
+//                .closeCardBtn();
+//        page.dashboard()
+//                .clearFilterDepart()
+//                .verifyActiveDocGroup(pacient, doctor);
+//    }
 }

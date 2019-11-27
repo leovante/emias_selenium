@@ -2,6 +2,7 @@ package emias.calldoctor.base;
 
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -14,8 +15,10 @@ public class CancelCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() {
         Pacient pacient = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
         page.misHome()
-                .calldoctor();
+                .calldoctorAdminTemnikov();
         page.createCall(pacient)
                 .createCall();
         page.fullCard(pacient, testName())
@@ -30,8 +33,10 @@ public class CancelCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() {
         Pacient pacient = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
         page.misHome()
-                .calldoctor();
+                .calldoctorAdminTemnikov();
         page.createCall(pacient)
                 .createCall();
         page.fullCard(pacient, testName())
@@ -47,8 +52,10 @@ public class CancelCallTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() {
         Pacient pacient = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
         page.misHome()
-                .calldoctor();
+                .calldoctorAdminTemnikov();
         page.createCall(pacient)
                 .createCall();
         page.fullCard(pacient, testName())

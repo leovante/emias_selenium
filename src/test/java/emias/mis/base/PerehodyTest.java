@@ -18,7 +18,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDdashboard() {
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
     }
 

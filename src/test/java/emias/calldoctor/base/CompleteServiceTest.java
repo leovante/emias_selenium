@@ -3,15 +3,11 @@ package emias.calldoctor.base;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.text.ParseException;
 
 public class CompleteServiceTest extends TestBase {
 
@@ -21,8 +17,9 @@ public class CompleteServiceTest extends TestBase {
     public void testCompleteCallRegistr() {
         Pacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
+        new DuringTestHelper().beforeCleanDecider(pacient);
 
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall();
         page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
@@ -40,13 +37,15 @@ public class CompleteServiceTest extends TestBase {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey()  {
-        PacientImpl pacientImpl = new PacientImpl("Profile1");
+        Pacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName())
+        page.fullCard(pacient, testName())
                 .completeServiceBtn()
                 .verifyMkabIconDisable()
                 .verifyTapIconDisable()
@@ -57,13 +56,15 @@ public class CompleteServiceTest extends TestBase {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey()  {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
+        Pacient pacient = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall_Mkab();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall_Mkab();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName())
+        page.fullCard(pacient, testName())
                 .completeServiceBtn()
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()

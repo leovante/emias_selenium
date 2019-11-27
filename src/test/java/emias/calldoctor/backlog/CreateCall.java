@@ -19,7 +19,7 @@ public class CreateCall extends TestBase {
     @RetryCountIfFailed(0)
     public void callRegistrEmpy() throws IOException, InterruptedException, JSONException, NoticeException {
         Pacient pacient = new PacientImpl("Profile0");
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         Assert.assertTrue(false);
         page.createCall(pacient).createCall();
         page.fullCard(pacient, testName())

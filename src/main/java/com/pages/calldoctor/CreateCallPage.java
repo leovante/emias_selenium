@@ -8,6 +8,7 @@ import com.datas.calldoctor.PacientImpl;
 import com.pages.WebPage;
 import com.pages.calldoctor.controllers.StAddress;
 import com.utils.api_model.CallDoctorHttp;
+import com.utils.assistance.DuringTestHelper;
 import io.qameta.allure.Step;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -73,12 +74,10 @@ public class CreateCallPage extends WebPage {
 
     CreateCallPage(Pacient pacient) {
         this.pacient = pacient;
-//        performDatabaseOperation();
     }
 
     @Step("create simple call")
     public CreateCallPage createCall() {
-        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
                 .address()
@@ -96,7 +95,6 @@ public class CreateCallPage extends WebPage {
 
     @Step("create call with MKAB")
     public CreateCallPage createCall_Mkab() {
-        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
                 .searchField()
@@ -111,8 +109,6 @@ public class CreateCallPage extends WebPage {
     @Step("create call via API")
     public void createCall_Api() {
         try {
-            if (conf.isCleanBeforeTest())
-                hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).execute();
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
@@ -122,8 +118,6 @@ public class CreateCallPage extends WebPage {
     @Step("create authorize call via API")
     public void createCall_Api_Auth() {
         try {
-            if (conf.isCleanBeforeTest())
-                hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).executeAuth();
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
@@ -172,10 +166,8 @@ public class CreateCallPage extends WebPage {
                 element.click();
             actions.sendKeys(Keys.ESCAPE).perform();
         }
-//        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
         dom.clear();
         phone.clear();
-//        $(By.xpath("//label[@class='mat-checkbox-layout']")).clear();
         korpus.clear();
         stroenie.clear();
         kvartira.clear();
@@ -374,24 +366,24 @@ public class CreateCallPage extends WebPage {
 
     // TODO: 9/18/2019 нужно как то вынести это отдельно и унаследоваться двумя классами
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPage verifyCallProfile1(PacientImpl pacientImpl) {
-        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacientImpl), "Номер телефона некорректный");
-        Assert.assertEquals(nomerPol.getAttribute("value"), pacientImpl.getNumberpol(), "Номер полиса некорректный");
-        Assert.assertEquals(seriyaPol.getAttribute("value"), pacientImpl.getSeriespol(), "Серия полса некорректная");
-        Assert.assertEquals(fam.getAttribute("value"), pacientImpl.getFamily(), "Фамилия некорректная");
-        Assert.assertEquals(name.getAttribute("value"), pacientImpl.getName(), "Имя некорректное");
-        Assert.assertEquals(otchestvo.getAttribute("value"), pacientImpl.getOt(), "Отчество некорректное");
-        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacientImpl.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
+    public CreateCallPage verifyCallProfile1(Pacient pacient) {
+        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
+        Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
+        Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
+        Assert.assertEquals(fam.getAttribute("value"), pacient.getFamily(), "Фамилия некорректная");
+        Assert.assertEquals(name.getAttribute("value"), pacient.getName(), "Имя некорректное");
+        Assert.assertEquals(otchestvo.getAttribute("value"), pacient.getOt(), "Отчество некорректное");
+        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
 //        Assert.assertEquals(age.getAttribute("value"), doctor.getAge(), "Возраст некорректный");
 //        Assert.assertEquals(vKat.getAttribute("value"), doctor.getVkat(), "Возрастная категория некорректная");
-        assertThat("Адрес некорректный", pacientImpl.getAddress(), containsString(stAddress.getAddressSE().getAttribute("value")));
-        Assert.assertEquals(dom.getAttribute("value"), pacientImpl.getNumber(), "Номер дома некорректный");
-        Assert.assertEquals(korpus.getAttribute("value"), pacientImpl.getBuilding(), "Номер корпуса некорректный");
-        Assert.assertEquals(stroenie.getAttribute("value"), pacientImpl.getConstruction(), "Номер строения некорректный");
-        Assert.assertEquals(kvartira.getAttribute("value"), pacientImpl.getAppartment(), "Номер квартиры некорректный");
-        Assert.assertEquals(pd.getAttribute("value"), pacientImpl.getEntrance(), "Номер подъезда некорректный");
-        Assert.assertEquals(dfon.getAttribute("value"), pacientImpl.getCodedomophone(), "Номер домофона некорректный");
-        Assert.assertEquals(etazh.getAttribute("value"), pacientImpl.getFloor(), "Номер этажа некорректный");
+        assertThat("Адрес некорректный", pacient.getAddress(), containsString(stAddress.getAddressSE().getAttribute("value")));
+        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
+        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
+        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
+        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
+        Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
+        Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
+        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
         logger.info("Проверка данных на странице редактирования выполнена!");
         return this;
     }

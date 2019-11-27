@@ -35,7 +35,7 @@ public class BeforeRun {
 //        ehr_medrecords = testStend.ehr_medrecords();
 //        disp_journal = testStend.disp_journal();
 //        disp_card = testStend.disp_card();
-//        calldoctor = testStend.calldoctor();
+//        calldoctorAdminTemnikov = testStend.calldoctorAdminTemnikov();
 //        calldoctorVz = testStend.calldoctorVz();
 //        new WebDriverRunner().closeWebDriver();
     }

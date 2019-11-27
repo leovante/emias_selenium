@@ -135,7 +135,7 @@ public class DBScripts extends WebPage {
         InputStream is;
         String script = null;
         try {
-            is = new FileInputStream("src/main/resources/sql/calldoctor/" + sql);
+            is = new FileInputStream("src/main/resources/sql/calldoctorAdminTemnikov/" + sql);
             script = IOUtil.toString(is, "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();

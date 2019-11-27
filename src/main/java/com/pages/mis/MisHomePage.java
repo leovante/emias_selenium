@@ -14,10 +14,6 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.utils.assistance.Assistance.visible;
 
 public class MisHomePage extends WebPage {
-
-    public MisHomePage()   {
-    }
-
     @Step("Открываю стенд")
     public void loginMis() {
         open(conf.getUrl());
@@ -36,7 +32,7 @@ public class MisHomePage extends WebPage {
     }
 
     @Step("Open CallDoctor with in URL")
-    public void calldoctor() {
+    public void calldoctorAdminTemnikov() {
         open(conf.getCalldoctor());
         logger.debug("Open CallDoctor with in URL: " + conf.getCalldoctor());
     }
@@ -125,7 +121,7 @@ public class MisHomePage extends WebPage {
     }
 
     @Step("Следующая страница на форуме тех.поддержки")
-    public MisHomePage nextPage(){
+    public MisHomePage nextPage() {
         $x("//a[contains(text(),'След.')]").click();
         return this;
     }

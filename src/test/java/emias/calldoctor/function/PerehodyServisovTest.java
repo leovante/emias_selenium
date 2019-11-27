@@ -2,13 +2,12 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.Doctor;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
@@ -20,7 +19,8 @@ public class PerehodyServisovTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testRelogingAnotherOperator() {
         Doctor operator = new Doctor("Operator");
-        page.misHome().calldoctor();
+
+        page.misHome().calldoctorAdminTemnikov();
         $x("//header")
                 .$x(".//*[contains(.,'" + operator.getFamily() + " " + operator.getName() + "')]")
                 .shouldBe(Condition.visible);
@@ -39,7 +39,7 @@ public class PerehodyServisovTest extends TestBase {
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
     public void testExitToMis() {
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.dashboard().exitToMis();
         page.misHome().validateLoginPage();
     }
@@ -48,7 +48,7 @@ public class PerehodyServisovTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void testInstruction() {
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.dashboard().instructionTab();
         page.misHome()
                 .nextPage()

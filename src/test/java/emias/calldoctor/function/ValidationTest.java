@@ -1,7 +1,9 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
+import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -9,6 +11,7 @@ import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.utils.assistance.Assistance.visible;
 
 public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Валидация ФИО кто вызвал не пропадает на странице редактирования")
@@ -16,13 +19,15 @@ public class ValidationTest extends TestBase {
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
     public void smpChildMkab_testCallerFIO() {
-        PacientImpl pacientImpl = new PacientImpl("Profile3_Kladr");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall_Api();
-        page.dashboard().openNewCallDash(pacientImpl);
-        page.fullCard(pacientImpl, testName()).verifyNewCall();
-        page.fullCard(pacientImpl, testName()).editCallBtn();
-        page.createCall(pacientImpl)
+        Pacient pacient = new PacientImpl("Profile3_Kladr");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall_Api();
+        page.dashboard().openNewCallDash(pacient);
+        page.fullCard(pacient, testName()).verifyNewCall();
+        page.fullCard(pacient, testName()).editCallBtn();
+        page.createCall(pacient)
                 .fillSourceSmp()
                 .deleteWhoCallFIO()
                 .saveBtn();
@@ -32,11 +37,13 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на странице подробной карты вызова")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromFullpage() {
-        PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+    public void cancelCallFromFullpage() {
+        Pacient pacient = new PacientImpl("Profile0_CancelValidation");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName())
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -44,12 +51,14 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на странице редактирования карты")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromEditpage() {
-        PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).editCallBtn();
-        page.createCall(pacientImpl)
+    public void cancelCallFromEditpage() {
+        Pacient pacient = new PacientImpl("Profile0_CancelValidation");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).editCallBtn();
+        page.createCall(pacient)
                 .cancelOnFullCardBtn("")
                 .verifyCancellCallValidation();
     }
@@ -57,14 +66,34 @@ public class ValidationTest extends TestBase {
     @Test(groups = "CD", description = "отмена вызова без указания причины на дашборде")
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
-    public void testCancelCallFromDashboard() {
-        PacientImpl pacientImpl = new PacientImpl("Profile0_CancelValidation");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).closeCardBtn();
+    public void cancelCallFromDashboard() {
+        Pacient pacient = new PacientImpl("Profile0_CancelValidation");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).closeCardBtn();
         page.dashboard()
-                .cancelNewCallDash(pacientImpl)
+                .cancelNewCallDash(pacient)
                 .verifyCancellCallValidation_Dash()
-                .verifyCallIsNotCancelFromDashboard(pacientImpl);
+                .verifyCallIsNotCancelFromDashboard(pacient);
+    }
+
+    @Test(groups = "CD", description = "валидатор создания дубликата. Оба вызова в колонке новые")
+    @Epic("Проверка валидатора")
+    @RetryCountIfFailed(2)
+    public void callDublicates() {
+        Pacient pacient = new PacientImpl("Profile0_2.1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall();
+        page.fullCard(pacient)
+                .closeCardBtn();
+        page.createCall(pacient)
+                .createCall();
+        visible("Для данного пациента уже существует активный вызов врача на дом с номером ");
     }
 }

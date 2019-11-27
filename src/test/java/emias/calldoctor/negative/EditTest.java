@@ -15,7 +15,7 @@ public class EditTest extends TestBase {
     @RetryCountIfFailed(2)
     public void testCallSmpApiNotCleanCardId() {
         PacientImpl pacientImpl = new PacientImpl("Profile6");
-        page.misHome().calldoctor();
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacientImpl).createCall_Api();
         page.dashboard().openNewCallDash(pacientImpl);
         page.fullCard(pacientImpl, testName())

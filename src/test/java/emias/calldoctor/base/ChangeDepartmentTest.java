@@ -2,7 +2,9 @@ package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
+import com.utils.assistance.DuringTestHelper;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -18,16 +20,18 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Depart() {
-        PacientImpl pacientImpl = new PacientImpl("ProfileTransferLpu-Dep");
+        Pacient pacient = new PacientImpl("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("YudinaVzroslayaTerapev");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName())
                 .verifyDepartment(doctor)
                 .transfer_to_depart();
         page.passLpu(doctor2).transfer();
-        page.fullCard(pacientImpl, testName())
+        page.fullCard(pacient, testName())
                 .verifyDepartment(doctor2);
     }
 
@@ -35,37 +39,41 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Depart() {
-        PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Dep");
+        Pacient pacient = new PacientImpl("ProfileTransferDep-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("ZaycevaDetskayaOftalmol");
         Doctor doctor3 = new Doctor("YudinaVzroslayaTerapev");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName())
                 .verifyDepartment(doctor)
                 .transfer_to_depart();
         page.passLpu(doctor2).transfer();
-        page.fullCard(pacientImpl, testName())
+        page.fullCard(pacient, testName())
                 .verifyDepartment(doctor2)
                 .transfer_to_depart();
         page.passLpu(doctor3).transfer();
-        page.fullCard(pacientImpl, testName()).verifyDepartment(doctor3);
+        page.fullCard(pacient, testName()).verifyDepartment(doctor3);
     }
 
     @Test(groups = "CD", description = "передача вызова из подр в ЛПУ")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallDepart_Lpu() {
-        PacientImpl pacientImpl = new PacientImpl("ProfileTransferDep-Lpu");
+        Pacient pacient = new PacientImpl("ProfileTransferDep-Lpu");
         Doctor dep_doc = new Doctor("TemnikovVzroslayaTerapev");
         Doctor lpu_doc = new Doctor("TemnikovStend");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
         page.misHome().calldoctorVzroslaya();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName())
                 .verifyDepartment(dep_doc)
                 .transfer_to_depart();
         page.passLpu(lpu_doc).transfer();
-        page.fullCard(pacientImpl, testName())
+        page.fullCard(pacient, testName())
                 .verifyDepartment(lpu_doc);
     }
 
@@ -73,10 +81,12 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Lpu() {
-        PacientImpl pacient = new PacientImpl("ProfileTransferLpu-Dep");
+        Pacient pacient = new PacientImpl("ProfileTransferLpu-Dep");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("TemnikovHimkiStend");
-        page.misHome().calldoctor();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall();
         page.fullCard(pacient, testName())
                 .verifyDepartment(doctor)
@@ -93,8 +103,10 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourAdultPoliklinika() {
-        PacientImpl pacient = new PacientImpl("ProfileTransferDep-Lpu");
-        page.misHome().calldoctor();
+        Pacient pacient = new PacientImpl("ProfileTransferDep-Lpu");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall();
         page.fullCard(pacient, testName()).transfer_to_depart();
         page.passLpu().validate_view_to_adult();
@@ -104,8 +116,10 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testshowMeYourKidPoliklinika() {
-        PacientImpl pacient = new PacientImpl("Profile2");
-        page.misHome().calldoctor();
+        Pacient pacient = new PacientImpl("Profile2");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall_Mkab();
         page.fullCard(pacient, testName()).transfer_to_depart();
         $(By.xpath("//*[contains(text(),'Детская поликлиника')]")).shouldBe(Condition.visible);
