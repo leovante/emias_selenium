@@ -44,4 +44,35 @@ public class backLogTests {
     }
 
 */
+
+    // противоречит тестам выше childCall_female
+//    @Test(groups = "CD", description = "после редактирования карты на профиль без возрастной категории отобразятся все врачи")
+//    @Epic("Создание вызова")
+//    @RetryCountIfFailed(2)
+//    public void testViewDoctorsListAfterEditChildCard() {
+//        PacientImpl pacient = new PacientImpl("Profile2");
+//        PacientImpl pacient2 = new PacientImpl("Profile0_2");
+//        page.misHome()
+//                .calldoctor();
+//        page.createCall(pacient)
+//                .createCall_Mkab();
+//        page.fullCard(pacient, testName())
+//                .editCallBtn();
+//        page.createCall(pacient2)
+//                .setDeafult()
+//                .editCallPage()
+//                .saveBtn()
+//                .allertBtn();
+//        $x("//*[contains(text(),'Без возрастной категории')]").shouldBe(Condition.visible);
+//        page.fullCard(pacient, testName()).chooseDoctorBtn();
+//        page.setDoctor().saveAddress();
+//        SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
+//        doctorsBlock.$x("//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
+//        doctorsBlock.$x("//*[contains(text(),'Темников')]").shouldBe(Condition.visible);
+//        doctorsBlock.$x("//*[contains(text(),'Моков')]").shouldBe(Condition.visible);
+//        doctorsBlock.$x("//*[contains(text(),'Серова')]").shouldBe(Condition.visible);
+//        doctorsBlock.$x("//*[contains(text(),'Немцова')]").shouldBe(Condition.visible);
+//        doctorsBlock.$x("//*[contains(text(),'Зайцева')]").shouldBe(Condition.visible);
+//    }
+
 }

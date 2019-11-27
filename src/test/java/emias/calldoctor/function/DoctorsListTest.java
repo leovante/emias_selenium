@@ -3,21 +3,19 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.lib.assistance.Assistance.notVisible;
-import static com.lib.assistance.Assistance.visible;
+import static com.utils.assistance.Assistance.notVisible;
+import static com.utils.assistance.Assistance.visible;
 
 public class DoctorsListTest extends TestBase {
     @Test(groups = "CD", description = "пустой вызов ребенка М")
@@ -38,19 +36,22 @@ public class DoctorsListTest extends TestBase {
         notVisible(serova.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "пустой вызов ребенка Ж")
+    @Test(groups = "CD", description = "вызов ребенка Ж. Не отображать участки терапевтов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_female() {
-        PacientImpl pacientImpl = new PacientImpl("Profile8");
+        Pacient pacient = new PacientImpl("Profile8");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        page.misHome()
+                .calldoctor();
+        page.createCall(pacient)
+                .createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName())
+                .chooseDoctorBtn();
         visible(mokov.getUchastocs());
         visible(nemcova.getUchastocs());
         notVisible(serova.getUchastocs());
@@ -184,7 +185,7 @@ public class DoctorsListTest extends TestBase {
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall_Api();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
+                .dashFilter_fio(pacientImpl)
                 .openNewCallDash(pacientImpl);
         visible(operator.getDepartment());
         page.fullCard(pacientImpl, testName())
@@ -205,7 +206,7 @@ public class DoctorsListTest extends TestBase {
     @RetryCountIfFailed(2)
     public void viewDoctorList_OnlyFromCurrentDepart() {
         PacientImpl pacientImpl = new PacientImpl("Profile13");
-        page.misHome().calldoctorVzroslaya();
+        page.misHome().calldoctorUdina();
         page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
         SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
@@ -215,32 +216,6 @@ public class DoctorsListTest extends TestBase {
         doctorsBlock.$x(".//*[contains(text(),'Серова')]").shouldNotBe(Condition.visible);
         doctorsBlock.$x(".//*[contains(text(),'Немцова')]").shouldNotBe(Condition.visible);
         doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
-    }
-
-    @Test(groups = "CD", description = "после редактирования карты на профиль без возрастной категории отобразятся все врачи")
-    @Epic("Создание вызова")
-    @RetryCountIfFailed(2)
-    public void testViewDoctorsListAfterEditChildCard() {
-        PacientImpl pacient = new PacientImpl("Profile2");
-        PacientImpl pacient2 = new PacientImpl("Profile0_2");
-        page.misHome().calldoctor();
-        page.createCall(pacient).createCall_Mkab();
-        page.fullCard(pacient, testName()).editCallBtn();
-        page.createCall(pacient2)
-                .setDeafult()
-                .editCallPage()
-                .saveBtn()
-                .allertBtn();
-        $x("//*[contains(text(),'Без возрастной категории')]").shouldBe(Condition.visible);
-        page.fullCard(pacient, testName()).chooseDoctorBtn();
-        page.setDoctor().saveAddress();
-        SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
-        doctorsBlock.$x("//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Темников')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Моков')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Серова')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Немцова')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Зайцева')]").shouldBe(Condition.visible);
     }
 
     @Test(groups = "CD", description = "после редактирования карты и изменения адреса пропадает привязка к старому участку")

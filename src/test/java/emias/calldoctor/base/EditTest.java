@@ -7,15 +7,13 @@ import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
-import org.json.JSONException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.visible;
+import static com.utils.assistance.Assistance.visible;
 
 public class EditTest extends TestBase {
 

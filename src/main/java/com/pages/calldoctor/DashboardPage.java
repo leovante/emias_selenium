@@ -13,7 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.parseTelephone;
+import static com.utils.assistance.Assistance.parseTelephone;
 
 public class DashboardPage extends WebPage {
     private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
@@ -51,15 +51,8 @@ public class DashboardPage extends WebPage {
         switchTo().window("Форум");
     }
 
-//    @Step("поиск в фильтре ФИО")
-//    public DashboardPage searchFilterFio(String fio) {
-//        fioFilter.click();
-//        fioFilter.setValue(fio);
-//        return this;
-//    }
-
     @Step("поиск в фильтре ФИО")
-    public DashboardPage searchFilterFio_Fam(Pacient pacient) {
+    public DashboardPage dashFilter_fio(Pacient pacient) {
         fioFilter.click();
         fioFilter.setValue(pacient.getFamily());
         sleep(2000);
@@ -113,24 +106,6 @@ public class DashboardPage extends WebPage {
         filterTodayViz.click();
         return this;
     }
-
-//    @Step("проверяю на дашборде запись в группе новые")
-//    public void verifyNewCallGroup(String profile, String nameGen) throws InterruptedException, IOException {
-//        Thread.sleep(4000);
-//        newCallProgressFrame.$(By.id("order")).click();
-//        newCallProgressFrame.click();
-//        if (proData.get("source").equals("СМП")) {
-//            $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
-//            $(By.xpath("//*[contains(text(),'" + proData.get("fam") + "')]")).shouldBe(Condition.visible);
-//            $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
-//        }
-//        if (!proData.get("source").equals("СМП")) {
-//            $(By.xpath("//*[contains(text(),'" + proData.get("adressDashboard") + "')]")).click();
-//            $(By.xpath("//*[contains(text(),'" + nameGen + "')]")).shouldBe(Condition.visible);
-//            $(By.xpath("//*[contains(text(),'" + proData.get("telephone") + "')]")).shouldBe(Condition.visible);
-//        }
-//        logger.info("Краткая карта вызова проверена!");
-//    }
 
     @Step("проверяю на дашборде запись в группе новые")
     public void verifyNewCallGroup(Pacient pacientImpl) {
@@ -202,18 +177,18 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyCallIsCancelFromDashboard(PacientImpl pacientImpl)  {
+    public void verifyCallIsCancelFromDashboard(Pacient pacient)  {
         sleep(5000);
-        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacientImpl.getAddress() + "')]"));
+        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         if (newCallProgressFrame.isDisplayed()) {
             newCallProgressFrame.$(By.id("order")).click();
             newCallProgressFrame.click();
             if (address.isDisplayed()) {
                 address.click();
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getName() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getFamily() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
+                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
             } else {
                 logger.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
@@ -318,11 +293,11 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("отменяю вызов в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage deleteNewCallProgressFrame(PacientImpl pacientImpl) {
+    public DashboardPage deleteNewCallProgressFrame(Pacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
-        SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]"));
+        SelenideElement adress = matExpansionPanel.$(By.xpath(".//*[contains(text(),'" + pacient.getAddress() + "')]"));
         Actions actions = new Actions(driver);
         actions.moveToElement(adress).perform();
 

@@ -1,4 +1,4 @@
-package com.lib.assistance;
+package com.utils.assistance;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;

@@ -2,8 +2,8 @@ package com.pages.disp;
 
 import com.pages.WebPage;
 
-import static com.lib.assistance.Assistance.placeholder;
-import static com.lib.assistance.Assistance.visible;
+import static com.utils.assistance.Assistance.placeholder;
+import static com.utils.assistance.Assistance.visible;
 
 public class KvotyPage extends WebPage implements KvotyPageElem{
     public KvotyPage() {

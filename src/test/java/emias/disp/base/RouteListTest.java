@@ -66,11 +66,12 @@ public class RouteListTest extends TestBase {
         hltDispExamService.resetCardExams(a);
         page.misHome().dispCard42();
         page.exampPage()
-                .switchAllServicesTap()
-                .expand(issledovanie_kala);
-//                .openService()
-//                .signService()
-//                .validateServiceIsSign();
+                .switchAllServicesTap();
+        page.exampPage(issledovanie_kala)
+                .expandExam()
+                .expandService()
+                .signService()
+                .validateServiceIsSign();
     }
     // TODO: 5/14/2019 сделать проверку задизеблинной кнопки подписать и сохранить у мероприятия при входе через чужую ячейку расписания
     // TODO: 5/14/2019 сделать проверку отсутствующего тапа в заключении терапевта у врача без должности врач

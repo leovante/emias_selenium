@@ -18,7 +18,7 @@ public class FilterTest extends TestBase {
         page.createCall(pacientImpl).createCall();
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
+                .dashFilter_fio(pacientImpl)
                 .verifyNewCallGroup(pacientImpl);
     }
 
@@ -49,7 +49,7 @@ public class FilterTest extends TestBase {
         page.dashboard().openNewCallDash(pacientImpl);
         page.fullCard(pacientImpl, testName()).closeCardBtn();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
+                .dashFilter_fio(pacientImpl)
                 .searchFilterTypeCallNeotlozhniy()
                 .verifyNewCallGroup(pacientImpl);
     }

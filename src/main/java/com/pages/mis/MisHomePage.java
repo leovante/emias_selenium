@@ -11,7 +11,7 @@ import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.visible;
+import static com.utils.assistance.Assistance.visible;
 
 public class MisHomePage extends WebPage {
 
@@ -44,6 +44,12 @@ public class MisHomePage extends WebPage {
     @Step("Вход в модуль диспетчер от взрослой поликлиникой")
     public void calldoctorVzroslaya() {
         open(conf.getCalldoctorVz());
+        logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
+    }
+
+    @Step("Вход в модуль диспетчер от взрослой поликлиникой")
+    public void calldoctorUdina() {
+        open(conf.getCalldoctorUdinaVz());
         logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
     }
 

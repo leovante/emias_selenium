@@ -6,7 +6,7 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-import static com.lib.assistance.Assistance.notVisible;
+import static com.utils.assistance.Assistance.notVisible;
 
 public class EditTest extends TestBase {
 

@@ -2,16 +2,12 @@ package emias.calldoctor.base;
 
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
-import static com.lib.assistance.Assistance.visible;
+import static com.utils.assistance.Assistance.visible;
 
 public class CreateCallTest extends TestBase {
 

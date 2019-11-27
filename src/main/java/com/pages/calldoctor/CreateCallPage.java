@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.*;
+import static com.utils.assistance.Assistance.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 

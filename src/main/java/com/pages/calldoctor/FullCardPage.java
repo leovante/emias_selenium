@@ -14,7 +14,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static com.lib.assistance.Assistance.*;
+import static com.utils.assistance.Assistance.*;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends WebPage {
@@ -38,12 +38,12 @@ public class FullCardPage extends WebPage {
     SelenideElement timeField = $x("//input[@placeholder='Время']");
     SelenideElement card = $x("//*[contains(text(),'Карта вызова')]");
 
-    public FullCardPage(String testName)  {
+    public FullCardPage(String testName) {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         logger.info("Open card with url: " + url());
     }
 
-    public FullCardPage(Pacient pacient, String testName)  {
+    public FullCardPage(Pacient pacient, String testName) {
         this.pacient = pacient;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
@@ -128,7 +128,7 @@ public class FullCardPage extends WebPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyNewCall()  {
+    public FullCardPage verifyNewCall() {
         status_new.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -138,7 +138,7 @@ public class FullCardPage extends WebPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(PacientImpl pacientImpl)  {
+    public FullCardPage verifyActivCall(PacientImpl pacientImpl) {
         status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -168,10 +168,11 @@ public class FullCardPage extends WebPage {
 
     @Step("отмена вызов на странице редактирвоания")
     public FullCardPage cancelOnChangePageBtn() {
-        $(By.xpath("//*[contains(.,'" + "Редактирование вызова" + "')]")).shouldBe(Condition.visible);
+        visible("Редактирование вызова");
         cancelCall.click();
         cancelField.setValue("отмена автотестом");
         cancelCall2.click();
+//        visible("Данный вызов был отменён");
         return this;
     }
 
@@ -184,7 +185,7 @@ public class FullCardPage extends WebPage {
     @Step("назначить врача")
     public FullCardPage chooseDoctorBtn() {
         card.shouldBe(Condition.visible);
-        $(By.xpath("//span[contains(text(),'Назначить')]")).shouldBe(Condition.visible);
+        $x("//span[contains(text(),'Назначить')]").shouldBe(Condition.visible);
         appoindDoctorBtn.hover().click();
         return this;
     }
@@ -208,7 +209,7 @@ public class FullCardPage extends WebPage {
     public FullCardPage closeCardBtn() {
         card.shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
-        $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
+        $x("//span/mat-icon[contains(text(),'close')]").click();
         logger.info("Карта закрыта!");
         return this;
     }
@@ -253,7 +254,7 @@ public class FullCardPage extends WebPage {
     }
 
     @Step("Проверка текущего подразделения у карты вызова")
-    public FullCardPage verifyDepartment(Doctor doctor)  {
+    public FullCardPage verifyDepartment(Doctor doctor) {
         $(By.xpath("//*[contains(.,'" + doctor.getDepartment() + "')]")).shouldBe(Condition.visible);
         return this;
     }
@@ -272,7 +273,7 @@ public class FullCardPage extends WebPage {
     }
 
     @Step("валидация что вызов не отменился на подробной странице")
-    public FullCardPage verifyCancellCallValidation()  {
+    public FullCardPage verifyCancellCallValidation() {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
@@ -280,7 +281,7 @@ public class FullCardPage extends WebPage {
     }
 
     @Step("нажимаю на кнопку печати")
-    public FullCardPage printBtn()  {
+    public FullCardPage printBtn() {
         $x("//div[@id='viewPrint']/mat-icon").click();
         return this;
     }

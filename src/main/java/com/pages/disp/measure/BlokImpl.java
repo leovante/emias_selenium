@@ -5,5 +5,8 @@ import com.datas.disp.measure.MeasureEnum;
 
 public interface BlokImpl {
     Measure examFactory(MeasureEnum measure);
-    void expand(MeasureEnum measure);
+    void expandExam(MeasureEnum measure);
+    void expandService();
+
+    void signMr();
 }

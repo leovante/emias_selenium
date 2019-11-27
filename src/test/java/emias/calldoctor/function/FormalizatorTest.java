@@ -3,18 +3,14 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.sleep;
-import static com.lib.assistance.Assistance.visible;
+import static com.utils.assistance.Assistance.visible;
 
 public class FormalizatorTest extends TestBase {
 

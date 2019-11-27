@@ -13,9 +13,10 @@ import org.testng.Assert;
 import static com.codeborne.selenide.Selenide.*;
 
 public class Exams extends DispaPage {
-    String examName;
-    SelenideElement exam;
+    private String examName;
+    private SelenideElement exam;
     private BlokImpl blok;
+    private MeasureEnum measure;
 
     Exams(String examName) {
         this.examName = examName;
@@ -27,24 +28,22 @@ public class Exams extends DispaPage {
         this.blok = new Blok();
     }
 
-    public void expand(MeasureEnum measure) {
-        blok.expand(measure);
+    Exams(MeasureEnum measure){
+        this.measure = measure;
     }
 
-    public Exams openService() {
-        sleep(1000);
-        exam.$x("../../../.").hover();
-        exam.$x("../../../.")
-                .$x(".//span[@ng-reflect-ng-class='enebled-med-record']")
-                .click();
-        sleep(1000);
-        exam.$x("../../../.").hover();
+    public Exams expandExam() {
+        blok.expandExam(this.measure);
+        return this;
+    }
+
+    public Exams expandService() {
+        blok.expandService();
         return this;
     }
 
     public Exams signService() {
-        $x("//*[contains(text(),'" + exam + "')]")
-                .$x("../tr[3]//*[contains(text(),'Подписать')]").hover().click();
+        blok.signMr();
         return this;
     }
 

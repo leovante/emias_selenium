@@ -83,7 +83,7 @@ public class UchastoksAddressTest extends TestBase {
         page.createCall(pacientImpl).createCall_Api_Auth();
         page.misHome().calldoctor();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
+                .dashFilter_fio(pacientImpl)
                 .openNewCallDash(pacientImpl);
         $x("//*[contains(text(),'Интернет')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
@@ -98,7 +98,7 @@ public class UchastoksAddressTest extends TestBase {
         page.createCall(pacientImpl).createCall_Api();
         page.misHome().calldoctor();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
+                .dashFilter_fio(pacientImpl)
                 .openNewCallDash(pacientImpl);
         $x("//*[contains(text(),'Участок')]").shouldNotBe(Condition.visible);
     }

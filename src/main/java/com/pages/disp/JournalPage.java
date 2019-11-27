@@ -7,8 +7,8 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.lib.assistance.Assistance.placeholder;
-import static com.lib.assistance.Assistance.visible;
+import static com.utils.assistance.Assistance.placeholder;
+import static com.utils.assistance.Assistance.visible;
 
 public class JournalPage extends WebPage implements JournalPageElem{
     SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
