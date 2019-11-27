@@ -67,12 +67,15 @@ public class ChangeDepartmentTest extends TestBase {
         Doctor lpu_doc = new Doctor("TemnikovStend");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
-        page.misHome().calldoctorVzroslaya();
-        page.createCall(pacient).createCall();
+        page.misHome()
+                .calldoctorVzroslaya();
+        page.createCall(pacient)
+                .createCall();
         page.fullCard(pacient, testName())
                 .verifyDepartment(dep_doc)
                 .transfer_to_depart();
-        page.passLpu(lpu_doc).transfer();
+        page.passLpu(lpu_doc)
+                .transfer();
         page.fullCard(pacient, testName())
                 .verifyDepartment(lpu_doc);
     }
