@@ -170,5 +170,15 @@
       <user-name>sa</user-name>
       <introspection-schemas>*:*|hlt_db_lpu_GP13:|hlt_db_lpu_gp2:|hlt_db_lpu_isilkul:|master:dbo</introspection-schemas>
     </data-source>
+    <data-source name="31_bl_2012@192.168.7.210" uuid="e4130d90-51cc-4554-b170-02bd42d61e6d">
+      <database-info product="Microsoft SQL Server" version="12.00.5000" jdbc-version="3.0" driver-name="jTDS Type 4 JDBC Driver for MS SQL Server and Sybase" driver-version="1.3.1" family="MSSQL" exact-version="12.0.500">
+        <extra-name-characters>$#@</extra-name-characters>
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>sa</user-name>
+      <introspection-schemas>master:@,dbo</introspection-schemas>
+    </data-source>
   </component>
 </project>

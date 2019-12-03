@@ -7,17 +7,14 @@ import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.*;
 
 public class SetDoctorPage extends WebPage {
-    SelenideElement appenToday = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
-    SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
-    SelenideElement zapisat = $(By.xpath("//span[contains(text(),'Записать')]"));
-    SelenideElement zapisatDobavit = $(By.xpath("//span[contains(text(),'Записать и добавить')]"));
-
-    public SetDoctorPage()  {
-    }
+    private SelenideElement
+            appenToday = $x("//span[contains(.,'Назначить на сегодня')]"),
+            appenTomorrow = $x("//span[contains(.,'Назначить на завтра')]"),
+            zapisat = $x("//span[contains(text(),'Записать')]"),
+            zapisatDobavit = $x("//span[contains(text(),'Записать и добавить')]");
 
     @Step("назначиь врача на сегодня")
     public SetDoctorPage chooseDoctorToday(Doctor doctor) {
@@ -28,7 +25,7 @@ public class SetDoctorPage extends WebPage {
     }
 
     @Step("назначиь врача на сегодня")
-    public SetDoctorPage chooseDoctorTodayBooster(Doctor doctor){
+    public SetDoctorPage chooseDoctorTodayBooster(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         for (int i = 1; appenToday.isDisplayed(); i++) {
             appenToday.click();

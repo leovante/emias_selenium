@@ -14,27 +14,29 @@ import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.utils.assistance.Assistance.parseTelephone;
+import static com.utils.assistance.Assistance.visible;
 
 public class DashboardPage extends WebPage {
-    private SelenideElement exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div");
-    private SelenideElement exitBtn = $x("//span[contains(text(),'Выход')]");
-    private SelenideElement instructionBtn = $x("//span[contains(text(),'Инструкция')]");
-    private SelenideElement filter_all = $(By.xpath("//*[text()='Все']"));
-    private SelenideElement filter_today = $(By.xpath("//*[text()='Сегодня']"));
-    private SelenideElement filter_tomorrow = $(By.xpath("//*[text()='Завтра']"));
-    private SelenideElement filterTodayViz = /*$(By.id("mCSB_5_container")).*/$(By.xpath("//span[contains(text(),'Сегодня')]"));
-    private SelenideElement filterTomorrowViz = /*$(By.id("mCSB_5_container")).*/$(By.xpath("//span[contains(text(),'Завтра')]"));
-    private SelenideElement fioFilter = $(By.xpath("//*[@placeholder='ФИО']"));
-    private SelenideElement docFilter = $(By.xpath("//*[@placeholder='Врач']"));
-    private SelenideElement typeCall = $(By.xpath("//*[text()='Вид вызова']"));
-    private SelenideElement newCallProgressFrame = $(By.id("newCallProgressFrame"));
-    private SelenideElement matExpansionPanel = $(By.xpath("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"));
-    private SelenideElement typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]"));
-    private SelenideElement activeCallProgressFrame = $(By.id("activeCallProgressFrame"));
-    private SelenideElement doneCallProgressFrame = $(By.id("doneCallProgressFrame"));
-    private SelenideElement cancelCall = $(By.id("cancelcall"));
+    private SelenideElement
+            exitToMis = $(By.id("headerUserMenu")).$x("../.").$x(".//div"),
+            exitBtn = $x("//span[contains(text(),'Выход')]"),
+            instructionBtn = $x("//span[contains(text(),'Инструкция')]"),
+            filter_all = $x("//*[text()='Все']"),
+            fioFilter = $x("//*[@placeholder='ФИО']"),
+            docFilter = $x("//*[@placeholder='Врач']"),
+            typeCall = $x("//*[text()='Вид вызова']"),
+            matExpansionPanel = $x("//*[@id='newCallProgressFrame']/mat-expansion-panel/div"),
+            filter_today = $x("//*[text()='Сегодня']"),
+            filter_tomorrow = $x("//*[text()='Завтра']"),
+            filterTodayViz = $x("//span[contains(text(),'Сегодня')]"),
+            filterTomorrowViz = $x("//span[contains(text(),'Завтра')]"),
+            newCallProgressFrame = $(By.id("newCallProgressFrame")),
+            typeCallFilterNeotlozhniy = $(By.xpath("//span[contains(text(),'Неотложный')]")),
+            activeCallProgressFrame = $(By.id("activeCallProgressFrame")),
+            doneCallProgressFrame = $(By.id("doneCallProgressFrame")),
+            cancelCall = $(By.id("cancelcall"));
 
-    DashboardPage()  {
+    DashboardPage() {
         refresh();
     }
 
@@ -60,7 +62,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("поиск в фильтре врача")
-    public DashboardPage searchFilterDoctor(Doctor doctor)  {
+    public DashboardPage searchFilterDoctor(Doctor doctor) {
         sleep(1000);
         docFilter.hover().click();
         sleep(1000);
@@ -107,21 +109,23 @@ public class DashboardPage extends WebPage {
         return this;
     }
 
+    // TODO: 11/27/2019 работаем
     @Step("проверяю на дашборде запись в группе новые")
-    public void verifyNewCallGroup(Pacient pacientImpl) {
+    public void verifyNewCallGroup(Pacient pacient) {
         sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
-        $(By.xpath("//*[contains(text(),'" + pacientImpl.getAddress() + "')]")).click();
-        $(By.xpath("//*[contains(text(),'" + pacientImpl.getName() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + pacientImpl.getFamily() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + pacientImpl.getOt() + "')]")).shouldBe(Condition.visible);
-        $(By.xpath("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]")).shouldBe(Condition.visible);
+
+        assistance.visible().byText(pacient.getAddress());//возвращать элемент селенида и добавить клик
+        assistance.visible().byText(pacient.getName());
+        assistance.visible().byText(pacient.getFamily());
+        assistance.visible().byText(pacient.getOt());
+        assistance.visible().byText(parseTelephone(pacient));
         logger.info("Краткая карта вызова проверена!");
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(Pacient pacientImpl, Doctor doctor) {
+    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) {
         sleep(1000);
         SelenideElement docFamBlock = $x("//span[contains(text(),'" + doctor.getFamily() + "')]").$x("../../.");
         docFamBlock.click();
@@ -131,14 +135,14 @@ public class DashboardPage extends WebPage {
                 .$x("../.")
                 .$x(".//mat-icon[@id='order']").click();
         docBlock.$x(".//*[contains(text(),'Ожидают обработки')]").click();
-        $x("//*[contains(text(),'" + pacientImpl.getAddress() + "')]").click();
-        $x("//*[contains(text(),'" + parseTelephone(pacientImpl) + "')]").shouldBe(Condition.visible);
+        $x("//*[contains(text(),'" + pacient.getAddress() + "')]").click();
+        $x("//*[contains(text(),'" + parseTelephone(pacient) + "')]").shouldBe(Condition.visible);
         logger.info("Краткая карта вызова проверена!");
         return this;
     }
 
     @Step("проверяю на дашборде запись не отображается у врача в группе активные")
-    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacientImpl, Doctor doctor) {
+    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) {
         sleep(1000);
         SelenideElement docFamBlock =
                 $(By.xpath("//*[contains(text(),'Активные')]"))
@@ -157,7 +161,7 @@ public class DashboardPage extends WebPage {
                         .$(By.xpath(".//*[@id='order']")).click();
                 waitGreen.click();
             }
-            $(By.xpath("//*[contains(text(),'" + pacientImpl.getAddress() + "')]")).shouldNotBe(Condition.visible);
+            $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]")).shouldNotBe(Condition.visible);
         } else {
             docFamBlock.shouldNotBe(Condition.visible);
         }
@@ -167,7 +171,7 @@ public class DashboardPage extends WebPage {
 
     @Step("проверка в группе обслуженные")
     public void verifyPacientNumberInServe(Pacient pacient, Doctor doctor) {
-        lib.calldoctor(pacient,doctor)
+        lib.calldoctor(pacient, doctor)
                 .expandDoctorInServe()
                 .sortInProgress()
                 .expandInProgress()
@@ -177,7 +181,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyCallIsCancelFromDashboard(Pacient pacient)  {
+    public void verifyCallIsCancelFromDashboard(Pacient pacient) {
         sleep(5000);
         SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         if (newCallProgressFrame.isDisplayed()) {
@@ -198,7 +202,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyCallIsNotCancelFromDashboard(Pacient pacient)  {
+    public void verifyCallIsNotCancelFromDashboard(Pacient pacient) {
         sleep(5000);
         SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         if (newCallProgressFrame.isDisplayed()) {
@@ -219,12 +223,12 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("открываю вызов в группе 'Ожидают обработки' через дашбоард")
-    public void openNewCallDash(Pacient pacientImpl) {
+    public void openNewCallDash(Pacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
         ElementsCollection addressCollection = matExpansionPanel
-                .$$x(".//*[contains(text(),'" + pacientImpl.getAddress() + "')]");
+                .$$x(".//*[contains(text(),'" + pacient.getAddress() + "')]");
         SelenideElement address = addressCollection.get(0);
 
         address.shouldBe(Condition.visible);
@@ -243,12 +247,12 @@ public class DashboardPage extends WebPage {
                 .$x(".//mat-icon[contains(text(),'assignment')]");
         address.shouldBe(Condition.visible);
 
-        if(openCard.is(Condition.visible)){
+        if (openCard.is(Condition.visible)) {
             openCard.click();
-        }else{
+        } else {
             for (int i = 0; i < 5; i++) {
                 waitVisible(address);
-                if(openCard.is(Condition.visible))
+                if (openCard.is(Condition.visible))
                     break;
                 sleep(1000);
             }
@@ -256,7 +260,7 @@ public class DashboardPage extends WebPage {
         }
     }
 
-    void waitVisible(SelenideElement address){
+    void waitVisible(SelenideElement address) {
         address.shouldBe(Condition.visible);
         Actions actions = new Actions(driver);
         actions.moveToElement(address).perform();//маленький уголочек
@@ -269,7 +273,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage cancelNewCallDash(Pacient pacient)  {
+    public DashboardPage cancelNewCallDash(Pacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         sleep(4000);
@@ -313,7 +317,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("валидация что вызов не отменился на странице редактирования")
-    public DashboardPage verifyCancellCallValidation()  {
+    public DashboardPage verifyCancellCallValidation() {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
@@ -321,7 +325,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("валидация что вызов не отменился на дашборде")
-    public DashboardPage verifyCancellCallValidation_Dash()  {
+    public DashboardPage verifyCancellCallValidation_Dash() {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         sleep(2000);
         return this;

@@ -49,6 +49,12 @@ public class MisHomePage extends WebPage {
         logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
     }
 
+    @Step("Вход в модуль диспетчер от взрослой поликлиникой")
+    public void calldoctorHimki() {
+        open(conf.getCalldoctorHimki());
+        logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
+    }
+
     @Step("Вход в диспетчер через МИС под админом")
     public void calldoctorFromMis() {
         open(conf.getUrl());

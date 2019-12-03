@@ -10,22 +10,23 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.utils.assistance.Assistance.placeholder;
 import static com.utils.assistance.Assistance.visible;
 
-public class JournalPage extends WebPage implements JournalPageElem{
-    SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
-    SelenideElement pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
-    SelenideElement fioField = $(By.xpath("//*[@placeholder='ФИО пациента']"));
-    SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search search-icon']"));
-    SelenideElement journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]"));
-    SelenideElement kvotyBtn = $x("//*[contains(text(),'Квоты')]");
-    SelenideElement grida = $x("//datatable-body-row[@class='datatable-body-row datatable-row-even ng-star-inserted']");
-    SelenideElement grida2 = $x("//datatable-body[@class='datatable-body']");
-    SelenideElement openCard = $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Просмотр']"));
-    SelenideElement closeCard = $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Закрыть']"));
-    SelenideElement oprosMeasure = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]"));
-    SelenideElement oprosMeasureExamp = $(By.xpath("//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]"));
-    SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
+public class JournalPage extends WebPage implements JournalPageElem {
+    private SelenideElement
+            cardNumberFiled = $x("//*[@placeholder='№ Карты']"),
+            pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']")),
+            fioField = $(By.xpath("//*[@placeholder='ФИО пациента']")),
+            searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search search-icon']")),
+            journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]")),
+            kvotyBtn = $x("//*[contains(text(),'Квоты')]"),
+            grida = $x("//datatable-body-row[@class='datatable-body-row datatable-row-even ng-star-inserted']"),
+            grida2 = $x("//datatable-body[@class='datatable-body']"),
+            openCard = $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Просмотр']")),
+            closeCard = $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Закрыть']")),
+            oprosMeasure = $(By.xpath("//*[contains(text(),'Опрос (анкетирование) на выявление хронических неинфекционных заболеваний, факторов риска их развития, потребления наркотических средств и психотропных веществ без назначения врача')]")),
+            oprosMeasureExamp = $(By.xpath("//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]")),
+            MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
 
-    public JournalPage()  {
+    public JournalPage() {
     }
 
     public JournalPage journalMenuBtn() {
@@ -107,7 +108,7 @@ public class JournalPage extends WebPage implements JournalPageElem{
         return this;
     }
 
-    public JournalPage validJournalElements(){
+    public JournalPage validJournalElements() {
         visible(placeholder(numMkab));
         visible(placeholder(polis));
         visible(allCreateCard);

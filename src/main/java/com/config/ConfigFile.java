@@ -22,6 +22,7 @@ public class ConfigFile {
     private String calldoctor;
     private String calldoctorVz;
     private String calldoctorUdinaVz;
+    private String calldoctorHimki;
     private String clientApplication;
     private String authorization;
     private String requestSmp;
@@ -56,6 +57,7 @@ public class ConfigFile {
             calldoctor = property.getProperty("st.mis.url.calldoctor");
             calldoctorVz = property.getProperty("st.mis.url.calldoctorVz");
             calldoctorUdinaVz = property.getProperty("st.mis.url.calldoctorUdina");
+            calldoctorHimki = property.getProperty("st.mis.url.calldoctorHimki");
             clientApplication = property.getProperty("st.api.clientApplication");
             authorization = property.getProperty("st.api.authorization");
             requestSmp = property.getProperty("st.api.requestSmp");
@@ -122,6 +124,10 @@ public class ConfigFile {
 
     public String getCalldoctor() {
         return calldoctor;
+    }
+
+    public String getCalldoctorHimki() {
+        return calldoctorHimki;
     }
 
     public String getCalldoctorVz() {

@@ -6,6 +6,7 @@ import com.lib.Lib;
 import com.pages.calldoctor.controllers.StAddress;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.CallDoctorCards;
+import com.utils.assistance.Assistance;
 import com.utils.assistance.DuringTestHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,12 +25,14 @@ public abstract class WebPage  {
     public WebDriver driver;
     public Lib lib = new Lib();
     public HltCallDoctorServiceImpl hltCallDoctorService;
+    public Assistance assistance;
 
     public WebPage() {
         ApplicationContext context = SpringContext.getApplicationContext();
         hltCallDoctorService = (HltCallDoctorServiceImpl)context.getBean("HltCallDoctorServiceImpl");
         this.driver = getWebDriver();
         this.conf = new ConfigFile();
+        assistance = new Assistance();
     }
 
 

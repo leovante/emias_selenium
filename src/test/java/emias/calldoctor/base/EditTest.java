@@ -47,19 +47,22 @@ public class EditTest extends TestBase {
                 .saveBtn();
         $x("//*[contains(.,'Карта создана')]").shouldBe(Condition.visible);
         List<SelenideElement> se = $$x("//div[@class='datatable-row-center datatable-row-group ng-star-inserted']");
-        Assert.assertTrue(se.size() == 1, "Количество записей в истории больше одной!");
+        Assert.assertEquals(1, se.size(), "Количество записей в истории больше одной!");
     }
 
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры. Меняем с мкаб на неформал")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testEditCall_mkab_any()  {
+    public void testEditCall_mkab_any() {
         Pacient pacient = new PacientImpl("Profile2");
         Pacient pacient2 = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
+        new DuringTestHelper().beforeCleanDecider(pacient2);
 
-        page.misHome().calldoctorAdminTemnikov();
-        page.createCall(pacient).createCall_Mkab();
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall_Mkab();
         page.createCall(pacient2)
                 .editCallBtn()
                 .setDeafult()
@@ -76,13 +79,16 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры. Меняем с неформал на мкаб")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testEditCall_any_mkab()  {
+    public void testEditCall_any_mkab() {
         Pacient pacient = new PacientImpl("Profile1");
         Pacient pacient2 = new PacientImpl("Profile2");
         new DuringTestHelper().beforeCleanDecider(pacient);
+        new DuringTestHelper().beforeCleanDecider(pacient2);
 
-        page.misHome().calldoctorAdminTemnikov();
-        page.createCall(pacient).createCall();
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall();
         page.createCall(pacient2)
                 .editCallBtn()
                 .setDeafult()
@@ -100,14 +106,18 @@ public class EditTest extends TestBase {
     @Epic("Редактирование вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
-    public void testValidationAddressAfterSaveEditedCall()  {
+    public void testValidationAddressAfterSaveEditedCall() {
         Pacient pacient = new PacientImpl("Profile2");
         Pacient pacient2 = new PacientImpl("Profile0_3");
         new DuringTestHelper().beforeCleanDecider(pacient);
+        new DuringTestHelper().beforeCleanDecider(pacient2);
 
-        page.misHome().calldoctorAdminTemnikov();
-        page.createCall(pacient).createCall_Mkab();
-        page.fullCard(pacient, testName()).editCallBtn();
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall_Mkab();
+        page.fullCard(pacient, testName())
+                .editCallBtn();
         page.createCall(pacient2)
                 .setDeafult()
                 .editCallPage()
@@ -118,7 +128,7 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "формализация неформализованного адреса на странице редактирования")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID()  {
+    public void testCallMkabWaitoutID() {
         Pacient pacient = new PacientImpl("Profile0_3_1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 

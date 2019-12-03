@@ -23,6 +23,10 @@ public class Assistance {
         selenideElement.shouldBe(Condition.visible);
     }
 
+    public visibleByText visible() {
+        return new visibleByText();
+    }
+
     public static void notVisible(String text) {
         $x("//*[contains(.,'" + text + "')]").shouldNotBe(Condition.visible);
     }
@@ -49,23 +53,26 @@ public class Assistance {
         return telephone;
     }
 
-    public static String parseTelephone(Pacient pacientImpl) {
-        String telephone = pacientImpl.getPhone();
-        if (pacientImpl.getSource() == 4) {
-            telephone = telephone.substring(0, 1) + "7 (" +
-                    telephone.substring(1, 4) + ") " +
-                    telephone.substring(4, 7) + "-" +
-                    telephone.substring(7, 9) + "-" +
-                    telephone.substring(9, telephone.length() - 1);
+    public static String parseTelephone(Pacient pacient) {
+        String telephone = pacient.getPhone();
+        if (telephone != "") {
+            if (pacient.getSource() == 4) {
+                telephone = telephone.substring(0, 1) + "7 (" +
+                        telephone.substring(1, 4) + ") " +
+                        telephone.substring(4, 7) + "-" +
+                        telephone.substring(7, 9) + "-" +
+                        telephone.substring(9, telephone.length() - 1);
+                return telephone;
+            } else {
+                telephone = telephone.substring(0, 2) + " (" +
+                        telephone.substring(2, 5) + ") " +
+                        telephone.substring(5, 8) + "-" +
+                        telephone.substring(8, 10) + "-" +
+                        telephone.substring(10, telephone.length());
+                return telephone;
+            }
         }
-        if (pacientImpl.getSource() != 4) {
-            telephone = telephone.substring(0, 2) + " (" +
-                    telephone.substring(2, 5) + ") " +
-                    telephone.substring(5, 8) + "-" +
-                    telephone.substring(8, 10) + "-" +
-                    telephone.substring(10, telephone.length());
-        }
-        return telephone;
+        return telephone = "Не указан";
     }
 
     public static ArrayList currentTimeList(String format) {
@@ -98,7 +105,7 @@ public class Assistance {
         return years;
     }
 
-    public static SelenideElement placeholder(String text){
+    public static SelenideElement placeholder(String text) {
         SelenideElement se = $x("//*[@placeholder='" + text + "']");
         return se;
     }

@@ -84,13 +84,15 @@ public class ChangeDepartmentTest extends TestBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testTransferCallLpu_Lpu() {
-        Pacient pacient = new PacientImpl("ProfileTransferLpu-Dep");
+        Pacient pacient = new PacientImpl("ProfileTransferLpu-Lpu");
         Doctor doctor = new Doctor("TemnikovStend");
         Doctor doctor2 = new Doctor("TemnikovHimkiStend");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
-        page.misHome().calldoctorAdminTemnikov();
-        page.createCall(pacient).createCall();
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall();
         page.fullCard(pacient, testName())
                 .verifyDepartment(doctor)
                 .transfer_to_depart();
@@ -99,7 +101,12 @@ public class ChangeDepartmentTest extends TestBase {
                 .transfer();
         page.fullCard(pacient, testName())
                 .verifyDepartment(doctor2);
-        // TODO: 7/24/2019 доделать проверку на стороне Химок
+
+        page.misHome()
+                .calldoctorHimki();
+        page.dashboard()
+                .dashFilter_fio(pacient)
+                .verifyNewCallGroup(pacient);
     }
 
     @Test(groups = "CD", description = "На странице передачи в другое подр. у взрослого вызова отображается взрослое и не отображается детское")

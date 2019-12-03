@@ -20,19 +20,20 @@ import static org.testng.Assert.assertTrue;
 
 public class PrintFormPage extends WebPage {
     Pacient pacient;
-    SelenideElement doneCall = $(By.id("doneCall"));
-    SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
-    SelenideElement mat_calendar_header = $(By.id(""));
-    SelenideElement setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
-    SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
-    SelenideElement completeServiceBtn = $(By.id("toDone"));
-    SelenideElement toLpu = $(By.id("toLpu"));
-    SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
-    SelenideElement change = $(By.id("change"));
-    SelenideElement cancelBtn = $(By.id("cancel"));
-    SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
-    SelenideElement cancelCall = $(By.id("cancelCall"));
-    SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
+    private SelenideElement
+            doneCall = $(By.id("doneCall")),
+            mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"),
+            mat_calendar_header = $(By.id("")),
+            setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]")),
+            appoindDoctorBtn = $(By.id("toDoctor")),
+            completeServiceBtn = $(By.id("toDone")),
+            toLpu = $(By.id("toLpu")),
+            cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']")),
+            change = $(By.id("change")),
+            cancelBtn = $(By.id("cancel")),
+            cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']")),
+            cancelCall = $(By.id("cancelCall")),
+            cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
 
     @Autowired
     public CallDoctorCards callDoctorCards;
@@ -41,7 +42,7 @@ public class PrintFormPage extends WebPage {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public PrintFormPage(Pacient pacient, String testName)  {
+    public PrintFormPage(Pacient pacient, String testName) {
         this.pacient = pacient;
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }

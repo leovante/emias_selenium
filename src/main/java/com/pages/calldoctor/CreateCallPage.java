@@ -4,11 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Pacient;
-import com.datas.calldoctor.PacientImpl;
 import com.pages.WebPage;
 import com.pages.calldoctor.controllers.StAddress;
 import com.utils.api_model.CallDoctorHttp;
-import com.utils.assistance.DuringTestHelper;
 import io.qameta.allure.Step;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -27,46 +25,47 @@ import static org.hamcrest.Matchers.containsString;
 
 public class CreateCallPage extends WebPage {
     private Pacient pacient;
-    SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
-    SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
-    SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
-    SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
-    SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
-    SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
-    SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
-    SelenideElement pd = $(By.xpath("//input[@placeholder='П-д']"));
-    SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
-    SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
-    SelenideElement seriyaPol = $(By.xpath("//input[@placeholder='Серия']"));
-    SelenideElement nomerPol = $(By.xpath("//input[@placeholder='Номер полиса']"));
-    SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
-    SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
-    SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
-    SelenideElement birthDateTemp = $(By.xpath("//input[@placeholder='Дата рождения']"));
-    SelenideElement phone = $(By.id("phone"));
-    SelenideElement famCall = $(By.id("callFamily"));
-    SelenideElement nameCall = $(By.id("callName"));
-    SelenideElement otCall = $(By.id("callPatronymic"));
-    SelenideElement sourceSmp = $(By.id("source0"));
-    SelenideElement sourceSmp2 = $(By.id("sourceSmp"));
-    SelenideElement sourceReg = $(By.id("source1"));
-    SelenideElement callerType = $(By.xpath("//mat-select[@aria-label='Тип вызывающего']"));
-    SelenideElement callerType_pacient = $(By.xpath("//span[contains(.,'Пациент')]"));
-    SelenideElement callerType_predstavitel = $(By.xpath("//span[contains(.,'Представитель')]"));
-    SelenideElement cancelBtn = $(By.id("cancelCall"));
-    SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
-    SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
-    SelenideElement kto_pacient_header = $x("//*[contains(text(),'КТО ПАЦИЕНТ')]");
-    SelenideElement new_call_header = $x("//*[contains(text(),'Новый вызов')]");
-    SelenideElement male = $(By.id("sex1"));
-    SelenideElement female = $(By.id("sex2"));
-    SelenideElement edit_call = $x("//*[contains(text(),'Редактирование вызова')]");
-    SelenideElement change_call = $(By.id("change"));
-    SelenideElement reason_cancel_call_validator = $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"));
-    SelenideElement unpin_mkab = $x("//img[@src='./assets/img/close.png']");
-    SelenideElement complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']");
-    SelenideElement allertCloseDialog_Yes = $(By.xpath("//button/span[contains(text(),'Да')]"));
-    ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
+    private SelenideElement
+            cancelAdress = $x("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"),
+            list_first_container = $x("//div[@class='autocomplete-list-container']/ul/li"),
+            dom = $x("//input[@placeholder='Дом']"),
+            vKat = $x("//input[@placeholder='Возр. категория']"),
+            korpus = $x("//input[@placeholder='Корпус']"),
+            stroenie = $x("//input[@placeholder='Строение']"),
+            kvartira = $x("//input[@placeholder='Квартира']"),
+            pd = $x("//input[@placeholder='П-д']"),
+            dfon = $x("//input[@placeholder='Д-фон']"),
+            etazh = $x("//input[@placeholder='Этаж']"),
+            seriyaPol = $x("//input[@placeholder='Серия']"),
+            nomerPol = $x("//input[@placeholder='Номер полиса']"),
+            fam = $x("//input[@placeholder='Фамилия']"),
+            name = $x("//input[@placeholder='Имя']"),
+            otchestvo = $x("//input[@placeholder='Отчество']"),
+            birthDateTemp = $x("//input[@placeholder='Дата рождения']"),
+            phone = $(By.id("phone")),
+            famCall = $(By.id("callFamily")),
+            nameCall = $(By.id("callName")),
+            otCall = $(By.id("callPatronymic")),
+            sourceSmp = $(By.id("source0")),
+            sourceSmp2 = $(By.id("sourceSmp")),
+            sourceReg = $(By.id("source1")),
+            callerType = $x("//mat-select[@aria-label='Тип вызывающего']"),
+            callerType_pacient = $x("//span[contains(.,'Пациент')]"),
+            callerType_predstavitel = $x("//span[contains(.,'Представитель')]"),
+            cancelBtn = $(By.id("cancelCall")),
+            cancelField = $x("//input[@placeholder='Причина отмены вызова']"),
+            cancelCall = $x("//a[@title='Отменить вызов']"),
+            kto_pacient_header = $x("//*[contains(text(),'КТО ПАЦИЕНТ')]"),
+            new_call_header = $x("//*[contains(text(),'Новый вызов')]"),
+            male = $(By.id("sex1")),
+            female = $(By.id("sex2")),
+            edit_call = $x("//*[contains(text(),'Редактирование вызова')]"),
+            change_call = $(By.id("change")),
+            reason_cancel_call_validator = $x("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"),
+            unpin_mkab = $x("//img[@src='./assets/img/close.png']"),
+            complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"),
+            allertCloseDialog_Yes = $x("//button/span[contains(text(),'Да')]");
+    ElementsCollection close_collections = $$x("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']");
 
     CreateCallPage() {
         super();
@@ -81,6 +80,7 @@ public class CreateCallPage extends WebPage {
         addNewCall()
                 .sourceCall()
                 .address()
+                .addressPlus()
                 .birthDay()
                 .gender()
                 .complaint()
@@ -129,9 +129,8 @@ public class CreateCallPage extends WebPage {
         sourceCall()
                 .sourceCall()
                 .address()
+                .addressPlus()
                 .birthDay()
-                .addressPlus()
-                .addressPlus()
                 .complaint()
                 .polis()
                 .fio()
@@ -220,7 +219,6 @@ public class CreateCallPage extends WebPage {
                 .write(pacient.getAddress2(), pacient.getAddress2adv())
                 .write(pacient.getAddress3(), pacient.getAddress3adv())
                 .dom(pacient.getNumber());
-        addressPlus();
         return this;
     }
 

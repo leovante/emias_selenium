@@ -19,24 +19,25 @@ import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends WebPage {
     Pacient pacient;
-    SelenideElement doneCall = $(By.id("doneCall"));
-    SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
-    SelenideElement mat_calendar_header = $(By.id(""));
-    SelenideElement setAnotherDoctor = $x("//span[contains(text(),'Передать другому врачу')]");
-    SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
-    SelenideElement completeServiceBtn = $(By.id("toDone"));
-    SelenideElement toLpu = $(By.id("toLpu"));
-    SelenideElement cancelCall2 = $x("//a[@title='Отменить вызов']");
-    SelenideElement change = $(By.id("change"));
-    SelenideElement cancelBtn = $(By.id("cancel"));
-    SelenideElement cancelField = $x("//input[@placeholder='Причина отмены вызова']");
-    SelenideElement cancelCall = $(By.id("cancelCall"));
-    SelenideElement cardNumber = $x("//div[contains(text(),'Карта вызова №')]");
-    SelenideElement status_new = $x("//*[contains(.,'Новый')]");
-    SelenideElement status_active = $(By.xpath("//*[contains(.,'Активный')]"));
-    SelenideElement status_done = $(By.xpath("//*[contains(.,'Обслуженный')]"));
-    SelenideElement timeField = $x("//input[@placeholder='Время']");
-    SelenideElement card = $x("//*[contains(text(),'Карта вызова')]");
+    private SelenideElement
+            doneCall = $(By.id("doneCall")),
+            mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"),
+            mat_calendar_header = $(By.id("")),
+            setAnotherDoctor = $x("//span[contains(text(),'Передать другому врачу')]"),
+            appoindDoctorBtn = $(By.id("toDoctor")),
+            completeServiceBtn = $(By.id("toDone")),
+            toLpu = $(By.id("toLpu")),
+            cancelCall2 = $x("//a[@title='Отменить вызов']"),
+            change = $(By.id("change")),
+            cancelBtn = $(By.id("cancel")),
+            cancelField = $x("//input[@placeholder='Причина отмены вызова']"),
+            cancelCall = $(By.id("cancelCall")),
+            cardNumber = $x("//div[contains(text(),'Карта вызова №')]"),
+            status_new = $x("//*[contains(.,'Новый')]"),
+            status_active = $(By.xpath("//*[contains(.,'Активный')]")),
+            status_done = $(By.xpath("//*[contains(.,'Обслуженный')]")),
+            timeField = $x("//input[@placeholder='Время']"),
+            card = $x("//*[contains(text(),'Карта вызова')]");
 
     public FullCardPage(String testName) {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
