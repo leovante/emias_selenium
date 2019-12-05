@@ -4,8 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.assistance.DuringTestHelper;
-import com.utils.retryCountListner.RetryCountIfFailed;
+import com.commons.assistance.DuringTestHelper;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.utils.assistance.Assistance.visible;
+import static com.commons.assistance.Assistance.visible;
 
 public class EditTest extends TestBase {
 

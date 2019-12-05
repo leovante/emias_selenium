@@ -1,16 +1,5 @@
 package emias.calldoctor.backlog;
 
-import com.codeborne.selenide.Condition;
-import com.datas.calldoctor.PacientImpl;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import io.qameta.allure.Epic;
-import org.json.JSONException;
-import org.openqa.selenium.By;
-import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.text.ParseException;
-
 import static com.codeborne.selenide.Selenide.$;
 
 public class ValidationTest {

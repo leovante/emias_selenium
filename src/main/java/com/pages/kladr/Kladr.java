@@ -1,7 +1,7 @@
 package com.pages.kladr;
 
-import com.utils.Formalizer;
-import com.utils.sql.DBScripts;
+import com.commons.Formalizer;
+import com.commons.sql.DBScripts;
 import org.json.JSONException;
 import org.testng.Assert;
 

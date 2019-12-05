@@ -1,29 +1,22 @@
 package emias;
 
-import com.config.AppConfig;
+import com.settings.AppConfig;
 import com.pages.Page;
 import com.system.service.*;
-import com.utils.CallDoctorCards;
-import com.utils.Selenium.SeleniumGrid;
-import com.utils.TestMethodCapture;
-import com.utils.WebDriverInstansiator;
-import com.utils.screenshotsListner.CustomTestListener;
+import com.commons.CallDoctorCards;
+import com.commons.Selenium.SeleniumGrid;
+import com.commons.TestMethodCapture;
+import com.commons.WebDriverInstansiator;
 import emias.beforeRun.BeforeRun;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
-import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import java.io.IOException;
-import java.text.ParseException;
-
-import static com.utils.WebDriverUtils.killAllRunWebBrowsers;
+import static com.commons.WebDriverUtils.killAllRunWebBrowsers;
 
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})

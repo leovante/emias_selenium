@@ -1,17 +1,15 @@
 package com.pages;
 
-import com.config.ConfigFile;
+import com.settings.ConfigFile;
 import com.lib.Alarms;
 import com.lib.Lib;
 import com.pages.calldoctor.controllers.StAddress;
 import com.system.service.HltCallDoctorServiceImpl;
-import com.utils.CallDoctorCards;
-import com.utils.assistance.Assistance;
-import com.utils.assistance.DuringTestHelper;
+import com.commons.CallDoctorCards;
+import com.commons.assistance.Assistance;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.springframework.context.ApplicationContext;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;

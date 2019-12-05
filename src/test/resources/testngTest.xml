@@ -5,8 +5,8 @@
     <parameter name="testng" value="true"/>
 
     <listeners>
-        <listener class-name="com.utils.screenshotsListner.CustomTestListener"/>
-        <listener class-name="com.utils.retryCountListner.AnnotationTransformer"/>
+        <listener class-name="com.commons.screenshotsListner.CustomTestListener"/>
+        <listener class-name="com.commons.retryCountListner.AnnotationTransformer"/>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
 

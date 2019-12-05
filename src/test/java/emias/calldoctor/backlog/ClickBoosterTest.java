@@ -2,8 +2,8 @@ package emias.calldoctor.backlog;
 
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
-import com.utils.retryCountListner.RetryCountIfFailed;
+import com.commons.except.NoticeException;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.hibernate.AssertionFailure;

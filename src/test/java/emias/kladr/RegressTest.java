@@ -1,6 +1,6 @@
 package emias.kladr;
 
-import com.utils.retryCountListner.RetryCountIfFailed;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;

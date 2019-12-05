@@ -1,6 +1,6 @@
 package emias.disp.base;
 
-import com.utils.retryCountListner.RetryCountIfFailed;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;

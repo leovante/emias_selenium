@@ -3,14 +3,11 @@ package emias.disp.base;
 import com.codeborne.selenide.Condition;
 import com.datas.Datas;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.retryCountListner.RetryCountIfFailed;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;

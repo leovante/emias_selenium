@@ -1,7 +1,7 @@
 package emias.disp.before;
 
-import com.utils.retryCountListner.RetryCountIfFailed;
-import com.utils.sql.DBScripts;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.commons.sql.DBScripts;
 import emias.TestBase;
 import io.qameta.allure.Step;
 import org.testng.annotations.Test;

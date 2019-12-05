@@ -5,7 +5,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
-import com.datas.calldoctor.PacientImpl;
 import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -13,8 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.utils.assistance.Assistance.parseTelephone;
-import static com.utils.assistance.Assistance.visible;
+import static com.commons.assistance.Assistance.parseTelephone;
+import static com.commons.assistance.Assistance.visible;
 
 public class DashboardPage extends WebPage {
     private SelenideElement

@@ -2,8 +2,7 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.Doctor;
-import com.utils.assistance.DuringTestHelper;
-import com.utils.retryCountListner.RetryCountIfFailed;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;

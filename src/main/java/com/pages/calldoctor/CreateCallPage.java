@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Pacient;
 import com.pages.WebPage;
 import com.pages.calldoctor.controllers.StAddress;
-import com.utils.api_model.CallDoctorHttp;
+import com.commons.api_model.CallDoctorHttp;
 import io.qameta.allure.Step;
 import org.json.JSONException;
 import org.openqa.selenium.By;
@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.utils.assistance.Assistance.*;
+import static com.commons.assistance.Assistance.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 

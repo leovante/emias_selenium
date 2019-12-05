@@ -1,6 +1,6 @@
 package emias.mis.before;
 
-import com.utils.retryCountListner.RetryCountIfFailed;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 
 public class BeforeSuiteMIS extends TestBase {

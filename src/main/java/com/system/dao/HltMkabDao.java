@@ -1,7 +1,7 @@
 package com.system.dao;
 
 import com.system.model.HltMkabEntity;
-import com.utils.HibernateSessionFactory;
+import com.commons.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
