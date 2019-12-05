@@ -1,13 +1,12 @@
 package emias;
 
-import com.settings.AppConfig;
-import com.pages.Page;
-import com.system.service.*;
 import com.commons.CallDoctorCards;
-import com.commons.Selenium.SeleniumGrid;
 import com.commons.TestMethodCapture;
 import com.commons.WebDriverInstansiator;
-import emias.beforeRun.BeforeRun;
+import com.pages.Page;
+import com.settings.AppConfig;
+import com.system.service.*;
+import com.testRunner.TestNGBase;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +15,12 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
-import static com.commons.WebDriverUtils.killAllRunWebBrowsers;
-
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
 //@TestExecutionListeners(inheritListeners = false, listeners =
 //        {DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class})
 //@TestExecutionListeners(value = CustomTestListener.class, mergeMode = TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS)
-public class TestBase extends AbstractTestNGSpringContextTests {
+public class TestBase extends TestNGBase {
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;
     public String testName;
@@ -53,19 +50,6 @@ public class TestBase extends AbstractTestNGSpringContextTests {
         return TestMethodCapture.getTestMethod().getMethodName();
     }
 
-    @Parameters({"gridRun"})
-    @BeforeSuite(alwaysRun = true)
-    public void beforeSuite(@Optional String gridRun) {
-        new BeforeRun(gridRun);
-        SeleniumGrid.run(gridRun);
-    }
-
-    @AfterSuite(alwaysRun = true)
-    public void afterSuite() {
-        killAllRunWebBrowsers();
-//        SeleniumGrid.stop();
-    }
-
     @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional String browser) {
@@ -91,6 +75,7 @@ public class TestBase extends AbstractTestNGSpringContextTests {
     @Parameters({"testng"})
     @BeforeClass(groups = "disp", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
     public void beforeClassDisp(@Optional String testng) {
+//        initFromProperties();
         if (testng != null) {
             new BeforeTestDisp().run();
         }

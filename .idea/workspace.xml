@@ -2,122 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/commons/Timer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/logger/STLogger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/STPropertiesReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/STSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/testng/TestNGBase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/test.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/DownloadDriverManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/DriverTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/IDriver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/RunTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/settings/SeleniumDriverFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/chromedriver.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/debug.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/geckodriver.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/hubconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/kill_grid.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/nodeconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/powerShellGridOff.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/run_grid.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/selenium grid.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/driver/selenium-server-standalone-3.141.59.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/api/TestStend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/api/TestStend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/settings/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/config/ConfigFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/settings/ConfigFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/WebPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/WebPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CreateCallPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/DashboardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/FullCardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/FullCardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/PrintFormPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/PrintFormPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/disp/JournalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/disp/JournalPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/disp/KvotyPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/disp/KvotyPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/kladr/Kladr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/kladr/Kladr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/dao/HltDispExamDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/dao/HltDispExamDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/system/dao/HltMkabDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/system/dao/HltMkabDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/CallDoctorCards.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/CallDoctorCards.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/DispUrlParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/DispUrlParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/Formalizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/Formalizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/HibernateSessionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/HibernateSessionFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/HighlightSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/HighlightSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/JDIpropertiesReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/JDIpropertiesReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/NameOfElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/NameOfElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/PropertyReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/PropertyReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/Selenium/SeleniumGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/Selenium/SeleniumGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/Selenium/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/Selenium/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/TestMethodCapture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/TestMethodCapture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/TimeoutSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/TimeoutSettings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/WebDriverInstansiator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/WebDriverInstansiator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/WebDriverUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/WebDriverUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/api_model/CallDoctorHttp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/api_model/CallDoctorHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/api_model/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/api_model/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/assistance/Assistance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/assistance/Assistance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/assistance/DuringTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/assistance/DuringTestHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/assistance/visibleByText.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/assistance/visibleByText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/except/NoticeException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/except/NoticeException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/interfaces/IAsserter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/interfaces/IAsserter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/interfaces/IDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/interfaces/IDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/interfaces/IElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/interfaces/IElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/logger/ILogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/logger/ILogger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/logger/JActionEx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/logger/JActionEx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/logger/JFuncREx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/logger/JFuncREx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/logger/LogLevels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/logger/LogLevels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/retry/AnnotationTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/retry/AnnotationTransformer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/retry/IRetryAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/retry/IRetryAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/retry/RetryAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/retry/RetryAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/retryCountListner/AnnotationTransformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/retryCountListner/AnnotationTransformer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/retryCountListner/RetryAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/retryCountListner/RetryAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/retryCountListner/RetryCountIfFailed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/retryCountListner/RetryCountIfFailed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestExecutionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/screenshotsListner/CustomTestExecutionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/screenshotsListner/CustomTestListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/screenshotsListner/CustomTestListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/sql/DBScripts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/sql/DBScripts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/utils/sql/DateGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/sql/DateGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/settings/STSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/settings/STSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/testng/TestNGBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/test.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/emias/TestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/TestBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/FindPatientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/FindPatientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingCallDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingCallDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingVisitDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingVisitDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingWaitingListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingWaitingListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/ClickBoosterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/ClickBoosterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTestRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTestRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/FormalizatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/FormalizatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/PerehodyServisovTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/PerehodyServisovTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/CreateCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/CreateCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/EditTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/EditTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/AutonavigationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/AutonavigationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ConclusionViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ConclusionViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsFillTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsFillTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/KvotyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/KvotyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/MeasureBlockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/MeasureBlockTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/kladr/KladrFiasVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/kladr/KladrFiasVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/kladr/RegressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/kladr/RegressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/SearchMR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/SearchMR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/mis/base/UpravleniePotokamiPacientovTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/mis/base/UpravleniePotokamiPacientovTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/mis/before/BeforeSuiteMIS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/mis/before/BeforeSuiteMIS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/other.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/regress.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/regress.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/regressWithoutCD.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/regressWithoutCD.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/test.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/test.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testngCD.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testngCD.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testngDisp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testngDisp.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testngKladr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testngKladr.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testngMIS.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testngMIS.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/testngTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/testngTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/beforeRun/BeforeRun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/testRunner/BeforeRun.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -178,7 +84,7 @@
           <entry key="gitignore" value="2" />
           <entry key="hibernate_sequence" value="1" />
           <entry key="iml" value="1" />
-          <entry key="java" value="2074" />
+          <entry key="java" value="2097" />
           <entry key="json" value="115" />
           <entry key="life_mtr_gas" value="1" />
           <entry key="life_mtr_gas_trg" value="1" />
@@ -190,7 +96,7 @@
           <entry key="pom" value="27" />
           <entry key="postgres" value="1" />
           <entry key="preapreBD" value="3" />
-          <entry key="properties" value="73" />
+          <entry key="properties" value="77" />
           <entry key="score" value="1" />
           <entry key="sql" value="297" />
           <entry key="sql заключение диспы" value="4" />
@@ -223,10 +129,10 @@
           <entry key="Database Element" value="3" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="9" />
-          <entry key="JAVA" value="2074" />
+          <entry key="JAVA" value="2097" />
           <entry key="JSON" value="115" />
           <entry key="PLAIN_TEXT" value="63" />
-          <entry key="Properties" value="73" />
+          <entry key="Properties" value="77" />
           <entry key="SQL" value="43" />
           <entry key="Scratch" value="286" />
           <entry key="XML" value="134" />
@@ -238,10 +144,10 @@
           <entry key="clear_card" value="27" />
           <entry key="dummy" value="165" />
           <entry key="gitignore" value="13" />
-          <entry key="java" value="37472" />
+          <entry key="java" value="38404" />
           <entry key="json" value="167" />
           <entry key="preapreBD" value="259" />
-          <entry key="properties" value="273" />
+          <entry key="properties" value="300" />
           <entry key="sql" value="40852" />
           <entry key="sql связь медзаписи и тап" value="4" />
           <entry key="txt" value="1277" />
@@ -254,10 +160,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="37472" />
+          <entry key="JAVA" value="38404" />
           <entry key="JSON" value="167" />
           <entry key="PLAIN_TEXT" value="1472" />
-          <entry key="Properties" value="273" />
+          <entry key="Properties" value="300" />
           <entry key="SQL" value="297" />
           <entry key="Scratch" value="41241" />
           <entry key="XML" value="417" />
@@ -300,70 +206,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/ConfigFile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-255">
-              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/STSettings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-              <folding>
-                <element signature="method#afterSuite#0;class#TestBase#0" />
-                <element signature="method#afterMethod#0;class#TestBase#0" />
-                <element signature="method#beforeClassCD#0;class#TestBase#0" />
-                <element signature="method#beforeClassDisp#0;class#TestBase#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/testng/TestNGBase.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/SeleniumDriverFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="634">
+              <caret line="135" column="80" lean-forward="true" selection-start-line="135" selection-start-column="80" selection-end-line="135" selection-end-column="80" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#155#156#0" expanded="true" />
-                <element signature="e#202#203#0" expanded="true" />
+                <element signature="method#registerDriver#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#registerDriver#1;class#SeleniumDriverFactory#0" />
+                <element signature="method#getRemoteURL#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#getCapabilities#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#registerLocalDriver#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#getDefaultDriver#0;class#SeleniumDriverFactory#0" />
+                <element signature="e#3011#3090#0" />
+                <element signature="method#defaultFirefoxOptions#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#defaultChromeOptions#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#defaultIEOptions#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#setUpDrivers#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#getChromeDriverPath#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#getFirefoxDriverPath#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#getIEDriverPath#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#checkOS#0;class#SeleniumDriverFactory#0" />
+                <element signature="method#getDriverPath#0;class#SeleniumDriverFactory#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/logger/STLogger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
             </state>
           </provider>
         </entry>
@@ -373,16 +238,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>valid</find>
-      <find>PerehodyTest</find>
       <find>deleteMR</find>
       <find>testUchastok_DomavOboihUchastkah_unikDom</find>
       <find>Error of close card by pol number. Number pol is:</find>
@@ -399,7 +262,6 @@
       <find>selenidee</find>
       <find>iframe</find>
       <find>executor</find>
-      <find>getwebdriver</find>
       <find>testEditCall_any_mkab</find>
       <find>viewDoctorList_OnlyFromCurrentDepart</find>
       <find>testViewDoctorsListAfterEditChildCard</find>
@@ -411,6 +273,9 @@
       <find>update</find>
       <find>testEditCall_mkab_any</find>
       <find>Profile2</find>
+      <find>driver</find>
+      <find>getwebdriver</find>
+      <find>getDriver</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources</dir>
@@ -422,7 +287,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="2.3" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
   </component>
@@ -432,15 +297,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/asserts/Assistance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/assistance/AssertC.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/assistance/AssertsC.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/calldoctor/pacients/Profile0_2.1.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/pages/calldoctor/CalldoctorPage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/utils/assistance/DuringTestHelper.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDoctorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/backLogTests.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" />
@@ -475,14 +331,23 @@
         <option value="$PROJECT_DIR$/src/main/java/com/settings/EMIASPropertiesReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/settings/EMIASSettings.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/settings/PropertyReader.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/test.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/settings/STSettings.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/commons/Timer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_2.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_1.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/logger/STLogger.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/testng/TestNGBase.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/TestNGBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/TestBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/settings/STSettings.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/settings/IDriver.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/settings/DriverTypes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/settings/RunTypes.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/settings/DownloadDriverManager.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/test.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/commons/MapArray.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/settings/SeleniumDriverFactory.java" />
       </list>
     </option>
   </component>
@@ -535,7 +400,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -577,6 +441,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="commons" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
+              <item name="emias_selenium" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="settings" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -586,7 +459,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="testng" type="462c0819:PsiDirectoryNode" />
+              <item name="testRunner" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
@@ -636,6 +509,7 @@
         </subPane>
       </pane>
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -644,7 +518,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/dtemnikov/.IntelliJIdea2018.2/config/consoles/db/d3ca9510-eb2c-4afa-852a-6b8d001b0463/console.sql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575533300427" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1575557821259" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
     <property name="last_opened_file_path" value="$USER_HOME$/Google Drive/_softrust/test/нагрузочное тестирвоание/testCard.csv" />
@@ -660,11 +534,17 @@
     </force-push-targets>
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources" />
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\calldoctor\pacients" />
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\ручное" />
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\disp\pacients" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.settings" />
+      <recent name="com.datas.disp.measure" />
+      <recent name="emias.disp.base" />
+      <recent name="com.utils.screenshotsListner" />
+      <recent name="com.system.service" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\продуктовые скрипты\фаткоры риска" />
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql" />
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\disp" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.lib" />
@@ -673,17 +553,11 @@
       <recent name="com.system.model" />
       <recent name="" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.datas.disp.measure" />
-      <recent name="emias.disp.base" />
-      <recent name="com.utils.screenshotsListner" />
-      <recent name="com.system.service" />
-      <recent name="com.system.repositories" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\продуктовые скрипты\фаткоры риска" />
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql" />
-      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\disp" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources" />
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\calldoctor\pacients" />
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\sql\ручное" />
+      <recent name="C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources\disp\pacients" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1374,7 +1248,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1078365000" />
+    <option name="totallyTimeSpent" value="1087230000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1395,7 +1269,7 @@
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.54590166" side_tool="true" weight="0.22330096" />
-      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.7275405" visible="true" weight="0.1728188" />
+      <window_info active="true" content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.7275405" visible="true" weight="0.15324385" />
       <window_info id="Persistence" order="7" sideWeight="0.2724595" side_tool="true" weight="0.14653243" />
       <window_info id="Java Enterprise" order="8" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
       <window_info id="Web" order="9" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
@@ -1613,113 +1487,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datas/calldoctor/Doctor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="61" column="64" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datas/calldoctor/Pacient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/datas/calldoctor/PacientImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/doctors/TemnikovVzroslayaTerapev.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/doctors/TemnikovStend.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/commons/assistance/DuringTestHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/mis/MisHomePage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="53" column="38" selection-start-line="53" selection-start-column="38" selection-end-line="53" selection-end-column="38" />
-          <folding>
-            <element signature="method#loginMis#0;class#MisHomePage#0" />
-            <element signature="method#setCookieOfDepartment#0;class#MisHomePage#0" />
-            <element signature="method#calldoctorVzroslaya#0;class#MisHomePage#0" />
-            <element signature="method#calldoctorFromMis#0;class#MisHomePage#0" />
-            <element signature="method#dispJournal#0;class#MisHomePage#0" />
-            <element signature="method#dispCard#0;class#MisHomePage#0" />
-            <element signature="method#dispCard42#0;class#MisHomePage#0" />
-            <element signature="method#mrFromTap#0;class#MisHomePage#0" />
-            <element signature="method#mr_mkab#0;class#MisHomePage#0" />
-            <element signature="method#getDispCardNumber#0;class#MisHomePage#0" />
-            <element signature="method#callCenter#0;class#MisHomePage#0" />
-            <element signature="method#validateLoginPage#0;class#MisHomePage#0" />
-            <element signature="method#validateForumInstruction#0;class#MisHomePage#0" />
-            <element signature="method#nextPage#0;class#MisHomePage#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/doctors/TemnikovHimkiStend.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/pacients/ProfileTransferLpu-Dep.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/pacients/ProfileDetkina.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="18" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="12" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/calldoctor/pacients/ProfileTransferLpu-Lpu.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/commons/assistance/Assistance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-            <element signature="e#588#589#0" expanded="true" />
-            <element signature="e#650#651#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
-            <element signature="e#821#822#0" expanded="true" />
-            <element signature="e#863#864#0" expanded="true" />
-            <element signature="e#876#877#0" expanded="true" />
-            <element signature="e#960#961#0" expanded="true" />
-            <element signature="method#contains#0;class#Assistance#0" />
-            <element signature="method#parseTelephone#0;class#Assistance#0" />
-            <element signature="method#currentTimeList#0;class#Assistance#0" />
-            <element signature="method#cardNumberParser#0;class#Assistance#0" />
-            <element signature="method#placeholder#0;class#Assistance#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="249">
@@ -1747,16 +1514,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/WebPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -2033,92 +1790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="138" column="51" lean-forward="true" selection-start-line="138" selection-start-column="51" selection-end-line="138" selection-end-column="51" />
-          <folding>
-            <element signature="docComment;class#Properties#0" />
-            <element signature="e#5034#5109#0" />
-            <element signature="e#5187#5325#0" />
-            <element signature="e#5366#5635#0" />
-            <element signature="e#5702#5904#0" />
-            <element signature="e#5965#6386#0" />
-            <element signature="e#6480#6735#0" />
-            <element signature="e#6819#7105#0" />
-            <element signature="e#6890#6927#0" />
-            <element signature="e#7111#7711#0" />
-            <element signature="e#7827#14821#0" />
-            <element signature="e#7827#15004#0" />
-            <element signature="e#15010#16027#0" />
-            <element signature="e#15010#16223#0" />
-            <element signature="e#16229#18040#0" />
-            <element signature="e#18046#23961#0" />
-            <element signature="e#18408#18537#0" />
-            <element signature="e#18547#18665#0" />
-            <element signature="e#18870#23955#0" />
-            <element signature="e#19862#19905#0" />
-            <element signature="e#20809#20858#0" />
-            <element signature="e#23967#26255#0" />
-            <element signature="e#26261#28758#0" />
-            <element signature="e#26836#26893#0" />
-            <element signature="e#28764#30263#0" />
-            <element signature="e#30269#31018#0" />
-            <element signature="e#30269#31191#0" />
-            <element signature="e#31197#33818#0" />
-            <element signature="e#31197#34111#0" />
-            <element signature="e#34117#35926#0" />
-            <element signature="e#34117#36143#0" />
-            <element signature="e#36149#36982#0" />
-            <element signature="e#36988#38471#0" />
-            <element signature="e#36988#38764#0" />
-            <element signature="e#38770#39672#0" />
-            <element signature="e#38770#39813#0" />
-            <element signature="e#39819#41874#0" />
-            <element signature="e#39819#42334#0" />
-            <element signature="e#42340#43964#0" />
-            <element signature="e#42340#44306#0" />
-            <element signature="e#44312#44788#0" />
-            <element signature="e#44312#45034#0" />
-            <element signature="e#45040#45595#0" />
-            <element signature="e#45040#45756#0" />
-            <element signature="e#45762#46364#0" />
-            <element signature="e#45762#46517#0" />
-            <element signature="e#46523#47356#0" />
-            <element signature="e#46523#47552#0" />
-            <element signature="e#47558#47830#0" />
-            <element signature="e#47558#48294#0" />
-            <element signature="e#48300#48592#0" />
-            <element signature="e#48300#49247#0" />
-            <element signature="e#49253#49450#0" />
-            <element signature="e#49253#49735#0" />
-            <element signature="e#49741#49904#0" />
-            <element signature="e#49741#50333#0" />
-            <element signature="e#50339#50440#0" />
-            <element signature="e#50537#50565#0" />
-            <element signature="e#50695#50697#0" />
-            <element signature="e#50939#51123#0" />
-            <element signature="e#51129#51321#0" />
-            <element signature="e#52477#52627#0" />
-            <element signature="e#52633#54446#0" />
-            <element signature="e#53115#53170#0" />
-            <element signature="e#53179#53244#0" />
-            <element signature="e#53253#53329#0" />
-            <element signature="e#53338#53404#0" />
-            <element signature="e#53413#53484#0" />
-            <element signature="e#53493#53544#0" />
-            <element signature="e#53553#53625#0" />
-            <element signature="e#53777#53934#0" />
-            <element signature="e#54926#55073#0" />
-            <element signature="e#55342#55498#0" />
-            <element signature="e#55632#55823#0" />
-            <element signature="e#55829#56044#0" />
-            <element signature="e#56050#56247#0" />
-            <element signature="e#56253#56467#0" />
-            <element signature="e#56473#56475#0" />
-            <element signature="e#56514#56567#0" />
-            <element signature="e#56573#56759#0" />
-            <element signature="e#56765#56767#0" />
-            <element signature="e#56881#57947#0" />
-            <element signature="e#57953#59520#0" />
-            <element signature="e#58458#58543#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2129,37 +1800,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/PropertyReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/test.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="21" lean-forward="true" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/ConfigFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/PropertyReader.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2171,69 +1812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="88" column="13" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
-          <folding>
-            <element signature="docComment;class#Timer#0" />
-            <element signature="class#Timer#0" />
-            <element signature="docComment;field#queue#0;class#Timer#0" />
-            <element signature="docComment;field#thread#0;class#Timer#0" />
-            <element signature="docComment;field#threadReaper#0;class#Timer#0" />
-            <element signature="docComment;field#nextSerialNumber#0;class#Timer#0" />
-            <element signature="docComment;method#Timer#0;class#Timer#0" />
-            <element signature="docComment;method#Timer#1;class#Timer#0" />
-            <element signature="docComment;method#Timer#2;class#Timer#0" />
-            <element signature="method#Timer#2;class#Timer#0" />
-            <element signature="docComment;method#Timer#3;class#Timer#0" />
-            <element signature="method#Timer#3;class#Timer#0" />
-            <element signature="docComment;method#schedule#0;class#Timer#0" />
-            <element signature="method#schedule#0;class#Timer#0" />
-            <element signature="docComment;method#schedule#1;class#Timer#0" />
-            <element signature="docComment;method#schedule#2;class#Timer#0" />
-            <element signature="method#schedule#2;class#Timer#0" />
-            <element signature="docComment;method#schedule#3;class#Timer#0" />
-            <element signature="method#schedule#3;class#Timer#0" />
-            <element signature="docComment;method#scheduleAtFixedRate#0;class#Timer#0" />
-            <element signature="method#scheduleAtFixedRate#0;class#Timer#0" />
-            <element signature="docComment;method#scheduleAtFixedRate#1;class#Timer#0" />
-            <element signature="method#scheduleAtFixedRate#1;class#Timer#0" />
-            <element signature="docComment;method#sched#0;class#Timer#0" />
-            <element signature="method#sched#0;class#Timer#0" />
-            <element signature="e#17923#17983#0" />
-            <element signature="docComment;method#cancel#0;class#Timer#0" />
-            <element signature="method#cancel#0;class#Timer#0" />
-            <element signature="docComment;method#purge#0;class#Timer#0" />
-            <element signature="method#purge#0;class#Timer#0" />
-            <element signature="docComment;class#TimerThread#0" />
-            <element signature="class#TimerThread#0" />
-            <element signature="docComment;field#newTasksMayBeScheduled#0;class#TimerThread#0" />
-            <element signature="docComment;field#queue#0;class#TimerThread#0" />
-            <element signature="method#run#0;class#TimerThread#0" />
-            <element signature="docComment;method#mainLoop#0;class#TimerThread#0" />
-            <element signature="method#mainLoop#0;class#TimerThread#0" />
-            <element signature="docComment;class#TaskQueue#0" />
-            <element signature="class#TaskQueue#0" />
-            <element signature="docComment;field#queue#0;class#TaskQueue#0" />
-            <element signature="docComment;field#size#0;class#TaskQueue#0" />
-            <element signature="docComment;method#size#0;class#TaskQueue#0" />
-            <element signature="docComment;method#add#0;class#TaskQueue#0" />
-            <element signature="method#add#0;class#TaskQueue#0" />
-            <element signature="docComment;method#getMin#0;class#TaskQueue#0" />
-            <element signature="docComment;method#get#0;class#TaskQueue#0" />
-            <element signature="docComment;method#removeMin#0;class#TaskQueue#0" />
-            <element signature="method#removeMin#0;class#TaskQueue#0" />
-            <element signature="docComment;method#quickRemove#0;class#TaskQueue#0" />
-            <element signature="method#quickRemove#0;class#TaskQueue#0" />
-            <element signature="docComment;method#rescheduleMin#0;class#TaskQueue#0" />
-            <element signature="method#rescheduleMin#0;class#TaskQueue#0" />
-            <element signature="docComment;method#isEmpty#0;class#TaskQueue#0" />
-            <element signature="docComment;method#clear#0;class#TaskQueue#0" />
-            <element signature="method#clear#0;class#TaskQueue#0" />
-            <element signature="docComment;method#fixUp#0;class#TaskQueue#0" />
-            <element signature="method#fixUp#0;class#TaskQueue#0" />
-            <element signature="docComment;method#fixDown#0;class#TaskQueue#0" />
-            <element signature="method#fixDown#0;class#TaskQueue#0" />
-            <element signature="docComment;method#heapify#0;class#TaskQueue#0" />
-            <element signature="method#heapify#0;class#TaskQueue#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2256,33 +1834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/STPropertiesReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="80" lean-forward="true" selection-start-line="80" selection-end-line="80" />
-          <folding>
-            <element signature="method#afterSuite#0;class#TestBase#0" />
-            <element signature="method#afterMethod#0;class#TestBase#0" />
-            <element signature="method#beforeClassCD#0;class#TestBase#0" />
-            <element signature="method#beforeClassDisp#0;class#TestBase#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/STSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="41" lean-forward="true" selection-start-line="18" selection-start-column="41" selection-end-line="18" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_1.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="423">
@@ -2297,31 +1848,229 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/logger/STLogger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        <state relative-caret-position="136">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/testng/TestNGBase.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/5.1.5.RELEASE/spring-test-5.1.5.RELEASE-sources.jar!/org/springframework/test/context/testng/AbstractTestNGSpringContextTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="5" lean-forward="true" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+        <state relative-caret-position="304">
+          <caret line="88" column="22" selection-start-line="88" selection-start-column="22" selection-end-line="88" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/testRunner/BeforeRun.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/STPropertiesReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-api/3.14.0/selenium-api-3.14.0-sources.jar!/org/openqa/selenium/JavascriptExecutor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/WebPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="30" column="32" lean-forward="true" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pages/mis/TransferRecords.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="43" column="40" lean-forward="true" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/WebSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#155#156#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/ConfigFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/STSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="22" column="41" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/IDriver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/seleniumhq/selenium/selenium-remote-driver/3.14.0/selenium-remote-driver-3.14.0-sources.jar!/org/openqa/selenium/remote/BrowserType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="22" column="17" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/RunTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+          <folding>
+            <element signature="method#afterMethod#0;class#TestBase#0" />
+            <element signature="method#beforeClassCD#0;class#TestBase#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/DownloadDriverManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="48" selection-start-line="27" selection-start-column="48" selection-end-line="27" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/commons/WebDriverInstansiator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/test.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="40" selection-start-column="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/DriverTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/commons/MapArray.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="24" column="53" lean-forward="true" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#195#196#0" expanded="true" />
+            <element signature="e#247#248#0" expanded="true" />
+            <element signature="e#254#334#0" />
+            <element signature="e#340#430#0" />
+            <element signature="e#435#750#0" />
+            <element signature="e#756#1034#0" />
+            <element signature="e#1040#1335#0" />
+            <element signature="e#1341#1591#0" />
+            <element signature="e#1597#1906#0" />
+            <element signature="e#1911#2193#0" />
+            <element signature="e#2322#2403#0" />
+            <element signature="e#2408#2751#0" />
+            <element signature="e#2757#3007#0" />
+            <element signature="e#3013#3197#0" />
+            <element signature="e#3203#3480#0" />
+            <element signature="e#3486#3976#0" />
+            <element signature="e#3982#4361#0" />
+            <element signature="e#4434#4570#0" />
+            <element signature="e#4575#5068#0" />
+            <element signature="e#5074#5231#0" />
+            <element signature="e#5236#5407#0" />
+            <element signature="e#5414#5789#0" />
+            <element signature="e#5795#5953#0" />
+            <element signature="e#5959#6087#0" />
+            <element signature="e#6093#6269#0" />
+            <element signature="e#6355#6636#0" />
+            <element signature="e#6642#7046#0" />
+            <element signature="e#7052#7284#0" />
+            <element signature="e#8224#8449#0" />
+            <element signature="e#9142#9388#0" />
+            <element signature="e#9652#9811#0" />
+            <element signature="e#9817#9960#0" />
+            <element signature="e#9966#10121#0" />
+            <element signature="e#10127#10333#0" />
+            <element signature="e#10691#11075#0" />
+            <element signature="e#11182#11593#0" />
+            <element signature="e#11599#11943#0" />
+            <element signature="e#11949#12201#0" />
+            <element signature="e#12207#12588#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/settings/SeleniumDriverFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="135" column="80" lean-forward="true" selection-start-line="135" selection-start-column="80" selection-end-line="135" selection-end-column="80" />
+          <folding>
+            <element signature="method#registerDriver#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#registerDriver#1;class#SeleniumDriverFactory#0" />
+            <element signature="method#getRemoteURL#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#getCapabilities#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#registerLocalDriver#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#getDefaultDriver#0;class#SeleniumDriverFactory#0" />
+            <element signature="e#3011#3090#0" />
+            <element signature="method#defaultFirefoxOptions#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#defaultChromeOptions#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#defaultIEOptions#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#setUpDrivers#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#getChromeDriverPath#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#getFirefoxDriverPath#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#getIEDriverPath#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#checkOS#0;class#SeleniumDriverFactory#0" />
+            <element signature="method#getDriverPath#0;class#SeleniumDriverFactory#0" />
           </folding>
         </state>
       </provider>
