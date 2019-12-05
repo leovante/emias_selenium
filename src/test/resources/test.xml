@@ -4,19 +4,20 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
+        <!--<listener class-name="com.utils.screenshotsListner.CustomTestListener"/>-->
         <listener class-name="com.utils.retryCountListner.AnnotationTransformer"/>
         <!--<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
     </listeners>
 
-    <test name="TestCD_Chrome" verbose="1" parallel="true">
+    <test name="TestMIS_Chrome" verbose="1">
         <parameter name="browser" value="chrome"/>
         <groups>
             <run>
-                <include name="CD"/>
+                <include name="mis"/>
             </run>
         </groups>
         <classes>
-            <class name="emias.calldoctor.base.CompleteServiceTest"/>
+            <class name="emias.mis.base.PerehodyTest"/>
         </classes>
     </test>
 </suite>

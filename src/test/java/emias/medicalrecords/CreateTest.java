@@ -6,16 +6,14 @@ import emias.TestBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-
 public class CreateTest extends TestBase {
     @Test(groups = "MR", description = "проверка что подписывается старый шаблон")
     @Epic("Создание медзаписи")
     @RetryCountIfFailed(2)
-    public void test_sign_old_mr() throws InterruptedException {
-        Datas d = new Datas().setMedical_record("Осмотр гастроэнтеролога");
-        page.misHome().mr_tap();
-        page.ehrMedicalrecords(d)
+    public void signOldMr() {
+        Datas d = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
+        page.misHome().mrFromTap();
+        page.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()
@@ -28,10 +26,10 @@ public class CreateTest extends TestBase {
     @Test(groups = "MR", description = "проверка что подписывается новый шаблон")
     @Epic("Создание медзаписи")
     @RetryCountIfFailed(2)
-    public void test_sign_new_mr() throws InterruptedException {
-        Datas d = new Datas().setMedical_record("Консультация врача гастроэнтеролога");
-        page.misHome().mr_tap();
-        page.ehrMedicalrecords(d)
+    public void signNewMr() {
+        Datas d = new Datas().setMedicalRecord("Консультация врача гастроэнтеролога");
+        page.misHome().mrFromTap();
+        page.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()
@@ -44,10 +42,10 @@ public class CreateTest extends TestBase {
     @Test(groups = "MR", description = "проверка что медзапись сохраняется после редактирования")
     @Epic("Создание медзаписи")
     @RetryCountIfFailed(2)
-    public void test_edit_mr_after_save() throws Exception {
-        Datas d = new Datas().setMedical_record("Осмотр гастроэнтеролога");
-        page.misHome().mr_tap();
-        page.ehrMedicalrecords(d)
+    public void editMrAfterSave() {
+        Datas d = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
+        page.misHome().mrFromTap();
+        page.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()
@@ -60,6 +58,4 @@ public class CreateTest extends TestBase {
                 .allActions()
                 .save();
     }
-
-
 }

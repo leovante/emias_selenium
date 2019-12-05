@@ -4,16 +4,16 @@ import com.codeborne.selenide.ElementsCollection;
 import com.datas.Datas;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
+import com.pages.BasePage;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class Ehr_medicalrecords {
+public class EhrMedRecords extends BasePage {
+    int mrCount = 0;
     Datas d;
     SelenideElement new_mr = $x("//*[contains(text(),'Новая медицинская запись')]");
-    SelenideElement mr = $x("//st-accordion-menu-click")
-            .$x(".//*[contains(text(),'Медицинские записи')]");
+    SelenideElement mr = $x("//st-accordion-menu-click").$x(".//*[contains(text(),'Медицинские записи')]");
     SelenideElement vse_shabloni = $x("//*[contains(text(),'Все шаблоны')]");
     SelenideElement searchPattern = $x("//*[@placeholder = 'Поиск шаблона по номеру, наименованию и специализации']");
     SelenideElement searchMR = $x("//*[@placeholder = 'Поиск медицинской записи по наименованию']");
@@ -21,58 +21,72 @@ public class Ehr_medicalrecords {
     SelenideElement prosmotret = $x("//*[contains(text(),'Просмотреть')]");
     SelenideElement cancel = $x("//*[contains(text(),'Отменить')]");
     SelenideElement edit = $x("//*[contains(text(),'Редактировать')]");
-    SelenideElement all_actions = $x("//*[contains(text(),'Все действия')]");
+    SelenideElement allActions = $x("//*[contains(text(),'Все действия')]");
     SelenideElement save = $x("//*[contains(text(),'Сохранить')]");
     SelenideElement podpisat = $x("//*[contains(text(),'Подписать')]");
     SelenideElement msg_mr_podpisana = $x("//*[contains(.,'Медицинская запись успешно подписана')]");
-    int mrCount;
 
-    public Ehr_medicalrecords(Datas d) {
+    EhrMedRecords(Datas d) {
         this.d = d;
     }
 
-    public Ehr_medicalrecords newMrMenuBtn() {
+    public EhrMedRecords loginFromTap(){
+        open(conf.getMrFromTap());
+        logger.info("Открыл модуль медзаписей через ТАП по прямой ссылке " + conf.getMrFromTap());
+        return this;
+    }
+
+    public EhrMedRecords newMrMenuBtn() {
         new_mr.click();
         return this;
     }
 
-    public Ehr_medicalrecords medicalRecordsMenuBtn() {
+    public EhrMedRecords medicalRecordsMenuBtn() {
         mr.click();
         return this;
     }
 
-    public Ehr_medicalrecords allPatternsBtn() {
+    public EhrMedRecords allPatternsBtn() {
         vse_shabloni.click();
         return this;
     }
 
-    @Step("поиск медзаписи через строку поиска")
-    public Ehr_medicalrecords searchField() {
-        waitLoadGrid();
-        searchPattern.setValue(d.getMedical_record());
+    public EhrMedRecords searchField() {
+        $x("//datatable-row-wrapper[@class='datatable-row-wrapper ng-star-inserted']").shouldBe(Condition.visible);
+        searchPattern.setValue(d.getMedicalRecord());
         search.click();
-        waitLoadGrid();
         return this;
     }
 
-    @Step("поиск медзаписи через строку поиска")
-    public Ehr_medicalrecords searchMR() {
-        waitLoadGrid();
-        searchMR.setValue(d.getMedical_record());
+    public EhrMedRecords searchMR() {
+        waitLoad(mrCount);
+        mrCount = getMrCount();
+        $x("//datatable-row-wrapper[@class='datatable-row-wrapper ng-star-inserted']").shouldBe(Condition.visible);
+        searchMR.setValue(d.getMedicalRecord());
         search.click();
-        waitLoadGrid();
+        waitLoad(mrCount);
         return this;
     }
 
-    public Ehr_medicalrecords openMr() throws InterruptedException {
+    private void waitLoad(int mrCount){
+        int mrCount2 = getMrCount();
+        for (int i = 0; i < 20; i++) {
+            if(mrCount == mrCount2){
+                sleep(1000);
+                mrCount2 = getMrCount();
+            }
+        }
+    }
+
+    public EhrMedRecords openMr()   {
         SelenideElement osmotr_gastroenterolga =
-                $x("//span[contains(text(),'" + d.getMedical_record() + "')]");
+                $x("//span[contains(text(),'" + d.getMedicalRecord() + "')]");
         osmotr_gastroenterolga.doubleClick();
         validateIframe();
         return this;
     }
 
-    public Ehr_medicalrecords deleteMR() {
+    public EhrMedRecords deleteMR() {
         mrCount = getMrCount();
         ElementsCollection medicalRecords = $$x("//span[contains(text(),'Осмотр гастроэнтеролога')]");
         for (SelenideElement mr : medicalRecords) {
@@ -88,35 +102,35 @@ public class Ehr_medicalrecords {
         return this;
     }
 
-    public Ehr_medicalrecords podpisanaSortColumn() {
+    public EhrMedRecords podpisanaSortColumn() {
         $x("//datatable-header").$x("//span[contains(text(),'Подписана')]").click();
         return this;
     }
 
-    public Ehr_medicalrecords view() throws InterruptedException {
+    public EhrMedRecords view()   {
         validateIframe();
         prosmotret.click();
         return this;
     }
 
-    public Ehr_medicalrecords cancelBtn() throws InterruptedException {
+    public EhrMedRecords cancelBtn()   {
         cancel.click();
         return this;
     }
 
-    public Ehr_medicalrecords edit() throws InterruptedException {
+    public EhrMedRecords edit()   {
         validateIframe();
         edit.click();
         return this;
     }
 
-    public Ehr_medicalrecords allActions() throws InterruptedException {
+    public EhrMedRecords allActions()   {
         validateIframe();
-        all_actions.click();
+        allActions.click();
         return this;
     }
 
-    public Ehr_medicalrecords save() throws InterruptedException {
+    public EhrMedRecords save()   {
         validateIframe();
         save.shouldNotBe(Condition.disabled);//добавил для теста test_edit_mr_after_save
         save.click();
@@ -124,40 +138,34 @@ public class Ehr_medicalrecords {
         return this;
     }
 
-    public Ehr_medicalrecords podpisat() throws InterruptedException {
+    public EhrMedRecords podpisat()   {
         validateIframe();
         podpisat.click();
         return this;
     }
 
-    @Step("проверка что медзапись отображается в результате поиска")
-    public Ehr_medicalrecords validateMrIsExistOnSearchResult() {
+    public EhrMedRecords validateMrIsExistOnSearchResult() {
         Assert.assertTrue(
                 $x("//ngx-datatable")
-                        .$x(".//*[contains(text(),'" + d.getMedical_record() + "')]")
+                        .$x(".//*[contains(text(),'" + d.getMedicalRecord() + "')]")
                         .shouldBe(Condition.visible)
                         .isDisplayed());
         return this;
     }
 
-    public Ehr_medicalrecords assertSignSuccesfull() {
+    public EhrMedRecords assertSignSuccesfull() {
         msg_mr_podpisana.shouldBe(Condition.visible);
         Assert.assertTrue(msg_mr_podpisana.is(Condition.visible));
         return this;
     }
 
-    private Ehr_medicalrecords validateIframe() throws InterruptedException {
-        switchTo().frame($x("//iframe"));
-        $x("//*[contains(text(),'" + d.getMedical_record() + "')]")
-                .shouldBe(Condition.visible);
+    private EhrMedRecords validateIframe() {
+        SelenideElement iframe = $x("//app-template-frame[not(contains(@style,'display: none;'))]/.//iframe").shouldBe(Condition.visible);
+        switchTo().frame(iframe);
+        $x("//body/.//*[contains(text(),'" + d.getMedicalRecord() + "')]").shouldBe(Condition.visible);
         switchTo().defaultContent();
-        Thread.sleep(1000);
+        sleep(1000);
         return this;
-    }
-
-    private void waitLoadGrid() {
-        $x("//datatable-progress").$x(".//div[@class='bar']").shouldBe(Condition.visible);
-        $x("//datatable-progress").$x(".//div[@class='bar']").shouldNotBe(Condition.visible);
     }
 
     public void verifyMrIsDeleted() {
@@ -172,7 +180,7 @@ public class Ehr_medicalrecords {
                 .getText();
         if (value.contains(" ")) {
             value = value.substring(0, value.indexOf(" "));
-            System.out.println(value);
+//            System.out.println(value);
         }
         return Integer.parseInt(value);
     }

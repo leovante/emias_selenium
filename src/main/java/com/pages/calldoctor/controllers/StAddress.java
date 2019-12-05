@@ -12,6 +12,7 @@ import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class StAddress {
@@ -31,7 +32,7 @@ public class StAddress {
         return adress;
     }
 
-    public StAddress write(String txt, String dop) throws InterruptedException {
+    public StAddress write(String txt, String dop) {
         if (dop != null && dop != "") {
             addressBlock.shouldBe(Condition.visible);
             adress.sendKeys(txt);
@@ -44,7 +45,7 @@ public class StAddress {
         return this;
     }
 
-    public StAddress write(String txt) throws InterruptedException {
+    public StAddress write(String txt) {
 //        if (txt != null && txt != "") {
 //            list_first_container(pacient.getAddress1());
 //        }
@@ -58,18 +59,18 @@ public class StAddress {
         return this;
     }
 
-    public StAddress list_first_container(String address) throws InterruptedException {
+    public StAddress list_first_container(String address) {
         if (address != null && address != "") {
             adress.hover();
-            Thread.sleep(1000);
+            sleep(1000);
             WebDriver driver = getWebDriver();
             WebDriverWait wait = new WebDriverWait(driver, 10);
 
             WebElement address1 = driver.findElement(By.xpath("//input[@placeholder='Адрес']"));
             address1.sendKeys(address);
-            Thread.sleep(1000);
+            sleep(1000);
             korpus.hover();
-            Thread.sleep(1000);
+            sleep(1000);
             adress.hover();
             address1.sendKeys(" ");
             $(By.xpath("//mat-option/span[contains(text(),'" + address + "')]"))
@@ -87,18 +88,18 @@ public class StAddress {
     }
 
     @Step("жму на крестик. Очищаю поле адреса")
-    public void clearAddress() throws InterruptedException {
+    public void clearAddress() {
         addressLoadWaiter();
         cancelAdress.shouldBe(Condition.visible).click();
     }
 
     @Step("жду загрузку адреса")
-    void addressLoadWaiter() throws InterruptedException {
+    void addressLoadWaiter() {
         kto_pacient_header.shouldBe(Condition.visible);
         if (new_call_header.isDisplayed()) {
             int i = 0;
             do {
-                Thread.sleep(1000);
+                sleep(1000);
                 i++;
             } while (!adress.$x("..//mat-chip").is(Condition.visible) && i < 10);
             Assert.assertTrue(adress.$x("..//mat-chip").is(Condition.visible), "адрес не загрузился");

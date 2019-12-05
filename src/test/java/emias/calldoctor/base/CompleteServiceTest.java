@@ -18,7 +18,7 @@ public class CompleteServiceTest extends TestBase {
     @Test(groups = "CD", description = "завершить обслуживание вызова")
     @Epic("Завершить обслуживание")
     @RetryCountIfFailed(2)
-    public void testCompleteCallRegistr() throws Exception {
+    public void testCompleteCallRegistr() {
         Pacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
 
@@ -39,7 +39,7 @@ public class CompleteServiceTest extends TestBase {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkab_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testMkab_TapIconGrey()  {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
@@ -56,7 +56,7 @@ public class CompleteServiceTest extends TestBase {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkabIconRed_TapIconGrey() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
+    public void testMkabIconRed_TapIconGrey()  {
         PacientImpl pacientImpl = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();

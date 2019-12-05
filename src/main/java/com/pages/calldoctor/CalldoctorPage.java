@@ -14,11 +14,11 @@ import static com.codeborne.selenide.Selenide.page;
 
 @Component
 public interface CalldoctorPage {
-    default CreateCallPage createCall(Pacient pacientImpl) throws IOException {
+    default CreateCallPage createCall(Pacient pacientImpl) {
         return new CreateCallPage(pacientImpl);
     }
 
-    default MkabPage mkabPage() throws IOException {
+    default MkabPage mkabPage()   {
         return new MkabPage();
     }
 
@@ -26,27 +26,27 @@ public interface CalldoctorPage {
         return page(SetDoctorPage.class);
     }
 
-    default FullCardPage fullCard(Pacient pacient, String s) throws IOException {
+    default FullCardPage fullCard(Pacient pacient, String s){
         return new FullCardPage(pacient, s);
     }
 
-    default PrintFormPage printForm(Pacient pacient, String s) throws IOException {
+    default PrintFormPage printForm(Pacient pacient, String s) {
         return new PrintFormPage(pacient, s);
     }
 
-    default DashboardPage dashboard() throws IOException {
+    default DashboardPage dashboard()  {
         return new DashboardPage();
     }
 
-    default PassLpuPage passLpu(Doctor doctor) throws IOException {
+    default PassLpuPage passLpu(Doctor doctor)  {
         return new PassLpuPage(doctor);
     }
 
-    default PassLpuPage passLpu() throws IOException {
+    default PassLpuPage passLpu()  {
         return new PassLpuPage();
     }
 
-    default BeforeWork beforeWork() throws IOException {
+    default BeforeWork beforeWork()  {
         return new BeforeWork();
     }
 }

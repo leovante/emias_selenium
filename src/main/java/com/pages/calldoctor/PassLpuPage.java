@@ -12,25 +12,27 @@ import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class PassLpuPage extends BasePage {
     Doctor doctor;
 
-    public PassLpuPage() throws IOException {
+    public PassLpuPage() {
     }
 
-    public PassLpuPage(Doctor doctor) throws IOException {
+    public PassLpuPage(Doctor doctor)  {
         this.doctor = doctor;
     }
 
     @Step("Передаю в другое подразделение на страинце поиска ЛПУ")
-    public PassLpuPage transfer() throws IOException, InterruptedException {
+    public PassLpuPage transfer() {
         $x("//*[text()='" + doctor.getDepartment() + "']")
                 .hover()
                 .click();
         $x("//*[contains(text(),'Передать')]")
                 .hover()
                 .click();
+        sleep(1000);
         $(By.id("toLpuYes"))
                 .hover()
                 .click();
@@ -38,10 +40,10 @@ public class PassLpuPage extends BasePage {
     }
 
     @Step("Проверяю условия отображения подразделений для взрослого вызова")
-    public PassLpuPage validate_view_to_adult() throws IOException, InterruptedException {
+    public PassLpuPage validate_view_to_adult() {
         SelenideElement se = $x("//*[contains(text(),'Взрослая поликлиника')]").shouldBe(Condition.visible);
         Assert.assertTrue(se.isDisplayed(), "Взрослая поликлиника не найдена");
-        Thread.sleep(1000);
+        sleep(1000);
         SelenideElement se2 = $x("//*[contains(text(),'Детская поликлиника')]");
         Assert.assertFalse(se2.isDisplayed(), "Детская поликлиника отображается");
         return this;

@@ -16,6 +16,7 @@ import org.testng.SkipException;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -32,7 +33,7 @@ public class WebDriverInstansiator {
         this.browser = browser;
     }
 
-    public void setDriver() throws IOException {
+    public void setDriver()   {
         //ручной запуск
         ChromeOptions chromeOptions;
         if (browser == null) {
@@ -69,7 +70,11 @@ public class WebDriverInstansiator {
 //                    dcch.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
 //                    dcch.setCapability("headless", conf.getHeadless());
 
-                    remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+                    try {
+                        remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                     remoteDriver.manage().window().setSize(new Dimension(1919, 1079));
                     remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
@@ -78,7 +83,11 @@ public class WebDriverInstansiator {
                     chromeOptions = new ChromeOptions();
                     chromeOptions.setHeadless(conf.getHeadless());
                     chromeOptions.addArguments("window-size=1919,1079");
-                    remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+                    try {
+                        remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
                     remoteDriver.manage().window().setPosition(new Point(0,0));
                     WebDriverRunner.setWebDriver(remoteDriver);
                     break;

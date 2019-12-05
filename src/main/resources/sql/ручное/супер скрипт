@@ -1,6 +1,6 @@
 declare @tableName varchar(128),@sql varchar(100)
 
-set @tableName = 'oms_ParamValue'
+set @tableName = 'oms_tariff'
 set @sql='select * from '+@tableName
 
 select * from x_docTypeDef where HeadTable = @tableName

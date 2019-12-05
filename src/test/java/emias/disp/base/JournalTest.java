@@ -3,7 +3,6 @@ package emias.disp.base;
 import com.codeborne.selenide.Condition;
 import com.datas.Datas;
 import com.datas.calldoctor.PacientImpl;
-import com.system.model.HltDispCardEntity;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
@@ -19,20 +18,31 @@ import static com.codeborne.selenide.Selenide.switchTo;
 
 public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
+    @Test(groups = "disp", description = "отображение элементов на странице журнала")
+    @RetryCountIfFailed(2)
+    public void testJournalPageElements(){
+        page.misHome().dispJournal();
+        page.journalPage()
+                .journalMenuBtn()
+                .validJournalElements();
+    }
+
+    @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
     public void testSearchCardByCardNumber() {
         page.misHome().dispJournal();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(1649);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible("Темников Дмитрий Олегович");
+        page.journalPage()
+                .journalMenuBtn()
+                .searchByCardNumber(1649)
+                .clickSearchBtn()
+                .fioIsVisible("Темников Дмитрий Олегович");
     }
 
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по полису")
     @RetryCountIfFailed(2)
-    public void testSearchCardByPolNumber() throws IOException, JSONException {
+    public void testSearchCardByPolNumber() {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
@@ -44,7 +54,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "поиск карты по ФИО")
     @RetryCountIfFailed(2)
-    public void testSearchCardByFio() throws IOException, JSONException {
+    public void testSearchCardByFio() {
         PacientImpl pac = new PacientImpl("Temnikov94");
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
@@ -56,7 +66,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
-    public void verifyMeasurePattern() throws InterruptedException {
+    public void verifyMeasurePattern() {
         page.misHome().dispJournal();
         page.journalPage().journalMenuBtn();
         page.journalPage().searchByCardNumber(418);
@@ -70,7 +80,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия")
     @RetryCountIfFailed(2)
-    public void verifyMeasurePatternFromMkab() throws InterruptedException {
+    public void verifyMeasurePatternFromMkab() {
         // TODO: 5/28/2019 объект с данными пациента
         Datas d = new Datas(){
           int a = 1;
@@ -91,7 +101,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через ячейку расписания", enabled = false)
     @RetryCountIfFailed(2)
-    public void verifyMeasurePatternFromSheduleCell() throws InterruptedException, IOException, JSONException {
+    public void verifyMeasurePatternFromSheduleCell() {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         page.misHome().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
@@ -121,7 +131,7 @@ public class JournalTest extends TestBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверяю что мероприятие открывается у подписанной карты")
     @RetryCountIfFailed(2)
-    public void openClosedCard() throws InterruptedException {
+    public void openClosedCard() {
         page.misHome().dispJournal();
         page.journalPage()
                 .journalMenuBtn()
@@ -137,7 +147,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "закрытие карты диспансеризации с проставлением причины")
     @RetryCountIfFailed(2)
     public void closeCard() {
-        hltDispCardService.unClose(180);
+        hltDispCardService.open(180);
         page.misHome().dispJournal();
         page.journalPage()
                 .journalMenuBtn()

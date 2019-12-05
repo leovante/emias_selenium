@@ -2,22 +2,17 @@ package emias.calldoctor.base;
 
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.testng.annotations.Test;
-
-import java.io.IOException;
-import java.text.ParseException;
 
 public class FilterTest extends TestBase {
 
     @Test(groups = "CD", description = "фильтр поиск по ФИО")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterFIO() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
+    public void testFilterFIO() {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         page.misHome().calldoctor();
         page.createCall(pacientImpl).createCall();
@@ -30,7 +25,7 @@ public class FilterTest extends TestBase {
     @Test(groups = "CD", description = "фильтр поиск по врачу")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterDoctor() throws InterruptedException, IOException, ParseException, JSONException, NoticeException {
+    public void testFilterDoctor() {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         page.misHome().calldoctor();
@@ -47,7 +42,7 @@ public class FilterTest extends TestBase {
     @Test(groups = "CD", description = "фильтр поиск по виду вызова")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testTypeCall() throws InterruptedException, IOException, JSONException {
+    public void testTypeCall()  {
         PacientImpl pacientImpl = new PacientImpl("Profile3_1");
         page.createCall(pacientImpl).createCall_Api();
         page.misHome().calldoctor();
@@ -62,7 +57,7 @@ public class FilterTest extends TestBase {
     @Test(groups = "CD", description = "фильтр сортировка все|сегодня|завтра")
     @Epic("Проверка фильтра")
     @RetryCountIfFailed(2)
-    public void testFilterActiveGroup() throws InterruptedException, IOException, JSONException, ParseException, NoticeException {
+    public void testFilterActiveGroup()  {
         PacientImpl pacientImpl = new PacientImpl("Profile2_2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         page.misHome().calldoctor();

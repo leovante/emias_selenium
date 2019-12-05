@@ -23,30 +23,40 @@ public class Kladr {
     }
 
     //отправляю формализатору стринги и получаю ответ в виде кода адреса
-    public Kladr sendToFormalizerAndVerifyFullKLADRCodeAddress() throws IOException, JSONException {
-        Iterator<String> iter = addressStringList.iterator();
-        BufferedWriter writer = new BufferedWriter(new FileWriter("samplefile1.txt"));
-        while (iter.hasNext()) {
-            this.fullKLADRCodeAddress = new Formalizer(iter.next())
-                    .sendToFormalizer()
-                    .getEntity();
-            if (fullKLADRCodeAddress != null) {
-                if (verifyKladrCode()) {
-                    badAddress.add(fullKLADRCodeAddress);
-                    writer.write(fullKLADRCodeAddress + " : " + iter.next());
-                    writer.newLine();
+    public Kladr sendToFormalizerAndVerifyFullKLADRCodeAddress() {
+        try {
+            Iterator<String> iter = addressStringList.iterator();
+            BufferedWriter writer = new BufferedWriter(new FileWriter("samplefile1.txt"));
+            while (iter.hasNext()) {
+                this.fullKLADRCodeAddress = new Formalizer(iter.next())
+                        .sendToFormalizer()
+                        .getEntity();
+                if (fullKLADRCodeAddress != null) {
+                    if (verifyKladrCode()) {
+                        badAddress.add(fullKLADRCodeAddress);
+                        writer.write(fullKLADRCodeAddress + " : " + iter.next());
+                        writer.newLine();
+                    }
                 }
             }
+
+            writer.close();
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
         }
-        writer.close();
         return this;
     }
 
-    public void verifyFullKLADRCodeAddress() throws IOException {
-        if (fullKLADRCodeAddress != null) {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("samplefile1.txt"));
-            writer.write(addressStringList + " " + fullKLADRCodeAddress);
-            writer.close();
+    public void verifyFullKLADRCodeAddress() {
+        try {
+            if (fullKLADRCodeAddress != null) {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("samplefile1.txt"));
+                writer.write(addressStringList + " " + fullKLADRCodeAddress);
+
+                writer.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

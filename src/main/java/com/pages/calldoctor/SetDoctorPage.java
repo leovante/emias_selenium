@@ -11,22 +11,19 @@ import org.openqa.selenium.support.CacheLookup;
 import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class SetDoctorPage extends BasePage {
-    @CacheLookup
     SelenideElement appenToday = $(By.xpath("//span[contains(.,'Назначить на сегодня')]"));
     SelenideElement appenTomorrow = $(By.xpath("//span[contains(.,'Назначить на завтра')]"));
-
-    @CacheLookup
     SelenideElement zapisat = $(By.xpath("//span[contains(text(),'Записать')]"));
-    @CacheLookup
     SelenideElement zapisatDobavit = $(By.xpath("//span[contains(text(),'Записать и добавить')]"));
 
-    public SetDoctorPage() throws IOException {
+    public SetDoctorPage()  {
     }
 
     @Step("назначиь врача на сегодня")
-    public SetDoctorPage chooseDoctorToday(Doctor doctor) throws IOException {
+    public SetDoctorPage chooseDoctorToday(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenToday.click();
         logger.info("Врач выбран!");
@@ -34,7 +31,7 @@ public class SetDoctorPage extends BasePage {
     }
 
     @Step("назначиь врача на сегодня")
-    public SetDoctorPage chooseDoctorTodayBooster(Doctor doctor) throws IOException {
+    public SetDoctorPage chooseDoctorTodayBooster(Doctor doctor){
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         for (int i = 1; appenToday.isDisplayed(); i++) {
             appenToday.click();
@@ -45,7 +42,7 @@ public class SetDoctorPage extends BasePage {
     }
 
     @Step("назначиь врача на завтра")
-    public SetDoctorPage chooseDoctorTomorrow(Doctor doctor) throws IOException {
+    public SetDoctorPage chooseDoctorTomorrow(Doctor doctor) {
         $(By.xpath("//div[contains(text(),'" + doctor.getFamily() + "')]")).click();
         appenTomorrow.click();
         logger.info("Врач выбран!");
@@ -53,11 +50,11 @@ public class SetDoctorPage extends BasePage {
     }
 
     @Step("назначиь врача")
-    public SetDoctorPage saveAddress() throws InterruptedException {
+    public SetDoctorPage saveAddress() {
         SelenideElement shoseDoctor = $(By.xpath("//*[contains(text(),'Выберите врача')]"));
         SelenideElement adressIsRecognize = $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]"));
         for (int i = 0; i < 10; i++) {
-            Thread.sleep(1000);
+            sleep(1000);
             if (!shoseDoctor.isDisplayed()) {
                 if (adressIsRecognize.isDisplayed()) {
                     $(By.xpath("//*[contains(text(),'Адрес успешно распознан')]")).shouldBe(Condition.visible);

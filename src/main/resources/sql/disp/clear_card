@@ -40,4 +40,15 @@ where GUIDParamValue in (select rf_ParamValuedGuid
                                                                    from hlt_disp_card
                                                                    where disp_CardID = 418)))
 end
+
+delete ehr_Medrecord
+from ehr_Medrecord
+where rf_EventGuid in (select uguid from hlt_tap where tapid = 2664807)
+
+delete hlt_MedRecord
+from hlt_MedRecord mr
+       join hlt_VisitHistory visit on visit.VisitHistoryID = mr.rf_VisitHistoryID
+       join hlt_tap tp on visit.rf_TAPID = tp.TAPID
+where tp.TAPID = 2664807
+
 COMMIT

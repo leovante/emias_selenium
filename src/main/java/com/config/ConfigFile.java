@@ -18,6 +18,7 @@ public class ConfigFile {
     private String headless;
     private String dispJournal;
     private String dispCard;
+    private String dispCard42;
     private String calldoctor;
     private String calldoctorVz;
     private String clientApplication;
@@ -50,6 +51,7 @@ public class ConfigFile {
             headless = property.getProperty("st.mis.headless");
             dispJournal = property.getProperty("st.mis.url.dispJournal");
             dispCard = property.getProperty("st.mis.url.dispCard");
+            dispCard42 = property.getProperty("st.mis.url.dispCard42");
             calldoctor = property.getProperty("st.mis.url.calldoctor");
             calldoctorVz = property.getProperty("st.mis.url.calldoctorVz");
             clientApplication = property.getProperty("st.api.clientApplication");
@@ -67,7 +69,7 @@ public class ConfigFile {
         }
     }
 
-    public String getMr_tap() {
+    public String getMrFromTap() {
         return mr_tap;
     }
 
@@ -109,6 +111,10 @@ public class ConfigFile {
 
     public String getDispCard() {
         return dispCard;
+    }
+
+    public String getDispCard42() {
+        return dispCard42;
     }
 
     public String getCalldoctor() {

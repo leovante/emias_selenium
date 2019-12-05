@@ -20,7 +20,7 @@ public class Ehr_medicalrecordsMkab {
 
     @Step("поиск медзаписи через строку поиска")
     public Ehr_medicalrecordsMkab searchField() {
-        searchPattern.setValue(d.getMedical_record());
+        searchPattern.setValue(d.getMedicalRecord());
         search.click();
         return this;
     }
@@ -29,7 +29,7 @@ public class Ehr_medicalrecordsMkab {
     public Ehr_medicalrecordsMkab validateMrIsExistOnSearchResult() {
     Assert.assertTrue(
         $x("//ngx-datatable")
-            .$x(".//*[contains(text(),'" + d.getMedical_record() + "')]")
+            .$x(".//*[contains(text(),'" + d.getMedicalRecord() + "')]")
                 .shouldBe(Condition.visible)
                 .isDisplayed());
         return this;

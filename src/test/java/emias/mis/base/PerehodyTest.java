@@ -7,16 +7,11 @@ import com.datas.calldoctor.PacientImpl;
 import com.utils.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в диспетчер с дашборда МИС")
@@ -30,7 +25,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в диспетчер из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void transitionCDmkab() throws IOException {
+    public void transitionCDmkab() {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
@@ -77,7 +72,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в журнал диспансеризации из дашборда МИС")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void transitionDispDash() throws InterruptedException {
+    public void transitionDispDash() {
         page.misHome().loginMis();
         page.homePageMis().dispCardJournalBtn();
         switchTo().window("Медицинская Информационная Система");
@@ -87,7 +82,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в журнал диспансеризации из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void transitionDispMkab() throws IOException {
+    public void transitionDispMkab() {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
@@ -96,15 +91,17 @@ public class PerehodyTest extends TestBase {
         $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
         $(By.xpath("//*[contains(text(),'Карты диспансеризации / профосмотры')]")).click();
-        switchTo().window("Медицинская Информационная Система");
-        SelenideElement se = $(By.xpath("//*[contains(text(),'Журнал')]"));
-        Assert.assertTrue(se.shouldBe(Condition.visible).is(Condition.visible));
+        sleep(1000);
+        switchTo().window(2);
+        SelenideElement se = $x("//*[contains(text(),'Журнал')]");
+        se.shouldBe(Condition.visible);
+        Assert.assertTrue(se.is(Condition.visible));
     }
 
     @Test(groups = "mis", description = "Переход в маршрутный лист диспансеризации из ячейки расписания")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void transitionDispShedule() throws IOException, JSONException, NoSuchFieldException, InterruptedException {
+    public void transitionDispShedule() {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         Doctor doctor = new Doctor("Dispanserizatov");
         page.misHome().loginMis();
@@ -121,7 +118,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в медзаписи из МКАБ")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void transitionMedMkab() throws IOException {
+    public void transitionMedMkab() {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
@@ -136,7 +133,7 @@ public class PerehodyTest extends TestBase {
     @Test(groups = "mis", description = "Переход в медзаписи из ТАП")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void transitionMedTap() throws IOException {
+    public void transitionMedTap() {
         page.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");

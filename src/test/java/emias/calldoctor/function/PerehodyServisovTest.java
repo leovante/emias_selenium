@@ -18,7 +18,7 @@ public class PerehodyServisovTest extends TestBase {
     @Test(groups = "CD", description = "проверка изменения врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void testRelogingAnotherOperator() throws IOException {
+    public void testRelogingAnotherOperator() {
         Doctor operator = new Doctor("Operator");
         page.misHome().calldoctor();
         $x("//header")
@@ -38,7 +38,7 @@ public class PerehodyServisovTest extends TestBase {
     @Epic("Переходы")
     @Issue("EMIAS-658")
     @RetryCountIfFailed(2)
-    public void testExitToMis() throws IOException {
+    public void testExitToMis() {
         page.misHome().calldoctor();
         page.dashboard().exitToMis();
         page.misHome().validateLoginPage();
@@ -47,7 +47,7 @@ public class PerehodyServisovTest extends TestBase {
     @Test(groups = "CD", description = "проверка перехода на сайт с инструкцией")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
-    public void testInstruction() throws IOException {
+    public void testInstruction() {
         page.misHome().calldoctor();
         page.dashboard().instructionTab();
         page.misHome()

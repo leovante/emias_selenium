@@ -1,6 +1,5 @@
 package com.system.service;
 
-import com.system.model.HltCallDoctorEntity;
 import com.system.model.HltDispServiceDocPrvd;
 import com.system.repositories.HltDispServiceDocPrvdRepository;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Service
 public class HltDispServiceDocPrvdServiceImpl {
@@ -34,8 +32,6 @@ public class HltDispServiceDocPrvdServiceImpl {
 //            sdp.set
 //        }
 
-
-
 //        try {
 //            Stream<HltCallDoctorEntity> calls = hltCallDoctorRepository.findAllNotClosed();
 //            calls.forEach(call -> {
@@ -46,9 +42,5 @@ public class HltDispServiceDocPrvdServiceImpl {
 //            logger.error("Error of close cards");
 //            e.printStackTrace();
 //        }
-
-
-
-
     }
 }

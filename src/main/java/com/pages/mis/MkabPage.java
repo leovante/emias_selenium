@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class MkabPage extends BasePage {
 
-    public MkabPage() throws IOException {
+    public MkabPage() {
     }
 
     public MkabPage fio(String fio) {

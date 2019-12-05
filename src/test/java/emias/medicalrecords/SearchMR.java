@@ -11,7 +11,7 @@ public class SearchMR extends TestBase {
     @Epic("Поиск медзаписи")
     @RetryCountIfFailed(2)
     public void searchMR_redirectFromMkabPage() {
-        Datas d = new Datas().setMedical_record("Антропометрия");
+        Datas d = new Datas().setMedicalRecord("Антропометрия");
         page.misHome().mr_mkab();
         page.ehr_medicalrecordsMKAB(d)
                 .searchField()
@@ -21,10 +21,10 @@ public class SearchMR extends TestBase {
     @Test(groups = "MR", description = "поиск медзаписей на странице ТАП")
     @Epic("Поиск медзаписи")
     @RetryCountIfFailed(2)
-    public void cancelBtnOnOldMR() {
-        Datas d = new Datas().setMedical_record("Осмотр гастроэнтеролога");
-        page.misHome().mr_tap();
-        page.ehrMedicalrecords(d)
+    public void searchMROnPageTap() {
+        Datas d = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
+        page.misHome().mrFromTap();
+        page.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()

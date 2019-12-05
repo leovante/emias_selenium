@@ -7,6 +7,7 @@ import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
 import com.pages.BasePage;
 import com.pages.calldoctor.controllers.StAddress;
+import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.api_model.CallDoctorHttp;
 import com.utils.except.NoticeException;
 import io.qameta.allure.Step;
@@ -16,6 +17,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.SkipException;
 
@@ -25,6 +27,9 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.lib.assistance.Assistance.getDateDiff;
+import static com.lib.assistance.Assistance.parseTelephone;
+import static com.lib.assistance.Assistance.years;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
@@ -72,12 +77,18 @@ public class CreateCallPage extends BasePage {
     SelenideElement allertCloseDialog_Yes = $(By.xpath("//button/span[contains(text(),'Да')]"));
     ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
 
-    public CreateCallPage(Pacient pacient) throws IOException {
+    public CreateCallPage() {
+        super();
+    }
+
+    CreateCallPage(Pacient pacient) {
         this.pacient = pacient;
+//        performDatabaseOperation();
     }
 
     @Step("create simple call")
-    public CreateCallPage createCall() throws InterruptedException {
+    public CreateCallPage createCall()  {
+        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
                 .address()
@@ -94,7 +105,8 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create call with MKAB")
-    public CreateCallPage createCall_Mkab() throws InterruptedException {
+    public CreateCallPage createCall_Mkab() {
+        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
                 .searchField()
@@ -106,32 +118,31 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
+//    @Autowired
+//    protected HltCallDoctorServiceImpl hltCallDoctorService;
+
     @Step("create call via API")
     public void createCall_Api()   {
         try {
-            callDoctorService.cancelByNPol(pacient.getNumberpol());
+            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).execute();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
         }
     }
 
     @Step("create authorize call via API")
-    public void createCall_Api_Auth() throws IOException, InterruptedException {
+    public void createCall_Api_Auth()  {
         try {
-            callDoctorService.cancelByNPol(pacient.getNumberpol());
+            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).executeAuth();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
+        } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
         }
     }
 
     @Step("edit call")
-    public CreateCallPage editCallPage() throws InterruptedException {
+    public CreateCallPage editCallPage()  {
         sourceCall()
                 .sourceCall()
                 .address()
@@ -148,7 +159,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create call with MKAB from SMP")
-    public CreateCallPage editCallPage_Mkab() throws InterruptedException {
+    public CreateCallPage editCallPage_Mkab()  {
         sourceCall()
                 .searchField()
                 .addressPlus()
@@ -221,7 +232,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("enter address")
-    private CreateCallPage address() throws InterruptedException {
+    private CreateCallPage address() {
         stAddress = new StAddress(pacient);
         stAddress.clearAddress();
         stAddress.write(pacient.getAddress1())
@@ -270,7 +281,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("complaint")
-    private CreateCallPage complaint() throws InterruptedException {
+    private CreateCallPage complaint() {
 //        JavascriptExecutor jse = (JavascriptExecutor) driver;
 //        jse.executeScript("arguments[0].value='" + pacient.getComplaint() + "'", complaint);
 //        complaint.sendKeys(Keys.ENTER);
@@ -321,7 +332,7 @@ public class CreateCallPage extends BasePage {
 
         Date newData = new Date();
         Date bd = pacient.getBirthdate();
-        int years = (int) assistance.getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
+        int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;
         if (years > 18) {
             $(By.xpath("//span[contains(.,'Взрослые')]")).click();
         }
@@ -339,7 +350,7 @@ public class CreateCallPage extends BasePage {
             $(By.id("callName")).setValue("ИмяВызывающего");
             $(By.id("callPatronymic")).setValue("ОтчествоВызывающего");
         } else {
-            if (assistance.years(pacient) > 18) {
+            if (years(pacient) > 18) {
                 callerType.click();
                 callerType_pacient.click();
             } else {
@@ -351,16 +362,16 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("click save button")
-    public CreateCallPage saveBtn() throws InterruptedException {
-        Thread.sleep(1000);
+    public CreateCallPage saveBtn() {
+        sleep(1000);
         SelenideElement save = $(By.id("save"));
         save.click();
         return this;
     }
 
     @Step("Address allert dialog - Yes button")
-    public CreateCallPage allertBtn() throws InterruptedException {
-        Thread.sleep(2000);
+    public CreateCallPage allertBtn() {
+        sleep(2000);
         if (allertCloseDialog_Yes.is(Condition.visible))
             allertCloseDialog_Yes.click();
         return this;
@@ -418,9 +429,9 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("валидация что вызов не отменился на странице редактирования")
-    public CreateCallPage verifyCancellCallValidation() throws InterruptedException {
+    public CreateCallPage verifyCancellCallValidation()  {
         reason_cancel_call_validator.shouldBe(Condition.visible);
-        Thread.sleep(2000);
+        sleep(2000);
         kto_pacient_header.shouldBe(Condition.visible);
         return this;
     }

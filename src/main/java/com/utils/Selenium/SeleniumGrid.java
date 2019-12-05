@@ -7,6 +7,8 @@ import org.testng.SkipException;
 import java.io.IOException;
 import java.net.URL;
 
+import static com.codeborne.selenide.Selenide.sleep;
+
 public class SeleniumGrid extends BasePage {
     static boolean status = false;
     static boolean grid = false;
@@ -17,17 +19,21 @@ public class SeleniumGrid extends BasePage {
     public SeleniumGrid() throws IOException {
     }
 
-    private static void checkStatus() throws InterruptedException, IOException, JSONException {
+    private static void checkStatus() {
         status = Status.checkRunningStatus();
         if (status)
             working = Status.checkWorkStatus();
     }
 
-    public static void run(String gridRun) throws Exception {
+    public static void run(String gridRun)   {
         checkStatus();
         grid = Boolean.parseBoolean(gridRun);
         if (grid && !status) {
-            Runtime.getRuntime().exec(command);
+            try {
+                Runtime.getRuntime().exec(command);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             for (int i = 0; i < count; i++) {
                 checkStatus();
                 if (status && working)
@@ -36,7 +42,7 @@ public class SeleniumGrid extends BasePage {
                     if (count - 1 == i)
                         throw new SkipException("Грид не может запуститься");
                 }
-                Thread.sleep(1000);
+                sleep(1000);
             }
             logger.info("Selenium Grid запущен!");
         } else {
@@ -57,6 +63,4 @@ public class SeleniumGrid extends BasePage {
         }
         logger.info("Тестирование закончено!");
     }
-
-    // TODO: 11/2/2018 сделать параллельный запуск старой версии хрома
 }

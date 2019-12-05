@@ -13,7 +13,7 @@ public class ChangeDoctorTest extends TestBase {
     @Test(groups = "CD", description = "передать вызов другому врачу")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
-    public void testSendCallToSecondDoctor_Registr() throws Exception {
+    public void testSendCallToSecondDoctor_Registr() {
         PacientImpl pacientImpl = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");

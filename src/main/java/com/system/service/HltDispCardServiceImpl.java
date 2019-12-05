@@ -13,10 +13,10 @@ public class HltDispCardServiceImpl {
     private HltDispCardRepository hltDispCardRepository;
 
     @Transactional
-    @Step("Close disp card")
-    public void unClose(long cardNum) {
-        HltDispCardEntity card = hltDispCardRepository.getByDispCardId(cardNum);
+    public void open(long ID) {
+        HltDispCardEntity card = hltDispCardRepository.getByDispCardId(ID);
         card.setClosed(false);
+        card.setOtkaz(false);
         hltDispCardRepository.save(card);
     }
 }

@@ -5,17 +5,18 @@ import com.codeborne.selenide.SelenideElement;
 import com.pages.BasePage;
 import org.openqa.selenium.By;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.lib.assistance.Assistance.placeholder;
+import static com.lib.assistance.Assistance.visible;
 
-public class JournalPage extends BasePage {
+public class JournalPage extends BasePage implements JournalPageElem{
     SelenideElement cardNumberFiled = $x("//*[@placeholder='№ Карты']");
     SelenideElement pol_nField = $(By.xpath("//*[@placeholder='Полис: (серия/номер)']"));
     SelenideElement fioField = $(By.xpath("//*[@placeholder='ФИО пациента']"));
     SelenideElement searchBtn = $(By.xpath("//*[@class='zmdi zmdi-search search-icon']"));
     SelenideElement journalBtn = $(By.xpath("//*[contains(text(),'Журнал')]"));
+    SelenideElement kvotyBtn = $x("//*[contains(text(),'Квоты')]");
     SelenideElement grida = $x("//datatable-body-row[@class='datatable-body-row datatable-row-even ng-star-inserted']");
     SelenideElement grida2 = $x("//datatable-body[@class='datatable-body']");
     SelenideElement openCard = $(By.xpath("//datatable-body[@class='datatable-body']")).$(By.xpath(".//*[@mattooltip='Просмотр']"));
@@ -24,7 +25,7 @@ public class JournalPage extends BasePage {
     SelenideElement oprosMeasureExamp = $(By.xpath("//*[contains(text(),'Анкета для граждан в возрасте до 75 лет')]"));
     SelenideElement MeasureFlura = $(By.xpath("//*[contains(text(),'Флюорография легких')]")).$(By.xpath("../../."));
 
-    public JournalPage() throws IOException {
+    public JournalPage()  {
     }
 
     public JournalPage journalMenuBtn() {
@@ -95,6 +96,7 @@ public class JournalPage extends BasePage {
 
     public JournalPage closeCard2() {
         $x("//*[contains(text(),'Закрыть')]").click();
+        $x("//*[contains(text(),'Карта подписана')]").shouldBe(Condition.visible);
         return this;
     }
 
@@ -102,6 +104,16 @@ public class JournalPage extends BasePage {
         $x("//*[@aria-label='Статус карты']").click();
 //        $x("//*[contains(text(),'Статус карты')]").click();
         $x("//*[contains(text(),'Закрытая')]").click();
+        return this;
+    }
+
+    public JournalPage validJournalElements(){
+        visible(placeholder(numMkab));
+        visible(placeholder(polis));
+        visible(allCreateCard);
+        visible(placeholder(dispType));
+        visible(kvoty);
+        visible(planGraph);
         return this;
     }
 }

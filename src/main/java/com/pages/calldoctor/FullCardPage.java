@@ -15,6 +15,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
+import static com.lib.assistance.Assistance.*;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends BasePage {
@@ -38,12 +39,12 @@ public class FullCardPage extends BasePage {
     SelenideElement timeField = $x("//input[@placeholder='Время']");
     SelenideElement card = $x("//*[contains(text(),'Карта вызова')]");
 
-    public FullCardPage(String testName) throws IOException {
+    public FullCardPage(String testName)  {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         logger.info("Open card with url: " + url());
     }
 
-    public FullCardPage(Pacient pacient, String testName) throws IOException {
+    public FullCardPage(Pacient pacient, String testName)  {
         this.pacient = pacient;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
@@ -86,32 +87,32 @@ public class FullCardPage extends BasePage {
 
     @Step("проверяю наличие базовых элементов пациента")
     public void basePacient() {
-        isVisibleText(pacient.getAddress());
-        isVisibleText(pacient.getComplaint());
-        isVisibleText(pacient.getCodedomophone());
-        isVisibleText(parseTelephone(pacient));
-        isVisibleText(String.valueOf(pacient.getEntrance()));
-        isVisibleText(String.valueOf(pacient.getFloor()));
-        isVisibleText(pacient.getName());
-        isVisibleText(pacient.getFamily());
-        isVisibleText(pacient.getOt());
-        isVisibleText(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
-        isVisibleText(String.valueOf(pacient.getSeriespol()));
-        isVisibleText(String.valueOf(pacient.getNumberpol()));
+        visible(pacient.getAddress());
+        visible(pacient.getComplaint());
+        visible(pacient.getCodedomophone());
+        visible(parseTelephone(pacient));
+        visible(String.valueOf(pacient.getEntrance()));
+        visible(String.valueOf(pacient.getFloor()));
+        visible(pacient.getName());
+        visible(pacient.getFamily());
+        visible(pacient.getOt());
+        visible(String.valueOf(pacient.getBirthdate("dd.MM.yyyy")));
+        visible(String.valueOf(pacient.getSeriespol()));
+        visible(String.valueOf(pacient.getNumberpol()));
         if (pacient.getKladraddress() != null) {
-            isVisibleText(pacient.getAppartment());
-            isVisibleText(pacient.getBuilding());
-            isVisibleText(pacient.getConstruction());
+            visible(pacient.getAppartment());
+            visible(pacient.getBuilding());
+            visible(pacient.getConstruction());
         }
     }
 
     @Step("проверяю наличие базовых элементов врача")
     public void baseDoctor(Doctor doctor) {
-        isVisibleText(doctor.getName());
-        isVisibleText(doctor.getFamily());
-        isVisibleText(doctor.getOt());
-        isVisibleText(doctor.getDepartment());
-        isVisibleText(doctor.getUchastocs());
+        visible(doctor.getName());
+        visible(doctor.getFamily());
+        visible(doctor.getOt());
+        visible(doctor.getDepartment());
+        visible(doctor.getUchastocs());
     }
 
     @Step("проверка времени")
@@ -128,7 +129,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyNewCall() throws IOException {
+    public FullCardPage verifyNewCall()  {
         status_new.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -138,7 +139,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(PacientImpl pacientImpl) throws IOException {
+    public FullCardPage verifyActivCall(PacientImpl pacientImpl)  {
         status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -147,7 +148,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю обслуженный вызов")
-    public FullCardPage verifyDoneCall(Doctor doctor) throws IOException {
+    public FullCardPage verifyDoneCall(Doctor doctor) {
         refresh();
         status_done.shouldBe(Condition.visible);
         baseElements();
@@ -190,7 +191,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("завершить обслуживание")
-    public FullCardPage completeServiceBtn() throws InterruptedException {
+    public FullCardPage completeServiceBtn() {
         card.shouldBe(Condition.visible);
         completeServiceBtn.click();
         doneCall.click();
@@ -253,7 +254,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("Проверка текущего подразделения у карты вызова")
-    public FullCardPage verifyDepartment(Doctor doctor) throws IOException {
+    public FullCardPage verifyDepartment(Doctor doctor)  {
         $(By.xpath("//*[contains(.,'" + doctor.getDepartment() + "')]")).shouldBe(Condition.visible);
         return this;
     }
@@ -272,15 +273,15 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("валидация что вызов не отменился на подробной странице")
-    public FullCardPage verifyCancellCallValidation() throws InterruptedException {
+    public FullCardPage verifyCancellCallValidation()  {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
-        Thread.sleep(2000);
+        sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("нажимаю на кнопку печати")
-    public FullCardPage printBtn() throws InterruptedException {
+    public FullCardPage printBtn()  {
         $x("//div[@id='viewPrint']/mat-icon").click();
         return this;
     }

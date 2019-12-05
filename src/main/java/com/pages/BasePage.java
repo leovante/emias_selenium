@@ -1,69 +1,35 @@
 package com.pages;
 
 import com.config.ConfigFile;
-import com.datas.ModuleData;
-import com.datas.calldoctor.Pacient;
-import com.epam.reportportal.message.ReportPortalMessage;
-import com.lib.Lib;
 import com.lib.Alarms;
+import com.lib.Lib;
 import com.pages.calldoctor.controllers.StAddress;
-import com.pages.disp.measureBlock.Examps;
-import com.pages.disp.measureBlock.ExampsImpl;
-import com.system.repositories.HltCallDoctorRepository;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.utils.CallDoctorCards;
-import com.lib.assistance.Assistance;
-import com.lib.assistance.AssistanceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationContext;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BasePage {
-    public ConfigFile conf;
-    public StAddress stAddress;
-    public CallDoctorCards callDoctorCards;
-    public WebDriver driver;
-    public Assistance assistance = new AssistanceImpl();
-    public Alarms alarms;
-    public Lib lib = new Lib();
-    public static int callNumber;
     public static Logger logger = LogManager.getLogger();
+    protected ConfigFile conf;
+    protected StAddress stAddress;
+    protected CallDoctorCards callDoctorCards;
+    protected Alarms alarms;
+    public WebDriver driver;
+    public Lib lib = new Lib();
 
-    @Autowired
-    public Examps examps = new ExampsImpl();
+    public HltCallDoctorServiceImpl hltCallDoctorService;
 
-    @Autowired
-    public HltCallDoctorServiceImpl callDoctorService = new HltCallDoctorServiceImpl();
-
-    public BasePage() throws IOException {
+    public BasePage() {
+        ApplicationContext context = SpringContext.getApplicationContext();
+        hltCallDoctorService = (HltCallDoctorServiceImpl)context.getBean("HltCallDoctorServiceImpl");
         this.driver = getWebDriver();
         this.conf = new ConfigFile();
-    }
-
-    public void isVisibleText(String text) {
-        assistance.isVisibleText(text);
-    }
-
-    public String parseTelephone(ModuleData mData) {
-        return assistance.parseTelephone(mData);
-    }
-
-    public String parseTelephone(Pacient pacientImpl) {
-        return assistance.parseTelephone(pacientImpl);
-    }
-
-    public ArrayList currentTimeList(String format) {
-        return assistance.currentTimeList(format);
-    }
-
-    public Integer cardNumberParser(String text) {
-        return assistance.cardNumberParser(text);
     }
 }
