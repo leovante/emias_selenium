@@ -1,5 +1,6 @@
 package com.settings;
 
+import com.logger.TestNGLogger;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class WebSettings extends STSettings {
 
     public static synchronized void init() {
         try {
-
+            logger = new TestNGLogger("ST Logger");
         } catch (Throwable e) {
             throw new RuntimeException("Can't init ST Settigns: " + e.getMessage());
         }
@@ -34,7 +35,7 @@ public class WebSettings extends STSettings {
         try{
             init();
             getProperties(emiasSettingsPath);
-            fillAction(p -> )
+            STSettings.initFromProperties();
         } catch (IOException e) {
             e.printStackTrace();
         }

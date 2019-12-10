@@ -1,10 +1,6 @@
 package com.settings;
 
-/*
- * Copyright 2004-2016 EPAM Systems
- *
- * This file is part of JDI project.
- */
+import com.logger.ILogger;
 
 import java.io.IOException;
 
@@ -12,6 +8,7 @@ import static com.settings.STPropertiesReader.getProperties;
 import static com.commons.PropertyReader.fillAction;
 
 public abstract class STSettings {
+    public static ILogger logger;
     public static String emiasSettingsPath = "test.properties";
     public static boolean headles = true;
     public static IDriver driverFactory;
@@ -19,7 +16,6 @@ public abstract class STSettings {
     public static synchronized void initFromProperties() throws IOException {
         getProperties(emiasSettingsPath);
         fillAction(p -> headles = p.toLowerCase().equals("true") || p.toLowerCase().equals("1"), "headless");
-        fillAction(driverFactory :: setRemoteHubUrl, "seleniumhub.url");
         fillAction(driverFactory :: setRemoteHubUrl, "seleniumhub.url");
     }
 

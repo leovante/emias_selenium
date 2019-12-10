@@ -2,8 +2,8 @@ package com.commons;
 
 import com.commons.interfaces.IAsserter;
 import com.commons.interfaces.IDriver;
-import com.commons.logger.ILogger;
-import com.commons.logger.LogLevels;
+import com.logger.logger.ILogger;
+import com.logger.logger.LogLevels;
 
 import java.io.IOException;
 

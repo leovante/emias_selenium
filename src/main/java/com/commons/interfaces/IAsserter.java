@@ -1,7 +1,9 @@
 package com.commons.interfaces;
 
-import com.commons.logger.JActionEx;
-import com.commons.logger.JFuncREx;
+import com.logger.JActionEx;
+import com.logger.JFuncREx;
+import com.logger.logger.JActionEx;
+import com.logger.logger.JFuncREx;
 
 import java.util.function.BooleanSupplier;
 

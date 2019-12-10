@@ -11,6 +11,7 @@ import org.testng.annotations.Parameters;
 
 import static com.commons.WebDriverUtils.killAllRunWebBrowsers;
 import static com.settings.WebSettings.initFromProperties;
+import static com.settings.STSettings.logger;
 
 public class TestNGBase extends AbstractTestNGSpringContextTests {
     protected static Timer timer;
@@ -23,7 +24,7 @@ public class TestNGBase extends AbstractTestNGSpringContextTests {
     @BeforeSuite(alwaysRun = true)
     public static void beforeSuite(@Optional String gridRun) {
         initFromProperties();
-        //logger.info("прикрути статический логгер")
+        //logger.info("прикрути статический логгер");
         new BeforeRun(gridRun);
         SeleniumGrid.run(gridRun);
     }

@@ -1,4 +1,4 @@
-package com.commons.logger;
+package com.logger;
 
 public enum LogLevels {
     OFF(-1),        // No logging
