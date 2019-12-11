@@ -2,7 +2,6 @@ package emias.calldoctor.before;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.commons.sql.DBScripts;
-import emias.TestBase;
 import emias.TestCallDoctorBase;
 import org.testng.annotations.Test;
 

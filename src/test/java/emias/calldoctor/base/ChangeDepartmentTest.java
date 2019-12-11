@@ -1,17 +1,15 @@
 package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
+import com.commons.assistance.DuringTestHelper;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
-import com.commons.assistance.DuringTestHelper;
-import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;

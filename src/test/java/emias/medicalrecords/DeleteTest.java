@@ -1,12 +1,12 @@
 package emias.medicalrecords;
 
-import com.datas.Datas;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.Datas;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-public class DeleteTest extends TestBase {
+public class DeleteTest extends TestNGBase {
     @Test(groups = "MR", description = "проверка что удаляется МЗ")
     @Epic("Удаление медзаписи")
     @RetryCountIfFailed(2)

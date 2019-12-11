@@ -1,16 +1,16 @@
 package emias.medicalrecords;
 
 import com.codeborne.selenide.Condition;
-import com.datas.Datas;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.Datas;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class BasicFunction extends TestBase {
+public class BasicFunction extends TestNGBase {
     @Test(groups = "MR", description = "Работоспособность кнопки отменить у старой медзаписи")
     @Epic("Базовая работа компонентов")
     @RetryCountIfFailed(2)

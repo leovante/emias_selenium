@@ -2,11 +2,11 @@ package emias.mis.base;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.commons.sql.DBScripts;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 
 
-public class UpravleniePotokamiPacientovTest extends TestBase {
+public class UpravleniePotokamiPacientovTest extends TestNGBase {
     @Epic("Управление потоками пациентов")
     @org.testng.annotations.Test(groups = "mis", description = "Создать расписание")
     @RetryCountIfFailed(2)

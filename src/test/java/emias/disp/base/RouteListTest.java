@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.system.service.HltDispExamServiceImpl;
-import emias.TestBase;
 import emias.TestDispBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;

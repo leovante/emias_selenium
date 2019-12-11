@@ -1,11 +1,11 @@
 package emias.kladr;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-public class RegressTest extends TestBase {
+public class RegressTest extends TestNGBase {
 
     @Test(groups = "kl", description = "проверяю что закрытые адреса из кладр формализуются другими нормальными из ФИАС")
     @Epic("Кладр")

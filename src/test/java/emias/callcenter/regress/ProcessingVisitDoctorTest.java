@@ -1,8 +1,8 @@
 package emias.callcenter.regress;
 
-import com.datas.calldoctor.PacientImpl;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.calldoctor.PacientImpl;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.annotations.Test;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.text.ParseException;
 
 
-public class ProcessingVisitDoctorTest extends TestBase {
+public class ProcessingVisitDoctorTest extends TestNGBase {
 
     @Test(groups = "VD", description = "Запись на прием к врачу")
     @Epic("Запись на прием")

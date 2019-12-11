@@ -1,10 +1,10 @@
 package emias.calldoctor.backlog;
 
-import com.datas.calldoctor.Pacient;
-import com.datas.calldoctor.PacientImpl;
 import com.commons.except.NoticeException;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.PacientImpl;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.Assert;
@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class CreateCall extends TestBase {
+public class CreateCall extends TestNGBase {
 
     @Test(groups = "test", description = "Описание: создание пустого вызова от источника регистратура")
     @Epic("Создание вызова")

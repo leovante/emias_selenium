@@ -1,10 +1,10 @@
 package emias.calldoctor.backlog;
 
-import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.PacientImpl;
 import com.commons.except.NoticeException;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.PacientImpl;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.hibernate.AssertionFailure;
 import org.json.JSONException;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.text.ParseException;
 
-public class ClickBoosterTest extends TestBase {
+public class ClickBoosterTest extends TestNGBase {
 
     @Test(groups = "test", description = "закликивание кнопки 'назначить на сегодня' что бы проверить что не создаются дубликаты", enabled = false)
     @Epic("Негативные тесты")

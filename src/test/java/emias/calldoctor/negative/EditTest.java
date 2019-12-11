@@ -1,8 +1,7 @@
 package emias.calldoctor.negative;
 
-import com.datas.calldoctor.PacientImpl;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;

@@ -1,9 +1,8 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
-import com.datas.calldoctor.Doctor;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.calldoctor.Doctor;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;

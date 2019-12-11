@@ -1,11 +1,9 @@
 package emias.disp.base;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
 import emias.TestDispBase;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class MeasureBlockTest extends TestDispBase {

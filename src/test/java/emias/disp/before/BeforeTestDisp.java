@@ -5,7 +5,6 @@ import com.commons.sql.DBScripts;
 import com.system.service.HltDispExamMrServiceImpl;
 import com.system.service.HltDispExamServiceImpl;
 import com.system.service.HltDispServiceDocPrvdServiceImpl;
-import emias.TestBase;
 import emias.TestDispBase;
 import io.qameta.allure.Step;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,8 @@
 package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
-import com.datas.calldoctor.PacientImpl;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;

@@ -2,10 +2,10 @@ package emias.mis.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
-import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class PerehodyTest extends TestBase {
+public class PerehodyTest extends TestNGBase {
     @Test(groups = "mis", description = "Переход в диспетчер с дашборда МИС")
     @Epic("Переходы")
     @RetryCountIfFailed(2)

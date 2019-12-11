@@ -2,7 +2,6 @@ package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
 import emias.TestDispBase;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;

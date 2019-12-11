@@ -1,20 +1,17 @@
 package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.Datas;
 import com.datas.calldoctor.PacientImpl;
-import com.commons.retryCountListner.RetryCountIfFailed;
 import com.system.service.HltDispCardServiceImpl;
-import emias.TestBase;
 import emias.TestDispBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
 import static com.beans.SpringBeansUtil.getBean;
+import static com.codeborne.selenide.Selenide.*;
 
 public class JournalTest extends TestDispBase {
     @Epic("Журнал диспансеризации")

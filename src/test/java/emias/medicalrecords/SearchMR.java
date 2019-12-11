@@ -1,12 +1,12 @@
 package emias.medicalrecords;
 
-import com.datas.Datas;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.datas.Datas;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-public class SearchMR extends TestBase {
+public class SearchMR extends TestNGBase {
     @Test(groups = "MR", description = "поиск медзаписей на странице мкаб")
     @Epic("Поиск медзаписи")
     @RetryCountIfFailed(2)
