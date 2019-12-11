@@ -8,6 +8,7 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.openqa.selenium.By;
@@ -18,7 +19,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.commons.assistance.Assistance.notVisible;
 import static com.commons.assistance.Assistance.visible;
 
-public class DoctorsListTest extends TestBase {
+public class DoctorsListTest extends TestCallDoctorBase {
     @Test(groups = "CD", description = "пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)

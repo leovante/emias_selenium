@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-@Service
+@Service("HltDispExamMrServiceImpl")
 public class HltDispExamMrServiceImpl {
     @Autowired
     private HltDispCardRepository hltDispCardRepository;

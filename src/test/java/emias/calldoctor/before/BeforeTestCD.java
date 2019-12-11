@@ -3,13 +3,14 @@ package emias.calldoctor.before;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.commons.sql.DBScripts;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class BeforeTestCD extends TestBase {
+public class BeforeTestCD extends TestCallDoctorBase {
 
     @Test(description = "Prepare data base")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)

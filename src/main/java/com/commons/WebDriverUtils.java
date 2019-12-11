@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import static java.lang.Runtime.getRuntime;
 import static java.lang.String.format;
-import static com.commons.Settings.logger;
+//import static com.commons.Settings.logger;
 public class WebDriverUtils {
     private WebDriverUtils() {
     }
@@ -22,7 +22,7 @@ public class WebDriverUtils {
             }
         }
         catch (Exception ignore){
-            logger.info("Can't kill driver processes");
+//            logger.info("Can't kill driver processes");
         }
     }
 
@@ -67,5 +67,4 @@ public class WebDriverUtils {
     private static void killAllMacOSDriverProcessesByName(String driverName) {
 //        killProcessesTree(driverName);
     }
-
 }

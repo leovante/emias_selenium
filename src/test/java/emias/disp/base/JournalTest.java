@@ -4,7 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.datas.Datas;
 import com.datas.calldoctor.PacientImpl;
 import com.commons.retryCountListner.RetryCountIfFailed;
+import com.system.service.HltDispCardServiceImpl;
 import emias.TestBase;
+import emias.TestDispBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -12,8 +14,9 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
+import static com.beans.SpringBeansUtil.getBean;
 
-public class JournalTest extends TestBase {
+public class JournalTest extends TestDispBase {
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "отображение элементов на странице журнала")
     @RetryCountIfFailed(2)
@@ -144,7 +147,7 @@ public class JournalTest extends TestBase {
     @Test(groups = "disp", description = "закрытие карты диспансеризации с проставлением причины")
     @RetryCountIfFailed(2)
     public void closeCard() {
-        hltDispCardService.open(180);
+        getBean(HltDispCardServiceImpl.class).open(180);
         page.misHome().dispJournal();
         page.journalPage()
                 .journalMenuBtn()

@@ -2,9 +2,10 @@ package emias.disp.base;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestDispBase;
 import org.testng.annotations.Test;
 
-public class KvotyTest extends TestBase {
+public class KvotyTest extends TestDispBase {
     @Test(groups = "disp", description = "отображение элементов на странице квот")
     @RetryCountIfFailed(2)
     public void testKvotyPageElements(){

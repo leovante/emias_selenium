@@ -6,12 +6,13 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class UchastoksAddressTest extends TestBase {
+public class UchastoksAddressTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")

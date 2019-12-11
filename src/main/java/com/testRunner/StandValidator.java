@@ -5,8 +5,9 @@ import com.api.TestStend;
 import java.io.IOException;
 
 import static com.pages.WebPage.logger;
+import static com.settings.WebSettings.isGridRun;
 
-public class BeforeRun {
+public class StandValidator {
     private boolean checkCreateCall = true;
     private boolean checkKladrFind = true;
     private boolean ehr_medrecords = true;
@@ -16,9 +17,10 @@ public class BeforeRun {
     private boolean calldoctorVz = true;
     private TestStend testStend;
 
-    public BeforeRun(String grid) {
+
+    public StandValidator() {
         testStend = new TestStend();
-        if (Boolean.parseBoolean(grid)) {
+        if (isGridRun) {
             instasiator();
             validator();
         }

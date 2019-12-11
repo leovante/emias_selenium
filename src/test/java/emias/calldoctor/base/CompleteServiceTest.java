@@ -6,10 +6,11 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-public class CompleteServiceTest extends TestBase {
+public class CompleteServiceTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "завершить обслуживание вызова")
     @Epic("Завершить обслуживание")

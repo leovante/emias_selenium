@@ -3,12 +3,13 @@ package emias.calldoctor.negative;
 import com.datas.calldoctor.PacientImpl;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import static com.commons.assistance.Assistance.notVisible;
 
-public class EditTest extends TestBase {
+public class EditTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "вызов от СМП по api от взрослого. Проверяю что на странице редактирования id карты не стирается")
     @Epic("Создание вызова")

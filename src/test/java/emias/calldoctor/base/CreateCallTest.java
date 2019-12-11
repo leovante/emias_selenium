@@ -5,12 +5,13 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import static com.commons.assistance.Assistance.visible;
 
-public class CreateCallTest extends TestBase {
+public class CreateCallTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")

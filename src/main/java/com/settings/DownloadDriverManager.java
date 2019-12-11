@@ -2,7 +2,7 @@ package com.settings;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import static com.commons.Settings.exception;
+//import static com.commons.Settings.exception;
 
 public class DownloadDriverManager {
     public static String driverVersion = "none";
@@ -36,7 +36,7 @@ public class DownloadDriverManager {
                     wdm = WebDriverManager.operadriver(); break;
             }
             if (wdm == null)
-                throw exception("Unknown driver: " + driverType);
+//                throw exception("Unknown driver: " + driverType);
             switch (platform) {
                 case "32": wdm = wdm.arch32(); break;
                 case "64": wdm = wdm.arch64(); break;
@@ -45,8 +45,8 @@ public class DownloadDriverManager {
                 wdm = wdm.version(driverVersion);
             wdm.setup();
         } catch (Exception ex) {
-            throw exception("Can't download latest driver for " + driverType
-                    + ". Exception " + ex.getMessage());
+//            throw exception("Can't download latest driver for " + driverType
+//                    + ". Exception " + ex.getMessage());
         }
     }
 }

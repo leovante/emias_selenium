@@ -7,6 +7,7 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.testng.Assert;
@@ -17,7 +18,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.*;
 import static com.commons.assistance.Assistance.visible;
 
-public class EditTest extends TestBase {
+public class EditTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
     @Epic("Редактирование вызова")

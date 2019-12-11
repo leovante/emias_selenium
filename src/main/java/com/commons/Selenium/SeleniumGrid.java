@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.net.URL;
 
 import static com.codeborne.selenide.Selenide.sleep;
+import static com.settings.WebSettings.isGridRun;
 
 public class SeleniumGrid extends WebPage {
     static boolean status = false;
-    static boolean grid = false;
     static boolean working = false;
     static int count = 10;
     static String command = "cmd /c start cmd.exe /K \"cd C:/chromedriver && start run_grid.bat && exit\"";
@@ -25,10 +25,9 @@ public class SeleniumGrid extends WebPage {
             working = Status.checkWorkStatus();
     }
 
-    public static void run(String gridRun)   {
+    public static void runSeleniumGrid()   {
         checkStatus();
-        grid = Boolean.parseBoolean(gridRun);
-        if (grid && !status) {
+        if (isGridRun && !status) {
             try {
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
@@ -52,7 +51,7 @@ public class SeleniumGrid extends WebPage {
 
     public static void stop() throws IOException, JSONException, InterruptedException {
         checkStatus();
-        if (grid) {
+        if (isGridRun) {
             URL urlHub = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
             urlHub.openConnection().getInputStream();
             URL urlNode = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");

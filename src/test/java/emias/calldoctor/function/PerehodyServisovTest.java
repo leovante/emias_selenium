@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.Doctor;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
 
-public class PerehodyServisovTest extends TestBase {
+public class PerehodyServisovTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "проверка изменения врача при перезаходе под другим логином и паролем")
     @Epic("Переходы")

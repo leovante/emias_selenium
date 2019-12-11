@@ -20,22 +20,21 @@ import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.pages.WebPage.logger;
+import static com.settings.WebSettings.browserType;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;
     private ConfigFile conf;
-    public String browser;
     public WebDriver driver;
 
-    public WebDriverInstansiator(String browser) {
+    public WebDriverInstansiator() {
         this.conf = new ConfigFile();
-        this.browser = browser;
     }
 
     public void setDriver()   {
         //ручной запуск
         ChromeOptions chromeOptions;
-        if (browser == null) {
+        if (browserType == null) {
 //            System.setProperty("webdriver.chrome.driver", "%userprofile%/Google Drive/chromedriver/chromedriver.exe");
 //            new ChromeDriverService.Builder()
 //                    .usingDriverExecutable(new File("%userprofile%/Google Drive/chromedriver/chromedriver.exe"))
@@ -52,7 +51,7 @@ public class WebDriverInstansiator {
         }
         //селениум грид
         else {
-            switch (browser) {
+            switch (browserType) {
                 case "firefox":
                     System.setProperty("webdriver.gecko.remoteDriver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");
                     System.setProperty("webdriver.gecko.driver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");

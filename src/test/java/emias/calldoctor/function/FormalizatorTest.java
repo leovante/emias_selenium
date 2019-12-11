@@ -6,6 +6,7 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
@@ -13,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.commons.assistance.Assistance.visible;
 
-public class FormalizatorTest extends TestBase {
+public class FormalizatorTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "проверка заполнения неформализованного адреса при выборе мкаб на странице создания вызова")
     @Epic("Создание вызова")

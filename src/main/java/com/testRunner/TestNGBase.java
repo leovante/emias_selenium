@@ -1,17 +1,16 @@
 package com.testRunner;
 
 
-import com.commons.Selenium.SeleniumGrid;
 import com.commons.Timer;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 
+import java.io.IOException;
+
+import static com.commons.Selenium.SeleniumGrid.runSeleniumGrid;
 import static com.commons.WebDriverUtils.killAllRunWebBrowsers;
 import static com.settings.WebSettings.initFromProperties;
-import static com.settings.STSettings.logger;
 
 public class TestNGBase extends AbstractTestNGSpringContextTests {
     protected static Timer timer;
@@ -20,18 +19,17 @@ public class TestNGBase extends AbstractTestNGSpringContextTests {
         return timer.timePassedInMSec();
     }
 
-    @Parameters({"gridRun"})
     @BeforeSuite(alwaysRun = true)
-    public static void beforeSuite(@Optional String gridRun) {
+    public static void beforeSuite() throws IOException {
         initFromProperties();
         //logger.info("прикрути статический логгер");
-        new BeforeRun(gridRun);
-        SeleniumGrid.run(gridRun);
+        new StandValidator();
+        runSeleniumGrid();
     }
 
     @AfterSuite(alwaysRun = true)
     public void afterSuite() {
-        killAllRunWebBrowsers();
+//        killAllRunWebBrowsers();
 //        SeleniumGrid.stop();
     }
 }

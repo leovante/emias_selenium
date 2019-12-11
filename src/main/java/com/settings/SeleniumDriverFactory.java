@@ -16,7 +16,7 @@ import java.net.URL;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static com.commons.Settings.exception;
+//import static com.commons.Settings.exception;
 
 import static com.settings.DownloadDriverManager.downloadDriver;
 import static com.settings.DownloadDriverManager.shouldDownloadDriver;

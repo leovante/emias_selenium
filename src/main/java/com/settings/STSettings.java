@@ -15,8 +15,8 @@ public abstract class STSettings {
 
     public static synchronized void initFromProperties() throws IOException {
         getProperties(emiasSettingsPath);
-        fillAction(p -> headles = p.toLowerCase().equals("true") || p.toLowerCase().equals("1"), "headless");
-        fillAction(driverFactory :: setRemoteHubUrl, "seleniumhub.url");
+        fillAction(p -> headles = p.toLowerCase().equals("true") || p.toLowerCase().equals("1"), "st.test.headless");
+//        fillAction(driverFactory :: setRemoteHubUrl, "seleniumhub.url");
     }
 
     public static void initFromProperties(String propeortyPath) throws IOException {

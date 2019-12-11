@@ -3,7 +3,10 @@ package emias.disp.base;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.commons.retryCountListner.RetryCountIfFailed;
+import com.system.service.HltDispExamServiceImpl;
 import emias.TestBase;
+import emias.TestDispBase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
@@ -12,12 +15,15 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 import static com.datas.disp.measure.MeasureEnum.issledovanie_kala;
 
-public class RouteListTest extends TestBase {
+public class RouteListTest extends TestDispBase {
+    @Autowired
+    public HltDispExamServiceImpl hltDispExamService;
+
     @Ignore
     @Test(groups = "disp", description = "проверка что терапевт в конце МЛ после отмены мероприятия", enabled = false)
 //сейчас даже если терапевт не последний, тап и заключение отображается как надо
     @RetryCountIfFailed(2)
-    public void testCancelTerapevt() {
+    public void cancelTerapevt() {
         page.misHome().loginMis();
         page.homePageMis().raspisaniPriemaBtn();
         page.raspisaniePriemaPage()
@@ -29,21 +35,21 @@ public class RouteListTest extends TestBase {
 
     @Test(groups = "disp", description = "проверка пустых значений в показателях")
     @RetryCountIfFailed(2)
-    public void testEmpyFieldParams() {
+    public void empyFieldParams() {
         page.misHome().dispCard();
         page.exampPage().validateFieldParamIsEmpy();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с пробелом")
     @RetryCountIfFailed(2)
-    public void testSpaceValidationFieldParams() {
+    public void spaceValidationFieldParams() {
         page.misHome().dispCard();
         page.exampPage().validateFieldParamWithSpace();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с дефолтным пустым полем")
     @RetryCountIfFailed(2)
-    public void testDefaultValidationFieldParams() {
+    public void defaultValidationFieldParams() {
         page.misHome().dispCard();
         page.exampPage().validateClearParam();
     }
@@ -99,6 +105,5 @@ public class RouteListTest extends TestBase {
         SelenideElement se2 = $x("//*[contains(.,'Абсолютный суммарный сердечно-сосудистый риск по шкале SCORE')]");
         Assert.assertFalse(se2.is(Condition.visible), "абсолютный ССР не отображается");
     }
-
     // TODO: 7/15/2019 добавить тест. проставить отказ мероприятию с медзаписю например ИПК и сохранить карту. Потом перезагрузиться и попытаться раскрыть медзапись. Сейчас не раскрывается
 }

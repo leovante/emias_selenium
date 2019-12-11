@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.datas.calldoctor.PacientImpl;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Ignore;
@@ -11,7 +12,7 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class PrintFormTest extends TestBase {
+public class PrintFormTest extends TestCallDoctorBase {
 
     // TODO: 9/24/2019  при запуске в ТС зависает навечно.
     @Test(groups = "CD", description = "проверка формы печати группы активные", enabled = false)

@@ -6,6 +6,7 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
 import org.testng.annotations.Test;
@@ -13,7 +14,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.commons.assistance.Assistance.visible;
 
-public class ValidationTest extends TestBase {
+public class ValidationTest extends TestCallDoctorBase {
     @Test(groups = "CD", description = "вызов от СМП по api, ребенок по МКАБ без КЛАДР. Валидация ФИО кто вызвал не пропадает на странице редактирования")
     @Epic("Проверка валидатора")
     @Issue("EMIAS-1108")

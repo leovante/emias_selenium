@@ -177,7 +177,6 @@ public class FullCardPage extends WebPage {
         cancelCall.click();
         cancelField.setValue("отмена автотестом");
         cancelCall2.click();
-//        visible("Данный вызов был отменён");
         return this;
     }
 

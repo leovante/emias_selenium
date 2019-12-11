@@ -2,14 +2,28 @@ package emias.disp.before;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.commons.sql.DBScripts;
+import com.system.service.HltDispExamMrServiceImpl;
+import com.system.service.HltDispExamServiceImpl;
+import com.system.service.HltDispServiceDocPrvdServiceImpl;
 import emias.TestBase;
+import emias.TestDispBase;
 import io.qameta.allure.Step;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class BeforeTestDisp extends TestBase {
+public class BeforeTestDisp extends TestDispBase {
+    @Autowired
+    public HltDispExamServiceImpl hltDispExamService;
+
+    @Autowired
+    public HltDispExamMrServiceImpl hltDispExamMrService;
+
+    @Autowired
+    public HltDispServiceDocPrvdServiceImpl hltDispServiceDocPrvdService;
+
     @Test(description = "Подготовка БД")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
     public void run() {

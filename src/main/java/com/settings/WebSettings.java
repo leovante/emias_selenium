@@ -2,6 +2,8 @@ package com.settings;
 
 import com.logger.TestNGLogger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.io.IOException;
 
@@ -10,6 +12,8 @@ import static com.commons.PropertyReader.fillAction;
 import static com.settings.STPropertiesReader.getProperties;
 
 public class WebSettings extends STSettings {
+    public static boolean isGridRun;
+    public static String browserType;
 
     public static JavascriptExecutor getJSExecutor() {
         try {
@@ -31,11 +35,14 @@ public class WebSettings extends STSettings {
         }
     }
 
-    public static synchronized void initFromProperties(){
+    @Parameters({"gridRun","browser"})
+    public static synchronized void initFromProperties(@Optional String gridRun, @Optional String browser){
         try{
             init();
             getProperties(emiasSettingsPath);
             STSettings.initFromProperties();
+            isGridRun = Boolean.parseBoolean(gridRun);
+            browserType = browser;
         } catch (IOException e) {
             e.printStackTrace();
         }

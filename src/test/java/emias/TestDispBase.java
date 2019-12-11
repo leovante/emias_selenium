@@ -5,7 +5,7 @@ import com.commons.TestMethodCapture;
 import com.commons.WebDriverInstansiator;
 import com.pages.Page;
 import com.settings.AppConfig;
-import com.system.service.*;
+import com.system.service.HltCallDoctorServiceImpl;
 import com.testRunner.TestNGBase;
 import emias.calldoctor.before.BeforeTestCD;
 import emias.disp.before.BeforeTestDisp;
@@ -18,7 +18,7 @@ import static com.beans.SpringBeansUtil.getBean;
 
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
-public class TestBase extends TestNGBase {
+public class TestDispBase extends TestNGBase {
     private WebDriverInstansiator driverInst;
     private CallDoctorCards callDoctorCards;
     public String testName;
@@ -30,16 +30,12 @@ public class TestBase extends TestNGBase {
         return TestMethodCapture.getTestMethod().getMethodName();
     }
 
-    @BeforeMethod(alwaysRun = true)
-    public void setUp() {
-        driverInst = new WebDriverInstansiator();
-        driverInst.setDriver();
+    @Parameters({"testng"})
+    @BeforeClass(groups = "disp", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
+    public void beforeClassDisp(@Optional String testng) {
+//        initFromProperties();
+        if (testng != null) {
+            new BeforeTestDisp().run();
+        }
     }
-
-    @AfterMethod(alwaysRun = true)
-    public void afterMethod() {
-//        new Logging();
-        driverInst.driverClose();
-    }
-
 }

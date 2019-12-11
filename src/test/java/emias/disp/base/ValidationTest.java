@@ -2,11 +2,12 @@ package emias.disp.base;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestDispBase;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 @Ignore
-public class ValidationTest extends TestBase {
+public class ValidationTest extends TestDispBase {
 
     @Test(groups = "disp", description = "значения в показателях")
     @RetryCountIfFailed(2)

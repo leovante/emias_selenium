@@ -3,12 +3,13 @@ package emias.disp.base;
 import com.codeborne.selenide.Condition;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestDispBase;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class ConclusionViewTest extends TestBase {
+public class ConclusionViewTest extends TestDispBase {
 
     @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года", enabled = false)
     @RetryCountIfFailed(2)

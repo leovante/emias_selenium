@@ -2,9 +2,10 @@ package emias.disp.base;
 
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestDispBase;
 import org.testng.annotations.Test;
 
-public class AutonavigationTest extends TestBase {
+public class AutonavigationTest extends TestDispBase {
 
     @Test(groups = "disp", description = "проверка автоскролла бокового меню к блоку заключение при редактировании МЛ", enabled = false)
     @RetryCountIfFailed(2)

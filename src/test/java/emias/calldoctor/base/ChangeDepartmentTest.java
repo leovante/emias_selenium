@@ -7,6 +7,7 @@ import com.datas.calldoctor.PacientImpl;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
@@ -15,7 +16,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class ChangeDepartmentTest extends TestBase {
+public class ChangeDepartmentTest extends TestCallDoctorBase {
     @Test(groups = {"CD", "test"}, description = "передача вызова из Юр лица в подразделение")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
