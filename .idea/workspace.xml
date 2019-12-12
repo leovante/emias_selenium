@@ -3,57 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/commons/assistance/DuringTestHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/commons/assistance/DuringTestHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/TestBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/Auth.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/Auth.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/after/AfterSuite.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/before/BeforeSuiteCallCenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/before/BeforeSuiteCallCenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/FindPatientTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/FindPatientTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingCallDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingCallDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingVisitDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingVisitDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingWaitingListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingWaitingListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/ClickBoosterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/ClickBoosterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTestRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/backlog/CreateCallTestRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CancelCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDepartmentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChangeDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/ChooseDoctorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CompleteServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/EditTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/FilterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/PrintFormTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/before/BeforeTestCD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/DoctorsListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/FormalizatorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/FormalizatorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/PerehodyServisovTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/PerehodyServisovTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/UchastoksAddressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/CreateCallTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/CreateCallTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/EditTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/calldoctor/negative/EditTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/AutonavigationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/AutonavigationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ConclusionViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ConclusionViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsFillTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsFillTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ExampsViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/KvotyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/KvotyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/MeasureBlockTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/MeasureBlockTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/RouteListTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/base/ValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/base/ValidationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/disp/before/BeforeTestDisp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/kladr/KladrFiasVerify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/kladr/KladrFiasVerify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/kladr/RegressTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/kladr/RegressTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/BasicFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/CreateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/DeleteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/SearchMR.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/medicalrecords/SearchMR.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/mis/base/PerehodyTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/mis/base/UpravleniePotokamiPacientovTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/mis/base/UpravleniePotokamiPacientovTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/emias/mis/before/BeforeSuiteMIS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/mis/before/BeforeSuiteMIS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/emias/TestCallDoctorBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/emias/TestCallDoctorBase.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -114,7 +65,7 @@
           <entry key="gitignore" value="2" />
           <entry key="hibernate_sequence" value="1" />
           <entry key="iml" value="1" />
-          <entry key="java" value="2298" />
+          <entry key="java" value="2302" />
           <entry key="json" value="115" />
           <entry key="life_mtr_gas" value="1" />
           <entry key="life_mtr_gas_trg" value="1" />
@@ -128,7 +79,7 @@
           <entry key="preapreBD" value="3" />
           <entry key="properties" value="81" />
           <entry key="score" value="1" />
-          <entry key="sql" value="306" />
+          <entry key="sql" value="307" />
           <entry key="sql заключение диспы" value="4" />
           <entry key="sql заключение диспы2" value="1" />
           <entry key="sql работа с мед записями" value="1" />
@@ -159,12 +110,12 @@
           <entry key="Database Element" value="3" />
           <entry key="IDEA_MODULE" value="1" />
           <entry key="Image" value="9" />
-          <entry key="JAVA" value="2298" />
+          <entry key="JAVA" value="2302" />
           <entry key="JSON" value="115" />
           <entry key="PLAIN_TEXT" value="63" />
           <entry key="Properties" value="81" />
           <entry key="SQL" value="43" />
-          <entry key="Scratch" value="295" />
+          <entry key="Scratch" value="296" />
           <entry key="XML" value="136" />
         </counts>
       </usages-collector>
@@ -174,13 +125,13 @@
           <entry key="clear_card" value="27" />
           <entry key="dummy" value="191" />
           <entry key="gitignore" value="13" />
-          <entry key="java" value="39511" />
+          <entry key="java" value="39531" />
           <entry key="json" value="167" />
           <entry key="preapreBD" value="259" />
           <entry key="properties" value="310" />
-          <entry key="sql" value="41299" />
+          <entry key="sql" value="41532" />
           <entry key="sql связь медзаписи и тап" value="4" />
-          <entry key="txt" value="1356" />
+          <entry key="txt" value="1363" />
           <entry key="xml" value="417" />
           <entry key="врач в блоке мероприятий по тарифам" value="9" />
           <entry key="задачи для постмана" value="2" />
@@ -190,12 +141,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="39511" />
+          <entry key="JAVA" value="39531" />
           <entry key="JSON" value="167" />
-          <entry key="PLAIN_TEXT" value="1577" />
+          <entry key="PLAIN_TEXT" value="1584" />
           <entry key="Properties" value="310" />
           <entry key="SQL" value="297" />
-          <entry key="Scratch" value="41688" />
+          <entry key="Scratch" value="41921" />
           <entry key="XML" value="417" />
         </counts>
       </usages-collector>
@@ -235,7 +186,17 @@
     <favorites_list name="emias_selenium" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestCallDoctorBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -273,11 +234,11 @@
       <find>driver</find>
       <find>getwebdriver</find>
       <find>getDriver</find>
-      <find>logger</find>
       <find>testCancelEmpyCallFrom_Registr</find>
       <find>case</find>
       <find>testAppendDoctorToCall_SMP</find>
       <find>testCancelCallFrom_Registr</find>
+      <find>logger</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\dtemnikov\IdeaProjects\emias_selenium\src\main\resources</dir>
@@ -299,11 +260,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/emias/TestCallDoctorBase.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_1.sql" />
         <option value="$USER_HOME$/AppData/Local/Temp/Rar$DIa0.486/AppTests.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/TestBase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/callcenter/regress/ProcessingCallDoctorTest.java" />
@@ -350,6 +308,9 @@
         <option value="$PROJECT_DIR$/src/test/java/emias/kladr/RegressTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/disp/base/ValidationTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/emias/disp/base/JournalTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/emias/TestCallDoctorBase.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_1.sql" />
       </list>
     </option>
   </component>
@@ -498,12 +459,6 @@
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
               <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
             </path>
-            <path>
-              <item name="emias_selenium" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
-              <item name="Database Consoles" type="d62648e6:ScratchProjectViewPane$MyRootNode" />
-              <item name="889db42a-c187-4689-b166-e0cf37d83466" type="1e004dc1:ScratchProjectViewPane$MyRootNode$1$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -518,7 +473,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/dtemnikov/.IntelliJIdea2018.2/config/consoles/db/d3ca9510-eb2c-4afa-852a-6b8d001b0463/console.sql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576064603839" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576134050673" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
     <property name="last_opened_file_path" value="$USER_HOME$/Google Drive/_softrust/test/нагрузочное тестирвоание/testCard.csv" />
@@ -869,13 +824,6 @@
       <workItem from="1574057058569" duration="54286000" />
       <workItem from="1574840678934" duration="52342000" />
     </task>
-    <task id="LOCAL-00598" summary="правки">
-      <created>1561701479697</created>
-      <option name="number" value="00598" />
-      <option name="presentableId" value="LOCAL-00598" />
-      <option name="project" value="LOCAL" />
-      <updated>1561701479698</updated>
-    </task>
     <task id="LOCAL-00599" summary="правки">
       <created>1561702573228</created>
       <option name="number" value="00599" />
@@ -1212,7 +1160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576053811127</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="правки">
+      <created>1576065559596</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1576065559596</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1248,7 +1203,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1118665000" />
+    <option name="totallyTimeSpent" value="1121033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1268,11 +1223,11 @@
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" sideWeight="0.54590166" side_tool="true" weight="0.22330096" />
-      <window_info active="true" content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.7260677" visible="true" weight="0.17505592" />
+      <window_info content_ui="combo" x="791" y="70" width="337" height="909" id="Project" order="6" sideWeight="0.7260677" visible="true" weight="0.17505592" />
       <window_info id="Persistence" order="7" sideWeight="0.27393225" side_tool="true" weight="0.15324385" />
       <window_info id="Java Enterprise" order="8" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
       <window_info id="Web" order="9" sideWeight="0.48726115" side_tool="true" weight="0.17537314" />
-      <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49496645" weight="0.3151163" />
+      <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49496645" weight="0.35106382" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.3074468" />
       <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49307036" weight="0.26489362" />
@@ -1363,9 +1318,9 @@
     <MESSAGE value="clean" />
     <MESSAGE value="выделил мероприятия диспы в блок" />
     <MESSAGE value="переделываю фабрику драйвера" />
-    <MESSAGE value="правки" />
     <MESSAGE value="рефактор. Добавил контекст" />
-    <option name="LAST_COMMIT_MESSAGE" value="рефактор. Добавил контекст" />
+    <MESSAGE value="правки" />
+    <option name="LAST_COMMIT_MESSAGE" value="правки" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1448,48 +1403,12 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestCallDoctorBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="18" column="19" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/function/AddressTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.486/AppTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
           <folding>
             <element signature="e#1048#1099#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="e#437#474#0" />
-            <element signature="method#beforeSuite#0;class#TestNGBase#0" />
-            <element signature="method#afterSuite#0;class#TestNGBase#0" />
-            <element signature="e#935#969#0" />
-            <element signature="method#setUp#0;class#TestNGBase#0" />
-            <element signature="method#afterMethod#0;class#TestNGBase#0" />
           </folding>
         </state>
       </provider>
@@ -1926,6 +1845,40 @@
             <element signature="e#6068#6099#0" />
             <element signature="method#closeCard#0;class#JournalTest#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/testRunner/StandValidator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/889db42a-c187-4689-b166-e0cf37d83466/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="196" lean-forward="true" selection-start-line="196" selection-end-line="196" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/testRunner/TestNGBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="method#beforeSuite#0;class#TestNGBase#0" />
+            <element signature="method#afterSuite#0;class#TestNGBase#0" />
+            <element signature="method#setUp#0;class#TestNGBase#0" />
+            <element signature="method#afterMethod#0;class#TestNGBase#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/emias/TestCallDoctorBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="41" column="12" selection-start-line="41" selection-start-column="12" selection-end-line="41" selection-end-column="12" />
         </state>
       </provider>
     </entry>

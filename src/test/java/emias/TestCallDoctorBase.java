@@ -19,8 +19,6 @@ import static com.beans.SpringBeansUtil.getBean;
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestCallDoctorBase extends TestNGBase {
-    private WebDriverInstansiator driverInst;
-    private CallDoctorCards callDoctorCards;
     public String testName;
 
     @Autowired
@@ -41,7 +39,7 @@ public class TestCallDoctorBase extends TestNGBase {
     @AfterMethod(groups = "CD", alwaysRun = true)
     public void afterMethodCD(ITestResult result) {//работает только с afterMethod
         String testName1 = result.getMethod().getMethodName();
-        if (this.callDoctorCards.getCardMap(testName1) != null) {
+        if (callDoctorCards.getCardMap(testName1) != null) {
             int id = this.callDoctorCards.getCardMap(testName1);
             getBean(HltCallDoctorServiceImpl.class).cancelById(id);
         }

@@ -1,6 +1,7 @@
 package com.testRunner;
 
 
+import com.commons.CallDoctorCards;
 import com.commons.TestMethodCapture;
 import com.commons.Timer;
 import com.commons.WebDriverInstansiator;
@@ -20,9 +21,10 @@ import static com.settings.WebSettings.initFromProperties;
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestNGBase extends AbstractTestNGSpringContextTests {
-    protected static Timer timer;
-    private WebDriverInstansiator driverInst;
     public String testName;
+    protected static Timer timer;
+    protected CallDoctorCards callDoctorCards;
+    private WebDriverInstansiator driverInst;
 
     public static long getTestRunTime() {
         return timer.timePassedInMSec();
