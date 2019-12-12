@@ -1,6 +1,5 @@
 package com.beans;
 
-import com.pages.Page;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class SpringBeansUtil implements ApplicationContextAware {
 
     @Autowired
-    static ApplicationContext context;
+    private static ApplicationContext context;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

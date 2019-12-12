@@ -19,10 +19,14 @@ public class CompleteServiceTest extends TestCallDoctorBase {
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
-        page.misHome().calldoctorAdminTemnikov();
-        page.createCall(pacient).createCall();
-        page.fullCard(pacient, testName()).chooseDoctorBtn();
-        page.setDoctor().chooseDoctorToday(doctor);
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall();
+        page.fullCard(pacient, testName())
+                .chooseDoctorBtn();
+        page.setDoctor()
+                .chooseDoctorToday(doctor);
         page.fullCard(pacient, testName())
                 .completeServiceBtn()
                 .verifyDoneCall(doctor)
@@ -31,7 +35,6 @@ public class CompleteServiceTest extends TestCallDoctorBase {
                 .clearFilterDepart()
                 .verifyPacientNumberInServe(pacient, doctor);
     }
-
 
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")

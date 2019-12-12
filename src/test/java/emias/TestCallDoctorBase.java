@@ -1,14 +1,11 @@
 package emias;
 
-import com.commons.CallDoctorCards;
 import com.commons.TestMethodCapture;
-import com.commons.WebDriverInstansiator;
 import com.pages.Page;
 import com.settings.AppConfig;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.testRunner.TestNGBase;
 import emias.calldoctor.before.BeforeTestCD;
-import emias.disp.before.BeforeTestDisp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.ITestResult;

@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static org.testng.Assert.assertTrue;
 
 public class Assistance {
     public static void visible(String text) {
@@ -108,5 +109,9 @@ public class Assistance {
     public static SelenideElement placeholder(String text) {
         SelenideElement se = $x("//*[@placeholder='" + text + "']");
         return se;
+    }
+
+    public static void assertDisplayed(SelenideElement selenideElement) {
+        assertTrue(selenideElement.isDisplayed());
     }
 }

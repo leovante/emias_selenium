@@ -12,8 +12,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.commons.assistance.Assistance.parseTelephone;
-import static com.commons.assistance.Assistance.visible;
+import static com.commons.assistance.Assistance.*;
+import static org.springframework.util.ClassUtils.isVisible;
 
 public class DashboardPage extends WebPage {
     private SelenideElement
@@ -35,10 +35,6 @@ public class DashboardPage extends WebPage {
             doneCallProgressFrame = $(By.id("doneCallProgressFrame")),
             cancelCall = $(By.id("cancelcall"));
 
-    DashboardPage() {
-        refresh();
-    }
-
     @Step("вышел в мис")
     public void exitToMis() {
         exitToMis.click();
@@ -54,9 +50,10 @@ public class DashboardPage extends WebPage {
 
     @Step("поиск в фильтре ФИО")
     public DashboardPage dashFilter_fio(Pacient pacient) {
+        visible(fioFilter);
+        refresh();
         fioFilter.click();
         fioFilter.setValue(pacient.getFamily());
-        sleep(2000);
         return this;
     }
 
@@ -182,16 +179,16 @@ public class DashboardPage extends WebPage {
     @Step("Проверка что запись удалена с дашборда")
     public void verifyCallIsCancelFromDashboard(Pacient pacient) {
         sleep(5000);
-        SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
+        SelenideElement address = $x("//*[contains(text(),'" + pacient.getAddress() + "')]");
         if (newCallProgressFrame.isDisplayed()) {
             newCallProgressFrame.$(By.id("order")).click();
             newCallProgressFrame.click();
             if (address.isDisplayed()) {
                 address.click();
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getName() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getFamily() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + pacient.getOt() + "')]")).isDisplayed());
-                Assert.assertFalse(!$(By.xpath("//*[contains(text(),'" + parseTelephone(pacient) + "')]")).isDisplayed());
+                assertDisplayed($x("//*[contains(text(),'" + pacient.getName() + "')]"));
+                assertDisplayed($x("//*[contains(text(),'" + pacient.getFamily() + "')]"));
+                assertDisplayed($x("//*[contains(text(),'" + pacient.getOt() + "')]"));
+                assertDisplayed($x("//*[contains(text(),'" + parseTelephone(pacient) + "')]"));
             } else {
                 logger.info("Проверка выполнена. Вызов с адресом: '" + address + "' не найден!");
             }
