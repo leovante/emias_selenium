@@ -239,6 +239,26 @@ public class DoctorsListTest extends TestCallDoctorBase {
         doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
     }
 
+    @Test(groups = "CD", description = "оператор с ролью (диспетчер администратор) видит всех врачей")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void viewFullDoctorList_OperatorAdmin() {
+        Pacient pacient = new PacientImpl("Profile13");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorUdina();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
+        SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
+        doctorsBlock.$x(".//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Темников')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Моков')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Серова')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Немцова')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
+    }
+
+
     @Test(groups = "CD", description = "после редактирования карты и изменения адреса пропадает привязка к старому участку")
     @Epic("Создание вызова")
     @Issue("EMIAS-956")
