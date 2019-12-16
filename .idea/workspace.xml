@@ -585,7 +585,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/dtemnikov/.IntelliJIdea2018.2/config/consoles/db/d3ca9510-eb2c-4afa-852a-6b8d001b0463/console.sql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576487827832" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1576487976740" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
     <property name="last_opened_file_path" value="$USER_HOME$/Google Drive/_softrust/test/нагрузочное тестирвоание/testCard.csv" />
@@ -639,7 +639,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="TestNG.CancelCallTest.testCancelCallFrom_Registr">
+  <component name="RunManager" selected="TestNG.C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngCD.xml">
     <configuration name="C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngCD.xml" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <module name="regress_tests" />
       <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/resources/testngCD.xml" />
@@ -749,9 +749,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngCD.xml" />
         <item itemvalue="TestNG.CancelCallTest.testCancelCallFrom_Registr" />
         <item itemvalue="TestNG.CancelCallTest1.testCancelCallFrom_Registr" />
-        <item itemvalue="TestNG.C:/Users/dtemnikov/IdeaProjects/emias_selenium/src/test/resources/testngCD.xml" />
         <item itemvalue="TestNG.ValidationTest.cancelCallFromDashboard" />
         <item itemvalue="TestNG.ValidationTest.callDublicates" />
       </list>
