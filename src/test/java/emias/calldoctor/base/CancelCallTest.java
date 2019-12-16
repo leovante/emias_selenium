@@ -6,10 +6,10 @@ import com.datas.calldoctor.Pacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
+import org.springframework.stereotype.Component;
 import org.testng.annotations.Test;
 
 public class CancelCallTest extends TestCallDoctorBase {
-
     @Test(groups = "CD", description = "отмена вызова на странице подробной карты")
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)

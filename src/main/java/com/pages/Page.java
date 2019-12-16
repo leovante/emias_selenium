@@ -9,5 +9,4 @@ import com.pages.mis.Mis;
 import com.pages.portal.Portal;
 import org.springframework.stereotype.Component;
 
-@Component
 public interface Page extends Disp, Calldoctor, CallCenter, Kladr, Mis, MedicalRecord, Portal {}

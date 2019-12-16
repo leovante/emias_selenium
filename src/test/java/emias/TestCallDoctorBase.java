@@ -7,6 +7,7 @@ import com.system.service.HltCallDoctorServiceImpl;
 import com.testRunner.TestNGBase;
 import emias.calldoctor.before.BeforeTestCD;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
