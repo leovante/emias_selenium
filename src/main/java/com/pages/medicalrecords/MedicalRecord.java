@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import static com.codeborne.selenide.Selenide.page;
 
 @Component
-public interface MedicalRecordPage {
+public interface MedicalRecord {
     default EhrMedRecords ehrMedrecords(Datas d) {
         return new EhrMedRecords(d);
     }

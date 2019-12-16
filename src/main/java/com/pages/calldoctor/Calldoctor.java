@@ -7,7 +7,7 @@ import com.pages.mis.MkabPage;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface CalldoctorPage {
+public interface Calldoctor {
     default CreateCallPage createCall(Pacient pacient) {
         return new CreateCallPage(pacient);
     }

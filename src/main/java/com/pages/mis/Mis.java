@@ -5,8 +5,7 @@ import org.springframework.stereotype.Component;
 import static com.codeborne.selenide.Selenide.page;
 
 @Component
-public interface MisPage {
-
+public interface Mis {
     default HomeWebPage homePageMis() {
         return page(HomeWebPage.class);
     }

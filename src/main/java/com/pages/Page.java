@@ -1,15 +1,13 @@
 package com.pages;
 
-import com.pages.callcenter.CallCenterPage;
-import com.pages.calldoctor.CalldoctorPage;
-import com.pages.disp.DispanserisationPage;
-import com.pages.kladr.KladrPage;
-import com.pages.medicalrecords.MedicalRecordPage;
-import com.pages.mis.MisPage;
-import com.pages.portal.PortalPage;
+import com.pages.callcenter.CallCenter;
+import com.pages.calldoctor.Calldoctor;
+import com.pages.disp.Disp;
+import com.pages.kladr.Kladr;
+import com.pages.medicalrecords.MedicalRecord;
+import com.pages.mis.Mis;
+import com.pages.portal.Portal;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface Page extends DispanserisationPage, CalldoctorPage, CallCenterPage, KladrPage, MisPage, MedicalRecordPage, PortalPage {
-
-}
+public interface Page extends Disp, Calldoctor, CallCenter, Kladr, Mis, MedicalRecord, Portal {}

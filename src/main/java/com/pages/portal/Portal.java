@@ -10,7 +10,7 @@ import java.io.IOException;
 import static com.codeborne.selenide.Selenide.page;
 
 @Component
-public interface PortalPage {
+public interface Portal {
 
     default PortalDashboard portalDashboard() throws IOException {
         return new PortalDashboard();

@@ -53,4 +53,6 @@ public class AddressTest extends TestCallDoctorBase {
                 .searchField();
         $x("//*[@placeholder='Адрес']").getText().equals(pacient.getAddress3adv());
     }
+
+    // TODO: 12/13/2019 сделать проверку отображения нескольких вариантов автоформализатора
 }

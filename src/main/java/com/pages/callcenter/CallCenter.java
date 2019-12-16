@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import static com.codeborne.selenide.Selenide.page;
 
 @Component
-public interface CallCenterPage {
+public interface CallCenter {
     default RecordDoctorWebPage recordDoctorPage() {
         return page(RecordDoctorWebPage.class);
     }

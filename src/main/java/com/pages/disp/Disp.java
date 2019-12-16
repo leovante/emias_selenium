@@ -6,10 +6,11 @@ import org.springframework.stereotype.Component;
 import static com.codeborne.selenide.Selenide.page;
 
 @Component
-public interface DispanserisationPage {
+public interface Disp {
     default Exams exampPage() {
         return new Exams();
     }
+
     default Exams exampPage(MeasureEnum measure) {
         return new Exams(measure);
     }
