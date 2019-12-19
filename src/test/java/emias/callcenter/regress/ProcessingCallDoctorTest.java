@@ -18,8 +18,8 @@ public class ProcessingCallDoctorTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void testCallDoctorMKAB() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.misHome().callCenter();
-        page.callDoctorPage().calldoctor(pacientImpl);
+        IPage.misHome().callCenter();
+        IPage.callDoctorPage().calldoctor(pacientImpl);
     }
 
     @Test(groups = "VD", description = "Вызов доктора на дом")
@@ -27,7 +27,7 @@ public class ProcessingCallDoctorTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void testCallDoctorSMP() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.misHome().callCenter();
-        page.callDoctorPage().calldoctorSMP(pacientImpl);
+        IPage.misHome().callCenter();
+        IPage.callDoctorPage().calldoctorSMP(pacientImpl);
     }
 }

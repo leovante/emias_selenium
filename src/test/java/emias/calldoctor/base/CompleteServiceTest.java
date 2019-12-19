@@ -2,8 +2,9 @@ package emias.calldoctor.base;
 
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
+import com.datas.calldoctor.DataProviderRealisation;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -15,7 +16,34 @@ public class CompleteServiceTest extends TestCallDoctorBase {
     @Epic("Завершить обслуживание")
     @RetryCountIfFailed(2)
     public void testCompleteCallRegistr() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
+        Doctor doctor = new Doctor("SerovaStendTestovoe");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall();
+        page.fullCard(pacient, testName())
+                .chooseDoctorBtn();
+        page.setDoctor()
+                .chooseDoctorToday(doctor);
+        page.fullCard(pacient, testName())
+                .completeServiceBtn()
+                .verifyDoneCall(doctor)
+                .closeCardBtn();
+        page.dashboard()
+                .clearFilterDepart()
+                .verifyPacientNumberInServe(pacient, doctor);
+    }
+
+    @Test(groups = "CD",
+            dataProvider = "jsonDataProvider", dataProviderClass = DataProviderRealisation.class,
+            description = "завершить обслуживание вызова с дата провайдером")
+    @Epic("Завершить обслуживание")
+    @RetryCountIfFailed(2)
+    public void testCompleteCall(PacientImpl pacient) {
+//        IPacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
@@ -40,7 +68,7 @@ public class CompleteServiceTest extends TestCallDoctorBase {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkab_TapIconGrey()  {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
@@ -59,7 +87,7 @@ public class CompleteServiceTest extends TestCallDoctorBase {
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
     public void testMkabIconRed_TapIconGrey()  {
-        Pacient pacient = new PacientImpl("Profile2");
+        IPacient pacient = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         new DuringTestHelper().beforeCleanDecider(pacient);
 

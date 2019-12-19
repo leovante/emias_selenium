@@ -3,7 +3,7 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -19,7 +19,7 @@ public class ValidationTest extends TestCallDoctorBase {
     @Issue("EMIAS-1108")
     @RetryCountIfFailed(2)
     public void smpChildMkab_testCallerFIO() {
-        Pacient pacient = new PacientImpl("Profile3_Kladr");
+        IPacient pacient = new PacientImpl("Profile3_Kladr");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -38,7 +38,7 @@ public class ValidationTest extends TestCallDoctorBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void cancelCallFromFullpage() {
-        Pacient pacient = new PacientImpl("Profile0_CancelValidation");
+        IPacient pacient = new PacientImpl("Profile0_CancelValidation");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -52,7 +52,7 @@ public class ValidationTest extends TestCallDoctorBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void cancelCallFromEditpage() {
-        Pacient pacient = new PacientImpl("Profile0_CancelValidation");
+        IPacient pacient = new PacientImpl("Profile0_CancelValidation");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -67,7 +67,7 @@ public class ValidationTest extends TestCallDoctorBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void cancelCallFromDashboard() {
-        Pacient pacient = new PacientImpl("Profile0_CancelValidation");
+        IPacient pacient = new PacientImpl("Profile0_CancelValidation");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -83,7 +83,7 @@ public class ValidationTest extends TestCallDoctorBase {
     @Epic("Проверка валидатора")
     @RetryCountIfFailed(2)
     public void callDublicates() {
-        Pacient pacient = new PacientImpl("Profile0_2.1");
+        IPacient pacient = new PacientImpl("Profile0_2.1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome()

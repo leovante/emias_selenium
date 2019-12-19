@@ -1,13 +1,12 @@
 package emias;
 
 import com.commons.TestMethodCapture;
-import com.pages.Page;
+import com.pages.IPage;
 import com.settings.AppConfig;
 import com.system.service.HltCallDoctorServiceImpl;
 import com.testRunner.TestNGBase;
 import emias.calldoctor.before.BeforeTestCD;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -20,7 +19,7 @@ public class TestCallDoctorBase extends TestNGBase {
     public String testName;
 
     @Autowired
-    public Page page;
+    public IPage page;
 
     public String testName() {
         return TestMethodCapture.getTestMethod().getMethodName();

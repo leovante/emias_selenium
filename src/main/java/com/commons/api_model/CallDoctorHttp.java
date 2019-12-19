@@ -1,7 +1,7 @@
 package com.commons.api_model;
 
 import com.settings.ConfigFile;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -21,12 +21,12 @@ import static com.codeborne.selenide.Selenide.sleep;
 
 public class CallDoctorHttp {
     private static Logger logger = LogManager.getLogger();
-    private Pacient pacientImpl;
+    private IPacient pacientImpl;
     private ConfigFile configFile;
     private HttpPost request;
     private JSONObject jsonOb;
 
-    public CallDoctorHttp(Pacient pacientImpl) throws JSONException {
+    public CallDoctorHttp(IPacient pacientImpl) throws JSONException {
         this.pacientImpl = pacientImpl;
         this.jsonOb = new JSONObject();
         this.configFile = new ConfigFile();

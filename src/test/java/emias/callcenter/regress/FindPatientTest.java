@@ -17,8 +17,8 @@ public class FindPatientTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void testFindByPolis() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.misHome().callCenter();
-        page.findPatientPage().findByPolis(pacientImpl);
+        IPage.misHome().callCenter();
+        IPage.findPatientPage().findByPolis(pacientImpl);
     }
 
     @org.testng.annotations.Test(groups = "СС", description = "Поиск по ФИО")
@@ -26,7 +26,7 @@ public class FindPatientTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void testFindByFio() throws Exception {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.misHome().callCenter();
-        page.findPatientPage().findByFio(pacientImpl);
+        IPage.misHome().callCenter();
+        IPage.findPatientPage().findByFio(pacientImpl);
     }
 }

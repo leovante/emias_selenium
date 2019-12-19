@@ -2,7 +2,7 @@ package emias.calldoctor.function;
 
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -15,7 +15,7 @@ public class AddressTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpChildMkab() {
-        Pacient pacient = new PacientImpl("Profile3");
+        IPacient pacient = new PacientImpl("Profile3");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -28,7 +28,7 @@ public class AddressTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallSmpAdultKladr() {
-        Pacient pacient = new PacientImpl("Profile6");
+        IPacient pacient = new PacientImpl("Profile6");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -44,7 +44,7 @@ public class AddressTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testFormalizeAddress() {
-        Pacient pacient = new PacientImpl("Profile2");
+        IPacient pacient = new PacientImpl("Profile2");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();

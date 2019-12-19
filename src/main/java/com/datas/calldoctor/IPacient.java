@@ -2,7 +2,7 @@ package com.datas.calldoctor;
 
 import java.util.Date;
 
-public interface Pacient {
+public interface IPacient {
     String getAddressStringMin();
 
     Object getKladraddress();

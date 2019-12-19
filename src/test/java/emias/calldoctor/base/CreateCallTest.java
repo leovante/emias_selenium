@@ -2,7 +2,7 @@ package emias.calldoctor.base;
 
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -16,7 +16,7 @@ public class CreateCallTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void callRegistrEmpy() {
-        Pacient pacient = new PacientImpl("Profile0");
+        IPacient pacient = new PacientImpl("Profile0");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -30,7 +30,7 @@ public class CreateCallTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutAddressID() {
-        Pacient pacient = new PacientImpl("Profile0_3");
+        IPacient pacient = new PacientImpl("Profile0_3");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -42,7 +42,7 @@ public class CreateCallTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -57,7 +57,7 @@ public class CreateCallTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() {
-        Pacient pacient = new PacientImpl("Profile2");
+        IPacient pacient = new PacientImpl("Profile2");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -70,4 +70,6 @@ public class CreateCallTest extends TestCallDoctorBase {
     // TODO: 11/8/2019 сделать тест поиск мкаб по серии 4619 Темников
     // TODO: 11/19/2019 создать два пустых вызова без полиса и проверить что не сработает проверка дубликата
     // TODO: 11/19/2019 создать два вызова дубликата
+
+
 }

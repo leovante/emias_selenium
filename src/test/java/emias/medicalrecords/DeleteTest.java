@@ -12,7 +12,7 @@ public class DeleteTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void deleteMR() {
         Datas data = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
-        page.ehrMedrecords(data)
+        IPage.ehrMedrecords(data)
                 .loginFromTap()
                 .newMrMenuBtn()
                 .allPatternsBtn()
@@ -21,7 +21,7 @@ public class DeleteTest extends TestNGBase {
                 .view()
                 .allActions()
                 .save();
-        page.ehrMedrecords(data)
+        IPage.ehrMedrecords(data)
                 .medicalRecordsMenuBtn()
                 .searchMR()
                 .podpisanaSortColumn()

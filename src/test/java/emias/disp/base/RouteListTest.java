@@ -23,9 +23,9 @@ public class RouteListTest extends TestDispBase {
 //сейчас даже если терапевт не последний, тап и заключение отображается как надо
     @RetryCountIfFailed(2)
     public void cancelTerapevt() {
-        page.misHome().loginMis();
-        page.homePageMis().raspisaniPriemaBtn();
-        page.raspisaniePriemaPage()
+        IPage.misHome().loginMis();
+        IPage.homePageMis().raspisaniPriemaBtn();
+        IPage.raspisaniePriemaPage()
                 .createDispMl("Темников", "18.07.1995")
                 .generateML()
                 .disableIPK()
@@ -35,29 +35,29 @@ public class RouteListTest extends TestDispBase {
     @Test(groups = "disp", description = "проверка пустых значений в показателях")
     @RetryCountIfFailed(2)
     public void empyFieldParams() {
-        page.misHome().dispCard();
-        page.exampPage().validateFieldParamIsEmpy();
+        IPage.misHome().dispCard();
+        IPage.exampPage().validateFieldParamIsEmpy();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с пробелом")
     @RetryCountIfFailed(2)
     public void spaceValidationFieldParams() {
-        page.misHome().dispCard();
-        page.exampPage().validateFieldParamWithSpace();
+        IPage.misHome().dispCard();
+        IPage.exampPage().validateFieldParamWithSpace();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с дефолтным пустым полем")
     @RetryCountIfFailed(2)
     public void defaultValidationFieldParams() {
-        page.misHome().dispCard();
-        page.exampPage().validateClearParam();
+        IPage.misHome().dispCard();
+        IPage.exampPage().validateClearParam();
     }
 
     @Test(groups = "disp", description = "пустое мероприятие не должно промаркироваться, даже если его не раскрыли", enabled = false)
     @RetryCountIfFailed(2)
     public void validateParamNotOpen() {
-        page.misHome().dispCard();
-        page.exampPage()
+        IPage.misHome().dispCard();
+        IPage.exampPage()
                 .switchAllServicesTap()
                 .validateParamNotOpen();
     }
@@ -67,12 +67,12 @@ public class RouteListTest extends TestDispBase {
     @Test(groups = "disp", description = "отображение кнопки просмотреть у мероприятия без маркировок. И подписание")
     @RetryCountIfFailed(2)
     public void validateKallMeasure() {
-        long a = page.misHome().getDispCardNumber();
+        long a = IPage.misHome().getDispCardNumber();
         hltDispExamService.resetCardExams(a);
-        page.misHome().dispCard42();
-        page.exampPage()
+        IPage.misHome().dispCard42();
+        IPage.exampPage()
                 .switchAllServicesTap();
-        page.exampPage(issledovanie_kala)
+        IPage.exampPage(issledovanie_kala)
                 .expandExam()
                 .expandService()
                 .signService()

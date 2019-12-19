@@ -3,7 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.pages.WebPage;
 import com.pages.calldoctor.controllers.StAddress;
 import com.commons.api_model.CallDoctorHttp;
@@ -24,7 +24,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
 public class CreateCallPage extends WebPage {
-    private Pacient pacient;
+    private IPacient pacient;
     private SelenideElement
             cancelAdress = $x("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"),
             list_first_container = $x("//div[@class='autocomplete-list-container']/ul/li"),
@@ -71,7 +71,7 @@ public class CreateCallPage extends WebPage {
         super();
     }
 
-    CreateCallPage(Pacient pacient) {
+    CreateCallPage(IPacient pacient) {
         this.pacient = pacient;
     }
 
@@ -364,7 +364,7 @@ public class CreateCallPage extends WebPage {
 
     // TODO: 9/18/2019 нужно как то вынести это отдельно и унаследоваться двумя классами
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPage verifyCallProfile1(Pacient pacient) {
+    public CreateCallPage verifyCallProfile1(IPacient pacient) {
         Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
         Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
         Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");

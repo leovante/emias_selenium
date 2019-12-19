@@ -2,7 +2,7 @@ package emias.calldoctor.backlog;
 
 import com.commons.except.NoticeException;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientDBImpl;
 import com.system.service.HltMkabService;
 import com.testRunner.TestNGBase;
@@ -27,10 +27,10 @@ public class CreateCallTestRandom extends TestNGBase {
     @Epic("Создание рандомного вызова")
     @RetryCountIfFailed(0)
     public void testCall() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacientImpl = new PacientDBImpl(mksb);
-        page.misHome().calldoctorAdminTemnikov();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+        IPacient pacientImpl = new PacientDBImpl(mksb);
+        IPage.misHome().calldoctorAdminTemnikov();
+        IPage.createCall(pacientImpl).createCall();
+        IPage.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
     }

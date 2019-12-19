@@ -12,8 +12,8 @@ public class CreateTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void signOldMr() {
         Datas d = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
-        page.misHome().mrFromTap();
-        page.ehrMedrecords(d)
+        IPage.misHome().mrFromTap();
+        IPage.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()
@@ -28,8 +28,8 @@ public class CreateTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void signNewMr() {
         Datas d = new Datas().setMedicalRecord("Консультация врача гастроэнтеролога");
-        page.misHome().mrFromTap();
-        page.ehrMedrecords(d)
+        IPage.misHome().mrFromTap();
+        IPage.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()
@@ -44,8 +44,8 @@ public class CreateTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void editMrAfterSave() {
         Datas d = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
-        page.misHome().mrFromTap();
-        page.ehrMedrecords(d)
+        IPage.misHome().mrFromTap();
+        IPage.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()

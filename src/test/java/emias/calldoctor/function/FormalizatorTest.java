@@ -3,7 +3,7 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -19,7 +19,7 @@ public class FormalizatorTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testNotformalizeAddress() {
-        Pacient pacient = new PacientImpl("AdressNeformal");
+        IPacient pacient = new PacientImpl("AdressNeformal");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -33,7 +33,7 @@ public class FormalizatorTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void smpChildMkab_dontChoseDoctor_neformalAddress() {
-        Pacient pacient = new PacientImpl("Profile19");
+        IPacient pacient = new PacientImpl("Profile19");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -53,7 +53,7 @@ public class FormalizatorTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void misNeformalAddress_dontChangeDoctor() {
-        Pacient pacient = new PacientImpl("AdressNeformal");
+        IPacient pacient = new PacientImpl("AdressNeformal");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();

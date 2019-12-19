@@ -16,8 +16,8 @@ public class BasicFunction extends TestNGBase {
     @RetryCountIfFailed(2)
     public void cancelBtnOnOldMR() {
         Datas data = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
-        page.misHome().mrFromTap();
-        page.ehrMedrecords(data)
+        IPage.misHome().mrFromTap();
+        IPage.ehrMedrecords(data)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()

@@ -8,8 +8,8 @@ public class KvotyTest extends TestDispBase {
     @Test(groups = "disp", description = "отображение элементов на странице квот")
     @RetryCountIfFailed(2)
     public void testKvotyPageElements(){
-        page.misHome().dispJournal();
-        page.kvotyPage().kvotyBtn()
+        IPage.misHome().dispJournal();
+        IPage.kvotyPage().kvotyBtn()
                 .validKvotyElements();
     }
     // TODO: 12/14/2018 сделать тест поиск квот

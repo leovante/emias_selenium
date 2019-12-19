@@ -3,7 +3,7 @@ package com.commons.assistance;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.ModuleData;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import org.apache.commons.lang3.time.DateUtils;
 
 import java.text.SimpleDateFormat;
@@ -54,7 +54,7 @@ public class Assistance {
         return telephone;
     }
 
-    public static String parseTelephone(Pacient pacient) {
+    public static String parseTelephone(IPacient pacient) {
         String telephone = pacient.getPhone();
         if (telephone != "") {
             if (pacient.getSource() == 4) {
@@ -99,7 +99,7 @@ public class Assistance {
         return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
     }
 
-    public static int years(Pacient pacient) {
+    public static int years(IPacient pacient) {
         Date newData = new Date();
         Date bd = pacient.getBirthdate();
         int years = (int) getDateDiff(bd, newData, TimeUnit.DAYS) / 365;

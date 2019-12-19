@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -13,7 +13,6 @@ import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.commons.assistance.Assistance.*;
-import static org.springframework.util.ClassUtils.isVisible;
 
 public class DashboardPage extends WebPage {
     private SelenideElement
@@ -49,7 +48,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("поиск в фильтре ФИО")
-    public DashboardPage dashFilter_fio(Pacient pacient) {
+    public DashboardPage dashFilter_fio(IPacient pacient) {
         visible(fioFilter);
         refresh();
         fioFilter.click();
@@ -107,7 +106,7 @@ public class DashboardPage extends WebPage {
 
     // TODO: 11/27/2019 работаем
     @Step("проверяю на дашборде запись в группе новые")
-    public void verifyNewCallGroup(Pacient pacient) {
+    public void verifyNewCallGroup(IPacient pacient) {
         sleep(4000);
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
@@ -121,7 +120,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("проверяю на дашборде запись у врача в группе активные")
-    public DashboardPage verifyActiveDocGroup(Pacient pacient, Doctor doctor) {
+    public DashboardPage verifyActiveDocGroup(IPacient pacient, Doctor doctor) {
         sleep(1000);
         SelenideElement docFamBlock = $x("//span[contains(text(),'" + doctor.getFamily() + "')]").$x("../../.");
         docFamBlock.click();
@@ -138,7 +137,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("проверяю на дашборде запись не отображается у врача в группе активные")
-    public DashboardPage verifyActiveDocGroupNotVisible(Pacient pacient, Doctor doctor) {
+    public DashboardPage verifyActiveDocGroupNotVisible(IPacient pacient, Doctor doctor) {
         sleep(1000);
         SelenideElement docFamBlock =
                 $(By.xpath("//*[contains(text(),'Активные')]"))
@@ -166,7 +165,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("проверка в группе обслуженные")
-    public void verifyPacientNumberInServe(Pacient pacient, Doctor doctor) {
+    public void verifyPacientNumberInServe(IPacient pacient, Doctor doctor) {
         lib.calldoctor(pacient, doctor)
                 .expandDoctorInServe()
                 .sortInProgress()
@@ -177,7 +176,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyCallIsCancelFromDashboard(Pacient pacient) {
+    public void verifyCallIsCancelFromDashboard(IPacient pacient) {
         sleep(5000);
         SelenideElement address = $x("//*[contains(text(),'" + pacient.getAddress() + "')]");
         if (newCallProgressFrame.isDisplayed()) {
@@ -198,7 +197,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("Проверка что запись удалена с дашборда")
-    public void verifyCallIsNotCancelFromDashboard(Pacient pacient) {
+    public void verifyCallIsNotCancelFromDashboard(IPacient pacient) {
         sleep(5000);
         SelenideElement address = $(By.xpath("//*[contains(text(),'" + pacient.getAddress() + "')]"));
         if (newCallProgressFrame.isDisplayed()) {
@@ -219,7 +218,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("открываю вызов в группе 'Ожидают обработки' через дашбоард")
-    public void openNewCallDash(Pacient pacient) {
+    public void openNewCallDash(IPacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 
@@ -269,7 +268,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("отменяю вызов без указания причины в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage cancelNewCallDash(Pacient pacient) {
+    public DashboardPage cancelNewCallDash(IPacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
         sleep(4000);
@@ -293,7 +292,7 @@ public class DashboardPage extends WebPage {
     }
 
     @Step("отменяю вызов в группе 'Ожидают обработки' через дашбоард")
-    public DashboardPage deleteNewCallProgressFrame(Pacient pacient) {
+    public DashboardPage deleteNewCallProgressFrame(IPacient pacient) {
         newCallProgressFrame.$(By.id("order")).click();
         newCallProgressFrame.click();
 

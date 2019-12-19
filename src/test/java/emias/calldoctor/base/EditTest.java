@@ -4,7 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -24,7 +24,7 @@ public class EditTest extends TestCallDoctorBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPage() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -38,7 +38,7 @@ public class EditTest extends TestCallDoctorBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPage_2() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -55,8 +55,8 @@ public class EditTest extends TestCallDoctorBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCall_mkab_any() {
-        Pacient pacient = new PacientImpl("Profile2");
-        Pacient pacient2 = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile2");
+        IPacient pacient2 = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
         new DuringTestHelper().beforeCleanDecider(pacient2);
 
@@ -81,8 +81,8 @@ public class EditTest extends TestCallDoctorBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testEditCall_any_mkab() {
-        Pacient pacient = new PacientImpl("Profile1");
-        Pacient pacient2 = new PacientImpl("Profile2");
+        IPacient pacient = new PacientImpl("Profile1");
+        IPacient pacient2 = new PacientImpl("Profile2");
         new DuringTestHelper().beforeCleanDecider(pacient);
         new DuringTestHelper().beforeCleanDecider(pacient2);
 
@@ -108,8 +108,8 @@ public class EditTest extends TestCallDoctorBase {
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
     public void testValidationAddressAfterSaveEditedCall() {
-        Pacient pacient = new PacientImpl("Profile2");
-        Pacient pacient2 = new PacientImpl("Profile0_3");
+        IPacient pacient = new PacientImpl("Profile2");
+        IPacient pacient2 = new PacientImpl("Profile0_3");
         new DuringTestHelper().beforeCleanDecider(pacient);
         new DuringTestHelper().beforeCleanDecider(pacient2);
 
@@ -130,7 +130,7 @@ public class EditTest extends TestCallDoctorBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutID() {
-        Pacient pacient = new PacientImpl("Profile0_3_1");
+        IPacient pacient = new PacientImpl("Profile0_3_1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();

@@ -18,8 +18,8 @@ public class JournalTest extends TestDispBase {
     @Test(groups = "disp", description = "отображение элементов на странице журнала")
     @RetryCountIfFailed(2)
     public void testJournalPageElements(){
-        page.misHome().dispJournal();
-        page.journalPage()
+        IPage.misHome().dispJournal();
+        IPage.journalPage()
                 .journalMenuBtn()
                 .validJournalElements();
     }
@@ -28,8 +28,8 @@ public class JournalTest extends TestDispBase {
     @Test(groups = "disp", description = "поиск карты по номеру через журнал")
     @RetryCountIfFailed(2)
     public void testSearchCardByCardNumber() {
-        page.misHome().dispJournal();
-        page.journalPage()
+        IPage.misHome().dispJournal();
+        IPage.journalPage()
                 .journalMenuBtn()
                 .searchByCardNumber(1649)
                 .clickSearchBtn()
@@ -41,11 +41,11 @@ public class JournalTest extends TestDispBase {
     @RetryCountIfFailed(2)
     public void testSearchCardByPolNumber() {
         PacientImpl pac = new PacientImpl("Temnikov94");
-        page.misHome().dispJournal();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByPolNumber(Integer.parseInt(pac.getNumberpol()));
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
+        IPage.misHome().dispJournal();
+        IPage.journalPage().journalMenuBtn();
+        IPage.journalPage().searchByPolNumber(Integer.parseInt(pac.getNumberpol()));
+        IPage.journalPage().clickSearchBtn();
+        IPage.journalPage().fioIsVisible(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
     }
 
     @Epic("Журнал диспансеризации")
@@ -53,23 +53,23 @@ public class JournalTest extends TestDispBase {
     @RetryCountIfFailed(2)
     public void testSearchCardByFio() {
         PacientImpl pac = new PacientImpl("Temnikov94");
-        page.misHome().dispJournal();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByFio(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
-        page.journalPage().clickSearchBtn();
-        page.journalPage().fioIsVisible(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
+        IPage.misHome().dispJournal();
+        IPage.journalPage().journalMenuBtn();
+        IPage.journalPage().searchByFio(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
+        IPage.journalPage().clickSearchBtn();
+        IPage.journalPage().fioIsVisible(pac.getFamily() + " " + pac.getName() + " " + pac.getOt());
     }
 
     @Epic("Журнал диспансеризации")
     @Test(groups = "disp", description = "проверить открытие шаблона у мероприятия при входе через журнал")
     @RetryCountIfFailed(2)
     public void verifyMeasurePattern() {
-        page.misHome().dispJournal();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(418);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().editCardBtn(165734);
-        page.exampPage().viewFlurography();
+        IPage.misHome().dispJournal();
+        IPage.journalPage().journalMenuBtn();
+        IPage.journalPage().searchByCardNumber(418);
+        IPage.journalPage().clickSearchBtn();
+        IPage.journalPage().editCardBtn(165734);
+        IPage.exampPage().viewFlurography();
         $x("//*[contains(text(),'Не удается открыть медицинскую запись')]")
                 .shouldNotBe(Condition.visible);
     }
@@ -85,12 +85,12 @@ public class JournalTest extends TestDispBase {
         //get на карту диспы
 //        HltDispCardEntity card = hltDispCardService.getCardWithFluorography();
 
-        page.misHome().dispJournal();
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByCardNumber(1594);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().editCardBtn(7654321);
-        page.exampPage().viewFlurography();
+        IPage.misHome().dispJournal();
+        IPage.journalPage().journalMenuBtn();
+        IPage.journalPage().searchByCardNumber(1594);
+        IPage.journalPage().clickSearchBtn();
+        IPage.journalPage().editCardBtn(7654321);
+        IPage.exampPage().viewFlurography();
         $x("//*[contains(text(),'Не удается открыть медицинскую запись')]")
                 .shouldNotBe(Condition.visible);
     }
@@ -100,10 +100,10 @@ public class JournalTest extends TestDispBase {
     @RetryCountIfFailed(2)
     public void verifyMeasurePatternFromSheduleCell() {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
-        page.misHome().loginMis();
-        page.homePageMis().raspisaniPriemaBtn();
-        page.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");
-        page.homePageMis().mkabBtn();
+        IPage.misHome().loginMis();
+        IPage.homePageMis().raspisaniPriemaBtn();
+        IPage.doctorMethods().selectDoctor("Ай Бо ЛитАвтоТест");
+        IPage.homePageMis().mkabBtn();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
         $(By.id("MkabGrid"))
@@ -116,11 +116,11 @@ public class JournalTest extends TestDispBase {
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
         $(By.xpath("//*[contains(text(),'Карты диспансеризации')]")).click();
         switchTo().window(1);
-        page.journalPage().journalMenuBtn();
-        page.journalPage().searchByPolNumber(7654321);
-        page.journalPage().clickSearchBtn();
-        page.journalPage().editCardBtn(7654321);
-        page.exampPage().viewFlurography();
+        IPage.journalPage().journalMenuBtn();
+        IPage.journalPage().searchByPolNumber(7654321);
+        IPage.journalPage().clickSearchBtn();
+        IPage.journalPage().editCardBtn(7654321);
+        IPage.exampPage().viewFlurography();
         $(By.xpath("//*[contains(text(),'Не удается открыть медицинскую запись')]")).shouldNotBe(Condition.visible);
     }
     // TODO: 9/26/2019 проверить отображение шаблона через мкаб и через ячейку расписания
@@ -129,13 +129,13 @@ public class JournalTest extends TestDispBase {
     @Test(groups = "disp", description = "проверяю что мероприятие открывается у подписанной карты")
     @RetryCountIfFailed(2)
     public void openClosedCard() {
-        page.misHome().dispJournal();
-        page.journalPage()
+        IPage.misHome().dispJournal();
+        IPage.journalPage()
                 .journalMenuBtn()
                 .searchByCardNumber(1652)
                 .clickSearchBtn()
                 .editCardBtn(334438);
-        page.exampPage()
+        IPage.exampPage()
                 .switchAllServicesTap()
                 .viewFlurography();
     }
@@ -145,8 +145,8 @@ public class JournalTest extends TestDispBase {
     @RetryCountIfFailed(2)
     public void closeCard() {
         getBean(HltDispCardServiceImpl.class).open(180);
-        page.misHome().dispJournal();
-        page.journalPage()
+        IPage.misHome().dispJournal();
+        IPage.journalPage()
                 .journalMenuBtn()
                 .searchByCardNumber(180)
                 .clickSearchBtn()
@@ -157,6 +157,6 @@ public class JournalTest extends TestDispBase {
                 .changeCardStatus_toClosed()
                 .clickSearchBtn()
                 .openCardByPolis(165734);
-        page.exampPage().validateCardIsDisable();
+        IPage.exampPage().validateCardIsDisable();
     }
 }

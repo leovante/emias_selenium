@@ -2,7 +2,7 @@ package emias.calldoctor.backlog;
 
 import com.commons.except.NoticeException;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientDBImpl;
 import com.system.service.HltMkabService;
 import com.testRunner.TestNGBase;
@@ -23,14 +23,14 @@ public class CreateCallTest extends TestNGBase {
     @Test(groups = "e2e", description = "пытаюсь взять модель с двумя таблицами", enabled = false)
     @RetryCountIfFailed(2)
     public void testHiber() throws IOException, JSONException, ParseException, InterruptedException, NoticeException {
-        Pacient pacientImpl = new PacientDBImpl(hltMkabService);
+        IPacient pacientImpl = new PacientDBImpl(hltMkabService);
 
-        page.misHome().calldoctorAdminTemnikov();
-        page.createCall(pacientImpl)
+        IPage.misHome().calldoctorAdminTemnikov();
+        IPage.createCall(pacientImpl)
                 .createCall_Api();
-        page.fullCard(pacientImpl, testName())
+        IPage.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
-        page.dashboard().verifyNewCallGroup(pacientImpl);
+        IPage.dashboard().verifyNewCallGroup(pacientImpl);
     }
 }

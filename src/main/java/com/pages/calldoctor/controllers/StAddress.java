@@ -2,7 +2,7 @@ package com.pages.calldoctor.controllers;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class StAddress {
-    private Pacient pacient;
+    private IPacient pacient;
     SelenideElement adress = $x("//input[@placeholder='Адрес']");
     SelenideElement addressBlock = $x("//div[@class='call-doctor-new-address-complaint-block']");
     SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
@@ -24,7 +24,7 @@ public class StAddress {
     SelenideElement kto_pacient_header = $x("//*[contains(text(),'КТО ПАЦИЕНТ')]");
     SelenideElement new_call_header = $x("//*[contains(text(),'Новый вызов')]");
 
-    public StAddress(Pacient pacient) {
+    public StAddress(IPacient pacient) {
         this.pacient = pacient;
     }
 

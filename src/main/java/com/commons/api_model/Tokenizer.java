@@ -1,7 +1,7 @@
 package com.commons.api_model;
 
 import com.settings.ConfigFile;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pages.WebPage;
 import org.apache.http.client.ResponseHandler;
@@ -18,10 +18,10 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Tokenizer extends WebPage {
-    private Pacient pacient;
+    private IPacient pacient;
     private ConfigFile config;
 
-    public Tokenizer(Pacient pacientImpl) {
+    public Tokenizer(IPacient pacientImpl) {
         this.config = new ConfigFile();
         this.pacient = pacientImpl;
     }

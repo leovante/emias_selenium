@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -23,7 +23,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_male() {
-        Pacient pacient = new PacientImpl("Profile7");
+        IPacient pacient = new PacientImpl("Profile7");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -43,7 +43,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_female() {
-        Pacient pacient = new PacientImpl("Profile8");
+        IPacient pacient = new PacientImpl("Profile8");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -66,7 +66,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_noGender() {
-        Pacient pacient = new PacientImpl("Profile9");
+        IPacient pacient = new PacientImpl("Profile9");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -86,7 +86,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_male() {
-        Pacient pacient = new PacientImpl("Profile10");
+        IPacient pacient = new PacientImpl("Profile10");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -109,7 +109,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_female() {
-        Pacient pacient = new PacientImpl("Profile11");
+        IPacient pacient = new PacientImpl("Profile11");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -131,7 +131,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_noGender() {
-        Pacient pacient = new PacientImpl("Profile12");
+        IPacient pacient = new PacientImpl("Profile12");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -153,7 +153,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void call_noAge_noGender() {
-        Pacient pacient = new PacientImpl("Profile13");
+        IPacient pacient = new PacientImpl("Profile13");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
@@ -175,7 +175,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithKladr() {
-        Pacient pacient = new PacientImpl("Profile2");
+        IPacient pacient = new PacientImpl("Profile2");
         Doctor operator = new Doctor("Operator");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         new DuringTestHelper().beforeCleanDecider(pacient);
@@ -196,7 +196,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladrApi() {
-        Pacient pacient = new PacientImpl("ProfileDetkina");
+        IPacient pacient = new PacientImpl("ProfileDetkina");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         new DuringTestHelper().beforeCleanDecider(pacient);
@@ -224,7 +224,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
     public void viewDoctorList_OnlyFromCurrentDepart() {
-        Pacient pacient = new PacientImpl("Profile13");
+        IPacient pacient = new PacientImpl("Profile13");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorUdina();
@@ -243,7 +243,7 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void viewFullDoctorList_OperatorAdmin() {
-        Pacient pacient = new PacientImpl("Profile13");
+        IPacient pacient = new PacientImpl("Profile13");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorUdina();
@@ -264,8 +264,8 @@ public class DoctorsListTest extends TestCallDoctorBase {
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
     public void testUchastokAfterEditMkabCard() {
-        Pacient pacient = new PacientImpl("Profile2");
-        Pacient pacient2 = new PacientImpl("Profile0_2");
+        IPacient pacient = new PacientImpl("Profile2");
+        IPacient pacient2 = new PacientImpl("Profile0_2");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();

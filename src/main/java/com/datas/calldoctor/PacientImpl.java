@@ -9,7 +9,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PacientImpl implements Pacient {
+public class PacientImpl implements IPacient {
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private Date birthdate;
     private JSONObject kladraddress;
@@ -44,9 +44,11 @@ public class PacientImpl implements Pacient {
             addressStringMin,
             pacient;
 
+    public PacientImpl(){}
+
     public PacientImpl(String pacient) {
         this.pacient = pacient;
-        String path = "src\\main\\resources\\calldoctor\\pacients\\" + pacient + ".json";
+        String path = "src/main/resources/calldoctor/pacients/" + pacient + ".json";
         JSONObject jsonOb;
         File reader2 = new File(path);
         try {

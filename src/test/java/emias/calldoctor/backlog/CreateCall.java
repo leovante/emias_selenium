@@ -2,7 +2,7 @@ package emias.calldoctor.backlog;
 
 import com.commons.except.NoticeException;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
@@ -18,11 +18,11 @@ public class CreateCall extends TestNGBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(0)
     public void callRegistrEmpy() throws IOException, InterruptedException, JSONException, NoticeException {
-        Pacient pacient = new PacientImpl("Profile0");
-        page.misHome().calldoctorAdminTemnikov();
+        IPacient pacient = new PacientImpl("Profile0");
+        IPage.misHome().calldoctorAdminTemnikov();
         Assert.assertTrue(false);
-        page.createCall(pacient).createCall();
-        page.fullCard(pacient, testName())
+        IPage.createCall(pacient).createCall();
+        IPage.fullCard(pacient, testName())
                 .verifyNewCall()
                 .closeCardBtn();
     }

@@ -3,7 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -17,7 +17,7 @@ import static com.commons.assistance.Assistance.*;
 import static org.testng.Assert.assertTrue;
 
 public class FullCardPage extends WebPage {
-    Pacient pacient;
+    IPacient pacient;
     private SelenideElement
             doneCall = $(By.id("doneCall")),
             mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"),
@@ -43,7 +43,7 @@ public class FullCardPage extends WebPage {
         logger.info("Open card with url: " + url());
     }
 
-    FullCardPage(Pacient pacient, String testName) {
+    FullCardPage(IPacient pacient, String testName) {
         this.pacient = pacient;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
@@ -53,7 +53,7 @@ public class FullCardPage extends WebPage {
         logger.info("Открыл карту вызова url " + url());
     }
 
-    FullCardPage(Pacient pacient) {
+    FullCardPage(IPacient pacient) {
         this.pacient = pacient;
         logger.info("Открыл карту вызова url " + url());
     }
@@ -143,7 +143,7 @@ public class FullCardPage extends WebPage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(Pacient pacient) {
+    public FullCardPage verifyActivCall(IPacient pacient) {
         status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();

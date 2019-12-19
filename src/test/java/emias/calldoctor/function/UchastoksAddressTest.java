@@ -3,7 +3,7 @@ package emias.calldoctor.function;
 import com.codeborne.selenide.Condition;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -17,7 +17,7 @@ public class UchastoksAddressTest extends TestCallDoctorBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() {
-        Pacient pacient = new PacientImpl("Profile15");
+        IPacient pacient = new PacientImpl("Profile15");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -32,7 +32,7 @@ public class UchastoksAddressTest extends TestCallDoctorBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() {
-        Pacient pacient = new PacientImpl("Profile16");
+        IPacient pacient = new PacientImpl("Profile16");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -51,7 +51,7 @@ public class UchastoksAddressTest extends TestCallDoctorBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() {
-        Pacient pacient = new PacientImpl("Profile17");
+        IPacient pacient = new PacientImpl("Profile17");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -70,7 +70,7 @@ public class UchastoksAddressTest extends TestCallDoctorBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() {
-        Pacient pacient = new PacientImpl("Profile18");
+        IPacient pacient = new PacientImpl("Profile18");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome().calldoctorAdminTemnikov();
@@ -89,7 +89,7 @@ public class UchastoksAddressTest extends TestCallDoctorBase {
     @Test(groups = "CD",
             description = "авторизованный вызов от СМП, участок определился по адресу вызова, а не мкаб")
     public void testUchastokPoAdresuANeMkab() {
-        Pacient pacient = new PacientImpl("ProfileAdressNeIzMkab");
+        IPacient pacient = new PacientImpl("ProfileAdressNeIzMkab");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.createCall(pacient).createCall_Api_Auth();
@@ -106,7 +106,7 @@ public class UchastoksAddressTest extends TestCallDoctorBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokNotSet() {
-        Pacient pacient = new PacientImpl("ProfileAdressNeIzMkab_neformal");
+        IPacient pacient = new PacientImpl("ProfileAdressNeIzMkab_neformal");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.createCall(pacient).createCall_Api();
@@ -121,7 +121,7 @@ public class UchastoksAddressTest extends TestCallDoctorBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokWithNullID() {
-        Pacient pacient = new PacientImpl("Profile0_3_1");
+        IPacient pacient = new PacientImpl("Profile0_3_1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.createCall(pacient).createCall_Api();

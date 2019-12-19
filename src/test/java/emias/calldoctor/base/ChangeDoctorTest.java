@@ -4,7 +4,7 @@ package emias.calldoctor.base;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
@@ -16,7 +16,7 @@ public class ChangeDoctorTest extends TestCallDoctorBase {
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
         new DuringTestHelper().beforeCleanDecider(pacient);

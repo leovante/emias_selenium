@@ -2,11 +2,10 @@ package emias.calldoctor.base;
 
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
 import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
-import org.springframework.stereotype.Component;
 import org.testng.annotations.Test;
 
 public class CancelCallTest extends TestCallDoctorBase {
@@ -14,7 +13,7 @@ public class CancelCallTest extends TestCallDoctorBase {
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_Registr() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome()
@@ -32,7 +31,7 @@ public class CancelCallTest extends TestCallDoctorBase {
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelEmpyCallFrom_Registr() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome()
@@ -51,7 +50,7 @@ public class CancelCallTest extends TestCallDoctorBase {
     @Epic("Отмена вызова")
     @RetryCountIfFailed(2)
     public void testCancelCallFrom_DashBoard() {
-        Pacient pacient = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         new DuringTestHelper().beforeCleanDecider(pacient);
 
         page.misHome()

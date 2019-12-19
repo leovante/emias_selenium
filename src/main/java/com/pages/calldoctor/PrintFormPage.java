@@ -3,7 +3,7 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.pages.WebPage;
 import com.commons.CallDoctorCards;
 import io.qameta.allure.Step;
@@ -19,7 +19,7 @@ import static com.commons.assistance.Assistance.*;
 import static org.testng.Assert.assertTrue;
 
 public class PrintFormPage extends WebPage {
-    Pacient pacient;
+    IPacient pacient;
     private SelenideElement
             doneCall = $(By.id("doneCall")),
             mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"),
@@ -42,7 +42,7 @@ public class PrintFormPage extends WebPage {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public PrintFormPage(Pacient pacient, String testName) {
+    public PrintFormPage(IPacient pacient, String testName) {
         this.pacient = pacient;
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
@@ -117,7 +117,7 @@ public class PrintFormPage extends WebPage {
     }
 
     @Step("проверяю новый вызов")
-    public PrintFormPage verifyNewCall(Pacient pacient) throws IOException {
+    public PrintFormPage verifyNewCall(IPacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -127,7 +127,7 @@ public class PrintFormPage extends WebPage {
     }
 
     @Step("проверяю новый вызов")
-    public PrintFormPage verifyActivCall(Pacient pacient) throws IOException {
+    public PrintFormPage verifyActivCall(IPacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();

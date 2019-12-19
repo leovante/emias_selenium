@@ -14,7 +14,7 @@ public class KladrFiasVerify extends TestNGBase {
     @RetryCountIfFailed(2)
     public void testKladrVSFias() {
         sleep(250);
-        page.kladr()
+        IPage.kladr()
                 .getAddressStringList()
                 .sendToFormalizerAndVerifyFullKLADRCodeAddress()
                 .badAddressCanBeEmpty();

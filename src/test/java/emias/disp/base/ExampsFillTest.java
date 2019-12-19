@@ -14,11 +14,11 @@ public class ExampsFillTest extends TestDispBase {
     @RetryCountIfFailed(2)
     public void testFillExamp()  {
 //        DBScripts.setDefaultServices("3169");
-        page.misHome().dispCard();
-        page.exampPage().fillTemnikov();
+        IPage.misHome().dispCard();
+        IPage.exampPage().fillTemnikov();
         $(By.xpath("//div[@mattooltip='Процент завершенности диспансеризации'][contains(.,'(100%)')]")).shouldBe(Condition.visible);
-        page.exampPage().saveBtn();
-        page.exampPage().podpisatBtn();
+        IPage.exampPage().saveBtn();
+        IPage.exampPage().podpisatBtn();
     }
 
 

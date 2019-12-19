@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.commands.PressEnter;
 import com.codeborne.selenide.commands.PressEscape;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -123,7 +123,7 @@ public class RaspisaniePriemaWebPage extends WebPage {
         catch (NoSuchFieldException e ){e.printStackTrace();}
     }
 
-    public RaspisaniePriemaWebPage generateML(Pacient pacient)  {
+    public RaspisaniePriemaWebPage generateML(IPacient pacient)  {
         ml.click();
         sinpmkabScheduleGrid.setValue(
                 pacient.getFamily() + " " +

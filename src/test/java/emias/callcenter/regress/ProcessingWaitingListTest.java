@@ -17,8 +17,8 @@ public class ProcessingWaitingListTest extends TestNGBase {
     @RetryCountIfFailed(2)
     public void testWaitingList() throws IOException, InterruptedException, ParseException, JSONException {
         PacientImpl pacientImpl = new PacientImpl("Profile0");
-        page.misHome().callCenter();
-        page.waitingListPage().waitingList(pacientImpl);
+        IPage.misHome().callCenter();
+        IPage.waitingListPage().waitingList(pacientImpl);
     }
 
 }

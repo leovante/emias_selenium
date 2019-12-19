@@ -13,8 +13,8 @@ public class ConclusionViewTest extends TestDispBase {
     @Test(groups = "disp", description = "заполнить карту Темников Дмитрий 24 года", enabled = false)
     @RetryCountIfFailed(2)
     public void prisnakMobileBrigada() {
-        page.misHome().dispJournal();
-        page.exampPage().fillTemnikov();
+        IPage.misHome().dispJournal();
+        IPage.exampPage().fillTemnikov();
         $(By.xpath("//*[contains(text(),'(100%)')]")).shouldBe(Condition.visible);
     }
 }

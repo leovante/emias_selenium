@@ -15,9 +15,9 @@ public class BeforeSuiteMIS extends TestNGBase {
     @Test(groups = "mis", description = "Cоздаю новое расписание у врачей на сегодня", enabled = false)
     @RetryCountIfFailed(2)
     public void cleanBeforeWork() {
-        page.misHome().loginMis();
-        page.homePageMis().vedenieRaspisaniyaBtn();
-        page.homePageMis().createSomeRecords(15);
-        page.homePageMis().logoHomeBtn();
+        IPage.misHome().loginMis();
+        IPage.homePageMis().vedenieRaspisaniyaBtn();
+        IPage.homePageMis().createSomeRecords(15);
+        IPage.homePageMis().logoHomeBtn();
     }
 }
