@@ -57,7 +57,7 @@ public class AddressTest extends TestCallDoctorBase {
         $x("//*[@placeholder='Адрес']").getText().equals(pacient.getAddress3adv());
     }
 
-    @Test(groups = "CD", description = "вызов по мкаб из мис. Адрес неформал. Проверка окна формализации при назначении врача.")
+    @Test(groups = "CD", description = "Проверка отображения двух вариантов адресов от формализатора")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void verifyCoupleFormalizatorAddress() {
