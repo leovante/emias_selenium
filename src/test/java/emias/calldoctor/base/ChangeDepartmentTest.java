@@ -157,6 +157,4 @@ public class ChangeDepartmentTest extends TestCallDoctorBase {
 //                .$x(".//div[@ng-reflect-disabled='true']")
                 .shouldBe(Condition.disabled);
     }
-
-    // TODO: 11/8/2019 сделать тест проверки что кнопка передать задизеблина если не выбрано куда передавать
 }

@@ -14,6 +14,7 @@ import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.SkipException;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -64,7 +65,9 @@ public class CreateCallPage extends WebPage {
             reason_cancel_call_validator = $x("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"),
             unpin_mkab = $x("//img[@src='./assets/img/close.png']"),
             complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"),
-            allertCloseDialog_Yes = $x("//button/span[contains(text(),'Да')]");
+            allertCloseDialog_Yes = $x("//button/span[contains(text(),'Да')]"),
+            findPatientInput = $(By.id("findPatientInput")),
+            addNewCall = $(By.id("addNewCall"));
     ElementsCollection close_collections = $$x("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']");
 
     CreateCallPage() {
@@ -93,7 +96,7 @@ public class CreateCallPage extends WebPage {
         return this;
     }
 
-    @Step("create call with MKAB")
+    @Step("create call by MKAB")
     public CreateCallPage createCall_Mkab() {
         addNewCall()
                 .sourceCall()
@@ -185,13 +188,28 @@ public class CreateCallPage extends WebPage {
 
     @Step("add new call")
     public CreateCallPage addNewCall() {
-        $(By.id("addNewCall")).click();
+        addNewCall.click();
         return this;
     }
 
     @Step("search MKAB")
     public CreateCallPage searchField() {
-        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
+        if (pacient.getSeriespol() != "") {
+            findPatientInput.sendKeys(pacient.getSeriespol() + " ");
+            if (pacient.getNumberpol() != "")
+                findPatientInput.sendKeys(pacient.getNumberpol());
+        } else {
+            if (pacient.getNumberpol() != "")
+                findPatientInput.sendKeys(pacient.getNumberpol());
+            else {
+                if (pacient.getFamily() != ""
+                        || pacient.getName() != ""
+                        || pacient.getOt() != "")
+                    findPatientInput.sendKeys(pacient.getFamily() + " " + pacient.getName() + " " + pacient.getOt());
+                else
+                    throw new SkipException("Ошибка. Отсутствуют данные пациента для ввода!");
+            }
+        }
         $x("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]").click();
         return this;
     }

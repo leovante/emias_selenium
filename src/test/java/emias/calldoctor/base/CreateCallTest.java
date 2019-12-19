@@ -67,9 +67,4 @@ public class CreateCallTest extends TestCallDoctorBase {
                 .closeCardBtn();
         page.dashboard().verifyNewCallGroup(pacient);
     }
-    // TODO: 11/8/2019 сделать тест поиск мкаб по серии 4619 Темников
-    // TODO: 11/19/2019 создать два пустых вызова без полиса и проверить что не сработает проверка дубликата
-    // TODO: 11/19/2019 создать два вызова дубликата
-
-
 }

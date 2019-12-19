@@ -1,5 +1,6 @@
 package emias.calldoctor.function;
 
+import com.codeborne.selenide.Condition;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.IPacient;
@@ -9,6 +10,8 @@ import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
+import static com.commons.assistance.Assistance.visible;
 
 public class AddressTest extends TestCallDoctorBase {
     @Test(groups = "CD", description = "вызов от СМП по api от ребенка. Проверяю что адрес подтянулся из вызова.")
@@ -54,5 +57,20 @@ public class AddressTest extends TestCallDoctorBase {
         $x("//*[@placeholder='Адрес']").getText().equals(pacient.getAddress3adv());
     }
 
-    // TODO: 12/13/2019 сделать проверку отображения нескольких вариантов автоформализатора
+    @Test(groups = "CD", description = "вызов по мкаб из мис. Адрес неформал. Проверка окна формализации при назначении врача.")
+    @Epic("Создание вызова")
+    @RetryCountIfFailed(2)
+    public void verifyCoupleFormalizatorAddress() {
+        IPacient pacient = new PacientImpl("AdressNeformal2");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .addNewCall()
+                .searchField();
+        visible("Идентифицировать адрес не удалось");
+        visible($x("//*[contains(text(),'Красноярский край., Манский р-н, с/с Первоманский, снт Родничок ав дорога Байкал М-53 д Кускун')]"));
+        visible($x("//*[contains(text(),'Красноярский край., Манский р-н, с/с Первоманский, снт Родничок ав дорога Байкал М-53 д Кускун, ул Крайняя')]"));
+    }
 }
