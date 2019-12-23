@@ -14,7 +14,7 @@ public class BeforeTestCD extends TestCallDoctorBase {
     @Test(description = "Prepare data base")//сделано тестом что бы запускать отдельно
     @RetryCountIfFailed(2)
     public void run()  {
-        cancelCalls();
+//        cancelCalls();
         scripts();
         updateStend();
     }
