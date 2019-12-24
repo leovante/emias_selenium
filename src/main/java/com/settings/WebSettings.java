@@ -12,7 +12,7 @@ import static com.commons.PropertyReader.fillAction;
 import static com.settings.STPropertiesReader.getProperties;
 
 public class WebSettings extends STSettings {
-    public static boolean isGridRun;
+//    public static boolean isGridRun;
     public static String browserType;
 
     public static JavascriptExecutor getJSExecutor() {
@@ -35,13 +35,12 @@ public class WebSettings extends STSettings {
         }
     }
 
-    @Parameters({"gridRun","browser"})
-    public static synchronized void initFromProperties(@Optional String gridRun, @Optional String browser){
+    public static synchronized void initFromProperties(String browser){
         try{
             init();
             getProperties(emiasSettingsPath);
             STSettings.initFromProperties();
-            isGridRun = Boolean.parseBoolean(gridRun);
+//            isGridRun = Boolean.parseBoolean(gridRun);
             browserType = browser;
         } catch (IOException e) {
             e.printStackTrace();

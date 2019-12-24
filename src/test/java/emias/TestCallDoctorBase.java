@@ -25,19 +25,18 @@ public class TestCallDoctorBase extends TestNGBase {
         return TestMethodCapture.getTestMethod().getMethodName();
     }
 
-    @Parameters({"testng"})
+    @Parameters({"browser"})
     @BeforeClass(groups = "CD", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
-    public void beforeClassCD(@Optional String testng) {
-        if (testng != null) {
+    public void beforeClassCD(@Optional String browser) {
+        if (browser != null)
             new BeforeTestCD().run();
-        }
     }
 
     @AfterMethod(groups = "CD", alwaysRun = true)
     public void afterMethodCD(ITestResult result) {//работает только с afterMethod
-        String testName1 = result.getMethod().getMethodName();
-        if (callDoctorCards.getCardMap(testName1) != null) {
-            int id = this.callDoctorCards.getCardMap(testName1);
+        String testName = result.getMethod().getMethodName();
+        if (callDoctorCards.getCardMap(testName) != null) {
+            int id = this.callDoctorCards.getCardMap(testName);
             getBean(HltCallDoctorServiceImpl.class).cancelById(id);
         }
     }

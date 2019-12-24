@@ -1,6 +1,5 @@
 package emias.calldoctor.function;
 
-import com.codeborne.selenide.Condition;
 import com.commons.assistance.DuringTestHelper;
 import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.IPacient;
@@ -10,7 +9,6 @@ import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.sleep;
 import static com.commons.assistance.Assistance.visible;
 
 public class AddressTest extends TestCallDoctorBase {

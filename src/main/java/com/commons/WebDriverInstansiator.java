@@ -20,57 +20,34 @@ import java.net.URL;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.pages.WebPage.logger;
+import static com.settings.STSettings.headles;
+import static com.settings.STSettings.seleniumhubUrl;
 import static com.settings.WebSettings.browserType;
 
 public class WebDriverInstansiator {
     private RemoteWebDriver remoteDriver;
-    private ConfigFile conf;
-    public WebDriver driver;
-
-    public WebDriverInstansiator() {
-        this.conf = new ConfigFile();
-    }
+    private WebDriver driver;
 
     public void setDriver()   {
         //ручной запуск
         ChromeOptions chromeOptions;
         if (browserType == null) {
-//            System.setProperty("webdriver.chrome.driver", "%userprofile%/Google Drive/chromedriver/chromedriver.exe");
-//            new ChromeDriverService.Builder()
-//                    .usingDriverExecutable(new File("%userprofile%/Google Drive/chromedriver/chromedriver.exe"))
-//                    .usingAnyFreePort()
-//                    .build();
             WebDriverManager.chromedriver().setup();
             chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("window-size=1919,1079");
             chromeOptions.setHeadless(false);
             driver = new ChromeDriver(chromeOptions);
             driver.manage().window().setPosition(new Point(0, 0));
-//            driver.manage().window().maximize();
             WebDriverRunner.setWebDriver(driver);
         }
-        //селениум грид
         else {
             switch (browserType) {
                 case "firefox":
                     System.setProperty("webdriver.gecko.remoteDriver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");
                     System.setProperty("webdriver.gecko.driver", "%userprofile%/Google Drive/chromedriver/geckodriver.exe");
-
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
-//                    firefoxOptions.setHeadless(conf.getHeadless());
-//                    firefoxOptions.setLegacy(true);
-//                    firefoxOptions.setBinary("C:/Program Files/Mozilla Firefox/firefox.exe");
-//                    firefoxOptions.addArguments("--window-size=1919,1079");
-//
-
-                    DesiredCapabilities dcch = DesiredCapabilities.firefox();
-//                    dcch.setBrowserName("firefox");
-//                    dcch.setCapability("marionette", true);
-//                    dcch.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
-//                    dcch.setCapability("headless", conf.getHeadless());
-
                     try {
-                        remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxOptions);
+                        remoteDriver = new RemoteWebDriver(new URL(seleniumhubUrl + "wd/hub"), firefoxOptions);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
@@ -80,10 +57,10 @@ public class WebDriverInstansiator {
                     break;
                 case "chrome":
                     chromeOptions = new ChromeOptions();
-                    chromeOptions.setHeadless(conf.getHeadless());
+                    chromeOptions.setHeadless(headles);
                     chromeOptions.addArguments("window-size=1919,1079");
                     try {
-                        remoteDriver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeOptions);
+                        remoteDriver = new RemoteWebDriver(new URL(seleniumhubUrl + "wd/hub"), chromeOptions);
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
@@ -102,7 +79,7 @@ public class WebDriverInstansiator {
             logger.info(
                     "Monitor: " + (int) screenSize.getWidth() + "x" + (int) screenSize.getHeight() + "; " +
                             "Browser resolution: " + dimension + "; " +
-                            "Headless: " + conf.getHeadless() + "; ");
+                            "Headless: " + headles + "; ");
         }
         Configuration.timeout = 20000;
         Configuration.reportsFolder = "target/test-result/reports";
