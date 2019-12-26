@@ -20,6 +20,7 @@ public abstract class STSettings {
         fillAction(p -> headles = p.toLowerCase().equals("true") || p.toLowerCase().equals("1"), "st.test.headless");
         fillAction(p -> standUrl = p, "st.test.standUrl");
         fillAction(p -> seleniumhubUrl = p, "st.test.seleniumhubUrl");
+        
 //        fillAction(driverFactory :: setRemoteHubUrl, "seleniumhub.url");
     }
 

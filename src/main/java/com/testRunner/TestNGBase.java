@@ -38,10 +38,10 @@ public class TestNGBase extends AbstractTestNGSpringContextTests {
         return TestMethodCapture.getTestMethod().getMethodName();
     }
 
-    @Parameters({"browser"})
+    @Parameters({"browser","gridRun"})
     @BeforeSuite(alwaysRun = true)
-    public static void beforeSuite(@Optional String browser) {
-        initFromProperties(browser);
+    public static void beforeSuite(@Optional String browser, @Optional String  gridRun) {
+        initFromProperties(browser, gridRun);
         new StandValidator();
         runSeleniumGrid();
     }

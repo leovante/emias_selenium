@@ -10,6 +10,14 @@ import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+
 public class CompleteServiceTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "завершить обслуживание вызова")
@@ -67,7 +75,7 @@ public class CompleteServiceTest extends TestCallDoctorBase {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ и ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkab_TapIconGrey()  {
+    public void testMkab_TapIconGrey() {
         IPacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         new DuringTestHelper().beforeCleanDecider(pacient);
@@ -86,7 +94,7 @@ public class CompleteServiceTest extends TestCallDoctorBase {
     @Test(groups = "CD", description = "проверка что индикатор МКАБ красный, а ТАП серый")
     @Epic("Проверка иконок МКАБ и ТАП")
     @RetryCountIfFailed(2)
-    public void testMkabIconRed_TapIconGrey()  {
+    public void testMkabIconRed_TapIconGrey() {
         IPacient pacient = new PacientImpl("Profile2");
         Doctor doctor = new Doctor("NemcovaVzroslRegistratura");
         new DuringTestHelper().beforeCleanDecider(pacient);
@@ -100,5 +108,19 @@ public class CompleteServiceTest extends TestCallDoctorBase {
                 .verifyMkabIconEnable()
                 .verifyTapIconDisable()
                 .closeCardBtn();
+    }
+
+
+    @Test(groups = "CD",
+            description = "завершить обслуживание вызова с дата провайдером",
+            enabled = false)
+    @Epic("Завершить обслуживание")
+    @RetryCountIfFailed(2)
+    public void testCompleteCall2() {
+        List<Integer> numerics = new ArrayList<>(List.of(5, 4, 3, 2, 1, 5));
+//        List<Integer> numerics = Arrays.asList(5,4,3,2,1,5);
+        System.out.println(numerics);
+        List<Integer> numerics2 = numerics.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        numerics2.forEach(System.out::print);
     }
 }

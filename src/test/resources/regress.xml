@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Name suite - Regress" thread-count="2" parallel="classes" configfailurepolicy="skip">
+    <parameter name="gridRun" value="true"/>
     <listeners>
         <!--<listener class-name="com.commonsns.screenshotsListner.CustomTestListener"/>-->
         <listener class-name="com.commons.retryCountListner.AnnotationTransformer"/>

@@ -1,7 +1,6 @@
 package com.commons.Selenium;
 
 import com.pages.WebPage;
-import org.json.JSONException;
 import org.testng.SkipException;
 
 import java.io.IOException;
@@ -16,16 +15,13 @@ public class SeleniumGrid extends WebPage {
     static int count = 10;
     static String command = "cmd /c start cmd.exe /K \"cd C:/chromedriver && start run_grid.bat && exit\"";
 
-    public SeleniumGrid() throws IOException {
-    }
-
     private static void checkStatus() {
         status = Status.checkRunningStatus();
         if (status)
             working = Status.checkWorkStatus();
     }
 
-    public static void runSeleniumGrid()   {
+    public static void runSeleniumGrid() {
         checkStatus();
         if (isGridRun && !status) {
             try {
@@ -49,7 +45,7 @@ public class SeleniumGrid extends WebPage {
         }
     }
 
-    public static void stop() throws IOException, JSONException, InterruptedException {
+    public static void stop() throws IOException {
         checkStatus();
         if (isGridRun) {
             URL urlHub = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
