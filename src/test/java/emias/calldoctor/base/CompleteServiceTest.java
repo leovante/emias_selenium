@@ -110,17 +110,32 @@ public class CompleteServiceTest extends TestCallDoctorBase {
                 .closeCardBtn();
     }
 
-
     @Test(groups = "CD",
             description = "завершить обслуживание вызова с дата провайдером",
             enabled = false)
     @Epic("Завершить обслуживание")
     @RetryCountIfFailed(2)
-    public void testCompleteCall2() {
-        List<Integer> numerics = new ArrayList<>(List.of(5, 4, 3, 2, 1, 5));
+    public static void testCompleteCall2() {
+//        int x = 5 * 4 % 3;
+//        int y = 4 % 3;
+//        System.out.println(x);
+//        System.out.println(y);
+
+//        Integer a;
+//        System.out.println(a);
+
+        String devName = "Petrov";
+        Developer dev = () -> System.out.println("writing" + devName);
+        dev.writeCode();
+
+//        List<Integer> numerics = new ArrayList<>(List.of(5, 4, 3, 2, 1, 5));
 //        List<Integer> numerics = Arrays.asList(5,4,3,2,1,5);
-        System.out.println(numerics);
-        List<Integer> numerics2 = numerics.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-        numerics2.forEach(System.out::print);
+//        System.out.println(numerics);
+//        List<Integer> numerics2 = numerics.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+//        numerics2.forEach(System.out::print);
+    }
+
+    interface Developer{
+        void writeCode();
     }
 }
