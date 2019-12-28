@@ -35,12 +35,12 @@ public class WebSettings extends STSettings {
         }
     }
 
-    public static synchronized void initFromProperties(String browser, String gridRun){
+    public static synchronized void initFromProperties(String browser, String testng){
         try{
             init();
             getProperties(emiasSettingsPath);
             STSettings.initFromProperties();
-            isGridRun = Boolean.parseBoolean(gridRun);
+            isGridRun = Boolean.parseBoolean(testng);
             browserType = browser;
         } catch (IOException e) {
             e.printStackTrace();

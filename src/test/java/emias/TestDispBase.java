@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.testng.annotations.*;
 
+import static com.settings.WebSettings.initFromProperties;
+
 @Listeners({TestMethodCapture.class})
 @ContextConfiguration(classes = {AppConfig.class})
 public class TestDispBase extends TestNGBase {
@@ -25,10 +27,10 @@ public class TestDispBase extends TestNGBase {
         return TestMethodCapture.getTestMethod().getMethodName();
     }
 
-    @Parameters({"testng"})
+    @Parameters({"browser","testng"})
     @BeforeClass(groups = "disp", alwaysRun = true, dependsOnMethods = "springTestContextPrepareTestInstance")
-    public void beforeClassDisp(@Optional String testng) {
-//        initFromProperties();
+    public void beforeClassDisp(@Optional String browser, @Optional String testng) {
+        initFromProperties(browser, testng);
         if (testng != null) {
             new BeforeTestDisp().run();
         }

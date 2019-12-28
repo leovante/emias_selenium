@@ -5,7 +5,7 @@ import com.api.TestStend;
 import java.io.IOException;
 
 import static com.pages.WebPage.logger;
-import static com.settings.WebSettings.isGridRun;
+import static com.settings.STSettings.standValid;
 
 public class StandValidator {
     private boolean checkCreateCall = true;
@@ -20,7 +20,7 @@ public class StandValidator {
 
     public StandValidator() {
         testStend = new TestStend();
-        if (isGridRun) {
+        if (standValid) {
             instasiator();
             validator();
         }

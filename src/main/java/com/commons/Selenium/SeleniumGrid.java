@@ -23,7 +23,7 @@ public class SeleniumGrid extends WebPage {
 
     public static void runSeleniumGrid() {
         checkStatus();
-        if (isGridRun && !status) {
+        if (!status) {
             try {
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
@@ -34,8 +34,8 @@ public class SeleniumGrid extends WebPage {
                 if (status && working)
                     break;
                 else {
-                    if (count - 1 == i)
-                        throw new SkipException("Грид не может запуститься");
+//                    if (count - 1 == i)
+//                        throw new SkipException("Грид не может запуститься");
                 }
                 sleep(1000);
             }
@@ -45,17 +45,17 @@ public class SeleniumGrid extends WebPage {
         }
     }
 
-    public static void stop() throws IOException {
-        checkStatus();
-        if (isGridRun) {
-            URL urlHub = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
-            urlHub.openConnection().getInputStream();
-            URL urlNode = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
-            urlNode.openConnection().getInputStream();
-            logger.info("Остановил хаб Selenium grid");
-        } else {
-            logger.info("Селениум грид работает, остановка невозможна!");
-        }
-        logger.info("Тестирование закончено!");
-    }
+//    public static void stop() throws IOException {
+//        checkStatus();
+//        if (isGridRun) {
+//            URL urlHub = new URL("http://localhost:4444/lifecycle-manager?action=shutdown");
+//            urlHub.openConnection().getInputStream();
+//            URL urlNode = new URL("http://localhost:5558/extra/LifecycleServlet?action=shutdown");
+//            urlNode.openConnection().getInputStream();
+//            logger.info("Остановил хаб Selenium grid");
+//        } else {
+//            logger.info("Селениум грид работает, остановка невозможна!");
+//        }
+//        logger.info("Тестирование закончено!");
+//    }
 }

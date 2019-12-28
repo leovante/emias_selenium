@@ -11,7 +11,6 @@ import org.testng.annotations.Test;
 import static com.commons.assistance.Assistance.visible;
 
 public class CreateCallTest extends TestCallDoctorBase {
-
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
