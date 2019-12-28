@@ -1,8 +1,8 @@
 package emias.callcenter.before;
 
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 
-public class BeforeSuiteCallCenter extends TestBase {
+public class BeforeSuiteCallCenter extends TestNGBase {
 
 //    @Test(description = "Создаю новое расписание на сегодня")
 //    @RetryCountIfFailed(2)

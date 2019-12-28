@@ -2,29 +2,32 @@ package emias.calldoctor.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.commons.assistance.DuringTestHelper;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
-import org.json.JSONException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.visible;
+import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.commons.assistance.Assistance.visible;
 
-public class EditTest extends TestBase {
+public class EditTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "проверка страницы редактирвоания карты вызова")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPage() {
-        PacientImpl pacient = new PacientImpl("Profile1");
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient)
                 .createCall()
                 .editCallBtn()
@@ -35,25 +38,32 @@ public class EditTest extends TestBase {
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
     public void testVerifyEditPage_2() {
-        PacientImpl pacient = new PacientImpl("Profile1");
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient)
                 .createCall()
                 .editCallBtn()
                 .saveBtn();
         $x("//*[contains(.,'Карта создана')]").shouldBe(Condition.visible);
         List<SelenideElement> se = $$x("//div[@class='datatable-row-center datatable-row-group ng-star-inserted']");
-        Assert.assertTrue(se.size() == 1, "Количество записей в истории больше одной!");
+        Assert.assertEquals(1, se.size(), "Количество записей в истории больше одной!");
     }
 
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры. Меняем с мкаб на неформал")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testEditCall_mkab_any()  {
-        PacientImpl pacient = new PacientImpl("Profile2");
-        PacientImpl pacient2 = new PacientImpl("Profile1");
-        page.misHome().calldoctor();
-        page.createCall(pacient).createCall_Mkab();
+    public void testEditCall_mkab_any() {
+        IPacient pacient = new PacientImpl("Profile2");
+        IPacient pacient2 = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+        new DuringTestHelper().beforeCleanDecider(pacient2);
+
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall_Mkab();
         page.createCall(pacient2)
                 .editCallBtn()
                 .setDeafult()
@@ -70,11 +80,16 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "изменить карту вызова из регистратуры. Меняем с неформал на мкаб")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testEditCall_any_mkab()  {
-        PacientImpl pacient = new PacientImpl("Profile1");
-        PacientImpl pacient2 = new PacientImpl("Profile2");
-        page.misHome().calldoctor();
-        page.createCall(pacient).createCall();
+    public void testEditCall_any_mkab() {
+        IPacient pacient = new PacientImpl("Profile1");
+        IPacient pacient2 = new PacientImpl("Profile2");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+        new DuringTestHelper().beforeCleanDecider(pacient2);
+
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall();
         page.createCall(pacient2)
                 .editCallBtn()
                 .setDeafult()
@@ -92,12 +107,18 @@ public class EditTest extends TestBase {
     @Epic("Редактирование вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
-    public void testValidationAddressAfterSaveEditedCall()  {
-        PacientImpl pacient = new PacientImpl("Profile2");
-        PacientImpl pacient2 = new PacientImpl("Profile0_3");
-        page.misHome().calldoctor();
-        page.createCall(pacient).createCall_Mkab();
-        page.fullCard(pacient, testName()).editCallBtn();
+    public void testValidationAddressAfterSaveEditedCall() {
+        IPacient pacient = new PacientImpl("Profile2");
+        IPacient pacient2 = new PacientImpl("Profile0_3");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+        new DuringTestHelper().beforeCleanDecider(pacient2);
+
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall_Mkab();
+        page.fullCard(pacient, testName())
+                .editCallBtn();
         page.createCall(pacient2)
                 .setDeafult()
                 .editCallPage()
@@ -108,9 +129,11 @@ public class EditTest extends TestBase {
     @Test(groups = "CD", description = "формализация неформализованного адреса на странице редактирования")
     @Epic("Редактирование вызова")
     @RetryCountIfFailed(2)
-    public void testCallMkabWaitoutID()  {
-        PacientImpl pacient = new PacientImpl("Profile0_3_1");
-        page.misHome().calldoctor();
+    public void testCallMkabWaitoutID() {
+        IPacient pacient = new PacientImpl("Profile0_3_1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall_Api();
         page.dashboard().openNewCallDash(pacient);
         page.fullCard(pacient, testName()).verifyNewCall();

@@ -1,34 +1,38 @@
 package emias.calldoctor.base;
 
 
+import com.commons.assistance.DuringTestHelper;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-public class ChangeDoctorTest extends TestBase {
+public class ChangeDoctorTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "передать вызов другому врачу")
     @Epic("Передача вызова")
     @RetryCountIfFailed(2)
     public void testSendCallToSecondDoctor_Registr() {
-        PacientImpl pacientImpl = new PacientImpl("Profile1");
+        IPacient pacient = new PacientImpl("Profile1");
         Doctor doctor = new Doctor("SerovaStendTestovoe");
         Doctor doctor2 = new Doctor("NemcovaVzroslRegistratura");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor);
-        page.fullCard(pacientImpl, testName()).changeDoctorBtn();
+        page.fullCard(pacient, testName()).changeDoctorBtn();
         page.setDoctor().chooseDoctorToday(doctor2);
-        page.fullCard(pacientImpl, testName())
-                .verifyActivCall(pacientImpl)
+        page.fullCard(pacient, testName())
+                .verifyActivCall(pacient)
                 .verifyDoctor(doctor2)
                 .closeCardBtn();
         page.dashboard()
                 .clearFilterDepart()
-                .verifyActiveDocGroup(pacientImpl, doctor2);
+                .verifyActiveDocGroup(pacient, doctor2);
     }
 }

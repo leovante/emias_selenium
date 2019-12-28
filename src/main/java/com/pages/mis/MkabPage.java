@@ -1,13 +1,11 @@
 package com.pages.mis;
 
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.openqa.selenium.By;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class MkabPage extends BasePage {
+public class MkabPage extends WebPage {
 
     public MkabPage() {
     }

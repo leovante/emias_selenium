@@ -1,6 +1,6 @@
 package com.pages.mis;
 
-import com.pages.BasePage;
+import com.pages.WebPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.IOException;
 
-public class SearchRow extends BasePage {
+public class SearchRow extends WebPage {
     private WebDriver webDriver;
     private WebDriverWait wait;
 

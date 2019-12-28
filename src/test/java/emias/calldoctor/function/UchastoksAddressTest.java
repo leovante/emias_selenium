@@ -1,23 +1,27 @@
 package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
+import com.commons.assistance.DuringTestHelper;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class UchastoksAddressTest extends TestBase {
+public class UchastoksAddressTest extends TestCallDoctorBase {
 
     @Test(groups = "CD", description = "проверка окна 'не удалось однозначно определить участок'. Адрес в двух участках, один без домов")
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokBezDomov() {
-        PacientImpl pacientImpl = new PacientImpl("Profile15");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        IPacient pacient = new PacientImpl("Profile15");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient)
                 .createCall()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
@@ -28,9 +32,11 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_unikDom_3() {
-        PacientImpl pacientImpl = new PacientImpl("Profile16");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        IPacient pacient = new PacientImpl("Profile16");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient)
                 .createCall()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
@@ -45,9 +51,11 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah() {
-        PacientImpl pacientImpl = new PacientImpl("Profile17");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        IPacient pacient = new PacientImpl("Profile17");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient)
                 .createCall()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
@@ -62,9 +70,11 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastok_DomavOboihUchastkah_unikDom() {
-        PacientImpl pacientImpl = new PacientImpl("Profile18");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl)
+        IPacient pacient = new PacientImpl("Profile18");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient)
                 .createCall()
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'#6 Педиатрический')]").shouldNotBe(Condition.visible);
@@ -79,12 +89,14 @@ public class UchastoksAddressTest extends TestBase {
     @Test(groups = "CD",
             description = "авторизованный вызов от СМП, участок определился по адресу вызова, а не мкаб")
     public void testUchastokPoAdresuANeMkab() {
-        PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab");
-        page.createCall(pacientImpl).createCall_Api_Auth();
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("ProfileAdressNeIzMkab");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.createCall(pacient).createCall_Api_Auth();
+        page.misHome().calldoctorAdminTemnikov();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
-                .openNewCallDash(pacientImpl);
+                .dashFilter_fio(pacient)
+                .openNewCallDash(pacient);
         $x("//*[contains(text(),'Интернет')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'2-й Педиатрический')]").shouldBe(Condition.visible);
     }
@@ -94,12 +106,14 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokNotSet() {
-        PacientImpl pacientImpl = new PacientImpl("ProfileAdressNeIzMkab_neformal");
-        page.createCall(pacientImpl).createCall_Api();
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("ProfileAdressNeIzMkab_neformal");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.createCall(pacient).createCall_Api();
+        page.misHome().calldoctorAdminTemnikov();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
-                .openNewCallDash(pacientImpl);
+                .dashFilter_fio(pacient)
+                .openNewCallDash(pacient);
         $x("//*[contains(text(),'Участок')]").shouldNotBe(Condition.visible);
     }
 
@@ -107,10 +121,12 @@ public class UchastoksAddressTest extends TestBase {
     @Epic("Участки")
     @RetryCountIfFailed(2)
     public void testUchastokWithNullID() {
-        PacientImpl pacientImpl = new PacientImpl("Profile0_3_1");
-        page.createCall(pacientImpl).createCall_Api();
-        page.misHome().calldoctor();
-        page.dashboard().openNewCallDash(pacientImpl);
+        IPacient pacient = new PacientImpl("Profile0_3_1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.createCall(pacient).createCall_Api();
+        page.misHome().calldoctorAdminTemnikov();
+        page.dashboard().openNewCallDash(pacient);
         $x("//*[contains(text(),'КТО ОБСЛУЖИВАЕТ')]").shouldBe(Condition.visible);
         $x("//*[contains(text(),'Участок')]").shouldNotBe(Condition.visible);
     }

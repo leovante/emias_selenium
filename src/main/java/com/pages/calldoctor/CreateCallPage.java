@@ -3,95 +3,87 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.datas.calldoctor.Pacient;
-import com.datas.calldoctor.PacientImpl;
-import com.pages.BasePage;
+import com.datas.calldoctor.IPacient;
+import com.pages.WebPage;
 import com.pages.calldoctor.controllers.StAddress;
-import com.system.service.HltCallDoctorServiceImpl;
-import com.utils.api_model.CallDoctorHttp;
-import com.utils.except.NoticeException;
+import com.commons.api_model.CallDoctorHttp;
 import io.qameta.allure.Step;
-import org.apache.http.HttpResponse;
 import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.SkipException;
 
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.getDateDiff;
-import static com.lib.assistance.Assistance.parseTelephone;
-import static com.lib.assistance.Assistance.years;
+import static com.commons.assistance.Assistance.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 
-public class CreateCallPage extends BasePage {
-    private Pacient pacient;
-    SelenideElement cancelAdress = $(By.xpath("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"));
-    SelenideElement list_first_container = $(By.xpath("//div[@class='autocomplete-list-container']/ul/li"));
+public class CreateCallPage extends WebPage {
+    private IPacient pacient;
+    private SelenideElement
+            cancelAdress = $x("//*[@id='4198BD84-7A21-4E38-B36B-3ECB2E956408']"),
+            list_first_container = $x("//div[@class='autocomplete-list-container']/ul/li"),
+            dom = $x("//input[@placeholder='Дом']"),
+            vKat = $x("//input[@placeholder='Возр. категория']"),
+            korpus = $x("//input[@placeholder='Корпус']"),
+            stroenie = $x("//input[@placeholder='Строение']"),
+            kvartira = $x("//input[@placeholder='Квартира']"),
+            pd = $x("//input[@placeholder='П-д']"),
+            dfon = $x("//input[@placeholder='Д-фон']"),
+            etazh = $x("//input[@placeholder='Этаж']"),
+            seriyaPol = $x("//input[@placeholder='Серия']"),
+            nomerPol = $x("//input[@placeholder='Номер полиса']"),
+            fam = $x("//input[@placeholder='Фамилия']"),
+            name = $x("//input[@placeholder='Имя']"),
+            otchestvo = $x("//input[@placeholder='Отчество']"),
+            birthDateTemp = $x("//input[@placeholder='Дата рождения']"),
+            phone = $(By.id("phone")),
+            famCall = $(By.id("callFamily")),
+            nameCall = $(By.id("callName")),
+            otCall = $(By.id("callPatronymic")),
+            sourceSmp = $(By.id("source0")),
+            sourceSmp2 = $(By.id("sourceSmp")),
+            sourceReg = $(By.id("source1")),
+            callerType = $x("//mat-select[@aria-label='Тип вызывающего']"),
+            callerType_pacient = $x("//span[contains(.,'Пациент')]"),
+            callerType_predstavitel = $x("//span[contains(.,'Представитель')]"),
+            cancelBtn = $(By.id("cancelCall")),
+            cancelField = $x("//input[@placeholder='Причина отмены вызова']"),
+            cancelCall = $x("//a[@title='Отменить вызов']"),
+            kto_pacient_header = $x("//*[contains(text(),'КТО ПАЦИЕНТ')]"),
+            new_call_header = $x("//*[contains(text(),'Новый вызов')]"),
+            male = $(By.id("sex1")),
+            female = $(By.id("sex2")),
+            edit_call = $x("//*[contains(text(),'Редактирование вызова')]"),
+            change_call = $(By.id("change")),
+            reason_cancel_call_validator = $x("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"),
+            unpin_mkab = $x("//img[@src='./assets/img/close.png']"),
+            complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']"),
+            allertCloseDialog_Yes = $x("//button/span[contains(text(),'Да')]"),
+            findPatientInput = $(By.id("findPatientInput")),
+            addNewCall = $(By.id("addNewCall"));
+    ElementsCollection close_collections = $$x("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']");
 
-    SelenideElement dom = $(By.xpath("//input[@placeholder='Дом']"));
-    SelenideElement vKat = $(By.xpath("//input[@placeholder='Возр. категория']"));
-    SelenideElement korpus = $(By.xpath("//input[@placeholder='Корпус']"));
-    SelenideElement stroenie = $(By.xpath("//input[@placeholder='Строение']"));
-    SelenideElement kvartira = $(By.xpath("//input[@placeholder='Квартира']"));
-    SelenideElement pd = $(By.xpath("//input[@placeholder='П-д']"));
-    SelenideElement dfon = $(By.xpath("//input[@placeholder='Д-фон']"));
-    SelenideElement etazh = $(By.xpath("//input[@placeholder='Этаж']"));
-    SelenideElement seriyaPol = $(By.xpath("//input[@placeholder='Серия']"));
-    SelenideElement nomerPol = $(By.xpath("//input[@placeholder='Номер полиса']"));
-    SelenideElement fam = $(By.xpath("//input[@placeholder='Фамилия']"));
-    SelenideElement name = $(By.xpath("//input[@placeholder='Имя']"));
-    SelenideElement otchestvo = $(By.xpath("//input[@placeholder='Отчество']"));
-    SelenideElement birthDateTemp = $(By.xpath("//input[@placeholder='Дата рождения']"));
-    SelenideElement phone = $(By.id("phone"));
-    SelenideElement famCall = $(By.id("callFamily"));
-    SelenideElement nameCall = $(By.id("callName"));
-    SelenideElement otCall = $(By.id("callPatronymic"));
-    SelenideElement sourceSmp = $(By.id("source0"));
-    SelenideElement sourceSmp2 = $(By.id("sourceSmp"));
-    SelenideElement sourceReg = $(By.id("source1"));
-    SelenideElement callerType = $(By.xpath("//mat-select[@aria-label='Тип вызывающего']"));
-    SelenideElement callerType_pacient = $(By.xpath("//span[contains(.,'Пациент')]"));
-    SelenideElement callerType_predstavitel = $(By.xpath("//span[contains(.,'Представитель')]"));
-    SelenideElement cancelBtn = $(By.id("cancelCall"));
-    SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
-    SelenideElement cancelCall = $(By.xpath("//a[@title='Отменить вызов']"));
-    SelenideElement kto_pacient_header = $x("//*[contains(text(),'КТО ПАЦИЕНТ')]");
-    SelenideElement new_call_header = $x("//*[contains(text(),'Новый вызов')]");
-    SelenideElement male = $(By.id("sex1"));
-    SelenideElement female = $(By.id("sex2"));
-    SelenideElement edit_call = $x("//*[contains(text(),'Редактирование вызова')]");
-    SelenideElement change_call = $(By.id("change"));
-    SelenideElement reason_cancel_call_validator = $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]"));
-    SelenideElement unpin_mkab = $x("//img[@src='./assets/img/close.png']");
-    SelenideElement complaint = $x("//input[@aria-label='Введите текст жалобы'] | //input[@aria-label='Добавить жалобу']");
-    SelenideElement allertCloseDialog_Yes = $(By.xpath("//button/span[contains(text(),'Да')]"));
-    ElementsCollection close_collections = $$(By.xpath("//button/span/mat-icon[contains(text(),'close')] | //svg[@height='16px']"));
-
-    public CreateCallPage() {
+    CreateCallPage() {
         super();
     }
 
-    CreateCallPage(Pacient pacient) {
+    CreateCallPage(IPacient pacient) {
         this.pacient = pacient;
-//        performDatabaseOperation();
     }
 
     @Step("create simple call")
-    public CreateCallPage createCall()  {
-        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
+    public CreateCallPage createCall() {
         addNewCall()
                 .sourceCall()
                 .address()
+                .addressPlus()
                 .birthDay()
                 .gender()
                 .complaint()
@@ -104,9 +96,8 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-    @Step("create call with MKAB")
+    @Step("create call by MKAB")
     public CreateCallPage createCall_Mkab() {
-        hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
         addNewCall()
                 .sourceCall()
                 .searchField()
@@ -118,13 +109,9 @@ public class CreateCallPage extends BasePage {
         return this;
     }
 
-//    @Autowired
-//    protected HltCallDoctorServiceImpl hltCallDoctorService;
-
     @Step("create call via API")
-    public void createCall_Api()   {
+    public void createCall_Api() {
         try {
-            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).execute();
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
@@ -132,9 +119,8 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create authorize call via API")
-    public void createCall_Api_Auth()  {
+    public void createCall_Api_Auth() {
         try {
-            hltCallDoctorService.cancelByNPol(pacient.getNumberpol());
             new CallDoctorHttp(pacient).executeAuth();
         } catch (JSONException | NullPointerException e) {
             e.printStackTrace();
@@ -142,13 +128,12 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("edit call")
-    public CreateCallPage editCallPage()  {
+    public CreateCallPage editCallPage() {
         sourceCall()
                 .sourceCall()
                 .address()
+                .addressPlus()
                 .birthDay()
-                .addressPlus()
-                .addressPlus()
                 .complaint()
                 .polis()
                 .fio()
@@ -159,7 +144,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("create call with MKAB from SMP")
-    public CreateCallPage editCallPage_Mkab()  {
+    public CreateCallPage editCallPage_Mkab() {
         sourceCall()
                 .searchField()
                 .addressPlus()
@@ -183,10 +168,8 @@ public class CreateCallPage extends BasePage {
                 element.click();
             actions.sendKeys(Keys.ESCAPE).perform();
         }
-//        $(By.id("4198BD84-7A21-4E38-B36B-3ECB2E956408")).click();
         dom.clear();
         phone.clear();
-//        $(By.xpath("//label[@class='mat-checkbox-layout']")).clear();
         korpus.clear();
         stroenie.clear();
         kvartira.clear();
@@ -205,13 +188,28 @@ public class CreateCallPage extends BasePage {
 
     @Step("add new call")
     public CreateCallPage addNewCall() {
-        $(By.id("addNewCall")).click();
+        addNewCall.click();
         return this;
     }
 
     @Step("search MKAB")
     public CreateCallPage searchField() {
-        $(By.id("findPatientInput")).setValue(String.valueOf(pacient.getNumberpol()));
+        if (pacient.getSeriespol() != "") {
+            findPatientInput.sendKeys(pacient.getSeriespol() + " ");
+            if (pacient.getNumberpol() != "")
+                findPatientInput.sendKeys(pacient.getNumberpol());
+        } else {
+            if (pacient.getNumberpol() != "")
+                findPatientInput.sendKeys(pacient.getNumberpol());
+            else {
+                if (pacient.getFamily() != ""
+                        || pacient.getName() != ""
+                        || pacient.getOt() != "")
+                    findPatientInput.sendKeys(pacient.getFamily() + " " + pacient.getName() + " " + pacient.getOt());
+                else
+                    throw new SkipException("Ошибка. Отсутствуют данные пациента для ввода!");
+            }
+        }
         $x("//mat-option/span[contains(text(),'" + pacient.getFamily() + "')]").click();
         return this;
     }
@@ -239,7 +237,6 @@ public class CreateCallPage extends BasePage {
                 .write(pacient.getAddress2(), pacient.getAddress2adv())
                 .write(pacient.getAddress3(), pacient.getAddress3adv())
                 .dom(pacient.getNumber());
-        addressPlus();
         return this;
     }
 
@@ -385,24 +382,24 @@ public class CreateCallPage extends BasePage {
 
     // TODO: 9/18/2019 нужно как то вынести это отдельно и унаследоваться двумя классами
     @Step("проверяю на странице редактирования корректность данных")
-    public CreateCallPage verifyCallProfile1(PacientImpl pacientImpl) {
-        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacientImpl), "Номер телефона некорректный");
-        Assert.assertEquals(nomerPol.getAttribute("value"), pacientImpl.getNumberpol(), "Номер полиса некорректный");
-        Assert.assertEquals(seriyaPol.getAttribute("value"), pacientImpl.getSeriespol(), "Серия полса некорректная");
-        Assert.assertEquals(fam.getAttribute("value"), pacientImpl.getFamily(), "Фамилия некорректная");
-        Assert.assertEquals(name.getAttribute("value"), pacientImpl.getName(), "Имя некорректное");
-        Assert.assertEquals(otchestvo.getAttribute("value"), pacientImpl.getOt(), "Отчество некорректное");
-        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacientImpl.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
+    public CreateCallPage verifyCallProfile1(IPacient pacient) {
+        Assert.assertEquals(phone.getAttribute("value"), parseTelephone(pacient), "Номер телефона некорректный");
+        Assert.assertEquals(nomerPol.getAttribute("value"), pacient.getNumberpol(), "Номер полиса некорректный");
+        Assert.assertEquals(seriyaPol.getAttribute("value"), pacient.getSeriespol(), "Серия полса некорректная");
+        Assert.assertEquals(fam.getAttribute("value"), pacient.getFamily(), "Фамилия некорректная");
+        Assert.assertEquals(name.getAttribute("value"), pacient.getName(), "Имя некорректное");
+        Assert.assertEquals(otchestvo.getAttribute("value"), pacient.getOt(), "Отчество некорректное");
+        Assert.assertEquals(birthDateTemp.getAttribute("value"), pacient.getBirthdate("dd.MM.yyyy"), "Дата рождения некорректная");
 //        Assert.assertEquals(age.getAttribute("value"), doctor.getAge(), "Возраст некорректный");
 //        Assert.assertEquals(vKat.getAttribute("value"), doctor.getVkat(), "Возрастная категория некорректная");
-        assertThat("Адрес некорректный", pacientImpl.getAddress(), containsString(stAddress.getAddressSE().getAttribute("value")));
-        Assert.assertEquals(dom.getAttribute("value"), pacientImpl.getNumber(), "Номер дома некорректный");
-        Assert.assertEquals(korpus.getAttribute("value"), pacientImpl.getBuilding(), "Номер корпуса некорректный");
-        Assert.assertEquals(stroenie.getAttribute("value"), pacientImpl.getConstruction(), "Номер строения некорректный");
-        Assert.assertEquals(kvartira.getAttribute("value"), pacientImpl.getAppartment(), "Номер квартиры некорректный");
-        Assert.assertEquals(pd.getAttribute("value"), pacientImpl.getEntrance(), "Номер подъезда некорректный");
-        Assert.assertEquals(dfon.getAttribute("value"), pacientImpl.getCodedomophone(), "Номер домофона некорректный");
-        Assert.assertEquals(etazh.getAttribute("value"), pacientImpl.getFloor(), "Номер этажа некорректный");
+        assertThat("Адрес некорректный", pacient.getAddress(), containsString(stAddress.getAddressSE().getAttribute("value")));
+        Assert.assertEquals(dom.getAttribute("value"), pacient.getNumber(), "Номер дома некорректный");
+        Assert.assertEquals(korpus.getAttribute("value"), pacient.getBuilding(), "Номер корпуса некорректный");
+        Assert.assertEquals(stroenie.getAttribute("value"), pacient.getConstruction(), "Номер строения некорректный");
+        Assert.assertEquals(kvartira.getAttribute("value"), pacient.getAppartment(), "Номер квартиры некорректный");
+        Assert.assertEquals(pd.getAttribute("value"), pacient.getEntrance(), "Номер подъезда некорректный");
+        Assert.assertEquals(dfon.getAttribute("value"), pacient.getCodedomophone(), "Номер домофона некорректный");
+        Assert.assertEquals(etazh.getAttribute("value"), pacient.getFloor(), "Номер этажа некорректный");
         logger.info("Проверка данных на странице редактирования выполнена!");
         return this;
     }
@@ -429,7 +426,7 @@ public class CreateCallPage extends BasePage {
     }
 
     @Step("валидация что вызов не отменился на странице редактирования")
-    public CreateCallPage verifyCancellCallValidation()  {
+    public CreateCallPage verifyCancellCallValidation() {
         reason_cancel_call_validator.shouldBe(Condition.visible);
         sleep(2000);
         kto_pacient_header.shouldBe(Condition.visible);

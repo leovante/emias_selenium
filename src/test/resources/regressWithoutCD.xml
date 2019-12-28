@@ -5,8 +5,8 @@
     <parameter name="testng" value="true"/>
 
     <listeners>
-        <listener class-name="com.utils.retryCountListner.AnnotationTransformer"/>
-        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
+        <listener class-name="com.commons.retryCountListner.AnnotationTransformer"/>
+        <!--<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
     </listeners>
     <!--Диспетчер-->
     <!--<test name="TestCD_Chrome" verbose="1" parallel="true">-->
@@ -17,9 +17,9 @@
     <!--</run>-->
     <!--</groups>-->
     <!--<packages>-->
-    <!--<package name="emias.calldoctor.function"/>-->
-    <!--<package name="emias.calldoctor.base"/>-->
-    <!--<package name="emias.calldoctor.negative"/>-->
+    <!--<package name="emias.calldoctorAdminTemnikov.function"/>-->
+    <!--<package name="emias.calldoctorAdminTemnikov.base"/>-->
+    <!--<package name="emias.calldoctorAdminTemnikov.negative"/>-->
     <!--</packages>-->
     <!--</test>-->
     <!--Диспансеризация-->

@@ -2,7 +2,7 @@ package com.lib.calldoctor;
 
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
+import com.datas.calldoctor.IPacient;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -10,10 +10,10 @@ public class Calldoctor {
     SelenideElement serveColumn = $x("//div[contains(text(),'Обслуженные')]").$x("../../.");
     SelenideElement doctorInServeColumn;
     SelenideElement docBlock;
-    Pacient pacient;
+    IPacient pacient;
     Doctor doctor;
 
-    public Calldoctor(Pacient pacient, Doctor doctor) {
+    public Calldoctor(IPacient pacient, Doctor doctor) {
         this.pacient=pacient;
         this.doctor=doctor;
         doctorInServeColumn = serveColumn.$x(".//span[contains(text(),'" + doctor.getFamily() + "')]");

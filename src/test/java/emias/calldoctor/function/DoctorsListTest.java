@@ -2,55 +2,61 @@ package emias.calldoctor.function;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.commons.assistance.DuringTestHelper;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.Doctor;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Issue;
-import org.json.JSONException;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.lib.assistance.Assistance.notVisible;
-import static com.lib.assistance.Assistance.visible;
+import static com.commons.assistance.Assistance.notVisible;
+import static com.commons.assistance.Assistance.visible;
 
-public class DoctorsListTest extends TestBase {
+public class DoctorsListTest extends TestCallDoctorBase {
     @Test(groups = "CD", description = "пустой вызов ребенка М")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_male() {
-        PacientImpl pacientImpl = new PacientImpl("Profile7");
+        IPacient pacient = new PacientImpl("Profile7");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         visible(mokov.getUchastocs());
         visible(nemcova.getUchastocs());
         notVisible(serova.getUchastocs());
     }
 
-    @Test(groups = "CD", description = "пустой вызов ребенка Ж")
+    @Test(groups = "CD", description = "вызов ребенка Ж. Не отображать участки терапевтов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_female() {
-        PacientImpl pacientImpl = new PacientImpl("Profile8");
+        IPacient pacient = new PacientImpl("Profile8");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome()
+                .calldoctorAdminTemnikov();
+        page.createCall(pacient)
+                .createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName())
+                .chooseDoctorBtn();
         visible(mokov.getUchastocs());
         visible(nemcova.getUchastocs());
         notVisible(serova.getUchastocs());
@@ -60,15 +66,17 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void childCall_noGender() {
-        PacientImpl pacientImpl = new PacientImpl("Profile9");
+        IPacient pacient = new PacientImpl("Profile9");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         visible(mokov.getUchastocs());
         visible(nemcova.getUchastocs());
         notVisible(serova.getUchastocs());
@@ -78,16 +86,18 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_male() {
-        PacientImpl pacientImpl = new PacientImpl("Profile10");
+        IPacient pacient = new PacientImpl("Profile10");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
 
         notVisible(mokov.getUchastocs());
         notVisible(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
@@ -99,16 +109,18 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_female() {
-        PacientImpl pacientImpl = new PacientImpl("Profile11");
+        IPacient pacient = new PacientImpl("Profile11");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         notVisible(mokov.getUchastocs());
         notVisible(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         visible(nemcova.getUchastocs());
@@ -119,16 +131,18 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void adultCall_noGender() {
-        PacientImpl pacientImpl = new PacientImpl("Profile12");
+        IPacient pacient = new PacientImpl("Profile12");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         notVisible(mokov.getUchastocs());
         notVisible(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         visible(nemcova.getUchastocs());
@@ -139,16 +153,18 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void call_noAge_noGender() {
-        PacientImpl pacientImpl = new PacientImpl("Profile13");
+        IPacient pacient = new PacientImpl("Profile13");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
         Doctor serova = new Doctor("SerovaStendTestovoe");
         Doctor ginekolog = new Doctor("GinekologTestovayaGinekologi");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         visible(mokov.getUchastocs());
         notVisible(ginekolog.getUchastocs());//не отобразится, потому что oms_kl_TypeU.isMain = 0
         visible(nemcova.getUchastocs());
@@ -159,14 +175,16 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithKladr() {
-        PacientImpl pacientImpl = new PacientImpl("Profile2");
+        IPacient pacient = new PacientImpl("Profile2");
         Doctor operator = new Doctor("Operator");
         Doctor nemcova = new Doctor("NemcovaVzroslRegistratura");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
         visible(operator.getDepartment());
         visible(nemcova.getUchastocs());
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         visible("УЧАСТКОВЫЙ ВРАЧ");
         visible(nemcova.getUchastocs());
     }
@@ -178,20 +196,22 @@ public class DoctorsListTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testPreviewUchDoctorWithoutKladrApi() {
-        PacientImpl pacientImpl = new PacientImpl("ProfileDetkina");
+        IPacient pacient = new PacientImpl("ProfileDetkina");
         Doctor operator = new Doctor("Operator");
         Doctor mokov = new Doctor("MokovStendTestovoe");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall_Api();
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall_Api();
         page.dashboard()
-                .searchFilterFio_Fam(pacientImpl)
-                .openNewCallDash(pacientImpl);
+                .dashFilter_fio(pacient)
+                .openNewCallDash(pacient);
         visible(operator.getDepartment());
-        page.fullCard(pacientImpl, testName())
+        page.fullCard(pacient, testName())
                 .verifyNewCall()
                 .chooseDoctorBtn()
                 .saveAdressAsKladr();
-        page.createCall(pacientImpl)
+        page.createCall(pacient)
                 .selectUchastokFromNeUdalosOpredelit();
         $x("//*[contains(text(),'" + mokov.getUchastocs() + "')]").click();
         $x("//*[contains(text(),'Сохранить')]").click();
@@ -204,10 +224,12 @@ public class DoctorsListTest extends TestBase {
     @Issue("EMIAS-659")
     @RetryCountIfFailed(2)
     public void viewDoctorList_OnlyFromCurrentDepart() {
-        PacientImpl pacientImpl = new PacientImpl("Profile13");
-        page.misHome().calldoctorVzroslaya();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName()).chooseDoctorBtn();
+        IPacient pacient = new PacientImpl("Profile13");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorUdina();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName()).chooseDoctorBtn();
         SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
         doctorsBlock.$x(".//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
         doctorsBlock.$x(".//*[contains(text(),'Темников')]").shouldNotBe(Condition.visible);
@@ -217,40 +239,36 @@ public class DoctorsListTest extends TestBase {
         doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
     }
 
-    @Test(groups = "CD", description = "после редактирования карты на профиль без возрастной категории отобразятся все врачи")
+    @Test(groups = "CD", description = "оператор с ролью (диспетчер администратор) видит всех врачей")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
-    public void testViewDoctorsListAfterEditChildCard() {
-        PacientImpl pacient = new PacientImpl("Profile2");
-        PacientImpl pacient2 = new PacientImpl("Profile0_2");
-        page.misHome().calldoctor();
-        page.createCall(pacient).createCall_Mkab();
-        page.fullCard(pacient, testName()).editCallBtn();
-        page.createCall(pacient2)
-                .setDeafult()
-                .editCallPage()
-                .saveBtn()
-                .allertBtn();
-        $x("//*[contains(text(),'Без возрастной категории')]").shouldBe(Condition.visible);
+    public void viewFullDoctorList_OperatorAdmin() {
+        IPacient pacient = new PacientImpl("Profile13");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorUdina();
+        page.createCall(pacient).createCall();
         page.fullCard(pacient, testName()).chooseDoctorBtn();
-        page.setDoctor().saveAddress();
         SelenideElement doctorsBlock = $(By.id("otherDoctors")).$x("../.");
-        doctorsBlock.$x("//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Темников')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Моков')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Серова')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Немцова')]").shouldBe(Condition.visible);
-        doctorsBlock.$x("//*[contains(text(),'Зайцева')]").shouldBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Юдина')]").shouldBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Темников')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Моков')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Серова')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Немцова')]").shouldNotBe(Condition.visible);
+        doctorsBlock.$x(".//*[contains(text(),'Зайцева')]").shouldNotBe(Condition.visible);
     }
+
 
     @Test(groups = "CD", description = "после редактирования карты и изменения адреса пропадает привязка к старому участку")
     @Epic("Создание вызова")
     @Issue("EMIAS-956")
     @RetryCountIfFailed(2)
     public void testUchastokAfterEditMkabCard() {
-        PacientImpl pacient = new PacientImpl("Profile2");
-        PacientImpl pacient2 = new PacientImpl("Profile0_2");
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("Profile2");
+        IPacient pacient2 = new PacientImpl("Profile0_2");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall_Mkab();
         page.fullCard(pacient, testName()).editCallBtn();
         page.createCall(pacient2)

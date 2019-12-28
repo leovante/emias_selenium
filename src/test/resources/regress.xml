@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Name suite - Regress" thread-count="2" parallel="classes" configfailurepolicy="skip">
-    <parameter name="gridRun" value="true"/>
     <parameter name="testng" value="true"/>
 
     <listeners>
-        <!--<listener class-name="com.utils.screenshotsListner.CustomTestListener"/>-->
-        <listener class-name="com.utils.retryCountListner.AnnotationTransformer"/>
+        <!--<listener class-name="com.commonsns.screenshotsListner.CustomTestListener"/>-->
+        <listener class-name="com.commons.retryCountListner.AnnotationTransformer"/>
         <!--<listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
     </listeners>
     <!--Диспетчер-->
@@ -24,17 +23,17 @@
         </packages>
     </test>
     <!--Диспансеризация-->
-    <test name="TestDisp_Chrome" verbose="1">
-        <parameter name="browser" value="chrome"/>
-        <groups>
-            <run>
-                <include name="disp"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="emias.disp.base"/>
-        </packages>
-    </test>
+    <!--<test name="TestDisp_Chrome" verbose="1">-->
+        <!--<parameter name="browser" value="chrome"/>-->
+        <!--<groups>-->
+            <!--<run>-->
+                <!--<include name="disp"/>-->
+            <!--</run>-->
+        <!--</groups>-->
+        <!--<packages>-->
+            <!--<package name="emias.disp.base"/>-->
+        <!--</packages>-->
+    <!--</test>-->
     <!--Медицинские записи-->
     <test name="TestMR_Chrome" verbose="1">
         <parameter name="browser" value="chrome"/>
@@ -65,5 +64,4 @@
             <class name="emias.mis.base.PerehodyTest"/>
         </classes>
     </test>
-
 </suite>

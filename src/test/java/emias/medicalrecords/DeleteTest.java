@@ -1,18 +1,18 @@
 package emias.medicalrecords;
 
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.Datas;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-public class DeleteTest extends TestBase {
+public class DeleteTest extends TestNGBase {
     @Test(groups = "MR", description = "проверка что удаляется МЗ")
     @Epic("Удаление медзаписи")
     @RetryCountIfFailed(2)
     public void deleteMR() {
         Datas data = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
-        page.ehrMedrecords(data)
+        IPage.ehrMedrecords(data)
                 .loginFromTap()
                 .newMrMenuBtn()
                 .allPatternsBtn()
@@ -21,7 +21,7 @@ public class DeleteTest extends TestBase {
                 .view()
                 .allActions()
                 .save();
-        page.ehrMedrecords(data)
+        IPage.ehrMedrecords(data)
                 .medicalRecordsMenuBtn()
                 .searchMR()
                 .podpisanaSortColumn()

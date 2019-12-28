@@ -5,18 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.webmis</groupId>
     <artifactId>tests_project</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
-    <name>autotests</name>
+    <name>EMIAS autotests</name>
     <description>Test automation project for emias medical system</description>
+    <version>2.3</version>
 
     <properties>
+        <java.version>10</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <spring.boot.version>2.1.3.RELEASE</spring.boot.version>
+        <testng.version>6.14.3</testng.version>
+        <citrus.version>2.8.0</citrus.version>
         <aspectj.version>1.9.4</aspectj.version>
-        <testng></testng>
         <hibernate-version>5.3.7.Final</hibernate-version>
         <selenide.reports>target/test-result/reports</selenide.reports>
-        <java.version>10</java.version>
+        <system.under.test.mode>embedded</system.under.test.mode>
+        <testng></testng>
     </properties>
 
     <parent>
@@ -39,26 +44,21 @@
 
     <dependencies>
         <!--Spring-->
+        <!--зависимости спринг для работы с БД с помощью reposytories-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-            <version>2.1.3.RELEASE</version>
+            <version>${spring.boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.1.3.RELEASE</version>
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.springframework.boot</groupId>-->
-                    <!--<artifactId>spring-boot-starter-logging</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
+            <version>${spring.boot.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>2.1.3.RELEASE</version>
+            <version>${spring.boot.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>junit</groupId>
@@ -69,7 +69,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-            <version>2.1.3.RELEASE</version>
+            <version>${spring.boot.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.zaxxer</groupId>
@@ -79,26 +79,32 @@
         </dependency>
 
         <!--Selenium-->
+        <!--Сам селениум, для работы с браузерами-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>3.141.59</version>
+        </dependency>
+        <!--testng фреймворк для организации тестовых кейсов-->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>6.4.0.jre8</version>
         </dependency>
+
+        <!--Allure-->
+        <!--Создает отчеты после прогона тестов-->
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.14.3</version>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.10.0</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>io.qameta.allure</groupId>-->
-            <!--<artifactId>allure-testng</artifactId>-->
-            <!--<version>2.10.0</version>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
@@ -111,11 +117,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>io.qameta.allure</groupId>-->
-            <!--<artifactId>allure-selenide</artifactId>-->
-            <!--<version>2.8.1</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>2.8.1</version>
+        </dependency>
+        <!--что бы что-то не отвалилось-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -136,21 +143,27 @@
             <artifactId>commons-text</artifactId>
             <version>1.4</version>
         </dependency>
+
+        <!--Selenide-->
+        <!--фреймворк для упрощения написания самих тестов. Методов работы с элементами веб страниц-->
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>5.2.2</version>
         </dependency>
+        <!--не помню-->
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-clean-plugin</artifactId>
             <version>3.1.0</version>
         </dependency>
+        <!--драйвер для хрома для локального запуска-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>3.141.59</version>
         </dependency>
+        <!--конвертация тестовых данных из string json в переменные-->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
@@ -158,16 +171,12 @@
         </dependency>
 
         <!--hibernate-->
+        <!--работа с базой данных-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate-version}</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate</groupId>-->
-            <!--<artifactId>hibernate-entitymanager</artifactId>-->
-            <!--<version>${hibernate-version}</version>-->
-        <!--</dependency>-->
 
         <!--logger-->
         <dependency>
@@ -186,6 +195,7 @@
             <version>2.12.1</version>
         </dependency>
         <!--other-->
+        <!--browsermod упрощает работу получения вебрайвера для браузера с их сервера-->
         <dependency>
             <groupId>net.lightbody.bmp</groupId>
             <artifactId>browsermob-core</artifactId>
@@ -201,6 +211,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--для конфигурирования в классе property-->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
@@ -212,11 +223,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--просто так-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
         </dependency>
+        <!--замена allure. Подключение к reportportal. Сейчас не используется-->
         <dependency>
             <groupId>com.epam.reportportal</groupId>
             <artifactId>agent-java-testng</artifactId>
@@ -244,6 +257,35 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
             <version>2.9.9</version>
+        </dependency>
+
+        <!-- Citrus -->
+        <!--Начинал наработки по упрощению подключения к разным сервисам.
+        Можно упростить всё это многообразие протоколов.
+        Пока ничего не делал-->
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-core</artifactId>
+            <version>${citrus.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-java-dsl</artifactId>
+            <version>${citrus.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.consol.citrus</groupId>
+            <artifactId>citrus-http</artifactId>
+            <version>${citrus.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!--другой способ парсить json из файлов, в переменные-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
         </dependency>
     </dependencies>
 
@@ -293,6 +335,37 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <mainClass>com.consol.citrus.samples.todolist.TodoApplication</mainClass>
+                    <useTestClasspath>false</useTestClasspath>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.20.1</version>
+                <configuration>
+                    <systemProperties>
+                        <system.under.test.mode>${system.under.test.mode}</system.under.test.mode>
+                    </systemProperties>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-tests</id>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
         </plugins>

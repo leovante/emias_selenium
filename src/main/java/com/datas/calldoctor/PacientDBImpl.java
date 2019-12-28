@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
-public class PacientDBImpl implements Pacient {
+public class PacientDBImpl implements IPacient {
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private int gender;
     private Timestamp birthdate;

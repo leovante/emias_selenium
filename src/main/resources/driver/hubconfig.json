@@ -1,0 +1,14 @@
+{
+  "_comment": "Configuration for Hub - hubconfig.json",
+  "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+  "host": "localhost",
+  "port": 4444,
+  "cleanupCycle": 5000,
+  "maxSessions": 10,
+  "newSessionWaitTimeout": -1,
+  "prioritizer": null,
+  "role": "hub",
+  "debug": false,
+  "timeout": 10,
+  "browserTimeout": 30
+}

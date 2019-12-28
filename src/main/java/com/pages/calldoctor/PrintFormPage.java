@@ -3,9 +3,9 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
-import com.pages.BasePage;
-import com.utils.CallDoctorCards;
+import com.datas.calldoctor.IPacient;
+import com.pages.WebPage;
+import com.commons.CallDoctorCards;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,24 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.*;
+import static com.commons.assistance.Assistance.*;
 import static org.testng.Assert.assertTrue;
 
-public class PrintFormPage extends BasePage {
-    Pacient pacient;
-    SelenideElement doneCall = $(By.id("doneCall"));
-    SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
-    SelenideElement mat_calendar_header = $(By.id(""));
-    SelenideElement setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]"));
-    SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
-    SelenideElement completeServiceBtn = $(By.id("toDone"));
-    SelenideElement toLpu = $(By.id("toLpu"));
-    SelenideElement cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']"));
-    SelenideElement change = $(By.id("change"));
-    SelenideElement cancelBtn = $(By.id("cancel"));
-    SelenideElement cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']"));
-    SelenideElement cancelCall = $(By.id("cancelCall"));
-    SelenideElement cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
+public class PrintFormPage extends WebPage {
+    IPacient pacient;
+    private SelenideElement
+            doneCall = $(By.id("doneCall")),
+            mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"),
+            mat_calendar_header = $(By.id("")),
+            setAnotherDoctor = $(By.xpath("//span[contains(text(),'Передать другому врачу')]")),
+            appoindDoctorBtn = $(By.id("toDoctor")),
+            completeServiceBtn = $(By.id("toDone")),
+            toLpu = $(By.id("toLpu")),
+            cancelCall2 = $(By.xpath("//a[@title='Отменить вызов']")),
+            change = $(By.id("change")),
+            cancelBtn = $(By.id("cancel")),
+            cancelField = $(By.xpath("//input[@placeholder='Причина отмены вызова']")),
+            cancelCall = $(By.id("cancelCall")),
+            cardNumber = $(By.xpath("//div[contains(text(),'Карта вызова №')]"));
 
     @Autowired
     public CallDoctorCards callDoctorCards;
@@ -41,7 +42,7 @@ public class PrintFormPage extends BasePage {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
 
-    public PrintFormPage(Pacient pacient, String testName)  {
+    public PrintFormPage(IPacient pacient, String testName) {
         this.pacient = pacient;
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
     }
@@ -116,7 +117,7 @@ public class PrintFormPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public PrintFormPage verifyNewCall(Pacient pacient) throws IOException {
+    public PrintFormPage verifyNewCall(IPacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Новый')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -126,7 +127,7 @@ public class PrintFormPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public PrintFormPage verifyActivCall(Pacient pacient) throws IOException {
+    public PrintFormPage verifyActivCall(IPacient pacient) throws IOException {
         $(By.xpath("//*[contains(.,'Активный')]")).shouldBe(Condition.visible);
         baseElements();
         basePacient();

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-@Service
+@Service("HltDispExamSmServiceImpl")
 public class HltDispExamSmServiceImpl {
 
 

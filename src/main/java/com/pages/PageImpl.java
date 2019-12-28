@@ -1,8 +1,8 @@
 package com.pages;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
-public class PageImpl implements Page {
+@Component
+public class PageImpl implements IPage {
 
 }

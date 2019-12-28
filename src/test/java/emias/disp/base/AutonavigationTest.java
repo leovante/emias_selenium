@@ -1,16 +1,16 @@
 package emias.disp.base;
 
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import emias.TestDispBase;
 import org.testng.annotations.Test;
 
-public class AutonavigationTest extends TestBase {
+public class AutonavigationTest extends TestDispBase {
 
     @Test(groups = "disp", description = "проверка автоскролла бокового меню к блоку заключение при редактировании МЛ", enabled = false)
     @RetryCountIfFailed(2)
     public void testFillExamp1() {
-        page.misHome().dispCard();
-        page.exampPage()
+        IPage.misHome().dispCard();
+        IPage.exampPage()
                 .switchAllServicesTap()
                 .zakluchenieMenuBtn()
                 .validateZakluchenieBorder();
@@ -19,11 +19,11 @@ public class AutonavigationTest extends TestBase {
     @Test(groups = "disp", description = "проверка редиректа к блоку заключение при просмотре МЛ из журнала", enabled = false)
     @RetryCountIfFailed(2)
     public void testFillExamp2() {
-        page.misHome().dispJournal();
-        page.journalPage()
+        IPage.misHome().dispJournal();
+        IPage.journalPage()
                 .journalMenuBtn()
                 .openCardByNumber(180);
-        page.exampPage()
+        IPage.exampPage()
                 .switchAllServicesTap()
                 .zakluchenieMenuBtn()
                 .validateZakluchenieBorder();

@@ -1,25 +1,24 @@
 package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
-import com.utils.sql.DBScripts;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import emias.TestDispBase;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class ExampsFillTest extends TestBase {
+public class ExampsFillTest extends TestDispBase {
 
     @Test(groups = "disp", description = "проверка заполнения мероприятий М24", enabled = false)//
     @RetryCountIfFailed(2)
     public void testFillExamp()  {
 //        DBScripts.setDefaultServices("3169");
-        page.misHome().dispCard();
-        page.exampPage().fillTemnikov();
+        IPage.misHome().dispCard();
+        IPage.exampPage().fillTemnikov();
         $(By.xpath("//div[@mattooltip='Процент завершенности диспансеризации'][contains(.,'(100%)')]")).shouldBe(Condition.visible);
-        page.exampPage().saveBtn();
-        page.exampPage().podpisatBtn();
+        IPage.exampPage().saveBtn();
+        IPage.exampPage().podpisatBtn();
     }
 
 

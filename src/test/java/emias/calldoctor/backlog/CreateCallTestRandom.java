@@ -1,11 +1,11 @@
 package emias.calldoctor.backlog;
 
-import com.datas.calldoctor.Pacient;
+import com.commons.except.NoticeException;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientDBImpl;
 import com.system.service.HltMkabService;
-import com.utils.except.NoticeException;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.text.ParseException;
 
-public class CreateCallTestRandom extends TestBase {
+public class CreateCallTestRandom extends TestNGBase {
 
     @Qualifier("hltMkabService")
     @Autowired
@@ -27,10 +27,10 @@ public class CreateCallTestRandom extends TestBase {
     @Epic("Создание рандомного вызова")
     @RetryCountIfFailed(0)
     public void testCall() throws IOException, InterruptedException, ParseException, JSONException, NoticeException {
-        Pacient pacientImpl = new PacientDBImpl(mksb);
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+        IPacient pacientImpl = new PacientDBImpl(mksb);
+        IPage.misHome().calldoctorAdminTemnikov();
+        IPage.createCall(pacientImpl).createCall();
+        IPage.fullCard(pacientImpl, testName())
                 .verifyNewCall()
                 .closeCardBtn();
     }

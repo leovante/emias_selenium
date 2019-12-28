@@ -3,49 +3,52 @@ package com.datas.calldoctor;
 import org.codehaus.plexus.util.IOUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.testng.SkipException;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PacientImpl implements Pacient {
-    String pacient;
+public class PacientImpl implements IPacient {
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    private int source;
-    private int type;
-    private int gender;
-    private int callPersonType;
-    private String birthdate_string;
     private Date birthdate;
-    private String seriespol;
-    private String numberpol;
-    private String address;
-    private String address1;
-    private String address2;
-    private String address3;
-    private String address3adv;
-    private String address2adv;
-    private String complaint;
-    private String diagnosis;
-    private String phone;
-    private String name;
-    private String family;
-    private String ot;
-    private String entrance;//подьезд
-    private String floor;//этаж
-    private String number;//номер дома
-    private String building;//корпус
-    private String construction;//строение
-    private String appartment;//квартира
-    private String codedomophone;//домофон
-    private String sourceName;
-    private String sourceCode;
     private JSONObject kladraddress;
-    private String addressStringMin;
+    private int source,
+            type,
+            gender,
+            callPersonType;
+    private String birthdate_string,
+            seriespol,
+            numberpol,
+            address,
+            address1,
+            address2,
+            address3,
+            address3adv,
+            address2adv,
+            complaint,
+            diagnosis,
+            phone,
+            name,
+            family,
+            ot,
+            entrance,//подьезд
+            floor,//этаж
+            number,//номер дома
+            building,//корпус
+            construction,//строение
+            appartment,//квартира
+            codedomophone,//домофон
+            sourceName,
+            sourceCode,
+            addressStringMin,
+            pacient;
+
+    public PacientImpl(){}
 
     public PacientImpl(String pacient) {
         this.pacient = pacient;
-        String path = "src\\main\\resources\\calldoctor\\pacients\\" + pacient + ".json";
+        String path = "src/main/resources/calldoctor/pacients/" + pacient + ".json";
         JSONObject jsonOb;
         File reader2 = new File(path);
         try {
@@ -55,105 +58,72 @@ public class PacientImpl implements Pacient {
                 String jsonTxt = IOUtil.toString(is, "UTF-8");
                 jsonOb = new JSONObject(jsonTxt);
             } else {
-                throw new JSONException("Ошибка! Не найден файл пациента.");
+                throw new SkipException("Ошибка! Не найден файл пациента.");
             }
-
             if (jsonOb.has("source") && !jsonOb.get("source").equals(""))
                 this.source = jsonOb.getInt("source");
-
             if (jsonOb.has("type") && !jsonOb.get("type").equals(""))
                 this.type = jsonOb.getInt("type");
-
             if (jsonOb.has("callPersonType") && !jsonOb.get("callPersonType").equals(""))
                 this.type = jsonOb.getInt("callPersonType");
-
             if (jsonOb.has("seriespol") && !jsonOb.get("seriespol").equals(""))
                 this.seriespol = jsonOb.getString("seriespol");
-
             if (jsonOb.has("numberpol") && !jsonOb.get("numberpol").equals(""))
                 this.numberpol = jsonOb.getString("numberpol");
-
             if (jsonOb.has("gender") && !jsonOb.get("gender").equals(""))
                 this.gender = jsonOb.getInt("gender");
-
             if (jsonOb.has("name") && !jsonOb.get("name").equals(""))
                 this.name = jsonOb.getString("name");
-
             if (jsonOb.has("address") && !jsonOb.get("address").equals(""))
                 this.address = jsonOb.getString("address");
-
             if (jsonOb.has("address1") && !jsonOb.get("address1").equals(""))
                 this.address1 = jsonOb.getString("address1");
-
             if (jsonOb.has("address2") && !jsonOb.get("address2").equals(""))
                 this.address2 = jsonOb.getString("address2");
-
             if (jsonOb.has("address3") && !jsonOb.get("address3").equals(""))
                 this.address3 = jsonOb.getString("address3");
-
             if (jsonOb.has("address3adv") && !jsonOb.get("address3adv").equals(""))
                 this.address3adv = jsonOb.getString("address3adv");
-
             if (jsonOb.has("address2adv") && !jsonOb.get("address2adv").equals(""))
                 this.address2adv = jsonOb.getString("address2adv");
-
             if (jsonOb.has("complaint") && !jsonOb.get("complaint").equals(""))
                 this.complaint = jsonOb.getString("complaint");
-
             if (jsonOb.has("diagnosis") && !jsonOb.get("diagnosis").equals(""))
                 this.diagnosis = jsonOb.getString("diagnosis");
-
             if (jsonOb.has("phone") && !jsonOb.get("phone").equals(""))
                 this.phone = jsonOb.getString("phone");
-
             if (jsonOb.has("birthdate") && !jsonOb.get("birthdate").equals(""))
                 this.birthdate_string = jsonOb.getString("birthdate");
-
             if (jsonOb.has("family") && !jsonOb.get("family").equals(""))
                 this.family = jsonOb.getString("family");
-
             if (jsonOb.has("ot") && !jsonOb.get("ot").equals(""))
                 this.ot = jsonOb.getString("ot");
-
             if (jsonOb.has("number") && !jsonOb.get("number").equals(""))
                 this.number = jsonOb.getString("number");
-
             if (jsonOb.has("building") && !jsonOb.get("building").equals(""))
                 this.building = jsonOb.getString("building");
-
             if (jsonOb.has("construction") && !jsonOb.get("construction").equals(""))
                 this.construction = jsonOb.getString("construction");
-
             if (jsonOb.has("appartment") && !jsonOb.get("appartment").equals(""))
                 this.appartment = jsonOb.getString("appartment");
-
             if (jsonOb.has("entrance") && !jsonOb.get("entrance").equals(""))
                 this.entrance = jsonOb.getString("entrance");
-
             if (jsonOb.has("floor") && !jsonOb.get("floor").equals(""))
                 this.floor = jsonOb.getString("floor");
-
             if (jsonOb.has("codedomophone") && !jsonOb.get("codedomophone").equals(""))
                 this.codedomophone = jsonOb.getString("codedomophone");
-
             if (jsonOb.has("sourceName") && !jsonOb.get("sourceName").equals(""))
                 this.sourceName = jsonOb.getString("sourceName");
-
             if (jsonOb.has("sourceCode") && !jsonOb.get("sourceCode").equals(""))
                 this.sourceCode = jsonOb.getString("sourceCode");
-
             if (birthdate_string != null && birthdate_string != "")
                 this.birthdate = parseDate(birthdate_string);
-
             if (jsonOb.has("kladraddress") && !jsonOb.get("kladraddress").equals("")) {
                 this.kladraddress = jsonOb.getJSONObject("kladraddress");
-
                 if (kladraddress.has("addressStringMin") && !kladraddress.get("addressStringMin").equals(""))
                     this.addressStringMin = kladraddress.getString("addressStringMin");
             }
-        } catch (FileNotFoundException e) {
-        } catch (IOException e) {
-        } catch (JSONException e) {
+        } catch (JSONException | IOException e) {
         }
     }
 

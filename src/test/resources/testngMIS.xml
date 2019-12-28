@@ -4,7 +4,7 @@
     <parameter name="gridRun" value="true"/>
 
     <listeners>
-        <listener class-name="com.utils.retryCountListner.AnnotationTransformer"/>
+        <listener class-name="com.commons.retryCountListner.AnnotationTransformer"/>
     </listeners>
 
     <test name="BeforeTest" verbose="1">

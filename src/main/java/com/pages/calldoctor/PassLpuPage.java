@@ -3,18 +3,16 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.pages.BasePage;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-
-import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.sleep;
 
-public class PassLpuPage extends BasePage {
+public class PassLpuPage extends WebPage {
     Doctor doctor;
 
     public PassLpuPage() {

@@ -1,19 +1,19 @@
 package emias.medicalrecords;
 
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.Datas;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 
-public class SearchMR extends TestBase {
+public class SearchMR extends TestNGBase {
     @Test(groups = "MR", description = "поиск медзаписей на странице мкаб")
     @Epic("Поиск медзаписи")
     @RetryCountIfFailed(2)
     public void searchMR_redirectFromMkabPage() {
         Datas d = new Datas().setMedicalRecord("Антропометрия");
-        page.misHome().mr_mkab();
-        page.ehr_medicalrecordsMKAB(d)
+        IPage.misHome().mr_mkab();
+        IPage.ehr_medicalrecordsMKAB(d)
                 .searchField()
                 .validateMrIsExistOnSearchResult();
     }
@@ -23,8 +23,8 @@ public class SearchMR extends TestBase {
     @RetryCountIfFailed(2)
     public void searchMROnPageTap() {
         Datas d = new Datas().setMedicalRecord("Осмотр гастроэнтеролога");
-        page.misHome().mrFromTap();
-        page.ehrMedrecords(d)
+        IPage.misHome().mrFromTap();
+        IPage.ehrMedrecords(d)
                 .newMrMenuBtn()
                 .allPatternsBtn()
                 .searchField()

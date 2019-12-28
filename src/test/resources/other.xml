@@ -5,7 +5,7 @@
     <parameter name="testng" value="true"/>
 
     <listeners>
-        <listener class-name="com.utils.retryCountListner.AnnotationTransformer"/>
+        <listener class-name="com.commons.retryCountListner.AnnotationTransformer"/>
     </listeners>
     <!--Медицинские записи-->
     <test name="TestMR_Chrome" verbose="1">

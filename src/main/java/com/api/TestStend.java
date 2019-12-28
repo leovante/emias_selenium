@@ -1,7 +1,7 @@
 package com.api;
 
 import com.codeborne.selenide.Condition;
-import com.config.ConfigFile;
+import com.settings.ConfigFile;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;

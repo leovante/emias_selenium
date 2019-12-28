@@ -2,10 +2,10 @@ package emias.mis.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.commons.retryCountListner.RetryCountIfFailed;
 import com.datas.calldoctor.Doctor;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -13,12 +13,12 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 
-public class PerehodyTest extends TestBase {
+public class PerehodyTest extends TestNGBase {
     @Test(groups = "mis", description = "Переход в диспетчер с дашборда МИС")
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDdashboard() {
-        page.misHome().calldoctor();
+        IPage.misHome().calldoctorAdminTemnikov();
         $(By.xpath("//*[contains(text(),'Вызов врача на дом')]")).shouldBe(Condition.visible);
     }
 
@@ -26,11 +26,11 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDmkab() {
-        page.misHome().loginMis();
+        IPage.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+        IPage.mkabPage().openMkab("Темников Дмитрий Олегович");
         $(By.id("jqContextMenu"))
                 .$(By.id("MkabGridcontextmenuitem0"))
                 .click();
@@ -50,7 +50,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDjournal() {
-        page.misHome().loginMis();
+        IPage.misHome().loginMis();
         $x("//span[contains(text(),'Вызов врача на дом')]").click();
         $(By.id("add_doc_house_btn")).click();
         switchTo().window(1);
@@ -61,7 +61,7 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionCDlk() {
-        page.misHome().loginMis();
+        IPage.misHome().loginMis();
         $(By.xpath("//span[contains(text(),'Личный кабинет')]")).click();
         $(By.id("MyCallTab")).click();
         $(By.id("add_doc_house_btn")).click();
@@ -73,8 +73,8 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionDispDash() {
-        page.misHome().loginMis();
-        page.homePageMis().dispCardJournalBtn();
+        IPage.misHome().loginMis();
+        IPage.homePageMis().dispCardJournalBtn();
         switchTo().window("Медицинская Информационная Система");
         $(By.xpath("//*[contains(text(),'Журнал')]")).shouldBe(Condition.visible);
     }
@@ -83,11 +83,11 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionDispMkab() {
-        page.misHome().loginMis();
+        IPage.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+        IPage.mkabPage().openMkab("Темников Дмитрий Олегович");
         $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Действия')]")).click();
         $(By.xpath("//*[contains(text(),'Карты диспансеризации / профосмотры')]")).click();
@@ -104,9 +104,9 @@ public class PerehodyTest extends TestBase {
     public void transitionDispShedule() {
         PacientImpl pacientImpl = new PacientImpl("Temnikov94");
         Doctor doctor = new Doctor("Dispanserizatov");
-        page.misHome().loginMis();
-        page.homePageMis().raspisaniPriemaBtn();
-        page.raspisaniePriemaPage()
+        IPage.misHome().loginMis();
+        IPage.homePageMis().raspisaniPriemaBtn();
+        IPage.raspisaniePriemaPage()
                 .generateML(pacientImpl)
                 .getTerapevtTime()
                 .saveAndCloseBtn()
@@ -119,11 +119,11 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionMedMkab() {
-        page.misHome().loginMis();
+        IPage.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+        IPage.mkabPage().openMkab("Темников Дмитрий Олегович");
         $(By.id("jqContextMenu")).$(By.id("MkabGridcontextmenuitem0")).click();
         $(By.id("mkab_tabs")).$(By.xpath(".//*[contains(text(),'Мед. записи →')]")).click();
         switchTo().window(1);
@@ -134,11 +134,11 @@ public class PerehodyTest extends TestBase {
     @Epic("Переходы")
     @RetryCountIfFailed(2)
     public void transitionMedTap() {
-        page.misHome().loginMis();
+        IPage.misHome().loginMis();
         $(By.xpath("//*[contains(text(),'Медицинские карты')]")).click();
         $(By.id("patientMkab")).val("Темников Дмитрий Олегович");
         $(By.id("searchMkabByFilter")).click();
-        page.mkabPage().openMkab("Темников Дмитрий Олегович");
+        IPage.mkabPage().openMkab("Темников Дмитрий Олегович");
         $(By.id("jqContextMenu"))
                 .$(By.id("MkabGridcontextmenuitem0"))
                 .click();

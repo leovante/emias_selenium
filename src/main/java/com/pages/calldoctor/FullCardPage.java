@@ -3,54 +3,58 @@ package com.pages.calldoctor;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.datas.calldoctor.Doctor;
-import com.datas.calldoctor.Pacient;
-import com.datas.calldoctor.PacientImpl;
-import com.pages.BasePage;
+import com.datas.calldoctor.IPacient;
+import com.pages.WebPage;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.url;
-import static com.lib.assistance.Assistance.*;
+import static com.commons.assistance.Assistance.*;
 import static org.testng.Assert.assertTrue;
 
-public class FullCardPage extends BasePage {
-    Pacient pacient;
-    SelenideElement doneCall = $(By.id("doneCall"));
-    SelenideElement mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']");
-    SelenideElement mat_calendar_header = $(By.id(""));
-    SelenideElement setAnotherDoctor = $x("//span[contains(text(),'Передать другому врачу')]");
-    SelenideElement appoindDoctorBtn = $(By.id("toDoctor"));
-    SelenideElement completeServiceBtn = $(By.id("toDone"));
-    SelenideElement toLpu = $(By.id("toLpu"));
-    SelenideElement cancelCall2 = $x("//a[@title='Отменить вызов']");
-    SelenideElement change = $(By.id("change"));
-    SelenideElement cancelBtn = $(By.id("cancel"));
-    SelenideElement cancelField = $x("//input[@placeholder='Причина отмены вызова']");
-    SelenideElement cancelCall = $(By.id("cancelCall"));
-    SelenideElement cardNumber = $x("//div[contains(text(),'Карта вызова №')]");
-    SelenideElement status_new = $x("//*[contains(.,'Новый')]");
-    SelenideElement status_active = $(By.xpath("//*[contains(.,'Активный')]"));
-    SelenideElement status_done = $(By.xpath("//*[contains(.,'Обслуженный')]"));
-    SelenideElement timeField = $x("//input[@placeholder='Время']");
-    SelenideElement card = $x("//*[contains(text(),'Карта вызова')]");
+public class FullCardPage extends WebPage {
+    IPacient pacient;
+    private SelenideElement
+            doneCall = $(By.id("doneCall")),
+            mat_calendar_header2 = $x("//div[@class='mat-calendar-body-cell-content mat-calendar-body-selected mat-calendar-body-today']"),
+            mat_calendar_header = $(By.id("")),
+            setAnotherDoctor = $x("//span[contains(text(),'Передать другому врачу')]"),
+            appoindDoctorBtn = $(By.id("toDoctor")),
+            completeServiceBtn = $(By.id("toDone")),
+            toLpu = $(By.id("toLpu")),
+            cancelCall2 = $x("//a[@title='Отменить вызов']"),
+            change = $(By.id("change")),
+            cancelBtn = $(By.id("cancel")),
+            cancelField = $x("//input[@placeholder='Причина отмены вызова']"),
+            cancelCall = $(By.id("cancelCall")),
+            cardNumber = $x("//div[contains(text(),'Карта вызова №')]"),
+            status_new = $x("//*[contains(.,'Новый')]"),
+            status_active = $(By.xpath("//*[contains(.,'Активный')]")),
+            status_done = $(By.xpath("//*[contains(.,'Обслуженный')]")),
+            timeField = $x("//input[@placeholder='Время']"),
+            card = $x("//*[contains(text(),'Карта вызова')]");
 
-    public FullCardPage(String testName)  {
+    public FullCardPage(String testName) {
         callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         logger.info("Open card with url: " + url());
     }
 
-    public FullCardPage(Pacient pacient, String testName)  {
+    FullCardPage(IPacient pacient, String testName) {
         this.pacient = pacient;
         try {
             callDoctorCards.setCardMap(testName, cardNumberParser(cardNumber.getText()));
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+        logger.info("Открыл карту вызова url " + url());
+    }
+
+    FullCardPage(IPacient pacient) {
+        this.pacient = pacient;
         logger.info("Открыл карту вызова url " + url());
     }
 
@@ -129,7 +133,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyNewCall()  {
+    public FullCardPage verifyNewCall() {
         status_new.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -139,7 +143,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("проверяю новый вызов")
-    public FullCardPage verifyActivCall(PacientImpl pacientImpl)  {
+    public FullCardPage verifyActivCall(IPacient pacient) {
         status_active.shouldBe(Condition.visible);
         baseElements();
         basePacient();
@@ -169,7 +173,7 @@ public class FullCardPage extends BasePage {
 
     @Step("отмена вызов на странице редактирвоания")
     public FullCardPage cancelOnChangePageBtn() {
-        $(By.xpath("//*[contains(.,'" + "Редактирование вызова" + "')]")).shouldBe(Condition.visible);
+        visible("Редактирование вызова");
         cancelCall.click();
         cancelField.setValue("отмена автотестом");
         cancelCall2.click();
@@ -185,7 +189,7 @@ public class FullCardPage extends BasePage {
     @Step("назначить врача")
     public FullCardPage chooseDoctorBtn() {
         card.shouldBe(Condition.visible);
-        $(By.xpath("//span[contains(text(),'Назначить')]")).shouldBe(Condition.visible);
+        $x("//span[contains(text(),'Назначить')]").shouldBe(Condition.visible);
         appoindDoctorBtn.hover().click();
         return this;
     }
@@ -209,7 +213,7 @@ public class FullCardPage extends BasePage {
     public FullCardPage closeCardBtn() {
         card.shouldBe(Condition.visible);
         List<SelenideElement> elements = $$(By.xpath("//span/mat-icon[contains(text(),'close')]"));
-        $(By.xpath("//span/mat-icon[contains(text(),'close')]")).click();
+        $x("//span/mat-icon[contains(text(),'close')]").click();
         logger.info("Карта закрыта!");
         return this;
     }
@@ -254,7 +258,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("Проверка текущего подразделения у карты вызова")
-    public FullCardPage verifyDepartment(Doctor doctor)  {
+    public FullCardPage verifyDepartment(Doctor doctor) {
         $(By.xpath("//*[contains(.,'" + doctor.getDepartment() + "')]")).shouldBe(Condition.visible);
         return this;
     }
@@ -273,7 +277,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("валидация что вызов не отменился на подробной странице")
-    public FullCardPage verifyCancellCallValidation()  {
+    public FullCardPage verifyCancellCallValidation() {
         $(By.xpath("//*[contains(text(),'Причина отмены вызова не указана, либо слишком коротка')]")).shouldBe(Condition.visible);
         sleep(2000);
         $(By.xpath("//*[contains(text(),'КТО ПАЦИЕНТ')]")).shouldBe(Condition.visible);
@@ -281,7 +285,7 @@ public class FullCardPage extends BasePage {
     }
 
     @Step("нажимаю на кнопку печати")
-    public FullCardPage printBtn()  {
+    public FullCardPage printBtn() {
         $x("//div[@id='viewPrint']/mat-icon").click();
         return this;
     }

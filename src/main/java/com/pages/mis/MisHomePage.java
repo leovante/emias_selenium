@@ -3,23 +3,17 @@ package com.pages.mis;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.pages.BasePage;
-import com.utils.DispUrlParser;
+import com.pages.WebPage;
+import com.commons.DispUrlParser;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.testng.Assert;
 
-import java.net.MalformedURLException;
-
 import static com.codeborne.selenide.Selenide.*;
-import static com.lib.assistance.Assistance.visible;
+import static com.commons.assistance.Assistance.visible;
 
-public class MisHomePage extends BasePage {
-
-    public MisHomePage()   {
-    }
-
+public class MisHomePage extends WebPage {
     @Step("Открываю стенд")
     public void loginMis() {
         open(conf.getUrl());
@@ -38,7 +32,7 @@ public class MisHomePage extends BasePage {
     }
 
     @Step("Open CallDoctor with in URL")
-    public void calldoctor() {
+    public void calldoctorAdminTemnikov() {
         open(conf.getCalldoctor());
         logger.debug("Open CallDoctor with in URL: " + conf.getCalldoctor());
     }
@@ -46,6 +40,18 @@ public class MisHomePage extends BasePage {
     @Step("Вход в модуль диспетчер от взрослой поликлиникой")
     public void calldoctorVzroslaya() {
         open(conf.getCalldoctorVz());
+        logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
+    }
+
+    @Step("Вход в модуль диспетчер от взрослой поликлиникой")
+    public void calldoctorUdina() {
+        open(conf.getCalldoctorUdinaVz());
+        logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
+    }
+
+    @Step("Вход в модуль диспетчер от взрослой поликлиникой")
+    public void calldoctorHimki() {
+        open(conf.getCalldoctorHimki());
         logger.info("Открыл модуль диспетчер по прямой ссылке от взрослого подразделения: " + conf.getCalldoctorVz());
     }
 
@@ -121,7 +127,7 @@ public class MisHomePage extends BasePage {
     }
 
     @Step("Следующая страница на форуме тех.поддержки")
-    public MisHomePage nextPage(){
+    public MisHomePage nextPage() {
         $x("//a[contains(text(),'След.')]").click();
         return this;
     }

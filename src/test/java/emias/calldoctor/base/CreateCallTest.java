@@ -1,26 +1,24 @@
 package emias.calldoctor.base;
 
-import com.datas.calldoctor.Pacient;
+import com.commons.assistance.DuringTestHelper;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import emias.TestCallDoctorBase;
 import io.qameta.allure.Epic;
-import org.json.JSONException;
 import org.testng.annotations.Test;
 
-import java.io.IOException;
+import static com.commons.assistance.Assistance.visible;
 
-import static com.lib.assistance.Assistance.visible;
-
-public class CreateCallTest extends TestBase {
-
+public class CreateCallTest extends TestCallDoctorBase {
     @Test(groups = "CD", description = "пустой вызов")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void callRegistrEmpy() {
-        Pacient pacient = new PacientImpl("Profile0");
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("Profile0");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall();
         page.fullCard(pacient, testName())
                 .verifyNewCall()
@@ -31,8 +29,10 @@ public class CreateCallTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallMkabWaitoutAddressID() {
-        Pacient pacient = new PacientImpl("Profile0_3");
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("Profile0_3");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
         page.createCall(pacient).createCall_Mkab();
         visible(pacient.getAddress());
     }
@@ -41,26 +41,29 @@ public class CreateCallTest extends TestBase {
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistr() {
-        Pacient pacientImpl = new PacientImpl("Profile1");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+        IPacient pacient = new PacientImpl("Profile1");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName())
                 .verifyNewCall()
                 .closeCardBtn();
-        page.dashboard().verifyNewCallGroup(pacientImpl);
+        page.dashboard().verifyNewCallGroup(pacient);
     }
 
     @Test(groups = "CD", description = "вызов с источником СМП и привязкой МКАБ")
     @Epic("Создание вызова")
     @RetryCountIfFailed(2)
     public void testCallRegistrMkab() {
-        Pacient pacientImpl = new PacientImpl("Profile2");
-        page.misHome().calldoctor();
-        page.createCall(pacientImpl).createCall();
-        page.fullCard(pacientImpl, testName())
+        IPacient pacient = new PacientImpl("Profile2");
+        new DuringTestHelper().beforeCleanDecider(pacient);
+
+        page.misHome().calldoctorAdminTemnikov();
+        page.createCall(pacient).createCall();
+        page.fullCard(pacient, testName())
                 .verifyNewCall()
                 .closeCardBtn();
-        page.dashboard().verifyNewCallGroup(pacientImpl);
+        page.dashboard().verifyNewCallGroup(pacient);
     }
-    // TODO: 11/8/2019 сделать тест поиск мкаб по серии 4619 Темников
 }

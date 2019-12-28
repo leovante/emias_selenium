@@ -1,10 +1,10 @@
 package emias.calldoctor.backlog;
 
-import com.datas.calldoctor.Pacient;
+import com.commons.except.NoticeException;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.datas.calldoctor.IPacient;
 import com.datas.calldoctor.PacientImpl;
-import com.utils.except.NoticeException;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.testRunner.TestNGBase;
 import io.qameta.allure.Epic;
 import org.json.JSONException;
 import org.testng.Assert;
@@ -12,17 +12,17 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class CreateCall extends TestBase {
+public class CreateCall extends TestNGBase {
 
     @Test(groups = "test", description = "Описание: создание пустого вызова от источника регистратура")
     @Epic("Создание вызова")
     @RetryCountIfFailed(0)
     public void callRegistrEmpy() throws IOException, InterruptedException, JSONException, NoticeException {
-        Pacient pacient = new PacientImpl("Profile0");
-        page.misHome().calldoctor();
+        IPacient pacient = new PacientImpl("Profile0");
+        IPage.misHome().calldoctorAdminTemnikov();
         Assert.assertTrue(false);
-        page.createCall(pacient).createCall();
-        page.fullCard(pacient, testName())
+        IPage.createCall(pacient).createCall();
+        IPage.fullCard(pacient, testName())
                 .verifyNewCall()
                 .closeCardBtn();
     }

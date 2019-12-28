@@ -1,22 +1,23 @@
 package emias.mis.before;
 
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.testRunner.TestNGBase;
+import org.testng.annotations.Test;
 
-public class BeforeSuiteMIS extends TestBase {
+public class BeforeSuiteMIS extends TestNGBase {
 
-    @org.testng.annotations.Test(groups = "mis", description = "Завершаю все вызовы", enabled = false)
+    @Test(groups = "mis", description = "Завершаю все вызовы", enabled = false)
     @RetryCountIfFailed(2)
     public void finalizeCalls() {
 //        SQLDemonstration.updateDB();//обновляю базу скриптами из папки
     }
 
-    @org.testng.annotations.Test(groups = "mis", description = "Cоздаю новое расписание у врачей на сегодня", enabled = false)
+    @Test(groups = "mis", description = "Cоздаю новое расписание у врачей на сегодня", enabled = false)
     @RetryCountIfFailed(2)
     public void cleanBeforeWork() {
-        page.misHome().loginMis();
-        page.homePageMis().vedenieRaspisaniyaBtn();
-        page.homePageMis().createSomeRecords(15);
-        page.homePageMis().logoHomeBtn();
+        IPage.misHome().loginMis();
+        IPage.homePageMis().vedenieRaspisaniyaBtn();
+        IPage.homePageMis().createSomeRecords(15);
+        IPage.homePageMis().logoHomeBtn();
     }
 }

@@ -2,27 +2,30 @@ package emias.disp.base;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.utils.retryCountListner.RetryCountIfFailed;
-import emias.TestBase;
+import com.commons.retryCountListner.RetryCountIfFailed;
+import com.system.service.HltDispExamServiceImpl;
+import emias.TestDispBase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
-import static com.pages.disp.Services.issledovanieKala;
+import static com.datas.disp.measure.MeasureEnum.issledovanie_kala;
 
-public class RouteListTest extends TestBase {
+public class RouteListTest extends TestDispBase {
+    @Autowired
+    public HltDispExamServiceImpl hltDispExamService;
+
     @Ignore
     @Test(groups = "disp", description = "проверка что терапевт в конце МЛ после отмены мероприятия", enabled = false)
 //сейчас даже если терапевт не последний, тап и заключение отображается как надо
     @RetryCountIfFailed(2)
-    public void testCancelTerapevt() {
-        page.misHome().loginMis();
-        page.homePageMis().raspisaniPriemaBtn();
-        page.raspisaniePriemaPage()
+    public void cancelTerapevt() {
+        IPage.misHome().loginMis();
+        IPage.homePageMis().raspisaniPriemaBtn();
+        IPage.raspisaniePriemaPage()
                 .createDispMl("Темников", "18.07.1995")
                 .generateML()
                 .disableIPK()
@@ -31,30 +34,30 @@ public class RouteListTest extends TestBase {
 
     @Test(groups = "disp", description = "проверка пустых значений в показателях")
     @RetryCountIfFailed(2)
-    public void testEmpyFieldParams() {
-        page.misHome().dispCard();
-        page.exampPage().validateFieldParamIsEmpy();
+    public void empyFieldParams() {
+        IPage.misHome().dispCard();
+        IPage.exampPage().validateFieldParamIsEmpy();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с пробелом")
     @RetryCountIfFailed(2)
-    public void testSpaceValidationFieldParams() {
-        page.misHome().dispCard();
-        page.exampPage().validateFieldParamWithSpace();
+    public void spaceValidationFieldParams() {
+        IPage.misHome().dispCard();
+        IPage.exampPage().validateFieldParamWithSpace();
     }
 
     @Test(groups = "disp", description = "показатели не должны сохраняться с дефолтным пустым полем")
     @RetryCountIfFailed(2)
-    public void testDefaultValidationFieldParams() {
-        page.misHome().dispCard();
-        page.exampPage().validateClearParam();
+    public void defaultValidationFieldParams() {
+        IPage.misHome().dispCard();
+        IPage.exampPage().validateClearParam();
     }
 
     @Test(groups = "disp", description = "пустое мероприятие не должно промаркироваться, даже если его не раскрыли", enabled = false)
     @RetryCountIfFailed(2)
     public void validateParamNotOpen() {
-        page.misHome().dispCard();
-        page.exampPage()
+        IPage.misHome().dispCard();
+        IPage.exampPage()
                 .switchAllServicesTap()
                 .validateParamNotOpen();
     }
@@ -64,17 +67,17 @@ public class RouteListTest extends TestBase {
     @Test(groups = "disp", description = "отображение кнопки просмотреть у мероприятия без маркировок. И подписание")
     @RetryCountIfFailed(2)
     public void validateKallMeasure() {
-        long a = page.misHome().getDispCardNumber();
+        long a = IPage.misHome().getDispCardNumber();
         hltDispExamService.resetCardExams(a);
-        page.misHome().dispCard42();
-        page.exampPage(issledovanieKala)
-                .switchAllServicesTap()
-                .openMeasure()
-                .openService()
+        IPage.misHome().dispCard42();
+        IPage.exampPage()
+                .switchAllServicesTap();
+        IPage.exampPage(issledovanie_kala)
+                .expandExam()
+                .expandService()
                 .signService()
                 .validateServiceIsSign();
     }
-
     // TODO: 5/14/2019 сделать проверку задизеблинной кнопки подписать и сохранить у мероприятия при входе через чужую ячейку расписания
     // TODO: 5/14/2019 сделать проверку отсутствующего тапа в заключении терапевта у врача без должности врач
 
@@ -101,6 +104,5 @@ public class RouteListTest extends TestBase {
         SelenideElement se2 = $x("//*[contains(.,'Абсолютный суммарный сердечно-сосудистый риск по шкале SCORE')]");
         Assert.assertFalse(se2.is(Condition.visible), "абсолютный ССР не отображается");
     }
-
     // TODO: 7/15/2019 добавить тест. проставить отказ мероприятию с медзаписю например ИПК и сохранить карту. Потом перезагрузиться и попытаться раскрыть медзапись. Сейчас не раскрывается
 }
