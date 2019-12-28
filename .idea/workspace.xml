@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5d9cd1-69c8-443e-b717-7847609d1212" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_qameta_allure_allure_selenide_2_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_qameta_allure_allure_testng_2_10_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/regress_tests.iml" beforeDir="false" afterPath="$PROJECT_DIR$/regress_tests.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -66,7 +62,7 @@
           <entry key="class" value="52" />
           <entry key="clear_card" value="13" />
           <entry key="csv" value="4" />
-          <entry key="gitignore" value="3" />
+          <entry key="gitignore" value="4" />
           <entry key="hibernate_sequence" value="1" />
           <entry key="iml" value="1" />
           <entry key="java" value="2540" />
@@ -95,7 +91,7 @@
           <entry key="txt" value="25" />
           <entry key="uuid_generate_v1" value="1" />
           <entry key="uuid_generate_v5" value="1" />
-          <entry key="xml" value="135" />
+          <entry key="xml" value="136" />
           <entry key="xsd" value="1" />
           <entry key="валидаторы тарифов" value="3" />
           <entry key="врач в блоке мероприятий по тарифам" value="7" />
@@ -116,11 +112,11 @@
           <entry key="Image" value="10" />
           <entry key="JAVA" value="2540" />
           <entry key="JSON" value="133" />
-          <entry key="PLAIN_TEXT" value="64" />
+          <entry key="PLAIN_TEXT" value="65" />
           <entry key="Properties" value="95" />
           <entry key="SQL" value="45" />
           <entry key="Scratch" value="320" />
-          <entry key="XML" value="163" />
+          <entry key="XML" value="164" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -128,7 +124,7 @@
           <entry key="cell" value="390" />
           <entry key="clear_card" value="27" />
           <entry key="dummy" value="207" />
-          <entry key="gitignore" value="71" />
+          <entry key="gitignore" value="72" />
           <entry key="java" value="42648" />
           <entry key="json" value="229" />
           <entry key="preapreBD" value="259" />
@@ -147,7 +143,7 @@
         <counts>
           <entry key="JAVA" value="42648" />
           <entry key="JSON" value="229" />
-          <entry key="PLAIN_TEXT" value="1760" />
+          <entry key="PLAIN_TEXT" value="1761" />
           <entry key="Properties" value="356" />
           <entry key="SQL" value="297" />
           <entry key="Scratch" value="43390" />
@@ -203,6 +199,27 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1632">
+              <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+              <folding>
+                <element signature="n#properties#0;n#project#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -217,15 +234,6 @@
                 <element signature="e#1921#1998#0" />
                 <element signature="method#testCallRegistrMkab#0;class#CreateCallTest#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -419,7 +427,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/dtemnikov/.IntelliJIdea2018.2/config/consoles/db/d3ca9510-eb2c-4afa-852a-6b8d001b0463/console.sql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577522359087" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1577522755427" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
     <property name="last_opened_file_path" value="$USER_HOME$/Google Drive/_softrust/test/нагрузочное тестирвоание/testCard.csv" />
@@ -767,14 +775,7 @@
       <workItem from="1576568349478" duration="48077000" />
       <workItem from="1577169872883" duration="12891000" />
       <workItem from="1577270158770" duration="3540000" />
-      <workItem from="1577438588359" duration="6999000" />
-    </task>
-    <task id="LOCAL-00005" summary="правки тестов 2.1">
-      <created>1567589517279</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1567589517282</updated>
+      <workItem from="1577438588359" duration="7278000" />
     </task>
     <task id="LOCAL-00006" summary="правки тестов 2.1">
       <created>1567609343934</created>
@@ -1112,7 +1113,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577514450486</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="правки">
+      <created>1577522376619</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1577522376620</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1148,7 +1156,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1233830000" />
+    <option name="totallyTimeSpent" value="1234109000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1161,6 +1169,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="80" y="-8" width="1848" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Nl-Palette" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -1175,16 +1184,16 @@
       <window_info active="true" anchor="bottom" id="Database Console" order="0" sideWeight="0.49496645" visible="true" weight="0.2819149" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.30656108" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49161074" visible="true" weight="0.27872342" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49161074" weight="0.23297872" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.20744681" />
       <window_info anchor="bottom" id="Debug" order="7" sideWeight="0.49733475" weight="0.3425532" />
       <window_info anchor="bottom" id="Structure" order="8" sideWeight="0.50503355" side_tool="true" weight="0.30957446" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50851786" side_tool="true" weight="0.35180995" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50894856" side_tool="true" weight="0.23404256" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4904051" weight="0.24680851" />
       <window_info anchor="bottom" id="Database Changes" order="11" weight="0.28723404" />
-      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.4914821" weight="0.23404256" />
+      <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49105147" weight="0.23404256" />
       <window_info anchor="bottom" id="Spring" order="13" weight="0.32978722" />
       <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49307036" weight="0.31595746" />
       <window_info anchor="right" id="Dynamic Properties" order="0" />
@@ -1729,23 +1738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4607">
-          <caret line="283" column="62" selection-start-line="283" selection-start-column="62" selection-end-line="283" selection-end-column="62" />
-          <folding>
-            <element signature="n#properties#0;n#project#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/regress.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/emias/calldoctor/base/CreateCallTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1763,10 +1755,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/regress.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1632">
+          <caret line="24" column="17" lean-forward="true" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+          <folding>
+            <element signature="n#properties#0;n#project#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        <state relative-caret-position="68">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1845,5 +1854,9 @@
         </settings>
       </state>
     </states>
+  </component>
+  <component name="mavenExecuteGoalHistory">
+    <option value="$PROJECT_DIR$" />
+    <option value="allure:report" />
   </component>
 </project>

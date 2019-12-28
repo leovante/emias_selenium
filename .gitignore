@@ -1,5 +1,6 @@
-.idea
-.girignore
-emias_selenium.iml
-regress_tests.iml
-/target
+.idea/
+.gitignore
+*.iml
+*.iws
+target/
+log/
