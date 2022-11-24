@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.4</aspectj.version>
         <testng></testng>
-        <hibernate-version>5.3.7.Final</hibernate-version>
+        <hibernate-version>5.3.20.Final</hibernate-version>
         <selenide.reports>target/test-result/reports</selenide.reports>
         <java.version>10</java.version>
     </properties>
